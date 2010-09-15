@@ -31,6 +31,15 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
+  # Your secret key for verifying cookie session data integrity.
+  # If you change this key, all old sessions will become invalid!
+  # Make sure the secret is at least 30 characters and all random,
+  # no regular words or you'll be exposed to dictionary attacks.
+  config.action_controller.session = {
+    :session_key => '_keupon_session',
+    :secret      => '00eda230766f120526ef08b54e95aaa14202f0ecd68268d1519502b9e2595d600768c1e60e58c684ea9c427fa9cf5a9399b897147b69dec4a6acc16946099f8e'
+  }
+
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
