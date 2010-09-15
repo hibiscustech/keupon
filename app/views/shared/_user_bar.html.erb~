@@ -1,0 +1,19 @@
+<% if logged_in? -%>
+  <table class="rounded-corners_login" style="margin-top: -95px;">
+    <tr>
+      <td align="right" class="content_text3">Hi, Welcome <%=current_user.profile.first_name%><%=current_user.profile.last_name%><%#= link_to_current_user :content_method => :login %> | <%= link_to "Signout", logout_path, { :title => "Log out",:style=>'color:#fff;' }    %> </td>
+    </tr>
+
+  </table>
+<% else -%>
+  <table lass="rounded-corcners_login" style="margin-top: -95px;">
+    <tr>
+      <td align="right"> <%= link_to "Sign Up As customer ", logout_path %> | <%= link_to "Sign Up As Merchant ", logout_path   %> </td>
+    </tr>
+
+  </table>
+
+
+<% end -%>
+
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to KidPic</title>
+     <%= javascript_include_tag :defaults %>
+     <%= javascript_include_tag "demo.js" %>
+     <%= javascript_include_tag "shadowbox.js" %>
+     <%= javascript_include_tag "calendar_date_select/calendar_date_select" %>
+     <%= stylesheet_link_tag "calendar_date_select/silver" %>
+    <%= stylesheet_link_tag 'text' %>
+    <%= stylesheet_link_tag 'shadowbox' %>
+    <%= stylesheet_link_tag 'style' %>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url(/images/bg.jpg);
+}
+-->
+</style>
+
+<script type="text/javascript">
+      Shadowbox.init({
+        // a darker overlay looks better on this particular site
+        overlayOpacity: 0.8
+        // setupDemos is defined in assets/demo.js
+      }, setupDemos);
+    </script>
+
+<link href="text.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+<table width="967" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="20%"><%=link_to image_tag("logo.jpg" ,:border => 0) , :controller => 'home', :action => 'index'%></td>
+        <td width="28%">&nbsp;</td>
+        <td width="52%">
+          <%= render :partial => "users/user_bar"%>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+
+
+  <tr>
+    <td height="500" valign="top" bgcolor="#FFFFFF" style="padding:5px 5px 5px 5px;">
+      <p id="notice"><%if flash[:notice] %><%= flash[:notice] %> <%else%><%= flash[:error]%><%end%></p>
+           <div id="content">
+
+						<%= yield %>		        <br clear="all" />
+
+      </div>
+    </td>
+  </tr>
+
+
+
+
+  <tr>
+    <td height="10"></td>
+  </tr>
+  <tr>
+    <td height="59" background="/images/footer_bg.png"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="6" colspan="3"></td>
+        </tr>
+      <tr>
+        <td width="32%">&nbsp;</td>
+        <td width="37%" align="center">
+             <a href="#" class="footer_link">Home</a> <span class="footer_link">|</span>
+             <a href="#" class="footer_link">Gallery</a> <span class="footer_link">|</span>
+             <a href="#" class="footer_link">Help</a><span class="footer_link">|</span>
+            <a href="#" class="footer_link">Contact Us</a>
+        </td>
+        <td width="31%">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td align="center" class="copyright_text">Copyright &copy; 2010, KidPic.</td>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,175 @@
+
+
+<div style="width:608px;height:300px;text-align:left;">
+  <table >
+    <tr>
+      <td>
+        <h4>Registration</h4>
+      </td>
+      <td>
+
+      </td>
+    </tr>
+  </table>
+
+  <% @customer.password = @customer.password_confirmation = nil %>
+  <div><%= error_messages_for :user %></div>
+  <% form_for :customer, :url => customers_path do |f| -%>
+    <table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
+      <tr>
+        <td width="5%"> </td>
+        <td width="15%" style="color:#000000;">Login</td>
+        <td width="30%"><%= f.text_field :login, :size=>"25%"  %> </td>
+      </tr>
+      <% fields_for :customer_profile do |p| %>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">First Name :</td>
+          <td width="30%"><%= p.text_field :first_name, :size=>"25%"%></td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">Last Name :</td>
+          <td width="30%"><%= p.text_field :last_name, :size=>"25%" %>
+          </td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="20%" style="color:#000000;">Gender:</td>
+          <td width="30%"><%= p.radio_button 'gender', 'Yes'%> Male<%= p.radio_button 'gender', 'No'%> Female
+          </td>
+        </tr>
+
+      <% end %>
+      <tr>
+        <td width="5%"> </td>
+        <td width="15%" style="color:#000000;">E-mail ID :</td>
+        <td width="30%"><%= f.text_field :email , :size=>"25%"%></td>
+      </tr>
+      <tr>
+        <td width="5%"> </td>
+        <td width="15%" style="color:#000000;">Password :</td>
+        <td width="30%"><%= f.password_field :password, :id=>"passwords", :size=>"25%"%></td>
+      </tr>
+
+      <tr>
+        <td width="5%"> </td>
+        <td width="15%" style="color:#000000;">Retype Password :</td>
+        <td width="30%"><%= f.password_field :password_confirmation, :size=>"25%" %></td>
+      </tr>
+
+      <% fields_for :customer_profile do |p| %>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">Address1 :</td>
+          <td width="30%"><%= p.text_field :address1,:size=>"25%" %></td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">Address2 :</td>
+          <td width="30%"><%= p.text_field :address2,:size=>"25%" %></td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">City :</td>
+          <td width="30%"><%= p.text_field :city,:size=>"25%" %></td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">State :</td>
+          <td width="30%"><%= p.text_field :state,:size=>"25%" %></td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">Country :</td>
+          <td width="30%"><%= p.text_field :country,:size=>"25%" %></td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">Pincode :</td>
+          <td width="30%"><%= p.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
+        </tr>
+        <tr>
+          <td width="5%"> </td>
+          <td width="15%" style="color:#000000;">Contact Number :</td>
+          <td width="30%"><%= p.text_field :contact_number , :onBlur => "IsNumeric_mobile(this.value)",:size=>"25%" %></td>
+        </tr>
+
+
+
+      <% end %>
+      <tr>
+        <td width="5%"> </td>
+        <td width="15%"> </td>
+        <td width="35%" colspan="2">
+          <br/><%=image_submit_tag ("register.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/", {:style=>"padding-left:30px;"}%>
+        </td>
+      </tr>
+      <tr><td></td><td></td></tr> <% end -%>
+  </table>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
