@@ -3,7 +3,7 @@ class MerchantProfile < ActiveRecord::Base
     has_one :company
 
   def self.all_active_merchants
-    query = %Q{ select c.name as company, c.website, c.logo, concat(mp.first_name,' ',mp.last_name) as merchant_name, contact_number, email_address
+    query = %Q{ select mp.id, c.name as company_name, c.website, c.logo, concat(mp.first_name,' ',mp.last_name) as merchant_name, contact_number, email_address
                 from merchant_profiles mp
                 join companies c on c.merchant_profile_id = mp.id
                 where mp.merchant_id is not null and status = 'active' }
@@ -11,7 +11,7 @@ class MerchantProfile < ActiveRecord::Base
   end
 
   def self.all_new_merchants
-    query = %Q{ select c.name as company, c.website, c.logo, concat(mp.first_name,' ',mp.last_name) as merchant_name, contact_number, email_address
+    query = %Q{ select mp.id, c.name as company_name, c.website, c.logo, concat(mp.first_name,' ',mp.last_name) as merchant_name, contact_number, email_address
                 from merchant_profiles mp
                 join companies c on c.merchant_profile_id = mp.id
                 where mp.merchant_id is null and status = 'new' }

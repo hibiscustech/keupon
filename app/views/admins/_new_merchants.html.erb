@@ -12,12 +12,12 @@
   <tbody>
     <% for merchant in @new_merchants %>
     <tr>
-      <td><%= merchant.company %></td>
+      <td><%= merchant.company_name %></td>
       <td><%= merchant.website %></td>
       <td><%= merchant.merchant_name %></td>
       <td><%= merchant.contact_number %></td>
       <td><%= merchant.email_address %></td>
-      <td>Authentic Invalid</td>
+      <td><a href="/merchant/authenticate_merchant?id=<%= merchant.id %>">Authentic</a> <a href="">Invalid</a></td>
     </tr>
     <% end %>
   </tbody>

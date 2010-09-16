@@ -27,4 +27,18 @@ class MerchantController < ApplicationController
     end
   end
 
+  def authenticate_merchant
+    merchant_profile = MerchantProfile.find(params[:id])
+    password = [Array.new(6){rand(256).chr}.join].pack("m").chomp
+    @merchant = Merchant.new( :login => merchant_profile.email_address, :email => merchant_profile.email_address, :password => password,
+                              :password_confirmation => password)
+
+    @merchant.time_created = Time.now.to_i
+    @merchant.save!
+
+    merchant_profile.update_attributes(:merchant_id => @merchant.id, :status => "active")
+    flash[:notice] = "Merchant: #{merchant_profile.first_name} #{merchant_profile.last_name} has been activated!  An email has been sent to #{merchant_profile.email_address}."
+    redirect_to "/admins/all_merchants"    
+  end
+
 end

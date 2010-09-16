@@ -2,7 +2,7 @@ class Merchant < ActiveRecord::Base
    has_one :merchant_profile, :dependent => :destroy
 
 
-   include Authentication
+  include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
