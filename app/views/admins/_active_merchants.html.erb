@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Website</th>
+      <th>Merchant</th>
+      <th>Contact #</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for merchant in @active_merchants %>
+    <tr>
+      <td><%= merchant.company %></td>
+      <td><%= merchant.website %></td>
+      <td><%= merchant.merchant_name %></td>
+      <td><%= merchant.contact_number %></td>
+      <td><%= merchant.email_address %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Website</th>
+      <th>Merchant</th>
+      <th>Contact #</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for merchant in @new_merchants %>
+    <tr>
+      <td><%= merchant.company %></td>
+      <td><%= merchant.website %></td>
+      <td><%= merchant.merchant_name %></td>
+      <td><%= merchant.contact_number %></td>
+      <td><%= merchant.email_address %></td>
+      <td>Authentic Invalid</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
