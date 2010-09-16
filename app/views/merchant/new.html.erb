@@ -1,26 +1,22 @@
 
 
  <div style="width:608px;height:300px;align:left;">
-     <table >
-      <tr>
-        <td>
-         
-        </td>
-        <td>
 
-        </td>
-      </tr>
-    </table>
-    <% @merchant.password = @merchant.password_confirmation = nil %>
-    <div><%= error_messages_for :merchant %></div>
-    <% form_for :merchant, :url => merchants_path do |f| -%>
+    
+    <div><%= error_messages_for :merchant_profile %></div>
+    <% form_for :merchant, :url => { :action => 'create'} do |f| -%>
    <table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
-   <tr>
+      <tr>
+        <td width="5%"> </td>
+        <td width="15%" style="color:#000000;"><h3>Registration</h3></td>
+        <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
+      </tr>
+ <% fields_for :merchant_profile do |p| %>
+        <tr>
 	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Login:</td>
-	<td width="30%"><%= f.text_field :name, :size=>"25%"  %> </td>
+	<td width="15%" style="color:#000000;">Email:</td>
+	<td width="30%"><%= p.text_field :email_address, :size=>"25%"  %> </td>
    </tr>
- <% fields_for :profile do |p| %>
    <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">First Name :</td>
@@ -32,94 +28,71 @@
 	<td width="30%"><%= p.text_field :last_name, :size=>"25%" %>
     </td>
    </tr>
-   <tr>
+      <tr>
 	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Nick Name :</td>
-	<td width="30%"><input type="text" name="nickname" size="25%"  />
+	<td width="15%" style="color:#000000;">Contact Number :</td>
+	<td width="30%"><%= p.text_field :contact_number, :size=>"25%" %>
     </td>
    </tr>
+ 
 <% end %>
+ 
+   <% fields_for :company do |c| %>
    <tr>
+       
 	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">E-mail ID :</td>
-	<td width="30%"><%= f.text_field :email , :size=>"25%"%></td>
-   </tr>
+	<td width="20%" style="color:#000000;"><h4>Company Information</h4></td>
+	<td width="30%"><%#= c.text_field :name,:size=>"25%" %></td>
+   </tr
    <tr>
-	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Password :</td>
-	<td width="30%"><%= f.password_field :password, :id=>"passwords", :size=>"25%"%></td>
-   </tr>
-
-  <tr>
-	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Retype Password :</td>
-	<td width="30%"><%= f.password_field :password_confirmation, :size=>"25%" %></td>
-   </tr>
-
-     <% fields_for :profile do |p| %>
-   <tr>
-	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Address :</td>
-	<td width="30%"><%= p.text_area :address,:size=>"19x3" %></textarea></td>
+      <td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Company Name :</td>
+	<td width="30%"><%= c.text_field :name,:size=>"25%" %></td>
    </tr>
     <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Company URl :</td>
+	<td width="30%"><%= c.text_field :website,:size=>"25%" %></td>
+   </tr>
+    <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Address1 :</td>
+	<td width="30%"><%= c.text_field :address1,:size=>"25%" %></td>
+   </tr>
+    <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Address2 :</td>
+	<td width="30%"><%= c.text_field :address2,:size=>"25%" %></td>
+   </tr>
+     <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">City :</td>
-	<td width="30%"><%= p.text_field :city,:size=>"25%" %></td>
+	<td width="30%"><%=c.text_field :city , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
    </tr>
-    <tr>
+     <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">State :</td>
-	<td width="30%"><%= p.text_field :state,:size=>"25%" %></td>
+	<td width="30%"><%=c.text_field :state , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
    </tr>
     <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">Country :</td>
-	<td width="30%"><%= p.text_field :country,:size=>"25%" %></td>
+	<td width="30%"><%=c.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
    </tr>
     <tr>
 	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Pincode :</td>
-	<td width="30%"><%= p.text_field :zip , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
+	<td width="15%" style="color:#000000;">Zipcode :</td>
+	<td width="30%"><%=c.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
    </tr>
-   <tr>
-	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Phone No :</td>
-	<td width="30%"><%= p.text_field :phone , :onBlur => "IsNumeric_mobile(this.value)",:size=>"25%" %></td>
-   </tr>
+ 
   <!-- <tr>
 	<td width="5%"> </td>
 	<td width="30%" style="color:#000000;"><b>Mobile No:</b></td>
 	<td width="55%"><input type="text" name="moblie" size="28%"  style="background-color: #F5F5F5;"/></td>
    </tr> -->
- <tr>
-	<td width="5%"> </td>
-	<td width="15%" ></td>
-	<td width="30%" style="color:#0087f6;">(why do i give this?)</td>
-   </tr>
-  <tr>
-    <td width="5%"> </td>
-	 	<td  style="color:#000000;" colspan="3">How did you get to know about KIDPIC:
-	 	 <%= select("profile", "know_from", User::CATEGORIES )%>
-         </td>
-  </tr>
-   <tr>
 
-	 	<td width="20%" style="color:#000000;padding-left: 53px;" colspan="4"><br/>Would you like ad agencies to contact you for your child through
-us?:
-          <br/><%= p.radio_button 'ad_agencies', 'Yes'%> Yes<%= p.radio_button 'ad_agencies', 'No'%> No
-         </td>
-  </tr>
-   <tr>
-
-	 	<td width="20%" style="color:#000000;padding-left: 53px;" colspan="4"><br/>Would you like to receive offers for kids and to be moms from our associates.<br/>Please select the relevant categories.<br>
-         <br/><%= check_box_tag "profiles","apparels" %>Apparels
-                  <%= check_box_tag "profiles","kidcare" %>KidCare
-                  <%= check_box_tag "profiles","toysandaccessories" %>Toys & Accessories
-                  <%= check_box_tag "proflies","photography" %>Photography
-                  <%= check_box_tag "profiles","booksandcds" %>Books & CDs
-         </td>
-  </tr>
+   
+ 
   <% end %>
    <tr>
  	<td width="5%"> </td>
@@ -134,12 +107,6 @@ us?:
 
    </div>
 
-
-<script type="text/javascript">
-  jQuery.noConflict();
-  jQuery('form').attr('autocomplete', 'off');
-  jQuery('#passwords').password_strength();
-</script>
 
 
 

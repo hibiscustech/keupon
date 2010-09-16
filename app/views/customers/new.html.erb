@@ -1,21 +1,19 @@
 
 
 <div style="width:608px;height:300px;text-align:left;">
-  <table >
-    <tr>
-      <td>
-        <h4>Registration</h4>
-      </td>
-      <td>
 
-      </td>
-    </tr>
-  </table>
+        
+
 
   <% @customer.password = @customer.password_confirmation = nil %>
-  <div><%= error_messages_for :user %></div>
+  <div><%= error_messages_for :customer %></div>
   <% form_for :customer, :url => customers_path do |f| -%>
     <table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
+      <tr>
+        <td width="5%"> </td>
+        <td width="15%" style="color:#000000;"><h3>Registration</h3></td>
+        <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
+      </tr>
       <tr>
         <td width="5%"> </td>
         <td width="15%" style="color:#000000;">Login</td>

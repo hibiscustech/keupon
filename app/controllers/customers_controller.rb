@@ -7,17 +7,17 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
   end
- 
+
   def create
     logout_keeping_session!
     @customer = Customer.new(params[:customer])
-    @customer.kupoints  = 0
-     @customer.time_created = Time.now
-      @customer_profile = CustomerProfile.new(params[:customer_profile])
+    @customer.kupoints = 0
+    @customer.time_created = Time.now
     success = @customer && @customer.save
-    @customer_profile.customer = @customer
-     @customer_profile.save
     if success && @customer.errors.empty?
+      @profile = CustomerProfile.new(params[:customer_profile])
+      @profile.customer = @customer
+      @profile.save
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
@@ -25,6 +25,8 @@ class CustomersController < ApplicationController
       render :action => 'new'
     end
   end
+
+
 
   def activate
     logout_keeping_session!

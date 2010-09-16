@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+
+   map.root :controller => "sessions", :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'customers', :action => 'create'
@@ -7,11 +9,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :customers
 
-  map.resources :merchant
+  map.resource :merchant
 
   map.resource :session
 
   map.signup '/merchant_signup', :controller => 'merchant', :action => 'new'
+  map.merchant_register '/merchant_register', :controller => 'merchant', :action => 'create'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

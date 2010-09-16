@@ -1,4 +1,6 @@
-<h1>Log In</h1>
+
+
+<h4>Log In</h4>
 
 <% form_tag session_path do -%>
 <p><%= label_tag 'login' %><br />
@@ -6,11 +8,11 @@
 
 <p><%= label_tag 'password' %><br/>
 <%= password_field_tag 'password', nil %></p>
-
+I'm <%= radio_button_tag 'login_user', 'customer', true %> Customer  <%= radio_button_tag 'login_user', 'merchant' %>   Merchant
 <!-- Uncomment this if you want this functionality
 <p><%= label_tag 'remember_me', 'Remember me' %>
 <%= check_box_tag 'remember_me', '1', @remember_me %></p>
 -->
 
-<p><%= submit_tag 'Log in' %></p>
+<p><%=image_submit_tag ("login_button.png" )%></p>
 <% end -%>
