@@ -1,0 +1,1 @@
+page.replace_html 'deal_desc', :partial => 'edit_form'

@@ -1,0 +1,9 @@
+page.replace_html 'create_deal', :partial => 'form'
+page<< "$('#create_deal_dialog').dialog({
+        title: 'New Deal',
+        modal: true,
+        width: 500,
+        close: function(deal, ui) { $('#create_deal_dialog').dialog('destroy') }
+
+    });
+"

@@ -1,0 +1,7 @@
+<%remote_form_for @deal, :url => {:action => :create}, :before => "$('#creating_deals').show();", :complete => "$('#creating_deals').hide();" do |f| %>
+
+<%=f.hidden_field :id, :value => @deal.id %>
+<p>
+  <%=f.submit 'Create' %> <span id = "creating_deals" style = "display:none;">Creating, Please wait...</span>
+</p>
+<%end %>

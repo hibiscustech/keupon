@@ -1,0 +1,8 @@
+if @deal
+  if @deal.save
+    page<<"$('#calendar').fullCalendar( 'refetchDeals' )"
+    page<<"$('#create_deal_dialog').dialog('destroy')"
+  else
+    page.alert @deal.errors.full_messages(',').join("\n")
+  end
+end

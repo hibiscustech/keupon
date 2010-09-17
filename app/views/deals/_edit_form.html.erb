@@ -1,0 +1,30 @@
+<%remote_form_for @deal, :url => {:action => :update} , :before => "$('#updating_deals').show();", :complete => "$('#updating_deals').hide();" do |f| %>
+<p>
+  <%=f.label :title %>
+  <br/>
+  <%=f.text_field :title %>
+</p>
+<p>
+  <%=f.label :description %>
+  <br/>
+  <%=f.text_area :description, :rows => 4, :cols => 30 %>
+</p>
+<p>
+  <%=f.label :starttime, 'Start Time' %>
+  <br/>
+  <%=f.datetime_select :starttime %>
+</p>
+<p>
+  <%=f.label :endtime, 'End Time' %>
+  <br/>
+  <%=f.datetime_select :endtime %>
+</p>
+
+<%=f.hidden_field :id, :value => @deal.id%>
+<%=f.hidden_field :commit_button, :value => ""%>
+<p>
+  <%=f.submit 'Update', :onclick => "document.getElementById('deal_commit_button').value = this.value"%>
+  
+  <span id = "updating_deals" style = "display:none;">Updating, Please wait...</span>
+</p>
+<%end %>
