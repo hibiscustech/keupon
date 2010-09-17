@@ -1,0 +1,19 @@
+
+<h4>Deal Categories</h4>
+<ul id="subject_list">
+<% for c in @deal_categories %>
+  <li><%= c.name  -%> &nbsp;&nbsp;&nbsp; (<%=c.deal_sub_category.count%>)</li>
+<% end %>
+</ul>
+<p id="add_link"><%= link_to_function("Add Deal Category",
+"Element.remove('add_link'); Element.show('add_subject')")%></p>
+<div id="add_subject" style="display:none;">
+  <h4>Create Deal Category</h4>
+<% form_remote_tag(:url => {:action => 'create_deal_category'},
+    :update => "subject_list", :position => :bottom,
+    :html => {:id => 'subject_form'}) do %>
+Category Name: <%= text_field "subject", "name" %>
+<%= submit_tag 'Add' %>
+<% end %>
+</div><br/>
+

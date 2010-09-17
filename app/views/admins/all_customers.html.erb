@@ -1,0 +1,18 @@
+<br/>
+<table>
+
+    <tr>
+      <th width="200">Name</th>
+      <th width="200">Email</th>
+    </tr>
+  
+  <tbody>
+    <% for customer in @customers %>
+    <tr>
+      <td width="200"><%= customer.customer_profile.nil?  ?  '' : customer.customer_profile.first_name %> <%= customer.customer_profile.nil?  ?  '' : customer.customer_profile.last_name %></td>
+      <td width="200"><%= customer.email %></td>
+      
+    </tr>
+    <% end %>
+  </tbody>
+</table>
