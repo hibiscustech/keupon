@@ -26,7 +26,31 @@ class CustomersController < ApplicationController
     end
   end
 
-
+  def forgot_password
+    if request.post?
+      customer = Customer.find_by_email(params[:email])
+      if !customer.nil?
+        new_pwd = newpass(8)
+        logger.info "----------------------------------------------------------"
+        logger.info "#{new_pwd}"
+        passphrase_digest = encrypted_password(new_pwd,customer.salt)
+        customer.crypted_password = passphrase_digest
+        customer.password = new_pwd
+        customer.password_confirmation = new_pwd
+        flag = customer.save!
+        if flag
+          flash[:notice] = "Your password has been reset and send to your mail"
+          redirect_to "/"
+        else
+          flash[:notice] = "Your Password could not be changed."
+          redirect_to :action =>"forgot_password", :controller => "customers"
+        end
+      else
+        flash[:notice] = "Email-id doesnt exists"
+        render :controller => 'customers',:action => 'forgot_password'
+      end
+    end
+  end 
 
   def activate
     logout_keeping_session!

@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'customers', :action => 'create'
   map.signup '/signup', :controller => 'customers', :action => 'new'
+  map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
 
   map.resources :customers

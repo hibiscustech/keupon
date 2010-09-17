@@ -62,7 +62,8 @@ class Merchant < ActiveRecord::Base
   #
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
-    u = find :first, :conditions => ['login = ? and activated_at IS NOT NULL', login] # need to get the salt
+    u = find :first, :conditions => ['login = ?', login] # need to get the salt
+
     u && u.authenticated?(password) ? u : nil
   end
 

@@ -2,7 +2,7 @@
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-
+  protect_from_forgery :only => [:sample]
   # render new.rhtml
   def new
   end
@@ -32,6 +32,19 @@ class SessionsController < ApplicationController
     logout_killing_session!
     flash[:notice] = "You have been logged out."
     redirect_back_or_default('/')
+  end
+
+  def forgot_password_for
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'forgot_pwd',:partial => "forgot_password"
+          end
+        }
+      end
+    end
   end
 
 protected
