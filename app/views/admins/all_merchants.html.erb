@@ -1,12 +1,7 @@
-<table>
-  <tr>
-    <td><a href="#" onclick="new Ajax.Request('/admins/all_merchants', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Active Merchants : <%= @merchants_count["active"].to_i %> </a></td>
-  </tr>
-  <tr>
-    <td><a href="#" onclick="new Ajax.Request('/admins/new_merchants', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">New Merchants : <%= @merchants_count["new"].to_i %></a></td>
-  </tr>
-</table>
+<br/><a href="#" onclick="new Ajax.Request('/admins/all_merchants', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Active Merchants : <%= @merchants_count["active"].to_i %> </a>  
+&nbsp;|  <a href="#" onclick="new Ajax.Request('/admins/new_merchants', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">New Merchants : <%= @merchants_count["new"].to_i %></a>
 
 <div id="merchants">
+
   <%= render :partial => "active_merchants" %>
-</div>
+</div><br/>

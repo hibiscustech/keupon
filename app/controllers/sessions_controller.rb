@@ -9,22 +9,10 @@ class SessionsController < ApplicationController
 
   def create
     logout_keeping_session!
-    customer = Customer.authenticate(params[:login], params[:password])
-    if customer
-      # Protects against session fixation attacks, causes request forgery
-      # protection if user resubmits an earlier form using back
-      # button. Uncomment if you understand the tradeoffs.
-      # reset_session
-      self.current_customer = customer
-      new_cookie_flag = (params[:remember_me] == "1")
-      #handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/')
-      flash[:notice] = "Logged in successfully"
+    if params[:login_user] == 'customer'
+      customer
     else
-      note_failed_signin
-      @login       = params[:login]
-      @remember_me = params[:remember_me]
-      render :action => 'new'
+     merchant
     end
   end
 
@@ -53,4 +41,46 @@ protected
     flash[:error] = "Couldn't log you in as '#{params[:login]}'"
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
+
+  def customer
+    customer = Customer.authenticate(params[:login], params[:password])
+    if customer
+      # Protects against session fixation attacks, causes request forgery
+      # protection if user resubmits an earlier form using back
+      # button. Uncomment if you understand the tradeoffs.
+      # reset_session
+      self.current_customer = customer
+      new_cookie_flag = (params[:remember_me] == "1")
+      #handle_remember_cookie! new_cookie_flag
+      redirect_to :controller => 'customers', :action => 'index'
+      flash[:notice] = "Logged in successfully"
+    else
+      note_failed_signin
+      @login       = params[:login]
+      @remember_me = params[:remember_me]
+      render :action => 'new'
+    end
+  end
+
+  def merchant
+      merchant = Merchant.authenticate(params[:login], params[:password])
+    if merchant
+      # Protects against session fixation attacks, causes request forgery
+      # protection if user resubmits an earlier form using back
+      # button. Uncomment if you understand the tradeoffs.
+      # reset_session
+      self.current_merchant = merchant
+      new_cookie_flag = (params[:remember_me] == "1")
+      #handle_remember_cookie! new_cookie_flag
+      redirect_to :controller => 'merchant', :action => 'index'
+      flash[:notice] = "Logged in successfully"
+       else
+      note_failed_signin
+      @login       = params[:login]
+      @remember_me = params[:remember_me]
+      render :action => 'new'
+    end
+  end
+
+  
 end

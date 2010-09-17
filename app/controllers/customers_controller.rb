@@ -1,7 +1,10 @@
 class CustomersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  
+
+  def index
+    render :text => 'Hello Customer '
+  end
 
   # render new.rhtml
   def new

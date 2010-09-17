@@ -11,6 +11,7 @@ class Customer < ActiveRecord::Base
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
 
+
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 #r@a.wk
   validates_uniqueness_of   :email
@@ -21,7 +22,7 @@ class Customer < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email,  :password, :password_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation
 
 
 
@@ -32,7 +33,6 @@ class Customer < ActiveRecord::Base
     has_many :deals, :through => :customer_deals
 
     has_many :customer_credit_card
-
 
 
   # Activates the user in the database.
@@ -51,6 +51,10 @@ class Customer < ActiveRecord::Base
   def active?
     # the existence of an activation code means they have not activated yet
     activation_code.nil?
+  end
+
+  def self.all_customers
+    Customer.find(:all)
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
