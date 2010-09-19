@@ -1,5 +1,10 @@
 class MerchantController < ApplicationController
   protect_from_forgery :only => [:destroy]
+
+  def index
+    render :text => 'Hello Merchants'
+  end
+
   def new
     @merchant = Merchant.new
   end

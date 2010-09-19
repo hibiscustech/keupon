@@ -1,0 +1,47 @@
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+        jQuery("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
+
+        jQuery("ul.topnav li span").click(function() { //When trigger is clicked...
+
+                //Following events are applied to the subnav itself (moving subnav up and down)
+                jQuery(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click
+
+                jQuery(this).parent().hover(function() {
+                }, function(){
+                        jQuery(this).parent().find("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
+                });
+
+                //Following events are applied to the trigger (Hover events for the trigger)
+                }).hover(function() {
+                        jQuery(this).addClass("subhover"); //On hover over, add class "subhover"
+                }, function(){        //On Hover Out
+                        jQuery(this).removeClass("subhover"); //On hover out, remove class "subhover"
+        });
+
+});
+</script>
+
+
+<div class="container" style="font: 12px normal Arial, Helvetica, sans-serif;">
+        <ul class="topnav">
+            <li><a href="/admins/all_merchants">Merchants</a></li>
+            <li><a href="/admins/all_customers">Customers</a>
+   </li>
+            <li>
+                <a href="#">Deals</a>
+                <ul class="subnav">
+                    <li><a href="/admins/all_deal_categories">Deal Categories</a></li>
+                    <li><a href="/admins/all_deal_sub_categories">Deal Sub Categories</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>

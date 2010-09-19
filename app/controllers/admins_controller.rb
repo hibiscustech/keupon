@@ -30,4 +30,44 @@ class AdminsController < ApplicationController
       end
     end
   end
+
+   def all_customers
+    @customers = Customer.all_customers
+    #@merchants_count = Customer.merchant_counts
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'merchants',:partial => "active_merchants"
+          end
+        }
+      end
+    end
+  end
+
+
+  def all_deal_categories
+    @deal_categories = DealCategory.all_deal_categories
+  end
+
+  def create_deal_category
+    @deal_category = DealCategory.new(params[:subject])
+    if @deal_category.save
+      render :partial => 'admins/deal_category', :object => @deal_category
+    end
+  end
+
+  def all_deal_sub_categories
+    @deal_sub_categories = DealSubCategory.all_deal_sub_categories
+   
+  end
+
+  def create_deal_sub_category
+    @deal_sub_category = DealSubCategory.new(params[:deal_sub_category])
+    if @deal_sub_category.save
+      render :partial => 'admins/deal_sub_category', :object => @deal_sub_category
+    end
+  end
+
 end
