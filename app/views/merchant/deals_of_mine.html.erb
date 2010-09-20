@@ -1,0 +1,28 @@
+  
+
+<div style="width:608px;align:left;">
+  <table style="font-size:14px;border-collapse: collapse;width:615px;" CELLPADDING="4" CELLSPACING="0">
+    <tr> <td><p style="font-weight:bold;"><font size=3 color=#000000> Deals Of Mine </font></p></td></tr>
+  </table>
+  <table align=left  style="font-size:14px;border-collapse: collapse;width:615px;text-align:center;" CELLPADDING="4" CELLSPACING="0">
+    <tr>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Deal Name</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Buy</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Users</th>
+
+    </tr>
+    <% @merchant.deals.each do |topic| %>
+      <tr>
+        <td width="35%" style="color:#000000;"><%= link_to topic.name%> </td>
+      </tr>
+      <tr>
+        <td width="35%" style="color:#000000;"><hr/></td>
+        
+      </tr>
+    <%end%>
+  </table>
+
+<br/>
+
+</div><br/>
+
