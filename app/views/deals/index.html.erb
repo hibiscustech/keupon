@@ -1,74 +1,34 @@
-<p>
-  <%=link_to_remote 'Create Deal', :url => {:action => :new}, :before => "$('#loading').show()", :complete => "$('#loading').hide()" %>
-</p>
 
-<script>
-  
-  
-  $(document).ready(function(){
-      // page is now ready, initialize the calendar...
-      $('#calendar').fullCalendar({
-          editable: true,
-          header: {
-              left: 'prev,next today',
-              center: 'title',
-              right: 'month,agendaWeek,agendaDay'
-          },
-          defaultView: 'month',
-          height: 500,
-          slotMinutes: 15,
-          loading: function(bool){
-              if (bool) 
-                  $('#loading').show();
-              else 
-                  $('#loading').hide();
-          },
-          deals: "/deals/get_deals",
-          timeFormat: 'h:mm t{ - h:mm t} ',
-          dragOpacity: "0.5",
-          dealDrop: function(deal, dayDelta, minuteDelta, allDay, revertFunc){
-//              if (confirm("Are you sure about this change?")) {
-                  moveDeal(deal, dayDelta, minuteDelta, allDay);
-//              }
-//              else {
-//                  revertFunc();
-//              }
-          },
-          
-          dealResize: function(deal, dayDelta, minuteDelta, revertFunc){
-//              if (confirm("Are you sure about this change?")) {
-                  resizeDeal(deal, dayDelta, minuteDelta);
-//              }
-//              else {
-//                  revertFunc();
-//              }
-          },
-          
-          dealClick: function(deal, jsDeal, view){
-              showDealDetails(deal);
-          },
-      
-      
-      
-      
-      });
-  });
-</script>
-<div>
-  <div id='calendar'>
-  </div>
+<link href="/stylesheets/calendar/red/style.css" rel="stylesheet" type="text/css" />
+<div id="buttons" style="padding-left: 60px;">
+  Year: <select id="year" name="year">
+        <% for year in @years
+            if session[:year].to_s == year.to_s %>
+        <option value="<%= year %>" selected><%= year %></option>
+            <% else %>
+        <option value="<%= year %>"><%= year %></option>
+            <% end
+           end %>
+        </select>
+	<%=observe_field "year",
+			:url => {:controller => 'deals', :action => 'index'},
+			:on => 'change',
+			:with => "year"%>
+  Month: <select id="month" name="month">
+        <%
+          @months.each_pair{|key,value|          
+            if session[:month].to_i == value.to_i %>
+        <option value="<%= value %>" selected><%= key %></option>
+            <% else %>
+        <option value="<%= value %>"><%= key %></option>
+            <% end
+           } %>
+        </select>
+	<%=observe_field "month",
+			:url => {:controller => 'deals', :action => 'index'},
+			:on => 'change',
+			:with => "month"%>
 </div>
-<div id = "desc_dialog" style ="display:none;">
-  <div id = "deal_desc">
-  </div>
-  <br/>
-  <br/>
-  <div id = "deal_actions">
-    <span id = "edit_deal"></span>
-    <span id = "delete_deal"></span>
-  </div>
-</div>
-<div id = "create_deal_dialog" style ="display:none;">
-  <div id = "create_deal">
-  </div>
-</div>
+<div id="calendar" align="center">
+  <%= render :partial => "calendar_deals" %>
+</div><br/>

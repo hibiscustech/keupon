@@ -1,0 +1,24 @@
+<span align="center"><h2><%= @month_name %> <%= @year %></h2></span>
+<br/>
+<%=
+calendar({:year =>@year, :month => @month,:abbrev => (0..2),:previous_month_text =>"", :next_month_text =>"" }) do |d|
+cell_text = "#{d.mday}"
+cell_attrs = {:class => 'day'}
+if !@schedules[d.mday.to_s].blank?
+  schedules = @schedules[d.mday.to_s]
+  schedule_descriptions = ""
+
+  #for sch in schedules
+    #schedule_descriptions += "<br/>- #{sch['tournament']} - #{sch['category']} #{sch['level']}<br/>"
+  #end
+  onclk = "javascript: alert(1);"
+  cell_text = "<a href='#' title='#{d.day}' onclick='#{onclk}'>Deal Title</a>"
+  cell_attrs[:class] = 'specialDay'
+else
+  onclk = "javascript: alert(0);"
+  cell_text = "<a href='#' onclick='#{onclk}'>#{d.day}</a>"
+end
+[cell_text, cell_attrs]
+end
+%>
+<br/>
