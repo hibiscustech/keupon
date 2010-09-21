@@ -1,0 +1,44 @@
+<h3>Billing Information</h3>
+<table width="600">
+  <tr>
+    <td width="300">
+       <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_details'} do |f|-%>
+<p><%= label_tag 'Cardholder First Name' %><br />
+<%= f.text_field 'first_name' %></p>
+
+<p><%= label_tag 'Cardholder Last Name' %><br />
+<%= f.text_field 'last_name' %></p>
+
+<p><%= label_tag 'Card Number' %><br/>
+<%= f.text_field 'credit_card_number' %></p>
+
+<p><%= label_tag 'Security Code' %><br/>
+<%= f.text_field 'cvv2' %></p>
+
+
+<p><%= label_tag ' Expiration Date' %><br/>
+<%= password_field_tag 'password', nil %></p>
+
+
+
+    </td>
+    <td width="300">
+   
+<p><%= label_tag 'Billing Address 1' %><br />
+<%= f.text_field 'address1' %></p>
+
+<p><%= label_tag 'Billing Address 2' %><br/>
+<%= f.text_field 'address2' %></p>
+
+<p><%= label_tag 'City' %><br/>
+<%= f.text_field 'city' %></p>
+
+<p><%= label_tag 'State' %><br/>
+<%= f.text_field 'state' %></p>
+
+<p><%=image_submit_tag ("login.jpg" )%></p>
+
+    </td>
+<% end -%>
+  </tr>
+</table>

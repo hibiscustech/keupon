@@ -1,13 +1,20 @@
 <h3>Deal of the day</h3>
+<div style="width: 900px;">
+  <div align="left" style="width:400px;">
+    <div style="color: red"><%=@deal.name%></div><br/><br/>
+    <%=@deal.rules%><br/><br/>
+    <%=@deal.highlights%><br/>
+  </div>
+  <div align="right" style="margin-right: 100px;margin-top: -177px;">
+    <%=image_tag (@deal.deal_photo.url),:width=>"300", :height=>"250" %><br/><br/>
+    <table>
+      <tr>
+        <td> <font size="3" color="red">Value :</font> <%=@deal.value%><br/><br/></td>
+    <td> <font size="3" color="red">Discount : </font> <%=@deal.discount.to_i%> %  <br/><br/></td>
+    <td><font size="3" color="red"> Save : </font><%=@deal.save_amount.to_i%><br/><br/></td></tr>
+     <tr><td><%=link_to image_tag('buy.jpg',:border=>'0'), :controller => 'customers', :action=>'transaction_details'%> </td></tr>
+    </table>
+  </div>
 
-<br/>Deal Name: <%=@deal.name%><br/>
+</div>
 
-<br/>Value : <%=@deal.value.to_i%><br/>
-
-<br/>Discount : <%=@deal.discount.to_i%> %<br/>
-
-<br/>Save : <%=@deal.save_amount.to_i%><br/>
-
-<br/>Highlights: <%=@deal.highlights%><br/>
-
-<br/>Rules : <%=@deal.rules%><br/><br/>

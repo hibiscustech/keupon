@@ -3,14 +3,19 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
  
-  before_filter :login_required, :only => [:deal_of_the_day]
+  before_filter :login_required, :only => [:transaction_details]
 
   def index
     
   end
 
   def deal_of_the_day
-    @deal = Deal.find(:first)
+    #@deal_schedule = DealSchedule.deal_schedule
+    #@deal = Deal.find(10)
+  end
+
+  def transaction_details
+   @billing_information = CustomerCreditCard.new
   end
 
   # render new.rhtml

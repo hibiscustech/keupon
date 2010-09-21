@@ -1,5 +1,5 @@
 
-<h4>Deal Sub Categories</h4>
+<br/><br/><h4>Deal Sub Categories</h4>
 <ul id="subject_list">
 <% for c in @deal_sub_categories %>
   <table><tr>
@@ -18,7 +18,7 @@
 Deal Category : <%=select("deal_sub_category", "deal_category_id", DealCategory.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'})
 %>
 <br/><br/>Deal Sub Category : <%= text_field "deal_sub_category", "name", :size=>'20' %>
-<%= submit_tag 'Add' %>
+<%=image_submit_tag ("add.jpg"), {:style=>"margin-top:-10px;"}%>
 <% end %>
 </div>
 <br/>

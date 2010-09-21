@@ -75,7 +75,14 @@
 
 
 <br/>
-<%=link_to 'New Deal', :controller => 'deals', :action => 'index' %>&nbsp;&nbsp; | &nbsp;&nbsp; <%=link_to 'Deals of mine', :controller => 'merchant', :action => 'deals_of_mine' %> &nbsp;&nbsp; | &nbsp;&nbsp; <%=link_to 'Verify Customers', :controller => 'merchant', :action => 'deals_of_mine' %>
+
+  <ul id="navigation_sub_merchant" style="">
+      <li><a href="/deals/index" id="home_front" title="Home"></a></li>
+      <li><a href="/deals_of_mine" id="port" title="Our Programs"><span>recent deals</span></a></li>
+      <li><a href="/deals_of_mine" id="services" title="About Us"><span>howitworks</span></a></li>
+    </ul>
+
+
 
 
 

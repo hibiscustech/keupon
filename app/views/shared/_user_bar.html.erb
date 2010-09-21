@@ -5,7 +5,7 @@
   <%if !current_customer.nil?%>
       Hi, Welcome <%=current_customer.customer_profile.first_name%><%=current_customer.customer_profile.last_name%><%#= link_to_current_user :content_method => :login %> | <%= link_to "Signout", logout_path  %>
     <%end%><%end%>
-        <%if params[:controller] == 'merchant'%>
+        <%if params[:controller] == 'merchant' or params[:controller] == 'deals'%>
   <%if !current_merchant.nil?%>
      
       Hi, Welcome <%=current_merchant.merchant_profile.first_name%><%=current_merchant.merchant_profile.last_name%><%#= link_to_current_user :content_method => :login %> | <%= link_to "Signout", logout_path  %>

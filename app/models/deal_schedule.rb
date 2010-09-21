@@ -14,5 +14,9 @@ class DealSchedule < ActiveRecord::Base
                 where ds.start_time between '#{sdate}' and '#{edate}'}
     find_by_sql(query)
   end
+
+  def self.deal_schedule
+    
+  end
   
 end

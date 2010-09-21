@@ -65,6 +65,75 @@ ul#navigation li .selected{background-position: 0 -32px;}
 #sub-nav li a:hover{color:#151515; background:url(../images/bullet_selected.jpg) no-repeat;}
 #sub-nav li a.selected {background:url(../images/bullet_selected.jpg) no-repeat; padding-left:15px; float:left; color:#151515;}
 
+/* ============================================================================= */
+
+/* Navigation for customers*/
+
+ul#navigation_merchant {height: 32px; margin:0; padding:0;margin-left: 240px;}
+ul#navigation_merchant li {width: 160px;float:left;}
+ul#navigation_merchant li a {display: block;height: 32px;cursor: pointer;}
+ul#navigation_merchant li a#home {background: url(../images/deals_button.jpg) 0 0 no-repeat;}
+ul#navigation_merchant li a#port {background: url(../images/deal_bull.jpg) 0 0 no-repeat;}
+ul#navigation_merchant li a#services {background: url(../images/my_profile.jpg) 0 0 no-repeat;}
+ul#navigation_merchant li a#blog {background: url(../images/analytics.jpg) 0 0 no-repeat;}
+
+ul#navigation_merchant li a#home_front {background: url(../images/deals_button.jpg) 0 -32px no-repeat;}
+ul#navigation_merchant li a#port_front {background: url(../images/deal_bull.jpg) 0 -32px no-repeat;}
+ul#navigation_merchant li a#services_front {background: url(../images/my_profile.jpg) 0 -32px no-repeat;}
+ul#navigation_merchant li a#blog_front {background: url(../images/analytics.jpg) 0 -32px no-repeat;}
+
+
+ul#navigation_merchant li a#home:hover,
+ul#navigation_merchant li a#port:hover,
+ul#navigation_merchant li a#services:hover,
+ul#navigation_merchant li a#blog:hover,
+ul#navigation_merchant li a#contact:hover {background-position: 0 -32px;}
+
+ul#navigation_merchant li .selected{background-position: 0 -32px;}
+
+.submenu{background:url(../images/bg_submenu.jpg) no-repeat; height:55px;}
+#sub-nav{padding-top:22px; margin-left:0; padding-left:28px; font-size:11px;}
+#sub-nav li{list-style:none; float:left;}
+#sub-nav li a{margin-right:5px; color:#999; float:left; padding-left:15px; background:url(../images/bullet.jpg) no-repeat; padding-right:10px;}
+#sub-nav li a:hover{color:#151515; background:url(../images/bullet_selected.jpg) no-repeat;}
+#sub-nav li a.selected {background:url(../images/bullet_selected.jpg) no-repeat; padding-left:15px; float:left; color:#151515;}
+
+/* ============================================================================= */
+
+/*Navigation for submenu*/
+
+
+ul#navigation_sub_merchant {height: 23px; margin:0; padding:0;margin-left: 80px;}
+ul#navigation_sub_merchant li {width: 160px;float:left;}
+ul#navigation_sub_merchant li a {display: block;height: 23px;cursor: pointer;}
+ul#navigation_sub_merchant li a#home {background: url(../images/newdeals.jpg) 0 0 no-repeat;}
+ul#navigation_sub_merchant li a#port {background: url(../images/mydeals.jpg) 0 0 no-repeat;}
+ul#navigation_sub_merchant li a#services {background: url(../images/redeemdeals.jpg) 0 0 no-repeat;}
+
+
+ul#navigation_sub_merchant li a#home_front {background: url(../images/newdeals.jpg) 0 -23px no-repeat;}
+ul#navigation_sub_merchant li a#port_front {background: url(../images/mydeals.jpg) 0 -23px no-repeat;}
+ul#navigation_sub_merchant li a#services_front {background: url(../images/redeemdeals.jpg) 0 -23px no-repeat;}
+
+
+ul#navigation_sub_merchant li a#home:hover,
+ul#navigation_sub_merchant li a#port:hover,
+ul#navigation_sub_merchant li a#services:hover,
+ul#navigation_sub_merchant li a#blog:hover,
+ul#navigation_sub_merchant li a#contact:hover {background-position: 0 -23px;}
+
+ul#navigation_sub_merchant li .selected{background-position: 0 -23px;}
+
+.submenu{background:url(../images/bg_submenu.jpg) no-repeat; height:55px;}
+#sub-nav{padding-top:22px; margin-left:0; padding-left:28px; font-size:11px;}
+#sub-nav li{list-style:none; float:left;}
+#sub-nav li a{margin-right:5px; color:#999; float:left; padding-left:15px; background:url(../images/bullet.jpg) no-repeat; padding-right:10px;}
+#sub-nav li a:hover{color:#151515; background:url(../images/bullet_selected.jpg) no-repeat;}
+#sub-nav li a.selected {background:url(../images/bullet_selected.jpg) no-repeat; padding-left:15px; float:left; color:#151515;}
+
+/* ============================================================================= */
+
+
 .discussionboard
 {
 background-image:url(../images/topnav_bg.gif);
