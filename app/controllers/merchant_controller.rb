@@ -1,15 +1,21 @@
 class MerchantController < ApplicationController
-  protect_from_forgery :only => [:destroy]
 
+  include AuthenticatedSystemMerchant
+  
+  protect_from_forgery :only => [:destroy]
+  before_filter :login_required , :except => [:forgot_password]
+  
   def index
-    render :text => 'Hello Merchants'
+    
   end
 
   def new
     @merchant = Merchant.new
   end
 
-
+  def deals_of_mine
+    @merchant = Merchant.find(current_merchant.id)
+  end
 
   def create
     logout_keeping_session!
@@ -20,9 +26,9 @@ class MerchantController < ApplicationController
     success = @merchant_profile &&  @merchant_profile.save
 
     if success && @merchant_profile.errors.empty?
-          @merchant_company = Company.new(params[:company])
-    @merchant_company.merchant_profile = @merchant_profile
-    @merchant_company.save
+      @merchant_company = Company.new(params[:company])
+      @merchant_company.merchant_profile = @merchant_profile
+      @merchant_company.save
       CustomerMailer.deliver_merchant_registration(@merchant_profile,@merchant_company )
       redirect_back_or_default('/')
       flash[:notice] = "We have receive your application. It will take 7-10 days for our staff to verify authenticity."
@@ -36,7 +42,7 @@ class MerchantController < ApplicationController
     merchant_profile = MerchantProfile.find(params[:id])
     password = newpass(8)
     @merchant = Merchant.new( :login => merchant_profile.email_address, :email => merchant_profile.email_address, :password => password,
-                              :password_confirmation => password)
+      :password_confirmation => password)
 
     @merchant.time_created = Time.now.to_i
     @merchant.save!

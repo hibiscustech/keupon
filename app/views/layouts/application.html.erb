@@ -29,7 +29,7 @@
                 <%else%>
                   <br/><div style="text-align:center;background-color:grey;"><%= flash[:error]%>  </div>
                 <%end%>
-                <%= yield %>
+                <%= yield %><br/><br/>
                 <%= render :partial => "shared/footer"%>
               </div>
             </td>

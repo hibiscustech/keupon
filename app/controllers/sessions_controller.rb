@@ -2,6 +2,7 @@
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
+  include AuthenticatedSystemMerchant 
   protect_from_forgery :only => [:sample]
   # render new.rhtml
   def new
@@ -52,7 +53,7 @@ protected
       self.current_customer = customer
       new_cookie_flag = (params[:remember_me] == "1")
       #handle_remember_cookie! new_cookie_flag
-      redirect_to :controller => 'customers', :action => 'index'
+      redirect_to :controller => 'customers',:action => "deal_of_the_day"
       flash[:notice] = "Logged in successfully"
     else
       note_failed_signin
@@ -72,7 +73,7 @@ protected
       self.current_merchant = merchant
       new_cookie_flag = (params[:remember_me] == "1")
       #handle_remember_cookie! new_cookie_flag
-      redirect_to :controller => 'merchant', :action => 'index'
+      redirect_to :controller => 'merchant',:action => 'index'
       flash[:notice] = "Logged in successfully"
        else
       note_failed_signin

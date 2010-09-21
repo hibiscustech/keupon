@@ -1,21 +1,21 @@
-module AuthenticatedSystem
+module AuthenticatedSystemMerchant
   protected
     # Returns true or false if the customer is logged in.
-    # Preloads @current_customer with the customer model if they're logged in.
+    # Preloads @current_merchant with the customer model if they're logged in.
     def logged_in?
-      !!current_customer
+      !!current_merchant
     end
 
     # Accesses the current customer from the session.
     # Future calls avoid the database because nil is not equal to false.
-    def current_customer
-      @current_customer ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_customer == false
+    def current_merchant
+      @current_merchant ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_merchant == false
     end
 
     # Store the given customer id in the session.
-    def current_customer=(new_customer)
-      session[:customer_id] = new_customer ? new_customer.id : nil
-      @current_customer = new_customer || false
+    def current_merchant=(new_merchant)
+      session[:merchant_id] = new_merchant ? new_merchant.id : nil
+      @current_merchant = new_merchant || false
     end
 
     # Check if the customer is authorized
@@ -28,7 +28,7 @@ module AuthenticatedSystem
     #
     #  # only allow nonbobs
     #  def authorized?
-    #    current_customer.login != "bob"
+    #    current_merchant.login != "bob"
     #  end
     #
     def authorized?(action = action_name, resource = nil)
@@ -65,7 +65,7 @@ module AuthenticatedSystem
       respond_to do |format|
         format.html do
           store_location
-            flash[:notice] = "Please signin to view this page customer"
+             flash[:notice] = "Please signin to view this page mercant"
           redirect_to new_session_path
         end
         # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
@@ -94,25 +94,25 @@ module AuthenticatedSystem
       session[:return_to] = nil
     end
 
-    # Inclusion hook to make #current_customer and #logged_in?
+    # Inclusion hook to make #current_merchant and #logged_in?
     # available as ActionView helper methods.
     def self.included(base)
-      base.send :helper_method, :current_customer, :logged_in?, :authorized? if base.respond_to? :helper_method
+      base.send :helper_method, :current_merchant, :logged_in?, :authorized? if base.respond_to? :helper_method
     end
 
     #
     # Login
     #
 
-    # Called from #current_customer.  First attempt to login by the customer id stored in the session.
+    # Called from #current_merchant.  First attempt to login by the customer id stored in the session.
     def login_from_session
-      self.current_customer = Customer.find_by_id(session[:customer_id]) if session[:customer_id]
+      self.current_merchant = Merchant.find_by_id(session[:merchant_id]) if session[:merchant_id]
     end
 
-    # Called from #current_customer.  Now, attempt to login by basic authentication information.
+    # Called from #current_merchant.  Now, attempt to login by basic authentication information.
     def login_from_basic_auth
       authenticate_with_http_basic do |login, password|
-        self.current_customer = Customer.authenticate(login, password)
+        self.current_merchant = Merchant.authenticate(login, password)
       end
     end
     
@@ -120,14 +120,14 @@ module AuthenticatedSystem
     # Logout
     #
 
-    # Called from #current_customer.  Finaly, attempt to login by an expiring token in the cookie.
+    # Called from #current_merchant.  Finaly, attempt to login by an expiring token in the cookie.
     # for the paranoid: we _should_ be storing customer_token = hash(cookie_token, request IP)
     def login_from_cookie
-      customer = cookies[:auth_token] && Customer.find_by_remember_token(cookies[:auth_token])
-      if customer && customer.remember_token?
-        self.current_customer = customer
+      merchant = cookies[:auth_token] && Merchant.find_by_remember_token(cookies[:auth_token])
+      if merchant && merchant.remember_token?
+        self.current_merchant = merchant
         handle_remember_cookie! false # freshen cookie token (keeping date)
-        self.current_customer
+        self.current_merchant
       end
     end
 
@@ -136,10 +136,10 @@ module AuthenticatedSystem
     # However, **all session state variables should be unset here**.
     def logout_keeping_session!
       # Kill server-side auth cookie
-      @current_customer.forget_me if @current_customer.is_a? Customer
-      @current_customer = false     # not logged in, and don't do it for me
+      @current_merchant.forget_me if @current_merchant.is_a? Customer
+      @current_merchant = false     # not logged in, and don't do it for me
       kill_remember_cookie!     # Kill client-side auth cookie
-      session[:customer_id] = nil   # keeps the session but kill our variable
+      session[:merchant_id] = nil   # keeps the session but kill our variable
       # explicitly kill any other session variables you set
     end
 
@@ -161,18 +161,18 @@ module AuthenticatedSystem
     # and they should be changed at each login
 
     def valid_remember_cookie?
-      return nil unless @current_customer
-      (@current_customer.remember_token?) && 
-        (cookies[:auth_token] == @current_customer.remember_token)
+      return nil unless @current_merchant
+      (@current_merchant.remember_token?) && 
+        (cookies[:auth_token] == @current_merchant.remember_token)
     end
     
     # Refresh the cookie auth token if it exists, create it otherwise
     def handle_remember_cookie!(new_cookie_flag)
-      return unless @current_customer
+      return unless @current_merchant
       case
-      when valid_remember_cookie? then @current_customer.refresh_token # keeping same expiry date
-      when new_cookie_flag        then @current_customer.remember_me 
-      else                             @current_customer.forget_me
+      when valid_remember_cookie? then @current_merchant.refresh_token # keeping same expiry date
+      when new_cookie_flag        then @current_merchant.remember_me 
+      else                             @current_merchant.forget_me
       end
       send_remember_cookie!
     end
@@ -183,8 +183,8 @@ module AuthenticatedSystem
     
     def send_remember_cookie!
       cookies[:auth_token] = {
-        :value   => @current_customer.remember_token,
-        :expires => @current_customer.remember_token_expires_at }
+        :value   => @current_merchant.remember_token,
+        :expires => @current_merchant.remember_token_expires_at }
     end
 
 end

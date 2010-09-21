@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-   map.root :controller => "sessions", :action => 'new'
+  map.root :controller => "sessions", :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'customers', :action => 'create'
@@ -8,14 +8,21 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
 
+  map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
+
   map.resources :customers
 
+
+  
   map.resource :merchant
 
   map.resource :session
 
   map.signup '/merchant_signup', :controller => 'merchant', :action => 'new'
   map.merchant_register '/merchant_register', :controller => 'merchant', :action => 'create'
+  map.index '/index', :controller => 'merchant', :action => 'index'
+
+  map.deals_of_mine '/deals_of_mine' , :controller => 'merchant', :action => 'deals_of_mine'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

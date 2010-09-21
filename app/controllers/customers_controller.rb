@@ -1,9 +1,16 @@
 class CustomersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
+ 
   include AuthenticatedSystem
+ 
+  before_filter :login_required, :except => [:forgot_password]
 
   def index
-    render :text => 'Hello Customer '
+    
+  end
+
+  def deal_of_the_day
+    @deal = Deal.find(:first)
   end
 
   # render new.rhtml

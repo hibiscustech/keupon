@@ -8,15 +8,21 @@
     <tr>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Deal Name</th>
        <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Buy</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Users</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Discount</th>
 
     </tr>
     <% @merchant.deals.each do |topic| %>
       <tr>
         <td width="35%" style="color:#000000;"><%= link_to topic.name%> </td>
+         <td width="35%" style="color:#000000;"><%= link_to topic.buy%> </td>
+          <td width="35%" style="color:#000000;"><%= link_to topic.discount%> </td>
+          
+        
       </tr>
       <tr>
         <td width="35%" style="color:#000000;"><hr/></td>
+          <td width="35%" style="color:#000000;"><hr/></td>
+            <td width="35%" style="color:#000000;"><hr/></td>
         
       </tr>
     <%end%>

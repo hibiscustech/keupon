@@ -25,14 +25,9 @@ class Merchant < ActiveRecord::Base
   attr_accessible :login, :email,  :password, :password_confirmation
 
 
+    has_many :deals
 
-    has_one :customer_profile, :dependent => :destroy
-    has_one :customer_favourite_deal
-
-    has_many :customer_deals
-    has_many :deals, :through => :customer_deals
-
-    has_many :customer_credit_card
+    has_one :merchant_profile, :dependent => :destroy
 
 
 
