@@ -1,11 +1,15 @@
 <div style="margin-left:365px;
      padding-bottom:100px;font-size: 15px;">
 <% if logged_in? -%>
-  <%if current_customer.nil?%>
+  <%if params[:controller] == 'customers'%>
+  <%if !current_customer.nil?%>
       Hi, Welcome <%=current_customer.customer_profile.first_name%><%=current_customer.customer_profile.last_name%><%#= link_to_current_user :content_method => :login %> | <%= link_to "Signout", logout_path  %>
-      <%else%>
+    <%end%><%end%>
+        <%if params[:controller] == 'merchant'%>
+  <%if !current_merchant.nil?%>
+     
       Hi, Welcome <%=current_merchant.merchant_profile.first_name%><%=current_merchant.merchant_profile.last_name%><%#= link_to_current_user :content_method => :login %> | <%= link_to "Signout", logout_path  %>
-      <%end%>
+      <%end%><%end%>
 <% else -%>
  <%= link_to "Login ",  login_path %> |  <%= link_to "Sign up as customer ", '/signup' %> | <%= link_to "Sign up as merchant ", '/merchant_signup'   %>
 

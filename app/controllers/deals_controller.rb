@@ -1,4 +1,7 @@
 class DealsController < ApplicationController
+
+   include AuthenticatedSystemMerchant
+   
   def new
     @deal = Deal.new
   end
