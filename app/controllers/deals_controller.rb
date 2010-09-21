@@ -50,6 +50,19 @@ class DealsController < ApplicationController
     end
   end
 
+  def view_basic_info
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_deal',:partial => "deal_info"
+          end
+        }
+      end
+    end
+  end
+
 
   def get_deals
     @deals = Deal.find(:all)

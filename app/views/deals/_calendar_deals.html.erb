@@ -7,12 +7,12 @@ cell_attrs = {:class => 'day'}
 if !@schedules[d.mday.to_s].blank?
   schedules = @schedules[d.mday.to_s]
   schedule_descriptions = ""
-
+  cal_date = "#{@year}-#{@month}-#{d.day}"
   #for sch in schedules
     #schedule_descriptions += "<br/>- #{sch['tournament']} - #{sch['category']} #{sch['level']}<br/>"
   #end
   onclk = "javascript: alert(1);"
-  cell_text = "<a href='#' title='#{d.day}' onclick='#{onclk}'>Deal Title</a>"
+  cell_text = '<a href="#" title="" onclick="showElt(\'popup_view_deal\',\''+cal_date+'\');">Deal Title</a>'
   cell_attrs[:class] = 'specialDay'
 else
   onclk = "javascript: alert(0);"
