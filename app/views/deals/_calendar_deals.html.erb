@@ -5,18 +5,12 @@ calendar({:year =>@year, :month => @month,:abbrev => (0..2),:previous_month_text
 cell_text = "#{d.mday}"
 cell_attrs = {:class => 'day'}
 if !@schedules[d.mday.to_s].blank?
-  schedules = @schedules[d.mday.to_s]
-  schedule_descriptions = ""
-  cal_date = "#{@year}-#{@month}-#{d.day}"
-  #for sch in schedules
-    #schedule_descriptions += "<br/>- #{sch['tournament']} - #{sch['category']} #{sch['level']}<br/>"
-  #end
-  onclk = "javascript: alert(1);"
-  cell_text = '<a href="#" title="" onclick="showElt(\'popup_view_deal\',\''+cal_date+'\');">Deal Title</a>'
+  schedule = @schedules[d.mday.to_s]    
+  cell_text = '<a href="#" title="" onclick="showViewDeal(\'popup_view_deal\',\''+schedule["deal_id"].to_s+'\');">'+schedule["company_name"].to_s+'</a>'
   cell_attrs[:class] = 'specialDay'
 else
-  onclk = "javascript: alert(0);"
-  cell_text = "<a href='#' onclick='#{onclk}'>#{d.day}</a>"
+  deal_date = "#{@year}-#{@month}-#{d.day}"
+  cell_text = '<a href="#" title="" onclick="showCreateDeal(\'popup_create_deal\',\''+deal_date+'\');">'+d.day.to_s+'</a>'
 end
 [cell_text, cell_attrs]
 end

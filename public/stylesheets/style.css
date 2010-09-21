@@ -98,3 +98,13 @@ background-repeat: repeat;
                 padding:          200px 0 0 138px;
         }
 
+.popup table {
+    width: 100%;
+    cellpadding: 0px;
+    cellspacing: 0px;
+    align: center;
+}
+
+.popup td {    
+    height: 25px;
+}

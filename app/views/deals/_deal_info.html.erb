@@ -1,1 +1,35 @@
-<%= params[:date] %>
+<table class="popup">
+  <tr>
+    <td class="popup">Title: <%= @deal.name %></td>
+  </tr>
+  <tr>
+    <td class="popup">Price: $<%= @deal.buy %></td>
+  </tr>
+  <tr>
+    <td class="popup">Category: <%= @deal_category %></td>
+  </tr>
+  <tr>
+    <td class="popup">
+      <p><%= @deal.highlights %></p>
+      <p><%= @deal.rules %></p>
+    </td>
+  </tr>
+  <tr>
+    <td class="popup">
+      <table class="popup">
+        <tr>
+          <th width="25%">Value</th>
+          <th width="25%">Discount</th>
+          <th width="25%">Save</th>
+          <th width="25%">#Customers</th>
+        </tr>
+        <tr>
+          <td class="popup" align="center">$<%= @deal.value %></td>
+          <td class="popup" align="center"><%= @deal.discount %> %</td>
+          <td class="popup" align="center">$<%= @deal.save_amount %></td>
+          <td class="popup" align="center"><%= @deal.number %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

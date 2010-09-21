@@ -1,4 +1,6 @@
-
+<%= javascript_include_tag :defaults%>
+<%= calendar_date_select_includes %>
+<%= calendar_date_select_includes "red" %>
 <link href="/stylesheets/calendar/red/style.css" rel="stylesheet" type="text/css" />
 <div id="buttons" style="padding-left: 60px;">
   Year: <select id="year" name="year">
@@ -35,4 +37,8 @@
 <br/>
 <div id="popup_view_deal">
   <%= render :partial => "basic_deal_info" %>
+</div>
+
+<div id="popup_create_deal">
+  <%= render :partial => "view_create_deal" %>
 </div>

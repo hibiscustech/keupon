@@ -23,4 +23,13 @@ class Deal < ActiveRecord::Base
     "70 %" => "70",
     "60 %" => "60",
     "50 %" => '50'}
+
+  def self.category_name(deal_id)
+    query = %Q{ SELECT concat(dc.name,'(',ds.name,')') as category
+                from deals d
+                join deal_sub_categories ds on d.deal_sub_category_id = ds.id
+                join deal_categories dc on dc.id = ds.deal_category_id
+                where d.id = #{deal_id} }
+    find_by_sql(query)[0].category
+  end
 end

@@ -1,0 +1,12 @@
+<table>
+  <tr>
+        <td width="20px"> </td>
+        <td style="color:#000000;">Deal Sub-Category:</td>
+        <td>
+          <select id="sub_category" name="sub_category">
+            <option value="0">Select a Sub-Category</option>
+          <%= options_from_collection_for_select @sub_categories, :id, :name %>
+          </select>          
+        </td>
+      </tr>
+</table>

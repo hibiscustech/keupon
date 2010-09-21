@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
  
-  before_filter :login_required, :except => [:forgot_password]
+  before_filter :login_required, :only => [:deal_of_the_day]
 
   def index
     

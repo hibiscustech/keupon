@@ -3,7 +3,7 @@ class MerchantController < ApplicationController
   include AuthenticatedSystemMerchant
   
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required , :except => [:forgot_password]
+  before_filter :login_required , :only => [:deals_of_mine]
   
   def index
     
