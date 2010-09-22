@@ -20,7 +20,7 @@
 
         <p><%= label_tag 'Expiration Date' %><br/>
           <%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;
-          <%=select_year(Date.today, :start_year => 2005, :end_year => 1900)%>
+          <%=select_year(Date.today, :start_year => 2020, :end_year => 2000)%>
 
 
   <%#= password_field_tag 'password', nil %></p>
@@ -43,7 +43,7 @@
           <%= f.text_field 'state' %></p>
 
         <p><%= label_tag 'Card Type' %><br/>
-          <%= f.text_field 'state' %></p>
+          <%= f.select( "card_type", { "Visa" => "visa", "Mastercard" => "mastercard", "Mastercard" => "mastercard","American Express" => "amex"}) %></p>
     <tr><td>
         <p><%=image_submit_tag ("register.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/deal_of_the_day' %></p></td></tr>
 
