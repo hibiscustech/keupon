@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
 
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
+  map.redeem_deals '/redeem_deals', :controller => 'merchant', :action => 'redeem_deals'
 
   map.transaction_details '/transaction_details' , :controller => 'customers', :action =>  'transaction_details'
 
