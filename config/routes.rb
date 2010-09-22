@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.root :controller => "sessions", :action => 'new'
+  map.root :controller => "customers", :action => 'deal_of_the_day'
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'customers', :action => 'create'
@@ -9,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
 
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
+
+  map.transaction_details '/transaction_details' , :controller => 'customers', :action =>  'transaction_details'
 
   map.resources :customers
 

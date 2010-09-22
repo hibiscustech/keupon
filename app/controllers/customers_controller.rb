@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
  
-  before_filter :login_required, :only => [:transaction_details]
+  before_filter :login_required, :only => [:transaction_details,:save_transaction_details]
 
   def index
     
@@ -11,11 +11,29 @@ class CustomersController < ApplicationController
 
   def deal_of_the_day
     #@deal_schedule = DealSchedule.deal_schedule
-    #@deal = Deal.find(10)
+    @deal = Deal.todays_deal
   end
 
   def transaction_details
    @billing_information = CustomerCreditCard.new
+   @deal = Deal.find(params[:id])
+  end
+
+  def save_transaction_details
+    customer_card_inform = CustomerCreditCard.new(params[:customer_credit_card])
+    customer_card_inform.time_created = Time.now.to_i
+    customer_card_inform.time_modified = Time.now.to_i
+    customer_card_inform.expiration_year = params[:date][:year]
+    customer_card_inform.expiration_month = params[:date][:month]
+    customer_card_inform.card_type = 'Visa'
+    if customer_card_inform.save!
+      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => '1')
+      customer_deal.save!
+      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      redirect_to '/deal_of_the_day'
+    else
+      render :action => 'transaction_details'
+    end
   end
 
   # render new.rhtml

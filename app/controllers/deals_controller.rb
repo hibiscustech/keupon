@@ -52,7 +52,7 @@ class DealsController < ApplicationController
     deal.buy = deal.value.to_f*deal.discount.to_f/100
     deal.save_amount = deal.value.to_f - deal.buy.to_f
     if deal.save!
-      deal_schedule = DealSchedule.new(:deal_id => deal.id, :start_time => Time.parse("#{params[:start_time]} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:start_time]} 23:59:00").to_i.to_s)
+      deal_schedule = DealSchedule.new(:deal_id => deal.id, :start_time => Time.parse("#{params[:start_time]} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:start_time]} 23:59:59").to_i.to_s)
       deal_schedule.save!
       redirect_to "/deals/index"
     end

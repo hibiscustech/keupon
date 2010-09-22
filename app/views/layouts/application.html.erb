@@ -25,9 +25,9 @@
           <tr><td> <div id="main">
 
                 <%if flash[:notice] %>
-                  <br/><div style="text-align:center;background-color:grey;"><%= flash[:notice] %></div>
+                  <br/><div style="text-align:center;background-color:grey;color:#fff;"><%= flash[:notice] %></div>
                 <%else%>
-                  <br/><div style="text-align:center;background-color:grey;"><%= flash[:error]%>  </div>
+                  <br/><div style="text-align:center;background-color:grey;color:#fff;"><%= flash[:error]%>  </div>
                 <%end%>
                 <%= yield %><br/><br/>
                 <%= render :partial => "shared/footer"%>

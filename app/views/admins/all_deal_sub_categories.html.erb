@@ -18,7 +18,7 @@
 Deal Category : <%=select("deal_sub_category", "deal_category_id", DealCategory.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'})
 %>
 <br/><br/>Deal Sub Category : <%= text_field "deal_sub_category", "name", :size=>'20' %>
-<%=image_submit_tag ("add.jpg"), {:style=>"margin-top:-10px;"}%>
+<%= submit_tag 'Add' %>
 <% end %>
 </div>
 <br/>

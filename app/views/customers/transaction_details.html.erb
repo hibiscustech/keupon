@@ -2,43 +2,52 @@
 <table width="600">
   <tr>
     <td width="300">
-       <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_details'} do |f|-%>
-<p><%= label_tag 'Cardholder First Name' %><br />
-<%= f.text_field 'first_name' %></p>
+      <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
+        <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
+      <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
+        <p><%= label_tag 'Cardholder First Name' %><br />
+          <%= f.text_field 'first_name' %></p>
 
-<p><%= label_tag 'Cardholder Last Name' %><br />
-<%= f.text_field 'last_name' %></p>
+        <p><%= label_tag 'Cardholder Last Name' %><br />
+          <%= f.text_field 'last_name' %></p>
 
-<p><%= label_tag 'Card Number' %><br/>
-<%= f.text_field 'credit_card_number' %></p>
+        <p><%= label_tag 'Card Number' %><br/>
+          <%= f.text_field 'credit_card_number' %></p>
 
-<p><%= label_tag 'Security Code' %><br/>
-<%= f.text_field 'cvv2' %></p>
-
-
-<p><%= label_tag ' Expiration Date' %><br/>
-<%= password_field_tag 'password', nil %></p>
+        <p><%= label_tag 'Security Code' %><br/>
+          <%= f.text_field 'cvv2' %></p>
 
 
+        <p><%= label_tag 'Expiration Date' %><br/>
+          <%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;
+          <%=select_year(Date.today, :start_year => 2005, :end_year => 1900)%>
 
-    </td>
-    <td width="300">
-   
-<p><%= label_tag 'Billing Address 1' %><br />
-<%= f.text_field 'address1' %></p>
 
-<p><%= label_tag 'Billing Address 2' %><br/>
-<%= f.text_field 'address2' %></p>
+  <%#= password_field_tag 'password', nil %></p>
 
-<p><%= label_tag 'City' %><br/>
-<%= f.text_field 'city' %></p>
 
-<p><%= label_tag 'State' %><br/>
-<%= f.text_field 'state' %></p>
 
-<p><%=image_submit_tag ("login.jpg" )%></p>
+      </td>
+      <td width="300">
 
-    </td>
+        <p><%= label_tag 'Billing Address 1' %><br />
+          <%= f.text_field 'address1' %></p>
+
+        <p><%= label_tag 'Billing Address 2' %><br/>
+          <%= f.text_field 'address2' %></p>
+
+        <p><%= label_tag 'City' %><br/>
+          <%= f.text_field 'city' %></p>
+
+        <p><%= label_tag 'State' %><br/>
+          <%= f.text_field 'state' %></p>
+
+        <p><%= label_tag 'Card Type' %><br/>
+          <%= f.text_field 'state' %></p>
+    <tr><td>
+        <p><%=image_submit_tag ("register.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag ("cancel.jpg" ,:border=>'0') ,'/deal_of_the_day' %></p></td></tr>
+
+  </td>
 <% end -%>
-  </tr>
+</tr>
 </table>

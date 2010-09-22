@@ -12,9 +12,10 @@
         <td> <font size="3" color="red">Value :</font> <%=@deal.value%><br/><br/></td>
     <td> <font size="3" color="red">Discount : </font> <%=@deal.discount.to_i%> %  <br/><br/></td>
     <td><font size="3" color="red"> Save : </font><%=@deal.save_amount.to_i%><br/><br/></td></tr>
-     <tr><td><%=link_to image_tag('buy.jpg',:border=>'0'), :controller => 'customers', :action=>'transaction_details'%> </td></tr>
+     <tr><td><%=link_to image_tag('buy.jpg',:border=>'0'), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%> </td></tr>
     </table>
   </div>
 
 </div>
 
+		

@@ -5,6 +5,9 @@ class SessionsController < ApplicationController
   include AuthenticatedSystemMerchant 
   protect_from_forgery :only => [:sample]
   # render new.rhtml
+
+ 
+
   def new
   end
 
