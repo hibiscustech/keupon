@@ -32,4 +32,12 @@ class Deal < ActiveRecord::Base
                 where d.id = #{deal_id} }
     find_by_sql(query)[0].category
   end
+
+  def self.todays_deal
+    sdate = Time.parse("#{Time.now.year}-#{Time.now.month}-#{Time.now.day} 00:00:00").to_i.to_s
+
+    query = %Q{ select deal_id from deal_schedules where start_time = '#{sdate}'}
+    deal = find_by_sql(query)[0]
+    return (deal.blank?)? nil : Deal.find(deal.deal_id)
+  end
 end
