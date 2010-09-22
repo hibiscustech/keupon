@@ -1,6 +1,12 @@
-  
+    <ul id="navigation_sub_merchant" style="">
+      <li><a href="/deals/index" id="home_front" title="Home"></a></li>
+      <li><a href="/deals_of_mine" id="port" title="Our Programs"><span>recent deals</span></a></li>
+      <li><a href="/deals_of_mine" id="services" title="About Us"><span>howitworks</span></a></li>
+    </ul>
 
-<div style="width:608px;align:left;">
+
+
+<div style="margin-left: 75px;width:608px;align:left;">
   <table style="font-size:14px;border-collapse: collapse;width:615px;" CELLPADDING="4" CELLSPACING="0">
     <tr> <td><p style="font-weight:bold;"><font size=3 color=#000000> Deals Of Mine </font></p></td></tr>
   </table>
@@ -20,18 +26,19 @@
     <% @deals.each do |deal| %>
       <tr>
         <td style="color:#000000;"><%= deal.name%></td>
-        <td style="color:#000000;"><%= deal.deal_type%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.deal_type%></td>
         <td style="color:#000000;"><%= deal.value%></td>
-        <td style="color:#000000;"><%= deal.discount%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.discount%></td>
         <td style="color:#000000;"><%= deal.buy%></td>
-        <td style="color:#000000;"><%= deal.number%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.number%></td>
         <td style="color:#000000;"><%= deal.no_of_customers%></td>
-        <td style="color:#000000;"><%= deal.status%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.status%></td>
         <td style="color:#000000;"><%= Time.at(deal.start_time.to_i).strftime("%Y-%m-%d")%></td>
-        <td style="color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
       </tr>
       <tr>
         <td style="color:#000000;" colspan="10"><hr/></td>
+      
       </tr>
     <%end%>
   </table>
