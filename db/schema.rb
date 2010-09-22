@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100913070125) do
+ActiveRecord::Schema.define(:version => 20100922064043) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                :limit => 50, :null => false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20100913070125) do
     t.string  "zipcode",             :limit => 10, :null => false
     t.string  "latitude",            :limit => 50
     t.string  "longitude",           :limit => 50
-    t.text    "detail",                            :null => false
+    t.text    "detail"
     t.string  "logo",                :limit => 50
     t.integer "merchant_profile_id",               :null => false
   end
@@ -73,9 +73,11 @@ ActiveRecord::Schema.define(:version => 20100913070125) do
   add_index "customer_deal_transactions", ["customer_deal_id"], :name => "customer_deal_id"
 
   create_table "customer_deals", :force => true do |t|
-    t.integer "customer_id", :null => false
-    t.integer "deal_id",     :null => false
-    t.integer "quantity",    :null => false
+    t.integer "customer_id",                                  :null => false
+    t.integer "deal_id",                                      :null => false
+    t.integer "quantity",                                     :null => false
+    t.string  "status",      :limit => 0,  :default => "new", :null => false
+    t.string  "deal_code",   :limit => 25,                    :null => false
   end
 
   add_index "customer_deals", ["customer_id"], :name => "customer_id"
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20100913070125) do
     t.string  "email_address",  :limit => 50,                  :null => false
     t.integer "customer_id",                                   :null => false
     t.integer "dob"
+    t.string  "country"
   end
 
   add_index "customer_profiles", ["customer_id"], :name => "customer_id"
@@ -167,21 +170,24 @@ ActiveRecord::Schema.define(:version => 20100913070125) do
   end
 
   create_table "deals", :force => true do |t|
-    t.string  "name",                 :limit => 50,                    :null => false
-    t.float   "buy",                                                   :null => false
-    t.float   "value",                                                 :null => false
-    t.float   "discount",                                              :null => false
-    t.float   "save",                                                  :null => false
-    t.integer "number",                                                :null => false
-    t.integer "deal_photo",                                            :null => false
+    t.text    "name",                                                    :null => false
+    t.float   "buy",                                                     :null => false
+    t.float   "value",                                                   :null => false
+    t.float   "discount",                                                :null => false
+    t.float   "save_amount",                                             :null => false
+    t.integer "number",                                                  :null => false
+    t.integer "deal_photo",                                              :null => false
     t.string  "rules"
     t.string  "highlights"
-    t.string  "status",               :limit => 0,  :default => "new", :null => false
-    t.integer "expiry_date",                                           :null => false
-    t.integer "deal_type_id",                                          :null => false
-    t.integer "merchant_id",                                           :null => false
-    t.integer "deal_category_id",                                      :null => false
-    t.integer "deal_sub_category_id",                                  :null => false
+    t.string  "status",                  :limit => 0, :default => "new", :null => false
+    t.integer "expiry_date",                                             :null => false
+    t.integer "deal_type_id",                                            :null => false
+    t.integer "merchant_id",                                             :null => false
+    t.integer "deal_category_id",                                        :null => false
+    t.integer "deal_sub_category_id",                                    :null => false
+    t.string  "deal_photo_file_name"
+    t.string  "deal_photo_content_type"
+    t.integer "deal_photo_file_size"
   end
 
   add_index "deals", ["deal_category_id"], :name => "deal_category_id"
@@ -190,18 +196,20 @@ ActiveRecord::Schema.define(:version => 20100913070125) do
   add_index "deals", ["merchant_id"], :name => "merchant_id"
 
   create_table "merchant_profiles", :force => true do |t|
-    t.string  "first_name",     :limit => 30,                  :null => false
+    t.string  "first_name",     :limit => 30,                    :null => false
     t.string  "last_name",      :limit => 30
-    t.string  "gender",         :limit => 0,  :default => "m", :null => false
-    t.string  "address1",       :limit => 50,                  :null => false
+    t.string  "gender",         :limit => 0,  :default => "m"
+    t.string  "address1",       :limit => 50
     t.string  "address2",       :limit => 50
-    t.string  "city",           :limit => 30,                  :null => false
-    t.string  "state",          :limit => 30,                  :null => false
-    t.string  "zipcode",        :limit => 10,                  :null => false
-    t.string  "contact_number", :limit => 15,                  :null => false
-    t.string  "email_address",  :limit => 50,                  :null => false
-    t.integer "merchant_id",                                   :null => false
+    t.string  "city",           :limit => 30
+    t.string  "state",          :limit => 30
+    t.string  "zipcode",        :limit => 10
+    t.string  "contact_number", :limit => 15,                    :null => false
+    t.string  "email_address",  :limit => 50,                    :null => false
+    t.integer "merchant_id"
     t.integer "dob"
+    t.string  "country"
+    t.string  "status",         :limit => 0,  :default => "new", :null => false
   end
 
   add_index "merchant_profiles", ["merchant_id"], :name => "merchant_id"
@@ -216,5 +224,15 @@ ActiveRecord::Schema.define(:version => 20100913070125) do
     t.string   "activation_code"
     t.datetime "activated_at"
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
 end

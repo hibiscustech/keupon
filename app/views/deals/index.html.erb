@@ -2,7 +2,15 @@
 <%= calendar_date_select_includes %>
 <%= calendar_date_select_includes "red" %>
 <link href="/stylesheets/calendar/red/style.css" rel="stylesheet" type="text/css" />
-<div id="buttons" style="padding-left: 60px;">
+<br/>
+<ul id="navigation_sub_merchant" style="">
+      <li><a href="/deals/index" id="home_front" title="New Deal"></a></li>
+      <li><a href="/deals_of_mine" id="port" title="My Deals"></a></li>
+      <li><a href="/redeem_deals" id="services" title="Redeem Deals"></a></li>
+</ul>
+<br/>
+<br/>
+<div id="buttons" style="padding-left: 150px;">
   Year: <select id="year" name="year">
         <% for year in @years
             if session[:year].to_s == year.to_s %>

@@ -1,85 +1,9 @@
-<!-- <p>
-  <%#=link_to_remote 'Create Deal', :url => {:action => :new}, :before => "$('#loading').show()", :complete => "$('#loading').hide()" %>
-</p>
-
-<script>
-  
-  
-  $(document).ready(function(){
-      // page is now ready, initialize the calendar...
-      $('#calendar').fullCalendar({
-          editable: true,
-          header: {
-              left: 'prev,next today',
-              center: 'title',
-              right: 'month,agendaWeek,agendaDay'
-          },
-          defaultView: 'month',
-          height: 500,
-          slotMinutes: 15,
-          loading: function(bool){
-              if (bool) 
-                  $('#loading').show();
-              else 
-                  $('#loading').hide();
-          },
-          deals: "/deals/get_deals",
-          timeFormat: 'h:mm t{ - h:mm t} ',
-          dragOpacity: "0.5",
-          dealDrop: function(deal, dayDelta, minuteDelta, allDay, revertFunc){
-//              if (confirm("Are you sure about this change?")) {
-                  moveDeal(deal, dayDelta, minuteDelta, allDay);
-//              }
-//              else {
-//                  revertFunc();
-//              }
-          },
-          
-          dealResize: function(deal, dayDelta, minuteDelta, revertFunc){
-//              if (confirm("Are you sure about this change?")) {
-                  resizeDeal(deal, dayDelta, minuteDelta);
-//              }
-//              else {
-//                  revertFunc();
-//              }
-          },
-          
-          dealClick: function(deal, jsDeal, view){
-              showDealDetails(deal);
-          },
-      
-      
-      
-      
-      });
-  });
-</script>
-<div>
-  <div id='calendar'>
-  </div>
-</div>
-<div id = "desc_dialog" style ="display:none;">
-  <div id = "deal_desc">
-  </div>
-  <br/>
-  <br/>
-  <div id = "deal_actions">
-    <span id = "edit_deal"></span>
-    <span id = "delete_deal"></span>
-  </div>
-</div>
-<div id = "create_deal_dialog" style ="display:none;">
-  <div id = "create_deal">
-  </div>
-</div>-->
-
-
 <br/>
 
   <ul id="navigation_sub_merchant" style="">
-      <li><a href="/deals/index" id="home_front" title="Home"></a></li>
-      <li><a href="/deals_of_mine" id="port" title="Our Programs"><span>recent deals</span></a></li>
-      <li><a href="/deals_of_mine" id="services" title="About Us"><span>howitworks</span></a></li>
+      <li><a href="/deals/index" id="home_front" title="New Deal"></a></li>
+      <li><a href="/deals_of_mine" id="port" title="My Deals"></a></li>
+      <li><a href="/redeem_deals" id="services" title="Redeem Deals"></a></li>
     </ul>
 
 

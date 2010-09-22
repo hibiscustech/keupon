@@ -1,0 +1,15 @@
+<br/>
+
+  <ul id="navigation_sub_merchant" style="">
+      <li><a href="/deals/index" id="home" title="Home"></a></li>
+      <li><a href="/deals_of_mine" id="port" title="Our Programs"></a></li>
+      <li><a href="/deals_of_mine" id="services_front" title="About Us"></a></li>
+    </ul>
+
+<br/>
+<div>
+  <h3>Redeem the Deals</h3><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %>
+</div>
+<div id="redeem_deal"
+  <%= render :partial => "redeem_deal" %>
+</div>

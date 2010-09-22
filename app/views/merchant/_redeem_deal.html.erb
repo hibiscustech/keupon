@@ -1,0 +1,16 @@
+<%if flash[:notice] %>
+    <div style="text-align:center;background-color:grey;color:#fff;"><%= flash[:notice] %></div><br/>
+<%end%>
+<%= form_remote_tag(:url => {:controller => "merchant", :action => "verify_deal", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "verification_form", :style=> "padding:0;margin:0;"})%>
+<table>
+  <tr>
+    <td>Enter Deal Code:</td>
+    <td><input type="text" name="code" id="code" /></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <input type="button" name="Verify" value="Verify" onclick="$('verification_form').onsubmit();return false;"/>
+    </td>
+  </tr>
+</table>
+</form>

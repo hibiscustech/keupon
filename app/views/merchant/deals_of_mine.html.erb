@@ -1,16 +1,11 @@
     <ul id="navigation_sub_merchant" style="">
-      <li><a href="/deals/index" id="home_front" title="Home"></a></li>
-      <li><a href="/deals_of_mine" id="port" title="Our Programs"><span>recent deals</span></a></li>
-      <li><a href="/deals_of_mine" id="services" title="About Us"><span>howitworks</span></a></li>
+      <li><a href="/deals/index" id="home" title="New Deal"></a></li>
+      <li><a href="/deals_of_mine" id="port_front" title="My Deals"></a></li>
+      <li><a href="/redeem_deals" id="services" title="Redeem Deals"></a></li>
     </ul>
-
-
-
-<div style="margin-left: 75px;width:608px;align:left;">
-  <table style="font-size:14px;border-collapse: collapse;width:615px;" CELLPADDING="4" CELLSPACING="0">
-    <tr> <td><p style="font-weight:bold;"><font size=3 color=#000000> Deals Of Mine </font></p></td></tr>
-  </table>
-  <table align=left  style="font-size:14px;border-collapse: collapse;width:615px;text-align:center;" CELLPADDING="4" CELLSPACING="0">
+<br/>
+<div style="margin-left: 75px;align:left;">
+  <table align=left  style="font-size: 14px; border-collapse: collapse; width:900px; text-align: center;" CELLPADDING="4" CELLSPACING="0">
     <tr>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Title</th>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Type</th>
@@ -26,7 +21,7 @@
     <% @deals.each do |deal| %>
       <tr>
         <td style="color:#000000;"><%= deal.name%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.deal_type%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.type_name%></td>
         <td style="color:#000000;"><%= deal.value%></td>
         <td style="background-color: #C0C0C0;color:#000000;"><%= deal.discount%></td>
         <td style="color:#000000;"><%= deal.buy%></td>
@@ -37,8 +32,7 @@
         <td style="background-color: #C0C0C0;color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
       </tr>
       <tr>
-        <td style="color:#000000;" colspan="10"><hr/></td>
-      
+        <td style="color:#000000;" colspan="10"><hr/></td>      
       </tr>
     <%end%>
   </table>

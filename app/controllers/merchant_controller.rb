@@ -3,7 +3,7 @@ class MerchantController < ApplicationController
   include AuthenticatedSystemMerchant
   
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required , :only => [:deals_of_mine]
+  before_filter :login_required , :only => [:deals_of_mine, :redeem_deals]
   
   def index
     
@@ -76,6 +76,27 @@ class MerchantController < ApplicationController
         render :controller => 'merchant',:action => 'forgot_password'
       end    
     end
-  end 
+  end
+
+  def redeem_deals
+    
+  end
+
+  def verify_deal
+    @customer_deal = CustomerDeal.verify_customer_deal(params[:code])
+    if @customer_deal.blank?
+      flash[:notice] = "Invalid Code."
+      if request.xml_http_request?
+        respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'redeem_deal',:partial => "redeem_deal"
+            end
+          }
+        end
+      end
+    end
+  end
 
 end
