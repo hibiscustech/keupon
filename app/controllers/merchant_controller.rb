@@ -13,8 +13,8 @@ class MerchantController < ApplicationController
     @merchant = Merchant.new
   end
 
-  def deals_of_mine
-    @merchant = Merchant.find(current_merchant.id)
+  def deals_of_mine    
+    @deals = Deal.merchants_deals(current_merchant.id)
   end
 
   def create

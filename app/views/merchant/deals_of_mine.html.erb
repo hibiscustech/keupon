@@ -6,24 +6,32 @@
   </table>
   <table align=left  style="font-size:14px;border-collapse: collapse;width:615px;text-align:center;" CELLPADDING="4" CELLSPACING="0">
     <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Deal Name</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Buy</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Title</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Type</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Price($)</th>
        <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Discount</th>
-
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Buy($)</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Customers Required</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Customers SignedUp</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Status</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Deal On</th>
+       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Expires On</th>
     </tr>
-    <% @merchant.deals.each do |topic| %>
+    <% @deals.each do |deal| %>
       <tr>
-        <td width="35%" style="color:#000000;"><%= link_to topic.name%> </td>
-         <td width="35%" style="color:#000000;"><%= link_to topic.buy%> </td>
-          <td width="35%" style="color:#000000;"><%= link_to topic.discount%> </td>
-          
-        
+        <td style="color:#000000;"><%= deal.name%></td>
+        <td style="color:#000000;"><%= deal.deal_type%></td>
+        <td style="color:#000000;"><%= deal.value%></td>
+        <td style="color:#000000;"><%= deal.discount%></td>
+        <td style="color:#000000;"><%= deal.buy%></td>
+        <td style="color:#000000;"><%= deal.number%></td>
+        <td style="color:#000000;"><%= deal.no_of_customers%></td>
+        <td style="color:#000000;"><%= deal.status%></td>
+        <td style="color:#000000;"><%= Time.at(deal.start_time.to_i).strftime("%Y-%m-%d")%></td>
+        <td style="color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
       </tr>
       <tr>
-        <td width="35%" style="color:#000000;"><hr/></td>
-          <td width="35%" style="color:#000000;"><hr/></td>
-            <td width="35%" style="color:#000000;"><hr/></td>
-        
+        <td style="color:#000000;" colspan="10"><hr/></td>
       </tr>
     <%end%>
   </table>

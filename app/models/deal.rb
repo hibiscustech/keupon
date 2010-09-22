@@ -40,4 +40,17 @@ class Deal < ActiveRecord::Base
     deal = find_by_sql(query)[0]
     return (deal.blank?)? nil : Deal.find(deal.deal_id)
   end
+
+  def self.merchants_deals(merchant_id)
+    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.number, d.status, d.expiry_date, count(cd.deal_id) as no_of_customers, dt.name as deal_type, ds.start_time, ds.end_time
+                from merchants m
+                join deals d on d.merchant_id = m.id
+                join deal_types dt on dt.id = d.deal_type_id
+                join deal_schedules ds on ds.deal_id = d.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where merchant_id = #{merchant_id}
+                group by cd.deal_id
+                order by ds.start_time }
+    find_by_sql(query)
+  end
 end
