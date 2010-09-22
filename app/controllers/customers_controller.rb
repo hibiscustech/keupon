@@ -46,9 +46,11 @@ class CustomersController < ApplicationController
     @customer = Customer.new(params[:customer])
     @customer.kupoints = 0
     @customer.time_created = Time.now
+    @customer.login = @customer.email
     success = @customer && @customer.save
     if success && @customer.errors.empty?
       @profile = CustomerProfile.new(params[:customer_profile])
+      @profile.email_address = @customer.email
       @profile.customer = @customer
       @profile.save
       redirect_back_or_default('/')
