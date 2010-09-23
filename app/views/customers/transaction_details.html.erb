@@ -1,8 +1,12 @@
+<% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
+<div id="purchase">
+  <%= render :partial => "purchase_detail" %>
+</div>
+<br/>
 <h3>Billing Information</h3>
 <table width="600">
   <tr>
-    <td width="300">
-      <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
+    <td width="300">      
         <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
       <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
         <p><%= label_tag 'Cardholder First Name' %><br />
@@ -17,16 +21,10 @@
         <p><%= label_tag 'Security Code' %><br/>
           <%= f.text_field 'cvv2' %></p>
 
-
         <p><%= label_tag 'Expiration Date' %><br/>
           <%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;
           <%=select_year(Date.today, :start_year => 2020, :end_year => 2000)%>
-
-
-  <%#= password_field_tag 'password', nil %></p>
-
-
-
+        </p>
       </td>
       <td width="300">
 
@@ -48,6 +46,6 @@
         <p><%=image_submit_tag ("register.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/deal_of_the_day' %></p></td></tr>
 
   </td>
-<% end -%>
 </tr>
 </table>
+<% end -%>

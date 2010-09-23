@@ -19,6 +19,35 @@ class CustomersController < ApplicationController
    @deal = Deal.find(params[:id])
   end
 
+  def check_transaction_quantity
+    @deal = Deal.find(params[:id])
+    if params[:quantity].to_i > 0
+      total = @deal.buy.to_f * params[:quantity].to_f
+      if request.xml_http_request?
+        respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'total', "$#{total}"
+            end
+          }
+        end
+      end
+    else
+      flash[:msg] = "Quantity cannot be 0"
+      if request.xml_http_request?
+        respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'purchase', :partial => "purchase_detail"
+            end
+          }
+        end
+      end
+    end
+  end
+
   def save_transaction_details
     customer_card_inform = CustomerCreditCard.new(params[:customer_credit_card])
     customer_card_inform.time_created = Time.now.to_i

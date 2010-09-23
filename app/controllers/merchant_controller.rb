@@ -85,7 +85,7 @@ class MerchantController < ApplicationController
   def verify_deal
     @customer_deal = CustomerDeal.verify_customer_deal(params[:code])
     if @customer_deal.blank?
-      flash[:notice] = "Invalid Code."
+      flash[:notice] = "Invalid Code"
       if request.xml_http_request?
         respond_to do |format|
           format.html
@@ -96,6 +96,8 @@ class MerchantController < ApplicationController
           }
         end
       end
+    else
+
     end
   end
 
