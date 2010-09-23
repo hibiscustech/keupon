@@ -1,0 +1,35 @@
+<table width="600">
+  <tr>
+    <td colspan="6"><h3>Your Purchase</h3></td>
+  </tr>
+  <% if !flash[:msg].blank? %>
+  <tr>
+    <td colspan="6" id="msg">
+      <div style="text-align:center;background-color:grey;color:#fff;" onclick="Effect.toggle('msg','appear');"><%= flash[:msg]%></div>
+    </td>
+  </tr>
+  <% end %>
+  <tr>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th></th>
+    <th>Price</th>
+    <th></th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <td><%= @deal.name %></td>
+    <td align="center">
+      <input type="text" size="4" name="quantity" id="quantity" value="1" />
+      <script type="text/javascript">
+      //<![CDATA[
+      new Form.Element.EventObserver('quantity', function(element, value) {new Ajax.Request('/customers/check_transaction_quantity', {asynchronous:true, evalScripts:true, parameters:'quantity=' + encodeURIComponent(value) + '&id=<%=@deal.id%>&authenticity_token=' + encodeURIComponent('BlUBplpSWg/1vcqOEoaaN9Epl9UKXe4Vc/qgC5r7Pus=')})})
+      //]]>
+      </script>
+    </td>
+    <td align="center">x</td>
+    <td align="center">$<%= @deal.buy %></td>
+    <td align="center">=</td>
+    <td align="center" id="total">$<%= @deal.buy %></td>
+  </tr>
+</table>
