@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100922064043) do
+ActiveRecord::Schema.define(:version => 20100928104439) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                :limit => 50, :null => false
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(:version => 20100922064043) do
 
   add_index "customer_credit_cards", ["customer_id"], :name => "customer_id"
 
+  create_table "customer_deal_redemptions", :force => true do |t|
+    t.integer "customer_deal_id",  :null => false
+    t.integer "redeemed_time",     :null => false
+    t.integer "redeemed_quantity", :null => false
+  end
+
+  add_index "customer_deal_redemptions", ["customer_deal_id"], :name => "customer_deal_id"
+
   create_table "customer_deal_transactions", :force => true do |t|
     t.integer "time_created",                                                  :null => false
     t.string  "transaction_type",        :limit => 0,                          :null => false
@@ -77,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20100922064043) do
     t.integer "deal_id",                                      :null => false
     t.integer "quantity",                                     :null => false
     t.string  "status",      :limit => 0,  :default => "new", :null => false
-    t.string  "deal_code",   :limit => 25,                    :null => false
+    t.string  "deal_code",   :limit => 25
   end
 
   add_index "customer_deals", ["customer_id"], :name => "customer_id"
