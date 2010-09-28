@@ -5,7 +5,8 @@ class CustomerDeal < ActiveRecord::Base
 
   has_one :customer_kupoint
 
-  has_many :customer_deal_transaction
+  has_many :customer_deal_transactions
+  has_many :customer_deal_redemptions
 
 
   def self.verify_customer_deal(code)
