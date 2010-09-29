@@ -1,4 +1,6 @@
 <h3>Today's Deal</h3>
+
+<%if !@deal.nil?%>
 <div style="width: 900px;">
   <div align="left" style="width:400px;">
     <div style="color: red"><%=@deal.name%></div><br/><br/>
@@ -17,5 +19,9 @@
   </div>
 
 </div>
+<%else%>
+<h4>No Hot deal for today
+</h4>
+<%end%>
 
 		
