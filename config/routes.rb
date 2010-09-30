@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.redeem_deals '/redeem_deals', :controller => 'merchant', :action => 'redeem_deals'
 
   map.transaction_details '/transaction_details' , :controller => 'customers', :action =>  'transaction_details'
-
+ map.location_deals '/location_deals', :controller => 'merchant', :action => 'location_deals'
   map.resources :customers
 
 

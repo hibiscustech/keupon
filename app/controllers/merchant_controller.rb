@@ -1,6 +1,8 @@
 class MerchantController < ApplicationController
 
   include AuthenticatedSystemMerchant
+  include Geokit::Geocoders
+
   
   protect_from_forgery :only => [:destroy]
   before_filter :login_required , :only => [:deals_of_mine, :redeem_deals]
@@ -84,8 +86,34 @@ class MerchantController < ApplicationController
 
   def verify_deal
     @customer_deal = CustomerDeal.verify_customer_deal(params[:code])
-    if @customer_deal.blank?
+    if @customer_deal.blank? 
       flash[:notice] = "Invalid Code"
+    elsif @customer_deal.status == 'available'
+      @deals = Deal.find_by_id(@customer_deal.deal_id, :include=>'merchant', :conditions=>["merchants.id=?", current_merchant.id])
+    end
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'redeem_deal',:partial => "redeem_deal"
+          end
+        }
+      end
+    end
+  end
+
+  def redeem_deal
+    @redeem_deal = CustomerDeal.find(params[:id])
+    if !@redeem_deal.nil?
+      #equal = @redeem_deal.quantity.to_i == @redeem_deal.quantity_left.to_i
+      quantity_left = (@redeem_deal.quantity -  params[:deal][:quantity].to_i)
+      #if equal == 'true'
+        @redeem_deal.update_attributes(:status => 'used', :quantity_left => params[:deal][:quantity])
+      #end
+      #@redeem_deal.update_attributes(:quantity_left => params[:deal][:quantity])
+      @DealRedemption = CustomerDealRedemption.create(:customer_deal_id =>@redeem_deal.id, :redeemed_time => Time.now.to_i, :redeemed_quantity =>params[:deal][:quantity]  )
+      flash[:notice] = "Successfully redeem a deal"
       if request.xml_http_request?
         respond_to do |format|
           format.html
@@ -96,8 +124,26 @@ class MerchantController < ApplicationController
           }
         end
       end
-    else
+    end
+  end
 
+  def location_deals
+    @location_deals = DealLocationDetail.all_deals
+  end
+
+
+  def new_location_deal
+    @deal = Deal.new
+    @categories = DealCategory.find(:all)
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'location_deal',:partial => "new_location_deal"
+          end
+        }
+      end
     end
   end
 

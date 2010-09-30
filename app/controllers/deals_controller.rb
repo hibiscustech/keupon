@@ -1,11 +1,12 @@
 class DealsController < ApplicationController
 
-  include AuthenticatedSystemMerchant     
+  include AuthenticatedSystemMerchant
+  include Geokit::Geocoders
 
   def index
     if request.get?
       @months = { "January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8,
-                  "September" => 9, "October" => 10, "Nevember" => 11, "December" => 12 }
+        "September" => 9, "October" => 10, "Nevember" => 11, "December" => 12 }
       @years = [2010, 2011]
       today = Time.now
       @month = today.month
@@ -46,15 +47,31 @@ class DealsController < ApplicationController
   def create
     deal = Deal.new(params[:deal])
     deal.expiry_date = Time.parse(params[:deal][:expiry_date]).to_i
+    deal.start_date = Time.parse(params[:deal][:start_date]).to_i  if params[:deal][:start_date] 
     deal.deal_category_id = params[:category]
     deal.deal_sub_category_id = params[:sub_category]
-    deal.deal_type_id = 1
+    if params[:deal][:deal_type_id]
+      deal.deal_type_id = params[:deal][:deal_type_id]
+    else
+      deal.deal_type_id = 1
+    end
     deal.buy = deal.value.to_f*deal.discount.to_f/100
     deal.save_amount = deal.value.to_f - deal.buy.to_f
     if deal.save!
-      deal_schedule = DealSchedule.new(:deal_id => deal.id, :start_time => Time.parse("#{params[:start_time]} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:start_time]} 23:59:59").to_i.to_s)
-      deal_schedule.save!
-      redirect_to "/deals/index"
+      if params[:deal][:deal_type_id] 
+        deal_location = DealLocationDetail.new(params[:deal_location_detail])
+        deal_location.deal_id = deal.id
+        get_lat_lng(deal_location,params[:deal_location_detail])
+        deal_location.save!
+      else
+        deal_schedule = DealSchedule.new(:deal_id => deal.id, :start_time => Time.parse("#{params[:start_time]} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:start_time]} 23:59:59").to_i.to_s)
+        deal_schedule.save!
+      end
+      if params[:deal][:deal_type_id]
+        redirect_to "/location_deals"
+      else
+        redirect_to "/deals/index"
+      end
     end
   end
 
@@ -114,5 +131,15 @@ class DealsController < ApplicationController
       result[day.to_i.to_s] = {"company_name" => merchant.company_name, "deal_id" => merchant.deal_id}
     end
     return result
+  end
+
+  def get_lat_lng(location,deal_location_detail)
+    if !params[:chk1].nil?
+      res = MultiGeocoder.geocode("#{current_merchant.merchant_profile.address1},#{current_merchant.merchant_profile.address2},#{current_merchant.merchant_profile.city},#{current_merchant.merchant_profile.state},#{current_merchant.merchant_profile.country}")
+    else
+      res = MultiGeocoder.geocode("#{deal_location_detail[:address1]},#{deal_location_detail[:address2]},#{deal_location_detail[:city]},#{deal_location_detail[:state]},#{deal_location_detail[:country]}")
+    end
+    location.longitude = res.lat
+    location.latitude = res.lng
   end
 end

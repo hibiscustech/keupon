@@ -1,61 +1,45 @@
 <br/>
 <script type="text/javascript" language="javascript">
-function validtae(chk)
-{
-
-  if (chk.checked = 0)
+  function validtae(chk)
   {
-Element.hide("location_address")
-    
-
+    var style = document.getElementById("location_address").style
+    if (style.visibility == "hidden")
+      style.visibility = "visible";
+    else
+      style.visibility = "hidden";
   }
-  else if (chk.checked = 1)
-
-  {
- 
-
-Element.hide("location_address")
-
- 
-
-   }
-}
 </script>
 
 <div>
-  <h3>Location Deals</h3>
-</div>
-<div id="redeem_deal"
-  <%#= render :partial => "redeem_deal" %>
-    <br/><br/><br/><a href="#" onclick="new Ajax.Request('/merchant/new_location_deal', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Create New location deal </a>
+  <h3>Location Deals</h3> <a href="#" onclick="new Ajax.Request('/merchant/new_location_deal', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">New location deal </a>
 
-<br/><br/>
-</div>
+</div><br/>
+
 <div id="location_deal">
-<%if !@location_deals.blank?%>
-<table>
-  <thead>
-    <tr>
-      <th>Deal Name</th>
-      <th>Value</th>
-      <th>Start Date</th>
-      <th>Expiry Date</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% for merchant in @location_deals %>
-    <tr>
-      <td><%= merchant.deal.name %></td>
-      <td><%= merchant.deal.value %></td>
-      <td><%= merchant.deal.start_date%></td>
-      <td><%= merchant.deal.expiry_date %></td>
-      <td><%#= merchant.email_address %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<%else%>
-<h4>No location deals as of now</h4>
-<%end%>
+  <%if !@location_deals.blank?%>
+    <table>
+      <thead>
+        <tr>
+          <th>Deal Name</th>
+          <th>Value</th>
+          <th>Start Date</th>
+          <th>Expiry Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for merchant in @location_deals %>
+          <tr>
+            <td><%= merchant.deal.name %></td>
+            <td><%= merchant.deal.value %></td>
+            <td><%= merchant.deal.start_date%></td>
+            <td><%= merchant.deal.expiry_date %></td>
+            <td><%#= merchant.email_address %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%else%>
+    <h4>No location deals as of now</h4>
+  <%end%>
 </div>
