@@ -134,6 +134,7 @@ class DealsController < ApplicationController
   end
 
   def get_lat_lng(location,deal_location_detail)
+    puts "***********************For getting lat and long for address**************"
     if !params[:chk1].nil?
       res = MultiGeocoder.geocode("#{current_merchant.merchant_profile.address1},#{current_merchant.merchant_profile.address2},#{current_merchant.merchant_profile.city},#{current_merchant.merchant_profile.state},#{current_merchant.merchant_profile.country}")
     else

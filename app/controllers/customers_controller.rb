@@ -132,4 +132,33 @@ class CustomersController < ApplicationController
       redirect_back_or_default('/')
     end
   end
+
+  def location_deals
+    @deals = DealLocationDetail.find(:all)
+    first_deal =[]
+    first = first_deal.push(@deals[0])
+    reminding = @deals-first
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    ################## first ##########################
+    #markers = [GMarker.new([1.298732,103.859501],:info_window => "152 Beach Rd.,<br/> #16-00 Gateway East,<br/> Singapore",:title => "Toshiba Asia Pacific Pte., Ltd"),
+    #GMarker.new([12.9715987,77.5945627],:info_window => "Namaste",:description => "Chopoto" , :title => "Ay"),
+    #GMarker.new([37.83,-90.456619],:info_window => "Bonjour",:title => "Third"),
+    #]
+    #markers.each do |s|
+    #@map.center_zoom_init(coordinates, 4)
+    #marker = GMarker.new(s)
+    #@map.overlay_init(marker)
+    ###################################################
+    @map.center_zoom_init([@deals[0].longitude,@deals[0].latitude],12)
+    @map.overlay_init(GMarker.new([@deals[0].longitude,@deals[0].latitude],:title =>"#{@deals[0].deal.name}", :info_window =>"Deal Name :#{@deals[0].deal.name}  <br/><br/>Description :#{@deals[0].deal.rules} <br/><br/>Value  :#{@deals[0].deal.value}, Discount  :#{@deals[0].deal.discount} <br/><br/>Start Date  :#{@deals[0].deal.start_date} Expiry Date  :#{@deals[0].deal.expiry_date} <br/> <br/> Address <br/>#{@deals[0].address1},<br/> #{@deals[0].address2},<br/> #{@deals[0].city}" ))
+    reminding.each do |deal|
+    @map.record_init @map.add_overlay(GMarker.new([deal.longitude,deal.latitude],:title => "#{deal.deal.name}",:info_window => "Deal Name :#{deal.deal.name}  <br/><br/>Description :#{deal.deal.rules} <br/><br/>Value  :#{deal.deal.value}, Discount  :#{deal.deal.discount} <br/> <br/>Start Date  :#{@deals[0].deal.start_date} Expiry Date  :#{@deals[0].deal.expiry_date} <br/><br/> Address <br/>#{deal.address1},<br/> #{deal.address2},<br/> #{deal.city}"))
+    end
+    
+
+
+
+  end
+
 end

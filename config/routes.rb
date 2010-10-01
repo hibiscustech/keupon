@@ -1,32 +1,33 @@
 ActionController::Routing::Routes.draw do |map|
-
+ 
   map.root :controller => "customers", :action => 'deal_of_the_day'
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
+
+  map.redeem_deals '/redeem_deals', :controller => 'merchant', :action => 'redeem_deals'
+  map.signup '/merchant_signup', :controller => 'merchant', :action => 'new'
+  map.merchant_register '/merchant_register', :controller => 'merchant', :action => 'create'
+  map.index '/index', :controller => 'merchant', :action => 'index'
+  map.location_deals '/location_deals', :controller => 'merchant', :action => 'location_deals'
+  map.deals_of_mine '/deals_of_mine' , :controller => 'merchant', :action => 'deals_of_mine'
+
+  map.transaction_details '/transaction_details' , :controller => 'customers', :action =>  'transaction_details'
   map.register '/register', :controller => 'customers', :action => 'create'
   map.signup '/signup', :controller => 'customers', :action => 'new'
   map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
-
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
-  map.redeem_deals '/redeem_deals', :controller => 'merchant', :action => 'redeem_deals'
+  map.location_deals '/customers/location_deals', :controller => 'customers', :action => 'location_deals'
+ 
 
-  map.transaction_details '/transaction_details' , :controller => 'customers', :action =>  'transaction_details'
- map.location_deals '/location_deals', :controller => 'merchant', :action => 'location_deals'
   map.resources :customers
-
-
   
   map.resource :merchant
 
   map.resource :session
 
-  map.signup '/merchant_signup', :controller => 'merchant', :action => 'new'
-  map.merchant_register '/merchant_register', :controller => 'merchant', :action => 'create'
-  map.index '/index', :controller => 'merchant', :action => 'index'
 
-  map.deals_of_mine '/deals_of_mine' , :controller => 'merchant', :action => 'deals_of_mine'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

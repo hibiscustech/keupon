@@ -39,7 +39,7 @@ Rails::Initializer.run do |config|
     :session_key => '_keupon_session',
     :secret      => '00eda230766f120526ef08b54e95aaa14202f0ecd68268d1519502b9e2595d600768c1e60e58c684ea9c427fa9cf5a9399b897147b69dec4a6acc16946099f8e'
   }
-
+config.gem "geokit"
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
