@@ -4,14 +4,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
-
   map.redeem_deals '/redeem_deals', :controller => 'merchant', :action => 'redeem_deals'
   map.signup '/merchant_signup', :controller => 'merchant', :action => 'new'
   map.merchant_register '/merchant_register', :controller => 'merchant', :action => 'create'
   map.index '/index', :controller => 'merchant', :action => 'index'
   map.location_deals '/location_deals', :controller => 'merchant', :action => 'location_deals'
   map.deals_of_mine '/deals_of_mine' , :controller => 'merchant', :action => 'deals_of_mine'
-
   map.transaction_details '/transaction_details' , :controller => 'customers', :action =>  'transaction_details'
   map.register '/register', :controller => 'customers', :action => 'create'
   map.signup '/signup', :controller => 'customers', :action => 'new'
@@ -19,12 +17,11 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
   map.location_deals '/customers/location_deals', :controller => 'customers', :action => 'location_deals'
- 
+  map.merchant_analytics '/merchant_analytics', :controller => 'merchant_analytics', :action => 'index'
+  map.admin_analytics '/admin_analytics', :controller => 'admin_analytics', :action => 'index'
 
-  map.resources :customers
-  
+  map.resources :customers  
   map.resource :merchant
-
   map.resource :session
 
 
