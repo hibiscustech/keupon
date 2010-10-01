@@ -134,7 +134,17 @@ class CustomersController < ApplicationController
   end
 
   def location_deals
+
     @deals = DealLocationDetail.find(:all)
+
+    if @deals.blank?
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([1.3666667,103.8],12)
+    @map.overlay_init(GMarker.new([1.3666667,103.8],:title =>"Singapore", :info_window =>"Singapore" ))
+
+    else
+
     first_deal =[]
     first = first_deal.push(@deals[0])
     reminding = @deals-first
@@ -156,7 +166,7 @@ class CustomersController < ApplicationController
     @map.record_init @map.add_overlay(GMarker.new([deal.longitude,deal.latitude],:title => "#{deal.deal.name}",:info_window => "Deal Name :#{deal.deal.name}  <br/><br/>Description :#{deal.deal.rules} <br/><br/>Value  :#{deal.deal.value}, Discount  :#{deal.deal.discount} <br/> <br/>Start Date  :#{@deals[0].deal.start_date} Expiry Date  :#{@deals[0].deal.expiry_date} <br/><br/> Address <br/>#{deal.address1},<br/> #{deal.address2},<br/> #{deal.city}"))
     end
     
-
+end
 
 
   end
