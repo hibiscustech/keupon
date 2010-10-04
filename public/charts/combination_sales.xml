@@ -1,0 +1,27 @@
+<graph  XAxisName="Regions"
+                animation="1"
+                formatNumberScale="0"
+                showValues="0"
+                decimalPrecision="0" >
+<categories>
+        <category name="WE"/>
+        <category name="NO"/>
+        <category name="EA"/>
+        <category name="CS"/>
+        <category name="SO"/>
+</categories>
+<dataset seriesname="Revenue" color="A8C1D3" numberPrefix="$" >
+        <set value="21000"/>
+        <set value="5150"/>
+        <set value="4310"/>
+        <set value="10515"/>
+        <set value="8900"/>
+</dataset>
+<dataset seriesName="Units Sold" parentYAxis="S" color="F6BD0F" anchorSides="10" anchorBorderColor="F6BD0F">
+        <set value="21000"/>
+        <set value="5150"/>
+        <set value="4310"/>
+        <set value="10515"/>
+        <set value="8900"/>
+</dataset>
+</graph>

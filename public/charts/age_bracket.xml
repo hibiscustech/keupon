@@ -1,0 +1,17 @@
+<graph  yAxisName='No. of Customers'
+                xAxisName='Age Bracket'
+                bgColor='FFFFFF'
+                showValues='0'
+                canvasBorderThickness='1'
+                canvasBorderColor='999999'
+                showAlternateVGridColor='1'
+                alternateVGridColor='cdcdcd'
+                divLineAlpha='0'
+                decimalPrecision='0'>
+        <set name='65 yrs and Above' value='4310' hoverText='4310 Customers' color='D64646'/>
+        <set name='55 - 64 yrs' value='5150' hoverText='5150 Customers' color='008E8E'/>
+        <set name='45 - 54 yrs' value='8900' hoverText='8900 Customers' color='FF8E46'/>
+        <set name='35 - 44 yrs' value='10515' hoverText='10515 Customers' color='8BBA00'/>
+        <set name='25 - 34 yrs' value='19000' hoverText='19000 Customers' color='F6BD0F'/>
+        <set name='15 - 24 yrs' value='2000' hoverText='2000 Customers' color='AFD8F8'/>
+</graph>

@@ -1,0 +1,36 @@
+<map animation='1' showShadow='0' showBevel='0' showMarkerLabels='1' fillColor='7E2217' fillAlpha='30' borderColor='FF0000' 
+baseFontSize='10' markerBorderColor='333333' markerBgColor='333333' markerRadius='8' useHoverColor='0' showMarkerToolTip='1'  
+showLabels='0' bgColor='808080, FFFFFF' bgAlpha='30,30'  showToolTip='0'>
+ 
+ <markers>
+  <definition>
+   <marker id='WS' x='128.37' y='170.22' label='West Singapore'  />   
+   <marker id='ES' x='458.37' y='160.22' label='East Singapore'  />   
+   <marker id='NS' x='270.37' y='62.22' label='North Singapore'  /> 
+   <marker id='CS' x='278.37' y='210.22' label='Central Singapore'  />    
+   <marker id='SS' x='270.37' y='250.22' label='South Singapore'  />      
+  </definition>
+  <shapes>
+   <shape id='tri_gra' type='circle' fillColor='FFFFFF,616118' showBorder='0'/>    
+  </shapes>
+  <application>   
+   <marker id='WS' shapeId='tri_gra' toolText='21000 Customers' scale='1.4'/>
+   <marker id='ES' shapeId='tri_gra' toolText='4310 Customers' scale='0.6'/>
+   <marker id='NS' shapeId='tri_gra' toolText='5150 Customers' scale='0.8'/>
+   <marker id='CS' shapeId='tri_gra' toolText='10515 Customers' scale='1.2'/>
+   <marker id='SS' shapeId='tri_gra' toolText='8900 Customers' scale='1.0'/>
+  </application>
+ </markers>
+ <styles>
+  <definition>
+   <style name='TTipFont' type='font' color='77771E' bgColor='F7F7DB' borderColor='77771E' /> 
+   <style name='labelFont' type='font' size='9' color='FF0000' /> 
+   <style name='markerAnim' type='animation' param='_y' start='0' duration='1.2' easing='bounce' /> 
+  </definition>
+  <application>
+   <apply toObject='TOOLTIP' styles='TTipFont' />
+   <apply toObject='MARKERLABELS' styles='labelFont' />
+   <apply toObject='MARKERS' styles='markerAnim' />
+  </application>
+ </styles>
+</map> 

@@ -1,0 +1,48 @@
+<table width="50%" style="padding-left: 115px">
+  <tr height="1px">
+    <td><h3>Customers Report</h3></td>
+  </tr>
+</table>
+<br/>
+<div id="analytic1">
+  <%= render :partial => "customers_map_report" %>
+</div>
+<br/>
+<table width="750px" align="center">
+  <tr>
+    <td width="375px">
+      <div id="analytic2">
+        <%= render :partial => "customers_regions_percentage" %>
+      </div>
+    </td>
+    <td>
+      <div id="analytic3">
+        <%= render :partial => "customers_gender_percentage" %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td width="375px">
+      <div id="analytic3">
+        <%= render :partial => "customers_age_brackets" %>
+      </div>
+    </td>
+    <td>
+      <div id="analytic4">
+        <%= render :partial => "customers_marital_status" %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td width="375px">
+      <div id="analytic5">
+        <%= render :partial => "customers_income_brackets" %>
+      </div>
+    </td>
+    <td>
+      <div id="analytic6">
+        <%#= render :partial => "customers_marital_status" %>
+      </div>
+    </td>
+  </tr>
+</table>

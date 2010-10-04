@@ -1,0 +1,14 @@
+<map numberPrefix='$' baseFontSize='9' fillAlpha='70' hoverColor='639ACE'>
+	<colorRange>
+		<color minValue='0' maxValue='10000' displayValue='Very Low Sales' color='B80000' />
+		<color minValue='10000' maxValue='20000' displayValue='Moderate Sales' color='FFCC33' />
+		<color minValue='20000' maxValue='50000' displayValue='High Sales' color='008200' />
+	</colorRange>
+	<data>
+		<entity id='SG.NO' value='5150' />
+		<entity id='SG.CS' value='10515' />
+		<entity id='SG.EA' value='4310' />
+		<entity id='SG.WE' value='21000' />
+		<entity id='SG.SO' value='8900' />		
+	</data>
+</map>

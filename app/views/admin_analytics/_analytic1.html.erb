@@ -1,0 +1,95 @@
+<br/>
+<table width="95%">
+  <tr height="65px">
+    <td width="12%"><h3>Sales Report</h3></td>
+    <td width="25%" id="date_display"><h3>(Till Date)</h3></td>
+    <td>
+      <%= form_remote_tag(:url => {:controller => "admin_analytics", :action => "sales_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "analytics_form1", :style=> "padding:0;margin:0;"})%>
+        <div align="right" id="search-button" width="100%">
+          <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;"><span>Date Search</span></a>
+        </div>
+        <div id="date_search" style="display: none;" width="100%">
+          <table width="100%">
+            <tr>
+              <td colspan="2"><span style="font-size: 11pt;">
+		
+		Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %></span>
+              </td>
+            </tr>
+            <tr>
+              <td width="85%"></td>
+              <td><a href="#" onclick="$('analytics_form1').onsubmit();return false;"><span style="font-size: 10pt;">Search</span></a>&nbsp;&nbsp;<a href="javascript:void(null);" onclick="Effect.BlindUp('date_search');Element.show('search-button');return false;" id="cancel-search"><span>Cancel</span></a></td>
+            </tr>
+          </table>
+	</div>
+      </form>
+    </td>
+    <td>
+      <%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %>
+    </td>
+  </tr>
+</table>
+
+
+<table width="95%">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Total Deals</th>
+      <th>Deals Succeeded</th>
+      <th>Deals Failed</th>
+      <th>Total Sales</th>
+      <th>Sales Revenue($)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
+</table>

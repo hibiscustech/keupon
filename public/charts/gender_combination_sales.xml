@@ -1,0 +1,18 @@
+<graph  XAxisName="Gender"
+                animation="1"
+                formatNumberScale="0"
+                showValues="0"
+                decimalPrecision="0" >
+<categories>
+        <category name="Males"/>
+        <category name="Females"/>
+</categories>
+<dataset seriesname="Revenue" color="A8C1D3" numberPrefix="$" >
+        <set value="19415"/>
+        <set value="30460"/>
+</dataset>
+<dataset seriesName="Units Sold" parentYAxis="S" color="F6BD0F" anchorSides="10" anchorBorderColor="F6BD0F">
+        <set value="19415"/>
+        <set value="30460"/>
+</dataset>
+</graph>
