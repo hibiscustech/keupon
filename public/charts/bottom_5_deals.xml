@@ -1,0 +1,27 @@
+<graph  caption="Bottom 5 Deals by Sales and Revenue" XAxisName="Bottom 5 Deals"
+                animation="1"
+                formatNumberScale="0"
+                showValues="0"
+                decimalPrecision="0" >
+<categories>
+        <category name="Bottom1" hoverText="Testing Testing Testing Testing Testing Testing Testing Testing Testing"/>
+        <category name="Bottom2" hoverText="Testing Testing Testing Testing Testing Testing Testing Testing Testing"/>
+        <category name="Bottom3" hoverText="Testing Testing Testing Testing Testing Testing Testing Testing Testing"/>
+        <category name="Bottom4" hoverText="Testing Testing Testing Testing Testing Testing Testing Testing Testing"/>
+        <category name="Bottom5" hoverText="Testing Testing Testing Testing Testing Testing Testing Testing Testing"/>
+</categories>
+<dataset seriesname="Revenue" color="A8C1D3" numberPrefix="$" >
+        <set value="4310"/>
+        <set value="5150"/>
+        <set value="8900"/>
+        <set value="10515"/>
+        <set value="19000"/>
+</dataset>
+<dataset seriesName="Units Sold" parentYAxis="S" color="F6BD0F" anchorSides="10" anchorBorderColor="F6BD0F">
+        <set value="4310"/>
+        <set value="5150"/>
+        <set value="8900"/>
+        <set value="10515"/>
+        <set value="19000"/>
+</dataset>
+</graph>

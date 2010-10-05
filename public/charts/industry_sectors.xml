@@ -1,0 +1,20 @@
+<graph caption="Customer Density across Top 10 Industry Sectors" xAxisName="Customer Top 10 Industry Sectors" yAxisName="No. of Customers"
+                bgColor='FFFFFF'
+                showValues='0'
+                canvasBorderThickness='1'
+                canvasBorderColor='999999'
+                showAlternateVGridColor='1'
+                alternateVGridColor='cdcdcd'
+                divLineAlpha='0'
+                decimalPrecision='0'>
+        <set name="Aerospace/Aviation" value="671" color="8BBA00" />
+        <set name="Athletics/Sports" value="494" color="FF8E46" />
+        <set name="Performance/Musical/Artistic" value="761" color="008E8E" />
+        <set name="Entertainment/Recreation" value="460" color="D64646"/>
+        <set name="Clothing/Garment/Textile" value="629" color="8E468E" />
+        <set name="Engineering - Building, Civil, Construction / Quantity Survey" value="622" color="588526" />
+        <set name="Wholesale / Retail" value="376" color="B3AA00" />
+        <set name="Trading and Distribution" value="494" color="008ED6" />
+        <set name="Health and Beauty Care" value="761" color="9D080D"/>
+        <set name="Information Technology" value="960" color="A186BE" />
+</graph>

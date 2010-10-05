@@ -1,0 +1,7 @@
+<graph  decimalPrecision='0'
+                isSliced='1'
+                bgColor='efefef'>
+   <set name="Deals Tipped" value="112" color="8BBA00"/>
+   <set name="Deals Cancelled" value="21" color="FF8E46"/>
+   <set name="Deals Created" value="133" color="AFD8F8"/>
+</graph>

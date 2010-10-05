@@ -1,0 +1,105 @@
+<graph  caption="Location Deal Sales and Revenue" XAxisName="15th September - 15th October"
+                animation="1"
+                formatNumberScale="0"
+                showValues="0"
+                decimalPrecision="0" >
+<categories>
+        <category name="15" hoverText="September 15"/>
+        <category name="16" hoverText="September 16"/>
+        <category name="17" hoverText="September 17"/>
+        <category name="18" hoverText="September 18"/>
+        <category name="19" hoverText="September 19"/>
+        <category name="20" hoverText="September 20"/>
+        <category name="21" hoverText="September 21"/>
+        <category name="22" hoverText="September 22"/>
+        <category name="23" hoverText="September 23"/>
+        <category name="24" hoverText="September 24"/>
+        <category name="25" hoverText="September 25"/>
+        <category name="26" hoverText="September 26"/>
+        <category name="27" hoverText="September 27"/>
+        <category name="28" hoverText="September 28"/>
+        <category name="29" hoverText="September 29"/>
+        <category name="30" hoverText="September 30"/>
+        <category name="1" hoverText="October 1"/>
+        <category name="2" hoverText="October 2"/>
+        <category name="3" hoverText="October 3"/>
+        <category name="4" hoverText="October 4"/>
+        <category name="5" hoverText="October 5"/>
+        <category name="6" hoverText="October 6"/>
+        <category name="7" hoverText="October 7"/>
+        <category name="8" hoverText="October 8"/>
+        <category name="9" hoverText="October 9"/>
+        <category name="10" hoverText="October 10"/>
+        <category name="11" hoverText="October 11"/>
+        <category name="12" hoverText="October 12"/>
+        <category name="13" hoverText="October 13"/>
+        <category name="14" hoverText="October 14"/>
+        <category name="15" hoverText="October 15"/>        
+</categories>
+<dataset seriesname="Revenue" color="A8C1D3" numberPrefix="$" >
+        <set value="560"/>
+        <set value="448"/>
+        <set value="672"/>
+        <set value="336"/>
+        <set value="784"/>
+        <set value="224"/>
+        <set value="896"/>
+        <set value="112"/>
+        <set value="1008"/>
+        <set value="112"/>
+        <set value="1120"/>
+        <set value="1680"/>
+        <set value="1232"/>
+        <set value="1568"/>
+        <set value="1344"/>
+        <set value="1456"/>
+        <set value="1456"/>
+        <set value="1344"/>
+        <set value="1568"/>
+        <set value="1232"/>
+        <set value="1680"/>
+        <set value="1120"/>
+        <set value="112"/>
+        <set value="1008"/>
+        <set value="224"/>
+        <set value="896"/>
+        <set value="336"/>
+        <set value="784"/>
+        <set value="448"/>
+        <set value="672"/>
+        <set value="560"/>
+</dataset>
+<dataset seriesName="Units Sold" parentYAxis="S" color="F6BD0F" anchorSides="10" anchorBorderColor="F6BD0F">
+        <set value="5"/>
+        <set value="4"/>
+        <set value="6"/>
+        <set value="3"/>
+        <set value="7"/>
+        <set value="2"/>
+        <set value="8"/>
+        <set value="1"/>
+        <set value="9"/>
+        <set value="1"/>
+        <set value="10"/>
+        <set value="15"/>
+        <set value="11"/>
+        <set value="14"/>
+        <set value="12"/>
+        <set value="13"/>
+        <set value="13"/>
+        <set value="12"/>
+        <set value="14"/>
+        <set value="11"/>
+        <set value="15"/>
+        <set value="10"/>
+        <set value="1"/>
+        <set value="9"/>
+        <set value="2"/>
+        <set value="8"/>
+        <set value="3"/>
+        <set value="7"/>
+        <set value="4"/>
+        <set value="6"/>
+        <set value="5"/>
+</dataset>
+</graph>

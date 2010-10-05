@@ -1,0 +1,78 @@
+<table width="100%" align="center">
+  <tr height="65px">
+    <td width="40%" id="report_title" style="padding-left: 25px">
+      <h3>Deals Report (Till Date)</h3>
+    </td>
+    <td style=" vertical-align: bottom;">
+      <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "deals_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "deals_analytics_form1", :style=> "padding:0;margin:0;"})%>        
+        <div id="date_search" style="display: none;" width="100%">
+          <table width="100%">
+            <tr>
+              <td>
+		Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %>
+              </td>
+            </tr>
+            <tr>
+              <td align="right"><a href="#" onclick="$('deals_analytics_form1').onsubmit();return false;">Search</a>&nbsp;&nbsp;<a href="javascript:void(null);" onclick="Effect.BlindUp('date_search');Element.show('search-button');return false;" id="cancel-search">Cancel</a></td>
+            </tr>
+          </table>
+	</div>
+        <div align="right" id="search-button" width="100%">
+          <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search</a>
+        </div>
+      </form>
+    </td>
+    <td><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %></td>
+  </tr>
+</table>
+<br/>
+<table width="100%" align="center">
+  <tr>
+    <td width="30%">
+      <div id="analytic1">
+        <%= render :partial => "deals_funnel_report" %>
+      </div>
+    </td>
+    <td style=" vertical-align: text-top;">
+      <div id="table_analytic1">
+        <%= render :partial => "merchants_deals_summary" %>
+      </div>
+    </td>
+  </tr>  
+</table>
+<br/>
+<table width="100%" align="center">
+  <tr>
+    <td width="50%">
+      <div id="analytic1">
+        <%= render :partial => "deals_top_5" %>
+      </div>
+    </td>
+    <td width="50%">
+      <div id="analytic1">
+        <%= render :partial => "deals_bottom_5" %>
+      </div>
+    </td>
+  </tr>
+</table>
+<br/>
+<table width="100%" align="center">
+  <tr height="65px">
+    <td width="20%" id="report_title" style="padding-left: 25px">
+      <h3>Location Based Deals:</h3>
+    </td>
+    <td>
+      <select id="location_deal" name="location_deal">
+        <option value="0">Select a Location Deal</option>
+        <option value="1">S$112 for One Month of Unlimited Classes at Lion's Breath Yoga & Pilates ($170.35 Value)</option>
+      </select>
+          <%=observe_field "location_deal",
+          :url => {:controller => 'merchant_analytics', :action => 'location_deal_sales_revenue'},
+          :on => 'change',
+          :with => "location_deal"%>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" id="location_deal_sales_revenue_report"></td>
+  </tr>
+</table>

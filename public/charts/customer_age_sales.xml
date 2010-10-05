@@ -1,0 +1,31 @@
+<graph caption="Sales and Revenue based on Average Monthly Income"  XAxisName="Salary Brackets"
+                animation="1"
+                formatNumberScale="0"
+                showValues="0"
+                rotateNames='1'
+                decimalPrecision="0" >
+<categories>
+        <category name="15 - 24 yrs"/>
+        <category name="25 - 34 yrs"/>
+        <category name="35 - 44 yrs"/>
+        <category name="45 - 54 yrs"/>
+        <category name="55 - 64 yrs"/>
+        <category name="65 yrs and Above"/>
+</categories>
+<dataset seriesname="Revenue" color="A8C1D3" numberPrefix="$" >
+        <set value="2000"/>
+        <set value="19000"/>
+        <set value="10515"/>
+        <set value="8900"/>
+        <set value="5150"/>
+        <set value="4310"/>
+</dataset>
+<dataset seriesName="Units Sold" parentYAxis="S" color="F6BD0F" anchorSides="10" anchorBorderColor="F6BD0F">
+        <set value="2000"/>
+        <set value="19000"/>
+        <set value="10515"/>
+        <set value="8900"/>
+        <set value="5150"/>
+        <set value="4310"/>
+</dataset>
+</graph>
