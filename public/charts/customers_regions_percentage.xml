@@ -1,4 +1,4 @@
-<graph showNames='1'  decimalPrecision='0'  >
+<graph showNames='1'  decimalPrecision='0' caption="Regionwise distribution of Customers" >
     <set name='W. Singapore' value='21000' />
     <set name='E. Singapore' value='4310'  />
     <set name='N. Singapore' value='5150' />

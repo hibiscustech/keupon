@@ -34,15 +34,17 @@
     </td>
   </tr>
   <tr>
-    <td width="375px">
+    <td colspan="2">
       <div id="analytic5">
+        <%= render :partial => "customers_industry_sectors" %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <div id="analytic6">
         <%= render :partial => "customers_income_brackets" %>
       </div>
-    </td>
-    <td>
-      <div id="analytic6">
-        <%#= render :partial => "customers_marital_status" %>
-      </div>
-    </td>
+    </td>    
   </tr>
 </table>

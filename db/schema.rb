@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100928104439) do
+ActiveRecord::Schema.define(:version => 20101004111532) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                :limit => 50, :null => false
@@ -81,11 +81,12 @@ ActiveRecord::Schema.define(:version => 20100928104439) do
   add_index "customer_deal_transactions", ["customer_deal_id"], :name => "customer_deal_id"
 
   create_table "customer_deals", :force => true do |t|
-    t.integer "customer_id",                                  :null => false
-    t.integer "deal_id",                                      :null => false
-    t.integer "quantity",                                     :null => false
-    t.string  "status",      :limit => 0,  :default => "new", :null => false
-    t.string  "deal_code",   :limit => 25
+    t.integer "customer_id",                                    :null => false
+    t.integer "deal_id",                                        :null => false
+    t.integer "quantity",                                       :null => false
+    t.integer "quantity_left"
+    t.string  "status",        :limit => 0,  :default => "new", :null => false
+    t.string  "deal_code",     :limit => 25
   end
 
   add_index "customer_deals", ["customer_id"], :name => "customer_id"
@@ -112,22 +113,24 @@ ActiveRecord::Schema.define(:version => 20100928104439) do
   add_index "customer_kupoints", ["customer_deal_id"], :name => "customer_deal_id"
 
   create_table "customer_profiles", :force => true do |t|
-    t.string  "first_name",     :limit => 30,                  :null => false
-    t.string  "last_name",      :limit => 30
-    t.string  "gender",         :limit => 0,  :default => "m", :null => false
-    t.string  "address1",       :limit => 50,                  :null => false
-    t.string  "address2",       :limit => 50
-    t.string  "city",           :limit => 30,                  :null => false
-    t.string  "state",          :limit => 30,                  :null => false
-    t.string  "zipcode",        :limit => 10,                  :null => false
-    t.string  "contact_number", :limit => 15,                  :null => false
-    t.string  "email_address",  :limit => 50,                  :null => false
-    t.integer "customer_id",                                   :null => false
+    t.string  "first_name",         :limit => 30,                  :null => false
+    t.string  "last_name",          :limit => 30
+    t.string  "gender",             :limit => 0,  :default => "m", :null => false
+    t.string  "address1",           :limit => 50,                  :null => false
+    t.string  "address2",           :limit => 50
+    t.string  "city",               :limit => 30,                  :null => false
+    t.string  "state",              :limit => 30,                  :null => false
+    t.string  "zipcode",            :limit => 10,                  :null => false
+    t.string  "contact_number",     :limit => 15,                  :null => false
+    t.string  "email_address",      :limit => 50,                  :null => false
+    t.integer "customer_id",                                       :null => false
     t.integer "dob"
     t.string  "country"
+    t.integer "industry_sector_id"
   end
 
   add_index "customer_profiles", ["customer_id"], :name => "customer_id"
+  add_index "customer_profiles", ["industry_sector_id"], :name => "industry_sector_id"
 
   create_table "customers", :force => true do |t|
     t.integer  "time_created",                                     :null => false
@@ -189,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20100928104439) do
     t.string  "highlights"
     t.string  "status",                  :limit => 0, :default => "new", :null => false
     t.integer "expiry_date",                                             :null => false
+    t.integer "start_date"
     t.integer "deal_type_id",                                            :null => false
     t.integer "merchant_id",                                             :null => false
     t.integer "deal_category_id",                                        :null => false
@@ -202,6 +206,10 @@ ActiveRecord::Schema.define(:version => 20100928104439) do
   add_index "deals", ["deal_sub_category_id"], :name => "deal_sub_category_id"
   add_index "deals", ["deal_type_id"], :name => "deal_type_id"
   add_index "deals", ["merchant_id"], :name => "merchant_id"
+
+  create_table "industry_sectors", :force => true do |t|
+    t.string "name", :limit => 100, :null => false
+  end
 
   create_table "merchant_profiles", :force => true do |t|
     t.string  "first_name",     :limit => 30,                    :null => false
@@ -232,6 +240,21 @@ ActiveRecord::Schema.define(:version => 20100928104439) do
     t.string   "activation_code"
     t.datetime "activated_at"
   end
+
+  create_table "merchants_customers", :force => true do |t|
+    t.integer "merchant_id", :null => false
+    t.integer "customer_id", :null => false
+    t.integer "first_time",  :null => false
+    t.integer "recent_time", :null => false
+    t.integer "first_deal",  :null => false
+    t.integer "recent_deal", :null => false
+    t.integer "frequency",   :null => false
+  end
+
+  add_index "merchants_customers", ["customer_id"], :name => "customer_id"
+  add_index "merchants_customers", ["first_deal"], :name => "first_deal"
+  add_index "merchants_customers", ["merchant_id"], :name => "merchant_id"
+  add_index "merchants_customers", ["recent_deal"], :name => "recent_deal"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

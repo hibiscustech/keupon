@@ -1,4 +1,4 @@
-<graph  XAxisName="Gender"
+<graph caption="Sales and Revenue - Genderwise" XAxisName="Gender"
                 animation="1"
                 formatNumberScale="0"
                 showValues="0"

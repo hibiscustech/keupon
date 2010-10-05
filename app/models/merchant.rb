@@ -24,10 +24,10 @@ class Merchant < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email,  :password, :password_confirmation
 
-
-    has_many :deals
-
-    has_one :merchant_profile, :dependent => :destroy
+  has_many :deals
+  has_many :merchants_customers
+  has_many :customers, :through => :merchants_customers
+  has_one :merchant_profile, :dependent => :destroy
 
 
 

@@ -1,4 +1,4 @@
-<graph showNames='1'  decimalPrecision='0'  >
+<graph showNames='1'  decimalPrecision='0' caption="Customers Density - Genderwise" >
     <set name='Females' value='30460' />
     <set name='Males' value='19415'  />
 </graph>

@@ -24,16 +24,14 @@ class Customer < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation
 
+  has_one :customer_profile, :dependent => :destroy
+  has_one :customer_favourite_deal
 
-
-    has_one :customer_profile, :dependent => :destroy
-    has_one :customer_favourite_deal
-
-    has_many :customer_deals
-    has_many :deals, :through => :customer_deals
-
-    has_many :customer_credit_card
-
+  has_many :customer_deals
+  has_many :deals, :through => :customer_deals
+  has_many :customer_credit_card
+  has_many :merchants_customers
+  has_many :merchants, :through => :merchants_customers
 
   # Activates the user in the database.
   def activate!

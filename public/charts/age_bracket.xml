@@ -1,4 +1,4 @@
-<graph  yAxisName='No. of Customers'
+<graph caption="Customer Density based on Age brackets" yAxisName='No. of Customers'
                 xAxisName='Age Bracket'
                 bgColor='FFFFFF'
                 showValues='0'

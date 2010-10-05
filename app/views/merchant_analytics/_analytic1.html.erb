@@ -4,11 +4,8 @@
     <td><h3>Sales Report</h3><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %></td><td width="25%" id="date_display"><h3>(Till Date)</h3></td>
   </tr>
   <tr height="65px">        
-    <td width="50%" colspan="2" align="right" valign="top">
-      <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "sales_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "analytics_form1", :style=> "padding:0;margin:0;"})%>
-        <div align="right" id="search-button" width="100%">
-          <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search</a>
-        </div>
+    <td width="50%" colspan="2" align="right" style=" vertical-align: bottom;">
+      <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "sales_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "analytics_form1", :style=> "padding:0;margin:0;"})%>        
         <div id="date_search" style="display: none;" width="100%">
           <table width="100%">
             <tr>
@@ -21,6 +18,9 @@
             </tr>
           </table>
 	</div>
+        <div align="right" id="search-button" width="100%">
+          <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search</a>
+        </div>
       </form>
     </td>    
   </tr>
@@ -87,4 +87,12 @@
    var chart = new FusionCharts("/charts/FCF_MSColumn3DLineDY.swf", "ChartId", "600", "350");
    chart.setDataURL("/charts/gender_combination_sales.xml");
    chart.render("customer_gender_sales");
+</script>
+<br/>
+<div id="customer_age_sales" align="center">
+</div>
+<script type="text/javascript">
+   var chart = new FusionCharts("/charts/FCF_MSColumn3DLineDY.swf", "ChartId", "600", "350");
+   chart.setDataURL("/charts/customer_age_sales.xml");
+   chart.render("customer_age_sales");
 </script>

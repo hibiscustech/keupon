@@ -1,4 +1,4 @@
-<graph  XAxisName="Regions"
+<graph caption="Sales and Revenue across Regions"  XAxisName="Regions"
                 animation="1"
                 formatNumberScale="0"
                 showValues="0"

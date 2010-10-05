@@ -1,13 +1,4 @@
-<graph  yAxisName='No. of Customers'
-                xAxisName='Marital Status'
-                bgColor='FFFFFF'
-                showValues='0'
-                canvasBorderThickness='1'
-                canvasBorderColor='999999'
-                showAlternateVGridColor='1'
-                alternateVGridColor='cdcdcd'
-                divLineAlpha='0'
-                decimalPrecision='0'>
+<graph caption="Customer Density based on Marital Status" xAxisName="Marital Status" yAxisName="No. of Customers" decimalPrecision="0" formatNumberScale="0" showValues='0' bgColor='FFFFFF' >
         <set name='Married' value='19415' hoverText='19415 Customers' color='8E468E'/>
         <set name='Un-Married' value='30460' hoverText='30460 Customers' color='588526'/>
 </graph>

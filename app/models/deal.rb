@@ -3,7 +3,8 @@ class Deal < ActiveRecord::Base
 
   has_many :customer_deals
   has_many :customers, :through => :customer_deals
-
+  has_many :first_customers, :class_name => 'MerchantsCustomer', :foreign_key => 'first_deal'
+  has_many :recent_customers, :class_name => 'MerchantsCustomer', :foreign_key => 'recent_deal'
 
   belongs_to :merchant
   belongs_to :deal_type

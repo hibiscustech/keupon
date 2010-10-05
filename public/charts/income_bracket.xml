@@ -1,4 +1,4 @@
-<graph xAxisName="Salary Brackets" yAxisName="No. of Customers" decimalPrecision="0" formatNumberScale="0" rotateNames='1' showValues='0'>
+<graph caption="Customer Density based on Average Monthly Income" xAxisName="Salary Brackets" yAxisName="No. of Customers" decimalPrecision="0" formatNumberScale="0" rotateNames='1' showValues='0'>
 <set name="Less than 1000" value="1000" color="AFD8F8"/>
 <set name="1000 - 2000" value="1500" color="F6BD0F"/>
 <set name="2000 - 3000" value="2810" color="8BBA00"/>
