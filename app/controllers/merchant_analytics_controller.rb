@@ -1,6 +1,6 @@
 class MerchantAnalyticsController < ApplicationController
   include AuthenticatedSystemMerchant
-
+ layout 'application_merchant'
   protect_from_forgery :only => [:destroy]
   before_filter :login_required
 

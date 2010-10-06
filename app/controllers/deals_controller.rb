@@ -2,7 +2,7 @@ class DealsController < ApplicationController
 
   include AuthenticatedSystemMerchant
   include Geokit::Geocoders
-
+  layout 'application_merchant'
   def index
     if request.get?
       @months = { "January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8,
@@ -138,7 +138,7 @@ class DealsController < ApplicationController
     if !params[:chk1].nil?
       res = MultiGeocoder.geocode("#{current_merchant.merchant_profile.address1},#{current_merchant.merchant_profile.address2},#{current_merchant.merchant_profile.city},#{current_merchant.merchant_profile.state},#{current_merchant.merchant_profile.country}")
     else
-      res = MultiGeocoder.geocode("#{deal_location_detail[:address1]},#{deal_location_detail[:address2]},#{deal_location_detail[:city]},#{deal_location_detail[:state]},#{deal_location_detail[:country]}")
+      res = MultiGeocoder.geocode("#{deal_location_detail[:address1]},#{deal_location_detail[:address2]},#{deal_location_detail[:city]}")
     end
     location.longitude = res.lat
     location.latitude = res.lng

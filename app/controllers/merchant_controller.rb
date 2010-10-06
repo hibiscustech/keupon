@@ -2,7 +2,7 @@ class MerchantController < ApplicationController
 
   include AuthenticatedSystemMerchant
   include Geokit::Geocoders
-
+ layout 'application_merchant'
   
   protect_from_forgery :only => [:destroy]
   before_filter :login_required , :only => [:deals_of_mine, :redeem_deals]

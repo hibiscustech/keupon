@@ -2,8 +2,9 @@ class CustomersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
  
   include AuthenticatedSystem
- 
-  before_filter :login_required, :only => [:transaction_details,:save_transaction_details]
+  protect_from_forgery :only => [:destroy]
+  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal]
+  layout 'application'
 
   def index
     
@@ -15,8 +16,8 @@ class CustomersController < ApplicationController
   end
 
   def transaction_details
-   @billing_information = CustomerCreditCard.new
-   @deal = Deal.find(params[:id])
+    @billing_information = CustomerCreditCard.new
+    @deal = Deal.find(params[:id])
   end
 
   def check_transaction_quantity
@@ -138,37 +139,58 @@ class CustomersController < ApplicationController
     @deals = DealLocationDetail.find(:all)
 
     if @deals.blank?
-    @map = GMap.new("map")
-    @map.control_init(:large_map => true, :map_type => true)
-    @map.center_zoom_init([1.3666667,103.8],12)
-    @map.overlay_init(GMarker.new([1.3666667,103.8],:title =>"Singapore", :info_window =>"Singapore" ))
-
+      @map = GMap.new("map")
+      @map.control_init(:large_map => true, :map_type => true)
+      @map.center_zoom_init([1.30426,103.85134],12)
+      @map.overlay_init(GMarker.new([1.30426,103.85134],:title =>"Singapore", :info_window => "Singapore" ))
     else
+      first_deal =[]
+      first = first_deal.push(@deals[0])
+      reminding = @deals-first
+      @map = GMap.new("map")
+      @map.control_init(:large_map => true, :map_type => true)
+      ################## first ##########################
+      #markers = [GMarker.new([1.298732,103.859501],:info_window => "152 Beach Rd.,<br/> #16-00 Gateway East,<br/> Singapore",:title => "Toshiba Asia Pacific Pte., Ltd"),
+      #GMarker.new([12.9715987,77.5945627],:info_window => "Namaste",:description => "Chopoto" , :title => "Ay"),
+      #GMarker.new([37.83,-90.456619],:info_window => "Bonjour",:title => "Third"),
+      #]
+      #markers.each do |s|
+      #@map.center_zoom_init(coordinates, 4)
+      #marker = GMarker.new(s)
+      #@map.overlay_init(marker)
+      ###################################################
+      @map.center_zoom_init([@deals[0].longitude,@deals[0].latitude],12)
+      @map.overlay_init(GMarker.new([@deals[0].longitude,@deals[0].latitude],:title =>"#{@deals[0].deal.name}", :info_window =>"<div style='font-size:13px;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;'><div style='color:red;'>Deal Name :</div>#{@deals[0].deal.name}  <br/><div style='color:red;'>Description </div>:#{@deals[0].deal.rules} <div style='color:red;'>Value &nbsp;  Discount  &nbsp;  Start_date  &nbsp;  Expiry_date  </div> <div>  &nbsp; #{@deals[0].deal.value}  &nbsp;&nbsp;&nbsp; #{@deals[0].deal.discount} &nbsp;&nbsp;&nbsp;&nbsp;  #{@deals[0].deal.start_date} &nbsp;&nbsp; #{@deals[0].deal.expiry_date} </div> <br/><div style='color:red;'> Address </div>#{@deals[0].address1},#{@deals[0].address2},<br/> #{@deals[0].city} <br/><br/> <a href='/get_location_deal?id=#{@deals[0].deal_id}&lon=#{@deals[0].longitude}&lat=#{@deals[0].latitude}'><img src='/images/buy.jpg' border ='0' /></a>&nbsp;&nbsp;<a href='/'><img src='/images/cancel.jpg' border ='0' /></a></div>" ))
+      reminding.each do |deal|
+        @map.record_init @map.add_overlay(GMarker.new([deal.longitude,deal.latitude],:title => "#{deal.deal.name}",:info_window => "<div style='font-size:13px;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;'><div style='color:red;'>Deal Name :</div>#{deal.deal.name}  <br/><div style='color:red;'>Description </div>:#{deal.deal.rules} <div style='color:red;'>Value &nbsp;  Discount  &nbsp;  Start_date  &nbsp;  Expiry_date  </div> <div>  &nbsp; #{deal.deal.value}, &nbsp;&nbsp;&nbsp; #{deal.deal.discount} &nbsp;&nbsp;&nbsp;&nbsp;  #{@deals[0].deal.start_date} &nbsp;&nbsp; #{@deals[0].deal.expiry_date} </div> <br/><div style='color:red;'> Address </div>#{deal.address1},#{deal.address2},<br/> #{deal.city}<br/><br/> <a href='/get_location_deal?id=#{deal.deal_id}&lon=#{deal.longitude}&lat=#{deal.latitude}'><img src='/images/buy.jpg' border ='0' /></a>&nbsp;&nbsp;<a href='/'><img src='/images/cancel.jpg' border ='0' /></a></div>"))
+      end
+    
+    end
+  end
 
-    first_deal =[]
-    first = first_deal.push(@deals[0])
-    reminding = @deals-first
+  def get_location_deal
+    @deal = Deal.find(params[:id])
+    @billing_information  = CustomerCreditCard.new
+    @latest_billing_information  = CustomerCreditCard.find_by_customer_id(current_customer ,:order => 'time_created DESC')
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)
-    ################## first ##########################
-    #markers = [GMarker.new([1.298732,103.859501],:info_window => "152 Beach Rd.,<br/> #16-00 Gateway East,<br/> Singapore",:title => "Toshiba Asia Pacific Pte., Ltd"),
-    #GMarker.new([12.9715987,77.5945627],:info_window => "Namaste",:description => "Chopoto" , :title => "Ay"),
-    #GMarker.new([37.83,-90.456619],:info_window => "Bonjour",:title => "Third"),
-    #]
-    #markers.each do |s|
-    #@map.center_zoom_init(coordinates, 4)
-    #marker = GMarker.new(s)
-    #@map.overlay_init(marker)
-    ###################################################
-    @map.center_zoom_init([@deals[0].longitude,@deals[0].latitude],12)
-    @map.overlay_init(GMarker.new([@deals[0].longitude,@deals[0].latitude],:title =>"#{@deals[0].deal.name}", :info_window =>"Deal Name :#{@deals[0].deal.name}  <br/><br/>Description :#{@deals[0].deal.rules} <br/><br/>Value  :#{@deals[0].deal.value}, Discount  :#{@deals[0].deal.discount} <br/><br/>Start Date  :#{@deals[0].deal.start_date} Expiry Date  :#{@deals[0].deal.expiry_date} <br/> <br/> Address <br/>#{@deals[0].address1},<br/> #{@deals[0].address2},<br/> #{@deals[0].city}" ))
-    reminding.each do |deal|
-    @map.record_init @map.add_overlay(GMarker.new([deal.longitude,deal.latitude],:title => "#{deal.deal.name}",:info_window => "Deal Name :#{deal.deal.name}  <br/><br/>Description :#{deal.deal.rules} <br/><br/>Value  :#{deal.deal.value}, Discount  :#{deal.deal.discount} <br/> <br/>Start Date  :#{@deals[0].deal.start_date} Expiry Date  :#{@deals[0].deal.expiry_date} <br/><br/> Address <br/>#{deal.address1},<br/> #{deal.address2},<br/> #{deal.city}"))
-    end
-    
-end
-
-
+    @map.center_zoom_init([ params[:lon],params[:lat]],14)
+    @map.overlay_init(GMarker.new([params[:lon],params[:lat]] ))
   end
+
+
+  def check_transaction_details
+    customer_card_inform = CustomerCreditCard.find_by_cvv2_and_customer_id(params[:billing_information][:cvv2],params[:customer_credit_card][:customer_id])
+    if !customer_card_inform.blank?
+      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => '1')
+      customer_deal.save!
+      flash[:notice] = "Signup complete! Please sign in to continue."
+      redirect_to '/customers/location_deals'
+    else
+      flash[:notice] = "Please enter Correct CVV2 number"
+      redirect_to "/get_location_deal?id=#{params[:customer_deal][:deal_id]}&lon=#{params[:map][:lon]}&lat=#{params[:map][:lat]}"
+    end
+  end
+
 
 end

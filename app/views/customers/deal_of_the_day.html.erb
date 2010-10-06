@@ -1,27 +1,99 @@
-<h3>Today's Deal</h3>
+<div id="todayHOT">
+    <div class="todHotdeal">Today’s Hot Deal</div>
+    <div class="keypoint"><img src="/images/keypoint.jpg" border="0px" /></div>
+    <div class="keyValue">
+      <div class="red"><strong>Available </strong><br />
+        05</div>
+      <div class="white"><strong>Used </strong><br />
+        02</div>
+      <div class="red"><strong>Expired</strong><br />
+        01</div>
+      <div class="white"><strong>All</strong><br />
+        08</div>
+    </div>
+    <div class="KeypointRight"><a href="#"><img src="images/mykeupoints.jpg" border="0px" /></a> </div>
+  </div>
 
 <%if !@deal.nil?%>
-<div style="width: 900px;">
-  <div align="left" style="width:400px;">
-    <div style="color: red"><%=@deal.name%></div><br/><br/>
-    <%=@deal.rules%><br/><br/>
-    <%=@deal.highlights%><br/>
-  </div>
-  <div align="right" style="margin-right: 100px;margin-top: -100px;">
-    <%=image_tag (@deal.deal_photo.url),:width=>"300", :height=>"250" %><br/><br/>
-    <table>
-      <tr>
-        <td> <font size="3" color="red">Value :</font> <%=@deal.value%><br/><br/></td>
-    <td> <font size="3" color="red">Discount : </font> <%=@deal.discount.to_i%> %  <br/><br/></td>
-    <td><font size="3" color="red"> Save : </font><%=@deal.save_amount.to_i%><br/><br/></td></tr>
-     <tr><td><%=link_to image_tag('buy.jpg',:border=>'0'), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%> </td></tr>
-    </table>
-  </div>
+<!-- <%#<div style="width: 900px;">%>
+  <%#<div align="left" style="width:400px;">%>
+    <%#<div style="color: red"><%=@deal.name%></div><br/><br/>%>
+    <%#=@deal.rules%><br/><br/>
+    <%#=@deal.highlights%><br/>
+  <%#*</div>%>
+  <%#*<div align="right" style="margin-right: 100px;margin-top: -100px;">%>
+    <%#=image_tag (@deal.deal_photo.url),:width=>"300", :height=>"250" %><br/><br/>
+    <%#*<table>%>
+      <%#*<tr>%>
+        <%#*<td> <font size="3" color="red">Value :</font> <%=@deal.value%><br/><br/></td>%>
+    <%#*<td> <font size="3" color="red">Discount : </font> <%=@deal.discount.to_i%> %  <br/><br/></td>%>
+    <%#*<td><font size="3" color="red"> Save : </font><%=@deal.save_amount.to_i%><br/><br/></td></tr>%>
+     <%#*<tr><td><%=link_to image_tag('buy.jpg',:border=>'0'), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%> </td></tr>%>
+    <%#*</table>%>
+  <%#*</div>%>
 
+<%#*</div>%>-->
+
+  <div id="user1">
+    <div class="cont1">
+      <p class="for_Ph">$189 for New iPhone 4G with wireless Speaker and Cover, Just go for it (Up to $700 Value)</p>
+      <br />
+      <p class="for_P">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.<br />
+        <br />
+        Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula. <br />
+        <br />
+        Etiam mollis urna at dolor hendrerit id commodo nibh viverra. Ut scelerisque orci ut mi vulputate ac mollis magna pretium. Proin at gravida nulla. Ut scelerisque nisl ut nulla. </p>
+    </div>
+    <div class="cont2">
+      <div class="save">Save $500</div>
+      <div class="timeLeft">02 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fff">15</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 47</div>
+      <div class="clickHear"><a href="#" class="for_nav">Click Here For More Deals</a></div>
+      <div class="button"><a href="#"><img src="images/discusButtion.jpg" border="0px" /></a></div>
+      <div class="addFive"><a href="#" class="for_nav">Add 5 friends & get $20 off</a></div>
+      <div class="socielICONs">
+        <ul>
+          <li><a href="#"><img src="images/faceIcon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/myspaceIcon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/twitterICon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/othersIcon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/mail.jpg" border="0px" /></a></li>
+        </ul>
+      </div>
+      <div class="buynow"><a href="#"><img src="images/buy_now.jpg" border="0px" /></a></div>
+    </div>
+    <div class="cont3">
+      <p><img src="images/img1.jpg" border="0px" /> </p>
+      <div class="priseDisco"> &nbsp;&nbsp;$1300 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$750</div>
+    </div>
+  </div>
+  <div id="user2">
+  	<div class="user2IMG"><p class="for_PW" style="font-size:20px;">The Company</p><br />
+<br />
+<br /><br />
+<br />
+<br />
+<p class="for_PW" style="font-size:16px; padding-top:5px;">Apple Limited </p>
+<p class="for_PW"><em><a href="http://www.apple.com" target="_blank" class="for_nav"  style="color:#ff0000">www.apple.com</a></em></p>
+<p class="for_PW">Apt no., street name<br />
+
+city, State<br />
+
+Countrty</p>
 </div>
+    <div class="user2TEXT">
+    	<p class="for_P">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.
+<br />
+<br />
+
+Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula.
+<br /><br />
+
+
+Etiam mollis urna at dolor hendrerit id commodo nibh viverra. Ut scelerisque orci ut mi vulputate ac mollis magna pretium. Proin at gravida nulla. Ut scelerisque nisl ut nulla condimentum hendrerit. In nunc enim, ultrices quis mattis et, porttitor sit amet dui. Proin pulvinar imperdiet magna, quis lacinia lorem laoreet eget. Sed tempor, quam a aliquet pellentesque, purus arcu rutrum ligula, eu lobortis velit quam id mauris. Vivamus ullamcorper eros a felis ultricies condimentum. In molestie sem quis nunc ultrices posuere eu at elit. Nullam nec diam purus, et pulvinar diam. Nullam commodo urna a sem varius sed facilisis sem sollicitudin. Nullam vel dolor justo, vel interdum nisi. </p>
+    </div>
+  </div>
 <%else%>
-<h4>No Hot deal for today
-</h4>
+<img src="images/deal_closed.jpg" border="0px" />
 <%end%>
 
 		

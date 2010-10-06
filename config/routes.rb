@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'customers', :action => 'new'
   map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
+  map.get_location_deal '/get_location_deal' , :controller => 'customers', :action => 'get_location_deal'
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
   map.location_deals '/customers/location_deals', :controller => 'customers', :action => 'location_deals'
   map.merchant_analytics '/merchant_analytics', :controller => 'merchant_analytics', :action => 'index'

@@ -1,4 +1,3 @@
-<br/>
 <%= javascript_include_tag :defaults%>
 <%= calendar_date_select_includes %>
 <%= calendar_date_select_includes "red" %>
@@ -9,16 +8,16 @@
   function validtae(chk)
   {
     var style = document.getElementById("location_address").style
-    if (style.visibility == "hidden")
-      style.visibility = "visible";
+    //if (style.visibility == "hidden")
+     if(!(document.getElementById('chk1').checked))
+      style.display = "block";
     else
-      style.visibility = "hidden";
+      style.display = "none";
   }
 </script>
 
 <div>
   <h3>Location Deals</h3> <a href="#" onclick="new Ajax.Request('/merchant/new_location_deal', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">New location deal </a>
-
 </div><br/>
 
 <div id="location_deal">
@@ -30,7 +29,8 @@
           <th>Value</th>
           <th>Start Date</th>
           <th>Expiry Date</th>
-          <th></th>
+          <th>Address</th>
+<th>Country</th>
         </tr>
       </thead>
       <tbody>
@@ -40,7 +40,9 @@
             <td><%= merchant.deal.value %></td>
             <td><%= merchant.deal.start_date%></td>
             <td><%= merchant.deal.expiry_date %></td>
-            <td><%#= merchant.email_address %></td>
+  <td><%= merchant.deal.deal_location_detail.address1 %><%= merchant.deal.deal_location_detail.address2 %></td>
+  <td><%= merchant.deal.deal_location_detail.city %></td>
+          
           </tr>
         <% end %>
       </tbody>

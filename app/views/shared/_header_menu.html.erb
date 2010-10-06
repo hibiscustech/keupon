@@ -1,5 +1,5 @@
 
-<%if (params[:controller] == 'merchant' and params[:action] != 'new') or params[:controller] == 'deals' %>
+<%if (params[:controller] == 'merchant' and params[:action] != 'new') or params[:controller] == 'deals' or params[:controller] == 'merchant_analytics' %>
     <ul id="navigation_merchant" style="">
       <li><a href="/index" id="home_front" title="Home"></a></li>
       <li><a href="#" id="port" title="Our Programs"><span>recent deals</span></a></li>
@@ -10,13 +10,14 @@
        
     </ul>
 <%else%>
-    <ul id="navigation">
-      <li><a href="/deal_of_the_day" id="home_front" title="Home"></a></li>
-      <li><a href="#" id="port" title="Our Programs"><span>recent deals</span></a></li>
-      <li><a href="#" id="services" title="About Us"><span>howitworks</span></a></li>
-      <li><a href="#" id="blog" title="Contact Us"><span>iwantadeal</span></a></li>
-      <li><a href="/customers/location_deals" id="contact" title=""><span>locationdeal</span></a></li>
-      <!-- <li><a href="#" id="ad" title="Contact Us"><span>ad</span></a></li> -->
-      <li><a href="/keupons" id="keupons" title=""><span>keupons</span></a></li>
-    </ul>
+
+
+            <ul>
+        <li><a href="/deal_of_the_day">Today's Deal</a></li>
+        <li><a href="#">Recent Deals</a></li>
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">I Want a Deal</a></li>
+        <li><a href="/customers/location_deals">Location Deals</a></li>
+        <li><a href="#">Advertise</a></li>
+      </ul>
 <%end%>
