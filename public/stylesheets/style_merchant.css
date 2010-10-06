@@ -1,0 +1,163 @@
+body{
+  font-size: 12px;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+#loading{
+  position: absolute; 
+  right: 0px; 
+  top: 0px; 
+  background-color: #dd0000; 
+  font-weight:bold;
+  color: white; 
+  margin: 5px; 
+  padding: 3px;
+}
+
+span > div#loading {
+  position: fixed;
+}
+
+h1{
+font-size: 16px;
+}
+
+
+/* General Styling */
+ul,li {list-style-type: none;}
+
+a span, button span, ul#navigation span, h2 span, h3 span {display: none;}
+
+.nodisplay{display:none;}
+
+/* Navigation for customers*/
+/* ============================================================================= */
+
+ul#navigation {height: 32px; margin:0; padding:0;margin-left: 240px;}
+ul#navigation li {width: 160px;float:left;}
+ul#navigation li a {display: block;height: 32px;cursor: pointer;}
+ul#navigation li a#home {background: url(../images/today_deal.jpg) 0 0 no-repeat;}
+ul#navigation li a#port {background: url(../images/recent_deals.jpg) 0 0 no-repeat;}
+ul#navigation li a#services {background: url(../images/how_it_works.jpg) 0 0 no-repeat;}
+ul#navigation li a#blog {background: url(../images/Iwandadeal.jpg) 0 0 no-repeat;}
+ul#navigation li a#contact {background: url(../images/locationdeals.jpg) 0 0 no-repeat;}
+ul#navigation li a#ad {background: url(../images/advertise.jpg) 0 0 no-repeat;}
+
+ul#navigation li a#home_front {background: url(../images/today_deal.jpg) 0 -32px no-repeat;}
+ul#navigation li a#port_front {background: url(../images/recent_deals.jpg) 0 -32px no-repeat;}
+ul#navigation li a#services_front {background: url(../images/how_it_works.jpg) 0 -32px no-repeat;}
+ul#navigation li a#blog_front {background: url(../images/Iwandadeal.jpg) 0 -32px no-repeat;}
+ul#navigation li a#contact_front {background: url(../images/locationdeals.jpg) 0 -32px no-repeat;}
+ul#navigation li a#ad_front {background: url(../images/advertise.jpg) 0 -32px no-repeat;}
+
+ul#navigation li a#home:hover,
+ul#navigation li a#port:hover,
+ul#navigation li a#services:hover,
+ul#navigation li a#blog:hover,
+ul#navigation li a#contact:hover {background-position: 0 -32px;}
+
+ul#navigation li .selected{background-position: 0 -32px;}
+
+/* ============================================================================= */
+
+/* Navigation for customers*/
+
+ul#navigation_merchant {height: 32px; margin:0; padding:0;margin-left: 240px;}
+ul#navigation_merchant li {width: 160px;float:left;}
+ul#navigation_merchant li a {display: block;height: 32px;cursor: pointer;}
+ul#navigation_merchant li a#home {background: url(../images/deals_button.jpg) 0 0 no-repeat;}
+ul#navigation_merchant li a#port {background: url(../images/deal_bull.jpg) 0 0 no-repeat;}
+ul#navigation_merchant li a#services {background: url(../images/my_profile.jpg) 0 0 no-repeat;}
+ul#navigation_merchant li a#blog {background: url(../images/analytics.jpg) 0 0 no-repeat;}
+ul#navigation_merchant li a#contact {background: url(../images/locationdeals.jpg) 0 0 no-repeat;}
+
+ul#navigation_merchant li a#home_front {background: url(../images/deals_button.jpg) 0 -32px no-repeat;}
+ul#navigation_merchant li a#port_front {background: url(../images/deal_bull.jpg) 0 -32px no-repeat;}
+ul#navigation_merchant li a#services_front {background: url(../images/my_profile.jpg) 0 -32px no-repeat;}
+ul#navigation_merchant li a#blog_front {background: url(../images/analytics.jpg) 0 -32px no-repeat;}
+ul#navigation_merchant li a#contact {background: url(../images/locationdeals.jpg) 0 -32px no-repeat;}
+
+
+ul#navigation_merchant li a#home:hover,
+ul#navigation_merchant li a#port:hover,
+ul#navigation_merchant li a#services:hover,
+ul#navigation_merchant li a#blog:hover,
+ul#navigation_merchant li a#contact:hover {background-position: 0 -32px;}
+
+ul#navigation_merchant li .selected{background-position: 0 -32px;}
+
+.submenu{background:url(../images/bg_submenu.jpg) no-repeat; height:55px;}
+#sub-nav{padding-top:22px; margin-left:0; padding-left:28px; font-size:11px;}
+#sub-nav li{list-style:none; float:left;}
+#sub-nav li a{margin-right:5px; color:#999; float:left; padding-left:15px; background:url(../images/bullet.jpg) no-repeat; padding-right:10px;}
+#sub-nav li a:hover{color:#151515; background:url(../images/bullet_selected.jpg) no-repeat;}
+#sub-nav li a.selected {background:url(../images/bullet_selected.jpg) no-repeat; padding-left:15px; float:left; color:#151515;}
+
+/* ============================================================================= */
+
+/*Navigation for submenu*/
+
+
+ul#navigation_sub_merchant {height: 23px; margin:0; padding:0;margin-left: 80px;}
+ul#navigation_sub_merchant li {width: 160px;float:left;}
+ul#navigation_sub_merchant li a {display: block;height: 23px;cursor: pointer;}
+ul#navigation_sub_merchant li a#home {background: url(../images/newdeals.jpg) 0 0 no-repeat;}
+ul#navigation_sub_merchant li a#port {background: url(../images/mydeals.jpg) 0 0 no-repeat;}
+ul#navigation_sub_merchant li a#services {background: url(../images/redeemdeals.jpg) 0 0 no-repeat;}
+
+
+ul#navigation_sub_merchant li a#home_front {background: url(../images/newdeals.jpg) 0 -23px no-repeat;}
+ul#navigation_sub_merchant li a#port_front {background: url(../images/mydeals.jpg) 0 -23px no-repeat;}
+ul#navigation_sub_merchant li a#services_front {background: url(../images/redeemdeals.jpg) 0 -23px no-repeat;}
+
+
+ul#navigation_sub_merchant li a#home:hover,
+ul#navigation_sub_merchant li a#port:hover,
+ul#navigation_sub_merchant li a#services:hover,
+ul#navigation_sub_merchant li a#blog:hover,
+ul#navigation_sub_merchant li a#contact:hover {background-position: 0 -23px;}
+
+ul#navigation_sub_merchant li .selected{background-position: 0 -23px;}
+
+.submenu{background:url(../images/bg_submenu.jpg) no-repeat; height:55px;}
+#sub-nav{padding-top:22px; margin-left:0; padding-left:28px; font-size:11px;}
+#sub-nav li{list-style:none; float:left;}
+#sub-nav li a{margin-right:5px; color:#999; float:left; padding-left:15px; background:url(../images/bullet.jpg) no-repeat; padding-right:10px;}
+#sub-nav li a:hover{color:#151515; background:url(../images/bullet_selected.jpg) no-repeat;}
+#sub-nav li a.selected {background:url(../images/bullet_selected.jpg) no-repeat; padding-left:15px; float:left; color:#151515;}
+
+/* ============================================================================= */
+
+.discussionboard
+{
+background-image:url(../images/topnav_bg.gif);
+background-repeat: repeat;
+
+}
+
+#popup_view_deal
+        {
+                width:            100%;
+                height:           500%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                padding:          200px 0 0 138px;
+        }
+
+#popup_create_deal
+        {
+                width:            100%;
+                height:           500%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                padding:          200px 0 0 138px;
+        }
+
