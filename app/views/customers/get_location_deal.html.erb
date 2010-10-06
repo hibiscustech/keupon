@@ -1,0 +1,139 @@
+<script type="text/javascript" language="javascript">
+  function validtae_d(super_id) {
+
+    if((document.getElementById('chk11').checked))
+
+    {
+      document.getElementById('card_information'). style.display = "none";
+      document.getElementById('fill_details'). style.display = "block";
+    }
+    else    {
+      document.getElementById('card_information'). style.display = "block";
+      document.getElementById('fill_details'). style.display = "none";
+    }
+
+  }
+
+</script>
+
+<%= GMap.header %>
+<%= @map.to_html %>
+<div style="width:800px;" >
+
+  <div align="left" style="float:left;width:600px;" >
+  <br/><h4>Billing Information</h4> <br/><input id="chk11" name="chk11" onClick="validtae_d(this.value)" type="checkbox" value="check" />
+  use my new credit card
+
+  <% form_for :billing_information, :url=>{:controller => 'customers', :action =>'check_transaction_details'} do |f|-%>
+    <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
+    <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
+      <%=hidden_field :map, :lon, :value => params[:lon]%>
+    <%=hidden_field :map, :lat, :value => params[:lat]%>
+    <table id="card_information" align=left   CELLPADDING="4" CELLSPACING="6">
+      <tr>
+        <td style="color:#000000;">First Name: </td>
+        <td> <%=@latest_billing_information.first_name%> <%#=hidden_field :customer_credit_card, :first_name, :value => @latest_billing_information.first_name%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Last Name : </td>
+        <td><%=@latest_billing_information.last_name%><%#=hidden_field :customer_credit_card, :last_name, :value => @latest_billing_information.last_name%></td>
+      </tr>
+      <tr>
+        <td  style="color:#000000;">Card Number :</td>
+        <td><%=@latest_billing_information.credit_card_number%><%#=hidden_field :customer_credit_card, :last_name, :value => @latest_billing_information.credit_card_number%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Expiration Date :</td>
+        <td > <%=select 'credit_card_number', 'expiration_month',@latest_billing_information.expiration_month.to_a%>
+              <%=select 'credit_card_number', 'expiration_year',@latest_billing_information.expiration_year.to_a%>  
+              <%#=select_month(@latest_billing_information.expiration_month ,:use_month_numbers => true) %> &nbsp;
+              <%#=select_year(@latest_billing_information.expiration_month , :start_year => 2020, :end_year => 2000)%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Billing Address 1 :</td>
+        <td ><%= @latest_billing_information.address1%><%#=hidden_field :customer_credit_card, :last_name, :value => @latest_billing_information.address1%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Billing Address 2 :</td>
+        <td ><%=@latest_billing_information.address2%><%#=hidden_field :customer_credit_card, :last_name, :value => @latest_billing_information.address2%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">City : </td>
+        <td ><%=@latest_billing_information.city%><%#=hidden_field :customer_credit_card, :last_name, :value => @latest_billing_information.city%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">State :</td>
+        <td ><%=@latest_billing_information.state%><%#=hidden_field :customer_credit_card, :last_name, :value => @latest_billing_information.state%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Card Type :</td>
+        <td > <%#=hidden_field :customer_credit_card, :card_type, :value => @latest_billing_information.card_type%> <%=@latest_billing_information.card_type%><%#= select_tag( "card_type", @latest_billing_information.card_type  ) %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Security Code :</td>
+        <td ><%= f.text_field 'cvv2',  :size=>"10" %> (Please enter cvv number)</td>
+      </tr>
+      <tr><td>
+          <p><%=image_submit_tag ("register.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/deal_of_the_day' %></p></td></tr>
+    </table>
+
+
+
+
+  <% end -%>
+
+  <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
+    <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
+    <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
+    <table id="fill_details" align=left   CELLPADDING="4" CELLSPACING="6" style="display:none;">
+      <tr>
+        <td style="color:#000000;">First Name:</td>
+        <td> <%= f.text_field 'first_name',  :size=>"20" %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Last Name :</td>
+        <td><%= f.text_field 'last_name',  :size=>"20" %></td>
+      </tr>
+      <tr>
+        <td  style="color:#000000;">Card Number :</td>
+        <td><%= f.text_field 'credit_card_number' ,  :size=>"20" %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Expiration Date :</td>
+        <td >  <%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;
+          <%=select_year(Date.today, :start_year => 2020, :end_year => 2000)%></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Billing Address 1 :</td>
+        <td ><%= f.text_field 'address1',  :size=>"20" %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Billing Address 2 :</td>
+        <td ><%= f.text_field 'address2',  :size=>"20" %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">City :</td>
+        <td ><%= f.text_field 'city',  :size=>"20" %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">State :</td>
+        <td ><%= f.text_field 'state',  :size=>"20" %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Card Type :</td>
+        <td > <%= f.select( "card_type", { "Visa" => "visa", "Mastercard" => "mastercard", "Mastercard" => "mastercard","American Express" => "amex"}) %></td>
+      </tr>
+      <tr>
+        <td style="color:#000000;">Security Code :</td>
+        <td ><%= f.text_field 'cvv2',  :size=>"10" %></td>
+      </tr>
+      <tr><td>
+          <p><%=image_submit_tag ("register.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/deal_of_the_day' %></p></td></tr>
+    </table>
+  <% end -%></div>
+
+
+    <div align="right" style="text-align: right;margin-left: 500px;width: 200px;padding-top: 250px;">
+    <%= @map.div(:width => 300, :height => 300) %>
+  </div>
+</div>
