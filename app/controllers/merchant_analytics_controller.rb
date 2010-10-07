@@ -1,6 +1,6 @@
 class MerchantAnalyticsController < ApplicationController
   include AuthenticatedSystemMerchant
- layout 'application_merchant'
+  layout 'application_merchant'
   protect_from_forgery :only => [:destroy]
   before_filter :login_required
 
@@ -23,6 +23,36 @@ class MerchantAnalyticsController < ApplicationController
 
   def customers_report
     
+  end
+
+  def customers_usage_report
+
+  end
+
+  def customers_purchase_frequency
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'purchase_frequency_title', "<h3>Customers Purchase Frequency <br/>(#{params[:start_date]} - #{params[:end_date]})</h3>"
+          end
+        }
+      end
+    end
+  end
+
+  def customers_kupoints
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'kupoints_title', "<h3>Customers Kupoints <br/>(#{params[:start_date]} - #{params[:end_date]})</h3>"
+          end
+        }
+      end
+    end
   end
 
   def deals_report

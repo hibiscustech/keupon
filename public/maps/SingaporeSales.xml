@@ -1,4 +1,4 @@
-<map numberPrefix='$' baseFontSize='9' fillAlpha='70' hoverColor='639ACE'>
+<map numberPrefix='$' baseFontSize='9' fillAlpha='70' hoverColor='639ACE' showCanvasBorder='0' mapBottomMargin='1' legendPosition='BOTTOM'>
 	<colorRange>
 		<color minValue='0' maxValue='10000' displayValue='Very Low Sales' color='B80000' />
 		<color minValue='10000' maxValue='20000' displayValue='Moderate Sales' color='FFCC33' />

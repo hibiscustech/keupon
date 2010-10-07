@@ -1,0 +1,103 @@
+<table width="100%" align="center">
+  <tr height="87px">
+    <td width="30%" id="purchase_frequency_title" style="padding-left: 25px">
+      <h3>Customers Purchase Frequency <br/>(Till Date)</h3>
+    </td>
+    <td style=" vertical-align: bottom;">
+      <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "customers_purchase_frequency", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "customer_usage_form1", :style=> "padding:0;margin:0;"})%>
+        <div id="date_search" style="display: none;" width="100%">
+          <table width="100%">
+            <tr>
+              <td>
+		Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %>
+              </td>
+              <td align="right"><a href="#" onclick="$('customer_usage_form1').onsubmit();return false;">Search</a></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+		Deals: <select id="pf_deal" name="pf_deal">
+                        <option value="0">Select a Deal</option>
+                        <option value="1">S$112 for One Month of Unlimited Classes at Lion's Breath Yoga & Pilates ($170.35 Value)</option>
+                      </select>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" colspan="2"><a href="#">New Deal</a>&nbsp;&nbsp;<a href="#" onclick="$('customer_offer_form').onsubmit();return false;">Offer</a>&nbsp;&nbsp;<a href="javascript:void(null);" onclick="Effect.BlindUp('date_search');Element.show('search-button');return false;" id="cancel-search">Cancel</a></td>
+            </tr>
+          </table>
+	</div>
+        <div align="right" id="search-button" width="100%">
+          <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search/Special Offers</a>
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>
+<%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "customers_purchase_frequency_offer", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "customer_offer_form", :style=> "padding:0;margin:0;"})%>
+<table width="100%" align="center">
+  <tr>
+    <td width="50%">
+      <div id="purchase_frequency_chart">
+        <%= render :partial => "customers_purchase_frequency" %>
+      </div>
+    </td>
+    <td style=" vertical-align: text-top;">
+      <div id="purchase_frequency_summary">
+        <%= render :partial => "customers_purchase_frequency_summary" %>
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+
+<table width="100%" align="center">
+  <tr height="87px">
+    <td width="30%" id="kupoints_title" style="padding-left: 25px">
+      <h3>Customers Kupoints <br/>(Till Date)</h3>
+    </td>
+    <td style=" vertical-align: bottom;">
+      <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "customers_kupoints", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "customer_kupoints_form1", :style=> "padding:0;margin:0;"})%>
+        <div id="date_search1" style="display: none;" width="100%">
+          <table width="100%">
+            <tr>
+              <td>
+		Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %>
+              </td>
+              <td align="right"><a href="#" onclick="$('customer_kupoints_form1').onsubmit();return false;">Search</a></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+		Deals: <select id="kupoints_deal" name="kupoints_deal">
+                        <option value="0">Select a Special Deal</option>
+                        <option value="1">S$112 for One Month of Unlimited Classes at Lion's Breath Yoga & Pilates ($170.35 Value)</option>
+                      </select>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" colspan="2"><a href="#">New Deal</a>&nbsp;&nbsp;<a href="#" onclick="$('customer_kupoints_form1').onsubmit();return false;">Offer</a>&nbsp;&nbsp;<a href="javascript:void(null);" onclick="Effect.BlindUp('date_search1');Element.show('search-button1');return false;" id="cancel-search1">Cancel</a></td>
+            </tr>
+          </table>
+	</div>
+        <div align="right" id="search-button1" width="100%">
+          <a href="javascript:void(null);" onclick="Element.hide('search-button1');Effect.BlindDown('date_search1');return false;">Date Search/Special Offers</a>
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>
+<%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "customers_kupoints_offer", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "customer_kupoints_form1", :style=> "padding:0;margin:0;"})%>
+<table width="100%" align="center">
+  <tr>
+    <td width="50%">
+      <div id="kupoints_chart">
+        <%= render :partial => "customers_kupoints" %>
+      </div>
+    </td>
+    <td style=" vertical-align: text-top;">
+      <div id="kupoints_summary">
+        <%= render :partial => "customers_kupoints_summary" %>
+      </div>
+    </td>
+  </tr>
+</table>
+</form>

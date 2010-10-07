@@ -1,0 +1,39 @@
+<graph xAxisName='Customers' yAxisName='Purchase Frequency' decimalPrecision='0'>
+<categories>
+<category name='Customer 1' />
+<category name='Customer 2' />
+<category name='Customer 3' />
+<category name='Customer 4' />
+<category name='Customer 5' />
+<category name='Customer 6' />
+<category name='Customer 7' />
+<category name='Customer 8' />
+<category name='Customer 9' />
+<category name='Customer 10' />
+</categories>
+<dataset seriesName='With Me'  color='F6BD0F' showValues='0'>
+<set value='10' />
+<set value='9' />
+<set value='8' />
+<set value='7' />
+<set value='6' />
+<set value='5' />
+<set value='4' />
+<set value='3' />
+<set value='2' />
+<set value='1' />
+</dataset>
+<dataset seriesName='With Others' color='8BBA00' showValues='0'>
+<set value='27' />
+<set value='20' />
+<set value='18' />
+<set value='14' />
+<set value='13' />
+<set value='11' />
+<set value='8' />
+<set value='8' />
+<set value='7' />
+<set value='4' />
+</dataset>
+</graph>
+

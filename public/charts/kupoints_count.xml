@@ -1,0 +1,20 @@
+<graph xAxisName="Customers" yAxisName="Kupoints"
+                bgColor='FFFFFF'
+                showValues='0'
+                canvasBorderThickness='1'
+                canvasBorderColor='999999'
+                showAlternateVGridColor='1'
+                alternateVGridColor='cdcdcd'
+                divLineAlpha='0'
+                decimalPrecision='0'>
+        <set name="Customer 1" value="2761" color="9D080D"/>
+        <set name="Customer 2" value="2460" color="D64646"/>
+        <set name="Customer 3" value="2111" color="9D080D"/>
+        <set name="Customer 4" value="1987" color="D64646"/>
+        <set name="Customer 5" value="1140" color="9D080D"/>
+        <set name="Customer 6" value="970" color="D64646"/>
+        <set name="Customer 7" value="815" color="9D080D"/>
+        <set name="Customer 8" value="410" color="D64646"/>
+        <set name="Customer 9" value="394" color="9D080D"/>
+        <set name="Customer 10" value="116" color="D64646"/>
+</graph>
