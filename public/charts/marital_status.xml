@@ -1,4 +1,4 @@
-<graph caption="Customer Density based on Marital Status" xAxisName="Marital Status" yAxisName="No. of Customers" decimalPrecision="0" formatNumberScale="0" showValues='0' bgColor='FFFFFF' >
+<graph caption="Customer Density based on Relationship Status" xAxisName="Relationship Status" yAxisName="No. of Customers" decimalPrecision="0" formatNumberScale="0" showValues='0' bgColor='FFFFFF' >
         <set name='Married' value='19415' hoverText='19415 Customers' color='8E468E'/>
         <set name='Un-Married' value='30460' hoverText='30460 Customers' color='588526'/>
 </graph>

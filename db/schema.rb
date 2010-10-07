@@ -9,15 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101004111532) do
+ActiveRecord::Schema.define(:version => 20101007110653) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                :limit => 50, :null => false
     t.string  "website",             :limit => 50, :null => false
     t.string  "address1",            :limit => 50, :null => false
     t.string  "address2",            :limit => 50
-    t.string  "city",                :limit => 30, :null => false
-    t.string  "state",               :limit => 30, :null => false
+    t.string  "city",                :limit => 30
+    t.string  "state",               :limit => 30
     t.string  "zipcode",             :limit => 10, :null => false
     t.string  "latitude",            :limit => 50
     t.string  "longitude",           :limit => 50
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20101004111532) do
     t.string  "gender",             :limit => 0,  :default => "m", :null => false
     t.string  "address1",           :limit => 50,                  :null => false
     t.string  "address2",           :limit => 50
-    t.string  "city",               :limit => 30,                  :null => false
-    t.string  "state",              :limit => 30,                  :null => false
+    t.string  "city",               :limit => 30
+    t.string  "state",              :limit => 30
     t.string  "zipcode",            :limit => 10,                  :null => false
     t.string  "contact_number",     :limit => 15,                  :null => false
     t.string  "email_address",      :limit => 50,                  :null => false
@@ -127,6 +127,9 @@ ActiveRecord::Schema.define(:version => 20101004111532) do
     t.integer "dob"
     t.string  "country"
     t.integer "industry_sector_id"
+    t.string  "region",             :limit => 25
+    t.string  "relationship",       :limit => 0
+    t.float   "income"
   end
 
   add_index "customer_profiles", ["customer_id"], :name => "customer_id"
