@@ -11,8 +11,16 @@ class CustomersController < ApplicationController
   end
 
   def deal_of_the_day
+    @page = "Today’s Hot Deal"
     #@deal_schedule = DealSchedule.deal_schedule
     @deal = Deal.todays_deal
+    puts
+  end
+
+  def recent_deals
+     @page = "Recent Deal"
+    #@deal_schedule = DealSchedule.deal_schedule
+    @deals = Deal.recents_deal
   end
 
   def transaction_details
@@ -122,9 +130,9 @@ class CustomersController < ApplicationController
     customer = Customer.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
     when (!params[:activation_code].blank?) && customer && !customer.active?
-      customer.activate!
+      #customer.activate!
       flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to '/login'
+      redirect_to :action => 'my_profile', :id => customer.id
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')
@@ -192,5 +200,26 @@ class CustomersController < ApplicationController
     end
   end
 
+
+  def my_profile
+    @customer_profile = CustomerProfile.find_by_customer_id(params[:id])
+  end
+
+
+  def profile_update
+    @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_favourite][:customer_id])
+    customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
+    if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],
+        :gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
+      customer.activate!
+    end
+    if params[:customer_favourite_deal]
+      params[:customer_favourite_deal][:deal_sub_category_id].map { |i| i.split(/:|;/) }.each do |d|
+        @cus_favourite = CustomerFavouriteDeal.create(:customer_id => params[:customer_favourite][:customer_id], :deal_category_id => d[0].to_s, :deal_sub_category_id => d[1].to_s )
+      end
+    end
+    flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+    redirect_to '/'
+  end
 
 end
