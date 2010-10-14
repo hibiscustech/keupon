@@ -394,6 +394,12 @@ background-repeat: repeat;
 	height: 390px;
 	width: 1000px;
 }
+
+#user_recent {
+	float: left;
+	height: auto;
+	width: 1000px;
+}
 .cont1 {
 	float: left;
 	height: 351px;
@@ -432,6 +438,29 @@ background-repeat: repeat;
 	font-weight: normal;
 	color: #F00;
 }
+
+
+#userform {
+	float: left;
+	height: 565px;
+	width: 1000px;
+}
+
+.contform {
+	float: left;
+	height: 1000;
+	width: 700;
+	border:1px solid #AFAFAF;
+	-moz-border-radius: 10px;
+	-webkit-border-radius:10px;
+	margin-top: 8px;
+	margin-right: 11px;
+	margin-left: 13px;
+	background-color: fbfbfb;
+	padding: 10px;
+
+}
+
 .cont2 {
 	float: left;
 	height: 381px;
@@ -712,3 +741,72 @@ h2 {font:Georgia, "Times New Roman", Times, serif; font-size:18px; color:#FFF;}
 }
 .menu_body li a{color:#FFFFFF; text-decoration:none; padding:10px; display:block;}
 .menu_body li a:hover{padding:15px 10px; font-weight:bold;}
+.dateBlog {
+	float: left;
+	height: auto;
+	width: 322px;
+	margin-top: 8px;
+	margin-right: 11px;
+	margin-left: 13px;
+}
+.dateB1 {
+	float: left;
+	width: 300px;
+	height: 286px;
+	border: 1px solid #CCC;
+	padding-left: 20px;
+}
+.dateB1_top {
+	float: left;
+	height: 31px;
+	width: 300px;
+	line-height: 31px;
+	font-size: 14px;
+	font-weight: normal;
+	color: #000;
+}
+.dateB1_center {
+	float: left;
+	height: auto;
+	width: 300px;
+}
+.dateB1_C1 {
+	width: 204px;
+	float: left;
+	height: auto;
+	border: 1px solid #F00;
+	-moz-border-radius: 5px;
+	-webkit-border-radius:5px;
+	margin-top: 7px;
+}
+.dateB1_C2 {
+	float: left;
+	width: 79px;
+	height: 143px;
+	background-image: url(/images/price_discount.jpg);
+	background-repeat: no-repeat;
+	font-size: 14px;
+	color: #FFF;
+	text-align: center;
+	padding-top: 33px;
+}
+.dateB1_text {
+	float: left;
+	height: auto;
+	width: 300px;
+	padding-top: 10px;
+	font-size: 16px;
+	color: #000;
+}
+.dateB2 {
+	float: left;
+	width: 260px;
+	background-image: url(/images/keupons_bought.jpg);
+	background-repeat: no-repeat;
+	height: 38px;
+	
+	font-size: 16px;
+	line-height: 38px;
+	color: #FFF;
+	padding-left: 62px;
+}

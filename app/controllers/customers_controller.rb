@@ -18,9 +18,13 @@ class CustomersController < ApplicationController
   end
 
   def recent_deals
-     @page = "Recent Deal"
+     @page = "Recent Deals"
     #@deal_schedule = DealSchedule.deal_schedule
-    @deals = Deal.recents_deal
+    @deals = Deal.recents_deal.paginate :page => params['page'], :per_page => 6
+  end
+
+  def want_a_deal
+     @page = "Want a Deal"
   end
 
   def transaction_details
