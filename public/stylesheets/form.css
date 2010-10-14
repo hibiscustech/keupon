@@ -1,0 +1,580 @@
+/*
+ *Form CSS
+ */
+.form-all {
+    list-style: none;
+    list-style-position: outside;
+    margin: 0px;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+.form-captcha {
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    padding: 6px;
+    width: 152px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
+}
+
+.form-captcha:hover {
+    border: 1px solid #aaa;
+}
+
+.form-captcha-image {
+    border: 1px solid #aaa;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
+}
+
+.form-collapse-table{
+     height:58px;
+     border:1px solid #ccc;
+     background:#f5f5f5 url(../../images/soft-grad.png) repeat-x;
+     position:relative;
+}
+.form-collapse-left{
+}
+.form-collapse-mid{
+     text-shadow:0px 2px 0px #fff;
+     float:left;
+     font-size:18px;
+     margin:16px 45px 16px 20px;
+}
+
+.form-product-item{
+    display:inline-block;
+    padding:5px 5px 5px 10px;
+    position:relative;
+    
+}
+
+.form-product-item:hover{
+    background:#f5f5f5;
+    color:#000;
+}
+
+.form-product-image, .form-product-image-with-options{
+    margin:5px;
+    margin-left:10px;
+}
+
+.form-product-image-with-options{
+    position:absolute;
+    top:15px;
+    -moz-border-radius:5px 5px;
+}
+
+
+.form-radio, .form-checkbox{
+    vertical-align:middle;
+    margin:0px;
+    padding:0px;
+}
+
+.form-radio-item, .form-checkbox-item{
+    margin-top:5px;
+    float:left;
+}
+.form-multiple-column, .form-single-column{
+    display:inline-block;
+}
+.form-multiple-column .form-radio-item, .form-multiple-column .form-checkbox-item{
+    width:150px;
+}
+
+.form-radio-item label, .form-checkbox-item label{
+    margin-left:5px;
+}
+.form-radio-item br, .form-checkbox-item br{
+    clear:left;
+}
+
+.form-submit-button, .form-submit-reset, .form-submit-print{
+    margin:0px;    
+    overflow:visible;
+    padding:1px 6px;
+    width:auto;
+}
+.form-submit-button::-moz-focus-inner, .form-submit-reset::-moz-focus-inner{
+    border: 0px;
+    padding:1px 6px;
+}
+.form-submit-print::-moz-focus-inner{
+    padding:0px 6px;
+}
+.form-submit-print{
+    padding:1px 6px;
+}
+
+.form-collapse-right{
+     position:absolute;
+     right:0px;
+     height:58px;
+     width:40px;
+}
+.form-collapse-right-show{
+     background: url(../../images/arrow-open.png) no-repeat center;
+}
+.form-collapse-right-hide{
+     background: url(../../images/arrow-closed.png) no-repeat center;
+}
+
+.form-collapse-hidden {
+    display: none;
+}
+
+.form-grading-item {
+    margin-bottom: 3px;
+}
+
+.form-header {
+    margin:0px;
+}
+
+.form-subHeader {
+    border-top: 1px solid #ccc;
+    font-style: italic;
+}
+
+.form-header-group{
+    background:#f5f5f5;
+    border-bottom:1px solid #ccc;
+    padding:12px;
+	clear:both;
+}
+
+.form-label {
+    width: 150px;
+    margin-bottom: 6px;
+    display:inline-block;
+}
+
+.form-label-top {
+    margin-bottom:6px;
+    display:inline-block;
+}
+
+.form-label-left {
+    float:left;
+    display:inline-block;
+    text-align:left;
+    padding:3px;
+}
+
+.form-label-right {
+    float:left;
+    display:inline-block;
+    text-align:right;
+    margin-right:6px;
+    margin-bottom:6px;
+    padding:3px;
+}
+
+.form-input-wide {
+}
+
+.form-section, .form-section-closed {
+    list-style:none;
+    list-style-position:outside;
+    margin:0px;
+    padding:0px;
+    position:relative;
+    zoom:1;
+}
+
+.form-section-closed {
+    overflow: hidden;
+    height: 60px;
+}
+
+.form-input {
+   display:inline-block;
+}
+
+.form-line {    
+	clear:both;
+	padding:10px;
+	margin:0px;
+    display:inline-block;
+    width:97%;
+    width:-moz-available;
+    /* Removed this because it was changing the size of the migrated forms */
+	/* border:1px solid transparent ; */
+	position:relative;
+}
+
+.form-line-column{
+    float:left;
+    clear:none;
+    width:auto;
+}
+
+.form-line-column-clear{
+    clear:left;
+    width:auto;
+}
+
+.form-line-active {
+    background-color: #FFFFE0;
+    /*outline: 1px solid #EEEED0;*/
+    color:#333;
+}
+
+.form-matrix-table {
+    border-collapse: collapse;
+    font-size: 10px;
+}
+
+.form-matrix-column-headers {
+    border: 1px solid #ccc;
+    background: #ddd;
+}
+
+.form-matrix-row-headers {
+    border: 1px solid #ccc;
+    background: #ddd;
+}
+
+.form-matrix-values {
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+}
+
+.form-pagebreak{
+    border-top:1px solid #ccc;
+    background:#f5f5f5;
+    height:60px;
+    clear:left;
+}
+
+.form-pagebreak-back-container, 
+.form-pagebreak-next-container{
+    float:left;
+    padding:10px;
+    padding-top:14px;
+}
+
+.form-pagebreak-next-container{
+    padding-left:0px;
+}
+
+.form-pagebreak-back, 
+.form-pagebreak-next{
+    -webkit-border-radius:5px 5px;
+    -webkit-box-shadow:0px 1px 2px #aaa;
+    -moz-border-radius:5px 5px;
+    -moz-box-shadow:0px 1px 2px #aaa;
+    border:1px solid #999;
+    background:#ddd;
+    padding:5px;
+    margin:0px;
+    font-size:14px;
+}
+
+.form-required {
+    margin-left: 5px;
+    color: red;
+}
+
+.form-scale-table {
+    font-size: 12px;
+}
+
+.form-scale-table th {
+    border-bottom: 1px solid #ccc;
+    color: #999;
+}
+
+.form-product-details {
+    font-size: 9px;
+    color: #999;
+    font-style: italic;
+}
+
+.form-address-table{
+    width:330px;
+}
+
+.form-address-line{
+    width:310px;
+}
+.form-address-city, .form-address-state{
+    width:144px;
+}
+.form-address-table td, .form-address-table th{    
+    padding-bottom:10px;
+}
+
+.form-address-table select{
+    width:150px;
+}
+
+.form-button-error{
+    color:red;
+    display:inline;
+}
+.form-line-error{
+    background:#FFAAAA;
+    /*border:1px solid #FFAAAA;*/
+    color:#333;
+}
+
+.form-validation-error{
+    border:2px solid red;
+}
+
+.form-line-active .form-error-message {
+    display: none; 
+}
+
+.form-error-message{
+    /*
+    right:7px;
+    top:6px;
+    */
+    
+    z-index:900;
+    position:absolute;
+    max-width:130px;
+    right:0px;
+    top:0px;
+    color:#333;
+    padding:3px;
+    font-size:10px;
+    border:4px solid #dd8888;
+    -moz-box-shadow:0px 2px 4px #666;
+    -webkit-box-shadow:0px 2px 4px #666;
+    -moz-border-radius:6px 6px;
+    -webkit-border-radius:6px 6px;
+    background:#FFCCCC;
+}
+
+.form-input .form-error-message, .form-input-wide .form-error-message{
+    bottom:-5px;
+    font-size:11px;
+    position:relative;
+    z-index:900;
+    right:auto;
+    top:auto;
+    color:#333;
+    padding:3px;
+    max-width:100%;
+    padding-bottom:3px;
+    font-size:12px;
+    border:none;
+    -moz-box-shadow:0px 2px 4px #666;
+    -webkit-box-shadow:0px 2px 4px #666;
+    -moz-border-radius:6px 6px;
+    -webkit-border-radius:6px 6px;
+    background:#FFCCCC;
+}
+
+.form-description{
+    z-index:1000;
+    position:absolute;
+    right:7px;
+    max-width:150px;
+    top:6px;
+    -moz-box-shadow:0px 2px 4px #666;
+    -webkit-box-shadow:0px 2px 4px #666;
+    border:4px solid #ccc;
+    -moz-border-radius:6px 6px;
+    -webkit-border-radius:6px 6px;
+    background:#f5f5f5;
+}
+    
+.form-description-content{
+    padding:10px;
+    font-size:10px;
+    color:#333;
+}
+    
+.form-description-arrow {
+    border-color:transparent #CCCCCC transparent transparent;
+    border-style:solid;
+    border-width:10px;
+    height:0;
+    width:0;
+    left:-24px;
+    top:7px;
+    position:absolute;
+}    
+    
+.form-description-arrow-small {
+    border-color:transparent #F5F5F5 transparent transparent;
+    border-style:solid;
+    border-width:7px;
+    height:0;
+    width:0;
+    left:-14px;
+    top:10px;
+    position:absolute;
+}
+
+.form-autocomplete-list{
+    font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    background:#333;
+    background:rgba(26,58,81,0.8);
+    border:1px solid #eee;
+    border-top:none;
+    padding:5px 0;
+    -moz-border-radius-bottomright:10px 10px;
+    -moz-border-radius-bottomleft:10px 10px;
+    -webkit-border-bottom-right-radius:10px 10px;
+    -webkit-border-bottom-left-radius:10px 10px;
+    -moz-box-shadow:0px 5px 10px rgba(0,0,0,0.6);
+}
+
+.form-autocomplete-list-item{
+    margin:0 5px;
+    border:1px solid transparent;
+    color:#fff;
+    padding:3px;
+    -moz-border-radius:5px 5px;
+    -webkit-border-radius:5px;
+    text-shadow:1px 1px 3px #000;
+    cursor:pointer;
+}
+.form-autocomplete-list-item-selected, .form-autocomplete-list-item:hover{
+    -moz-box-shadow:0 0 4px #333;
+    -webkit-box-shadow:0 0 4px #333;
+    border:1px solid #1a3a51;
+    background:#4295D1;
+}
+.form-autocomplete-list-item:hover{
+    border:1px solid #ccc;
+}
+.form-sub-label-container{
+    display:inline-block;
+    margin-right:5px;
+}
+.form-sub-label{
+    color:#999999;
+    display:block;
+    font-size:9px;
+    
+}
+.form-html{
+    padding:3px;
+}
+.form-radio-other-input{
+    margin-left:5px;
+}
+
+/*
+ * TODO: This a fix for column view in IE6 and IE7
+ * only in single column. After relaxing we have
+ * to change the HTML code directly to fix column
+ * problems in IE6 and IE7.
+ */
+.form-single-column .clearfix { display: inline-block; }
+.form-single-column .clearfix { display: block; }
+/*
+ * New Feature for fixes for mobile devices. 
+ * We should improve this for each and every kind of question.
+ * then test it on various mobile devices 
+ */
+@media only screen and (max-device-width: 550px){
+    body{
+        /* background:#EAEAEA url(/images/bg.png) repeat-x 0 -55px !important; */
+        font-size: 18px;
+    }
+    .form-all{
+        width:auto !important;
+    }
+    .form-label-left{
+        float:none;
+        display:block;
+    }
+    .form-buttons-wrapper{
+        margin:5px !important;
+        text-align:center;
+    }
+    .form-submit-print{
+        display:none;
+    }
+    .form-textarea{
+        width:99% !important;
+    }
+    .form-textbox, .form-textarea, .form-dropdown{
+        border:1px solid #555;
+        padding:4px;
+        -webkit-border-radius:5px 5px;
+        -moz-border-radius:5px 5px;
+        border-radius:5px 5px;
+        -webkit-box-shadow:0 2px 4px rgba(0,0,0, 0.4) inset;
+        -moz-box-shadow:0 2px 4px rgba(0,0,0, 0.4) inset;
+        box-shadow:0 2px 4px rgba(0,0,0, 0.4) inset;
+    }
+    .form-address-table{
+        width:300px;
+    }
+    .form-address-line{
+        width:280px;
+    }
+    .form-address-city, .form-address-state{
+        width:130px;
+    }
+    .form-address-table td, .form-address-table th{    
+        padding-bottom:10px;
+    }
+    .form-address-table select{
+        width:120px;
+    }
+    .form-spinner{
+        border-collapse:inherit !important;
+        border:1px solid #555 !important;
+        -webkit-border-radius:5px 5px;
+        -moz-border-radius:5px 5px;
+        border-radius:5px 5px;
+        -webkit-box-shadow:0 2px 4px rgba(0,0,0, 0.4) inset;
+        -moz-box-shadow:0 2px 4px rgba(0,0,0, 0.4) inset;
+        box-shadow:0 2px 4px rgba(0,0,0, 0.4) inset;
+    }
+    .form-spinner-up, .form-spinner-down{
+        padding:0 8px !important;
+        border:none !important;
+        border-left:1px solid #555 !important;
+    }
+    .form-spinner-up{
+        -moz-border-radius-topright:5px 5px;
+        -webkit-border-top-right-radius:5px 5px;
+        border-top-right-radius:5px 5px;
+        border-bottom:1px solid #555 !important;
+    }
+    .form-spinner-down{
+        -moz-border-radius-bottomright:5px 5px;
+        -webkit-border-bottom-right-radius:5px 5px;
+        border-bottom-right-radius:5px 5px;
+    }
+    .form-spinner-input-td{
+        padding-right:6px !important;
+    }
+    .form-spinner-input-td input{
+        padding:4px !important;
+        background:none;
+    }
+    .form-sub-label-container img[id*="pick"]{
+        width:25px;
+    }
+    div.form-header-group{
+        margin:0px !important;
+    }
+    div.form-pagebreak .form-label-left{
+        display:inline-block !important;
+        float:left;
+    }
+    .form-submit-button, .form-submit-reset{
+        font-size:18px;
+        line-height:30px;
+    }
+    .form-captcha{
+        border:1px solid #555;
+    }
+    .form-captcha input{
+        width:120px !important;
+    }
+}
