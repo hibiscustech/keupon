@@ -1,5 +1,7 @@
 class MerchantProfile < ActiveRecord::Base
     belongs_to :merchant
+    belongs_to :deal_category
+    belongs_to :deal_sub_category
     has_one :company
 
   def self.all_active_merchants

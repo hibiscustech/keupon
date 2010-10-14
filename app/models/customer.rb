@@ -32,6 +32,7 @@ class Customer < ActiveRecord::Base
   has_many :customer_credit_card
   has_many :merchants_customers
   has_many :merchants, :through => :merchants_customers
+  has_many :customer_demand_deals
 
   # Activates the user in the database.
   def activate!

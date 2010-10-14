@@ -26,6 +26,7 @@ class Merchant < ActiveRecord::Base
 
   has_many :deals
   has_many :merchants_customers
+  has_many :customer_demand_deal_biddings
   has_many :customers, :through => :merchants_customers
   has_one :merchant_profile, :dependent => :destroy
 

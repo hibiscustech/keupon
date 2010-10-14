@@ -1,7 +1,7 @@
 class Deal < ActiveRecord::Base
 
-
   has_many :customer_deals
+  has_many :customer_demand_deals
   has_many :customers, :through => :customer_deals
   has_many :first_customers, :class_name => 'MerchantsCustomer', :foreign_key => 'first_deal'
   has_many :recent_customers, :class_name => 'MerchantsCustomer', :foreign_key => 'recent_deal'
@@ -10,7 +10,7 @@ class Deal < ActiveRecord::Base
   belongs_to :deal_type
   belongs_to :deal_category
   belongs_to :deal_sub_category
-  
+
   has_one :deal_schedule
   has_one :deal_location_detail
 

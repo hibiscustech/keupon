@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101007110653) do
+ActiveRecord::Schema.define(:version => 20101013112355) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                :limit => 50, :null => false
@@ -92,6 +92,47 @@ ActiveRecord::Schema.define(:version => 20101007110653) do
   add_index "customer_deals", ["customer_id"], :name => "customer_id"
   add_index "customer_deals", ["deal_id"], :name => "deal_id"
 
+  create_table "customer_demand_deal_biddings", :force => true do |t|
+    t.string  "name",                    :null => false
+    t.float   "actual_value",            :null => false
+    t.float   "buy_value",               :null => false
+    t.float   "savings",                 :null => false
+    t.integer "discount",                :null => false
+    t.integer "number",                  :null => false
+    t.string  "deal_photo_file_name"
+    t.string  "deal_photo_content_type"
+    t.integer "deal_photo_file_size"
+    t.string  "rules"
+    t.string  "highlights"
+    t.integer "time_created",            :null => false
+    t.integer "bid_time"
+    t.integer "deal_start_date"
+    t.integer "deal_end_date"
+    t.integer "merchant_id",             :null => false
+    t.integer "customer_demand_deal_id"
+  end
+
+  add_index "customer_demand_deal_biddings", ["customer_demand_deal_id"], :name => "customer_demand_deal_id"
+  add_index "customer_demand_deal_biddings", ["merchant_id"], :name => "merchant_id"
+
+  create_table "customer_demand_deals", :force => true do |t|
+    t.float   "expected_value",                                       :null => false
+    t.integer "number",                                               :null => false
+    t.integer "deadline",                                             :null => false
+    t.text    "description"
+    t.string  "status",               :limit => 0, :default => "new", :null => false
+    t.integer "time_created",                                         :null => false
+    t.integer "customer_id",                                          :null => false
+    t.integer "deal_category_id",                                     :null => false
+    t.integer "deal_sub_category_id",                                 :null => false
+    t.integer "deal_id"
+  end
+
+  add_index "customer_demand_deals", ["customer_id"], :name => "customer_id"
+  add_index "customer_demand_deals", ["deal_category_id"], :name => "deal_category_id"
+  add_index "customer_demand_deals", ["deal_id"], :name => "deal_id"
+  add_index "customer_demand_deals", ["deal_sub_category_id"], :name => "deal_sub_category_id"
+
   create_table "customer_favourite_deals", :force => true do |t|
     t.integer "customer_id",          :null => false
     t.integer "deal_category_id",     :null => false
@@ -130,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20101007110653) do
     t.string  "region",             :limit => 25
     t.string  "relationship",       :limit => 0
     t.float   "income"
+    t.string  "customer_pin",       :limit => 45
   end
 
   add_index "customer_profiles", ["customer_id"], :name => "customer_id"
@@ -215,22 +257,26 @@ ActiveRecord::Schema.define(:version => 20101007110653) do
   end
 
   create_table "merchant_profiles", :force => true do |t|
-    t.string  "first_name",     :limit => 30,                    :null => false
-    t.string  "last_name",      :limit => 30
-    t.string  "gender",         :limit => 0,  :default => "m"
-    t.string  "address1",       :limit => 50
-    t.string  "address2",       :limit => 50
-    t.string  "city",           :limit => 30
-    t.string  "state",          :limit => 30
-    t.string  "zipcode",        :limit => 10
-    t.string  "contact_number", :limit => 15,                    :null => false
-    t.string  "email_address",  :limit => 50,                    :null => false
+    t.string  "first_name",           :limit => 30,                    :null => false
+    t.string  "last_name",            :limit => 30
+    t.string  "gender",               :limit => 0,  :default => "m"
+    t.string  "address1",             :limit => 50
+    t.string  "address2",             :limit => 50
+    t.string  "city",                 :limit => 30
+    t.string  "state",                :limit => 30
+    t.string  "zipcode",              :limit => 10
+    t.string  "contact_number",       :limit => 15,                    :null => false
+    t.string  "email_address",        :limit => 50,                    :null => false
     t.integer "merchant_id"
     t.integer "dob"
     t.string  "country"
-    t.string  "status",         :limit => 0,  :default => "new", :null => false
+    t.string  "status",               :limit => 0,  :default => "new", :null => false
+    t.integer "deal_category_id"
+    t.integer "deal_sub_category_id"
   end
 
+  add_index "merchant_profiles", ["deal_category_id"], :name => "deal_category_id"
+  add_index "merchant_profiles", ["deal_sub_category_id"], :name => "deal_sub_category_id"
   add_index "merchant_profiles", ["merchant_id"], :name => "merchant_id"
 
   create_table "merchants", :force => true do |t|
