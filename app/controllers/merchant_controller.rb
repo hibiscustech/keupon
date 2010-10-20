@@ -147,4 +147,9 @@ class MerchantController < ApplicationController
     end
   end
 
+
+  def deals_on_demand
+    
+  end
+
 end

@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.index '/index', :controller => 'merchant', :action => 'index'
   map.location_deals '/location_deals', :controller => 'merchant', :action => 'location_deals'
   map.deals_of_mine '/deals_of_mine' , :controller => 'merchant', :action => 'deals_of_mine'
+  map.deals_on_demand 'deals_on_demand',:controller => 'merchant' ,:action => 'deals_on_demand'
   map.transaction_details '/transaction_details' , :controller => 'customers', :action =>  'transaction_details'
   map.register '/register', :controller => 'customers', :action => 'create'
   map.signup '/signup', :controller => 'customers', :action => 'new'
