@@ -90,4 +90,12 @@ module CustomersHelper
     end
   end
 
+def category_all
+    DealCategory.find :all
+  end
+
+  def sub_category_all(category)
+    category.deal_sub_category
+  end
+
 end
