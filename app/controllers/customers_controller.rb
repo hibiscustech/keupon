@@ -11,7 +11,7 @@ class CustomersController < ApplicationController
   end
 
   def deal_of_the_day
-    @page = "Today’s Hot Deal"
+    @page = "Today's Hot Deal"
     #@deal_schedule = DealSchedule.deal_schedule
     @deal = Deal.todays_deal
     puts
@@ -20,11 +20,41 @@ class CustomersController < ApplicationController
   def recent_deals
      @page = "Recent Deals"
     #@deal_schedule = DealSchedule.deal_schedule
-    @deals = Deal.recents_deal.paginate :page => params['page'], :per_page => 6
+    @deals = Deal.recents_deal#.paginate :page => params['page'], :per_page => 6
   end
 
   def want_a_deal
-     @page = "Want a Deal"
+     @page = "I Want a Deal"
+     @categories = DealCategory.find(:all)
+     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+     if request.xml_http_request?
+       CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline]+" 23:59:59"), :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+       @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+       flash[:msg] = "The Deal that you demanded has been created. Keep Checking the 'Deals that You Demanded section' to view your deal offers."
+       respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'userform', :partial => "i_want_deal_form"
+            page.replace_html 'userform2', :partial => "my_demand_deals_summary"
+          end
+        }
+      end
+     end
+  end
+
+  def deal_sub_categories
+    @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{params[:category]}")
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cid_7', :partial => "deal_sub_categories"
+          end
+        }
+      end
+    end
   end
 
   def transaction_details

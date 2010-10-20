@@ -1,0 +1,10 @@
+<% if !@sub_categories.blank? %>
+<select class="form-dropdown" style="width:150px" id="sub_category" name="sub_category">
+                        <option value="0">Select a Sub-Category</option>
+                        <% for scategory in @sub_categories %>
+                        <option value="<%= scategory.id %>"><%= scategory.name %></option>
+                        <% end %>
+</select>
+<% else%>
+<label> Select a Category to view the Sub-Categories </label>
+<% end %>

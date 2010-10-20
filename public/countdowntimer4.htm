@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Countdown</title>
+	<script type="text/javascript">
+function calcage(secs, num1, num2) {
+  s = ((Math.floor(secs/num1))%num2).toString();
+  if (LeadingZero && s.length < 2)
+    s = "0" + s;
+  return "<b>" + s + "</b>";
+}
+
+function CountBack(secs) {
+  if (secs < 0) {
+    document.getElementById("cntdwn").innerHTML = FinishMessage;
+    return;
+  }
+  DisplayStr = DisplayFormat.replace(/%%D%%/g, calcage(secs,86400,100000));
+  DisplayStr = DisplayStr.replace(/%%H%%/g, calcage(secs,3600,24));
+  DisplayStr = DisplayStr.replace(/%%M%%/g, calcage(secs,60,60));
+  DisplayStr = DisplayStr.replace(/%%S%%/g, calcage(secs,1,60));
+
+  document.getElementById("cntdwn").innerHTML = DisplayStr;
+  if (CountActive)
+    setTimeout("CountBack(" + (secs+CountStepper) + ")", SetTimeOutPeriod);
+}
+
+function putspan(backcolor, forecolor) {
+ document.write("<span id='cntdwn' style='background-color:" + backcolor +
+                "; color:" + forecolor + "'></span>");
+}
+
+if (typeof(BackColor)=="undefined")
+  BackColor = "white";
+if (typeof(ForeColor)=="undefined")
+  ForeColor= "black";
+if (typeof(TargetDate)=="undefined")
+  TargetDate = "12/31/2020 5:00 AM";
+if (typeof(DisplayFormat)=="undefined")
+  DisplayFormat = "%%D%% Days, %%H%% Hours, %%M%% Minutes, %%S%% Seconds.";
+if (typeof(CountActive)=="undefined")
+  CountActive = true;
+if (typeof(FinishMessage)=="undefined")
+  FinishMessage = "";
+if (typeof(CountStepper)!="number")
+  CountStepper = -1;
+if (typeof(LeadingZero)=="undefined")
+  LeadingZero = true;
+
+
+CountStepper = Math.ceil(CountStepper);
+if (CountStepper == 0)
+  CountActive = false;
+var SetTimeOutPeriod = (Math.abs(CountStepper)-1)*1000 + 990;
+putspan(BackColor, ForeColor);
+var dthen = new Date(TargetDate);
+var dnow = new Date();
+if(CountStepper>0)
+  ddiff = new Date(dnow-dthen);
+else
+  ddiff = new Date(dthen-dnow);
+gsecs = Math.floor(ddiff.valueOf()/1000);
+CountBack(gsecs);
+
+</script>
+	<script language="javascript">
+		var cd1 = new countdown('cd1');
+		cd1.Div			= "clock1";
+		cd1.TargetDate		= "08/15/2010 8:00 PM";
+		cd1.DisplayFormat	= "%%D%% days, %%H%% hours, %%M%% minutes, %%S%% seconds until event AAA happens";
+		
+		var cd2			= new countdown('cd2');
+		cd2.Div			= "clock2";
+		cd2.TargetDate		= "02/01/2020 5:30 PM";
+		cd2.DisplayFormat	= "%%D%% days, %%H%% hours, %%M%% minutes, %%S%% seconds until event BBB happens...";
+	</script>
+</head>
+
+<body>
+
+<div id="clockwrapper"><div id="clock1">[clock]</div></div>
+<br>
+
+<div id="clockwrapper"><div id="clock2">[clock2]</div></div>
+<br>
+
+
+<script language="javascript">
+<!--
+	cd1.Setup();
+	cd2.Setup();
+//-->
+</script>
+
+
+</body>
+</html>

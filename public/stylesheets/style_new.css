@@ -355,10 +355,11 @@ background-repeat: repeat;
 	width: 174px;
 }
 .keyValue {
-	float: left;
+	float: right;
 	height: 43px;
-	width: 377px;
+	width: 470px;
 	padding-top: 5px;
+        padding-right: 5px;
 }
 .red {
 	background-image: url(/images/red.jpg);
@@ -442,8 +443,13 @@ background-repeat: repeat;
 
 #userform {
 	float: left;
-	height: 565px;
-	width: 1000px;
+	height: 690px;
+	width: 650px;
+}
+#userform2 {
+        float: right;
+	height: 690px;
+	width: 350px;
 }
 
 .contform {
@@ -809,4 +815,35 @@ h2 {font:Georgia, "Times New Roman", Times, serif; font-size:18px; color:#FFF;}
 	line-height: 38px;
 	color: #FFF;
 	padding-left: 62px;
+}
+
+/* Styles that relton has defined */
+/* Style for Customer Demand Deals Scrollbar Header*/
+#demandDealSubTitle {
+	background-image: url(/images/todayBG.jpg);
+	float: left;
+	height: 30px;
+	width: 350px;
+}
+.yourDemandDealSubTitle {
+	float: left;
+	height: 30px;
+	width: 350px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 20px;
+	line-height: 30px;
+	color: #FFF;
+	padding-left: 10px;
+}
+/* Style for Vertical tabs in the scrollbar of I want a deal page*/
+.iwantdeal_vertical_tabs {
+	float: left;
+	width: 79px;
+	height: 143px;
+	background-image: url(/images/iwantdeal_vertical_tabs.jpg);
+	background-repeat: no-repeat;
+	font-size: 14px;
+	color: #FFF;
+	text-align: center;
+	padding-top: 33px;
 }
