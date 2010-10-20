@@ -161,3 +161,10 @@ background-repeat: repeat;
                 padding:          200px 0 0 138px;
         }
 
+
+        #todayHOT {
+	background-image: url(/images/todayBG.jpg);
+	margin-left: 180px;
+	height: 48px;
+	width: 1000px;
+}
