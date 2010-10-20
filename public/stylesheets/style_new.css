@@ -396,6 +396,22 @@ background-repeat: repeat;
 	width: 1000px;
 }
 
+#offered_deals {
+	float: left;
+	min-height: 390px;
+	width: 1000px;
+}
+
+.dealsoffered
+{
+background-image:url(/images/bg_module.jpg);
+background-repeat: repeat;
+color:#222222;
+padding:4px;
+_padding:0px;
+text-align:center;
+}
+
 #user_recent {
 	float: left;
 	height: auto;

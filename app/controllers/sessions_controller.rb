@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
  
 
   def new
+    @page = "Login"
   end
 
   def create

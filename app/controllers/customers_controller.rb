@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal]
+  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal]
   layout 'application'
 
   def index
@@ -41,6 +41,10 @@ class CustomersController < ApplicationController
         }
       end
      end
+  end
+
+   def offered_deals
+    @page = "Offered Deals"
   end
 
   def deal_sub_categories
@@ -177,7 +181,7 @@ class CustomersController < ApplicationController
   end
 
   def location_deals
-
+    @page = "Location Deals"
     @deals = DealLocationDetail.find(:all)
 
     if @deals.blank?

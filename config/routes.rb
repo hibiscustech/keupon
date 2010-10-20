@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
   map.profile_update 'profile_update' , :controller => 'customers', :action => 'profile_update'
   map.recent_deals 'recent_deals' , :controller => 'customers', :action => 'recent_deals'
+  map.offered_deals 'offered_deals' , :controller => 'customers', :action => 'offered_deals'
   map.want_a_deal 'want_a_deal' , :controller => 'customers', :action => 'want_a_deal'
   map.location_deals '/customers/location_deals', :controller => 'customers', :action => 'location_deals'
   map.merchant_analytics '/merchant_analytics', :controller => 'merchant_analytics', :action => 'index'
