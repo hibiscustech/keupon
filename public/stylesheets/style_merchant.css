@@ -168,3 +168,15 @@ background-repeat: repeat;
 	height: 48px;
 	width: 1000px;
 }
+
+
+.todHotdeal {
+	float: left;
+	height: 48px;
+	width: 300px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 30px;
+	line-height: 48px;
+	color: #FFF;
+	padding-left: 20px;
+}
