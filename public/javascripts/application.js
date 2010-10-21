@@ -39,6 +39,18 @@ function showCreateDeal(elementID, deal_date)
     document.getElementById(elementID).style.display = "block";
 }
 
+function showCreateDemandDeal(elementID, demand_deal)
+{
+    new Ajax.Request('/merchant/view_create_demand_deal?id='+demand_deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
+function showBidDemandDeal(elementID, demand_deal)
+{
+    new Ajax.Request('/merchant/view_demand_deal_info?id='+demand_deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
 function hideElt(elementID)
 {
 	document.getElementById(elementID).style.display = "none";

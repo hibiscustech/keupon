@@ -16,22 +16,112 @@ text-align:center;
 }
 </style>
 
+<script Language="JavaScript">
+<!--
+function form_validator(){
+var theForm = document.forms['demand_deal_form'];
+var i;
+if (theForm.name.value == "" || theForm.name.value.length < 1)
+{
+alert("You must enter Deal Title.");
+theForm.name.focus();
+return (false);
+}
+
+if (theForm.actual_value.value == "" || theForm.actual_value.value.length < 1)
+{
+alert("You must enter Original Value.");
+theForm.actual_value.focus();
+return (false);
+}
+
+if (theForm.discount.selectedIndex == '0')
+{
+alert("Please select one of the Discount options.");
+theForm.discount.focus();
+return (false);
+}
+
+if (theForm.number.value == "" || theForm.number.value.length < 1)
+{
+alert("You must enter Quantity.");
+theForm.number.focus();
+return (false);
+}
+
+if (theForm.rules.value == "" || theForm.rules.value.length < 1)
+{
+alert("You must enter Rules.");
+theForm.rules.focus();
+return (false);
+}
+
+if (theForm.highlights.value == "" || theForm.highlights.value.length < 1)
+{
+alert("You must enter Highlights.");
+theForm.highlights.focus();
+return (false);
+}
+
+if (theForm.expiry_date.value == "" || theForm.expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.expiry_date.focus();
+return (false);
+}
+
+return true;
+}
+
+//-->
+</script>
+
 
 <div id="offered_deals">
-   <div  class="dealsoffered" style="width:650px;height:138px;">
-          <div style="float: left;"><img src="/images/new.jpg" style="margin-top:14px;margin-left:10px;"/></div>
-          <font color="black" style="font-size:12px;margin-left:350px;">Time Left</font>
+  <% for deal in @demand_deals %>
+  <% if deal.bidding_status == "new" %>
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_new.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+          <span style="font-size:12px;margin-left:350px; font-weight: bold;" id="bid<%=deal.id%>">Time Left</span>
            <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
-                <font style="text-align:justify;float:left;margin-left:5px;"> All KidPic Members can upload Great Photos for Free. You can also enter any photo(s) into our monthly child and baby contest. You never know when you can get spotted. Get Started.</font>
-                <font color="#034D7C" style="float:left;font-weight:bold;font-size:13px;margin-left:5px;">Price : &nbsp;&nbsp; Quantity : </font><br/>
+                <span style="text-align:justify;float:left;margin-left:5px;height: 60px; width: 500px;"><%= deal.description %></span>
+                <span style="float:left;font-weight:bold;font-size:13px; color: #034D7C; margin-left:5px;">Expected Price: S$<%= deal.expected_value %> &nbsp;&nbsp; Expected Quantity: <%= deal.number %> </span><br/>
               <div style="float: right;width: 310px;margin-top:10px; ">
-                   <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;"><tr><td width="10%"><%=link_to "Bid it",'#', {:style=>'color:#034D7C;'}%></td><td width="10%"><%=link_to "Cancel it",'#', {:style=>'color:#034D7C;'}%></td></tr>
-                   </table>
+                <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;" align="right">
+                  <tr>
+                    <td align="right" width="10%">
+                      <a href="#" onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" style="color: rgb(3, 77, 124);">Bid it</a>
+                    </td>
+                    <td align="right" width="10%">
+                      <a href="#" style="color: rgb(3, 77, 124);">Cancel it</a>
+                    </td>
+                  </tr>
+                </table>
               </div>
            </div>
        </div>
-
-   <div  class="dealsoffered" style="width:650px;height:138px;">
+  <% elsif deal.bidding_status == "closed" %>
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_closed.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+          <span style="font-size:12px;margin-left:350px; font-weight: bold;" id="bid<%=deal.id%>"></span>
+           <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
+                <span style="text-align:justify;float:left;margin-left:5px;height: 60px; width: 500px;"><%= deal.description %></span>
+                <span style="float:left;font-weight:bold;font-size:13px; color: #034D7C; margin-left:5px;">Expected Price: S$<%= deal.expected_value %> &nbsp;&nbsp; Expected Quantity: <%= deal.number %> </span><br/>
+              <div style="float: right;width: 310px;margin-top:10px; ">
+                <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;" align="right">
+                  <tr>
+                    <td align="right" width="10%">
+                      <a href="#" onclick="showBidDemandDeal('popup_view_deal',<%= deal.bid_id %>);" style="color: rgb(3, 77, 124);">Show Bid</a>
+                    </td>                    
+                  </tr>
+                </table>
+              </div>
+           </div>
+       </div>
+  <% end %>
+  <% end %>
+<!--
+   <div  class="dealsoffered" style="width:650px;height:125px;">
           <div style="float: left;"><img src="/images/bid_expired.jpg" style="margin-top:14px;margin-left:10px;"/></div>
           <font color="black" style="font-size:12px;margin-left:350px;">Time Left</font>
            <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
@@ -44,8 +134,8 @@ text-align:center;
            </div>
        </div>
 
-   <div  class="dealsoffered" style="width:650px;height:138px;">
-          <div style="float: left;"><img src="/images/last_day.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_lastday.jpg" style="margin-top:14px;margin-left:10px;"/></div>
           <font color="black" style="font-size:12px;margin-left:350px;">Time Left</font>
            <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
                 <font style="text-align:justify;float:left;margin-left:5px;"> All KidPic Members can upload Great Photos for Free. You can also enter any photo(s) into our monthly child and baby contest. You never know when you can get spotted. Get Started.</font>
@@ -57,8 +147,8 @@ text-align:center;
            </div>
        </div>
 
-   <div  class="dealsoffered" style="width:650px;height:138px;">
-          <div style="float: left;"><img src="/images/bide_closed.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_closed.jpg" style="margin-top:14px;margin-left:10px;"/></div>
           <font color="black" style="font-size:12px;margin-left:350px;">Time Left</font>
            <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
                 <font style="text-align:justify;float:left;margin-left:5px;"> All KidPic Members can upload Great Photos for Free. You can also enter any photo(s) into our monthly child and baby contest. You never know when you can get spotted. Get Started.</font>
@@ -70,6 +160,63 @@ text-align:center;
            </div>
        </div>
 
-    
+-->
   </div>
-  
+  <div id="popup_create_deal">
+    <%= render :partial => "view_create_demand_deal" %>
+  </div>
+  <div id="popup_view_deal">
+    <%= render :partial => "demand_deal_info" %>
+  </div>
+  <script language="JavaScript">
+<% for deal in @demand_deals %>
+  <% if deal.bidding_status == "new" %>
+  StartCountDown("bid<%=deal.id%>","<%= Time.at(deal.deadline.to_i).strftime('%m/%d/%Y %H:%M')%>" )
+  <% end %>
+<% end %>
+
+  /*
+  	Author:		Robert Hashemian (http://www.hashemian.com/)
+  	Modified by:	Munsifali Rashid (http://www.munit.co.uk/)
+  	Modified by:	Tilesh Khatri
+  */
+
+  function StartCountDown(myDiv,myTargetDate)
+  {
+    var dthen	= new Date(myTargetDate);
+    var dnow	= new Date();
+    ddiff		= new Date(dthen-dnow);
+    gsecs		= Math.floor(ddiff.valueOf()/1000);
+    CountBack(myDiv,gsecs);
+  }
+
+  function Calcage(secs, num1, num2)
+  {
+    s = ((Math.floor(secs/num1))%num2).toString();
+    if (s.length < 2)
+    {
+      s = "0" + s;
+    }
+    return (s);
+  }
+
+  function CountBack(myDiv, secs)
+  {
+    var DisplayStr;
+    var DisplayFormat = "Time left: %%D%%days %%H%%:%%M%%:%%S%%";
+    DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
+    DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
+    DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
+    DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
+    if(secs > 0)
+    {
+      document.getElementById(myDiv).innerHTML = DisplayStr;
+      setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
+    }
+    else
+    {
+      document.getElementById(myDiv).innerHTML = "Bidding Closed";
+    }
+  }
+
+</script>

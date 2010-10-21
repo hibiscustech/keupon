@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101013112355) do
+ActiveRecord::Schema.define(:version => 20101020131245) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                :limit => 50, :null => false
@@ -93,23 +93,24 @@ ActiveRecord::Schema.define(:version => 20101013112355) do
   add_index "customer_deals", ["deal_id"], :name => "deal_id"
 
   create_table "customer_demand_deal_biddings", :force => true do |t|
-    t.string  "name",                    :null => false
-    t.float   "actual_value",            :null => false
-    t.float   "buy_value",               :null => false
-    t.float   "savings",                 :null => false
-    t.integer "discount",                :null => false
-    t.integer "number",                  :null => false
+    t.string  "name"
+    t.float   "actual_value"
+    t.float   "buy_value"
+    t.float   "savings"
+    t.integer "discount"
+    t.integer "number"
     t.string  "deal_photo_file_name"
     t.string  "deal_photo_content_type"
     t.integer "deal_photo_file_size"
     t.string  "rules"
     t.string  "highlights"
-    t.integer "time_created",            :null => false
+    t.integer "time_created",                                            :null => false
     t.integer "bid_time"
     t.integer "deal_start_date"
     t.integer "deal_end_date"
-    t.integer "merchant_id",             :null => false
-    t.integer "customer_demand_deal_id"
+    t.integer "merchant_id",                                             :null => false
+    t.integer "customer_demand_deal_id",                                 :null => false
+    t.string  "status",                  :limit => 0, :default => "new", :null => false
   end
 
   add_index "customer_demand_deal_biddings", ["customer_demand_deal_id"], :name => "customer_demand_deal_id"

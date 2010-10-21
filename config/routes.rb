@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.location_deals '/customers/location_deals', :controller => 'customers', :action => 'location_deals'
   map.merchant_analytics '/merchant_analytics', :controller => 'merchant_analytics', :action => 'index'
   map.admin_analytics '/admin_analytics', :controller => 'admin_analytics', :action => 'index'
-
+  
   map.resources :customers  
   map.resource :merchant
   map.resource :session

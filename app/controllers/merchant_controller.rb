@@ -149,7 +149,47 @@ class MerchantController < ApplicationController
 
 
   def deals_on_demand
+    @page = "Deals on Demand"
+    @demand_deals = MerchantProfile.all_my_demand_deals(current_merchant.id)
+  end
+
+  def view_create_demand_deal
+    @bid_deal = CustomerDemandDealBidding.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'create_demand_deal',:partial => "create_demand_deal"
+          end
+        }
+      end
+    end
+  end
+
+  def view_demand_deal_info
+    @bid_deal = CustomerDemandDealBidding.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_demand_deal',:partial => "view_demand_deal"
+          end
+        }
+      end
+    end
+  end
+
+  def create_demand_deal
+    @bid_deal = CustomerDemandDealBidding.find(params[:bid_id])
+    buy = params[:actual_value].to_f*params[:discount].to_f/100
+    save_amount = params[:actual_value].to_f - buy.to_f
+    @bid_deal.update_attributes(:name => params[:name], :actual_value => params[:actual_value], :buy_value => buy, :savings => save_amount, 
+      :discount => params[:discount], :number => params[:number], :demand_deal_photo => params[:demand_deal_photo], :rules => params[:rules],
+      :highlights => params[:highlights], :bid_time => Time.now.to_i, :deal_end_date => Time.parse(params[:expiry_date]).to_i, :status => "closed")
     
+    redirect_to "/deals_on_demand"
   end
 
 end

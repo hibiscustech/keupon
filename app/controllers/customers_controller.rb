@@ -28,7 +28,13 @@ class CustomersController < ApplicationController
      @categories = DealCategory.find(:all)
      @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
      if request.xml_http_request?
-       CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline]+" 23:59:59"), :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+       iwantdeal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline]+" 23:59:59"), :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+       merchants = MerchantProfile.all_merchants_for_my_demand_deal(params[:category], params[:sub_category])
+
+       for merchant in merchants
+         CustomerDemandDealBidding.create(:time_created => Time.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => iwantdeal.id)
+       end
+
        @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
        flash[:msg] = "The Deal that you demanded has been created. Keep Checking the 'Deals that You Demanded section' to view your deal offers."
        respond_to do |format|

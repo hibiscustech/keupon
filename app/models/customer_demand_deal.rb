@@ -7,7 +7,7 @@ class CustomerDemandDeal < ActiveRecord::Base
   has_many :customer_demand_deal_biddings
 
   def self.customer_demand_deals_summary(customer_id)
-    query = %Q{ select description, expected_value, cdd.number, deadline, cdd.status, deal_id, count(cddb.id) as offerings
+    query = %Q{ select description, expected_value, cdd.number, deadline, cdd.status, deal_id, sum(case when cddb.status='closed' then 1 else 0 end) offerings
                 from customer_demand_deals cdd
                 left outer join customer_demand_deal_biddings cddb on cddb.customer_demand_deal_id = cdd.id
                 where customer_id = #{customer_id}
