@@ -1,0 +1,64 @@
+/********************
+ * FEATURE CAROUSEL *
+ ********************/
+.featureCarouselshadow {  background:url(../images/roundabout-bg-shadow.png) bottom center no-repeat; }
+#featureCarousel {
+    height: 320px;
+    width:960px;
+    position:relative;
+    margin-left:15px;
+}
+#featureCarousel img {
+    border:0;
+}
+#featureCarousel .feature {
+    position:absolute;
+    top:-1000px;
+    left:-1000px;
+    border:0px solid white;
+    padding:6px;
+    cursor:pointer;
+    background: #ffffff url(../images/roundabout-item-bg.gif) repeat-x bottom;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+#featureCarousel .feature > div {
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    padding:6px;
+}
+#featureCarousel .feature > div p {
+    margin:0;
+    padding:10px;
+    font-weight:normal;
+    font-size:13px;
+    color:white;
+    background-color:black;
+    border:0px;
+}
+#featureCarousel .blipsContainer {
+    position:absolute;
+    color:white;
+    right:0px;
+    bottom:22px;
+    padding:0;
+    margin:0;
+}
+#featureCarousel .blipsContainer .blip {
+    margin:3px;
+    height:14px;
+    width:14px;
+    color:#444444;
+    text-align:center;
+    font-size:10px;
+    padding:3px;
+    line-height:13px;
+    border:1px solid #b4b4b4;
+}
+#featureCarousel .blipsContainer .blipSelected {
+    color:white;
+    font-weight:bold;
+    background:#b4b4b4;
+}

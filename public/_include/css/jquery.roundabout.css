@@ -1,0 +1,75 @@
+.slide-roundabout {
+	text-align:center;
+	background-image: url(../images/slide-7-background.jpg);
+}
+.slide-roundabout h1 { padding-top:25px; }
+
+.roundaboutshadow{  background:url(../images/roundabout-bg-shadow.png) bottom center no-repeat;  }
+
+.roundabout-holder {
+				list-style: none;
+				width: 87%;
+				height:220px;
+				margin: 1em auto;
+			}
+.roundabout-moveable-item {
+                background: #ffffff url(../images/roundabout-item-bg.gif) bottom repeat-x;
+                padding:7px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+				height: 17em;
+				width: 27em;
+				cursor: pointer;
+                display:block;
+			}
+
+.roundabout-moveable-item img {
+				height: 100%;
+				width: 100%;
+                display:block;
+			}
+
+.roundabout-in-focus { 	cursor: auto; }
+
+#filler {
+				text-align: center;
+				height: 1em;
+                color:#ffffff;
+                font-size:14px;
+                padding-top:5px;
+                padding-bottom:5px;
+			}
+
+/* styles for alternate roundabout header */
+.roundabout-desclinkbox { background:url(../images/roundabout-desclink-bg.png) no-repeat; height:40px; overflow:hidden;}
+
+.roundabout-desc { width:550px; }
+.roundabout-arrows { width:30px;}
+.roundabout-arrows img { margin-left:4px; margin-right:4px; margin-top:10px; }
+
+.header-alt .roundabout-holder {
+  				height:242px;
+				width: 85%;
+                margin: 0 auto;
+}
+.header-alt .roundabout-moveable-item {
+                background: #ffffff url(../images/roundabout-item-bg.gif) bottom repeat-x;
+                padding:7px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+				height: 19em;
+				width: 29em;
+				cursor: pointer;
+                display:block;
+			}
+.header-alt #filler {
+				text-align: center;
+				height: 30px;
+                color:#444444;
+                font-size:14px;
+                padding-top:5px;
+			}
+#roundaboutdescription {  margin-bottom:0px; }
+.roundaboutdescription h1 { padding-top:5px; padding-left:4px; font-size:27px; line-height:29px; letter-spacing:-0.04em; height:30px; overflow:hidden; }
