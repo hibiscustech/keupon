@@ -21,7 +21,7 @@
 <div style="width:800px;" >
 
   <div align="left" style="float:left;width:600px;" >
-  <br/><h4>Billing Information</h4> <br/><input id="chk11" name="chk11" onClick="validtae_d(this.value)" type="checkbox" value="check" />
+  <br/><h4></h4> <br/><input id="chk11" name="chk11" onClick="validtae_d(this.value)" type="checkbox" value="check" />
   use my new credit card
 
   <% form_for :billing_information, :url=>{:controller => 'customers', :action =>'check_transaction_details'} do |f|-%>
@@ -133,7 +133,7 @@
   <% end -%></div>
 
 
-    <div align="right" style="text-align: right;margin-left: 500px;width: 200px;padding-top: 250px;">
+    <div align="right" style="text-align: right;margin-left: 500px;width: 200px;padding-top: 270px;">
     <%= @map.div(:width => 300, :height => 300) %>
   </div>
 </div>

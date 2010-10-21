@@ -238,6 +238,7 @@ class CustomersController < ApplicationController
   end
 
   def get_location_deal
+    @page = 'Billing Information'
     @deal = Deal.find(params[:id])
     @billing_information  = CustomerCreditCard.new
     @latest_billing_information  = CustomerCreditCard.find_by_customer_id(current_customer ,:order => 'time_created DESC')
