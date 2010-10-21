@@ -51,6 +51,21 @@ class CustomersController < ApplicationController
 
    def offered_deals
     @page = "Offered Deals"
+    @offerings = CustomerProfile.my_demand_deal_offerings(params[:deal])
+  end
+
+  def view_demand_deal_offer
+    @bid_deal = CustomerDemandDealBidding.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_demand_deal',:partial => "view_demand_deal"
+          end
+        }
+      end
+    end
   end
 
   def deal_sub_categories
@@ -68,6 +83,7 @@ class CustomersController < ApplicationController
   end
 
   def transaction_details
+    @page = "Billing Information"
     @billing_information = CustomerCreditCard.new
     @deal = Deal.find(params[:id])
   end

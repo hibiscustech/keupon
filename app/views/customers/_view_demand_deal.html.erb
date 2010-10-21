@@ -1,0 +1,23 @@
+<div class="dateBlog">
+      <div class="dateB1">
+        <div class="dateB1_top"><%=@bid_deal.name%> </div>
+        <div class="dateB1_center">
+          <div class="dateB1_C1"><img src="<%= @bid_deal.demand_deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/></div>
+          <div class="dateB1_C2">
+          S$<%= @bid_deal.actual_value %>
+          <br />
+          <br />
+          <br />
+
+          <p style="padding-top:10px;"><%= @bid_deal.discount %> %</p>
+          <br />
+          <br />
+
+          <p style="padding-top:10px;">S$<%= (@bid_deal.actual_value.to_f - @bid_deal.buy_value.to_f).to_s %></p>
+
+          </div>
+        </div>
+        <div class="dateB1_text"><%= @bid_deal.highlights %></div>
+      </div>
+      <div class="dateB2">Expires On: <span style="color:#F00;"><%= Time.at(@bid_deal.deal_end_date).strftime("%d-%m-%Y") %></span></div>
+    </div>

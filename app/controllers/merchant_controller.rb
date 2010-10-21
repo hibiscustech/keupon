@@ -188,6 +188,9 @@ class MerchantController < ApplicationController
     @bid_deal.update_attributes(:name => params[:name], :actual_value => params[:actual_value], :buy_value => buy, :savings => save_amount, 
       :discount => params[:discount], :number => params[:number], :demand_deal_photo => params[:demand_deal_photo], :rules => params[:rules],
       :highlights => params[:highlights], :bid_time => Time.now.to_i, :deal_end_date => Time.parse(params[:expiry_date]).to_i, :status => "closed")
+
+    demand_deal = @bid_deal.customer_demand_deal
+    demand_deal.update_attributes(:status => "offered")
     
     redirect_to "/deals_on_demand"
   end

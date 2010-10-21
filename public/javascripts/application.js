@@ -51,6 +51,12 @@ function showBidDemandDeal(elementID, demand_deal)
     document.getElementById(elementID).style.display = "block";
 }
 
+function showDemandDealOffer(elementID, demand_deal)
+{
+    new Ajax.Request('/customers/view_demand_deal_offer?id='+demand_deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
 function hideElt(elementID)
 {
 	document.getElementById(elementID).style.display = "none";

@@ -43,6 +43,16 @@ if ( dw_scrollObj.isSupported() ) {
     dw_Util.writeStyleSheet('css/scrollbar_demo.css')
     dw_Event.add( window, 'load', init_dw_Scroll);
 }
+
+function call_offers(deal, status){
+  if(status == "offered"){
+    location.href='/offered_deals?deal='+deal;
+  }
+  else{
+    alert("No Offers.")
+  }
+}
+
 </script>
 
 <div id="userform">
