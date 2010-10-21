@@ -120,6 +120,7 @@ class CustomersController < ApplicationController
 
   # render new.rhtml
   def new
+    @page = 'Registration'
     @customer = Customer.new
   end
 
@@ -246,6 +247,7 @@ class CustomersController < ApplicationController
 
 
   def my_profile
+    @page = 'About Me'
     @customer_profile = CustomerProfile.find_by_customer_id(params[:id])
   end
 
@@ -264,6 +266,10 @@ class CustomersController < ApplicationController
     end
     flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
     redirect_to '/'
+  end
+
+  def my_keupons
+   @page = 'My Keupons'
   end
 
 end
