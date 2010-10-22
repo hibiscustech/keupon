@@ -2,7 +2,11 @@
 <select class="form-dropdown" style="width:150px" id="sub_category" name="sub_category">
                         <option value="0">Select a Sub-Category</option>
                         <% for scategory in @sub_categories %>
-                        <option value="<%= scategory.id %>"><%= scategory.name %></option>
+                          <% if !@demand_deal.blank? && (@demand_deal.deal_sub_category_id.to_s == scategory.id.to_s)%>
+                            <option value="<%= scategory.id %>" selected><%= scategory.name %></option>
+                          <% else %>
+                            <option value="<%= scategory.id %>"><%= scategory.name %></option>
+                          <% end %>
                         <% end %>
 </select>
 <% else%>

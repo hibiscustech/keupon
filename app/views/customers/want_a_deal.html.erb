@@ -49,8 +49,13 @@ function call_offers(deal, status){
     location.href='/offered_deals?deal='+deal;
   }
   else{
-    alert("No Offers.")
+    new Ajax.Request('/customers/want_a_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
   }
+}
+
+function setButtonStatus(status){
+  var theForm = document.forms['2730422465'];
+  theForm.button_status.value = status;
 }
 
 </script>

@@ -9,21 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101020131245) do
+ActiveRecord::Schema.define(:version => 20101022071732) do
 
   create_table "companies", :force => true do |t|
-    t.string  "name",                :limit => 50, :null => false
-    t.string  "website",             :limit => 50, :null => false
-    t.string  "address1",            :limit => 50, :null => false
-    t.string  "address2",            :limit => 50
-    t.string  "city",                :limit => 30
-    t.string  "state",               :limit => 30
-    t.string  "zipcode",             :limit => 10, :null => false
-    t.string  "latitude",            :limit => 50
-    t.string  "longitude",           :limit => 50
+    t.string  "name",                       :limit => 50, :null => false
+    t.string  "website",                    :limit => 50, :null => false
+    t.string  "address1",                   :limit => 50, :null => false
+    t.string  "address2",                   :limit => 50
+    t.string  "city",                       :limit => 30
+    t.string  "state",                      :limit => 30
+    t.string  "zipcode",                    :limit => 10, :null => false
+    t.string  "latitude",                   :limit => 50
+    t.string  "longitude",                  :limit => 50
     t.text    "detail"
-    t.string  "logo",                :limit => 50
-    t.integer "merchant_profile_id",               :null => false
+    t.integer "merchant_profile_id",                      :null => false
+    t.string  "company_photo_file_name"
+    t.string  "company_photo_content_type"
+    t.integer "company_photo_file_size"
   end
 
   add_index "companies", ["merchant_profile_id"], :name => "merchant_profile_id"
@@ -99,18 +101,18 @@ ActiveRecord::Schema.define(:version => 20101020131245) do
     t.float   "savings"
     t.integer "discount"
     t.integer "number"
-    t.string  "deal_photo_file_name"
-    t.string  "deal_photo_content_type"
-    t.integer "deal_photo_file_size"
+    t.string  "demand_deal_photo_file_name"
+    t.string  "demand_deal_photo_content_type"
+    t.integer "demand_deal_photo_file_size"
     t.string  "rules"
     t.string  "highlights"
-    t.integer "time_created",                                            :null => false
+    t.integer "time_created",                                                   :null => false
     t.integer "bid_time"
     t.integer "deal_start_date"
     t.integer "deal_end_date"
-    t.integer "merchant_id",                                             :null => false
-    t.integer "customer_demand_deal_id",                                 :null => false
-    t.string  "status",                  :limit => 0, :default => "new", :null => false
+    t.integer "merchant_id",                                                    :null => false
+    t.integer "customer_demand_deal_id",                                        :null => false
+    t.string  "status",                         :limit => 0, :default => "new", :null => false
   end
 
   add_index "customer_demand_deal_biddings", ["customer_demand_deal_id"], :name => "customer_demand_deal_id"
@@ -246,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20101020131245) do
     t.string  "deal_photo_file_name"
     t.string  "deal_photo_content_type"
     t.integer "deal_photo_file_size"
+    t.integer "keupoints_required"
   end
 
   add_index "deals", ["deal_category_id"], :name => "deal_category_id"

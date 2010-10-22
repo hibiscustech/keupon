@@ -1,5 +1,7 @@
-<form class="jotform-form" action="/customers/want_a_deal" name="form_2730422465" id="2730422465" accept-charset="utf-8" method="post" onsubmit="new Ajax.Request('/customers/want_a_deal', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;" style="padding: 0pt; margin: 0pt;"><div style="margin: 0pt; padding: 0pt; display: inline;"><input name="authenticity_token" value="WHG5zDjP3BuRLy+4EHm0iZ5LTAvxLu24nOnxHqywhto=" type="hidden"/></div>
+<form class="jotform-form" action="/customers/update_or_confirm_want_a_deal" name="form_2730422465" id="2730422465" accept-charset="utf-8" method="post" onsubmit="new Ajax.Request('/customers/update_or_confirm_want_a_deal', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;" style="padding: 0pt; margin: 0pt;"><div style="margin: 0pt; padding: 0pt; display: inline;"><input name="authenticity_token" value="WHG5zDjP3BuRLy+4EHm0iZ5LTAvxLu24nOnxHqywhto=" type="hidden"/></div>
     <input type="hidden" name="formID" value="2730422465" />
+    <input type="hidden" name="demand_deal" id="demand_deal" value="<%= @demand_deal.id %>" />
+    <input type="hidden" name="button_status" id="button_status" value="" />
     <div class="form-all">
         <ul class="form-section">
             <li class="form-line" id="id_6">
@@ -10,38 +12,38 @@
 
             <li class="form-line" id="id_8">
               <% if !flash[:msg].blank? %>
-                <div id="cid_8" class="form-input-wide" style=" width: 570px; background-color: green;">                  
-                  <%= flash[:msg] %>                                    
+                <div id="cid_8" class="form-input-wide" style=" width: 570px; background-color: green;">
+                  <%= flash[:msg] %>
                 </div>
               <% else %>
-                <div id="cid_8" class="form-input-wide" style=" width: 570px;">                  
-                  &nbsp;                                   
+                <div id="cid_8" class="form-input-wide" style=" width: 570px;">
+                  &nbsp;
                 </div>
               <% end %>
             </li>
-            
+
             <li class="form-line" id="id_5">
                 <label class="form-label-left" id="label_5" for="input_5"> Describe the Keupon that you are looking for </label>
                 <div id="cid_5" class="form-input">
-                    <textarea id="description" class="form-textarea" name="description" cols="40" rows="6"></textarea>
+                    <textarea id="description" class="form-textarea" name="description" cols="40" rows="6"><%= @demand_deal.description %></textarea>
                 </div>
             </li>
             <li class="form-line" id="id_3">
                 <label class="form-label-left" id="label_3" for="input_3"> Price for your Keupon </label>
                 <div id="cid_3" class="form-input">
-                    <input type="text" class="form-textbox" id="price" name="price" size="20" />S$
+                    <input type="text" class="form-textbox" id="price" name="price" size="20" value="<%= @demand_deal.expected_value %>" />S$
                 </div>
             </li>
             <li class="form-line" id="id_1">
                 <label class="form-label-left" id="label_1" for="input_1"> How many Keupons will you Buy? </label>
                 <div id="cid_1" class="form-input">
-                    <input type="text" class="form-textbox" id="quantity" name="quantity" size="20" />
+                    <input type="text" class="form-textbox" id="quantity" name="quantity" size="20" value="<%= @demand_deal.number %>"/>
                 </div>
             </li>
             <li class="form-line" id="id_2">
                 <label class="form-label-left" id="label_2" for="input_2"> By when do you require this Keupon? </label>
                 <div id="cid_2" class="form-input">
-                    <input type="text" class="form-textbox" id="deadline" name="deadline" size="20" />
+                    <input type="text" class="form-textbox" id="deadline" name="deadline" size="20" value="<%= Time.at(@demand_deal.deadline).strftime('%d/%m/%Y') %>"/>
                     <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="border: 0px none; cursor: pointer;"/>
                 </div>
             </li>
@@ -51,7 +53,11 @@
                     <select class="form-dropdown" style="width:150px" id="category" name="category">
                         <option value="0">Select a Category</option>
                         <% for category in @categories %>
-                        <option value="<%= category.id %>"><%= category.name %></option>
+                          <% if @demand_deal.deal_category_id.to_s == category.id.to_s %>
+                            <option value="<%= category.id %>" selected><%= category.name %></option>
+                          <% else %>
+                            <option value="<%= category.id %>"><%= category.name %></option>
+                          <% end %>
                         <% end %>
                     </select>
                     <%=observe_field "category",
@@ -69,9 +75,13 @@
             <li class="form-line" id="id_2">
                 <div id="cid_2" class="form-input-wide">
                     <div style="margin-left:156px" class="form-buttons-wrapper">
-                      <button id="input_2" name="input_2" type="button" onclick="$('2730422465').onsubmit();return false;" class="form-submit-button">
-                            I want a Deal
-                        </button>
+                      <button id="input_2a" name="input_2a" type="button" onclick="setButtonStatus('update');$('2730422465').onsubmit();return false;" class="form-submit-button" <%= (@demand_deal.status != "new")? "disabled" : ""%>>
+                            Update Deal
+                      </button>
+                      &nbsp;&nbsp;
+                      <button id="input_2b" name="input_2b" type="button" onclick="setButtonStatus('confirm');$('2730422465').onsubmit();return false;" class="form-submit-button" <%= (@demand_deal.status != "new")? "disabled" : ""%>>
+                            Confirm Deal
+                      </button>
                     </div>
                 </div>
             </li>

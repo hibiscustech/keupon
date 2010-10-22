@@ -28,28 +28,71 @@ class CustomersController < ApplicationController
      @categories = DealCategory.find(:all)
      @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
      if request.xml_http_request?
-       iwantdeal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline]+" 23:59:59"), :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
-       merchants = MerchantProfile.all_merchants_for_my_demand_deal(params[:category], params[:sub_category])
-
-       for merchant in merchants
-         CustomerDemandDealBidding.create(:time_created => Time.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => iwantdeal.id)
+       if params[:id].blank?
+         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline]+" 23:59:59"), :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+         @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+         @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
+         flash[:msg] = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."
+         respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'userform', :partial => "edit_i_want_deal_form"
+              page.replace_html 'userform2', :partial => "my_demand_deals_summary"
+            end
+          }
+         end
+       else
+         @demand_deal = CustomerDemandDeal.find(params[:id])
+         @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
+         if @demand_deal.status == "new"
+           flash[:msg] = "'Update' this Demand Deal with changes or 'Confirm' in order to start receiving Offerings."
+         else
+           flash[:msg] = "Your Demand Deal will receive offers soon."
+         end
+         respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'userform', :partial => "edit_i_want_deal_form"
+            end
+          }
+         end
        end
-
-       @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
-       flash[:msg] = "The Deal that you demanded has been created. Keep Checking the 'Deals that You Demanded section' to view your deal offers."
-       respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'userform', :partial => "i_want_deal_form"
-            page.replace_html 'userform2', :partial => "my_demand_deals_summary"
-          end
-        }
-      end
      end
   end
 
-   def offered_deals
+  def update_or_confirm_want_a_deal
+    @demand_deal = CustomerDemandDeal.find(params[:demand_deal])
+    @categories = DealCategory.find(:all)
+    @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
+    if request.xml_http_request?
+      flash[:msg] = "You have 'Updated' this demand deal request. Click on 'Confirm' to receive Offers soon."
+      @demand_deal.update_attributes(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline]+" 23:59:59"), :description => params[:description], :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+      if params[:button_status] == "confirm"
+        merchants = MerchantProfile.all_merchants_for_my_demand_deal(@demand_deal.deal_category_id, @demand_deal.deal_sub_category_id)
+        for merchant in merchants
+          CustomerDemandDealBidding.create(:time_created => Time.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => @demand_deal.id)
+        end
+        @demand_deal.update_attributes(:status => "confirmed")
+        @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+        flash[:msg] = "You have 'Confirmed' this demand deal request.You will receive Offers soon."
+      end
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            if params[:button_status] == "confirm"
+              page.replace_html 'userform2', :partial => "my_demand_deals_summary"
+            end
+            page.replace_html 'userform', :partial => "edit_i_want_deal_form"
+          end
+        }
+      end
+    end
+  end 
+
+  def offered_deals
     @page = "Offered Deals"
     @offerings = CustomerProfile.my_demand_deal_offerings(params[:deal])
   end
