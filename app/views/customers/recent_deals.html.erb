@@ -1,15 +1,13 @@
-<div id="user1">
-  <table align="center">
+<div id="offered_deals" >
+ 
   <%
-  flag = false
+  
   for deal in @deals
     ds = deal.deal_schedule
     display_date = Time.at(ds.start_time).strftime("%b %d, %Y")
   %>
-  <% if flag
-      flag = false
-  %>
-  <td style="width: 322px">
+ 
+ 
     <div class="dateBlog">
       <div class="dateB1">
         <div class="dateB1_top"><%= display_date %></div>
@@ -33,39 +31,8 @@
       </div>
       <div class="dateB2">Keupons Bought: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#F00;"><%= deal.customer_deals.length %></span></div>
     </div>
-  </td>
-  <% else
-     flag = true
-   %>
-    <tr>
-      <td style="width: 322px">        
-        <div class="dateBlog">
-      <div class="dateB1">
-        <div class="dateB1_top"><%= display_date %></div>
-        <div class="dateB1_center">
-          <div class="dateB1_C1"><img src="<%= deal.deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/></div>
-          <div class="dateB1_C2">
-          S$<%= deal.value %>
-          <br />
-          <br />
-          <br />
-
-          <p style="padding-top:10px;"><%= deal.discount.to_i %><%="%"%></p>
-          <br />
-          <br />
-
-          <p style="padding-top:10px;">S$<%= deal.save_amount %></p>
-
-          </div>
-        </div>
-        <div class="dateB1_text"><%=deal.name%></div>
-      </div>
-      <div class="dateB2">Keupons Bought: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#F00;"><%= deal.customer_deals.length %></span></div>
-    </div>
-      </td>
-    </tr> 
+ 
   <% end %>      
-    <%end%>
-  </table>
+   
   </div>
   
