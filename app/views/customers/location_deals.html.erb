@@ -1,5 +1,130 @@
+<link href="/stylesheets/location_deal_slider/styleslider.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/location_deal_slider/prettyPhoto.css" rel="stylesheet" type="text/css" media="screen"/>
+
+
+<!--IE png fix starts -->
+<script type="text/javascript" src="/javascripts/location_deal_slider/DD_belatedPNG.js"></script>
+<script type="text/javascript">
+  DD_belatedPNG.fix('.logo, img');
+  DD_belatedPNG.fix('#lavaLampBottomStyle, li, src');
+   DD_belatedPNG.fix('.search, img');
+   DD_belatedPNG.fix('.rightstrip, img');
+   DD_belatedPNG.fix('.leftstrip, img');
+   DD_belatedPNG.fix('.ribbonstrip, img');
+   DD_belatedPNG.fix('.prev, img');
+	DD_belatedPNG.fix('.next, img');
+	DD_belatedPNG.fix('.tag, img');
+
+  </script>
+<!--IE png fix ends -->
+
+<!--Navigation starts -->
+<script type="text/javascript" src="/javascripts/location_deal_slider/custom.js"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function(){
+		dropdown_menu();
+});
+</script>
+<!--Navigation ends -->
+
+<!--Header Starts -->
+<script type="text/javascript" src="/javascripts/location_deal_slider/jquery.cycle.all.js"></script>
+<script type="text/javascript">
+$(function(){
+
+	$('#text').cycle({
+		timeout:	   4000,  // milliseconds between slide transitions (0 to disable auto advance)
+		fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		next: '#next',  // selector for element to use as click trigger for next slide
+	   prev: '#prev',  // selector for element to use as click trigger for previous slide
+		pager: '#pager',  // selector for element to use as pager container
+		pause:		   1,	  // true to enable "pause on hover"
+	   pauseOnPagerHover: 1 // true to pause when hovering over pager link
+	});
+	$('#slideshow1').cycle({
+		timeout:	   4000,  // milliseconds between slide transitions (0 to disable auto advance)
+		fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		next: '#next',  // selector for element to use as click trigger for next slide
+	   prev: '#prev',  // selector for element to use as click trigger for previous slide
+		pager: '#pager',  // selector for element to use as pager container
+		pause:		   1,	  // true to enable "pause on hover"
+	   pauseOnPagerHover: 1 // true to pause when hovering over pager link
+	});
+
+});
+</script>
+<!--Header Ends -->
+
+<!--Portfolio lightbox starts -->
+<script type="text/javascript" src="/javascripts/location_deal_slider/jquery.prettyPhoto.js"></script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".gallery a[rel^='prettyPhoto']").prettyPhoto({theme:'light_rounded'});
+		});
+		</script>
+<!--Portfolio lightbox ends -->
+
+
+<!--Fader starts -->
+<script type="text/javascript" src="/javascripts/location_deal_slider/fader.js"></script>
+<!--Fader ends -->
+<div id="user1" style="height: 219px;">
+<div class="header">
+		<div id="slideshow1">
+
+					<!--slider1 -->
+					<div class="slider">
+						<ul class="gallery clearfix">
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img1.jpg" alt="" /></a></li>
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img2.jpg" alt="" /></a></li>
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img3.jpg" alt="" /></a></li>
+							<li class="last"><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img4.jpg" alt="" /></a></li>
+						</ul>
+					</div>
+					<!--slider2 -->
+					<div class="slider">
+						<ul class="gallery clearfix">
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img4.jpg" alt="" /></a></li>
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img3.jpg" alt="" /></a></li>
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img2.jpg" alt="" /></a></li>
+							<li class="last"><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img1.jpg" alt="" /></a></li>
+						</ul>
+					</div>
+					<!--slider3 -->
+					<div class="slider">
+						<ul class="gallery clearfix">
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img2.jpg" alt="" /></a></li>
+							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img3.jpg" alt="" /></a></li>
+							<li class="last"><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img4.jpg" alt="" /></a></li>
+						</ul>
+					</div>
+		  </div>
+					<div id="text">
+					<div class="slider">
+						<p>Our Best Products...</p>
+					</div>
+					<div class="slider">
+						<p>Exclusive demand based products...</p>
+					</div>
+					<div class="slider">
+						<p>At low cost with 100% client satisfaction</p>
+					</div>
+                                        </div>
+					<div id="display2">
+						<ul>
+							<li id="prev"><img src="/images/slider_prevbtn.png" alt="" /></li>
+							<li id="next"><img src="/images/slider_nextbtn.png" alt="" /></li>
+						</ul>
+					</div>
+
+	  </div>
+</div>
 <%= GMap.header %>
 <%= @map.to_html %>
-<div style="padding-top: 275px;margin-left: 200px;">
-  <%= @map.div(:width => 800, :height => 500) %></div><br/>
+<div id="user1" style="height: 500px; border-style: solid; width: 994px;">
+<div align="center">
+  <%= @map.div(:width => 994, :height => 500, :style => "border-style: solid;") %>
+</div>
+</div>
+<br/>
 

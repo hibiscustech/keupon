@@ -1,0 +1,942 @@
+/* CSS Document */
+/*---------------General--------------*/
+body{
+	padding:0;
+	margin:0;
+}
+p, h1, h2, h3, h4, h5, form, input, label{
+	padding:0;
+	margin:0;
+}
+ul{
+	list-style:none;
+}
+img{
+	padding:0;
+	margin:0;
+	border:none;	
+}
+.spacer{
+	clear:both;
+	line-height:0;
+	font-size:0;
+}
+/*--------------General---------------*/
+/*-------------Top Container Start-----------*/
+#top_container{
+	padding:0;
+	margin:0;
+	background:url(/images/top_indexbg.jpg) repeat-x 0 0;
+}
+#top_innercontainer{
+	padding:0;
+	margin:0;
+	background:url(/images/top_innerbg.jpg) repeat-x 0 0;
+}
+div.topportion{
+	width:927px;
+	padding:0 33px 0 0;
+	margin:0 auto;
+	position:relative;
+}
+div.leftstrip{
+	position:absolute;
+	left:960px;
+	right:0;
+	z-index:2;
+	background:url(/images/left_strip.png) no-repeat 0 0;
+	width:10px;
+	height:188px;
+}
+div.rightstrip{
+	position:absolute;
+	left:-10px;
+	right:0;
+	z-index:2;
+	background:url(/images/right_strip.png) no-repeat 0 0;
+	display:block;
+	width:10px;
+	height:188px;
+}
+div.ribbonstrip{
+	position:absolute;
+	left:-9px;
+	right:0;
+	z-index:10;
+	background:url(/images/ribbon.png) no-repeat 0 0;
+	width:89px;
+	height:51px;
+}
+div.top{
+	width:927px;
+	padding:0 0 0 0;
+	margin:0;
+}
+div.top div.logo{
+	width:279px;
+	float:left;
+	background:url(/images/logo_bg.jpg) no-repeat 0 0;
+	padding:32px 0 28px 33px;
+	margin:0;
+	z-index:1;
+}
+div.top div.topright{
+	width:612px;
+	float:right;
+	padding:43px 0 0 0;
+	margin:0;
+	z-index:2;
+}
+/*-----------------Main Navigation Starts----------------*/
+/*
+#menu{
+	position:relative;
+	width:440px;
+	margin:0 auto;
+	float:left;
+	z-index:2;
+}
+#nav{
+	position: absolute;
+	width:405px;
+    padding:5px 0 0 0;
+    margin:0 0 0 12px;
+	float:right;  
+	z-index:2;
+}
+#nav li{
+	float:left;
+    list-style:none;
+	background:url(/images/nav_divider.jpg) no-repeat 100% 50%;
+	font:normal 14px/19px Arial, Helvetica, sans-serif;
+	color:#fff;
+	background-color:inherit;
+	padding:0 15px 0 15px;
+	margin:0 0 0 0;
+	position:relative;
+}
+#nav li a{
+	font:normal 14px/19px Arial, Helvetica, sans-serif;
+	color:#fff;
+	background-color:inherit;
+    text-align: center;                                               
+    z-index: 2;
+    display: block;
+    float: left;                        
+    position: relative;
+    overflow: hidden;
+	text-decoration:none;
+    outline:none;   
+}
+#nav li a:hover, #nav li a.active{
+	color:#ffb4b3;
+	background-color:inherit;
+}
+#nav li.last{
+	  background:none;
+}
+#nav ul{
+	margin:0;
+	padding:6px 0 0 0;
+	line-height:50px; 
+	z-index:2;	
+	display:none;
+	position:relative;	
+}
+#menu #nav ul a{
+	line-height:28px;
+	font-size: 12px;
+	cursor: pointer;
+}
+#menu #nav ul {
+	display:none;
+	position:absolute;
+	top:19px;
+	width:156px;
+	left:-1px;
+	border:1px solid #292929;
+	background-color:#3b3b3b;
+	color:#fff;
+}
+#menu #nav ul li{
+	background:none;
+	padding:0 0 0 0;
+	margin:0;
+	line-height:28px;
+	border-bottom:1px solid #292929; 
+}
+#menu #nav ul li.last{
+	border-bottom:none;
+}
+#menu #nav li ul a{
+	width:134px;
+	height:auto;
+	float:left;
+	text-align:left;
+	padding:0 6px 0 14px;
+}
+#menu #nav li ul a:hover{
+	color:#b7b7b7;
+	background-color:inherit;
+}
+*/
+/*-----------------Main Navigation Ends----------------*/
+div.top div.topright div.search{
+	float:right;
+	padding:0 0 0 20px;
+	margin:0 2px 0 0;
+	width:153px;
+	background:url(/images/search_bg.png) no-repeat 0 0;	
+}
+div.top div.topright div.search input{
+	padding:0px 0 0 3px;
+	margin:4px 0 2px 0;
+	width:110px;
+	float:left;
+	height:19px;
+	border:0px;
+	font:normal 12px/19px Arial, Helvetica, sans-serif;
+	color:#949393;
+	background:url(/images/search_inputbg.jpg) repeat-x 0 0;
+	background-color:inherit;
+	outline:none;
+}
+div.top div.topright div.search input.searchBtn{
+	width:22px;
+	height:24px;
+	border:none;
+	cursor:pointer;
+	float:right;
+	margin-top:1px;
+	margin-right:12px;
+	}
+/*----------Header Portion Starts------------*/
+#header-container{
+	width:894px;
+	outline:none;
+	background:url(/images/header_bg.png) no-repeat 0 100%;
+	height:414px;
+	padding:0;
+	margin:0 0 0 33px;
+	z-index: 1;
+	
+}
+#cu3er-container{
+	width:894px;
+	outline:none;
+	margin:0 0;
+	text-align:center;
+	padding:0;
+	z-index: 1;
+	
+	}	
+/*----------Header Portion Ends------------*/
+/*-------------Top Container Ends-----------*/
+/*-------------Body Container Starts-----------*/
+#body_container{
+	background:url(/images/body_bg.jpg) repeat-x 0 0 #060606;
+	color:#737373;
+	padding:0;
+	margin:0;
+}
+div.body{
+	width:894px;
+	margin:0 auto;
+	padding:46px 33px 52px 33px;
+}
+div.body div.leftportion{
+	width:514px;
+	float:left;
+	padding:0 75px 0 0;
+	margin:0;
+	background:url(/images/divider.jpg) no-repeat 95% 0;
+}
+div.body div.rightportion{
+	width:305px;
+	float:right;
+	padding:0;
+	margin:0;
+}
+div.body div.leftportion h2{
+	font:normal 24px/26px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#fff;
+	background-color:inherit;
+	padding:0 0 0 0;
+	margin:0 0 0 0;
+}
+div.body div.leftportion p{
+	font:normal 12px/21px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#737373;
+	background-color:inherit;
+	padding:17px 0 0 0;
+	margin:0;
+ }
+div.body div.leftportion p.read{
+ 	padding:30px 0 0 0;
+	margin:0 0 0 0;
+ }
+div.body div.leftportion p.read a{
+	font:normal 13px/24px Arial, Helvetica, sans-serif;
+	color:#ffffff;
+	background-color:#353535;
+	padding:6px 22px 6px 22px;
+	margin:0 0 0 0;
+	text-decoration:none;
+}
+div.body div.leftportion p.read a:hover{
+	text-decoration:none;
+}
+div.body div.leftportion h3{
+	font:normal 20px/22px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#ebebeb;
+	background-color:inherit;
+	padding:0;
+	margin:58px 0 0 0;
+}
+div.body div.leftportion p.author{
+	padding:15px 0 0 0;
+	margin:0 0 0 0;
+	font:bold 12px/12px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#9f9f9f;
+	background-color:inherit;
+}
+div.body div.leftportion p.portfolio{
+	padding:14px 0 0 0;
+	margin:0;
+}
+div#slideshow{	
+	height:70px;
+	width:514px;
+	}
+div#slideshow div.slider{
+	padding:0;
+	margin:0;	
+	width:514px;
+	position:relative;
+	background-color:inherit;
+	color:#fff;
+}
+div#slideshow div.slider ul{
+	margin:0;
+	padding:10px 0 0 0;
+	list-style:none;	
+	}
+div#slideshow div.slider li{ 
+	/*	define width and height of list item (slide)
+		entire slider area will adjust according to the parameters provided here*/
+		 
+	width:auto;
+	height:55px;
+	overflow:hidden; 
+	padding:0 12px 0 0;
+	margin:0;
+	float:left;
+	}
+div#slideshow div.slider li.last{
+	padding-right:0;
+}
+#display{
+	padding:10px 0 0 0;
+	width:400px;
+	margin:0 0 0 0;
+}
+#display ul{
+	list-style:none;
+	margin:0 0 0 0;
+	padding:0;
+	float:left;
+	width:200px;
+	display:inline;
+}
+#display ul li{
+	float:left;
+	margin:0 0 0 0;
+	padding:0 3px 0 3px;
+	cursor:pointer;
+	width:auto;
+	font:normal 12px/19px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#878686;
+	background-color:inherit;
+	background:url(/images/footer_navdivider.gif) no-repeat 100% 5px;
+}
+#display ul li.last{
+	background:none;
+}
+#display ul li img{
+	padding:0;
+	margin:5px 0 0 0;
+}
+div.body div.rightportion h4{
+	font:normal 18px/19px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#d62a24;
+	background-color:inherit;
+	padding:0;
+	margin:0 0 16px 0;
+}
+div.body div.rightportion ul.category{
+	padding:0;
+	margin:0 0 44px 0;
+	width:259px;
+}
+div.body div.rightportion ul.category li{
+	background:url(/images/dot_border.jpg) repeat-x 0 100%;
+	padding:6px 0 8px 0;
+	margin:0;
+}
+div.body div.rightportion ul.category li.last{
+	background:none;
+}
+div.body div.rightportion ul.category li a{
+	font:normal 12px/14px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#b4b4b4;
+	background-color:inherit;
+	padding:0 0 0 0;
+	margin:0;
+	display:block;
+	text-decoration:none;
+}
+div.body div.rightportion ul.category li a:hover{
+	color:#ffffff;
+	background-color:inherit;
+}
+div.body div.rightportion p{
+	font:normal 12px/18px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#7c7c7c;
+	background-color:inherit;
+}
+div.body div.rightportion p.comments{
+	font:normal 9px/13px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#595959;
+	background-color:inherit;
+	padding:10px 0 22px 0;
+}
+div.body div.rightportion p.comments span{
+	font:bold 10px/21px Arial, Helvetica, sans-serif;
+	color:#595959;
+	background-color:inherit;
+}
+div.body div.rightportion p.borderline{
+	padding:0 0;
+	margin:0 0 21px 0;
+}
+/*-------------Body Container Ends-----------*/
+/*-------------Footer Container Starts-----------*/
+#footer_container{
+	background:url(/images/footer_bg.jpg) repeat-x 0 0;
+	padding:0;
+	margin:0;
+}
+#footer_container div.footer{
+	width:894px;
+	margin:0 auto;
+	padding:0;
+}
+#footer_container div.footer div.left{
+	float:left;
+	width:589px;
+	padding:36px 0 14px 0;
+	margin:0 0 0 0;
+}
+#footer_container div.footer div.left ul{
+	padding:0;
+	margin:0;
+}
+#footer_container div.footer div.left ul li{
+	float:left;
+	width:auto;
+	padding:0 18px 0 18px;
+	margin:0 0 0 0;
+	color:#b4b4b4;
+	background-color:inherit;
+	background:url(/images/footer_navdivider.gif) no-repeat 100% 4px;
+}
+#footer_container div.footer div.left ul li.first{
+	padding-left:0;
+}
+#footer_container div.footer div.left ul li.last{
+	background:none;
+}
+#footer_container div.footer div.left ul li a{
+	font:normal 14px/19px Arial, Helvetica, sans-serif;
+	color:#b4b4b4;
+	background-color:inherit;
+	text-decoration:none;
+}
+#footer_container div.footer div.left ul li a:hover{
+	color:#fff;
+	background-color:inherit;
+}
+#footer_container div.footer div.left p{
+	float:left;
+	padding:50px 0 0 0;
+	margin:0;
+	font:normal 11px/19px Arial, Helvetica, sans-serif;
+	color:#505050;
+	background-color:inherit;
+	width:580px;
+}
+#footer_container div.footer div.right{
+	float:right;
+	width:305px;
+	padding:0;
+	margin:0;
+}
+#footer_container div.footer div.right ul{
+	padding:0;
+	margin:0;
+}
+#footer_container div.footer div.right ul li{
+	padding:0 6px 0 0; 
+	margin:0;
+	width:auto;
+	float:left;
+}
+#footer_container div.footer div.right ul li.call{
+	padding:39px 0 0 20px;
+	margin:0 0 0 0;
+	font:normal 14px/19px Arial, Helvetica, sans-serif;
+	color:#727272;
+	background-color:inherit;
+}
+/*-------------Footer Container Ends-----------*/
+/*------------Aboutus Page Starts-------------*/
+div.body div.leftportion p.additional{
+	padding:11px 0 0 0;
+	margin:0;
+ }
+ div.body div.leftportion h3.company{
+	font:normal 20px/22px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#ebebeb;
+	background-color:inherit;
+	padding:0;
+	margin:49px 0 0 0;
+}
+div.body div.leftportion p a{
+	color:#6a83a5;
+	font:bold 11px/21px "Century Gothic", Arial, Helvetica, sans-serif;
+	background-color:inherit;
+	padding:0;
+	margin:0;
+	text-decoration:none;
+}
+div.body div.leftportion p a:hover{
+	text-decoration:underline;
+}
+div.body div.leftportion p.quote{
+	font:bold 18px/25px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#737373;
+	background-color:inherit;
+	padding:13px 0 0 0;
+	margin:0 0 0 0;
+}
+div.body div.rightportion ul.partner{
+	padding:6px 0 6px 0;
+	margin:0 0 50px 0;
+	width:300px;
+	float:left;
+	background:url(/images/border_line.jpg) no-repeat 0 100%;
+	}
+div.body div.rightportion ul.partner li{
+	padding:0 15px 11px 0;
+	margin:0;
+	float:left;
+	width:auto;
+}
+div.body div.rightportion ul.partner li img{
+	padding:0;
+	margin:0;
+	width:122px;
+}
+div.body div.rightportion ul.partner li.last{
+	padding-right:0;
+}
+/*------About Slider----*/
+div#text{	
+	height:54px;
+	width:650px;
+	position:absolute;
+	top:176px;
+	left:40px;
+	float:left;
+	}
+div#text div.slider{
+	padding:0;
+	margin:0;	
+	width:650px;
+	position:relative;	
+}
+div#text div.slider p{
+	font:normal 16px/19px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#fff;
+	background-color:inherit;
+	padding:0;
+	margin:0;
+}
+/*-----About Header Starts-----*/
+div.header{
+	position: relative;
+	width: 1000px;
+	height: 286px;
+	//margin:0 0 0 33px;
+        margin:auto;
+	padding:5px 5px 0 5px;
+	background:url(/images/slider_bg.jpg) no-repeat 0 0;
+	z-index:0;
+}
+div#slideshow1{	
+	width: 884px;
+	height: 286px;
+	}
+div.tag{
+	position:absolute;
+	width:132px;
+	height:99px;
+	left:556px;
+	top:192px;
+}
+div#slideshow1 div.slider{
+	padding:0;
+	//margin:0;
+	//width:884px;
+        width:1000px;
+        margin-left:50px;
+	position:relative;
+	
+}
+div#slideshow1 div.slider ul{
+	margin:0;
+	padding:0 0 0 0;
+	list-style:none;	
+	
+	}
+div#slideshow1 div.slider li{ 
+	/*	define width and height of list item (slide)
+		entire slider area will adjust according to the parameters provided here*/
+		 
+	width:auto;
+	height:147px;
+	overflow:hidden; 
+	padding:0 0 0 0;
+	margin:0 5px 0 0;
+	float:left;	
+	}
+div#slideshow1 div.slider li.last{
+	margin-right:0;
+}
+#display2{
+	padding:0 0 0 0;
+	width:130px;
+	margin:0 0 0 0;
+	float:right;
+	position:absolute;
+	top:172px;
+	left:760px;
+}
+#display2 ul{
+	list-style:none;
+	margin:0 0 0 0;
+	padding:0;
+	float:left;
+	width:130px;
+	display:inline;
+}
+#display2 ul li{
+	float:left;
+	margin:0 0 0 0;
+	padding:0 20px 0 0;
+	cursor:pointer;
+	width:auto;
+	}
+#display2 ul li img{
+	padding:0;
+	margin:0 0 0 0;
+	width:36px;
+	height:24px;
+}
+
+/*-----About Header Ends-----*/
+/*------------Aboutus Page Ends-------------*/
+/*------------Services Page Starts-------------*/
+div.web{
+	width:514px;
+	padding:36px 0 0 0;
+	margin:0 0 0 0;
+}
+div.web div.left{
+	float:left;
+	width:32px;
+}
+div.web div.right{
+	float:right;
+	width:463px;
+}
+div.web div.left img.side{
+	float:left;
+	width:32px;
+	padding:0 0 0 0;
+	margin:0 19px 0 0;
+
+}
+div.web div.right ul{
+	width:400px;
+	padding:0 0 0 0;
+	margin:0 0 0 0;
+	float:left;
+}
+div.web div.right ul li{
+	padding:0 0 0 16px;
+	margin:0 0 0 0;
+	font:normal 12px/22px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#737373;
+	background-color:inherit;
+	background:url(/images/bullet.gif) no-repeat 0 8px;
+}
+div.web div.right ul li a{
+	font:normal 12px/22px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#737373;
+	background-color:inherit;
+	text-decoration:none;
+}
+div.web div.right ul li a:hover{
+	color:#818181;
+	background-color:inherit;
+}
+/*------------Services Page Ends-------------*/
+/*------------Portfolio Page Starts-------------*/
+div.body h2{
+	font:normal 24px/26px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#fff;
+	background-color:inherit;
+	padding:0 0 0 0;
+	margin:0 0 0 0;
+}
+div.body p.portfoliotext{
+	font:normal 12px/22px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#737373;
+	background-color:inherit;
+	padding:0 0 0 0;
+	margin:17px 0 35px 0; 
+}
+div.body div#portfolioslideshow{	
+	width: 894px;
+	height: 536px;
+	padding:0;
+	margin:0;
+	color:#000;
+	background-color:inherit;	
+	}
+div.body div#portfolioslideshow div.slider{
+	padding:0;
+	margin:0;	
+	width:894px;
+	color:#000;
+	background-color:inherit;	
+	position:relative;
+	z-index:10;	
+}
+div.body div#portfolioslideshow div.slider ul{
+	margin:0;
+	padding:0 0 0 0;
+	list-style:none;	
+	}
+div.body div#portfolioslideshow div.slider li{ 
+	/*	define width and height of list item (slide)
+		entire slider area will adjust according to the parameters provided here*/
+		 
+	width:289px;
+	height:280px;
+	overflow:hidden; 
+	padding:0 0 0 0;
+	margin:0 13px 0 0;
+	float:left;
+	font:normal 13px/21px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#616161;
+	background-color:inherit;	
+	}
+div.body div#portfolioslideshow div.slider li img{
+	padding:0;
+	margin:0 0 30px 0;
+}
+div.body div#portfolioslideshow div.slider li h4{
+	font:normal 20px/21px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#c2c2c2;
+	background-color:inherit;
+	padding:0 0 0 0;
+	margin:0 0 10px 0;
+}
+div.body div#portfolioslideshow div.slider li.last{
+	margin-right:0;
+}
+div.body div#portfolioslideshow div.slider li a.view{
+	width:auto;
+	padding:0 0 0 13px;
+	margin:0;
+	font:normal 13px/21px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#c72920;
+	background-color:inherit;
+	text-decoration:none;
+}
+div.body div#portfolioslideshow div.slider li a.view:hover{
+	color:#fff;
+	background-color:inherit;
+}
+#display_port{
+	padding:0 0 0 0;
+	width:400px;
+	margin:36px 0 0 0;
+}
+#display_port ul{
+	list-style:none;
+	margin:0 0 0 0;
+	padding:0;
+	float:left;
+	width:200px;
+	}
+#display_port ul li{
+	float:left;
+	margin:0 0 0 0;
+	padding:0;
+	cursor:pointer;
+	width:auto;
+	font:normal 12px/19px "Century Gothic", Arial, Helvetica, sans-serif;
+	color:#878686;
+	background-color:inherit;
+	display:block;
+	height:12px;
+}
+#display_port ul li img{
+	padding:0 0 0 0;
+	margin:5px 0 0 0;
+	display:block;
+	height:12px;
+}
+/*------------Portfolio Page Ends-------------*/
+/*-----------Contact Page Starts-------------*/
+div.body div.leftportion div.form{
+	padding:28px 0 0 6px;
+	margin:0;
+	width:500px;
+	}
+div.body div.leftportion div.form label{
+	display:block;
+	overflow:hidden;
+	height:100%;
+	padding:0;
+	margin:0 0 15px 0;
+}
+div.body div.leftportion div.form label.last{
+	margin-bottom:0;
+}
+div.body div.leftportion div.form label.btn{
+	width:94px;
+	float:left;
+}
+div.body div.leftportion div.form label img{
+	padding:0;
+	margin:5px 0 0 0;
+}
+div.body div.leftportion div.form label span{
+	width:100px;
+	float:left;
+	text-align:left;
+	padding:0 0 0 12px;
+	font:italic 12px Arial, Helvetica, sans-serif;      
+	color:#6b6b6b;
+	background-color:inherit; 
+	line-height:25px;
+}
+div.body div.leftportion div.form label strong{
+	color:#949494;
+	background-color:inherit;
+	font:italic 12px/25px Arial, Helvetica, sans-serif;  
+}
+div.body div.leftportion div.form input{
+	width:260px;
+	float:left;
+	font:normal 13px/18px Arial, Helvetica, sans-serif;
+	color:#7d7c7c;
+	background-color:inherit;
+	background:url(/images/input_bg.jpg) repeat-x 0 0;
+	border:1px solid #272727;
+	padding:3px 0 0 2px;	
+	height:20px;
+	letter-spacing:1px;	
+	outline:none;
+}
+div.body div.leftportion div.form input:focus{
+	background:#1e1e1e;
+	color:#7d7c7c;
+}
+div.body div.leftportion div.form textarea{
+	width:494px;
+	float:left;
+	font:normal 12px/18px Arial, Helvetica, sans-serif;
+	color:#7d7c7c;
+	border:1px solid #272727;
+	padding:4px 0 0 4px;	
+	height:152px;
+	background:url(/images/textarea_bg.jpg) repeat-x 0 0;
+	letter-spacing:1px;	
+	background-color:inherit;
+	outline:none;		
+}
+div.body div.leftportion div.form textarea:focus{
+	background:#1e1e1e;
+	color:#7d7c7c;
+}
+div.body div.leftportion div.form input.submission{
+	background:url(/images/send_btn.jpg) no-repeat 0 0;
+	width:94px;
+	height:25px;	
+	border:none;
+	text-indent:-20000px;
+	cursor:pointer;
+	float:left;
+	display:block;	
+	margin:16px 18px 17px 0;	
+	}
+div.body div.leftportion div.form input.submission:hover{
+	background:url(/images/send_btnhover.jpg) no-repeat 0 0;
+}
+div.googleMap {
+	width:425px;
+	border:#434343 2px solid;
+	padding:0;
+	margin:6px 0 0 0;
+	}
+p.add{
+	color:#757474;
+	font:bold 12px/21px "Century Gothic", Arial, Helvetica, sans-serif;
+	background-color:inherit;
+	background:url(/images/border_line.jpg) no-repeat 0 100%;	
+	padding:11px 0 11px 0;
+	margin:0 0 50px 0;
+	width:259px;
+}
+/*------------Contact Page Ends------------*/
+/*----------contact us confirmation & error page starts--------*/
+div.body div.leftportion div.confirm{
+	border:1px solid #272727;
+	width:450px;
+	background-color:inherit;
+	color:#fff;
+	padding:30px 0 30px 40px;
+	margin:24px 0 400px 0;
+}
+div.body div.leftportion p.textconfirm{
+	font:normal 15px/22px Arial, Helvetica, sans-serif;
+	color:#7d7c7c;
+	background-color:inherit;
+	padding:0 0 0 70px;
+	margin:0;
+	background:url(/images/confirm_icon.png) no-repeat 0 0;
+}
+div.body div.leftportion p.texterror{
+	font:normal 15px/22px Arial, Helvetica, sans-serif;
+	color:#7d7c7c;
+	background-color:inherit;
+	padding:0 0 0 70px;
+	margin:0;
+	background:url(/images/error_icon.png) no-repeat 0 0;
+}
+/*----------contact us confirmation & error page ends--------*/

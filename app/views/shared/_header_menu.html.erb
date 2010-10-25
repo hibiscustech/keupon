@@ -1,4 +1,3 @@
-
 <%if (params[:controller] == 'merchant' and params[:action] != 'new') or params[:controller] == 'deals' or params[:controller] == 'merchant_analytics' %>
     <ul id="navigation_merchant" style="">
       <li><a href="/index" id="home_front" title="Home"></a></li>
@@ -10,9 +9,11 @@
        
     </ul>
 <%else%>
+<%
+logger.info "-------------------------hi...123-----------------------------"
+%>
 
-
-            <ul>
+       <ul>
         <li><a href="/deal_of_the_day">Today's Deal</a></li>
         <li><a href="/recent_deals">Recent Deals</a></li>
         <li><a href="#">How It Works</a></li>
