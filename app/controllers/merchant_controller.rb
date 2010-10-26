@@ -134,7 +134,6 @@ class MerchantController < ApplicationController
 
   def new_location_deal
     @deal = Deal.new
-    @categories = DealCategory.find(:all)
     if request.xml_http_request?
       respond_to do |format|
         format.html

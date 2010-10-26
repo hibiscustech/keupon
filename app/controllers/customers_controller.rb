@@ -249,7 +249,7 @@ class CustomersController < ApplicationController
 
   def location_deals
     @page = "Location Deals"
-    @deals = DealLocationDetail.find(:all)
+    @deals = DealLocationDetail.available_location_deals
 
     if @deals.blank?
       @map = GMap.new("map")
@@ -262,6 +262,7 @@ class CustomersController < ApplicationController
       reminding = @deals-first
       @map = GMap.new("map")
       @map.control_init(:large_map => true, :map_type => true)
+      first = first[0]
       ################## first ##########################
       #markers = [GMarker.new([1.298732,103.859501],:info_window => "152 Beach Rd.,<br/> #16-00 Gateway East,<br/> Singapore",:title => "Toshiba Asia Pacific Pte., Ltd"),
       #GMarker.new([12.9715987,77.5945627],:info_window => "Namaste",:description => "Chopoto" , :title => "Ay"),
@@ -272,10 +273,38 @@ class CustomersController < ApplicationController
       #marker = GMarker.new(s)
       #@map.overlay_init(marker)
       ###################################################
-      @map.center_zoom_init([@deals[0].longitude,@deals[0].latitude],12)
-      @map.overlay_init(GMarker.new([@deals[0].longitude,@deals[0].latitude],:title =>"#{@deals[0].deal.name}", :info_window =>"<div style='font-size:13px;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;'><div style='color:red;'>Deal Name :</div>#{@deals[0].deal.name}  <br/><div style='color:red;'>Description </div>:#{@deals[0].deal.rules} <div style='color:red;'>Value &nbsp;  Discount  &nbsp;  Start_date  &nbsp;  Expiry_date  </div> <div>  &nbsp; #{@deals[0].deal.value}  &nbsp;&nbsp;&nbsp; #{@deals[0].deal.discount} &nbsp;&nbsp;&nbsp;&nbsp;  #{@deals[0].deal.start_date} &nbsp;&nbsp; #{@deals[0].deal.expiry_date} </div> <br/><div style='color:red;'> Address </div>#{@deals[0].address1},#{@deals[0].address2},<br/> #{@deals[0].city} <br/><br/> <a href='/get_location_deal?id=#{@deals[0].deal_id}&lon=#{@deals[0].longitude}&lat=#{@deals[0].latitude}'><img src='/images/buy.jpg' border ='0' /></a>&nbsp;&nbsp;<a href='/'><img src='/images/cancel.jpg' border ='0' /></a></div>" ))
+      @map.center_zoom_init([first.longitude,first.latitude],12)
+      @map.overlay_init(GMarker.new([first.longitude,first.latitude],:title =>"#{first.name}", 
+          :info_window => %Q{ <span style='color:#FF0000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{first.name}</span><div style='height: 250px; width: 690px; align: center;'>
+                              <div id='user1' style='width: 530px; height: 355px; margin-left: 70px;'>
+                                  <div class='user2IMG' style='margin-top: 10px;'>
+                                  <p class='for_PW' style='font-size:20px;'>#{first.company_name}</p>
+                                  <p><img src='/images/apple_logo.jpg'/></p>
+                                  <p class='for_PW'><em><a href='#{first.website}' target='_blank' class='for_nav'  style='color:#ff0000'>#{first.website}</a></em></p>
+                                  <p class='for_PW'><br/>#{first.address1} #{first.address2}<br />#{first.city}</p>
+                                      <div class='buynow' style='float: left; margin-left: -50px; margin-top: 35px;'><a href='/get_location_deal?id=#{first.id}&lon=#{first.longitude}&lat=#{first.latitude}'><img src='/images/buy_now.jpg' style='border: 0;' /></a></div>
+                                  </div>                                  
+                                  <div class='cont3'>
+                                      <p><img src='/images/img1.jpg' border='0px' /></p>
+                                      <div class='priseDisco'> &nbsp;&nbsp;S$#{first.buy} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{first.discount}% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S$#{first.save_amount}</div>
+                                  </div>
+                              </div></div>} ))
       reminding.each do |deal|
-        @map.record_init @map.add_overlay(GMarker.new([deal.longitude,deal.latitude],:title => "#{deal.deal.name}",:info_window => "<div style='font-size:13px;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;'><div style='color:red;'>Deal Name :</div>#{deal.deal.name}  <br/><div style='color:red;'>Description </div>:#{deal.deal.rules} <div style='color:red;'>Value &nbsp;  Discount  &nbsp;  Start_date  &nbsp;  Expiry_date  </div> <div>  &nbsp; #{deal.deal.value}, &nbsp;&nbsp;&nbsp; #{deal.deal.discount} &nbsp;&nbsp;&nbsp;&nbsp;  #{@deals[0].deal.start_date} &nbsp;&nbsp; #{@deals[0].deal.expiry_date} </div> <br/><div style='color:red;'> Address </div>#{deal.address1},#{deal.address2},<br/> #{deal.city}<br/><br/> <a href='/get_location_deal?id=#{deal.deal_id}&lon=#{deal.longitude}&lat=#{deal.latitude}'><img src='/images/buy.jpg' border ='0' /></a>&nbsp;&nbsp;<a href='/'><img src='/images/cancel.jpg' border ='0' /></a></div>"))
+        @map.record_init @map.add_overlay(GMarker.new([deal.longitude,deal.latitude],:title =>"#{deal.name}",
+            :info_window => %Q{ <span style='color:#FF0000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{deal.name}</span><div style='height: 250px; width: 690px; align: center;'>
+                                <div id='user1' style='width: 530px; height: 355px; margin-left: 70px;'>
+                                  <div class='user2IMG' style='margin-top: 10px;'>
+                                  <p class='for_PW' style='font-size:20px;'>#{deal.company_name}</p>
+                                  <p><img src='/images/apple_logo.jpg'/></p>
+                                  <p class='for_PW'><em><a href='#{deal.website}' target='_blank' class='for_nav'  style='color:#ff0000'>#{deal.website}</a></em></p>
+                                  <p class='for_PW'><br/>#{deal.address1} #{deal.address2}<br />#{deal.city}</p>
+                                      <div class='buynow' style='float: left; margin-left: -50px; margin-top: 35px;'><a href='/get_location_deal?id=#{deal.id}&lon=#{deal.longitude}&lat=#{deal.latitude}'><img src='/images/buy_now.jpg' style='border: 0;' /></a></div>
+                                  </div>                                  
+                                  <div class='cont3'>
+                                      <p><img src='/images/img1.jpg' border='0px' /></p>
+                                      <div class='priseDisco'> &nbsp;&nbsp;S$#{deal.buy} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{deal.discount}% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S$#{deal.save_amount}</div>
+                                  </div>                                  
+                              </div></div>} ))
       end
     
     end
