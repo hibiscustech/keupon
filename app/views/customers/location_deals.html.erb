@@ -25,9 +25,9 @@
 <!--Header Starts -->
 <script type="text/javascript" src="/javascripts/location_deal_slider/jquery.cycle.all.js"></script>
 <script type="text/javascript">
-$(function(){
+jquery(function(){
 
-	$('#text').cycle({
+	jquery('#text').cycle({
 		timeout:	   4000,  // milliseconds between slide transitions (0 to disable auto advance)
 		fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
 		next: '#next',  // selector for element to use as click trigger for next slide
@@ -36,7 +36,7 @@ $(function(){
 		pause:		   1,	  // true to enable "pause on hover"
 	   pauseOnPagerHover: 1 // true to pause when hovering over pager link
 	});
-	$('#slideshow1').cycle({
+	jquery('#slideshow1').cycle({
 		timeout:	   4000,  // milliseconds between slide transitions (0 to disable auto advance)
 		fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
 		next: '#next',  // selector for element to use as click trigger for next slide
@@ -53,8 +53,8 @@ $(function(){
 <!--Portfolio lightbox starts -->
 <script type="text/javascript" src="/javascripts/location_deal_slider/jquery.prettyPhoto.js"></script>
 <script type="text/javascript">
-		$(document).ready(function(){
-			$(".gallery a[rel^='prettyPhoto']").prettyPhoto({theme:'light_rounded'});
+		jquery(document).ready(function(){
+			jquery(".gallery a[rel^='prettyPhoto']").prettyPhoto({theme:'light_rounded'});
 		});
 		</script>
 <!--Portfolio lightbox ends -->
