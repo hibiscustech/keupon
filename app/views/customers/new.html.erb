@@ -1,173 +1,76 @@
-
-
-<div style="width:608px;height:300px;text-align:left;">
-
-        
-
-
-  <% @customer.password = @customer.password_confirmation = nil %>
-  <div><%= error_messages_for :customer %></div>
-  <% form_for :customer, :url => customers_path do |f| -%>
-    <table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
-      <tr>
-        <td width="5%"> </td>
-        <td width="15%" style="color:#000000;"><h3>Registration</h3></td>
-        <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
-      </tr>
-      <!--<tr>
-        <td width="5%"> </td>
-        <td width="15%" style="color:#000000;">Login</td>
-        <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
-      </tr>-->
-      <% fields_for :customer_profile do |p| %>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">First Name :</td>
-          <td width="30%"><%= p.text_field :first_name, :size=>"25%"%></td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">Last Name :</td>
-          <td width="30%"><%= p.text_field :last_name, :size=>"25%" %>
-          </td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="20%" style="color:#000000;">Gender:</td>
-          <td width="30%"><%= p.radio_button 'gender', 'm'%> Male<%= p.radio_button 'gender', 'f'%> Female
-          </td>
-        </tr>
-
-      <% end %>
-      <tr>
-        <td width="5%"> </td>
-        <td width="15%" style="color:#000000;">E-mail ID :</td>
-        <td width="30%"><%= f.text_field :email , :size=>"25%"%></td>
-      </tr>
-      <tr>
-        <td width="5%"> </td>
-        <td width="15%" style="color:#000000;">Password :</td>
-        <td width="30%"><%= f.password_field :password, :id=>"passwords", :size=>"25%"%></td>
-      </tr>
-
-      <tr>
-        <td width="5%"> </td>
-        <td width="15%" style="color:#000000;">Retype Password :</td>
-        <td width="30%"><%= f.password_field :password_confirmation, :size=>"25%" %></td>
-      </tr>
-
-      <% fields_for :customer_profile do |p| %>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">Address1 :</td>
-          <td width="30%"><%= p.text_field :address1,:size=>"25%" %></td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">Address2 :</td>
-          <td width="30%"><%= p.text_field :address2,:size=>"25%" %></td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">City :</td>
-          <td width="30%"><%= p.text_field :city,:size=>"25%" %></td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">State :</td>
-          <td width="30%"><%= p.text_field :state,:size=>"25%" %></td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">Country :</td>
-          <td width="30%"><%= p.text_field :country,:size=>"25%" %></td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">Pincode :</td>
-          <td width="30%"><%= p.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
-        </tr>
-        <tr>
-          <td width="5%"> </td>
-          <td width="15%" style="color:#000000;">Contact Number :</td>
-          <td width="30%"><%= p.text_field :contact_number , :onBlur => "IsNumeric_mobile(this.value)",:size=>"25%" %></td>
-        </tr>
-
-
-
-      <% end %>
-      <tr>
-        <td width="5%"> </td>
-        <td width="15%"> </td>
-        <td width="35%" colspan="2">
-          <br/><%=image_submit_tag ("register.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/", {:style=>"padding-left:30px;"}%>
-        </td>
-      </tr>
-      <tr><td></td><td></td></tr> <% end -%>
-  </table>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<% @customer.password = @customer.password_confirmation = nil %>
+<div><%= error_messages_for :customer %></div>
+<% form_for :customer, :url => customers_path do |f| -%>
+
+  <fieldset id="step_1">
+
+    <legend>Step 1</legend>
+
+    <label for="num_attendees">
+      E-mail ID
+    </label>
+    <%= f.text_field :email , :size=>"25%"%>
+
+   <!-- <div id="attendee_1_wrap" class="name_wrap push"> -->
+      <label for="name_attendee_1">
+        Password :
+      </label>
+      <%= f.password_field :password, :id=>"passwords", :size=>"25%"%>
+      <label for="name_attendee_1">
+        Retype Password :
+      </label>
+      <%= f.password_field :password_confirmation, :class=>'name_input',:size=>"25%" %><br/><br/>
+      <a href="#" id="submit_step_1"><img src="/images/step2.png" border="0"/>  </a>
+    <!--</div> -->
+  </fieldset>
+
+
+  <fieldset id="step_2">
+    <legend>Step 2</legend>
+    <% fields_for :customer_profile do |p| %>
+      <label for="name_attendee_1">
+        First name :
+      </label>
+      <%= p.text_field :first_name, :size=>"25%"%>
+      <br/><label for="name_attendee_1">
+        Last Name :
+      </label>
+      <%= p.text_field :last_name, :size=>"25%" %>
+
+      <label for="name_attendee_1">
+        Address 1 :
+      </label>
+      <%= p.text_field :address1,:size=>"25%" %>
+      <label for="name_attendee_1">
+        Address 2 :
+      </label>
+      <%= p.text_field :address2,:size=>"25%" %>
+      <label for="name_attendee_1">
+        Country :
+      </label>
+      <%= p.text_field :country,:size=>"25%" ,:id=> 'name_input_country' %><br/>
+      <label for="name_attendee_1">
+        Pin code :
+      </label>
+      <%= p.text_field :zipcode,:size=>"25%" ,:id=> 'name_input_pin' %>
+      <label for="name_attendee_1">
+        Contact Number :
+      </label>
+      <%= p.text_field :contact_number,:size=>"25%" ,:id=> 'name_input_cn' %>
+
+    <% end %><br/><br/>
+       <a href="#" id="submit_step_2"><img src="/images/step3.png" border="0"/> </a>
+  </fieldset>
+
+  <fieldset id="step_3">
+    <legend>Step 3</legend>
+
+    <label for="rock">
+      Are you ready to rock?
+    </label>
+    <input type="checkbox" id="rock"></input>
+
+    <input type="submit" id="submit_button" class="push" value="Complete Registration"></input>
+  </fieldset>
+
+<% end %>

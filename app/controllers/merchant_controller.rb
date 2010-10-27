@@ -8,14 +8,15 @@ class MerchantController < ApplicationController
   before_filter :login_required , :only => [:deals_of_mine, :redeem_deals]
   
   def index
-    
+    @page = "Welcome #{current_merchant.merchant_profile.first_name}"
   end
 
   def new
     @merchant = Merchant.new
   end
 
-  def deals_of_mine    
+  def deals_of_mine
+    @page = 'My Deals'
     @deals = Deal.merchants_deals(current_merchant.id)
   end
 
@@ -81,7 +82,7 @@ class MerchantController < ApplicationController
   end
 
   def redeem_deals
-    
+    @page = 'Redeem deal'
   end
 
   def verify_deal
@@ -128,6 +129,7 @@ class MerchantController < ApplicationController
   end
 
   def location_deals
+    @page = 'Location Deals'
     @location_deals = DealLocationDetail.all_deals
   end
 

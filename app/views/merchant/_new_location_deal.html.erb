@@ -47,7 +47,7 @@
         <td>
           <select id="category" name="category">
             <option value="0">Select a Category</option>
-          <%= options_from_collection_for_select @categories, :id, :name %>
+          <%= options_from_collection_for_select categories, :id, :name %>
           </select>
           <%=observe_field "category",
           :url => {:controller => 'deals', :action => 'sub_categories'},
