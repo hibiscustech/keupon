@@ -1,16 +1,16 @@
 
-<div style="height:400px;text-align:left;">
+<div style="text-align:left;">
   <div><%= error_messages_for :deal %></div>
   <% form_for @deal, :url => {:controller => 'deals', :action => "create" } , :html => { :multipart => true }  do |f| %>
     <%=hidden_field :deal, :merchant_id, :value => current_merchant.id%>
-   <%=hidden_field :deal, :deal_type_id, :value => 2%>
+    <%=hidden_field :deal, :deal_type_id, :value => 2%>
     <input type="hidden" name="start_time" id="start_time" value="<%= params[:date] %>" />
 <h4>New Location deal</h4>
 
     <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
-     
+
       <tr>
-        <td style="color:#000000;">Deal Title:</td>
+        <td style="color:#000000;width: 200px;">Deal Title:</td>
         <td><%= f.text_field :name, :size=>"25%"  %> </td>
       </tr>
       <tr>
@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td style="color:#000000;">Discount:</td>
-        <td><%= f. select( "discount", Deal::DISCOUNTS, {:include_blank => 'Mininum 50%'},:onchange =>"discount()") %> </td>
+        <td><%= f. select( "discount", Deal::DISCOUNTS, {:include_blank => 'Select Discount'},:onchange =>"discount()") %> </td>
       </tr>
       <tr>
         <td style="color:#000000;">Rules of the deal:</td>
@@ -33,7 +33,7 @@
         <td style="color:#000000;">State Date:</td>
         <td><input id="deal_start_date" name="deal[start_date]" size="25%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
       </tr>
-            <tr>
+      <tr>
         <td style="color:#000000;">Expiry Date:</td>
         <td><input id="deal_expiry_date" name="deal[expiry_date]" size="25%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
       </tr>
@@ -43,69 +43,46 @@
         <td><%= f.file_field :deal_photo, :size=>"25%" %> </td>
       </tr>
       <tr>
-        <td style="color:#000000;">Deal Category:</td>
-        <td>
-          <select id="category" name="category">
-            <option value="0">Select a Category</option>
-          <%= options_from_collection_for_select categories, :id, :name %>
-          </select>
-          <%=observe_field "category",
-          :url => {:controller => 'deals', :action => 'sub_categories'},
-          :on => 'change',
-          :with => "category"%>
+            <td style="color:#000000;" colspan="2"> <input id="chk1" name="chk1" onClick="validtae(this.value)" type="checkbox" value="check" />
+            Use My Company address </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div id="location_address">
+    <% fields_for :deal_location_detail do |c| %>
+    <table align=left  style="font-size:14px;" CELLPADDING="0" CELLSPACING="6">
+      <tr>
+	<td  style="color:#000000;width: 200px;">Address1 :</td>
+	<td ><%= c.text_field :address1,:size=>"25%" %></td>
+      </tr>
+      <tr>
+	<td style="color:#000000;">Address2 :</td>
+	<td><%= c.text_field :address2,:size=>"25%" %></td>
+      </tr>
+      <tr>
+	<td  style="color:#000000;">Country :</td>
+	<td ><%=c.text_field :city , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
+      </tr>
+      <tr>
+	<td  style="color:#000000;">Zipcode :</td>
+	<td><%=c.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
+      </tr>
+    </table>
+   <%end%>
+   </div>
         </td>
       </tr>
       <tr>
-        <td colspan="3" id="sub_cats"></td>
-      </tr>
-           <tr>
-            <td style="color:#000000;"> <td><input id="chk1" name="chk1" onClick="validtae(this.value)" type="checkbox" value="check" />
-            use my company address </td></td>
-              </tr>
-              <tr>
-                <td colspan="4">
-                                <div id="location_address">
-                <% fields_for :deal_location_detail do |c| %>
-                                  <table>
-                <tr>
-	
-	<td  style="color:#000000;">Address1 :</td>
-	<td ><%= c.text_field :address1,:size=>"25%" %></td>
-   </tr>
-    <tr>
-	
-	<td style="color:#000000;">Address2 :</td>
-	<td><%= c.text_field :address2,:size=>"25%" %></td>
-   </tr>
-    <!--  <tr>
-	<td style="color:#000000;">City :</td>
-	<td><%#=c.text_field :city , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
-   </tr>
-     <tr>
-	<td  style="color:#000000;">State :</td>
-	<td><%#=c.text_field :state , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
-   </tr> -->
-    <tr>
-	<td  style="color:#000000;">Country :</td>
-	<td ><%=c.text_field :city , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
-   </tr>
-    <tr>
-	<td  style="color:#000000;">Zipcode :</td>
-	<td><%=c.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
-   </tr></table>
-   <%end%>
-              </div>
-                </td>
-              </tr>
-      <tr>
-        <td> </td>
         <td colspan="2">
           <br/><%=image_submit_tag ("register.jpg"), :onclick => "return Validate();"%>
 
           <a href="/location_deals" onclick="hideElt('popup_create_deal');" style="padding-left: 30px;"><img alt="Cancel" src="/images/cancel.jpg" border="0" /></a>
         </td>
       </tr>
+    </table>
+
+
+
 <% end %>
-  </table>
 </div>
 

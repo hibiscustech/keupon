@@ -8,7 +8,7 @@ class CreateDealTypes < ActiveRecord::Migration
            PRIMARY KEY (`id`)
           ) ENGINE=InnoDB;
     )
-
+    execute %Q{ insert into deal_types(name) values('Day'),('Location'),('Demand'),('Kupoint')}
 
   end
 
