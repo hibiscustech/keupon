@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <td colspan="2"><span style="color:#FF0000;font-family:Georgia,Times,serif;font-size:18px;font-weight: normal;"><%=@deal.name%></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><div style="max-height: 30px;color:#000000;font-family:Georgia,Times,serif;font-size:14px;font-weight: normal;"><%=@deal.highlights%></div></td>
+  </tr>
+  <tr>
+    <td align="center" style="width: 100px">
+      <div class="user2IMG" style="margin-top: 10px;">
+                                  <p class="for_PW" style="font-size:20px;"><%=@deal.company_name%></p>
+                                  <p><a href="<%=@deal.website%>"><img src="<%=@company.company_photo.url%>" style="width: 155px; height: 103px;"/></a></p>
+                                  <p class="for_PW"><br/><%=@deal.address1%> <%=@deal.address2%><br /><%=@deal.city%></p>
+      </div>
+    </td>
+    <td rowspan="3">
+      <div class="cont3" style="margin-top: -50px">
+                                      <p><img src="<%=@loc_deal.deal_photo.url%>" border="0px" style="width:304px;height:285px;"/></p>
+                                      <div class="priseDisco"> &nbsp;&nbsp;S$<%=@deal.buy%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=@deal.discount%> %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S$<%=@deal.save_amount%>
+                                      </div>
+                                  </div>
+    </td>
+  </tr>
+  <tr><td align="center" style="color:#FF0000;font-family:Georgia,Times,serif;font-size:16px;font-weight: normal;">Offer only till <%=Time.at(@deal.expiry_date.to_i).strftime("%b %d, %Y")%></td></tr>
+  <tr><td align="center"><a href="/get_location_deal?id=<%=@deal.id%>&lon=<%=@deal.longitude%>&lat=<%=@deal.latitude%>"><img src="/images/buy_now.jpg" style="border: 0;" /></a></td></tr>
+</table>

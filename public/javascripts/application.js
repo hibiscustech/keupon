@@ -33,6 +33,12 @@ function showViewDeal(elementID, deal_id)
     document.getElementById(elementID).style.display = "block";
 }
 
+function showLocationDeal(elementID, deal_id)
+{
+    new Ajax.Request('/customers/view_location_deal_info?id='+deal_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
 function showCreateDeal(elementID, deal_date)
 {
     new Ajax.Request('/deals/view_create_deal?date='+deal_date, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});

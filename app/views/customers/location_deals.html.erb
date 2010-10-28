@@ -66,33 +66,33 @@ jquery(function(){
 <div id="user1" style="height: 219px;">
 <div class="header">
 		<div id="slideshow1">
-
-					<!--slider1 -->
-					<div class="slider">
-						<ul class="gallery clearfix">
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img1.jpg" alt="" /></a></li>
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img2.jpg" alt="" /></a></li>
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img3.jpg" alt="" /></a></li>
-							<li class="last"><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img4.jpg" alt="" /></a></li>
-						</ul>
-					</div>
-					<!--slider2 -->
-					<div class="slider">
-						<ul class="gallery clearfix">
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img4.jpg" alt="" /></a></li>
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img3.jpg" alt="" /></a></li>
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img2.jpg" alt="" /></a></li>
-							<li class="last"><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img1.jpg" alt="" /></a></li>
-						</ul>
-					</div>
-					<!--slider3 -->
-					<div class="slider">
-						<ul class="gallery clearfix">
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img2.jpg" alt="" /></a></li>
-							<li><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img3.jpg" alt="" /></a></li>
-							<li class="last"><a href="/images/bigimg_pic1.jpg" rel="prettyPhoto"><img src="/images/slider_img4.jpg" alt="" /></a></li>
-						</ul>
-					</div>
+                  <% loc_deal = nil %>
+                  <% 0.step(@deals.length, 4){ |i| %>
+                    <div class="slider">
+                      <ul class="gallery clearfix">
+                        <% if !@deals[i].blank?
+                            loc_deal = Deal.find(@deals[i].id)
+                        %>
+                          <li><a href="#" onclick="showLocationDeal('popup_view_deal', '<%=loc_deal.id%>');"><img src="<%=loc_deal.deal_photo.url%>" alt="" style="width:217px;height:147px;"/></a></li>
+                        <% end %>
+                        <% if !@deals[i+1].blank?
+                            loc_deal = Deal.find(@deals[i+1].id)
+                        %>
+                          <li><a href="#" onclick="showLocationDeal('popup_view_deal', '<%=loc_deal.id%>');"><img src="<%=loc_deal.deal_photo.url%>" alt="" style="width:217px;height:147px;"/></a></li>
+                        <% end %>
+                        <% if !@deals[i+2].blank?
+                            loc_deal = Deal.find(@deals[i+2].id)
+                        %>
+                          <li><a href="#" onclick="showLocationDeal('popup_view_deal', '<%=loc_deal.id%>');"><img src="<%=loc_deal.deal_photo.url%>" alt="" style="width:217px;height:147px;"/></a></li>
+                        <% end %>
+                        <% if !@deals[i+3].blank?
+                            loc_deal = Deal.find(@deals[i+3].id)
+                        %>
+                          <li class="last"><a href="#" onclick="showLocationDeal('popup_view_deal', '<%=loc_deal.id%>');"><img src="<%=loc_deal.deal_photo.url%>" alt="" style="width:217px;height:147px;"/></a></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% } %>
 		  </div>
 					<div id="text">
 					<div class="slider">
@@ -122,4 +122,7 @@ jquery(function(){
 </div>
 </div>
 <br/>
+<div id="popup_view_deal">
+    <%= render :partial => "location_deal_info" %>
+</div>
 

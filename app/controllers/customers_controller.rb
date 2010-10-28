@@ -274,15 +274,17 @@ class CustomersController < ApplicationController
       #@map.overlay_init(marker)
       ###################################################
       @map.center_zoom_init([first.longitude,first.latitude],12)
+      first_deal = Deal.find(first.id)
+      first_company = Company.find(first.company_id)
       @map.overlay_init(GMarker.new([first.longitude,first.latitude],:title =>"#{first.name}", 
           :info_window => %Q{ <span style='color:#FF0000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{first.name}</span><br/><br/>
-                              <span style='max-height: 50px;color:#000000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{first.highlights}</span>
+                              <div style='max-height: 50px;color:#000000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{first.highlights}</div>
                               <div style='height: 400px; width: 690px; align: center;'>
                               <div id='user1' style='width: 530px; height: 355px; margin-left: 70px;'>
                                   <table align='left' width='100px'><tr><td>
                                   <div class='user2IMG' style='margin-top: 10px;'>
                                   <p class='for_PW' style='font-size:20px;'>#{first.company_name}</p>
-                                  <p><a href='#{first.website}'><img src='/images/apple_logo.jpg' style='width: 155px; height: 103px;'/></a></p>
+                                  <p><a href='#{first.website}'><img src='#{first_company.company_photo.url}' style='width: 155px; height: 103px;'/></a></p>
                                   <p class='for_PW'><br/>#{first.address1} #{first.address2}<br />#{first.city}</p>                                      
                                   </div>
                                   </td></tr>
@@ -291,32 +293,50 @@ class CustomersController < ApplicationController
                                   <td align='center'><a href='/get_location_deal?id=#{first.id}&lon=#{first.longitude}&lat=#{first.latitude}'><img src='/images/buy_now.jpg' style='border: 0;' /></a></td>
                                   </tr></table>
                                   <div class='cont3'>
-                                      <p><img src='/images/img1.jpg' border='0px' /></p>
+                                      <p><img src='#{first_deal.deal_photo.url}' border='0px' style='width:304px;height:285px;'/></p>
                                       <div class='priseDisco'> &nbsp;&nbsp;S$#{first.buy} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{first.discount}% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S$#{first.save_amount}</div>
                                   </div>
                               </div></div>} ))
       reminding.each do |deal|
+        loc_deal = Deal.find(deal.id)
+        loc_company = Company.find(deal.company_id)
         @map.record_init @map.add_overlay(GMarker.new([deal.longitude,deal.latitude],:title =>"#{deal.name}",
             :info_window => %Q{ <span style='color:#FF0000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{deal.name}</span><br/><br/>
-                                <span style='max-height: 50px;color:#000000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{deal.highlights}</span>
+                                <div style='max-height: 50px;color:#000000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>#{deal.highlights}</div>
                                 <div style='height: 400px; width: 690px; align: center;'>
                                 <div id='user1' style='width: 530px; height: 355px; margin-left: 70px;'>
                                   <table align='left' width='100px'><tr><td>
                                   <div class='user2IMG' style='margin-top: 10px;'>
                                   <p class='for_PW' style='font-size:20px;'>#{deal.company_name}</p>
-                                  <p><a href='#{deal.website}'><img src='/images/apple_logo.jpg' style='width: 155px; height: 103px;'/></a></p>
+                                  <p><a href='#{deal.website}'><img src='#{loc_company.company_photo.url}' style='width: 155px; height: 103px;'/></a></p>
                                   <p class='for_PW'><br/>#{deal.address1} #{deal.address2}<br />#{deal.city}</p>                                      
                                   </div></td></tr>
                                   <tr><td align='center' style='color:#FF0000;font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;font-weight: normal;'>Offer only till #{Time.at(deal.expiry_date.to_i).strftime('%b %d, %Y')}</td></tr>
                                   <tr>
                                   <td align='center'><a href='/get_location_deal?id=#{deal.id}&lon=#{deal.longitude}&lat=#{deal.latitude}'><img src='/images/buy_now.jpg' style='border: 0;' /></a></td></tr></table>
                                   <div class='cont3'>
-                                      <p><img src='/images/img1.jpg' border='0px' /></p>
+                                      <p><img src='#{loc_deal.deal_photo.url}' border='0px' style='width:304px;height:285px;'/></p>
                                       <div class='priseDisco'> &nbsp;&nbsp;S$#{deal.buy} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{deal.discount}% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S$#{deal.save_amount}</div>
                                   </div>                                  
                               </div></div>} ))
       end
     
+    end
+  end
+
+  def view_location_deal_info
+    @deal = DealLocationDetail.location_deal(params[:id])
+    @loc_deal = Deal.find(params[:id])
+    @company = Company.find(@deal.company_id)
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_location_deal',:partial => "view_location_deal"
+          end
+        }
+      end
     end
   end
 
