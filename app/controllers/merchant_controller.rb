@@ -196,4 +196,69 @@ class MerchantController < ApplicationController
     redirect_to "/deals_on_demand"
   end
 
+  def keupoint_deals
+    @page = "Kupoint Deals"
+    if request.post?
+      merchant_profile = current_merchant.merchant_profile
+      deal = Deal.new(:name => params[:name], :value => params[:actual_value], :discount => params[:discount], :rules => params[:rules], :highlights => params[:highlights], :status => "open", :expiry_date => Time.parse("#{params[:expiry_date]} 23:59:59").to_i.to_s, :deal_type_id => 4, :merchant_id => current_merchant.id, :deal_category_id => merchant_profile.deal_category_id, :deal_sub_category_id => merchant_profile.deal_sub_category_id, :keupoints_required => params[:keupoints])      
+      deal.buy = params[:actual_value].to_f*params[:discount].to_f/100
+      deal.save_amount = deal.value.to_f - deal.buy.to_f
+      deal.deal_photo = params[:deal_photo]  
+      deal.save!    
+    end
+    @deals = Deal.keupoint_deals(current_merchant.id)
+  end
+  
+  def edit_keupoint_deal
+    @deal = Deal.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'create_edit_keupoint_deal',:partial => "edit_keupoint_deal"
+          end
+        }
+      end
+    end
+  end
+  
+  def update_keupoint_deal
+    @deal = Deal.find(params[:id])
+    buy = params[:actual_value].to_f*params[:discount].to_f/100
+    save_amount = params[:actual_value].to_f - buy.to_f
+    @deal.update_attributes(:name => params[:name],:buy => buy, :save_amount => save_amount, :value => params[:actual_value], :discount => params[:discount], :rules => params[:rules], :highlights => params[:highlights], :expiry_date => Time.parse("#{params[:expiry_date]} 23:59:59").to_i.to_s, :keupoints_required => params[:keupoints])      
+    redirect_to "/keupoint_deals"  
+  end
+  
+  def cancel_keupoint_deal
+    @deal = Deal.find(params[:id])
+    @deal.update_attributes(:status => "cancelled")
+    @deals = Deal.keupoint_deals(current_merchant.id)
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'summary',:partial => "keupoint_deals_summary"
+          end
+        }
+      end
+    end
+  end
+  
+  def view_keupoint_deal
+    @deal = Deal.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_keupoint_deal',:partial => "view_keupoint_deal"
+          end
+        }
+      end
+    end
+  end
+
 end

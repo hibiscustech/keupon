@@ -2,7 +2,7 @@
       <div class="dateB1">
         <div class="dateB1_top"><%=@bid_deal.name%> </div>
         <div class="dateB1_center">
-          <div class="dateB1_C1"><img src="/images/dateIphone.jpg" border="0px" /></div>
+          <div class="dateB1_C1"><img src="<%= @bid_deal.demand_deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/></div>
           <div class="dateB1_C2">
           S$<%= @bid_deal.actual_value %>
           <br />
