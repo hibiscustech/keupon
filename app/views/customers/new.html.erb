@@ -5,23 +5,20 @@
   <fieldset id="step_1">
 
     <legend>Step 1</legend>
-
-    <label for="num_attendees">
-      E-mail ID
-    </label>
-    <%= f.text_field :email , :size=>"25%"%>
-
-   <!-- <div id="attendee_1_wrap" class="name_wrap push"> -->
-      <label for="name_attendee_1">
-        Password :
-      </label>
-      <%= f.password_field :password, :id=>"passwords", :size=>"25%"%>
-      <label for="name_attendee_1">
-        Retype Password :
-      </label>
-      <%= f.password_field :password_confirmation, :class=>'name_input',:size=>"25%" %><br/><br/>
-      <a href="#" id="submit_step_1"><img src="/images/step2.png" border="0"/>  </a>
-    <!--</div> -->
+    <table cellspacing="4" cellpadding="4">
+      <tr>
+        <td><label for="num_attendees">E-mail ID</label></td><td><%= f.text_field :email , :size=>"25%"%></td>
+      </tr>
+      <tr>
+        <td><label for="name_attendee_1">Password :</label></td><td><%= f.password_field :password, :id=>"passwords", :size=>"25%"%></td>
+      </tr>
+      <tr>
+        <td><label for="name_attendee_1">Retype Password :</label></td><td><%= f.password_field :password_confirmation, :class=>'name_input',:size=>"25%" %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><a href="#" id="submit_step_1"><img src="/images/step2.png" border="0"/>  </a></td>
+      </tr>
+    </table>
   </fieldset>
 
 
