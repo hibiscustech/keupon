@@ -372,6 +372,24 @@ class CustomersController < ApplicationController
   end
 
 
+  def my_profile
+    @page = 'My Settings'
+    @customer = Customer.find(current_customer.id)
+    @customer_profile = @customer.customer_profile
+ end
+
+
+  def settings
+    @customer = Customer.find(params[:id])
+    if !params[:customer][:customer_photo].nil?
+      @customer.customer_photo = params[:customer][:customer_photo]
+      @customer.save
+    else
+      @customer.update_attributes(params[:customer])
+    end
+    redirect_to '/my_profile'
+  end
+  
   def profile_update
     @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_favourite][:customer_id])
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])

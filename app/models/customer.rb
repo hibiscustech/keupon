@@ -34,6 +34,11 @@ class Customer < ActiveRecord::Base
   has_many :merchants, :through => :merchants_customers
   has_many :customer_demand_deals
 
+  has_attached_file :customer_photo,
+    :styles => {
+      :thumb=> "100x100#",
+      :small  => "95x80#" }
+
   # Activates the user in the database.
   def activate!
     @activated = true

@@ -1,8 +1,9 @@
+
 <div id="header">
       <div id="logo"><img src="/images/logo.jpg" border="0px" /></div>
       <div id="head1">
         <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
-        <div id="findCity">
+        <!-- <div id="findCity">
        		<img src="/images/navigate.jpg" width="167" height="32" class="menu_head" />
 <ul class="menu_body">
 <li><a href="#">City One</a></li>
@@ -10,7 +11,53 @@
 <li><a href="#">City Three</a></li>
 </ul>
         </div>
-        <div id="go"><a href="#"><img src="/images/go_btn.jpg" border="0px" /></a></div>
-        <div id="facebook"><a href="#"><img src="/images/facebook_connect.jpg" border="0px" /></a></div>
-      </div>      
+        <div id="go"><a href="#"><img src="/images/go_btn.jpg" border="0px" /></a></div> -->
+               
+      </div>
+      <%if !logged_in?%>
+       <div id="facebook" style="margin-left: 12px;"><a href="#"><img src="/images/facebook_connect.jpg" border="0px" /></a></div>
+         <div id="head2">
+
+
+
+        <div id="addMoreFrnd"></div>
+
+
+
+        <div id="advertise"></div>
+
+
+
+        <div id="watchVid"><a href="#"><img src="/images/signup_btn.jpg" border="0px" />
+            <div style="margin-top:  -25px;text-align: center;margin-left: 91px;font-size: 15px;color: #fff;"><%=link_to 'Sign In','/' ,{:style=> 'text-decoration: none;color:white;'}%></div>
+          <div style="margin-top:  -18px;margin-left: 30px;text-align: left;font-size: 15px;color: #fff;"><%=link_to 'Login','/login',{:style=> 'text-decoration: none;color:white;'}%></div></a></div>
+
+
+    </div>
+       <%else%>
+       <div id="head2">
+
+
+
+        <div id="addMoreFrnd"></div>
+
+  <div id="watchVid" style="font-size: 14px;font-weight: bold;margin-left: 20px;">
+             Welcome <%=current_customer.login%><br/>
+            <%=link_to 'Sign Out', '/logout',{:style=> 'text-decoration: none;color:#B10909;'}%><br/><br/>
+          <a href="/my_profile"><img src="/images/myprofile_btn.jpg" border="0px" />
+            </a></div>
+
+        <div id="advertise"><%if current_customer.customer_photo.nil?%>
+        <img src="/images/profile_pic.jpg" border="0px" />
+        <%else%>
+        <%=image_tag (current_customer.customer_photo.url(:small))%>
+        <%end%></div>
+
+
+
+      
+
+
+    </div>
+       <%end%>
     </div>

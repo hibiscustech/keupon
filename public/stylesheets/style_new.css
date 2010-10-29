@@ -238,12 +238,15 @@ background-repeat: repeat;
 	height: 32px;
 	width: 167px;
 	margin-top: 12px;
+       
 }
 #facebook {
-	float: left;
+	float: right;
 	height: auto;
 	width: 167px;
 	padding-left: 5px;
+        margin-right: 125px;
+        margin-top: -50px;
 	padding-top: 12px;
 }
 #go {
@@ -274,8 +277,8 @@ background-repeat: repeat;
 #watchVid {
 	float: left;
 	height: auto;
-	width: 229px;
-	padding-top: 20px;
+	width: 135px;
+	padding-top: 10px;
 }
 #nav {
 	float: left;
