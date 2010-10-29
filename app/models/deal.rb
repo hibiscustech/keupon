@@ -62,4 +62,17 @@ class Deal < ActiveRecord::Base
                 order by ds.start_time }
     find_by_sql(query)
   end
+  
+  def self.keupoint_deals(merchant_id)
+    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, count(d.id) as no_of_customers, d.keupoints_required
+                from merchants m
+                join deals d on d.merchant_id = m.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where merchant_id = #{merchant_id} and d.deal_type_id = 4
+                group by d.id }
+                
+    find_by_sql(query)                
+  end
+  
+  def self.available_keupoint
 end

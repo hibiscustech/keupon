@@ -1,0 +1,86 @@
+<script Language="JavaScript">
+<!--
+function form_validator(){
+var theForm = document.forms['keupoint_deal_form'];
+var i;
+if (theForm.name.value == "" || theForm.name.value.length < 1)
+{
+alert("You must enter Deal Title.");
+theForm.name.focus();
+return (false);
+}
+
+if (theForm.actual_value.value == "" || theForm.actual_value.value.length < 1)
+{
+alert("You must enter Original Value.");
+theForm.actual_value.focus();
+return (false);
+}
+
+if (theForm.discount.selectedIndex == '0')
+{
+alert("Please select one of the Discount options.");
+theForm.discount.focus();
+return (false);
+}
+
+if (theForm.kupoints.value == "" || theForm.kupoints.value.length < 1)
+{
+alert("You must enter Minimum Kupoints required for this Deal.");
+theForm.kupoints.focus();
+return (false);
+}
+
+if (theForm.rules.value == "" || theForm.rules.value.length < 1)
+{
+alert("You must enter Rules.");
+theForm.rules.focus();
+return (false);
+}
+
+if (theForm.highlights.value == "" || theForm.highlights.value.length < 1)
+{
+alert("You must enter Highlights.");
+theForm.highlights.focus();
+return (false);
+}
+
+if (theForm.expiry_date.value == "" || theForm.expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.expiry_date.focus();
+return (false);
+}
+
+return true;
+}
+
+function cancel_deal(deal)
+{
+	if(confirm('Customers will no more be able to buy this Deal using Keupoints.'))
+	{
+		new Ajax.Request('/merchant/cancel_keupoint_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});		
+	}
+	else
+	{
+		return false;
+	}
+}
+//-->
+</script>
+<table style="width: 990px">
+  <tr>
+    <td align="right"><a href="#" onclick="createKeupointDeal('popup_create_deal');" style="color: rgb(3, 77, 124);">New Keupoint Deal</a></td>
+  </tr>
+</table>
+<div style="width: 990px; float:left;" id="summary">
+  <%= render :partial => "keupoint_deals_summary" %>
+</div>
+<br/>
+<br/>
+<div id="popup_create_deal">
+    <%= render :partial => "create_edit_keupoint_deal" %>
+  </div>
+  <div id="popup_view_deal">
+    <%= render :partial => "keupoint_deal_info" %>
+  </div>

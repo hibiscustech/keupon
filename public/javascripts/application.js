@@ -39,6 +39,23 @@ function showLocationDeal(elementID, deal_id)
     document.getElementById(elementID).style.display = "block";
 }
 
+function createKeupointDeal(elementID)
+{
+    document.getElementById(elementID).style.display = "block";
+}
+
+function showKeupointDeal(elementID, deal)
+{
+    new Ajax.Request('/merchant/view_keupoint_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
+function editKeupointDeal(elementID, deal)
+{
+    new Ajax.Request('/merchant/edit_keupoint_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
 function showCreateDeal(elementID, deal_date)
 {
     new Ajax.Request('/deals/view_create_deal?date='+deal_date, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
