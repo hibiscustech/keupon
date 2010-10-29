@@ -1,0 +1,170 @@
+<style type="text/css">
+  .myprofile
+  {
+    width:946px;
+    background-image:url(/images/my_profile_header.jpg);
+    background-repeat: no-repeat;
+    color:#222222;
+    padding:4px;
+    _padding:0px;
+    text-align:center;
+  }
+  .myaccount
+  {
+    width:946px;
+    background-image:url(/images/my_account_header.jpg);
+    background-repeat: no-repeat;
+    color:#222222;
+    padding:4px;
+    _padding:0px;
+    text-align:center;
+  }
+</style>
+<div id="offered_deals">
+  <table><tr><td>
+        <img src="/images/my_profile_activetab.jpg" onclick="changeMyProfile(1)" style="cursor:pointer;" id="Img1"/>
+      </td></tr>
+  </table>
+
+
+  <div id="myprofile" class="myprofile" style="border: 4px solid black; display: block; min-height:150px; margin-bottom: 10px; width: 938px; margin-top: -8px; margin-left: 3px;">
+
+    <br/><br/><br/><br/><br/><br/><br/>
+    <div style="width:618px;text-align:left;">
+      <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update'} do |f| -%>
+        <%=hidden_field :customer_favourite, :customer_id, :value => @customer_profile.customer_id%>
+        <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="20%" style="color:#000000;">Gender:<font color="red">*</font></td>
+            <td width="30%"><%= f.radio_button 'gender', 'm'%> Male<%= f.radio_button 'gender', 'f'%> Female
+            </td>
+          </tr>
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">I was born on:<font color="red">*</font></td>
+            <td width="30%"><input id="customer_profile_dob" name="customer_profile[dob]" size="15%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+          </tr>
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">Region :<font color="red">*</font></td>
+            <td width="30%"><%= f.select 'region', CustomerProfile::REGION ,{:prompt => 'Select a region'}%></td>
+          </tr>
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">Relationship status :<font color="red">*</font></td>
+            <td width="30%"><%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a region'}%></td>
+          </tr>
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">Salary range:<font color="red">*</font></td>
+            <td width="30%"><%=f.text_field 'income', :size=> '15'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
+          </tr>
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">Employment status:<font color="red">*</font></td>
+            <td width="30%"><%= f.select 'industry_sector_id', IndustrySector.all.collect {|p| [ p.name, p.id ] }%></td>
+          </tr>
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;"><h3>Favourite Deals</h3></td>
+            <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
+          </tr>
+          <% fields_for "customer_favourite_deals" do |s| %>
+
+            <tr>
+              <td width="5%"> </td>
+              <td width="50%" style="color:#000000;">
+
+                <%for category in category_all%>
+                  <b><%=category.name%></b><br/>
+                  <%for sub_category in sub_category_all(category)%>
+                    <%= check_box_tag "customer_favourite_deal[deal_sub_category_id][]", category.id.to_s+':'+sub_category.id.to_s -%><%=sub_category.name%><br/>
+                  <%end%>
+                <%end%>
+
+              </td>
+              <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%"> </td>
+            <td width="35%" colspan="2">
+              <br/><%=image_submit_tag ("register.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/", {:style=>"padding-left:30px;"}%>
+            </td>
+          </tr>
+          <tr><td></td><td></td></tr> <% end -%>
+      </table>
+
+
+    </div> </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
