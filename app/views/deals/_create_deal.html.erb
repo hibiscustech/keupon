@@ -48,24 +48,7 @@
         <td> </td>
         <td style="color:#000000;">Deal Photo:</td>
         <td><%= f.file_field :deal_photo, :size=>"25%" %> </td>
-      </tr>
-      <tr>
-        <td> </td>
-        <td style="color:#000000;">Deal Category:</td>
-        <td>
-          <select id="category" name="category">
-            <option value="0">Select a Category</option>
-          <%= options_from_collection_for_select @categories, :id, :name %>
-          </select>
-          <%=observe_field "category",
-          :url => {:controller => 'deals', :action => 'sub_categories'},
-          :on => 'change',
-          :with => "category"%>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="3" id="sub_cats"></td>
-      </tr>
+      </tr>      
       <tr>
         <td> </td>        
         <td colspan="2">

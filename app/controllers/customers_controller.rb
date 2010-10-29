@@ -12,9 +12,8 @@ class CustomersController < ApplicationController
 
   def deal_of_the_day
     @page = "Today's Hot Deal"
-    #@deal_schedule = DealSchedule.deal_schedule
-    @deal = Deal.todays_deal
-    puts
+    @deal, @end_time = Deal.todays_deal
+    @company = @deal.merchant.merchant_profile.company
   end
 
   def recent_deals
@@ -408,6 +407,7 @@ class CustomersController < ApplicationController
 
   def my_keupons
    @page = 'My Keupons'
+   @keupoint_deals = Deal.available_keupoint_deals(current_customer.kupoints)
   end
 
 end

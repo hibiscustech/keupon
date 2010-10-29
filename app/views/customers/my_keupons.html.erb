@@ -94,70 +94,25 @@ hr {
      <div class="slide slide-roundabout bg1">
                      <div class="containit ornament-right">
                         <div class="featureCarouselshadow">
-                            <h1 class="mb4" style="color:#fff;">You got 201 Keupons</h1>
+                            <h1 class="mb4" style="color:#fff;">You got <%= current_customer.kupoints %> Keupoints</h1>
                             <p class="mb20" style="color:#fff;">You can redeem it for these deals.</p>
                             <!-- feature carousel with images and captions -->
 
                             <div id="featureCarousel">
+                            
+                            <% for deal in @keupoint_deals %>
+                            	<% keup_deal = Deal.find(deal.id) %>
                                 <!-- start feature  -->
                                 <div class="feature">
-                                    <a href="http://www.google.com"><img alt="Image Caption" src="_include/timthumb/timthumb5cde.jpg" style="width: 420px; height: 270px;"/></a>
+                                    <a href="#"><img alt="Keupoint Deal" src="<%=keup_deal.deal_photo.url %>" style="width: 420px; height: 270px;"/></a>
                                     <div>
                                         <p>
-                                            This is some information that can go along with an image.
-                                            Anything can be placed here, including images.
+                                            <%= deal.name %>
                                         </p>
                                     </div>
                                 </div>
                                 <!-- end feature  -->
-
-                                <!-- start feature  -->
-                                <div class="feature">
-                                    <a href="http://www.hibiscustech.com"><img alt="Image Caption" src="_include/timthumb/timthumb4294.jpg" /></a>
-                                    <div>
-                                        <p>
-                                            This is some information that can go along with an image.
-                                            Anything can be placed here, including images.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- end feature  -->
-
-                                <!-- start feature  -->
-                                <div class="feature">
-                                    <a href="http://www.yahoo.com"><img alt="Image Caption" src="_include/timthumb/timthumb451f.jpg?src=http://www.spinform.ro/themeforest/novux/php/_include/images/showcase/showcase3.jpg&amp;w=420&amp;h=270&amp;zc=1" /></a>
-                                    <div>
-                                        <p>
-                                            This is some information that can go along with an image.
-                                            Anything can be placed here, including images.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- end feature  -->
-
-                                <!-- start feature  -->
-                                <div class="feature">
-                                    <a href="http://www.facebook.com"><img alt="Image Caption" src="_include/timthumb/timthumb014a.jpg?src=http://www.spinform.ro/themeforest/novux/php/_include/images/showcase/showcase4.jpg&amp;w=420&amp;h=270&amp;zc=1" /></a>
-                                    <div>
-                                        <p>
-                                            This is some information that can go along with an image.
-                                            Anything can be placed here, including images.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- end feature  -->
-
-                                <!-- start feature  -->
-                                <div class="feature">
-                                    <a href="http://www.orkut.com"><img alt="Image Caption" src="_include/timthumb/timthumb9507.jpg?src=http://www.spinform.ro/themeforest/novux/php/_include/images/showcase/showcase5.jpg&amp;w=420&amp;h=270&amp;zc=1" /></a>
-                                    <div>
-                                        <p>
-                                            This is some information that can go along with an image.
-                                            Anything can be placed here, including images.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- end feature  -->
+							<% end %>                                
 
                             </div>
                             <!-- end feature carousel -->

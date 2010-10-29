@@ -37,9 +37,9 @@ class Deal < ActiveRecord::Base
   def self.todays_deal
     sdate = Time.parse("#{Time.now.year}-#{Time.now.month}-#{Time.now.day} 00:00:00").to_i.to_s
 
-    query = %Q{ select deal_id from deal_schedules where start_time = '#{sdate}'}
+    query = %Q{ select end_time, deal_id from deal_schedules where start_time = '#{sdate}'}
     deal = find_by_sql(query)[0]
-    return (deal.blank?)? nil : Deal.find(deal.deal_id)
+    return (deal.blank?)? nil : [Deal.find(deal.deal_id), deal.end_time]
   end
 
 
@@ -74,5 +74,11 @@ class Deal < ActiveRecord::Base
     find_by_sql(query)                
   end
   
-  def self.available_keupoint
+  def self.available_keupoint_deals(keupoints)
+    query = %Q{ select d.id, d.name
+                from deals d 
+                where d.deal_type_id = 4 and d.keupoints_required <= #{keupoints} and status = 'open' and expiry_date > #{Time.now.to_i} }
+                
+    find_by_sql(query)
+  end
 end
