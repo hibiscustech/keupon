@@ -3,11 +3,10 @@
 <% form_for :customer, :url => customers_path do |f| -%>
 
   <fieldset id="step_1">
-
     <legend>Step 1</legend>
     <table cellspacing="4" cellpadding="4">
       <tr>
-        <td><label for="num_attendees">E-mail ID</label></td><td><%= f.text_field :email , :size=>"25%"%></td>
+        <td><label for="num_attendees">E-mail ID :</label></td><td><%= f.text_field :email , :size=>"25%"%></td>
       </tr>
       <tr>
         <td><label for="name_attendee_1">Password :</label></td><td><%= f.password_field :password, :id=>"passwords", :size=>"25%"%></td>
@@ -20,54 +19,43 @@
       </tr>
     </table>
   </fieldset>
-
-
   <fieldset id="step_2">
     <legend>Step 2</legend>
     <% fields_for :customer_profile do |p| %>
-      <label for="name_attendee_1">
-        First name :
-      </label>
-      <%= p.text_field :first_name, :size=>"25%"%>
-      <br/><label for="name_attendee_1">
-        Last Name :
-      </label>
-      <%= p.text_field :last_name, :size=>"25%" %>
-
-      <label for="name_attendee_1">
-        Address 1 :
-      </label>
-      <%= p.text_field :address1,:size=>"25%" %>
-      <label for="name_attendee_1">
-        Address 2 :
-      </label>
-      <%= p.text_field :address2,:size=>"25%" %>
-      <label for="name_attendee_1">
-        Country :
-      </label>
-      <%= p.text_field :country,:size=>"25%" ,:id=> 'name_input_country' %><br/>
-      <label for="name_attendee_1">
-        Pin code :
-      </label>
-      <%= p.text_field :zipcode,:size=>"25%" ,:id=> 'name_input_pin' %>
-      <label for="name_attendee_1">
-        Contact Number :
-      </label>
-      <%= p.text_field :contact_number,:size=>"25%" ,:id=> 'name_input_cn' %>
-
-    <% end %><br/><br/>
-       <a href="#" id="submit_step_2"><img src="/images/step3.png" border="0"/> </a>
+      <table><tr>
+          <td> <label for="name_attendee_1">First name :</label></td><td><%= p.text_field :first_name, :size=>"20%"%></td>
+        </tr>
+        <tr>
+          <td><label for="name_attendee_1">Last Name :</label></td><td> <%= p.text_field :last_name, :size=>"20%" %></td>
+        </tr>
+        <tr>
+          <td><label for="name_attendee_1">Address 1 :</label></td><td><%= p.text_field :address1,:size=>"20%" %></td>
+        </tr>
+        <tr>
+          <td> <label for="name_attendee_1">Address 2 :</label></td><td> <%= p.text_field :address2,:size=>"20%" %></td>
+        </tr>
+        <tr>
+          <td><label for="name_attendee_1">Country :</label></td><td> <%= p.text_field :country,:size=>"20%" ,:id=> 'name_input_country' %></td>
+        </tr>
+        <tr>
+          <td> <label for="name_attendee_1">Pin code :</label></td><td><%= p.text_field :zipcode,:size=>"20%" ,:id=> 'name_input_pin' %></td>
+        </tr>
+        <tr>
+          <td> <label for="name_attendee_1">Contact Number :</label></td><td> <%= p.text_field :contact_number,:size=>"20%" ,:id=> 'name_input_cn' %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><a href="#" id="submit_step_2"><img src="/images/step3.png" border="0"/> </a></td>
+        </tr>
+      </table>
+    <% end %>
   </fieldset>
-
   <fieldset id="step_3">
     <legend>Step 3</legend>
-
     <label for="rock">
       Are you ready to rock?
     </label>
     <input type="checkbox" id="rock"></input>
-<%=image_submit_tag ("complete_registration_btn.png"), :id=>"submit_button", :class => 'push'%>
-    
+    <%=image_submit_tag ("complete_registration_btn.png"), :id=>"submit_button", :class => 'push'%>
   </fieldset>
 
 <% end %>
