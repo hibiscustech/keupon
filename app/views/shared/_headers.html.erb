@@ -35,29 +35,33 @@
 
     </div>
        <%else%>
-       <div id="head2">
-
-
-
-        <div id="addMoreFrnd"></div>
-
-  <div id="watchVid" style="font-size: 14px;font-weight: bold;margin-left: 20px;">
-             Welcome <%=current_customer.login%><br/>
-            <%=link_to 'Sign Out', '/logout',{:style=> 'text-decoration: none;color:#B10909;'}%><br/><br/>
-          <a href="/my_profile"><img src="/images/myprofile_btn.jpg" border="0px" />
-            </a></div>
-
-        <div id="advertise"><%if current_customer.customer_photo.nil?%>
-        <img src="/images/profile_pic.jpg" border="0px" />
-        <%else%>
-        <%=image_tag (current_customer.customer_photo.url(:small))%>
-        <%end%></div>
-
-
-
-      
-
-
+       <div id="head2" align="right">
+        <table>
+          <tr>
+            <td>
+              <div id="watchVid" style="font-size: 14px;font-weight: bold;margin-left: 20px; width: 300px;">
+                <table>
+                  <tr>
+                    <td align="left">Welcome! <%=current_customer.login%></td>
+                  </tr>
+                  <tr><td>&nbsp;</td></tr>
+                  <tr><td><a href="/my_profile"><img src="/images/my_profile_btn.jpg" border="0px" /></a>&nbsp;&nbsp;<a href="/logout"><img src="/images/logout.jpg" border="0px" /></a></td></tr>
+               </table>
+              </div>
+            </td>
+            <td>
+              <div id="advertise" style="width: auto; padding-top: 0px">
+                <%if current_customer.customer_photo%>
+                  <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
+                <%else%>
+                  <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
+                <%end%>
+              </div>
+            </td>
+          </tr>
+        </table>
+          
+          
     </div>
        <%end%>
     </div>

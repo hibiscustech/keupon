@@ -128,6 +128,14 @@ class CustomersController < ApplicationController
     @page = "Billing Information"
     @billing_information = CustomerCreditCard.new
     @deal = Deal.find(params[:id])
+    @cards = current_customer.customer_credit_cards
+  end
+
+  def demand_deal_transaction_details
+    @page = "Billing Information"
+    @billing_information = CustomerCreditCard.new
+    @deal = CustomerDemandDealBidding.find(params[:id])
+    @cards = current_customer.customer_credit_cards
   end
 
   def check_transaction_quantity
@@ -159,20 +167,89 @@ class CustomersController < ApplicationController
     end
   end
 
-  def save_transaction_details
-    customer_card_inform = CustomerCreditCard.new(params[:customer_credit_card])
-    customer_card_inform.time_created = Time.now.to_i
-    customer_card_inform.time_modified = Time.now.to_i
-    customer_card_inform.expiration_year = params[:date][:year]
-    customer_card_inform.expiration_month = params[:date][:month]
-    customer_card_inform.card_type = 'Visa'
-    if customer_card_inform.save!
-      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => '1')
-      customer_deal.save!
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
-      redirect_to '/deal_of_the_day'
+  def save_demand_deal_transaction_details
+    demand_deal_bidding = CustomerDemandDealBidding.find(params[:customer_deal][:deal_id])
+    demand_deal = demand_deal_bidding.customer_demand_deal
+    customer_card_inform = nil
+    if !params[:new_card].blank?
+      customer_card_inform = CustomerCreditCard.new(params[:customer_credit_card])
+      customer_card_inform.time_created = Time.now.to_i
+      customer_card_inform.time_modified = Time.now.to_i
+      customer_card_inform.expiration_year = params[:date][:year]
+      customer_card_inform.expiration_month = params[:date][:month]
+      customer_card_inform.save!
     else
-      render :action => 'transaction_details'
+      customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
+    end
+    if customer_card_inform.save!
+      deal = Deal.new(:name => demand_deal_bidding.name, :buy => demand_deal_bidding.buy_value, :value => demand_deal_bidding.actual_value,
+        :discount => demand_deal_bidding.discount, :save_amount => demand_deal_bidding.savings, :number => demand_deal_bidding.number, :rules => demand_deal_bidding.rules, :highlights => demand_deal_bidding.highlights,
+        :status => "new", :expiry_date => demand_deal_bidding.deal_end_date, :deal_type_id => 3, :merchant_id => demand_deal_bidding.merchant_id,
+                      :deal_category_id => demand_deal.deal_category_id, :deal_sub_category_id => demand_deal.deal_sub_category_id)
+
+      #deal.deal_photo = demand_deal_bidding.demand_deal_photo.url
+
+      deal.save!
+
+      total_price = deal.buy.to_f*deal.number.to_f
+      deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
+      customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :status => "available", :deal_code => deal_code)
+      customer_deal.save!
+
+      customer_transaction = CustomerDealTransaction.new(:time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
+      customer_transaction.save!
+
+      points_earned = Constant.dollar_to_keupoint_convertion*total_price
+      CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
+      current_customer.kupoints = current_customer.kupoints.to_f + points_earned
+      current_customer.save!
+
+      demand_deal.update_attributes(:deal_id => deal.id, :status => "accepted")
+
+      flash[:notice] = "Thanks for Purchasing the Deal!"
+      redirect_to "#{params[:return_to]}"
+    else
+      render :action => 'demand_deal_transaction_details', :id => demand_deal_bidding.id
+    end
+  end
+
+  def save_transaction_details
+    deal = Deal.find(params[:customer_deal][:deal_id])
+    customer_card_inform = nil
+    if !params[:new_card].blank?
+      customer_card_inform = CustomerCreditCard.new(params[:customer_credit_card])
+      customer_card_inform.time_created = Time.now.to_i
+      customer_card_inform.time_modified = Time.now.to_i
+      customer_card_inform.expiration_year = params[:date][:year]
+      customer_card_inform.expiration_month = params[:date][:month]
+      customer_card_inform.save!
+    else
+      customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
+    end
+    if customer_card_inform.save!      
+      total_price = deal.buy.to_f*params[:quantity].to_f
+
+      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity])
+      customer_deal.save!
+
+      customer_transaction = CustomerDealTransaction.new(:time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
+      customer_transaction.save!
+
+      if deal.deal_type_id == 2 || deal.deal_type_id == 3
+        deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
+        customer_deal.update_attributes(:status => "available", :deal_code => deal_code)
+
+        points_earned = Constant.dollar_to_keupoint_convertion*total_price
+        CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
+
+        current_customer.kupoints = current_customer.kupoints.to_f + points_earned
+        current_customer.save!
+      end
+
+      flash[:notice] = "Thanks for Purchasing the Deal!"
+      redirect_to "#{params[:return_to]}"
+    else
+      render :action => 'transaction_details', :id => deal.id
     end
   end
 
@@ -341,9 +418,9 @@ class CustomersController < ApplicationController
 
   def get_location_deal
     @page = 'Billing Information'
+    @billing_information = CustomerCreditCard.new
     @deal = Deal.find(params[:id])
-    @billing_information  = CustomerCreditCard.new
-    @latest_billing_information  = CustomerCreditCard.find_by_customer_id(current_customer ,:order => 'time_created DESC')
+    @cards = current_customer.customer_credit_cards
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([ params[:lon],params[:lat]],14)

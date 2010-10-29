@@ -1,50 +1,102 @@
+<script Language="JavaScript">
+<!--
+function show_new_card(){
+var theForm = document.forms['new_customer_credit_card'];
+if (theForm.new_card.checked)
+{
+  //document.getElementById('credit_card_entry').style.display = "block";
+  Effect.BlindDown('credit_card_entry');
+}
+else{
+  //document.getElementById('credit_card_entry').style.display = "none";
+  Effect.BlindUp('credit_card_entry');
+}
+}
+</script>
+
+<div id="userform" style="height: auto;">
 <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
-<div id="purchase">
-  <%= render :partial => "purchase_detail" %>
-</div>
-<br/>
-<table width="600">
+<%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
+<%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
+  <input type="hidden" name="return_to" value="/deal_of_the_day" />
+<table>
   <tr>
-    <td width="300">      
-        <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
-      <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
-        <p><%= label_tag 'Cardholder First Name' %><br />
-          <%= f.text_field 'first_name' %></p>
-
-        <p><%= label_tag 'Cardholder Last Name' %><br />
-          <%= f.text_field 'last_name' %></p>
-
-        <p><%= label_tag 'Card Number' %><br/>
-          <%= f.text_field 'credit_card_number' %></p>
-
-        <p><%= label_tag 'Security Code' %><br/>
-          <%= f.text_field 'cvv2' %></p>
-
-        <p><%= label_tag 'Expiration Date' %><br/>
-          <%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;
-          <%=select_year(Date.today, :start_year => 2020, :end_year => 2000)%>
-        </p>
-      </td>
-      <td width="300">
-
-        <p><%= label_tag 'Billing Address 1' %><br />
-          <%= f.text_field 'address1' %></p>
-
-        <p><%= label_tag 'Billing Address 2' %><br/>
-          <%= f.text_field 'address2' %></p>
-
-        <p><%= label_tag 'City' %><br/>
-          <%= f.text_field 'city' %></p>
-
-        <p><%= label_tag 'State' %><br/>
-          <%= f.text_field 'state' %></p>
-
-        <p><%= label_tag 'Card Type' %><br/>
-          <%= f.select( "card_type", { "Visa" => "visa", "Mastercard" => "mastercard", "Mastercard" => "mastercard","American Express" => "amex"}) %></p>
-    <tr><td>
-        <p><%=image_submit_tag ("register.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/deal_of_the_day' %></p></td></tr>
-
-  </td>
-</tr>
+    <td>
+      <div id="purchase">
+        <%= render :partial => "purchase_detail" %>
+      </div>
+    </td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td><h3>Your Card Details</h3></td></tr>
+  <% if !@cards.blank? %>
+  <tr>
+    <td>
+      <select name="customer_creditcard" id="customer_creditcard" >
+        <option value="0">Select your Card that you wish to use for this Purchase</option>
+        <% for card in @cards %>
+        <option value="<%= card.id %>"><%=card.card_type%>-<%=card.credit_card_number%></option>
+        <% end %>
+      </select>
+      or Use New Card for this Purchase <input type="checkbox" name="new_card" id="new_card" value="new_card" onclick="javascript: show_new_card();" />
+    </td>
+  </tr>
+  <% end %>
+</table>
+<table id="credit_card_entry" style="display: <%=(@cards.blank?)? 'block' : 'none' %>;">
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td><%= label_tag 'Cardholder First Name' %></td><td><%= f.text_field 'first_name' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Cardholder Last Name' %></td><td><%= f.text_field 'last_name' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Card Number' %></td><td><%= f.text_field 'credit_card_number' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Card Type' %></td><td><%= f.select( "card_type", { "Visa" => "visa", "Mastercard" => "mastercard", "Mastercard" => "mastercard","American Express" => "amex"}) %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Security Code' %></td><td><%= f.text_field 'cvv2' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Expiration Date' %></td><td><%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;<%=select_year(Date.today, :start_year => 2020, :end_year => 2000)%></td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td><%= label_tag 'Billing Address 1' %></td><td><%= f.text_field 'address1' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Billing Address 2' %></td><td><%= f.text_field 'address2' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'City' %></td><td><%= f.text_field 'city' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Country' %></td><td><%= f.text_field 'country' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Zipcode' %></td><td><%= f.text_field 'zipcode' %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Phone' %></td><td><%= f.text_field 'phone' %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%">
+  <tr>
+    <td align="center"><%=image_submit_tag ("purchase_btn.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/deal_of_the_day' %></td>
+  </tr>
 </table>
 <% end -%>
+<br/>
+<br/>
+</div>

@@ -5,10 +5,15 @@
  <tr>
   <td><div id="wn">
     <div id="lyr1">
-      <% for demand_deal in @demand_deals_summary %>
+      <% accepted_deal = nil
+      for demand_deal in @demand_deals_summary
+        if demand_deal.status == "accepted"
+          accepted_deal = Deal.find(demand_deal.deal_id)
+        end
+      %>
       <div id="testid" class="dateB1_center" style="padding-left: 25px; padding-top: 10px; cursor: pointer;" onMouseover="showtooltip('<%= demand_deal.description %>')" onMouseout="hidetooltip()" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');" >
             <div class="dateB1_C1" style="position:relative;">
-              <img src="/images/dateIphone.jpg" border="0px" />
+              <img src="<%=(accepted_deal.blank?)? '/images/dateIphone.jpg' : accepted_deal.deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/>
               <div style="position: absolute; top: 80px;">
                 <img src="/images/iwantdeal_<%= demand_deal.status %>.png" border="0px" />
               </div>

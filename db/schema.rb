@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101022071732) do
+ActiveRecord::Schema.define(:version => 20101029095949) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                       :limit => 50, :null => false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20101022071732) do
     t.integer "quantity_left"
     t.string  "status",        :limit => 0,  :default => "new", :null => false
     t.string  "deal_code",     :limit => 25
+    t.float   "total_price"
   end
 
   add_index "customer_deals", ["customer_id"], :name => "customer_id"
@@ -181,15 +182,18 @@ ActiveRecord::Schema.define(:version => 20101022071732) do
   add_index "customer_profiles", ["industry_sector_id"], :name => "industry_sector_id"
 
   create_table "customers", :force => true do |t|
-    t.integer  "time_created",                                     :null => false
-    t.string   "deleted",          :limit => 0,  :default => "No", :null => false
-    t.string   "login",            :limit => 50
-    t.string   "email",            :limit => 50
-    t.string   "salt",             :limit => 50
+    t.integer  "time_created",                                                :null => false
+    t.string   "deleted",                     :limit => 0,  :default => "No", :null => false
+    t.string   "login",                       :limit => 50
+    t.string   "email",                       :limit => 50
+    t.string   "salt",                        :limit => 50
     t.string   "crypted_password"
-    t.integer  "kupoints",                                         :null => false
+    t.integer  "kupoints",                                                    :null => false
     t.string   "activation_code"
     t.datetime "activated_at"
+    t.string   "customer_photo_file_name"
+    t.string   "customer_photo_content_type"
+    t.integer  "customer_photo_file_size"
   end
 
   create_table "deal_categories", :force => true do |t|
@@ -234,8 +238,7 @@ ActiveRecord::Schema.define(:version => 20101022071732) do
     t.float   "value",                                                   :null => false
     t.float   "discount",                                                :null => false
     t.float   "save_amount",                                             :null => false
-    t.integer "number",                                                  :null => false
-    t.integer "deal_photo",                                              :null => false
+    t.integer "number"
     t.string  "rules"
     t.string  "highlights"
     t.string  "status",                  :limit => 0, :default => "new", :null => false

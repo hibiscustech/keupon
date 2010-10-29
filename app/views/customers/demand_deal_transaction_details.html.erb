@@ -14,20 +14,36 @@ else{
 }
 </script>
 
-<%= GMap.header %>
-<%= @map.to_html %>
-<div style="width:800px;" >
-
 <div id="userform" style="height: auto;">
-<% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
+<% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_demand_deal_transaction_details'} do |f|-%>
 <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
 <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
-  <input type="hidden" name="return_to" value="/customers/location_deals" />
+  <input type="hidden" name="return_to" value="/want_a_deal" />
 <table>
   <tr>
     <td>
       <div id="purchase">
-        <%= render :partial => "purchase_detail" %>
+        <table width="600">
+          <tr>
+            <td colspan="6"><h3>Your Purchase Details</h3></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th></th>
+            <th>Price</th>
+            <th></th>
+            <th>Total</th>
+          </tr>
+          <tr>
+            <td><%= @deal.name %></td>
+            <td align="center"><%= @deal.number %></td>
+            <td align="center">x</td>
+            <td align="center">$<%= @deal.buy_value %></td>
+            <td align="center">=</td>
+            <td align="center" id="total">$<%= (@deal.buy_value.to_f*@deal.number.to_f).to_s %></td>
+          </tr>
+        </table>
       </div>
     </td>
   </tr>
@@ -97,16 +113,10 @@ else{
 </table>
 <table width="100%">
   <tr>
-    <td align="center"><%=image_submit_tag ("purchase_btn.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/customers/location_deals' %></td>
+    <td align="center"><%=image_submit_tag ("purchase_btn.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,"/offered_deals?deal=#{@deal.customer_demand_deal_id}" %></td>
   </tr>
 </table>
 <% end -%>
 <br/>
 <br/>
-</div>
-  
-
-    <div align="right" style="text-align: right;margin-left: 700px;width: 200px;padding-top: 270px;">
-    <%= @map.div(:width => 300, :height => 300) %>
-  </div>
 </div>
