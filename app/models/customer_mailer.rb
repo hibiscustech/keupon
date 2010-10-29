@@ -2,15 +2,13 @@ class CustomerMailer < ActionMailer::Base
   def signup_notification(customer)
     setup_email(customer)
     @subject    += 'Please activate your new account'
-  
-    @body[:url]  = "http://YOURSITE/activate/#{customer.activation_code}"
-  
+    @body[:url]  = "http://dev.keupons.com/activate/#{customer.activation_code}"
   end
   
   def activation(customer)
     setup_email(customer)
     @subject    += 'Your account has been activated!'
-    @body[:url]  = "http://YOURSITE/"
+    @body[:url]  = "http://dev.keupons.com/"
   end
 
   def merchant_registration(merchant_profile,merchant_company )
@@ -24,13 +22,13 @@ class CustomerMailer < ActionMailer::Base
   def setup_email(customer)
     @recipients  = "#{customer.email}"
     @from        = "ADMINEMAIL"
-    @subject     = "[YOURSITE] "
+    @subject     = "http://dev.keupons.com/"
     @sent_on     = Time.now
     @body[:customer] = customer
   end
 
   def  merchant_email(customer)
-    @recipients  =  'suresh3484@gmail.com'
+    @recipients  =  "#{Constant.get_admin_email_id}"
     @from        = "#{customer.email_address}"
     @subject     = "Merchant Application for keupons"
     @sent_on     = Time.now

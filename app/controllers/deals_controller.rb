@@ -3,6 +3,9 @@ class DealsController < ApplicationController
   include AuthenticatedSystemMerchant
   include Geokit::Geocoders
   layout 'application_merchant'
+
+  before_filter :login_required , :only => [:index]
+
   def index
     @page = 'Deal of the Day'
     if request.get?

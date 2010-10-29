@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
   def deal_of_the_day
     @page = "Today's Hot Deal"
     @deal, @end_time = Deal.todays_deal
-    @company = @deal.merchant.merchant_profile.company
+    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
   end
 
   def recent_deals
@@ -457,13 +457,15 @@ class CustomersController < ApplicationController
 
   def settings
     @customer = Customer.find(params[:id])
-    if !params[:customer][:customer_photo].nil?
-      @customer.customer_photo = params[:customer][:customer_photo]
-      @customer.save
-    else
-      @customer.update_attributes(params[:customer])
-    end
-    redirect_to '/my_profile'
+    if !params[:customer].nil?
+      if !params[:customer][:customer_photo].nil?
+        @customer.customer_photo = params[:customer][:customer_photo]
+        @customer.save
+      end
+     end
+    @customer.update_attributes(params[:customer]) if !params[:customer].blank?
+    @customer.customer_profile.update_attributes(params[:customer_profile]) if !params[:customer_profile].blank?
+     redirect_to '/my_profile'
   end
   
   def profile_update

@@ -2,16 +2,17 @@ class MerchantController < ApplicationController
 
   include AuthenticatedSystemMerchant
   include Geokit::Geocoders
- layout 'application_merchant'
+  layout 'application_merchant'
   
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required , :only => [:deals_of_mine, :redeem_deals]
+  before_filter :login_required , :only => [:deals_of_mine, :redeem_deals,:deals_on_demand,:location_deals]
   
   def index
     @page = "Welcome #{current_merchant.merchant_profile.first_name}"
   end
 
   def new
+     @page = 'Merchant Signup'
     @merchant = Merchant.new
   end
 
