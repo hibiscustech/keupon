@@ -1,7 +1,7 @@
-class CustomerDemandDealBidding < ActiveRecord::Base
+class CustomerAcceptedDemandDealBidding < ActiveRecord::Base
   belongs_to :customer_demand_deal
-  belongs_to :merchant
-  has_one :customer_accepted_demand_deal_bidding
+  belongs_to :customer_demand_deal_bidding
+  belongs_to :deal
 
   has_attached_file :demand_deal_photo,
     :styles => {

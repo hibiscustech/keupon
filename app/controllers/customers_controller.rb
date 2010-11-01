@@ -204,7 +204,8 @@ class CustomersController < ApplicationController
       current_customer.kupoints = current_customer.kupoints.to_f + points_earned
       current_customer.save!
 
-      demand_deal.update_attributes(:deal_id => deal.id, :status => "accepted")
+      demand_deal.update_attributes(:status => "accepted")
+      CustomerAcceptedDemandDealBidding.create(:customer_demand_deal_id => demand_deal.id, :customer_demand_deal_bidding_id => demand_deal_bidding.id, :deal_id => deal.id)
 
       flash[:notice] = "Thanks for Purchasing the Deal!"
       redirect_to "#{params[:return_to]}"

@@ -1,10 +1,10 @@
 class CustomerDemandDeal < ActiveRecord::Base
-  belongs_to :deal
   belongs_to :customer
   belongs_to :deal_category
   belongs_to :deal_sub_category
   
   has_many :customer_demand_deal_biddings
+  has_many :customer_accepted_demand_deal_biddings
 
   def self.customer_demand_deals_summary(customer_id)
     query = %Q{ select cdd.id, description, expected_value, cdd.number, deadline, cdd.status, deal_id, sum(case when cddb.status='closed' then 1 else 0 end) offerings, cdd.deal_id

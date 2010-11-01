@@ -13,7 +13,7 @@
       %>
       <div id="testid" class="dateB1_center" style="padding-left: 25px; padding-top: 10px; cursor: pointer;" onMouseover="showtooltip('<%= demand_deal.description %>')" onMouseout="hidetooltip()" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');" >
             <div class="dateB1_C1" style="position:relative;">
-              <img src="<%=(accepted_deal.blank?)? '/images/dateIphone.jpg' : accepted_deal.deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/>
+              <img src="/images/demand_<%= demand_deal.status %>.jpg" border="0px" style="width: 204px; height: 161px;"/>
               <div style="position: absolute; top: 80px;">
                 <img src="/images/iwantdeal_<%= demand_deal.status %>.png" border="0px" />
               </div>

@@ -45,7 +45,7 @@ if ( dw_scrollObj.isSupported() ) {
 }
 
 function call_offers(deal, status){
-  if(status == "offered"){
+  if(status == "offered" || status == "accepted"){
     location.href='/offered_deals?deal='+deal;
   }
   else{

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101029095949) do
+ActiveRecord::Schema.define(:version => 20101029131921) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                       :limit => 50, :null => false
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(:version => 20101029095949) do
     t.integer "quantity_left"
     t.string  "status",        :limit => 0,  :default => "new", :null => false
     t.string  "deal_code",     :limit => 25
-    t.float   "total_price"
   end
 
   add_index "customer_deals", ["customer_id"], :name => "customer_id"
