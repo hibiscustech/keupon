@@ -27,11 +27,10 @@ class CustomerMailer < ActionMailer::Base
     @body[:customer] = customer
   end
 
-  def  merchant_email(customer)
-    @recipients  =  "#{Constant.get_admin_email_id}"
-    @from        = "#{customer.email_address}"
-    @subject     = "Merchant Application for keupons"
+  def  merchant_email(merchant_profile)
+    @recipients  = "#{merchant_profile.email_address}"
+    @from        = "#{Constant.get_admin_email_id}"
+    @subject     = "Merchant Application for Keupons"
     @sent_on     = Time.now
-    @body[:customer] = customer
   end
 end

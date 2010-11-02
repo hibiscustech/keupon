@@ -35,7 +35,7 @@ class MerchantController < ApplicationController
       @merchant_company.save
       CustomerMailer.deliver_merchant_registration(@merchant_profile,@merchant_company )
       redirect_back_or_default('/')
-      flash[:notice] = "We have receive your application. It will take 7-10 days for our staff to verify authenticity."
+      flash[:notice] = "Thank You for Signing Up with us, we will get back to you after our verification."
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
