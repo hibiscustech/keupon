@@ -61,6 +61,14 @@ class Customer < ActiveRecord::Base
     Customer.find(:all)
   end
 
+  def self.verify_customer(customer_pin)
+    query = %Q{ select c.id
+                from customers c
+                join customer_profiles cp on cp.customer_id = c.id
+                where cp.customer_pin = '#{customer_pin}' }
+    find_by_sql(query)[0]
+  end
+
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  

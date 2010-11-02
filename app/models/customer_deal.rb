@@ -9,8 +9,8 @@ class CustomerDeal < ActiveRecord::Base
   has_many :customer_deal_redemptions
 
 
-  def self.verify_customer_deal(code)
-    query = %Q{ select * from customer_deals where deal_code = '#{code}'}
+  def self.verify_customer_deal(code, customer)
+    query = %Q{ select * from customer_deals where deal_code = '#{code}' and customer_id = '#{customer}'}
     find_by_sql(query)[0]
   end
 

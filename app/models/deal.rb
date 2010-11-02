@@ -81,4 +81,34 @@ class Deal < ActiveRecord::Base
                 
     find_by_sql(query)
   end
+
+  def self.keupoint_deal(id)
+    query = %Q{ select d.id, d.start_date, d.expiry_date, c.address1, c.address2, c.city, c.zipcode, d.name, rules, highlights, buy, discount, save_amount, c.id as company_id, c.name as company_name, c.website
+                from deals d
+                join merchant_profiles mp on mp.merchant_id = d.merchant_id
+                join companies c on c.merchant_profile_id = mp.id
+                where d.id = #{id} }
+    find_by_sql(query)[0]
+  end
+
+  def self.my_keupons(customer)
+    query = %Q{ SELECT d.name, cd.purchase_date, d.expiry_date, deal_code, cd.status
+                FROM customer_deals cd
+                join deals d on d.id = cd.deal_id
+                where cd.customer_id = #{customer} }
+    find_by_sql(query)
+  end
+
+  def self.my_keupons_statistics(customer)
+    query1 = %Q{ select count(*) as available from customer_deals where customer_id = #{customer} and status = 'available'}
+    available = find_by_sql(query1)[0].available
+
+    query2 = %Q{ select count(*) as used from customer_deals where customer_id = #{customer} and status = 'used'}
+    used = find_by_sql(query2)[0].used
+
+    query3 = %Q{ select count(*) as expired from customer_deals cd join deals d on d.id = cd.deal_id where customer_id = #{customer} and d.expiry_date < #{Time.now.to_i}}
+    expired = find_by_sql(query3)[0].expired
+
+    return {"available" => available, "used" => used, "expired" => expired, "keupoints" => nil, "all" => (available.to_i+used.to_i+expired.to_i)}
+  end
 end

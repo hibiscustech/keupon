@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
     string_to_hash = password + salt
     Digest::SHA1.hexdigest(string_to_hash)
   end
+
+  def my_keupons_stats
+    if !current_customer.blank?
+      @my_keupons_stats = Deal.my_keupons_statistics(current_customer.id)
+      @my_keupons_stats["keupoints"] = current_customer.kupoints
+    end
+  end
 end

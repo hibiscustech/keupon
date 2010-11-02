@@ -25,6 +25,10 @@ class CreateCustomerAcceptedDemandDealBiddingsTable < ActiveRecord::Migration
               ENGINE = InnoDB }
 
     execute %Q{ ALTER TABLE `customer_demand_deals` DROP COLUMN `deal_id`}
+
+    execute %Q{ insert into deal_types(name) values('Gift') }
+
+    execute %Q{ ALTER TABLE `customer_deals` ADD COLUMN `purchase_date` INT(11) UNSIGNED AFTER `deal_code`;}
   end
 
   def self.down

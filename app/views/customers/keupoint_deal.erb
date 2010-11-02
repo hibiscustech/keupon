@@ -1,0 +1,35 @@
+<div id="user1">
+    <div class="cont1">
+      <p class="for_Ph"><%=@deal.name%></p>
+      <br />
+      <p class="for_P"><%=@deal.rules%><br/><br/>
+    <%=@deal.highlights%></p>
+    </div>
+    <div class="cont2" style="background-image:url('/images/hurry_up_keupoint.jpg');">
+      <div class="save">Just Spend</div>
+      <div class="save" style="padding-top: 10px;"><%= @deal.keupoints_required %>/<%= current_customer.kupoints %></div>
+      <div class="save" style="padding-top: 0px;">Keupoints<br/>And this Deal is all yours</div>
+      <div class="clickHear" style="padding-top: 42px; font-size: 14px;"><a href="#" class="for_nav">Click here to choose a different Deal</a></div>
+      <div class="socielICONs">
+        
+      </div>
+      <div class="buynow"><a href="#"><%=link_to image_tag('buy_now.jpg',:border=>'0'), :controller => 'customers', :action=>'save_keupoint_deal_transaction_details', :id => @deal.id%> </a></div>
+    </div>
+    <div class="cont3">
+      <p> <%if !@deal.deal_photo.url.nil? %> <%=image_tag (@deal.deal_photo.url),:width=>"304", :height=>"285" %> <%else%><img src="images/img1.jpg" border="0px" /> <%end%></p>
+      <div class="priseDisco"> &nbsp;&nbsp;$<%=@deal.value%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=@deal.discount.to_i%> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<%=@deal.save_amount.to_i%></div>
+    </div>
+  </div>
+  <div id="user2">
+  	<div class="user2IMG"><p class="for_PW" style="font-size:20px;">The Company</p><br />
+          <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 165px; height: 103px;"/></a>
+
+<p class="for_PW" style="font-size:16px; padding-top:5px;"><%=@deal.merchant.merchant_profile.company.name%> </p>
+<p class="for_PW"><%=@company.address1 %> <%=@company.address2 %><br /><%=@company.city %></p>
+</div>
+    <div class="user2TEXT">
+    	<p class="for_P">
+          <%= @company.detail %>
+        </p>
+    </div>
+  </div>

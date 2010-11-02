@@ -3,7 +3,8 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal]
+  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons]
+  before_filter :my_keupons_stats
   layout 'application'
 
   def index
@@ -13,6 +14,12 @@ class CustomersController < ApplicationController
   def deal_of_the_day
     @page = "Today's Hot Deal"
     @deal, @end_time = Deal.todays_deal
+    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+  end
+
+  def keupoint_deal
+    @page = "Purchase Deal"
+    @deal = Deal.find(params[:id])
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
   end
 
@@ -167,6 +174,20 @@ class CustomersController < ApplicationController
     end
   end
 
+  def save_keupoint_deal_transaction_details
+    deal = Deal.find(params[:id])
+
+    deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
+    customer_deal = CustomerDeal.new(:deal_id =>deal.id, :customer_id => current_customer.id, :quantity => 1, :quantity_left => 1, :status => "available", :deal_code => deal_code, :purchase_date => Time.now.to_i)
+    customer_deal.save!
+
+    current_customer.kupoints = current_customer.kupoints.to_f - deal.keupoints_required
+    current_customer.save!
+
+    flash[:notice] = "Thanks for Purchasing the Deal!"
+    redirect_to "/my_keupons"
+  end
+
   def save_demand_deal_transaction_details
     demand_deal_bidding = CustomerDemandDealBidding.find(params[:customer_deal][:deal_id])
     demand_deal = demand_deal_bidding.customer_demand_deal
@@ -193,7 +214,7 @@ class CustomersController < ApplicationController
 
       total_price = deal.buy.to_f*deal.number.to_f
       deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
-      customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :status => "available", :deal_code => deal_code)
+      customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :quantity_left => deal.number, :status => "available", :deal_code => deal_code, :purchase_date => Time.now.to_i)
       customer_deal.save!
 
       customer_transaction = CustomerDealTransaction.new(:time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
@@ -230,7 +251,7 @@ class CustomersController < ApplicationController
     if customer_card_inform.save!      
       total_price = deal.buy.to_f*params[:quantity].to_f
 
-      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity])
+      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i)
       customer_deal.save!
 
       customer_transaction = CustomerDealTransaction.new(:time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
@@ -415,7 +436,7 @@ class CustomersController < ApplicationController
         }
       end
     end
-  end
+  end 
 
   def get_location_deal
     @page = 'Billing Information'
@@ -488,6 +509,7 @@ class CustomersController < ApplicationController
   def my_keupons
    @page = 'My Keupons'
    @keupoint_deals = Deal.available_keupoint_deals(current_customer.kupoints)
+   @my_keupons = Deal.my_keupons(current_customer.id)
   end
 
 end

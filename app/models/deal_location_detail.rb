@@ -26,5 +26,5 @@ class DealLocationDetail < ActiveRecord::Base
                 join companies c on c.merchant_profile_id = mp.id
                 where d.id = #{id} }
     find_by_sql(query)[0]
-  end
+  end 
 end

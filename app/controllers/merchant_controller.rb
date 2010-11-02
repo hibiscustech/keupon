@@ -83,15 +83,32 @@ class MerchantController < ApplicationController
   end
 
   def redeem_deals
-    @page = 'Redeem deal'
+    @page = 'Redeem Deals'
+    flash[:notice] = nil
   end
 
   def verify_deal
-    @customer_deal = CustomerDeal.verify_customer_deal(params[:code])
-    if @customer_deal.blank? 
-      flash[:notice] = "Invalid Code"
-    elsif @customer_deal.status == 'available'
-      @deals = Deal.find_by_id(@customer_deal.deal_id, :include=>'merchant', :conditions=>["merchants.id=?", current_merchant.id])
+    flash[:notice] = nil
+    customer = Customer.verify_customer(params[:customer_pin])
+    if !customer.blank?
+      if !customer.id.blank?
+        @customer = Customer.find(customer.id)
+        @customer_profile = @customer.customer_profile
+        @customer_deal = CustomerDeal.verify_customer_deal(params[:code], @customer.id)
+        if @customer_deal.blank?
+          flash[:notice] = "Invalid Code"
+        else
+          @deal = Deal.find(@customer_deal.deal_id)
+          if @deal.merchant_id.to_s != current_merchant.id.to_s
+            @deal = nil
+            flash[:notice] = "This Deal Code does not belong to this merchant."
+          end
+        end
+      else
+        flash[:notice] = "Invalid Customer"
+      end
+    else
+      flash[:notice] = "Invalid Customer"
     end
     if request.xml_http_request?
       respond_to do |format|
@@ -109,13 +126,11 @@ class MerchantController < ApplicationController
     @redeem_deal = CustomerDeal.find(params[:id])
     if !@redeem_deal.nil?
       #equal = @redeem_deal.quantity.to_i == @redeem_deal.quantity_left.to_i
-      quantity_left = (@redeem_deal.quantity -  params[:deal][:quantity].to_i)
-      #if equal == 'true'
-        @redeem_deal.update_attributes(:status => 'used', :quantity_left => params[:deal][:quantity])
-      #end
-      #@redeem_deal.update_attributes(:quantity_left => params[:deal][:quantity])
-      @DealRedemption = CustomerDealRedemption.create(:customer_deal_id =>@redeem_deal.id, :redeemed_time => Time.now.to_i, :redeemed_quantity =>params[:deal][:quantity]  )
-      flash[:notice] = "Successfully redeem a deal"
+      quantity_left = (@redeem_deal.quantity_left.to_i -  params[:deal][:quantity].to_i)
+      new_status = (quantity_left > 0)? "available" : "used"
+      @redeem_deal.update_attributes(:status => new_status, :quantity_left => quantity_left)
+      @deal_redemption = CustomerDealRedemption.create(:customer_deal_id =>@redeem_deal.id, :redeemed_time => Time.now.to_i, :redeemed_quantity =>params[:deal][:quantity]  )
+      flash[:notice] = "Deal Redeemed Successfully."
       if request.xml_http_request?
         respond_to do |format|
           format.html
