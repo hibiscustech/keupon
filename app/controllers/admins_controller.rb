@@ -19,6 +19,7 @@ class AdminsController < ApplicationController
 
   def new_merchants
     @new_merchants = MerchantProfile.all_new_merchants
+    @merchants_count = MerchantProfile.merchant_counts
     if request.xml_http_request?
       respond_to do |format|
         format.html

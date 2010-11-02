@@ -33,7 +33,10 @@ class MerchantController < ApplicationController
       @merchant_company = Company.new(params[:company])
       @merchant_company.merchant_profile = @merchant_profile
       @merchant_company.save
-      CustomerMailer.deliver_merchant_registration(@merchant_profile,@merchant_company )
+      
+      MerchantMailer.deliver_merchant_registration(@merchant_profile,@merchant_company )
+      AdminMailer.deliver_merchant_registration_notification(@merchant_profile,@merchant_company )
+
       redirect_back_or_default('/')
       flash[:notice] = "Thank You for Signing Up with us, we will get back to you after our verification."
     else
