@@ -7,12 +7,13 @@ class MerchantMailer < ActionMailer::Base
     content_type "text/html"
   end
   
-  def merchant_authenticated(merchant_profile, merchant, password)   
+  def merchant_authenticated(merchant_profile, merchant, password, company)   
     merchant_email(merchant_profile)
     @subject     = "Merchant Authenticated for Keupons"
     @body[:merchant_profile]  = merchant_profile
     @body[:merchant] = merchant
     @body[:password] = password
+    @body[:merchant_company] = company
     content_type "text/html"
   end
 
