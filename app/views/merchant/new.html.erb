@@ -4,37 +4,61 @@
 
     
     <div><%= error_messages_for :merchant_profile %></div>
-    <% form_for :merchant, :url => { :action => 'create'} do |f| -%>
+    <% form_for :merchant, :url => { :action => 'create'}, :html => { :multipart => true } do |f| -%>
    <table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td width="5%"> </td>
         <td width="15%" style="color:#000000;"><h3>Registration</h3></td>
-        <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
+        <td width="30%"><%#= f.text_field :login, :size=>"35%"  %> </td>
       </tr>
- <% fields_for :merchant_profile do |p| %>
-        <tr>
-	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Email:</td>
-	<td width="30%"><%= p.text_field :email_address, :size=>"25%"  %> </td>
-   </tr>
+ <% fields_for :merchant_profile do |p| %>        
    <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">First Name :</td>
-	<td width="30%"><%= p.text_field :first_name, :size=>"25%"%></td>
+	<td width="30%"><%= p.text_field :first_name, :size=>"35%"%></td>
    </tr>
    <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">Last Name :</td>
-	<td width="30%"><%= p.text_field :last_name, :size=>"25%" %>
+	<td width="30%"><%= p.text_field :last_name, :size=>"35%" %>
     </td>
+   </tr>
+   <tr>
+	<td width="5%"> </td>
+	<td style="color: rgb(0, 0, 0);" width="15%">Gender :</td>
+	<td width="30%"><input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="m"/> Male <input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="f"/> Female</td>
+   </tr>
+   <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Address1 :</td>
+	<td width="30%"><%= p.text_field :address1,:size=>"35%" %></td>
+   </tr>
+    <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Address2 :</td>
+	<td width="30%"><%= p.text_field :address2,:size=>"35%" %></td>
+   </tr>
+    <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Country :</td>
+	<td width="30%"><%=p.text_field :country , :size=>"35%" %></td>
+   </tr>
+    <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Zipcode :</td>
+	<td width="30%"><%=p.text_field :zipcode ,:size=>"35%" %></td>
    </tr>
       <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">Contact Number :</td>
-	<td width="30%"><%= p.text_field :contact_number, :size=>"25%" %>
+	<td width="30%"><%= p.text_field :contact_number, :size=>"35%" %>
     </td>
    </tr>
- 
+   <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Email:</td>
+	<td width="30%"><%= p.text_field :email_address, :size=>"35%"  %> </td>
+   </tr>
 <% end %>
  
    <% fields_for :company do |c| %>
@@ -42,55 +66,71 @@
        
 	<td width="5%"> </td>
 	<td width="20%" style="color:#000000;"><h4>Company Information</h4></td>
-	<td width="30%"><%#= c.text_field :name,:size=>"25%" %></td>
+	<td width="30%"><%#= c.text_field :name,:size=>"35%" %></td>
    </tr
    <tr>
       <td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Company Name :</td>
-	<td width="30%"><%= c.text_field :name,:size=>"25%" %></td>
+	<td width="15%" style="color:#000000;">Name :</td>
+	<td width="30%"><%= c.text_field :name,:size=>"35%" %></td>
    </tr>
     <tr>
 	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">Company URl :</td>
-	<td width="30%"><%= c.text_field :website,:size=>"25%" %></td>
+	<td width="15%" style="color:#000000;">URl :</td>
+	<td width="30%"><%= c.text_field :website,:size=>"35%" %></td>
    </tr>
-    <tr>
+   <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">Address1 :</td>
-	<td width="30%"><%= c.text_field :address1,:size=>"25%" %></td>
+	<td width="30%"><%= c.text_field :address1, :size=>"35%" %></td>
    </tr>
     <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">Address2 :</td>
-	<td width="30%"><%= c.text_field :address2,:size=>"25%" %></td>
-   </tr>
-     <tr>
-	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">City :</td>
-	<td width="30%"><%=c.text_field :city , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
-   </tr>
-     <tr>
-	<td width="5%"> </td>
-	<td width="15%" style="color:#000000;">State :</td>
-	<td width="30%"><%=c.text_field :state , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
+	<td width="30%"><%= c.text_field :address2,:size=>"35%" %></td>
    </tr>
     <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">Country :</td>
-	<td width="30%"><%=c.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
+	<td width="30%"><%=c.text_field :country ,:size=>"35%" %></td>
    </tr>
     <tr>
 	<td width="5%"> </td>
 	<td width="15%" style="color:#000000;">Zipcode :</td>
-	<td width="30%"><%=c.text_field :zipcode , :onBlur => "IsNumeric_pin(this.value)",:size=>"25%" %></td>
+	<td width="30%"><%=c.text_field :zipcode ,:size=>"35%" %></td>
    </tr>
- 
-  <!-- <tr>
+   <tr>
 	<td width="5%"> </td>
-	<td width="30%" style="color:#000000;"><b>Mobile No:</b></td>
-	<td width="55%"><input type="text" name="moblie" size="28%"  style="background-color: #F5F5F5;"/></td>
-   </tr> -->
-
+	<td width="15%" style="color:#000000;">Photo/Logo :</td>
+	<td width="30%"><%= f.file_field :company_photo, :size=>"35%" %></td>
+   </tr>
+   <tr>
+	<td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Description :</td>
+	<td width="30%"><%=c.text_area :detail ,:size=>"35%" %></td>
+   </tr>
+   <tr>
+        <td width="5%"> </td>
+	<td width="15%" style="color:#000000;">Category :</td>
+	<td width="30%">
+          <select id="category" name="category">
+                        <option value="0">Select a Category</option>
+                        <% for category in @categories %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% end %>
+                        <option value="none">None of these</option>
+                    </select>
+                    <%=observe_field "category",
+                      :url => {:controller => 'merchant', :action => 'company_sub_categories'},
+                      :on => 'change',
+                      :with => "category"%>
+          <div id="company_new_category"></div>
+        </td>
+   </tr>
+   </table>
+    <div id="company_sub_categories">
+    </div>
+   <table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
+    
    
  
   <% end %>

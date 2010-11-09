@@ -1,0 +1,20 @@
+<table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
+  <tr>
+	<td style="width:0px;"> </td>
+	<td width="15%" style="color:#000000;">Sub-Category :</td>
+	<td width="30%">
+          <select id="sub_category" name="sub_category">
+                        <option value="0">Select a Sub-Category</option>
+                        <% for scategory in @sub_categories %>
+                          <option value="<%= scategory.id %>"><%= scategory.name %></option>
+                        <% end %>
+                        <option value="none">None of these.</option>
+          </select>
+          <%=observe_field "sub_category",
+                      :url => {:controller => 'merchant', :action => 'company_none_subcategories'},
+                      :on => 'change',
+                      :with => "sub_category"%>
+          <div id="company_new_subcategory"></div>
+        </td>
+   </tr>
+</table>

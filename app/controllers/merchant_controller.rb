@@ -12,8 +12,53 @@ class MerchantController < ApplicationController
   end
 
   def new
-     @page = 'Merchant Signup'
+    @page = 'Merchant Signup'
     @merchant = Merchant.new
+    @categories = DealCategory.find(:all)
+  end
+
+  def company_sub_categories
+    if params[:category] != "none"
+      @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{params[:category]}")
+      if request.xml_http_request?
+        respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'company_new_category', ""
+              page.replace_html 'company_sub_categories', :partial => "company_sub_categories"
+            end
+          }
+        end
+      end
+    else
+      if request.xml_http_request?
+        respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'company_new_category', :partial => "company_new_category"
+              page.replace_html 'company_sub_categories', :partial => "company_new_sub_category"
+            end
+          }
+        end
+      end
+    end
+  end
+
+  def company_none_subcategories
+    if params[:sub_category] == "none"
+      if request.xml_http_request?
+        respond_to do |format|
+          format.html
+          format.js {
+            render :update do |page|
+              page.replace_html 'company_new_subcategory', :partial => "company_new_subcategory"
+            end
+          }
+        end
+      end
+    end
   end
 
   def deals_of_mine
@@ -23,16 +68,29 @@ class MerchantController < ApplicationController
 
   def create
     logout_keeping_session!
-    #@merchant =  Merchant.new(params[:merchant])
-    #success = @merchant && @merchant.save
     @merchant_profile = MerchantProfile.new(params[:merchant_profile])
-    #@merchant_profile.merchant = @merchant
     success = @merchant_profile &&  @merchant_profile.save
 
     if success && @merchant_profile.errors.empty?
       @merchant_company = Company.new(params[:company])
       @merchant_company.merchant_profile = @merchant_profile
       @merchant_company.save
+
+      res = MultiGeocoder.geocode("#{@merchant_company.address1},#{@merchant_company.address2},#{@merchant_company.country},#{@merchant_company.zipcode}")
+      @merchant_company.update_attributes(:latitude => res.lat, :longitude => res.lng)
+
+      if params[:category] != "none"
+        if params[:sub_category] != "none"
+          @merchant_profile.update_attributes(:deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+        else
+          @new_sub_category = DealSubCategory.create(:name => params[:new_subcategory], :deal_category_id => params[:category])
+          @merchant_profile.update_attributes(:deal_category_id => params[:category], :deal_sub_category_id => @new_sub_category.id)
+        end
+      else
+        @new_category = DealCategory.create(:name => params[:new_category])
+        @new_sub_category = DealSubCategory.create(:name => params[:new_subcategory], :deal_category_id => @new_category.id)
+        @merchant_profile.update_attributes(:deal_category_id => @new_category.id, :deal_sub_category_id => @new_sub_category.id)
+      end
       
       MerchantMailer.deliver_merchant_registration(@merchant_profile,@merchant_company )
       AdminMailer.deliver_merchant_registration_notification(@merchant_profile,@merchant_company )
