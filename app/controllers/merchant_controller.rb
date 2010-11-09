@@ -113,6 +113,9 @@ class MerchantController < ApplicationController
     @merchant.save!
 
     merchant_profile.update_attributes(:merchant_id => @merchant.id, :status => "active")
+
+    MerchantMailer.deliver_merchant_authenticated(@merchant_profile,@merchant, password)    
+
     flash[:notice] = "Merchant: #{merchant_profile.first_name} #{merchant_profile.last_name} has been activated!  An email has been sent to #{merchant_profile.email_address}."
     redirect_to "/admins/all_merchants"    
   end
