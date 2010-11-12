@@ -74,7 +74,7 @@ class CustomersController < ApplicationController
     @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
     if request.xml_http_request?
       flash[:msg] = "You have 'Updated' this demand deal request. Click on 'Confirm' to receive Offers soon."
-      @demand_deal.update_attributes(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline]+" 23:59:59"), :description => params[:description], :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+      @demand_deal.update_attributes(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59"), :description => params[:description], :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
       if params[:button_status] == "confirm"
         merchants = MerchantProfile.all_merchants_for_my_demand_deal(@demand_deal.deal_category_id, @demand_deal.deal_sub_category_id)
         for merchant in merchants
