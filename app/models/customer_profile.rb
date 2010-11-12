@@ -1,7 +1,7 @@
 class CustomerProfile < ActiveRecord::Base
   belongs_to :customer
   belongs_to :industry_sector
-  REGION = ['North Singapore', 'South Singapore','East Singapore','West Singapore' ]
+  REGION = ['North Singapore', 'South Singapore','East Singapore','West Singapore', 'Central Singapore' ]
 
   RELATIONSHIP = ['Single','Married','Living with partner','Separated','Divorced','Widowed','Prefer not to share']
 

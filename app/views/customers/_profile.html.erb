@@ -26,22 +26,25 @@
 
           <tr>
             <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">Relationship status :<font color="red">*</font></td>
-            <td width="30%"><%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a region'}%></td>
+            <td width="15%" style="color:#000000;">Marital status :<font color="red">*</font></td>
+            <td width="30%"><%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a Martial status'}%></td>
           </tr>
           <tr>
             <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">Salary range:<font color="red">*</font></td>
+            <td width="15%" style="color:#000000;">Average Monthly Salary:<font color="red">*</font></td>
             <td width="30%"><%=f.text_field 'income', :size=> '15'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
           </tr>
           <tr>
             <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">Employment status:<font color="red">*</font></td>
-            <td width="30%"><%= f.select 'industry_sector_id', IndustrySector.all.collect {|p| [ p.name, p.id ] }%></td>
+            <td width="15%" style="color:#000000;">Work Sector:<font color="red">*</font></td>
+            <td width="30%"><%= f.select 'industry_sector_id', IndustrySector.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select a Work Sector'}%></td>
+          </tr>
+          <tr>
+            <td width="5%" colspan="3"> &nbsp;</td>
           </tr>
           <tr>
             <td width="5%"> </td>
-            <td width="15%" style="color:#000000;"><h3>Favourite Deals</h3></td>
+            <td width="15%" style="color:#000000;"><h3>Choose the Categories that interest you the most</h3></td>
             <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
           </tr>
           <% fields_for "customer_favourite_deals" do |s| %>
