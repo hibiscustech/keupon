@@ -51,7 +51,7 @@
             </td>
             <td>
               <div id="advertise" style="width: auto; padding-top: 0px">
-                <%if current_customer.customer_photo%>
+                <%if current_customer.customer_photo.blank?%>
                   <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
                 <%else%>
                   <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
