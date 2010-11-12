@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
   before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons]
-  before_filter :my_keupons_stats, :except => [:new]
+  before_filter :my_keupons_stats, :except => [:new, :create]
   layout 'application'
 
   def index

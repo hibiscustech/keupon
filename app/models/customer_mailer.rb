@@ -3,7 +3,6 @@ class CustomerMailer < ActionMailer::Base
     setup_email(customer)
     @subject    = 'Please activate your new account'
     @body[:url]  = "/activate/#{customer.activation_code}"
-    @body[:profile] = customer.customer_profile
     content_type "text/html"
   end
   
