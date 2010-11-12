@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
   before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons]
-  before_filter :my_keupons_stats
+  before_filter :my_keupons_stats, :except => [:new]
   layout 'application'
 
   def index
@@ -293,7 +293,7 @@ class CustomersController < ApplicationController
       @profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
       @profile.customer = @customer
-      @profile.save
+      @profile.save     
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
@@ -334,7 +334,7 @@ class CustomersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && customer && !customer.active?
       #customer.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
+      flash[:notice] = "The Activation Process will be successfully completed only after this Profile Creation."
       redirect_to :action => 'my_profile', :id => customer.id
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
@@ -465,7 +465,7 @@ class CustomersController < ApplicationController
 
 
   def my_profile
-    @page = 'About Me'
+    @page = 'My Profile'
     @customer_profile = CustomerProfile.find_by_customer_id(params[:id])
   end
 
@@ -496,6 +496,7 @@ class CustomersController < ApplicationController
     if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],
         :gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
       customer.activate!
+
     end
     if params[:customer_favourite_deal]
       params[:customer_favourite_deal][:deal_sub_category_id].map { |i| i.split(/:|;/) }.each do |d|
