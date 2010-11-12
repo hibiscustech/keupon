@@ -466,6 +466,7 @@ class CustomersController < ApplicationController
 
   def my_profile
     @page = 'My Profile'
+    @customer = Customer.find(params[:id])
     @customer_profile = CustomerProfile.find_by_customer_id(params[:id])
   end
 
