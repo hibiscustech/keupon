@@ -335,7 +335,7 @@ class CustomersController < ApplicationController
     when (!params[:activation_code].blank?) && customer && !customer.active?
       #customer.activate!
       flash[:notice] = "The Activation Process will be successfully completed only after this Profile Creation."
-      redirect_to :action => 'my_profile', :id => customer.id
+      redirect_to :action => 'about_me', :id => customer.id
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')
@@ -464,14 +464,13 @@ class CustomersController < ApplicationController
   end
 
 
-  def my_profile
+  def about_me
     @page = 'My Profile'
-    @customer = Customer.find(params[:id])
     @customer_profile = CustomerProfile.find_by_customer_id(params[:id])
   end
 
 
-  def my_profile_settings
+  def my_profile
     @page = 'My Settings'
     @customer = Customer.find(current_customer.id)
     @customer_profile = @customer.customer_profile
