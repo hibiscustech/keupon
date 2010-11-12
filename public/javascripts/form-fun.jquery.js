@@ -76,7 +76,7 @@ $(function(){
 
         if (email == '')
         {
-            alert('seesm to be ')
+            alert('Enter a valid E-email ID')
             return false;
         }
 
@@ -89,12 +89,12 @@ $(function(){
 
         if (password == '')
         {
-            alert('seesm to be ')
+            alert('Please enter the Password')
             return false;
         }
         if (password_confirmation == '')
         {
-            alert('seesm to be ')
+            alert('Please Confirm your Password again')
             return false;
         }
         if (password == password_confirmation)
@@ -102,7 +102,7 @@ $(function(){
             document.getElementById("submit_step_1").style.display = 'none';
             var all_complete = true;
         }else{
-            alert('seesm to be password and password confirmation is not match')
+            alert('Password and Confirm Password needs to match')
         }
 
 		
@@ -162,32 +162,32 @@ $(function(){
           var cn =  document.getElementById("name_input_cn").value
   if (fn == '')
         {
-            alert('First Name ')
+            alert('Enter your First Name')
             return false;
         }
           if (ln == '')
         {
-            alert('Last Name ')
+            alert('Enter your Last Name')
             return false;
         }
           if (ad1 == '')
         {
-            alert('Address ')
+            alert('Enter Address1')
             return false;
         }
           if (coun == '')
         {
-            alert('Country ')
+            alert('Enter your Country ')
             return false;
         }
           if (pin == '')
         {
-            alert('Pin ')
+            alert('Enter your Pincode')
             return false;
         }
           if (cn == '')
         {
-            alert('Conutry')
+            alert('Enter your Contact Number')
             return false;
         }
         
