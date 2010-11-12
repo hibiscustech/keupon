@@ -470,7 +470,7 @@ class CustomersController < ApplicationController
   end
 
 
-  def my_profile
+  def my_profile_settings
     @page = 'My Settings'
     @customer = Customer.find(current_customer.id)
     @customer_profile = @customer.customer_profile
