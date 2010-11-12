@@ -2,7 +2,7 @@
 
     <br/><br/><br/><br/><br/><br/><br/>
     <div style="width:618px;text-align:left;">
-      <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update'} do |f| -%>
+      <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'settings'} do |f| -%>
         <%=hidden_field :customer_favourite, :customer_id, :value => @customer_profile.customer_id%>
         <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
 
