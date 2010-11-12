@@ -1,7 +1,62 @@
-<%#= javascript_include_tag :defaults%>
-<%#= calendar_date_select_includes %>
-<%#= calendar_date_select_includes "red" %>
-<!-- <link href="/stylesheets/calendar/red/style.css" rel="stylesheet" type="text/css" /> -->
+<script Language="JavaScript">
+<!--
+function form_validator(){
+var theForm = document.forms['new_deal'];
+var i;
+if (theForm.deal_name.value == "" || theForm.deal_name.value.length < 1)
+{
+alert("You must enter Deal Title.");
+theForm.deal_name.focus();
+return (false);
+}
+
+if (theForm.deal_value.value == "" || theForm.deal_value.value.length < 1)
+{
+alert("You must enter Original Value.");
+theForm.deal_value.focus();
+return (false);
+}
+
+if (theForm.deal_discount.selectedIndex == '0')
+{
+alert("Please select one of the Discount options.");
+theForm.deal_discount.focus();
+return (false);
+}
+
+if (theForm.deal_number.value == "" || theForm.deal_number.value.length < 1)
+{
+alert("You must enter expected no. of Customers.");
+theForm.deal_number.focus();
+return (false);
+}
+
+if (theForm.deal_rules.value == "" || theForm.deal_rules.value.length < 1)
+{
+alert("You must enter Rules.");
+theForm.deal_rules.focus();
+return (false);
+}
+
+if (theForm.deal_highlights.value == "" || theForm.deal_highlights.value.length < 1)
+{
+alert("You must enter Highlights.");
+theForm.deal_highlights.focus();
+return (false);
+}
+
+if (theForm.deal_expiry_date.value == "" || theForm.deal_expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.deal_expiry_date.focus();
+return (false);
+}
+
+return true;
+}
+
+//-->
+</script>
 <br/>
 <br/>
 <br/>
