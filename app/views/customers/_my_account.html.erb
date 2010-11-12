@@ -22,7 +22,7 @@
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;">Avatar :</td>
       <td width="10%">
-        <%if @customer.blank? || @customer.customer_photo.nil?%>
+        <%if current_customer.customer_photo.nil?%>
           <img src="/images/profile_pic.jpg" border="0px" />
         <%else%>
           <%=image_tag (@customer.customer_photo.url(:small))%>
