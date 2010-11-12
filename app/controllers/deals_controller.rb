@@ -51,8 +51,8 @@ class DealsController < ApplicationController
   def create
     merchant_profile = current_merchant.merchant_profile
     deal = Deal.new(params[:deal])
-    deal.expiry_date = Time.parse(params[:deal][:expiry_date]).to_i
-    deal.start_date = Time.parse(params[:deal][:start_date]).to_i  if params[:deal][:start_date] 
+    deal.expiry_date = Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i
+    deal.start_date = Time.parse(params[:deal][:start_date].gsub('/','-')).to_i  if params[:deal][:start_date]
     deal.deal_category_id = merchant_profile.deal_category_id
     deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
     if params[:deal][:deal_type_id]
