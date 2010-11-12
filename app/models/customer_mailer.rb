@@ -1,7 +1,7 @@
 class CustomerMailer < ActionMailer::Base
   def signup_notification(customer)
     setup_email(customer)
-    @subject    += 'Please activate your new account'
+    @subject    = 'Please activate your new account'
     @body[:url]  = "/activate/#{customer.activation_code}"
     @body[:profile] = customer.customer_profile
     content_type "text/html"
@@ -9,7 +9,7 @@ class CustomerMailer < ActionMailer::Base
   
   def activation(customer)
     setup_email(customer)
-    @subject    += 'Your account has been activated!'
+    @subject    = 'Your account has been activated!'
     @body[:profile] = customer.customer_profile
     content_type "text/html"
   end 
