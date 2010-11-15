@@ -1,3 +1,14 @@
+<script type="text/javascript">
+        // When DOM loads, init the page.
+        $(function() {
+          // Executes a callback detecting changes with a frequency of 1 second
+          $("#sub_category").observe_field(2, function( ) {
+            $.post("/sub_category", { sub_category:this.value} );
+          });
+        });
+
+</script>
+
 <table align=left  style="font-family:arial;font-size:14px;" CELLPADDING="3" CELLSPACING="6">
   <tr>
 	<td style="width:0px;"> </td>
@@ -10,7 +21,7 @@
                         <% end %>
                         <option value="none">None of these.</option>
           </select>
-          <%=observe_field "sub_category",
+          <%#=observe_field "sub_category",
                       :url => {:controller => 'merchant', :action => 'company_none_subcategories'},
                       :on => 'change',
                       :with => "sub_category"%>

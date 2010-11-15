@@ -16,47 +16,52 @@ class MerchantController < ApplicationController
     @merchant = Merchant.new
     @categories = DealCategory.find(:all)
   end
-
+  def preview
+   
+  end
   def company_sub_categories
     if params[:category] != "none"
       @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{params[:category]}")
       if request.xml_http_request?
-        respond_to do |format|
-          format.html
-          format.js {
-            render :update do |page|
-              page.replace_html 'company_new_category', ""
-              page.replace_html 'company_sub_categories', :partial => "company_sub_categories"
-            end
-          }
-        end
+       # respond_to do |format|
+        #  format.js {
+         #   render :update do |page|
+             render :action => :preview
+              #page.replace_html 'company_new_category', ""
+              #page.replace_html 'company_sub_categories', :partial => "company_sub_categories"
+          #  end
+          #}
+       # end
       end
     else
       if request.xml_http_request?
-        respond_to do |format|
-          format.html
-          format.js {
-            render :update do |page|
-              page.replace_html 'company_new_category', :partial => "company_new_category"
-              page.replace_html 'company_sub_categories', :partial => "company_new_sub_category"
-            end
-          }
-        end
+         render :action => :none
+      #  respond_to do |format|
+       #   format.html
+        #  format.js {
+         #   render :update do |page|
+          #    page.replace_html 'company_new_category', :partial => "company_new_category"
+           #   page.replace_html 'company_sub_categories', :partial => "company_new_sub_category"
+           # end
+         # }
+        #end
       end
     end
   end
 
   def company_none_subcategories
+    p "Divya"
     if params[:sub_category] == "none"
       if request.xml_http_request?
-        respond_to do |format|
-          format.html
-          format.js {
-            render :update do |page|
-              page.replace_html 'company_new_subcategory', :partial => "company_new_subcategory"
-            end
-          }
-        end
+         render :action => :none_sub_category
+        #respond_to do |format|
+         # format.html
+          #format.js {
+           # render :update do |page|
+            #  page.replace_html 'company_new_subcategory', :partial => "company_new_subcategory"
+            #end
+         # }
+        #end
       end
     end
   end
@@ -76,7 +81,7 @@ class MerchantController < ApplicationController
       @merchant_company.merchant_profile = @merchant_profile
       @merchant_company.save
 
-      res = MultiGeocoder.geocode("#{@merchant_company.address1},#{@merchant_company.address2},#{@merchant_company.country},#{@merchant_company.zipcode}")
+      res = MultiGeocoder.geocode("#{@merchant_company.address1},#{@merchant_company.address2},#{@merchant_company.city},#{@merchant_company.zipcode}")
       @merchant_company.update_attributes(:latitude => res.lat, :longitude => res.lng)
 
       if params[:category] != "none"

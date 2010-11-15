@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101029131921) do
+ActiveRecord::Schema.define(:version => 20101101045140) do
 
   create_table "companies", :force => true do |t|
     t.string  "name",                       :limit => 50, :null => false
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(:version => 20101029131921) do
     t.string "name",  :limit => 30, :null => false
     t.string "value",               :null => false
   end
+
+  create_table "customer_accepted_demand_deal_biddings", :force => true do |t|
+    t.integer "customer_demand_deal_id",         :null => false
+    t.integer "customer_demand_deal_bidding_id", :null => false
+    t.integer "deal_id",                         :null => false
+  end
+
+  add_index "customer_accepted_demand_deal_biddings", ["customer_demand_deal_bidding_id"], :name => "caddb_Index_3"
+  add_index "customer_accepted_demand_deal_biddings", ["customer_demand_deal_id"], :name => "caddb_Index_2"
+  add_index "customer_accepted_demand_deal_biddings", ["deal_id"], :name => "caddb_Index_4"
 
   create_table "customer_credit_cards", :force => true do |t|
     t.integer "time_created",                                       :null => false
@@ -89,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20101029131921) do
     t.integer "quantity_left"
     t.string  "status",        :limit => 0,  :default => "new", :null => false
     t.string  "deal_code",     :limit => 25
+    t.integer "purchase_date"
   end
 
   add_index "customer_deals", ["customer_id"], :name => "customer_id"
@@ -232,21 +243,21 @@ ActiveRecord::Schema.define(:version => 20101029131921) do
   end
 
   create_table "deals", :force => true do |t|
-    t.text    "name",                                                    :null => false
-    t.float   "buy",                                                     :null => false
-    t.float   "value",                                                   :null => false
-    t.float   "discount",                                                :null => false
-    t.float   "save_amount",                                             :null => false
+    t.string  "name",                    :limit => 50,                    :null => false
+    t.float   "buy",                                                      :null => false
+    t.float   "value",                                                    :null => false
+    t.float   "discount",                                                 :null => false
+    t.float   "save_amount",                                              :null => false
     t.integer "number"
     t.string  "rules"
     t.string  "highlights"
-    t.string  "status",                  :limit => 0, :default => "new", :null => false
-    t.integer "expiry_date",                                             :null => false
+    t.string  "status",                  :limit => 0,  :default => "new", :null => false
+    t.integer "expiry_date",                                              :null => false
     t.integer "start_date"
-    t.integer "deal_type_id",                                            :null => false
-    t.integer "merchant_id",                                             :null => false
-    t.integer "deal_category_id",                                        :null => false
-    t.integer "deal_sub_category_id",                                    :null => false
+    t.integer "deal_type_id",                                             :null => false
+    t.integer "merchant_id",                                              :null => false
+    t.integer "deal_category_id",                                         :null => false
+    t.integer "deal_sub_category_id",                                     :null => false
     t.string  "deal_photo_file_name"
     t.string  "deal_photo_content_type"
     t.integer "deal_photo_file_size"

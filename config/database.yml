@@ -2,21 +2,7 @@ development:
   adapter: mysql
   database: keupons
   username: root
-  password:
-  host: localhost
-  socket: /opt/lampp/var/mysql/mysql.sock
-
-test:
-  adapter: mysql
-  database: enginey_test
-  username: root
-  password:
+  password: password
   host: localhost
 
-production:
-  adapter: mysql
-  database: enginey_production
-  username: root
-  password:
-  host: localhost
 

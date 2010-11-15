@@ -30,7 +30,8 @@ ActionController::Routing::Routes.draw do |map|
   map.location_deals '/customers/location_deals', :controller => 'customers', :action => 'location_deals'
   map.merchant_analytics '/merchant_analytics', :controller => 'merchant_analytics', :action => 'index'
   map.admin_analytics '/admin_analytics', :controller => 'admin_analytics', :action => 'index'
-  
+  map.connect '/get_sub_category',:controller=>'merchant',:action=>'company_sub_categories'  
+  map.connect '/sub_category',:controller=>'merchant',:action=>'company_none_subcategories'  
   map.resources :customers  
   map.resource :merchant
   map.resource :session
