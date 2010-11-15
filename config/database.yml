@@ -1,8 +1,0 @@
-development:
-  adapter: mysql
-  database: keupons
-  username: root
-  password: password
-  host: localhost
-
-
