@@ -46,50 +46,6 @@ p, label {
 }	
 
 
-fieldset {
-	width: 280px; 
-	padding: 15px; 
-	float: left; 
-	border: none;
-	margin: 0 10px 0 0; 
-	}
-	fieldset#step_1	{
-	background-color: #FF0000;
-	}
-	fieldset#step_2	{
-	background-color: #BF0000;
-	}
-	fieldset#step_3 {
-	background-color: #FF6F6F;
-	}
-
-legend { 
-	font-weight: bold; 
-	font-size: 20px; 
-	background: white;
-	-moz-border-radius: 10px; 
-	-webkit-border-radius: 10px;
-	padding: 5px 10px; 
-	letter-spacing: -1px;
-}
-									  	  
-option { 
-	padding: 0 5px; 
-}
-
-.name_wrap { 
-	margin: 5px 0; 
-	}
-	.name_wrap label { 
-		font-size: 12px; 
-		display: block; 
-		width: 102px; 
-		float: left; 
-	}
-	
-.push {
-	margin: 20px 0 0 0; 
-}
 
 #special_accommodations_wrap,
 #company_name_wrap { 
