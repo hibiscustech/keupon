@@ -1,6 +1,6 @@
 <% @customer.password = @customer.password_confirmation = nil %>
 <div><%= error_messages_for :customer %></div>
-<% form_for :customer, :url => customers_path do |f| -%>
+<% form_for :customer, :url => customers_path,:html => {:id=>'form'} do |f| -%>
 
   <fieldset id="step_1">
     <legend>Step 1</legend>
@@ -54,8 +54,34 @@
     <label for="rock">
       Are you ready to rock?
     </label>
-    <input type="checkbox" id="rock"></input>
-    <%=image_submit_tag ("complete_registration_btn.png"), :id=>"submit_button", :class => 'push'%>
+    <input type="checkbox" id="rock"></input><br/>
+   <a href='#' onclick="document.getElementById('popup_center').style.display='block';">Agree to Terms and Conditions</a><input type="checkbox" id="tos" name='tos'></input>
+    <%=image_tag ("complete_registration_btn.png",:onclick => 'check_tos();', :id=>"submit_button", :class => 'push')%>
   </fieldset>
 
 <% end %>
+<div id='popup_center' style="height: 472px; width: 504px; padding-left: 375px; display:none; margin-top: -29px;">
+          <table class="popup" align="center" width="100%" cellspacing="1px" style="border:1px solid black;" BACKGROUND="/images/bg_white.jpg">
+            <tr>
+              <td align="right" class="popup"><a href="#" onclick="document.getElementById('popup_center').style.display='none';;" >X</a></td>
+            </tr>
+            <tr>
+              <td align="left" class="popup">Here goes Sample TOS<i>Generates a form containing a single button that submits to the URL created by the set of options. This is the safest method to ensure links that cause changes to your data are not triggered by search bots or accelerators. If the HTML button does not work with your layout, you can also consider using the link_to method with the :method modifier as described in the link_to documentation.</i></td>
+            </tr>
+          </table>
+</div>
+<script>
+function check_tos(){
+var tos =  document.getElementById("tos").checked;
+if (tos == true)
+{
+document.getElementById("form").submit();
+}
+else
+{
+alert("Please put a tick mark on Terms and conditions");
+return false;
+}
+} 
+
+</script>
