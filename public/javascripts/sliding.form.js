@@ -135,9 +135,15 @@ $(function() {
 	if there are errors don't allow the user to submit
 	*/
 	$('#registerButton').bind('click',function(){
+    var checked = $('input[type=checkbox]').is(':checked');
 		if($('#formElem').data('errors')){
 			alert('Please correct the errors in the Form');
 			return false;
-		}	
+		}
+    else if(checked==false){
+			alert('Please put a tick mark on Terms and conditions');
+			return false;
+     
+    }
 	});
 });
