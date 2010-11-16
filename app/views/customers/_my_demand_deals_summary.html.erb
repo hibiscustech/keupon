@@ -1,10 +1,10 @@
 <table border="0" cellpadding="0" cellspacing="0">
  <tr>
-   <td colspan="2"><div id="demandDealSubTitle"><div class="yourDemandDealSubTitle">Deals that You Demanded</div></div></td>
+   <td><div id="demandDealSubTitle"><div class="yourDemandDealSubTitle">Deals that You Demanded</div></div></td>
  </tr>
  <tr>
-  <td><div id="wn">
-    <div id="lyr1">
+  <td>
+    <div style="height:660px;width:350px;left:0;top:0;visibility:visible;margin: 0;padding: 0;overflow:auto;">
       <% accepted_deal = nil
       for demand_deal in @demand_deals_summary
         if demand_deal.status == "accepted"
@@ -36,15 +36,6 @@
           </div>      
       <% end %>       
     </div>
-</div></td>
-
-  <td><div id="scrollbar"><!-- border attribute added to reduce support questions on the subject.
-    If you like valid strict markup, remove and place a img {border:none;} spec in style sheet -->
-    <div id="up"><a class="mouseover_up" href=""><img src="/images/btn-up.gif" width="11" height="11" alt="" border="0" /></a></div>
-    <div id="track">
-        <div id="dragBar"></div>
-    </div>
-    <div id="down"><a class="mouseover_down" href=""><img src="/images/btn-dn.gif" width="11" height="11" alt="" border="0" /></a></div>
-</div></td>
+</td> 
  </tr>
 </table>
