@@ -15,7 +15,6 @@
                
       </div>
       <%if !logged_in?%>
-       <div id="facebook" style="margin-left: 12px;"><a href="#"><img src="/images/facebook_connect.jpg" border="0px" /></a></div>
          <div id="head2">
 
 
@@ -28,9 +27,33 @@
 
 
 
-        <div id="watchVid" style="width: 150px;"><a href="#"><img src="/images/signup_btn.jpg" border="0px" />
-            <div style="margin-top:  -25px;text-align: center;margin-left: 93px;font-size: 15px;color: #fff;"><%=link_to 'Sign In','/' ,{:style=> 'text-decoration: none;color:white;'}%></div>
-          <div style="margin-top:  -18px;margin-left: 30px;text-align: left;font-size: 15px;color: #fff;"><%=link_to 'Login','/login',{:style=> 'text-decoration: none;color:white;'}%></div></a></div>
+        <div id="watchVid" style="width: 150px;">
+<table width="306" border="0" cellspacing="0" cellpadding="0">
+
+  <tr>
+
+    <td width="21"><img src="/images/login_03.png" width="21" height="36" /></td>
+
+    <td width="63"><a href="/login"><img src="/images/login_04.png" width="63" height="36" border="0"/></a></td>
+
+    <td width="61"><img src="/images/login_05.png" width="61" height="36" border="0"/></td>
+
+    <td width="115" background="/images/login_06.png"><select name="select" id="select">
+
+      <option>As Customer</option>
+
+      <option>As Merchant</option>
+
+    </select>
+
+    </td>
+
+    <td width="47" align="left"><a href="#"><img src="/images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></a></td>
+
+  </tr>
+
+</table>
+        </div>
 
 
     </div>
@@ -45,7 +68,7 @@
                     <td align="left">Welcome! <%=current_customer.login%></td>
                   </tr>
                   <tr><td>&nbsp;</td></tr>
-                  <tr><td><a href="/my_profile"><img src="/images/my_profile_btn.jpg" border="0px" /></a>&nbsp;&nbsp;<a href="/logout"><img src="/images/logout.jpg" border="0px" /></a></td></tr>
+                  <tr><td><a href="/my_keupons"><img src="/images/mykeupon.jpg" border="0px" /></a>&nbsp;&nbsp;<a href="/my_profile"><img src="/images/my_profile_btn.jpg" border="0px" /></a>&nbsp;&nbsp;<a href="/logout"><img src="/images/logout.jpg" border="0px" /></a></td></tr>
                </table>
               </div>
             </td>
@@ -65,3 +88,16 @@
     </div>
        <%end%>
     </div>
+<script>
+function find_link(){
+var user=document.getElementById("select").value;
+if (user=='As Customer')
+{
+window.location='/signup';
+}
+else
+{
+window.location='/merchant_signup';
+}
+}
+</script>
