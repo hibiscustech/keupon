@@ -495,9 +495,6 @@ class CustomersController < ApplicationController
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
     if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],
         :gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
-      if params[:my_profile].nil?
-        customer.activate!
-      end
     end
     if params[:customer_favourite_deal]
       params[:customer_favourite_deal][:deal_sub_category_id].map { |i| i.split(/:|;/) }.each do |d|
@@ -505,6 +502,7 @@ class CustomersController < ApplicationController
       end
     end
     if params[:my_profile].nil?
+      customer.activate!
       flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
       redirect_to '/'
     else
