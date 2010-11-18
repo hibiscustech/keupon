@@ -495,16 +495,22 @@ class CustomersController < ApplicationController
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
     if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],
         :gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
-      customer.activate!
-
+      if params[:my_profile].nil?
+        customer.activate!
+      end
     end
     if params[:customer_favourite_deal]
       params[:customer_favourite_deal][:deal_sub_category_id].map { |i| i.split(/:|;/) }.each do |d|
         @cus_favourite = CustomerFavouriteDeal.create(:customer_id => params[:customer_favourite][:customer_id], :deal_category_id => d[0].to_s, :deal_sub_category_id => d[1].to_s )
       end
     end
-    flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
-    redirect_to '/'
+    if params[:my_profile].nil?
+      flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+      redirect_to '/'
+    else
+      flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+      redirect_to '/my_profile'
+    end
   end
 
   def my_keupons
