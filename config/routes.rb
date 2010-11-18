@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
   map.get_location_deal '/get_location_deal' , :controller => 'customers', :action => 'get_location_deal'
+  map.update '/update', :controller => 'customers', :action => 'settings'
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
   map.deal_of_the_day '/keupoint_deal', :controller => 'customers', :action => 'keupoint_deal'
   map.profile_update 'profile_update' , :controller => 'customers', :action => 'profile_update'
