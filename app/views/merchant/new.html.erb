@@ -1,5 +1,4 @@
     <head>
-        <title>Merchant Signup</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="description" content="Fancy Sliding Form with jQuery" />
         <meta name="keywords" content="jquery, form, sliding, usability, css3, validation, javascript"/>
@@ -56,12 +55,6 @@
             color:#000;
             
         }
-        h1{
-            color:#ccc;
-            font-size:36px;
-            text-shadow:1px 1px 1px #fff;
-            padding:20px;
-        }
     </style>
     <body>
 <div id='popup_center' style="height: 472px; width: 504px; padding-left: 375px; display:none; margin-top: -29px;">
@@ -76,7 +69,6 @@
 </div>
 
         <div id="content">
-            <h1>Merchant Signup</h1>
             <div id="wrapper">
                 <div id="steps">
                     <form id="formElem" name="formElem" action="/merchant_register" enctype="multipart/form-data" method="post">
@@ -94,6 +86,12 @@
                                 <label for="gender">Gender</label>
                                 <input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="m"/> Male <input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="f"/> Female
                             </p>
+                             <tr>
+                            <p>
+                             <label for='merchant_pin'>NRIC/ FIN#</label>
+                             <input id="merchant_pin" name="merchant_profile[merchant_pin]" />
+                             </p>
+
                         </fieldset>
                         <fieldset class="step">
                             <legend>Merchant Contact Details</legend>
