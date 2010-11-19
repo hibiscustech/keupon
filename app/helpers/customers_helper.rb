@@ -97,5 +97,13 @@ def category_all
   def sub_category_all(category)
     category.deal_sub_category
   end
+  def get_selected(cid,scid)
+   categories=CustomerFavouriteDeal.find_by_deal_category_id_and_customer_id_and_deal_sub_category_id(cid,current_customer.id,scid)
+   if !categories.nil?
+    return scid
+   else
+    return false
+   end
+  end
 
 end

@@ -16,7 +16,7 @@
           <tr>
             <td width="5%"> </td>
             <td width="15%" style="color:#000000;">I was born on:<font color="red">*</font></td>
-            <td width="30%"><input id="customer_profile_dob" name="customer_profile[dob]" size="15%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+            <td width="30%"><input id="customer_profile_dob" name="customer_profile[dob]" size="15%" type="text" value='<%=@customer_profile.dob%>'/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
           </tr>
 
           <tr>
@@ -34,6 +34,11 @@
             <td width="5%"> </td>
             <td width="15%" style="color:#000000;">Average Monthly Salary:<font color="red">*</font></td>
             <td width="30%"><%=f.text_field 'income', :size=> '15'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
+          </tr>
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">NRIC/ FIN#:<font color="red">*</font></td>
+            <td width="30%"><%=f.text_field 'customer_pin', :size=> '15'%></td>
           </tr>
           <tr>
             <td width="5%"> </td>
@@ -55,7 +60,11 @@
                 <%for category in category_all%>
                   <b><%=category.name%></b><br/>
                   <%for sub_category in sub_category_all(category)%>
+                    <%if sub_category.id==get_selected(category.id,sub_category.id)%>
+                    <%= check_box_tag "customer_favourite_deal[deal_sub_category_id][]", category.id.to_s+':'+sub_category.id.to_s,true -%><%=sub_category.name%><br/>
+                    <%else%>
                     <%= check_box_tag "customer_favourite_deal[deal_sub_category_id][]", category.id.to_s+':'+sub_category.id.to_s -%><%=sub_category.name%><br/>
+                    <%end%>
                   <%end%>
                 <%end%>
 

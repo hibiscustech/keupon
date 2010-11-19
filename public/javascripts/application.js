@@ -90,3 +90,7 @@ function hideElt(elementID)
 {
 	document.getElementById(elementID).style.display = "none";
 }
+function showElt(elementID)
+{
+	document.getElementById(elementID).style.display = "block";
+}

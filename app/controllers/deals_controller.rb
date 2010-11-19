@@ -5,7 +5,13 @@ class DealsController < ApplicationController
   layout 'application_merchant'
 
   before_filter :login_required , :only => [:index]
-
+  def get_by_email
+  end
+  def get_deals_by_email
+   email_deal=EmailDeal.create(params[:email_deal])
+   flash[:message]='Your request has been submitted to site admin'
+   redirect_to "/"
+  end
   def index
     @page = 'Deal of the Day'
     if request.get?

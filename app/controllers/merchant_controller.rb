@@ -12,7 +12,6 @@ class MerchantController < ApplicationController
   end
 
   def new
-    @page = 'Merchant Signup'
     @merchant = Merchant.new
     @categories = DealCategory.find(:all)
     render :layout =>'signup_merchant'

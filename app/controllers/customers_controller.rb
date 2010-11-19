@@ -474,6 +474,7 @@ class CustomersController < ApplicationController
     @page = 'My Settings'
     @customer = Customer.find(current_customer.id)
     @customer_profile = @customer.customer_profile
+    @cus_favourite=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
  end
 
 
@@ -494,9 +495,13 @@ class CustomersController < ApplicationController
     @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_favourite][:customer_id])
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
     if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],
-        :gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
+        :gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id],:customer_pin=> params[:customer_profile][:customer_pin])
     end
     if params[:customer_favourite_deal]
+        existing_deal_categories=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
+        existing_deal_categories.each do |cfd|
+          cfd.destroy
+        end
       params[:customer_favourite_deal][:deal_sub_category_id].map { |i| i.split(/:|;/) }.each do |d|
         @cus_favourite = CustomerFavouriteDeal.create(:customer_id => params[:customer_favourite][:customer_id], :deal_category_id => d[0].to_s, :deal_sub_category_id => d[1].to_s )
       end

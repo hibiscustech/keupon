@@ -1,3 +1,8 @@
 <div class="user4IMG1"><a href="#"><img src="/images/how_it_works_new.jpg" border="0px" /></a></div>
-        <div class="user4IMG1"><a href="#"><img src="/images/get_deals_by_email.jpg" border="0px" /></a></div>
+        <div class="user4IMG1"><a href="#" onclick="showElt('popup_create_deal');"><img src="/images/get_deals_by_email.jpg" border="0px" /></a></div>
         <div class="user4IMG1"><a href="#"><img src="/images/advertisewithus.jpg" border="0px" /></a></div>
+
+<div id="popup_create_deal">
+  <%= render :partial => "/deals/get_by_email" %>
+</div>
+

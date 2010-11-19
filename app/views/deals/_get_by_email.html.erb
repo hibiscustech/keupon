@@ -1,0 +1,37 @@
+<%@deal=EmailDeal.new()%>
+<div style="width:608px;height:400px;text-align:left;">
+  <div><%= error_messages_for :deal %></div>
+  <% form_for @deal, :url => { :controller=>'deals',:action => "get_deals_by_email" } , :html => { :multipart => true }  do |f| %>
+    <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
+      <tr>
+        <td width="20px"> </td>
+        <td style="color:#000000;"><h3>Get Deals</h3></td>
+        <td><%#= f.text_field :login, :size=>"25%"  %> </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Email:</td>
+        <td><%= f.text_field :email, :size=>"25%"  %> </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Category:</td>
+        <td><%=select("email_deal", "deal_category_id", DealCategory.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None',:size=>"25%"})  %> </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Location:</td>
+        <td><%= f.text_field :location, :size=>"25%"  %> </td>
+      </tr>
+      <tr>
+        <td> </td>        
+        <td colspan="2">
+          <br/><%=image_submit_tag ("register.jpg"), :onclick => "return form_validator();"%>
+
+          <a href="#" onclick="hideElt('popup_create_deal');" style="padding-left: 30px;"><img alt="Cancel" src="/images/cancel.jpg" border="0" /></a>
+        </td>
+      </tr>
+<% end %>
+  </table>
+</div>
+
