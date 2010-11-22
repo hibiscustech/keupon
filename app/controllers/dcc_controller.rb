@@ -1,6 +1,7 @@
 
 require 'cgi'
 require 'profile'
+require 'caller'
 # Controller with actions for doing DoDirectPayment API call. The name is chosen in consistent with other PayPal SDKs. 
 class DccController < ApplicationController 
     layout "application_paypal"
