@@ -84,7 +84,7 @@ class DccController < ApplicationController
       redirect_to :controller => 'dcc',:action => 'thanks'
     else
       session[:paypal_error]=@transaction.response
-      redirect_to :controller => 'wppro', :action => 'error'
+      redirect_to :controller => 'dcc', :action => 'error'
     end
   rescue Errno::ENOENT => exception
     flash[:error] = exception

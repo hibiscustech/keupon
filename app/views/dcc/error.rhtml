@@ -1,0 +1,12 @@
+<div id="page">
+<h4 align="center">PayPal API Error</h3>
+<h3 align="center">A PayPal API has returned an error!</h3>		
+<dl>	
+<table>	
+<% @response.each do |k,v| %>
+<tr><td align="left"><%= "#{k}" %>:</td><td><%= "#{v}" %></td>
+ <% end -%>
+</table>
+</dl>   
+    <a class="home"> <%= link_to "Home", :controller =>"wppro", :action => "index" %> </a>     
+</div>
