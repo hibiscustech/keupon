@@ -3,7 +3,7 @@ require 'cgi'
 require 'profile'
 # Controller with actions for doing DoDirectPayment API call. The name is chosen in consistent with other PayPal SDKs. 
 class DccController < ApplicationController 
-  
+    layout "application_paypal"
     session :session_key => '_PayPalSDK_session_id'
     filter_parameter_logging :password
   
