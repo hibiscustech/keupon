@@ -1,0 +1,32 @@
+<div id="page">
+<h3>Do Direct Payment API</h3>  
+<%= javascript_include_tag 'creditcard' %>
+
+<% form_for :dcc, :html => {:id => 'DoDirectPaymentForm', :name => 'DoDirectPaymentForm'}, :url => {:controller => 'dcc', :action => 'do_DCC'} do |f|  %>
+    <dl>
+    <%= f.hidden_field :PAYMENTACTION, :value => @payment_action  %>
+    <dt><label for="firstName">First Name:</label></dt><dd>     <%=f.text_field :firstName, :value => 'Ruby', :size => 30, :maxlength => 32 %> </dd>
+    <dt><label for="lastName">Last Name:</label></dt><dd>       <%=f.text_field :lastName, :value => 'Rails', :size => 30, :maxlength => 32 %> </dd>
+    
+    <dt><label for="creditCardType">Card Type:</label></dt><dd> <%= select_tag("creditCardType", options_for_select(["Visa","MasterCard", "Discover", "Amex"],"Visa"),{:onChange => 'generateCC(this.form)'} )
+    %> </dd>
+    <dt><label for="creditCardNumber">Card Number:</label></dt><dd>       <%=text_field_tag("creditCardNumber" ,'', {:size => 19, :maxlength => 19,:value=>'4623226975828898'})%> </dd>   
+    <dt><label for="Expiration Date">Expiration Date:</label></dt><dd>    <%=month_select_for(:dcc) %>  <%=year_select_for(:dcc) %> </dd>  
+      
+    <dt><label for="cvv2Number">Card Verification Number:</label></dt><dd><%= f.text_field :cvv2Number, :value => '962', :size => 4, :maxlength => 4 %> </dd>  
+    <p></p>   
+    <%content_tag :div   do -%>  
+    Billing Address:
+    <%end -%>    
+    <dt><label for="address1">Address 1:</label></dt><dd>      <%=f.text_field :address1, :value => '1 Main St', :size => 30, :maxlength => 100 %> </dd>    
+    <dt><label for="address2">Address 2:</label></dt><dd>     <%=f.text_field :address2, :size => 25, :maxlength => 100 %>(Optional) </dd>    
+    <dt><label for="city">City:</label></dt><dd>               <%=f.text_field :city, :value => 'San Jose', :size => 25, :maxlength => 100 %> </dd>  
+    <dt><label for="address1">State:</label></dt><dd>            <%=state_select_for(:dcc) %>   </dd>	
+    <dt><label for="zip">Zip Code:</label></dt><dd>            <%=f.text_field :zip, :value => '95131', :size => 30, :maxlength => 32 %>(5 or 9 digits) </dd>   
+    <dt><label for="countrycode">Country: </label></dt><dd>     US </dd>   
+    <dt><label for="amount">Amount:</label></dt><dd>            <%= f.text_field :amount, :value => '1.00', :size => 4, :maxlength => 7 %>USD </dd>           
+    <dt></dt><dd><%= submit_tag('Submit')%></dd>
+<%end%>
+</dl>
+<%= link_to "Home", {:controller =>"wppro", :action => "index"}, :id => 'CallsLink' %>
+</div>

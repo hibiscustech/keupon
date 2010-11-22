@@ -1,0 +1,18 @@
+<div id="page">
+<h4 align="center">DoDirect Payment</h3>
+<h3 align="center">Thank you for your payment!</h3>		
+<dl>	
+<table>	
+<% @response.each do |k,v| %>
+<tr><td><%= "#{k}" %>:</td><td><%= "#{v}" %></td>
+ <% end -%>
+</table>
+</dl>   
+    <%= link_to "Home", {:controller =>"wppro", :action => "index"}, :id => 'CallsLink' %>
+     
+</div>
+
+
+
+
+
