@@ -1,0 +1,45 @@
+
+
+/* --- 3.NAVIGATION
+________________________________________*/
+
+.nav li a	 						{ color:#777; text-decoration:none; }
+.nav ul li a 						{ border:1px solid #ddd; border-bottom: none; color:#888;background:#fff;}
+.nav ul li a:hover					{ color:#F5410F; background: #fff; }
+.nav ul								{ background: url("../images/arrow_up_dark.png") 10px 22px transparent no-repeat !important; /*ie6fix*/ background: #ddd; border-bottom:1px solid #ddd;}
+.nav .current-menu-item a strong	{ color:#444; font-weight: bold;}
+
+
+div.domain_finder					{ background: #f2f2f2 url(../images/finder_bg.png) 0 0 no-repeat; }
+
+#sidebar li,
+ul.network_list li					{ border-bottom:1px solid #dddddd; }
+
+.partners							{ border-top:1px solid #ddd; }
+/* --- SUB HEADER
+________________________________________*/
+
+#sub_header, 
+.plan_box h3.price span, 
+.plan_box h4,
+#footer_wrapper h4,
+.tweets a:hover							{ color:#fff; }
+
+ul.host li img 							{ background:#fbfbfb; border:3px solid #e3e3e3; }
+
+/* --- FEATUREBOX
+________________________________________*/
+
+.testimonial							{ background:#f2f2f2;  }
+.testimonial	h3						{ text-transform:uppercase; font-size:large; text-align:center; }
+.testimonial blockquote					{ background:#fbfbfb; border:3px solid #e3e3e3; }
+
+
+/* --- PLANBOX
+________________________________________*/
+.plan_box								{ color:#FFFFFF; }
+ul.boxlist								{ background:#fff;  }
+.plan_box .plan_info					{ background:url(../images/bg_shadow.png) 50% 0px no-repeat; }
+ul.boxlist li							{ background:url(../images/box_tick.png) 15px 12px no-repeat; border-bottom:1px solid #CCCCCC; color:#999; }
+.plan_box h2							{ color:#FFFFFF;  }
+.plan_box h3.price						{ color:#FFCC33;}
