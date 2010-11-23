@@ -5,49 +5,20 @@ class DealsController < ApplicationController
   layout 'application_merchant'
 
   before_filter :login_required , :only => [:index]
+
   def get_by_email
   end
+
   def get_deals_by_email
    email_deal=EmailDeal.create(params[:email_deal])
    flash[:message]='Your request has been submitted to site admin'
    redirect_to "/"
   end
+
   def index
-    @page = 'Deal of the Day'
-    if request.get?
-      @months = { "January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8,
-        "September" => 9, "October" => 10, "November" => 11, "December" => 12 }
-      @years = [2010, 2011]
-      today = Time.now
-      @month = today.month
-      @year = today.year
-      @month_name = today.strftime("%B")
-
-      session[:month] = @month
-      session[:year] = @year
-      session[:month_name] = @month_name
-
-      @schedules = all_merchants_result(DealSchedule.view_all_merchants_providing_deals_this_month(@month, @year))
-    elsif request.xml_http_request?
-      @month = (params[:month].blank?)? session[:month] : params[:month].to_i
-      @year = (params[:year].blank?)? session[:year] : params[:year].to_i
-      @month_name = (params[:month].blank?)? session[:month_name] : Time.parse("#{@year}-#{@month}-15").strftime("%B")
-
-      session[:month] = @month
-      session[:year] = @year
-      session[:month_name] = @month_name
-
-      @schedules = all_merchants_result(DealSchedule.view_all_merchants_providing_deals_this_month(@month, @year))
-
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'calendar',:partial => "calendar_deals"
-          end
-        }
-      end
-    end
+    @page = 'New Deal'
+    @deal = Deal.new
+    @categories = DealCategory.find(:all)
   end
 
   def new

@@ -60,43 +60,7 @@ return true;
 <br/>
 <br/>
 <br/>
-<div id="buttons" style="padding-left: 150px;">
-  Year: <select id="year" name="year">
-        <% for year in @years
-            if session[:year].to_s == year.to_s %>
-        <option value="<%= year %>" selected><%= year %></option>
-            <% else %>
-        <option value="<%= year %>"><%= year %></option>
-            <% end
-           end %>
-        </select>
-	<%=observe_field "year",
-			:url => {:controller => 'deals', :action => 'index'},
-			:on => 'change',
-			:with => "year"%>
-  Month: <select id="month" name="month">
-        <%
-          @months.each_pair{|key,value|          
-            if session[:month].to_i == value.to_i %>
-        <option value="<%= value %>" selected><%= key %></option>
-            <% else %>
-        <option value="<%= value %>"><%= key %></option>
-            <% end
-           } %>
-        </select>
-	<%=observe_field "month",
-			:url => {:controller => 'deals', :action => 'index'},
-			:on => 'change',
-			:with => "month"%>
-</div>
-<div id="calendar" align="center">
-  <%= render :partial => "calendar_deals" %>
-</div>
-<br/>
-<div id="popup_view_deal">
-  <%= render :partial => "basic_deal_info" %>
+<div id="new_deal" align="center">
+  <%= render :partial => "create_deal" %>
 </div>
 
-<div id="popup_create_deal">
-  <%= render :partial => "view_create_deal" %>
-</div>
