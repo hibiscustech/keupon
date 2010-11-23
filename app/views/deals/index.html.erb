@@ -17,20 +17,6 @@ theForm.deal_value.focus();
 return (false);
 }
 
-if (theForm.deal_discount.selectedIndex == '0')
-{
-alert("Please select one of the Discount options.");
-theForm.deal_discount.focus();
-return (false);
-}
-
-if (theForm.deal_number.value == "" || theForm.deal_number.value.length < 1)
-{
-alert("You must enter expected no. of Customers.");
-theForm.deal_number.focus();
-return (false);
-}
-
 if (theForm.deal_rules.value == "" || theForm.deal_rules.value.length < 1)
 {
 alert("You must enter Rules.");
