@@ -19,28 +19,19 @@
     <script src="/javascripts/FusionCharts.js" type="text/javascript"></script>
     <link href="/stylesheets/charts/style.css" media="screen" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
-      j(document).ready(function(){
+     j(function(){
+	j('#webmenu li').hover(function(){
+		j(this).children('ul').stop(true,true).show('slow');
+	},function(){
+		j(this).children('ul').stop(true,true).hide('slow');
+	});
 
-        j("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
-
-        j("ul.topnav li span").click(function() { //When trigger is clicked...
-
-          //Following events are applied to the subnav itself (moving subnav up and down)
-          j(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click
-
-          j(this).parent().hover(function() {
-          }, function(){
-            j(this).parent().find("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
-          });
-
-          //Following events are applied to the trigger (Hover events for the trigger)
-        }).hover(function() {
-          j(this).addClass("subhover"); //On hover over, add class "subhover"
-        }, function(){	//On Hover Out
-          j(this).removeClass("subhover"); //On hover out, remove class "subhover"
-        });
-
-      });
+	j('#webmenu li').hover(function(){
+		j(this).children('div').stop(true,true).show('slow');
+	},function(){
+		j(this).children('div').stop(true,true).hide('slow');
+	});
+});
     </script>
   </head>
   <body>
