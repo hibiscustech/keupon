@@ -14,10 +14,7 @@
         <td style="color:#000000;">Original Value:</td>
         <td><%= f.text_field :value, :size=>"25%",:onchange =>"discount()"  %> </td>
       </tr>
-    </table>
-    <div id="deal_discounts">
-      <%= render :partial => "deal_discounts" %>
-    </div>
+    </table>    
     <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td> </td>
@@ -49,5 +46,8 @@
       </tr>
 <% end %>
   </table>
+    <div id="deal_discounts">
+      <%= render :partial => "deal_discounts" %>
+    </div>
 </div>
 
