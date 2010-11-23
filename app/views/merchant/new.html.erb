@@ -22,6 +22,7 @@
 
     <script src="/javascripts/jquery-latest.js" type="text/javascript"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
     <script src="/javascripts/jquery.observe_field.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -39,6 +40,7 @@
      
     </head>
     <style>
+        label.error { float: none; color: red; padding-left: .5em; vertical-align: top;font-size:10px; }
         span.reference{
             position:fixed;
             left:5px;
@@ -76,21 +78,22 @@
                             <div id='error'></div>
                             <legend>Merchant</legend>
                             <p>
-                                <label for="username">First name</label>
-                                <input id="username" name="merchant_profile[first_name]" />
+                                <label for="firstname">First name</label>
+                                <input id="firstname" name="merchant_profile[first_name]" class='required'/><div id='username'></div>
                             </p>
                             <p>
-                                <label for="username">Last name</label>
-                                <input id="username" name="merchant_profile[last_name]" />
+                                <label for="lastname">Last name</label>
+                                <input id="lastname" name="merchant_profile[last_name]" class='required'/>
                             </p>
                             <p>
                                 <label for="gender">Gender</label>
                                 <input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="m"/> Male <input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="f"/> Female
+                                <br/><input type='hidden' class='required'/>
                             </p>
                              <tr>
                             <p>
                              <label for='merchant_pin'>NRIC/ FIN#</label>
-                             <input id="merchant_pin" name="merchant_profile[merchant_pin]" />
+                             <input id="merchant_pin" name="merchant_profile[merchant_pin]" class='required'/>
                              </p>
 
                         </fieldset>
@@ -98,27 +101,27 @@
                             <legend>Merchant Contact Details</legend>
                             <p>
                                 <label for="address1">Address1</label>
-                                <input id="merchant_profile_address1" name="merchant_profile[address1]" size="35%" type="text" />
+                                <input id="merchant_profile_address1" name="merchant_profile[address1]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="address2">Address2</label>
-<input id="merchant_profile_address2" name="merchant_profile[address2]" size="35%" type="text" />
+<input id="merchant_profile_address2" name="merchant_profile[address2]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="country">Country</label>
-<input id="merchant_profile_country" name="merchant_profile[country]" size="35%" type="text" />
+<input id="merchant_profile_country" name="merchant_profile[country]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="zipcode">Zipcode</label>
-<input id="merchant_profile_zipcode" name="merchant_profile[zipcode]" size="35%" type="text" />
+<input id="merchant_profile_zipcode" name="merchant_profile[zipcode]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="phone">Phone</label>
-<input id="merchant_profile_contact_number" name="merchant_profile[contact_number]" size="35%" type="text" />
+<input id="merchant_profile_contact_number" class='required' name="merchant_profile[contact_number]" size="35%" type="text" />
                             </p>
 <p>
                                 <label for="email">Email</label>
-<input id="merchant_profile_email_address" name="merchant_profile[email_address]" size="35%" type="text" />
+<input id="merchant_profile_email_address" class='required' name="merchant_profile[email_address]" size="35%" type="text" />
                             </p>
                         </fieldset>
                         <fieldset class="step">
@@ -126,31 +129,31 @@
                             
                             <p>
                                 <label for="name">Name</label>
-<input id="company_name" name="company[name]" size="35%" type="text" />
+<input id="company_name" name="company[name]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="url">URl</label>
-<input id="company_website" name="company[website]" size="35%" type="text" />
+<input id="company_website" name="company[website]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="Address1">Address1</label>
-<input id="company_address2" name="company[address1]" size="35%" type="text" />
+<input id="company_address2" name="company[address1]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="Address2">Address2</label>
-<input id="company_address2" name="company[address2]" size="35%" type="text" />
+<input id="company_address2" name="company[address2]" size="35%" type="text" class='required'/>
                             </p>
                              <p>
                                 <label for="Country">Country</label>
-<input id="company_country" name="company[city]" size="35%" type="text" />
+<input id="company_country" name="company[city]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="zipcode">Zipcode</label>
-<input id="company_zipcode" name="company[zipcode]" size="35%" type="text" />
+<input id="company_zipcode" name="company[zipcode]" size="35%" type="text" class='required'/>
                             </p>
                             <p>
                                 <label for="Company Photo/Logo">Company Photo/Logo</label>
-<input id="merchant_company_photo" name="merchant[company_photo]" size="35%" type="file" />
+<input id="merchant_company_photo" name="merchant[company_photo]" size="35%" type="file" class='required'/>
                             </p>
                         </fieldset>
                         <fieldset class="step">
@@ -158,11 +161,11 @@
                             
                             <p>
                                 <label for="description">Description</label>
-<textarea cols="35%" id="company_detail" name="company[detail]"></textarea>
+<textarea cols="35%" id="company_detail" name="company[detail]" class='required'></textarea>
                             </p>
 <p>
                                 <label for="category">Category </label>
- <select id="category" name="category">
+ <select id="category" name="category" >
                         <option value="0">Select a Category</option>
                         <% for category in @categories %>
                         <option value="<%= category.id %>"><%= category.name %></option>
