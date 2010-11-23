@@ -1,0 +1,13 @@
+<div id="page">
+<h3 align="center">Do Void API</h3>  
+<% form_for :dovoid, :url => {:controller => 'dcc', :action => 'do_void'} do |f|  %>
+<dl>
+    <dt><label for="authorization_id">Authorization ID:</label> </dt> <dd>  <%= f.text_field :authorization_id, :value => @transaction_id  %> </dd>
+    <dt><label for="note">Note:</label> </dt> <dd>  <%= f.text_area :note, :rows => 4, :cols => 30  %> </dd> 
+    <dt></dt><dd><%= submit_tag('Submit')%></dd>    
+<%end%>
+</dl>
+<%= link_to "Home", {:controller =>"wppro", :action => "index"}, :id => 'CallsLink' %>
+</div>  
+
+

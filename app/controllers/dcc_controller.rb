@@ -98,6 +98,41 @@ class DccController < ApplicationController
     @avsCode = @response["AVSCODE"]
     @cvv2Match = @response["CVV2MATCH"]
   end
+
+  def get_input
+  @transaction_id = params[:authorization_id]
+  end
+
+  # DoVoid API call
+  def do_void
+    @caller =  PayPalSDKCallers::Caller.new(false)
+    @transaction = @caller.call(
+      { :method          => 'DoVoid',
+        :authorizationid => params[:dovoid][:authorization_id].to_s,
+        :note            => params[:dovoid][:note].to_s,
+        :trxtype         => 'V',
+        :USER  =>  @@USER,
+        :PWD   => @@PWD,
+        :SIGNATURE => @@SIGNATURE,
+        :SUBJECT => @@SUBJECT
+      }
+    )
+
+   if @transaction.success?
+      session[:void_response]=@transaction.response
+      redirect_to :controller => 'dcc',:action => 'thanks_void'
+    else
+      session[:paypal_error]=@transaction.response
+      redirect_to :controller => 'dcc', :action => 'error'
+    end
+  rescue Errno::ENOENT => exception
+    flash[:error] = exception
+    redirect_to :controller => 'dcc', :action => 'error'
+  end
+
+  def thanks_void
+    @response = session[:void_response]
+  end
   
 end
 
