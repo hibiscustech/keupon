@@ -1,7 +1,4 @@
-<div style="width:608px;height:400px;text-align:left;">
-  <div id="deal_discounts">
-      <%= render :partial => "deal_discounts" %>
-</div>
+<div style="width:608px;height:400px;text-align:left;">  
   <% form_for @deal, :url => { :action => "create" } , :html => { :multipart => true }  do |f| %>
     <%=hidden_field :deal, :merchant_id, :value => current_merchant.id%>
     <input type="hidden" name="start_time" id="start_time" value="<%= params[:date] %>" />
@@ -16,7 +13,10 @@
         <td style="color:#000000;">Original Value:</td>
         <td><%= f.text_field :value, :size=>"25%",:onchange =>"discount()"  %> </td>
       </tr>
-    </table>    
+    </table>
+    <div id="deal_discounts">
+      <%= render :partial => "deal_discounts" %>
+</div>
     <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td> </td>
