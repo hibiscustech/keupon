@@ -138,7 +138,8 @@ $(function() {
     var checked = $('input[type=checkbox]').is(':checked');
 		if($('#formElem').data('errors')){
 			alert('Please correct the errors in the Form');
-			return false;
+      $("#formElem").validate();
+			//return false;
 		}
     else if(checked==false){
 			alert('Please put a tick mark on Terms and conditions');
