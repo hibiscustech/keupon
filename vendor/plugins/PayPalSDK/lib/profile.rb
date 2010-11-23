@@ -21,7 +21,7 @@ module PayPalSDKProfiles
 ###############################################################################################################################
 # specify the 3-token values.  
 #credentials for 3 token
-@@credentials =  {"USER" => "alex_1290424120_biz_api1.gmail.com", "PWD" => "8BWX5UNLVW8NHJJD", "SIGNATURE" => "AVmnfSdY0Wvx0KaIEj4kJP0Gc4QRAmrGtgS9hvuhjXXFjIbnauqdZl8l" }
+@@credentials =  {"USER" => "alex_1290492158_biz_api1.gmail.com", "PWD" => "1290492213", "SIGNATURE" => "A8enwJLBFTWWh63BEP0tfysIp7.SAt6cVx19.lNEM3Y47INGmrLlh9a6" }
 
 #Credentials for certificate
 #@@credentials =  {"USER" => "sdk-seller_api1.sdk.com", "PWD" => "12345678"}
