@@ -4,9 +4,7 @@
     <input type="hidden" name="start_time" id="start_time" value="<%= params[:date] %>" />
     <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
-        <td> </td>
-        <td style="color:#000000;"><h3>Step1</h3></td>
-        <td></td>
+        <td style="color:#000000;" colspan="3"><h3>Step1</h3></td>
       </tr>
       <tr>
         <td> </td>
@@ -18,8 +16,6 @@
         <td style="color:#000000;">Original Value:</td>
         <td><%= f.text_field :value, :size=>"25%",:onchange =>"discount()"  %> </td>
       </tr>
-    </table>    
-    <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td> </td>
         <td style="color:#000000;">Rules of the deal:</td>
