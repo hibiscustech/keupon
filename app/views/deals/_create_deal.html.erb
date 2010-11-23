@@ -1,3 +1,6 @@
+<div id="deal_discounts">
+      <%= render :partial => "deal_discounts" %>
+</div>
 <div style="width:608px;height:400px;text-align:left;">
   <div><%= error_messages_for :deal %></div>
   <% form_for @deal, :url => { :action => "create" } , :html => { :multipart => true }  do |f| %>
@@ -45,9 +48,6 @@
         </td>
       </tr>
 <% end %>
-  </table>
-    <div id="deal_discounts">
-      <%= render :partial => "deal_discounts" %>
-    </div>
+  </table>    
 </div>
 
