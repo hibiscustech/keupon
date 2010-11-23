@@ -19,6 +19,49 @@ class DealsController < ApplicationController
     @page = 'New Deal'
     @deal = Deal.new
     @categories = DealCategory.find(:all)
+    session[:deal_discounts] = Hash.new
+  end
+  
+  def new_discount_customers
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'deal_discounts',:partial => "new_deal_discount"
+          end
+        }
+      end
+    end
+  end
+
+  def add_new_deal_discount
+    discount = params[:discount]
+    customers = params[:customer]
+    session[:deal_discounts][discount.to_i] = customers
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'deal_discounts',:partial => "deal_discounts"
+          end
+        }
+      end
+    end
+  end
+
+  def cancel_new_discount_customers
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'deal_discounts',:partial => "deal_discounts"
+          end
+        }
+      end
+    end
   end
 
   def new

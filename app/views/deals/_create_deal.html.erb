@@ -14,16 +14,11 @@
         <td style="color:#000000;">Original Value:</td>
         <td><%= f.text_field :value, :size=>"25%",:onchange =>"discount()"  %> </td>
       </tr>
-      <tr>
-        <td> </td>
-        <td style="color:#000000;">Discount:</td>
-        <td><%= f. select( "discount", Deal::DISCOUNTS, {:include_blank => 'Mininum 50%'},:onchange =>"discount()") %> </td>
-      </tr>     
-      <tr>
-        <td> </td>
-        <td style="color:#000000;"># of Customers:</td>
-        <td><%= f.text_field :number, :size=>"25%"  %> </td>
-      </tr>
+    </table>
+    <div id="deal_discounts">
+      <%= render :partial => "deal_discounts" %>
+    </div>
+    <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td> </td>
         <td style="color:#000000;">Rules of the deal:</td>

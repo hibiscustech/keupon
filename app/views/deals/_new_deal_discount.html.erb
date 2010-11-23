@@ -1,0 +1,27 @@
+<%= form_remote_tag(:url => {:controller => "deals", :action => "add_new_deal_discount"},:html => {:id => "dd_form", :style=> "padding:0;margin:0;"})%>
+<table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
+      <tr>
+        <td colspan="3">New Discount and Minimum Required Customers</td>
+      </tr>
+	  
+      <tr>
+        <td></td>
+        <td style="color:#000000;">Discount: </td>
+        <td><input type="text" name="discount" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="color:#000000;">Minimum No. of Customers: </td>
+        <td><input type="text" name="customer" /></td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <a href="#" onclick="$('dd_form').onsubmit();return false;">Create</a>
+          &nbsp;
+          <a href="#" onclick="new Ajax.Request('/deals/cancel_new_discount_customers', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Cancel</a>
+        </td>
+      </tr>
+
+	 
+    </table>
+</form>
