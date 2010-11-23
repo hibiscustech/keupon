@@ -1,6 +1,7 @@
-<% if !@my_keupons_stats.blank? %>
+
 <div id="todayHOT">
-<div class="todHotdeal"><%=@page%></div>    
+<div class="todHotdeal"><%=@page%></div>
+<% if !@my_keupons_stats.blank? %>
     <div class="keyValue">
       <div class="red"><strong>Available </strong><br />
         <%= @my_keupons_stats["available"] %></div>
@@ -13,5 +14,5 @@
       <div class="red"><strong>Keupoints</strong><br />
         <%= @my_keupons_stats["keupoints"] %></div>
     </div>
-</div>
 <% end %>
+</div>

@@ -657,7 +657,7 @@ text-align:center;
 }
 #footer {
 	float: left;
-	height: 239px;
+	height: 100px;
 	width: 967px;
 	background-image: url(/images/footer.jpg);
 	padding-left: 33px;
@@ -866,3 +866,169 @@ h2 {font:Georgia, "Times New Roman", Times, serif; font-size:18px; color:#FFF;}
 	text-align: center;
 	padding-top: 33px;
 }
+
+
+/*image slider*/
+
+			#slider {
+				height:353px;
+				width:970px;
+				clear: both;
+				position: relative;
+				background: url(/images/slide-bg.jpg) no-repeat left top;
+ 			}
+
+  			#slideh{
+ 				position: relative;
+				left:0px;
+				_left:-490px;
+ 			}
+
+			.slider_item{
+				position:absolute;
+				width:200px;
+				top:20px;
+				left:318px;
+				z-index: 1;
+				overflow: hidden;
+				cursor: pointer;
+			}
+
+			#slide .sliderh1{
+				position:absolute;
+				width:430px;
+				top:20px;
+				left:270px;
+				_left:276px;
+				z-index: 3;
+			}
+
+			#slide .sliderh1 img{
+				width:430px;
+			}
+
+			#slide .sliderh5, #slide .sliderh2{
+				width:200px;
+				left:54px;
+				_left:60px;
+				top:60px;
+				z-index: 2;
+			}
+
+ 			#slide #slideh .sliderh2{
+				left:716px;
+				_left:718px;
+			}
+
+			#slide #slideh .slideh3{
+				left:547px;
+			}
+
+			#slide #slideh .slideh4{
+				left:240px;
+			}
+
+			.slider_item img{
+				width:200px;
+			}
+
+			#slide .sliderh5 img, #slide .sliderh2 img{
+				width:200px;
+			}
+
+			.item, .wrapper img{
+ 			}
+
+
+			.slider_item img{
+				display:block;
+				position: relative;
+			}
+
+ 			.scrollButtons {
+				position: absolute;
+				top: 126px;
+				cursor:pointer;
+			}
+
+			.scrollButtons.left {
+				left: -4px;
+ 			}
+
+			.scrollButtons.right {
+				right: -5px;
+				top:131px;
+			}
+
+/* --- LAYOUT
+________________________________________*/
+
+
+
+
+.fullwidth							{ width:860px; margin:0 auto; position:relative; }
+
+.half_width 						{ width:47%;	}
+.one_third 							{ width:30.66%;	}
+.two_third 							{ width:65.33%;	}
+.one_fourth							{ width:22%;	}
+.one_fifth							{ width:16.7%;	}
+.three_fourth						{ width:74%;	}
+.four_fifth							{ width:79%;	}
+.two_fifth							{ width:37.2%; 	}
+.three_fifth						{ width:58%; 	}
+.one_sixth 							{ width:13.3%;	}
+
+.half_width,
+.one_third,
+.two_third,
+.one_fourth,
+.one_fifth,
+.four_fifth,
+.two_fifth,
+.one_sixth,
+.three_fifth,
+.three_fourth						{ float:left; position:relative; display:inline; margin-right:4%; }
+
+.last 								{ margin-right:0 !important;}
+
+
+
+
+
+/* --- FEATURED SLIDER
+________________________________________*/
+
+#featured_slider			{ width:100%; margin:20px auto 0px auto; padding:0 0 20px 0; position:relative; z-index:2; overflow:hidden; height:100%;}
+.slider						{ width:920px; margin:0 auto; position:relative;  }
+
+.plan_box					{ width: auto; height: 200px; overflow: hidden; position: relative; padding:0 0px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;  }
+
+.plan_box .plan_info 		{ width:100%; position:absolute; height:350px;  top:0; left:0; text-align:center; cursor:pointer; z-index:1;  -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;  }
+.plan_box .plan_details 	{ width:100%; margin:0 auto; height:200px; text-align:center; z-index:0;}
+.plan_box .content			{ margin:0 10px; }
+
+ul.boxlist					{ margin:10px 0 10px 0;  }
+ul.boxlist li				{ list-style-type:none; text-align:left; line-height:18px; padding:10px 35px; margin:0px 0; list-style-position:outside; font-size:12px;}
+
+.plan_box h2				{ font-weight:bold; background:none; border:none; margin:20px 0 0 0 ; padding:0; }
+.plan_box h3.price			{ margin:0; font-weight:bold; padding:0;}
+.plan_box h3.price span,
+.plan_box h4				{ margin:0; padding:0; font-size:90%; font-weight:normal;
+opacity: .8; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+-MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; }
+.plan_box h4				{ font-size:100%; font-weight:bold; margin:10px 0;}
+.plan_box h5 				{ color:#fff; }
+
+
+.footer_links{
+color: #FF4546;
+text-decoration: none;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 16px;
+
+}
+
+
+
+ 

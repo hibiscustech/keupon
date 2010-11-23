@@ -15,6 +15,7 @@ class CustomersController < ApplicationController
     @page = "Today's Hot Deal"
     @deal, @end_time = Deal.todays_deal
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    render :layout => 'application_home'
   end
 
   def keupoint_deal
@@ -346,7 +347,7 @@ class CustomersController < ApplicationController
   end
 
   def location_deals
-    @page = "Location Deals"
+    @page = "Open Deals"
     @deals = DealLocationDetail.available_location_deals
 
     if @deals.blank?

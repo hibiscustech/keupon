@@ -3,7 +3,7 @@
   <head>
 
     <%= stylesheet_link_tag 'style_new' %>
- 	<%= javascript_include_tag 'creditcard' %>
+    <%= javascript_include_tag 'creditcard' %>
     <script src="/javascripts/application.js" type="text/javascript"></script>
     <script src="/javascripts/prototype.js" type="text/javascript"></script>
     <script src="/javascripts/effects.js" type="text/javascript"></script>
@@ -19,6 +19,9 @@
      var jquery = jQuery.noConflict();
    </script>
 
+    <%if params[:action] == 'location_deals' %>
+         <%= stylesheet_link_tag 'open_deal_style' %>
+    <%end%>
     
     <link href="/stylesheets/charts/style.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/dhtmltooltip.css" media="screen" rel="stylesheet" type="text/css" />
