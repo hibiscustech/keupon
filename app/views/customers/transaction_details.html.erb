@@ -19,6 +19,15 @@ else{
 <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
 <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
   <input type="hidden" name="return_to" value="/deal_of_the_day" />
+
+<% if !@error.blank? %>
+  <table>
+<% @error.each do |k,v| %>
+<tr><td align="left"><%= "#{k}" %>:</td><td><%= "#{v}" %></td></tr>
+ <% end -%>
+</table>
+<% end %>
+  
 <table>
   <tr>
     <td>
