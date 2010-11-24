@@ -10,7 +10,7 @@
         <td>
           <select name="discount">
             <% for discount in Deal::DISCOUNTS %>
-            <option value="<%discount%>"><%discount%> %</option>
+            <option value="<%=discount%>"><%=discount%> %</option>
             <% end %>
           </select>
         </td>
