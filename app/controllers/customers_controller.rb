@@ -24,9 +24,10 @@ class CustomersController < ApplicationController
   end
 
   def deal_details
-    @deal, @end_time = Deal.find(params[:id])
+    @deal = Deal.find(params[:id])
+    @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
-    @page = "#{@deal.name}"
+    @page = "Deal Details"
     render :layout => 'application_home'
   end
 
