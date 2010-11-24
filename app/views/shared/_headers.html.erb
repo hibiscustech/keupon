@@ -1,20 +1,102 @@
+<style type="text/css">
+ul,li{
+margin:0px;
+padding:0px;
+}
+li{
+display:inline;
+list-style:none;
+list-style-position:outside;
+text-align:center;
+font-weight:bold;
+float:left;
+}
+.dropdownw{
+		color:#FFFFFF;
+	text-decoration:none;
+	float:left;
+	width:110px;
+	padding:3px 5px 0px 5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
 
+}
+
+
+.dropdownw:hover{
+	color:white;
+	float:left;
+	padding:3px 3px 0px 20px;
+	width:102px;
+	text-decoration:none;
+	background-color:#FF0000;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+#navw{
+	width:120px;
+	height:30px;
+	border-bottom:0px;
+	padding:0px 5px;
+	position:absolute;
+	z-index:1;
+	left: 600px;
+	top: 20px;
+}
+.listw{
+line-height:20px;
+text-align:left;
+padding:4px;
+font-weight:normal;
+}
+.menu1w{
+	width:132px;
+	height:auto;
+	margin:6px 4px 0px 0px;
+
+	background-color:#000000;
+	color:#FFFFFF;
+	padding:6px 0px 0px 0px;
+	cursor:hand;
+	overflow-y:hidden;
+
+	background-image:url(/images/btn_bg1.jpg);
+	margin-left:250px;
+	margin-top:40px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+.menu2w{
+	width:132px;
+	height:26px;
+	margin:6px 4px 0px 0px;
+	color:#FFFFFF;
+	padding:6px 0px 0px 0px;
+	overflow-y:hidden;
+	cursor:hand;
+	background-image:url(/images/btn_bg.jpg);
+	margin-left:250px;
+	margin-top:40px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+
+
+  </style>
 <div id="header">
       <div id="logo"><img src="/images/logo.jpg" border="0px" /></div>
+       <%if !logged_in?%>
       <div id="head1">
         <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
-        <!-- <div id="findCity">
-       		<img src="/images/navigate.jpg" width="167" height="32" class="menu_head" />
-<ul class="menu_body">
-<li><a href="#">City One</a></li>
-<li><a href="#">City Two</a></li>
-<li><a href="#">City Three</a></li>
-</ul>
-        </div>
-        <div id="go"><a href="#"><img src="/images/go_btn.jpg" border="0px" /></a></div> -->
-               
+                <table width="490" border="0" cellspacing="0" cellpadding="0" style="margin-top:40px;">
+           <tr>
+    <td width="135"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg" width="137" height="88" border="0" /></a></td>
+    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg" width="141" height="88" border="0"/></a></td>
+    <td width="159"><a href="/customers/location_deals"><img src="/images/open_deals_tab.jpg" width="141" height="88" border="0"/></a></td></tr></table>
+
       </div>
-      <%if !logged_in?%>
+
          <div id="head2">
 
 
@@ -58,34 +140,40 @@
 
     </div>
        <%else%>
-       <div id="head2" align="right">
-        <table>
-          <tr>
-            <td>
-              <div id="watchVid" style="font-size: 14px;font-weight: bold;margin-left: 20px; width: 300px;">
-                <table>
-                  <tr>
-                    <td align="left">Welcome! <%=current_customer.login%></td>
-                  </tr>
-                  <tr><td>&nbsp;</td></tr>
-                  <tr><td><a href="/my_keupons"><img src="/images/mykeupon.jpg" border="0px" /></a>&nbsp;&nbsp;<a href="/my_profile"><img src="/images/my_profile_btn.jpg" border="0px" /></a>&nbsp;&nbsp;<a href="/logout"><img src="/images/logout.jpg" border="0px" /></a></td></tr>
-               </table>
-              </div>
-            </td>
-            <td>
-              <div id="advertise" style="width: auto; padding-top: 0px">
-                <%if current_customer.customer_photo.blank?%>
+      <div id="hot_deals"> <span style="font-size:16px;color:#000;"> welcome ! <%=current_customer.login%></span> Hot Deals in <span style="font-size:18px;">Singapore</span> 
+      <div id="navw">
+  <ul>
+	<li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
+	<div class="listw">
+		<a href="/my_profile" class="dropdownw">My Profile</a><br />
+        <a href="/my_keupons" class="dropdownw">My Keupons</a><br />
+        <a href="/logout" class="dropdownw">Logout</a><br />
+	</div>
+	</li>
+	</ul>
+</div></div>
+      
+      <table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="135"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg" width="137" height="88" border="0" /></a></td>
+    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg" width="141" height="88" border="0"/></a></td>
+    <td width="159"><a href="/customers/location_deals"><img src="/images/open_deals_tab.jpg" width="141" height="88" border="0"/></a></td>
+    <td width="176"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+    </table></td>
+    <td width="99"><%if current_customer.customer_photo.blank?%>
                   <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
                 <%else%>
                   <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
-                <%end%>
-              </div>
-            </td>
-          </tr>
-        </table>
-          
-          
-    </div>
+                <%end%></td>
+  </tr>
+</table>
        <%end%>
     </div>
 <script>
