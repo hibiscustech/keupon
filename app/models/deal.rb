@@ -35,6 +35,18 @@ class Deal < ActiveRecord::Base
     find_by_sql(query)
   end
 
+  def self.all_hot_and_open_deals
+    query = %Q{ select d.id, d.name, d.value as actual_value, ds.end_time, count(cd.id) as no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode
+                from deals d
+                join deal_schedules ds on ds.deal_id = d.id
+                join deal_location_details dld on dld.deal_id = d.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where d.status = 'open'
+                group by d.id
+                order by ds.start_time }
+    find_by_sql(query)
+  end
+
   def self.all_open_deals
     query = %Q{ select d.id, d.name, d.value as actual_value, ds.end_time, count(cd.id) as no_of_customers
                 from deals d
