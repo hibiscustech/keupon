@@ -59,7 +59,7 @@ class DealsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'deal_summary',:partial => "deal_discount_summary"
+            page.replace_html 'discount_summary',:partial => "deal_discount_summary"
           end
         }
       end
