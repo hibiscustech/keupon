@@ -58,7 +58,7 @@
             <ul class="boxlist">
               <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_first.end_time.to_i).strftime("%d/%m/%Y") %></li>
             </ul>
-			<br/>
+			<br/><br/>
             <a href="/id=<%= op_first.id %>" style="color: orange" class="medium orange">Get this Deal</a>
           </div>
         </div>
@@ -89,7 +89,7 @@
             <ul class="boxlist">
               <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_middle.end_time.to_i).strftime("%d/%m/%Y") %></li>
             </ul>
-			<br/>
+			<br/><br/>
             <a href="/<%= op_middle.id %>" style="color: orange" class="medium orange">Get this Deal</a>
           </div>
         </div>
@@ -120,7 +120,7 @@
             <ul class="boxlist">
               <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_last.end_time.to_i).strftime("%d/%m/%Y") %></li>
             </ul>
-			<br/>
+			<br/><br/>
             <a href="/<%=op_last.id %>" style="color: orange" class="medium orange">Get this Deal</a>
           </div>
         </div>
