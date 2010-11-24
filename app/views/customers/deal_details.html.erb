@@ -90,7 +90,7 @@
   function CountBack(myDiv, secs)
   {
     var DisplayStr;
-    var DisplayFormat = "%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fff'>%%M%%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
+    var DisplayFormat = "%%D%%&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fff'>%%M%%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
     DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
     DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
     DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
