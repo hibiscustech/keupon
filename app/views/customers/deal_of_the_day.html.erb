@@ -1,19 +1,25 @@
 <div id="slide">
   <div id="slider" class="png">
     <div id="slideh">
-      <% i = 1
-      for hot_deal in @hot_deals
-        htdeal = Deal.find(hot_deal.id)
-      %>
-      <div class="slider_item sliderh<%=i%>">
-        <h3><a href="#">Keupons Bought: <%= hot_deal.no_of_customers%></a></h3>
-        <p><%= hot_deal.name %></p>
-        <img class="item" src="<%=htdeal.deal_photo.url%>" alt="" />
+
+      <div class="slider_item sliderh1">
+        <h3><a href="#">FIRST SLIDE TITLE</a></h3>
+        <p>Slide title and detail text here</p>
+        <img class="item" src="/images/1.jpg" alt="" />
       </div>
-      <%
-        i+=1
-      end
-      %>      
+
+      <div class="slider_item sliderh2">
+        <h3><a href="#">SECOND SLIDE TITLE</a></h3>
+        <p>Slide title and detail text here</p>
+        <img class="item" src="/images/1.jpg" alt="" />
+      </div>
+
+      <div class="slider_item slideh3">
+        <h3><a href="#">THIRD SLIDE TITLE</a></h3>
+        <p>Slide title and detail text here</p>
+        <img class="item" src="/images/1.jpg" alt="" />
+      </div>
+
     </div>
     <img class="scrollButtons left" src="/images/leftarrow.jpg"/>
     <img class="scrollButtons right" src="/images/rightarrow.jpg"/>
