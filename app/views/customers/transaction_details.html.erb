@@ -50,6 +50,8 @@ else{
       or Use New Card for this Purchase <input type="checkbox" name="new_card" id="new_card" value="new_card" onclick="javascript: show_new_card();" />
     </td>
   </tr>
+  <% else %>
+  <%=hidden_field :new_card, :value => "new_card"%>
   <% end %>
 </table>
 <table id="credit_card_entry" style="display: <%=(@cards.blank?)? 'block' : 'none' %>;">
