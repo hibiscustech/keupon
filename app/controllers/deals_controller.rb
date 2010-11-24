@@ -70,7 +70,7 @@ class DealsController < ApplicationController
     deal_discounts = session[:deal_discounts].sort
     @deal = Deal.find(params[:deal_id])
     for dd in deal_discounts
-      buy = @deal.value.to_f*dd.to_f/100
+      buy = @deal.value.to_f*dd[0].to_f/100
       save_amount = @deal.value.to_f - buy.to_f
       DealDiscount.create(:deal_id => params[:deal_id], :discount => dd[0], :customers => dd[1], :buy_value => buy, :save_amount => save_amount)
     end
