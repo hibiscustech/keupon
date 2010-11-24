@@ -16,7 +16,7 @@
         <td style="color:#000000;"><%= Time.at(deal.end_time.to_i).strftime("%Y-%m-%d")%></td>
         <td style="color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
         <td style="color:#000000;"><%= deal.address1%> <%= deal.address2%> <%= deal.state%> <%= deal.zipcode%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.discount%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"></td>
         <td style="color:#000000;"><%= deal.no_of_customers%></td>
         <td style="color:#000000;"><a href="#" onclick="showOpenDeal('popup_view_deal',<%= deal.id %>);" style="color: rgb(3, 77, 124);">View</a>&nbsp;&nbsp;<a href="#" onclick="editOpenDeal('popup_create_deal',<%= deal.id %>);" style="color: rgb(3, 77, 124);">Edit</a></td>
       </tr>
