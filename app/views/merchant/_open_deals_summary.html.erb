@@ -11,7 +11,7 @@
     <% @deals.each do |deal| %>
       <tr>
         <td style="color:#000000;"><%= deal.name%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.type_name%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.name%></td>
         <td style="color:#000000;"><%= Time.at(deal.start_time.to_i).strftime("%Y-%m-%d")%></td>
         <td style="color:#000000;"><%= Time.at(deal.end_time.to_i).strftime("%Y-%m-%d")%></td>
         <td style="color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
