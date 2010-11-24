@@ -21,13 +21,13 @@
         <td style="color:#000000;">Discount: <span style=" color: red;">*</span></td>
         <td><select id="discount" name="discount">
             <option value="0">Select the Discount</option>
-            <% Deal::DISCOUNTS.each_pair{|key, value| %>
-            <% if @deal.discount.to_i == value.to_i %>
-            <option value="<%= value %>" selected><%= key %></option>
+            <% for dis in Deal::DISCOUNTS %>
+            <% if @deal.discount.to_i == dis.to_i %>
+            <option value="<%= dis %>" selected><%= dis %> %</option>
             <% else %>
-            <option value="<%= value %>"><%= key %></option>
+            <option value="<%= dis %>"><%= dis %></option>
             <% end %>
-            <% } %>
+            <% end %>
           </select>
         </td>
       </tr>
