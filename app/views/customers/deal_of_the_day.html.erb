@@ -25,14 +25,14 @@
 <div id="featured_slider">
   <div class="slider">
   	<%
-		op_first = @open_deals[0]
-		op_middle = @open_deals[1]
-		op_last = @open_deals[2]
-		op1 = Deal.find(op_first.id)
-		op2 = Deal.find(op_middle.id)
-		op3 = Deal.find(op_last.id)
+                op_first = op_middle = op_last = nil
+		op_first = (@open_deals[2].blank?)? nil : @open_deals[2]
+		op_middle = (@open_deals[1].blank?)? nil : @open_deals[1]
+		op_last = (@open_deals[0].blank?)? nil : @open_deals[0]
 	%>
-	
+    <% if !op_first.blank?
+        op1 = Deal.find(op_first.id)
+    %>
     <div class="one_third">
       <div class="plan_box" style="background-color:#222222;">
         <div class="plan_info" style="background-color:#222222;">
@@ -63,6 +63,10 @@
         </div>
       </div>
     </div>
+    <% end %>
+    <% if !op_middle.blank?
+        op1 = Deal.find(op_middle.id)
+    %>
     <div class="one_third">
       <div class="plan_box" style="background-color:#222222;">
         <div class="plan_info" style="background-color:#222222;">
@@ -93,6 +97,10 @@
         </div>
       </div>
     </div>
+    <% end %>
+    <% if !op_flast.blank?
+        op1 = Deal.find(op_last.id)
+    %>
     <div class="plan_box last">
       <div class="plan_box" style="background-color:#222222;">
         <div class="plan_info" style="background-color:#222222;">
@@ -123,7 +131,7 @@
         </div>
       </div>
     </div>
-
+    <% end %>
 
 
     
