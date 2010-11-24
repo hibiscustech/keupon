@@ -315,7 +315,6 @@ class CustomersController < ApplicationController
         :lastname        => customer_card_inform.last_name,
         :street          => customer_card_inform.address1,
         :city            => customer_card_inform.city,
-        :state           => customer_card_inform.state,
         :zip             => customer_card_inform.zipcode,
         :countrycode     => 'US',
         :expdate         => @expMonth+customer_card_inform.expiration_year,
