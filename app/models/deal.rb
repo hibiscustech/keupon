@@ -1,6 +1,7 @@
 class Deal < ActiveRecord::Base
 
   has_many :customer_deals
+  has_many :deal_discounts
   has_one :customer_accepted_demand_deal_bidding
   has_many :customers, :through => :customer_deals
   has_many :first_customers, :class_name => 'MerchantsCustomer', :foreign_key => 'first_deal'
@@ -20,11 +21,8 @@ class Deal < ActiveRecord::Base
       :small  => "150x150>" }
 
 
-  DISCOUNTS = {"80 %" => "80",
-    "70 %" => "70",
-    "60 %" => "60",
-    "50 %" => '50'}
-
+  DISCOUNTS = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95"]
+  COMMISSIONS = ["30", "40", "50", "60", "70", "80", "90"]
   def self.category_name(deal_id)
     query = %Q{ SELECT concat(dc.name,'(',ds.name,')') as category
                 from deals d

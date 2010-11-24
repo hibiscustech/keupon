@@ -7,7 +7,13 @@
       <tr>
         <td></td>
         <td style="color:#000000;">Discount: </td>
-        <td><input type="text" name="discount" /></td>
+        <td>
+          <select name="discount">
+            <% for discount in Deal::DISCOUNTS %>
+            <option value="<%discount%>"><%discount%> %</option>
+            <% end %>
+          </select>
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -16,6 +22,7 @@
       </tr>
       <tr>
         <td colspan="3">
+          <input type="hidden" name="deal_id" value="<%=params[:id]%>" />
           <a href="#" onclick="$('dd_form').onsubmit();return false;">Create</a>
           &nbsp;
           <a href="#" onclick="new Ajax.Request('/deals/cancel_new_discount_customers', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Cancel</a>

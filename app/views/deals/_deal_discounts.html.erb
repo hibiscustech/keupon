@@ -1,20 +1,18 @@
 <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
-        <td colspan="3"><a href="#" onclick="new Ajax.Request('/deals/new_discount_customers', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Discounts and Customers</a></td>
-      </tr>  
-	  <% if !session[:deal_discounts].blank? %>    
+        <td style="color:#000000;"><h3>Step2</h3></td>
+      </tr>
       <tr>
-        <td></td>
-        <td style="color:#000000;">Discount(%)</td>
-        <td>No. of Customers</td>
+        <td><a href="#" onclick="new Ajax.Request('/deals/new_discount_customers?id=<%=@deal.id%>', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Discounts and Customers</a></td>
       </tr>
-	  <% deal_discounts = session[:deal_discounts].sort %>
-	  <% for dd in deal_discounts%>
-	  <tr>
-        <td></td>
-        <td style="color:#000000;"><%= dd[0] %></td>
-        <td style="color:#000000;"><%= dd[1] %></td>
+      <tr>
+        <td style="color:#000000;"><%=image_submit_tag ("register.jpg")%>   </td>
       </tr>
-	  <% end %>
-	  <% end %>
-    </table>
+</table>
+<div id="discount_summary">
+  <%= render :partial => "deal_discount_summary" %>  
+</div>
+
+<div id="ds_form">
+  <%= render :partial => "deal_discount_form" %>
+</div>

@@ -18,8 +18,7 @@ class DealsController < ApplicationController
   def index
     @page = 'New Deal'
     @deal = Deal.new
-    @categories = DealCategory.find(:all)
-    session[:deal_discounts] = Hash.new
+    @categories = DealCategory.find(:all)    
   end
   
   def new_discount_customers
@@ -28,7 +27,7 @@ class DealsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'deal_discounts',:partial => "new_deal_discount"
+            page.replace_html 'discount_summary',:partial => "new_deal_discount"
           end
         }
       end
@@ -44,7 +43,10 @@ class DealsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'deal_discounts',:partial => "deal_discounts"
+            page.replace_html 'discount_summary',:partial => "deal_discount_summary"
+            if !session[:deal_discounts].blank?
+              page.replace_html 'ds_form',:partial => "deal_discount_form"
+            end
           end
         }
       end
@@ -57,11 +59,19 @@ class DealsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'deal_discounts',:partial => "deal_discounts"
+            page.replace_html 'deal_summary',:partial => "deal_discount_summary"
           end
         }
       end
     end
+  end
+
+  def create_step2
+    deal_discounts = session[:deal_discounts].sort
+    for dd in deal_discounts
+      DealDiscount.create(:deal_id => params[:deal_id], :discount => dd[0], :customers => dd[1])
+    end
+    redirect_to "/deals_of_mine"
   end
 
   def new
@@ -72,7 +82,6 @@ class DealsController < ApplicationController
     merchant_profile = current_merchant.merchant_profile
     deal = Deal.new(params[:deal])
     deal.expiry_date = Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i
-    deal.start_date = Time.parse(params[:deal][:start_date].gsub('/','-')).to_i  if params[:deal][:start_date]
     deal.deal_category_id = merchant_profile.deal_category_id
     deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
     if params[:deal][:deal_type_id]
@@ -83,20 +92,14 @@ class DealsController < ApplicationController
     deal.buy = deal.value.to_f*deal.discount.to_f/100
     deal.save_amount = deal.value.to_f - deal.buy.to_f
     if deal.save!
-      if params[:deal][:deal_type_id] 
-        deal_location = DealLocationDetail.new(params[:deal_location_detail])
-        deal_location.deal_id = deal.id
-        get_lat_lng(deal_location,params[:deal_location_detail])
-        deal_location.save!
-      else
-        deal_schedule = DealSchedule.new(:deal_id => deal.id, :start_time => Time.parse("#{params[:start_time]} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:start_time]} 23:59:59").to_i.to_s)
-        deal_schedule.save!
-      end
-      if params[:deal][:deal_type_id]
-        redirect_to "/location_deals"
-      else
-        redirect_to "/deals/index"
-      end
+      deal_location = DealLocationDetail.new(params[:deal_location_detail])
+      deal_location.deal_id = deal.id
+      get_lat_lng(deal_location,params[:deal_location_detail])
+      deal_location.save!
+      deal_schedule = DealSchedule.new(:deal_id => deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
+      deal_schedule.save!
+      session[:deal_discounts] = Hash.new
+      redirect_to "/deals/index"
     end
   end
 

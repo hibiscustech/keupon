@@ -31,6 +31,20 @@ theForm.deal_highlights.focus();
 return (false);
 }
 
+if (theForm.deal_start_date.value == "" || theForm.deal_start_date.value.length < 1)
+{
+alert("You must enter Start Date.");
+theForm.deal_start_date.focus();
+return (false);
+}
+
+if (theForm.deal_close_date.value == "" || theForm.deal_close_date.value.length < 1)
+{
+alert("You must enter Close Date.");
+theForm.deal_close_date.focus();
+return (false);
+}
+
 if (theForm.deal_expiry_date.value == "" || theForm.deal_expiry_date.value.length < 1)
 {
 alert("You must enter Expiry Date.");
@@ -45,6 +59,10 @@ return true;
 </script>
 <br/>
 <div id="new_deal">
+  <% if @deal.id.blank? %>
   <%= render :partial => "create_deal" %>
+  <% else %>
+  <%= render :partial => "deal_discounts" %>
+  <% end %>
 </div>
 

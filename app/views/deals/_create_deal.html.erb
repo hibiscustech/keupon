@@ -28,8 +28,27 @@
       </tr>
       <tr>
         <td> </td>
+        <td style="color:#000000;">Start Date:</td>
+        <td><input id="deal_start_date" name="start_date" size="25%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Close Date:</td>
+        <td><input id="deal_close_date" name="end_date" size="25%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+      </tr>
+      <tr>
+        <td> </td>
         <td style="color:#000000;">Expiry Date:</td>
         <td><input id="deal_expiry_date" name="deal[expiry_date]" size="25%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Commission:</td>
+        <td><select name="deal[commission]" id="deal_commission">
+            <% for commission in Deal::COMMISSIONS %>
+            <option value="<%=commission %>"><%=commission %> %</option>
+            <% end %>
+          </select></td>
       </tr>
       <tr>
         <td> </td>
@@ -39,9 +58,7 @@
       <tr>
         <td> </td>        
         <td colspan="2">
-          <br/><%=image_submit_tag ("register.jpg"), :onclick => "return form_validator();"%>
-
-          <a href="#" onclick="hideElt('popup_create_deal');" style="padding-left: 30px;"><img alt="Cancel" src="/images/cancel.jpg" border="0" /></a>
+          <br/><%=image_submit_tag ("register.jpg"), :onclick => "return form_validator();"%>         
         </td>
       </tr>
 <% end %>
