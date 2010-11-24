@@ -291,8 +291,7 @@ class CustomersController < ApplicationController
       customer_card_inform.time_created = Time.now.to_i
       customer_card_inform.time_modified = Time.now.to_i
       customer_card_inform.expiration_year = params[:date][:year]
-      customer_card_inform.expiration_month = params[:date][:month]
-      customer_card_inform.save!
+      customer_card_inform.expiration_month = params[:date][:month]      
     else
       customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
     end
@@ -311,7 +310,7 @@ class CustomersController < ApplicationController
         :paymentaction   => 'Authorization',
         :creditcardtype  => customer_card_inform.card_type,
         :acct            => customer_card_inform.credit_card_number,
-        :firstname       => customer_card_inform..first_name,
+        :firstname       => customer_card_inform.first_name,
         :lastname        => customer_card_inform.last_name,
         :street          => customer_card_inform.address1,
         :city            => customer_card_inform.city,
@@ -327,6 +326,7 @@ class CustomersController < ApplicationController
     )
 
     if @transaction.success?
+      customer_card_inform.save! if !params[:new_card].blank?
       @caller =  PayPalSDKCallers::Caller.new(false)
       @transaction = @caller.call(
         { :method          => 'DoVoid',
