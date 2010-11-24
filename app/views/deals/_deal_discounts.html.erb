@@ -10,5 +10,8 @@
   <%= render :partial => "deal_discount_summary" %>  
 </div>
 
-<div id="ds_form">  
+<div id="ds_form">
+  <% if !session[:deal_discounts].blank? %>
+  <%= render :partial => "deal_discount_form" %>
+  <% end %>
 </div>
