@@ -13,7 +13,7 @@
       <div class="reasonbar">
         <div class="prod-title" style="width: 65%;"><%= link_to  open_deal.name, :controller => 'customers',:action=>'deal_details',:id => open_deal.id%> </div>
         <div class="reason" style="width: 30%;">Date Expiry</div>
-        <div class="reason" style="width: 30%;"><%=open_deal.expiry_date %></div>
+        <div class="reason" style="width: 30%;"><%=open_deal.end_time %></div>
       </div>
       <div class="discount-bar">
         Location | Current Discount |  No of Deals Bought
