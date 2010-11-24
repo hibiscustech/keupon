@@ -74,6 +74,7 @@ class DealsController < ApplicationController
       save_amount = @deal.value.to_f - buy.to_f
       DealDiscount.create(:deal_id => params[:deal_id], :discount => dd[0], :customers => dd[1], :buy_value => buy, :save_amount => save_amount)
     end
+    session[:deal_discounts] = nil
     redirect_to "/deals_of_mine"
   end
 

@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <td colspan="3">
-          <input type="hidden" name="deal_id" value="<%=params[:id]%>" />
+          <input type="hidden" name="id" value="<%=params[:id]%>" />
           <a href="#" onclick="$('dd_form').onsubmit();return false;">Create</a>
           &nbsp;
           <a href="#" onclick="new Ajax.Request('/deals/cancel_new_discount_customers', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Cancel</a>
