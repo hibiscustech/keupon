@@ -370,7 +370,7 @@ class MerchantController < ApplicationController
     @deal = Deal.find(params[:id])
     schedule = @deal.deal_schedule
     @deal.update_attributes(:name => params[:name], :value => params[:actual_value], :rules => params[:rules], :highlights => params[:highlights], :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s, :commission => params[:commission])
-    schedule.update_attributes(:start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
+    schedule.update_attributes(:start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:close_date].gsub('/','-')} 23:59:59").to_i.to_s)
     redirect_to "/deals_of_mine"
   end
   
