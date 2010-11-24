@@ -12,9 +12,10 @@ class CustomersController < ApplicationController
   end
 
   def deal_of_the_day
-    @page = "Today's Hot Deal"
-    @deal, @end_time = Deal.todays_deal
-    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @page = "Hot Deals"
+    @hot_deals = Deal.all_hot_deals
+    @open_deals = Deal.all_open_deals
+    @recent_deals = Deal.all_recent_deals
     render :layout => 'application_home'
   end
 

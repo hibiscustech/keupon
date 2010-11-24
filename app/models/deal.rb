@@ -23,6 +23,34 @@ class Deal < ActiveRecord::Base
 
   DISCOUNTS = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95"]
   COMMISSIONS = ["30", "40", "50", "60", "70", "80", "90"]
+
+  def self.all_hot_deals
+    query = %Q{ select d.id, d.name, count(cd.id) as no_of_customers
+                from deals d
+                join deal_schedules ds on ds.deal_id = d.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where d.status = 'open' and commission > 30
+                group by d.id
+                order by ds.start_time }
+    find_by_sql(query)
+  end
+
+  def self.all_open_deals
+    query = %Q{ select d.id, d.name, d.value as actual_value, ds.end_time, count(cd.id) as no_of_customers
+                from deals d
+                join deal_schedules ds on ds.deal_id = d.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where d.status = 'open' and commission = 30
+                group by d.id
+                order by ds.start_time }
+    find_by_sql(query)
+  end
+
+  def self.all_recent_deals
+    query = %Q{ select id from deals where status = 'tipped'}
+    find_by_sql(query)
+  end
+
   def self.category_name(deal_id)
     query = %Q{ SELECT concat(dc.name,'(',ds.name,')') as category
                 from deals d
