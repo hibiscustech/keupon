@@ -68,8 +68,11 @@ class DealsController < ApplicationController
 
   def create_step2
     deal_discounts = session[:deal_discounts].sort
+    @deal = Deal.find(params[:deal_id])
     for dd in deal_discounts
-      DealDiscount.create(:deal_id => params[:deal_id], :discount => dd[0], :customers => dd[1])
+      buy = @deal.value.to_f*dd.to_f/100
+      save_amount = @deal.value.to_f - buy.to_f
+      DealDiscount.create(:deal_id => params[:deal_id], :discount => dd[0], :customers => dd[1], :buy_value => buy, :save_amount => save_amount)
     end
     redirect_to "/deals_of_mine"
   end
@@ -80,23 +83,21 @@ class DealsController < ApplicationController
 
   def create
     merchant_profile = current_merchant.merchant_profile
-    deal = Deal.new(params[:deal])
-    deal.expiry_date = Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i
-    deal.deal_category_id = merchant_profile.deal_category_id
-    deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
+    @deal = Deal.new(params[:deal])
+    @deal.expiry_date = Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i
+    @deal.deal_category_id = merchant_profile.deal_category_id
+    @deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
     if params[:deal][:deal_type_id]
-      deal.deal_type_id = params[:deal][:deal_type_id]
+      @deal.deal_type_id = params[:deal][:deal_type_id]
     else
-      deal.deal_type_id = 1
+      @deal.deal_type_id = 1
     end
-    deal.buy = deal.value.to_f*deal.discount.to_f/100
-    deal.save_amount = deal.value.to_f - deal.buy.to_f
-    if deal.save!
-      deal_location = DealLocationDetail.new(params[:deal_location_detail])
-      deal_location.deal_id = deal.id
-      get_lat_lng(deal_location,params[:deal_location_detail])
+
+    if @deal.save!
+      deal_location = DealLocationDetail.new(:deal_id => @deal.id, :address1 => merchant_profile.address1, :address2 => merchant_profile.address2, :state => merchant_profile.country, :zipcode => merchant_profile.zipcode)
+      get_lat_lng(deal_location)
       deal_location.save!
-      deal_schedule = DealSchedule.new(:deal_id => deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
+      deal_schedule = DealSchedule.new(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
       deal_schedule.save!
       session[:deal_discounts] = Hash.new
       redirect_to "/deals/index"
@@ -161,13 +162,8 @@ class DealsController < ApplicationController
     return result
   end
 
-  def get_lat_lng(location,deal_location_detail)
-    puts "***********************For getting lat and long for address**************"
-    if !params[:chk1].nil?
-      res = MultiGeocoder.geocode("#{current_merchant.merchant_profile.address1},#{current_merchant.merchant_profile.address2},#{current_merchant.merchant_profile.city},#{current_merchant.merchant_profile.state},#{current_merchant.merchant_profile.country}")
-    else
-      res = MultiGeocoder.geocode("#{deal_location_detail[:address1]},#{deal_location_detail[:address2]},#{deal_location_detail[:city]}")
-    end
+  def get_lat_lng(location)
+    res = MultiGeocoder.geocode(location.address1,location.address2,location.state,location.zipcode)
     location.longitude = res.lat
     location.latitude = res.lng
   end
