@@ -7,7 +7,7 @@
       %>
       <div class="slider_item sliderh<%=i%>">
         <h3><a href="#">Keupons Bought: <%= hot_deal.no_of_customers%></a></h3>
-        <p><%= hot_deal.name %></p>
+        <p><%= link_to hot_deal.name, :controller => 'customers',:action=>'deal_details',:id => hot_deal.id  %></p>
         <img class="item" src="<%=htdeal.deal_photo.url%>" alt="" />
       </div>
       <%
@@ -58,7 +58,7 @@
             <ul class="boxlist">
               <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_first.end_time.to_i).strftime("%d/%m/%Y") %></li>
             </ul>
-            <a href="/id=<%= op_first.id %>" style="color: orange" class="medium orange">Get this Deal</a>
+            <a href="/deal_details/id=<%= op_first.id %>" style="color: orange" class="medium orange">Get this Deal</a>
           </div>
         </div>
       </div>

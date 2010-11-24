@@ -19,9 +19,6 @@ class CustomersController < ApplicationController
     render :layout => 'application_home'
   end
 
-  def open_deals
-    @open_deals = Deal.all_hot_and_open_deals
-  end
 
   def deal_details
     @deal = Deal.find(params[:id])
@@ -42,6 +39,8 @@ class CustomersController < ApplicationController
     #@deal_schedule = DealSchedule.deal_schedule
     @deals = Deal.recents_deal#.paginate :page => params['page'], :per_page => 6
   end
+
+  
 
   def want_a_deal
      @page = "I Want a Deal"
@@ -435,6 +434,12 @@ class CustomersController < ApplicationController
     
     end
   end
+
+  def open_deals
+    @page = "Open Deals"
+    @open_deals = Deal.all_hot_and_open_deals
+  end
+
 
   def view_location_deal_info
     @deal = DealLocationDetail.location_deal(params[:id])
