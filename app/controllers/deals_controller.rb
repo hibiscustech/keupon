@@ -163,7 +163,7 @@ class DealsController < ApplicationController
   end
 
   def get_lat_lng(location)
-    res = MultiGeocoder.geocode(location.address1,location.address2,location.state,location.zipcode)
+    res = MultiGeocoder.geocode("#{location.address1}, #{location.address2}, #{location.state}, #{location.zipcode}")
     location.longitude = res.lat
     location.latitude = res.lng
   end
