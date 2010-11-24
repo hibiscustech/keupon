@@ -1,0 +1,109 @@
+
+
+<%if !@deal.nil?%>
+
+  <div id="user1">
+    <div class="cont1">
+      <p class="for_Ph"><%=@deal.name%></p>
+      <br />
+      <p class="for_P"><%=@deal.rules%><br/><br/>
+    <%=@deal.highlights%></p>
+    </div>
+    <div class="cont2">
+      <div class="save">Save $<%=@deal.save_amount.to_i%></div>
+      <div id="deal_time_left" class="timeLeft">02 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fff">15</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 47</div>
+      <div class="clickHear"><a href="#" class="for_nav">Click Here For More Deals</a></div>
+      <div class="button"><a href="#"><img src="images/discusButtion.jpg" border="0px" /></a></div>
+      <div class="addFive"><a href="#" class="for_nav">Add 5 friends & get $20 off</a></div>
+      <div class="socielICONs">
+        <ul>
+          <li><a href="#"><img src="images/faceIcon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/myspaceIcon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/twitterICon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/othersIcon.jpg" border="0px" /></a></li>
+          <li><a href="#"><img src="images/mail.jpg" border="0px" /></a></li>
+        </ul>
+      </div>
+      <div class="buynow"><a href="#"><%=link_to image_tag('buy_now.jpg',:border=>'0'), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%> </a></div>
+    </div>
+    <div class="cont3">
+      <p> <%if !@deal.deal_photo.url.nil? %> <%=image_tag (@deal.deal_photo.url),:width=>"304", :height=>"285" %> <%else%><img src="images/img1.jpg" border="0px" /> <%end%></p>
+      <div class="priseDisco"> &nbsp;&nbsp;$<%=@deal.value%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=@deal.discount.to_i%> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<%=@deal.save_amount.to_i%></div>
+    </div>
+  </div>
+  <div id="user2">
+  	<div class="user2IMG"><p class="for_PW" style="font-size:20px;">The Company</p><br />
+          <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 165px; height: 103px;"/></a>
+
+<p class="for_PW" style="font-size:16px; padding-top:5px;"><%=@deal.merchant.merchant_profile.company.name%> </p>
+<p class="for_PW"><%=@company.address1 %> <%=@company.address2 %><br /><%=@company.city %></p>
+</div>
+    <div class="user2TEXT">
+    	<p class="for_P">
+          <%= @company.detail %>
+        </p>
+    </div>
+  </div>
+<%else%>
+<img src="images/deal_closed.jpg" border="0px" />
+<%end%>
+
+        <div id="user3">
+        <%#= render :partial => "shared/recent_deals"%>
+ <%= render :partial => "shared/adveristments"%>
+      </div>
+      <div id="user4">
+       
+
+      </div>
+
+<script language="JavaScript">
+  <% if !@deal.nil? %>
+  StartCountDown("deal_time_left","<%= Time.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
+  <% end %>
+
+  /*
+  	Author:		Robert Hashemian (http://www.hashemian.com/)
+  	Modified by:	Munsifali Rashid (http://www.munit.co.uk/)
+  	Modified by:	Tilesh Khatri
+  */
+
+  function StartCountDown(myDiv,myTargetDate)
+  {
+    var dthen	= new Date(myTargetDate);
+    var dnow	= new Date();
+    ddiff		= new Date(dthen-dnow);
+    gsecs		= Math.floor(ddiff.valueOf()/1000);
+    CountBack(myDiv,gsecs);
+  }
+
+  function Calcage(secs, num1, num2)
+  {
+    s = ((Math.floor(secs/num1))%num2).toString();
+    if (s.length < 2)
+    {
+      s = "0" + s;
+    }
+    return (s);
+  }
+
+  function CountBack(myDiv, secs)
+  {
+    var DisplayStr;
+    var DisplayFormat = "%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fff'>%%M%%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
+    DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
+    DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
+    DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
+    DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
+    if(secs > 0)
+    {
+      document.getElementById(myDiv).innerHTML = DisplayStr;
+      setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
+    }
+    else
+    {
+      document.getElementById(myDiv).innerHTML = "Deal Closed";
+    }
+  }
+
+</script>
