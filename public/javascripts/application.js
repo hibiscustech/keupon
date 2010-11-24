@@ -67,6 +67,12 @@ function showGiftDeal(elementID, deal)
     document.getElementById(elementID).style.display = "block";
 }
 
+function showOpenDeal(elementID, deal)
+{
+    new Ajax.Request('/merchant/view_open_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
 function editKeupointDeal(elementID, deal)
 {
     new Ajax.Request('/merchant/edit_keupoint_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
@@ -76,6 +82,12 @@ function editKeupointDeal(elementID, deal)
 function editGiftDeal(elementID, deal)
 {
     new Ajax.Request('/merchant/edit_gift_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
+function editOpenDeal(elementID, deal)
+{
+    new Ajax.Request('/merchant/edit_open_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
     document.getElementById(elementID).style.display = "block";
 }
 

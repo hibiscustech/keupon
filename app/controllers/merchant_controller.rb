@@ -334,6 +334,21 @@ class MerchantController < ApplicationController
       end
     end
   end
+
+  def edit_open_deal
+    @deal = Deal.find(params[:id])
+    @schedule = @deal.deal_schedule
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'create_edit_open_deal',:partial => "edit_open_deal"
+          end
+        }
+      end
+    end
+  end
   
   def update_keupoint_deal
     @deal = Deal.find(params[:id])
@@ -349,6 +364,14 @@ class MerchantController < ApplicationController
     save_amount = params[:actual_value].to_f - buy.to_f
     @deal.update_attributes(:name => params[:name],:buy => buy, :save_amount => save_amount, :value => params[:actual_value], :discount => params[:discount], :rules => params[:rules], :highlights => params[:highlights], :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s)
     redirect_to "/gift_deals"
+  end
+
+  def update_open_deal
+    @deal = Deal.find(params[:id])
+    schedule = @deal.deal_schedule
+    @deal.update_attributes(:name => params[:name], :value => params[:actual_value], :rules => params[:rules], :highlights => params[:highlights], :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s, :commission => params[:commission])
+    schedule.update_attributes(:start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
+    redirect_to "/deals_of_mine"
   end
   
   def cancel_keupoint_deal
@@ -389,6 +412,20 @@ class MerchantController < ApplicationController
         format.js {
           render :update do |page|
             page.replace_html 'view_gift_deal',:partial => "view_gift_deal"
+          end
+        }
+      end
+    end
+  end
+
+  def view_open_deal
+    @deal = Deal.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_open_deal',:partial => "view_open_deal"
           end
         }
       end

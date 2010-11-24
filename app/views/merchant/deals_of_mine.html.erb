@@ -1,43 +1,75 @@
- <!--   <ul id="navigation_sub_merchant" style="">
-      <li><a href="/deals/index" id="home" title="New Deal"></a></li>
-      <li><a href="/deals_of_mine" id="port_front" title="My Deals"></a></li>
-      <li><a href="/redeem_deals" id="services" title="Redeem Deals"></a></li>
-    </ul>-->
-<br/>
-<div style="margin-left: 75px;align:left;">
-  <table align=left  style="font-size: 14px; border-collapse: collapse; width:900px; text-align: center;" CELLPADDING="4" CELLSPACING="0">
-    <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Title</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Type</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Price($)</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Discount</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Buy($)</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Customers Required</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Customers SignedUp</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Status</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Deal On</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Expires On</th>
-    </tr>
-    <% @deals.each do |deal| %>
-      <tr>
-        <td style="color:#000000;"><%= deal.name%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.type_name%></td>
-        <td style="color:#000000;"><%= deal.value%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.discount%></td>
-        <td style="color:#000000;"><%= deal.buy%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.number%></td>
-        <td style="color:#000000;"><%= deal.no_of_customers%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.status%></td>
-        <td style="color:#000000;"><%= Time.at(deal.start_time.to_i).strftime("%Y-%m-%d")%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
-      </tr>
-      <tr>
-        <td style="color:#000000;" colspan="10"><hr/></td>      
-      </tr>
-    <%end%>
-  </table>
+<script Language="JavaScript">
+<!--
+function form_validator(){
+var theForm = document.forms['open_deal_form'];
+var i;
+if (theForm.name.value == "" || theForm.name.value.length < 1)
+{
+alert("You must enter Deal Title.");
+theForm.name.focus();
+return (false);
+}
+
+if (theForm.actual_value.value == "" || theForm.actual_value.value.length < 1)
+{
+alert("You must enter Original Value.");
+theForm.actual_value.focus();
+return (false);
+}
+
+if (theForm.rules.value == "" || theForm.rules.value.length < 1)
+{
+alert("You must enter Rules.");
+theForm.rules.focus();
+return (false);
+}
+
+if (theForm.highlights.value == "" || theForm.highlights.value.length < 1)
+{
+alert("You must enter Highlights.");
+theForm.highlights.focus();
+return (false);
+}
+
+if (theForm.start_date.value == "" || theForm.start_date.value.length < 1)
+{
+alert("You must enter Start Date.");
+theForm.start_date.focus();
+return (false);
+}
+
+if (theForm.end_date.value == "" || theForm.end_date.value.length < 1)
+{
+alert("You must enter Close Date.");
+theForm.end_date.focus();
+return (false);
+}
+
+
+if (theForm.expiry_date.value == "" || theForm.expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.expiry_date.focus();
+return (false);
+}
+
+return true;
+}
+
+
+//-->
+</script>
 
 <br/>
-
-</div><br/>
+<div style="width: 990px; float:left;" id="summary">
+  <%= render :partial => "open_deals_summary" %>
+</div>
+<br/>
+<br/>
+<div id="popup_create_deal">
+    <%= render :partial => "create_edit_open_deal" %>
+  </div>
+  <div id="popup_view_deal">
+    <%= render :partial => "open_deal_info" %>
+  </div>
 

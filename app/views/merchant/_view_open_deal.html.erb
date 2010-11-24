@@ -1,0 +1,20 @@
+<div class="dateBlog">
+      <div class="dateB1">
+        <div class="dateB1_top" style="line-height: 15px;"><%=@deal.name%> </div>
+        <div class="dateB1_center" style="margin-top: 12px;">
+          <div class="dateB1_C1"><img src="<%= @deal.deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/></div>
+          <div class="dateB1_C2">
+          S$<%= @deal.value %>
+          <br />
+          <br />
+          <br />
+          <p style="padding-top:10px;"></p>
+          <br />
+          <br />
+          <p style="padding-top:10px;"></p>
+          </div>
+        </div>
+        <div class="dateB1_text" style="font-size: 14px;"><%= @deal.highlights %></div>
+      </div>
+      <div class="dateB2">Deals Bought: <span style="color:#F00;"></span></div>
+    </div>

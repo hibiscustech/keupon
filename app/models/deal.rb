@@ -49,11 +49,12 @@ class Deal < ActiveRecord::Base
   end
 
   def self.merchants_deals(merchant_id)
-    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.number, d.status, d.expiry_date, count(d.id) as no_of_customers, dt.name as type_name, ds.start_time, ds.end_time
+    query = %Q{ select d.id, d.name, d.buy, d.status, ds.start_time, ds.end_time, d.expiry_date, count(cd.id) as no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode 
                 from merchants m
                 join deals d on d.merchant_id = m.id
                 join deal_types dt on dt.id = d.deal_type_id
                 join deal_schedules ds on ds.deal_id = d.id
+                join deal_location_details dld on dld.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
                 where merchant_id = #{merchant_id}
                 group by d.id
@@ -62,7 +63,7 @@ class Deal < ActiveRecord::Base
   end
   
   def self.keupoint_deals(merchant_id)
-    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, count(d.id) as no_of_customers, d.keupoints_required
+    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, count(cd.id) as no_of_customers, d.keupoints_required
                 from merchants m
                 join deals d on d.merchant_id = m.id
                 left outer join customer_deals cd on cd.deal_id = d.id
