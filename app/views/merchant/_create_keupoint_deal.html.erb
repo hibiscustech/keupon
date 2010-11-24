@@ -21,9 +21,9 @@
         <td style="color:#000000;">Discount: <span style=" color: red;">*</span></td>
         <td><select id="discount" name="discount">
             <option value="0">Select the Discount</option>
-            <% Deal::DISCOUNTS.each_pair{|key, value| %>
-            <option value="<%= value %>"><%= key %></option>
-            <% } %>
+            <% for discount in Deal::DISCOUNTS %>
+            <option value="<%= discount %>"><%= discount %> %</option>
+            <% end %>
           </select>
         </td>
       </tr>
