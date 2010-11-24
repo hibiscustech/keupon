@@ -71,6 +71,17 @@ class Deal < ActiveRecord::Base
                 
     find_by_sql(query)                
   end
+
+  def self.gift_deals(merchant_id)
+    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, count(cd.deal_id) as no_of_customers
+                from merchants m
+                join deals d on d.merchant_id = m.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where merchant_id = #{merchant_id} and d.deal_type_id = 5
+                group by d.id }
+
+    find_by_sql(query)
+  end
   
   def self.available_keupoint_deals(keupoints)
     query = %Q{ select d.id, d.name

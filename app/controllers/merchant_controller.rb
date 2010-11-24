@@ -282,7 +282,7 @@ class MerchantController < ApplicationController
   end
 
   def keupoint_deals
-    @page = "Kupoint Deals"
+    @page = "Keupoint Deals"
     if request.post?
       merchant_profile = current_merchant.merchant_profile
       deal = Deal.new(:name => params[:name], :value => params[:actual_value], :discount => params[:discount], :rules => params[:rules], :highlights => params[:highlights], :status => "open", :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s, :deal_type_id => 4, :merchant_id => current_merchant.id, :deal_category_id => merchant_profile.deal_category_id, :deal_sub_category_id => merchant_profile.deal_sub_category_id, :keupoints_required => params[:keupoints])
@@ -292,6 +292,19 @@ class MerchantController < ApplicationController
       deal.save!    
     end
     @deals = Deal.keupoint_deals(current_merchant.id)
+  end
+
+  def gift_deals
+    @page = "Gift Deals"
+    if request.post?
+      merchant_profile = current_merchant.merchant_profile
+      deal = Deal.new(:name => params[:name], :value => params[:actual_value], :discount => params[:discount], :rules => params[:rules], :highlights => params[:highlights], :status => "open", :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s, :deal_type_id => 4, :merchant_id => current_merchant.id, :deal_category_id => merchant_profile.deal_category_id, :deal_sub_category_id => merchant_profile.deal_sub_category_id)
+      deal.buy = params[:actual_value].to_f*params[:discount].to_f/100
+      deal.save_amount = deal.value.to_f - deal.buy.to_f
+      deal.deal_photo = params[:deal_photo]
+      deal.save!
+    end
+    @deals = Deal.gift_deals(current_merchant.id)
   end
   
   def edit_keupoint_deal
@@ -307,6 +320,20 @@ class MerchantController < ApplicationController
       end
     end
   end
+
+  def edit_gift_deal
+    @deal = Deal.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'create_edit_gift_deal',:partial => "edit_gift_deal"
+          end
+        }
+      end
+    end
+  end
   
   def update_keupoint_deal
     @deal = Deal.find(params[:id])
@@ -314,6 +341,14 @@ class MerchantController < ApplicationController
     save_amount = params[:actual_value].to_f - buy.to_f
     @deal.update_attributes(:name => params[:name],:buy => buy, :save_amount => save_amount, :value => params[:actual_value], :discount => params[:discount], :rules => params[:rules], :highlights => params[:highlights], :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s, :keupoints_required => params[:keupoints])
     redirect_to "/keupoint_deals"  
+  end
+
+  def update_gift_deal
+    @deal = Deal.find(params[:id])
+    buy = params[:actual_value].to_f*params[:discount].to_f/100
+    save_amount = params[:actual_value].to_f - buy.to_f
+    @deal.update_attributes(:name => params[:name],:buy => buy, :save_amount => save_amount, :value => params[:actual_value], :discount => params[:discount], :rules => params[:rules], :highlights => params[:highlights], :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s)
+    redirect_to "/gift_deals"
   end
   
   def cancel_keupoint_deal
@@ -340,6 +375,20 @@ class MerchantController < ApplicationController
         format.js {
           render :update do |page|
             page.replace_html 'view_keupoint_deal',:partial => "view_keupoint_deal"
+          end
+        }
+      end
+    end
+  end
+
+  def view_gift_deal
+    @deal = Deal.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_gift_deal',:partial => "view_gift_deal"
           end
         }
       end

@@ -1,0 +1,60 @@
+<div style="width:608px;height:400px;text-align:left;">
+  <form action="/merchant/update_gift_deal" enctype="multipart/form-data" id="gift_deal_form" method="post"><div style="margin: 0pt; padding: 0pt; display: inline;"><input name="authenticity_token" value="89o17typ8/s3+PKmZi0CGsBmXwtVr5sAN7FTPVI7sNQ=" type="hidden"/></div>
+    <input type="hidden" name="id" id="id" value="<%= @deal.id %>" />
+    <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
+      <tr>
+        <td width="20px"> </td>
+        <td style="color:#000000;" colspan="2"><h3>Edit Gift Deal</h3></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Deal Title: <span style=" color: red;">*</span></td>
+        <td><input id="name" name="name" size="25%" type="text" value="<%=@deal.name%>"/></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Original Value: <span style=" color: red;">*</span></td>
+        <td><input id="actual_value" name="actual_value" size="25%" type="text" value="<%=@deal.value%>"/></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Discount: <span style=" color: red;">*</span></td>
+        <td><select id="discount" name="discount">
+            <option value="0">Select the Discount</option>
+            <% for dis in Deal::DISCOUNTS %>
+            <% if @deal.discount.to_i == dis.to_i %>
+            <option value="<%= dis %>" selected><%= dis %> %</option>
+            <% else %>
+            <option value="<%= dis %>"><%= dis %></option>
+            <% end %>
+            <% end %>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Rules of the deal: <span style=" color: red;">*</span></td>
+        <td><textarea rows="6" cols="32" id="rules" name="rules"><%=@deal.rules%></textarea></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Highlights of the deal: <span style=" color: red;">*</span></td>
+        <td><textarea rows="6" cols="32" id="highlights" name="highlights"><%=@deal.highlights%></textarea></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td style="color:#000000;">Expiry Date: <span style=" color: red;">*</span></td>
+        <td><input id="expiry_date" name="expiry_date" size="25%" type="text" value="<%=Time.at(@deal.expiry_date.to_i).strftime('%d-%m-%Y')%>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td colspan="2">
+          <br/><input onclick="return form_validator();" src="/images/register.jpg?1285133790" type="submit"  name="Update" value="Update"/>
+
+          <a href="#" onclick="hideElt('popup_create_deal');" style="padding-left: 30px;"><img alt="Cancel" src="/images/cancel.jpg" border="0" /></a>
+        </td>
+      </tr>
+  </table>
+    </form>
+</div>
+
