@@ -17,7 +17,7 @@ class DealsController < ApplicationController
 
   def index
     @page = 'New Deal'
-    @deal = Deal.new
+    @deal = (params[:id].blank?)? Deal.new : Deal.find(params[:id])
     @categories = DealCategory.find(:all)    
   end
   
@@ -100,7 +100,7 @@ class DealsController < ApplicationController
       deal_schedule = DealSchedule.new(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
       deal_schedule.save!
       session[:deal_discounts] = Hash.new
-      redirect_to "/deals/index"
+      redirect_to "/deals/index?id=#{@deal.id}"
     end
   end
 
