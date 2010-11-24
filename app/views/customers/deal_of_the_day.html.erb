@@ -58,7 +58,7 @@
             <ul class="boxlist">
               <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_first.end_time.to_i).strftime("%d/%m/%Y") %></li>
             </ul>
-            <a href="/deal_details/id=<%= op_first.id %>" style="color: orange" class="medium orange">Get this Deal</a>
+            <a href="/deal_details?id=<%= op_first.id %>" style="color: orange" class="medium orange">Get this Deal</a>
           </div>
         </div>
       </div>
