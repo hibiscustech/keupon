@@ -61,12 +61,22 @@ alert("You must enter Price.");
 theForm.price.focus();
 return (false);
 }
+else if(!IsNumeric(theForm.price.value)){
+  alert("You must enter only Numeric value for Price.");
+  theForm.price.focus();
+  return (false);
+}
 
 if (theForm.quantity.value == "" || theForm.quantity.value.length < 1)
 {
 alert("You must enter the number of Keupons that you will buy.");
 theForm.quantity.focus();
 return (false);
+}
+else if(!IsNumeric(theForm.quantity.value)){
+  alert("You must enter only Numeric value for number of Keupons.");
+  theForm.price.focus();
+  return (false);
 }
 
 if (theForm.deadline.value == "" || theForm.deadline.value.length < 1)
@@ -92,6 +102,27 @@ return (false);
 
 theForm.onsubmit();
 }
+
+function IsNumeric(sText)
+
+{
+   var ValidChars = "0123456789.";
+   var IsNumber=true;
+   var Char;
+
+
+   for (i = 0; i < sText.length && IsNumber == true; i++)
+      {
+      Char = sText.charAt(i);
+      if (ValidChars.indexOf(Char) == -1)
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+
+}
+
 
 //-->
 </script>
