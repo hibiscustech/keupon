@@ -18,10 +18,10 @@
         <div class="reason" style="width: 30%;"><%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></div>
       </div>
       <div class="discount-bar">
-        Location | Current Discount |  No of Deals Bought
+        No of Deals Bought &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Current Discount  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  Location
       </div>
       <div class="price">
-        <%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%>  | <%#=open_deal.discount%> | Save $130!
+         <%=open_deal.no_of_customers%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <%#=open_deal.discount%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%>
       </div>
     </div>
   <%end%>
