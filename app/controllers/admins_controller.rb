@@ -1,6 +1,10 @@
 class AdminsController < ApplicationController
   layout "admins"
   protect_from_forgery :only => [:destroy]
+
+  def view_all_deals
+    @deals = Deal.all_deals
+  end
   
   def all_merchants
     @active_merchants = MerchantProfile.all_active_merchants

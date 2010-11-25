@@ -1,0 +1,27 @@
+<table align=left  style="font-size: 14px; border-collapse: collapse; width:1000px; text-align: center; margin-left: -10px;" CELLPADDING="4" CELLSPACING="0">
+    <tr>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="550px">Title</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="100px">Status</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="100px">Price</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="100px">Discount</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="100px">No. of Customers</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="150px">Start Date</th
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="150px">Close Date</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard" width="150px">Actions</th>
+    </tr>
+    <% @deals.each do |deal| %>
+      <tr>
+        <td style="color:#000000;height: 0px;max-height: 50px;"><%= deal.name%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.status%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.actual_value%></td>
+        <td style="background-color: #C0C0C0;color:#000000;">%</td>
+        <td style="color:#000000;"><%= deal.no_of_customers %></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= Time.at(deal.start_time.to_i).strftime("%d-%m-%Y")%></td>
+        <td style="background-color: #C0C0C0;color:#000000;"><%= Time.at(deal.end_time.to_i).strftime("%d-%m-%Y")%></td>
+        <td style="background-color: #C0C0C0;color:#000000;">Actions</td>
+      </tr>
+      <tr>
+        <td style="color:#000000;height: 0px;max-height: 50px;" colspan="4"><hr/></td>
+      </tr>
+    <%end%>
+  </table>
