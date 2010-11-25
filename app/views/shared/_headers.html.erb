@@ -148,7 +148,17 @@ font-weight:normal;
     <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
     <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
     <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
-    <td width="176"></td> 
+    <td width="176"> <div id="navw" style="margin-left:40px;">
+  <ul>
+	<li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
+	<div class="listw">
+		<a href="/my_profile" class="dropdownw">My Profile</a><br />
+        <a href="/my_keupons" class="dropdownw">My Keupons</a><br />
+        <a href="/logout" class="dropdownw">Logout</a><br />
+	</div>
+	</li>
+	</ul>
+</div></td>
     <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p>
     <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
                   <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
@@ -157,17 +167,6 @@ font-weight:normal;
                 <%end%></td>
   </tr>
 </table>
-      <div id="navw">
-          <ul>
-            <li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
-              <div class="listw">
-                <a href="/my_profile" class="dropdownw">My Profile</a><br />
-                <a href="/my_keupons" class="dropdownw">My Keupons</a><br />
-                <a href="/logout" class="dropdownw">Logout</a><br />
-              </div>
-            </li>
-          </ul>
-        </div>
       
        <%end%>
     </div>
