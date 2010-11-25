@@ -109,7 +109,7 @@ theForm.onsubmit();
 
 function checkDate(field) {
   var minYear = 1902;
-  var maxYear = (new Date()).getFullYear();
+  var maxYear = (new Date()).getFullYear()+1;
   var errorMsg = ""; // regular expression to match required date format
   re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
   if(field.value != '') {
