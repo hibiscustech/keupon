@@ -7,8 +7,8 @@
       %>
       <div class="slider_item sliderh<%=i%>">
         <h3>Keupons Bought: <%= hot_deal.no_of_customers%></h3>
-        <p><%= link_to hot_deal.name, :controller => 'customers',:action=>'deal_details',:id => hot_deal.id  %></p>
-        <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" alt="" /></a>
+        <p style="color:red;"><%= link_to hot_deal.name, :controller => 'customers',:action=>'deal_details',:id => hot_deal.id  %></p>
+        <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" alt="" border="0" /></a>
       </div>
       <%
         i+=1
