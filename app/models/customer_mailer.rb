@@ -22,6 +22,14 @@ class CustomerMailer < ActionMailer::Base
     @body[:redemption] = redeem_deal
     @body[:deal] = deal
   end
+
+  def  forgot_password(customer, password)
+    setup_email(customer)
+    @subject    = 'You password has been reset'
+    @body[:password] = password
+    @body[:customer] = customer
+    content_type "text/html"
+  end
   
   def activation(customer)
     setup_email(customer)

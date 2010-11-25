@@ -6,9 +6,9 @@
         htdeal = Deal.find(hot_deal.id)
       %>
       <div class="slider_item sliderh<%=i%>">
-        <h3><a href="#">Keupons Bought: <%= hot_deal.no_of_customers%></a></h3>
+        <h3>Keupons Bought: <%= hot_deal.no_of_customers%></h3>
         <p><%= link_to hot_deal.name, :controller => 'customers',:action=>'deal_details',:id => hot_deal.id  %></p>
-        <img class="item" src="<%=htdeal.deal_photo.url%>" alt="" />
+        <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" alt="" /></a>
       </div>
       <%
         i+=1

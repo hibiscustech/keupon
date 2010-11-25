@@ -387,6 +387,7 @@ class CustomersController < ApplicationController
         customer.password = new_pwd
         customer.password_confirmation = new_pwd
         flag = customer.save!
+        CustomerMailer.deliver_forgot_password(customer, new_pwd)
         if flag
           flash[:notice] = "Your password has been reset and send to your mail"
           redirect_to "/"

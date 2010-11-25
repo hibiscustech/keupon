@@ -1,5 +1,5 @@
 <% @customer.password = @customer.password_confirmation = nil %>
-<div><%= error_messages_for :customer %></div>
+<br/><div style="color: red;"><%= error_messages_for :customer %><br/></div>
 <% form_for :customer, :url => customers_path,:html => {:id=>'form'} do |f| -%>
 
   <fieldset id="step_1">
