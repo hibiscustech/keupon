@@ -75,7 +75,7 @@
             <li class="form-line" id="id_2">
                 <div id="cid_2" class="form-input-wide">
                     <div style="margin-left:156px" class="form-buttons-wrapper">
-                      <input type="button" name="Edit Deal" value="Edit Deal" onclick="return form_validator();return false;" />
+                      <input type="button" name="Edit Deal" value="Edit Deal" onclick="return form_validator();return false;" <%= (@demand_deal.status != "new")? "disabled" : ""%>/>
                       &nbsp;&nbsp;
                       <button id="input_2b" name="input_2b" type="button" onclick="setButtonStatus('confirm');$('2730422465').onsubmit();return false;" class="form-submit-button" <%= (@demand_deal.status != "new")? "disabled" : ""%>>
                             Confirm Deal
