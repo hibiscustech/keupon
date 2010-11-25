@@ -236,6 +236,37 @@ class CustomersController < ApplicationController
     flash[:notice] = "Thanks for Purchasing the Deal!"
     redirect_to "/my_keupons"
   end
+  
+  def tip_the_deal
+    deal = Deal.find(params[:id])
+    discount = 50
+    buy_value = deal.value.to_f - discount.to_f*deal.value.to_f/100.to_f
+    save_amount = deal.value.to_f - buy_value
+    deal.update_attributes(:status => "tipped", :buy => buy_value, :dicount => discount, :save_amount => save_amount)
+    customer_deals = deal.customer_deals
+    for cd in customer_deals
+      customer = cd.customer
+      auth_transaction = cd.customer_deal_transactions[0]
+      customer_card_inform = auth_transaction.customer_credit_card
+      total_price = deal.buy.to_f*cd.quantity.to_f
+      @transaction = do_transaction(customer_card_inform, 'sale', total_price)
+      if @transaction.success?
+        deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
+        cd.update_attributes(:status => "available", :deal_code => deal_code)
+
+        customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => cd.id, :payment_type => "Reference", :status => "success")
+        customer_transaction.save!
+
+        points_earned = Constant.dollar_to_keupoint_convertion*total_price
+        CustomerKupoint.create(:customer_deal_id => cd.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
+        customer.kupoints = customer.kupoints.to_f + points_earned
+        customer.save!
+
+        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, cd, deal)
+      end
+    end
+    redirect_to "/admins/view_all_deals"
+  end
 
   def save_demand_deal_transaction_details
     demand_deal_bidding = CustomerDemandDealBidding.find(params[:customer_deal][:deal_id])
@@ -251,7 +282,9 @@ class CustomersController < ApplicationController
     else
       customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
     end
-    @transaction = do_transaction(customer_card_inform, 'sale')
+    total_price = demand_deal_bidding.buy.to_f*demand_deal_bidding.number.to_f
+    @transaction = do_transaction(customer_card_inform, 'sale', total_price)
+    
     if @transaction.success?
       deal = Deal.new(:name => demand_deal_bidding.name, :buy => demand_deal_bidding.buy_value, :value => demand_deal_bidding.actual_value,
         :discount => demand_deal_bidding.discount, :save_amount => demand_deal_bidding.savings, :number => demand_deal_bidding.number, :rules => demand_deal_bidding.rules, :highlights => demand_deal_bidding.highlights,
@@ -259,8 +292,7 @@ class CustomersController < ApplicationController
                       :deal_category_id => demand_deal.deal_category_id, :deal_sub_category_id => demand_deal.deal_sub_category_id)
       
       deal.save!
-
-      total_price = deal.buy.to_f*deal.number.to_f
+      
       deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
       customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :quantity_left => deal.number, :status => "available", :deal_code => deal_code, :purchase_date => Time.now.to_i)
       customer_deal.save!
@@ -298,7 +330,7 @@ class CustomersController < ApplicationController
       customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
     end
 
-    @transaction = do_transaction(customer_card_inform, 'Authorization')
+    @transaction = do_transaction(customer_card_inform, 'Authorization', 1)
 
     if @transaction.success?
       customer_card_inform.save! if !params[:new_card].blank?
@@ -306,6 +338,10 @@ class CustomersController < ApplicationController
       
       customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i)
       customer_deal.save!
+
+      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
+      customer_transaction.save!
+
       redirect_to "#{params[:return_to]}"
     else
       render :action => 'transaction_details', :id => deal.id, :error => session[:paypal_error]
@@ -559,7 +595,7 @@ class CustomersController < ApplicationController
    @my_keupons = Deal.my_keupons(current_customer.id)
   end
 
-  def do_transaction(customer_card_inform, payment_action)
+  def do_transaction(customer_card_inform, payment_action, price)
     if (customer_card_inform.expiration_month.to_s.length == 1)
         expMonth =   "0" + customer_card_inform.expiration_month.to_s
       else
@@ -569,7 +605,7 @@ class CustomersController < ApplicationController
       transaction = @caller.call(
         {
         :method          => 'DoDirectPayment',
-        :amt             => '1',
+        :amt             => price.to_s,
         :currencycode    => 'USD',
         :paymentaction   => payment_action,
         :creditcardtype  => customer_card_inform.card_type,
