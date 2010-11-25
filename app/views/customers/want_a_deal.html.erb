@@ -118,7 +118,7 @@ function checkDate(field) {
         errorMsg = "Invalid value for day: " + regs[1];
       } else if(regs[2] < 1 || regs[2] > 12) {
         errorMsg = "Invalid value for month: " + regs[2];
-      } else if(regs[3] < minYear) {
+      } else if(regs[3] < maxYear) {
         errorMsg = "Invalid value for year: " + regs[3] + " - must be between greater than " + maxYear;
       }
     } else {
