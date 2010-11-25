@@ -6,6 +6,12 @@ class AdminsController < ApplicationController
     @deals = Deal.all_deals
   end
   
+  def open_the_deal
+    deal = Deal.find(params[:id])
+    deal.update_attributes(:status => 'open')
+    redirect_to "/admins/view_all_deals"
+  end
+  
   def all_merchants
     @active_merchants = MerchantProfile.all_active_merchants
     @merchants_count = MerchantProfile.merchant_counts
