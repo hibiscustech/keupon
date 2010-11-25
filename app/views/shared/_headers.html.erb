@@ -89,11 +89,11 @@ font-weight:normal;
        <%if !logged_in?%>
       <div id="head1">
         <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
-                <table width="490" border="0" cellspacing="0" cellpadding="0" >
+                <table width="490" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;" >
            <tr>
-             <td width="135"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg" width="137" height="88" border="0" style="position:absolute;" /></a></td>
-    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg" width="141" height="88" border="0" style="position:absolute;"/></a></td>
-    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg" width="141" height="88" border="0" style="position:absolute;"/></a></td></tr></table>
+             <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" style="position:absolute;" /></a></td>
+    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" style="position:absolute;"/></a></td>
+    <td width="164"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
 
       </div>
 
@@ -155,9 +155,9 @@ font-weight:normal;
       
       <table width="700" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="135"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg" width="137" height="88" border="0" /></a></td>
-    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg" width="141" height="88" border="0"/></a></td>
-    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg" width="141" height="88" border="0"/></a></td>
+    <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
+    <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
+    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
     <td width="176"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       
       <tr>
@@ -167,7 +167,7 @@ font-weight:normal;
         <td></td>
       </tr>
     </table></td>
-    <span style="font-size:16px;color:#000;"> welcome!  &nbsp; <%=current_customer.customer_profile.first_name%></span>
+    <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p>
     <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
                   <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
                 <%else%>

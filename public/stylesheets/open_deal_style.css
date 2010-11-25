@@ -2,7 +2,7 @@
 html                        { overflow-y: scroll; }
 body                        { font: 8px Georgia; }
 
-#page-wrap                  { width: 690px;  margin: 20px auto; }
+#page-wrap                  { width: 690px;  }
 
 h1                          { font: 1px Georgia; margin: 0 0 10px 0;  }
 
