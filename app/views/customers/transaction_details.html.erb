@@ -14,7 +14,7 @@ else{
 }
 </script>
 
-<div id="userform" style="height: auto;background-color: white;">
+<div id="userform" style="height: auto;background :none;">
 <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
 <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
 <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
