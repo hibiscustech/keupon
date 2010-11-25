@@ -43,6 +43,59 @@ function setButtonStatus(status){
 
 </script>
 
+<script Language="JavaScript">
+<!--
+function form_validator(){
+var theForm = document.forms['2730422465'];
+var i;
+if (theForm.description.value == "" || theForm.description.value.length < 1)
+{
+alert("You must Describe the Keupon that you are looking for.");
+theForm.description.focus();
+return (false);
+}
+
+if (theForm.price.value == "" || theForm.price.value.length < 1)
+{
+alert("You must enter Price.");
+theForm.price.focus();
+return (false);
+}
+
+if (theForm.quantity.value == "" || theForm.quantity.value.length < 1)
+{
+alert("You must enter the number of Keupons that you will buy.");
+theForm.quantity.focus();
+return (false);
+}
+
+if (theForm.deadline.value == "" || theForm.deadline.value.length < 1)
+{
+alert("You must pick the Date by when you are expecting a response for this Deal.");
+theForm.deadline.focus();
+return (false);
+}
+
+if (theForm.category.selectedIndex == '0')
+{
+alert("You must Categorize your Keupon.");
+theForm.category.focus();
+return (false);
+}
+
+if (theForm.sub_category.selectedIndex == '0')
+{
+alert("You must Sub-Categorize your Keupon.");
+theForm.sub_category.focus();
+return (false);
+}
+
+theForm.onsubmit();
+}
+
+//-->
+</script>
+
 <div id="userform">
   <%= render :partial => "i_want_deal_form" %>
 </div>
