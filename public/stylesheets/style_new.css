@@ -464,6 +464,7 @@ text-align:center;
 	float: left;
 	height: 690px;
 	width: 650px;
+        background:url("/images/style4_2_bg.gif") repeat-x scroll center top rgb(54, 53, 53);
 }
 #userform2 {
         float: right;
@@ -1030,5 +1031,3 @@ font-size: 16px;
 }
 
 
-
- 

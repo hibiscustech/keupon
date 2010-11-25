@@ -191,6 +191,7 @@
 
 .form-input {
    display:inline-block;
+   float:left;
 }
 
 .form-line {    

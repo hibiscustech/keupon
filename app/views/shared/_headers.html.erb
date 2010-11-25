@@ -167,7 +167,7 @@ font-weight:normal;
         <td></td>
       </tr>
     </table></td>
-    <td width="99"><%if current_customer.customer_photo.blank?%>
+    <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
                   <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
                 <%else%>
                   <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
