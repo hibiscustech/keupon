@@ -9,7 +9,7 @@
   <br />
   <%for open_deal in @open_deals%>
     <div class="discounted-item freeshipping" >
-      <img SRC="<%= open_deal.deal_photo.url(:small) %>" alt="img"/>
+      <img SRC="<%= open_deal.deal_photo.url %>" alt="img"/>
       <div class="reasonbar">
         <div class="prod-title" style="width: 65%;"><%= link_to  open_deal.name, :controller => 'customers',:action=>'deal_details',:id => open_deal.id%> </div>
         <div class="reason" style="width: 30%;">Date Expiry</div>
