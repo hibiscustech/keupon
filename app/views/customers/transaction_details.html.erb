@@ -20,9 +20,9 @@ else{
 <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
   <input type="hidden" name="return_to" value="/deal_of_the_day" />
 
-<% if !@error.blank? %>
+<% if !params[:error].blank? %>
   <table>
-<% @error.each do |k,v| %>
+<% params[:error].each do |k,v| %>
 <tr><td align="left"><%= "#{k}" %>:</td><td><%= "#{v}" %></td></tr>
  <% end -%>
 </table>

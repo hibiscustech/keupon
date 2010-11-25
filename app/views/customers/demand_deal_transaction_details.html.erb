@@ -15,6 +15,13 @@ else{
 </script>
 
 <div id="userform" style="height: auto;">
+  <% if !params[:error].blank? %>
+    <table>
+    <% params[:error].each do |k,v| %>
+    <tr><td align="left"><%= "#{k}" %>:</td><td><%= "#{v}" %></td></tr>
+     <% end -%>
+    </table>
+  <% end %>
 <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_demand_deal_transaction_details'} do |f|-%>
 <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
 <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
