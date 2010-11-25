@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
   before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons]
   before_filter :my_keupons_stats, :except => [:new, :create]
   session :session_key => '_PayPalSDK_session_id'
-  filter_parameter_logging :password, :only => [:save_transaction_details]
+  filter_parameter_logging :password, :only => [:save_transaction_details, :tip_the_deal, :save_demand_deal_transaction_details]
   
   layout 'application'
 
