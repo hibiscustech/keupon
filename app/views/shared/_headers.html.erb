@@ -89,11 +89,11 @@ font-weight:normal;
        <%if !logged_in?%>
       <div id="head1">
         <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
-                <table width="490" border="0" cellspacing="0" cellpadding="0" style="margin-top:40px;">
+                <table width="490" border="0" cellspacing="0" cellpadding="0" >
            <tr>
-    <td width="135"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg" width="137" height="88" border="0" /></a></td>
-    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg" width="141" height="88" border="0"/></a></td>
-    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg" width="141" height="88" border="0"/></a></td></tr></table>
+             <td width="135"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg" width="137" height="88" border="0" style="position:absolute;" /></a></td>
+    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg" width="141" height="88" border="0" style="position:absolute;"/></a></td>
+    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg" width="141" height="88" border="0" style="position:absolute;"/></a></td></tr></table>
 
       </div>
 
@@ -140,7 +140,7 @@ font-weight:normal;
 
     </div>
        <%else%>
-      <div id="hot_deals"> <span style="font-size:16px;color:#000;"> welcome ! <%=current_customer.login%></span> Hot Deals in <span style="font-size:18px;">Singapore</span> 
+      <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span><br/> 
       <div id="navw">
   <ul>
 	<li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
@@ -167,6 +167,7 @@ font-weight:normal;
         <td></td>
       </tr>
     </table></td>
+    <span style="font-size:16px;color:#000;"> welcome!  &nbsp; <%=current_customer.customer_profile.first_name%></span>
     <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
                   <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
                 <%else%>
@@ -174,8 +175,10 @@ font-weight:normal;
                 <%end%></td>
   </tr>
 </table>
+      
        <%end%>
     </div>
+
 <script>
 function find_link(){
 var user=document.getElementById("select").value;
