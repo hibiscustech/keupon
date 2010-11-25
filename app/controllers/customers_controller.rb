@@ -232,6 +232,7 @@ class CustomersController < ApplicationController
     current_customer.kupoints = current_customer.kupoints.to_f - deal.keupoints_required
     current_customer.save!
 
+    CustomerMailer.deliver_deal_purchase_notification(current_customer, current_customer.customer_profile, customer_deal, deal)
     flash[:notice] = "Thanks for Purchasing the Deal!"
     redirect_to "/my_keupons"
   end
@@ -250,14 +251,13 @@ class CustomersController < ApplicationController
     else
       customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
     end
-    if customer_card_inform.save!
+    @transaction = do_transaction(customer_card_inform, 'sale')
+    if @transaction.success?
       deal = Deal.new(:name => demand_deal_bidding.name, :buy => demand_deal_bidding.buy_value, :value => demand_deal_bidding.actual_value,
         :discount => demand_deal_bidding.discount, :save_amount => demand_deal_bidding.savings, :number => demand_deal_bidding.number, :rules => demand_deal_bidding.rules, :highlights => demand_deal_bidding.highlights,
         :status => "new", :expiry_date => demand_deal_bidding.deal_end_date, :deal_type_id => 3, :merchant_id => demand_deal_bidding.merchant_id,
                       :deal_category_id => demand_deal.deal_category_id, :deal_sub_category_id => demand_deal.deal_sub_category_id)
-
-      #deal.deal_photo = demand_deal_bidding.demand_deal_photo.url
-
+      
       deal.save!
 
       total_price = deal.buy.to_f*deal.number.to_f
@@ -265,7 +265,7 @@ class CustomersController < ApplicationController
       customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :quantity_left => deal.number, :status => "available", :deal_code => deal_code, :purchase_date => Time.now.to_i)
       customer_deal.save!
 
-      customer_transaction = CustomerDealTransaction.new(:time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
+      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
 
       points_earned = Constant.dollar_to_keupoint_convertion*total_price
@@ -276,10 +276,12 @@ class CustomersController < ApplicationController
       demand_deal.update_attributes(:status => "accepted")
       CustomerAcceptedDemandDealBidding.create(:customer_demand_deal_id => demand_deal.id, :customer_demand_deal_bidding_id => demand_deal_bidding.id, :deal_id => deal.id)
 
+      CustomerMailer.deliver_deal_purchase_notification(current_customer, current_customer.customer_profile, customer_deal, deal)
+    
       flash[:notice] = "Thanks for Purchasing the Deal!"
       redirect_to "#{params[:return_to]}"
     else
-      render :action => 'demand_deal_transaction_details', :id => demand_deal_bidding.id
+      render :action => 'demand_deal_transaction_details', :id => demand_deal_bidding.id, :error => session[:paypal_error]
     end
   end
 
@@ -296,81 +298,18 @@ class CustomersController < ApplicationController
       customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
     end
 
-    if (customer_card_inform.expiration_month.to_s.length == 1)
-        @expMonth =   "0" + customer_card_inform.expiration_month.to_s
-      else
-        @expMonth =    customer_card_inform.expiration_month.to_s
-      end
-      @caller =  PayPalSDKCallers::Caller.new(false)
-      @transaction = @caller.call(
-        {
-        :method          => 'DoDirectPayment',
-        :amt             => '1',
-        :currencycode    => 'USD',
-        :paymentaction   => 'Authorization',
-        :creditcardtype  => customer_card_inform.card_type,
-        :acct            => customer_card_inform.credit_card_number,
-        :firstname       => customer_card_inform.first_name,
-        :lastname        => customer_card_inform.last_name,
-        :street          => customer_card_inform.address1,
-        :city            => customer_card_inform.city,
-        :zip             => customer_card_inform.zipcode,
-        :countrycode     => 'US',
-        :expdate         => @expMonth+customer_card_inform.expiration_year.to_s,
-        :cvv2            => customer_card_inform.cvv2.to_s,
-        :USER  => @@USER,
-        :PWD   => @@PWD,
-        :SIGNATURE => @@SIGNATURE,
-        :SUBJECT => @@SUBJECT
-      }
-    )
+    @transaction = do_transaction(customer_card_inform, 'Authorization')
 
     if @transaction.success?
       customer_card_inform.save! if !params[:new_card].blank?
-      @caller =  PayPalSDKCallers::Caller.new(false)
-      @transaction = @caller.call(
-        { :method          => 'DoVoid',
-          :authorizationid => @transaction.response["TRANSACTIONID"],
-          :note            => 'Test Transaction',
-          :trxtype         => 'V',
-          :USER  =>  @@USER,
-          :PWD   => @@PWD,
-          :SIGNATURE => @@SIGNATURE,
-          :SUBJECT => @@SUBJECT
-        }
-      )
+      void_transaction = do_void_transaction(@transaction)
+      
+      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i)
+      customer_deal.save!
       redirect_to "#{params[:return_to]}"
     else
-      @error = session[:paypal_error]
-      render :action => 'transaction_details', :id => deal.id
+      render :action => 'transaction_details', :id => deal.id, :error => session[:paypal_error]
     end
-
-
-#    if customer_card_inform.save!
-##      total_price = deal.buy.to_f*params[:quantity].to_f
-##
-##      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i)
-##      customer_deal.save!
-##
-##      customer_transaction = CustomerDealTransaction.new(:time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
-##      customer_transaction.save!
-##
-##      if deal.deal_type_id == 2 || deal.deal_type_id == 3
-##        deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
-##        customer_deal.update_attributes(:status => "available", :deal_code => deal_code)
-##
-##        points_earned = Constant.dollar_to_keupoint_convertion*total_price
-##        CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
-##
-##        current_customer.kupoints = current_customer.kupoints.to_f + points_earned
-##        current_customer.save!
-##      end
-#
-#      flash[:notice] = "Thanks for Purchasing the Deal!"
-#      redirect_to "#{params[:return_to]}"
-#    else
-#      render :action => 'transaction_details', :id => deal.id
-#    end
   end
 
   # render new.rhtml
@@ -618,6 +557,54 @@ class CustomersController < ApplicationController
    @page = 'My Keupons'
    @keupoint_deals = Deal.available_keupoint_deals(current_customer.kupoints)
    @my_keupons = Deal.my_keupons(current_customer.id)
+  end
+
+  def do_transaction(customer_card_inform, payment_action)
+    if (customer_card_inform.expiration_month.to_s.length == 1)
+        expMonth =   "0" + customer_card_inform.expiration_month.to_s
+      else
+        expMonth =    customer_card_inform.expiration_month.to_s
+      end
+      @caller =  PayPalSDKCallers::Caller.new(false)
+      transaction = @caller.call(
+        {
+        :method          => 'DoDirectPayment',
+        :amt             => '1',
+        :currencycode    => 'USD',
+        :paymentaction   => payment_action,
+        :creditcardtype  => customer_card_inform.card_type,
+        :acct            => customer_card_inform.credit_card_number,
+        :firstname       => customer_card_inform.first_name,
+        :lastname        => customer_card_inform.last_name,
+        :street          => customer_card_inform.address1,
+        :city            => customer_card_inform.city,
+        :zip             => customer_card_inform.zipcode,
+        :countrycode     => 'US',
+        :expdate         => expMonth+customer_card_inform.expiration_year.to_s,
+        :cvv2            => customer_card_inform.cvv2.to_s,
+        :USER  => @@USER,
+        :PWD   => @@PWD,
+        :SIGNATURE => @@SIGNATURE,
+        :SUBJECT => @@SUBJECT
+        }
+      )
+    return transaction
+  end
+
+  def do_void_transaction(transaction)
+    @caller =  PayPalSDKCallers::Caller.new(false)
+    void_transaction = @caller.call(
+      { :method          => 'DoVoid',
+        :authorizationid => transaction.response["TRANSACTIONID"],
+        :note            => 'Test Transaction',
+        :trxtype         => 'V',
+        :USER  =>  @@USER,
+        :PWD   => @@PWD,
+        :SIGNATURE => @@SIGNATURE,
+        :SUBJECT => @@SUBJECT
+      }
+    )
+    return void_transaction
   end
 
 end

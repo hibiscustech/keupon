@@ -5,6 +5,15 @@ class CustomerMailer < ActionMailer::Base
     @body[:url]  = "/activate/#{customer.activation_code}"
     content_type "text/html"
   end
+
+  def deal_purchase_notification(customer, profile, customer_deal, deal)
+    setup_email(customer)
+    @subject    = 'You have purchased a Deal from Keupons'
+    @body[:profile] = profile
+    @body[:customer_deal] = customer_deal
+    @body[:deal] = deal
+    content_type "text/html"
+  end
   
   def activation(customer)
     setup_email(customer)
