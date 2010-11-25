@@ -14,6 +14,14 @@ class CustomerMailer < ActionMailer::Base
     @body[:deal] = deal
     content_type "text/html"
   end
+
+  def deal_redemption_notification(customer, profile, redeem_deal, deal)
+    setup_email(customer)
+    @subject    = 'You have Redeemed a Deal bought from Keupons'
+    @body[:profile] = profile
+    @body[:redemption] = redeem_deal
+    @body[:deal] = deal
+  end
   
   def activation(customer)
     setup_email(customer)

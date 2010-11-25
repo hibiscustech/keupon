@@ -196,10 +196,17 @@ class MerchantController < ApplicationController
     if !@redeem_deal.nil?
       #equal = @redeem_deal.quantity.to_i == @redeem_deal.quantity_left.to_i
       quantity_left = (@redeem_deal.quantity_left.to_i -  params[:deal][:quantity].to_i)
-      new_status = (quantity_left > 0)? "available" : "used"
-      @redeem_deal.update_attributes(:status => new_status, :quantity_left => quantity_left)
-      @deal_redemption = CustomerDealRedemption.create(:customer_deal_id =>@redeem_deal.id, :redeemed_time => Time.now.to_i, :redeemed_quantity =>params[:deal][:quantity]  )
-      flash[:notice] = "Deal Redeemed Successfully."
+      if quantity_left >= 0
+        new_status = (quantity_left > 0)? "available" : "used"
+        @redeem_deal.update_attributes(:status => new_status, :quantity_left => quantity_left)
+        @deal_redemption = CustomerDealRedemption.create(:customer_deal_id =>@redeem_deal.id, :redeemed_time => Time.now.to_i, :redeemed_quantity =>params[:deal][:quantity]  )
+
+        CustomerMailer.deliver_deal_redemption_notification(@redeem_deal.customer, @redeem_deal.customer.customer_profile, @deal_redemption, @redeem_deal.deal)
+        flash[:notice] = "Deal Redeemed Successfully."
+      else
+        flash[:notice] = "You have already redeemed all the deals."
+      end
+                 
       if request.xml_http_request?
         respond_to do |format|
           format.html
