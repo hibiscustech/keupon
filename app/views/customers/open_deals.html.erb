@@ -7,9 +7,11 @@
   <h1>&nbsp;</h1>
   <p id="catpicker"></p>
   <br />
-  <%for open_deal in @open_deals%>
+  <%for open_deal in @open_deals
+    opd = Deal.find(open_deal.id)
+  %>
     <div class="discounted-item freeshipping" >
-      <img SRC="<%= open_deal.deal_photo.url %>" alt="img"/>
+      <img SRC="<%= opd.deal_photo.url(:small) %>" alt="img"/>
       <div class="reasonbar">
         <div class="prod-title" style="width: 65%;"><%= link_to  open_deal.name, :controller => 'customers',:action=>'deal_details',:id => open_deal.id%> </div>
         <div class="reason" style="width: 30%;">Date Expiry</div>
