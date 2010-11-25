@@ -13,7 +13,7 @@
     <div class="discounted-item freeshipping" style="margin-left: 140px;">
       <img SRC="<%= opd.deal_photo.url(:small) %>" alt="img"/>
       <div class="reasonbar">
-        <div class="prod-title" style="width: 65%;color:#FFFFFF;"><%= link_to  open_deal.name, :controller => 'customers',:action=>'deal_details',:id => open_deal.id , :style=>'color:#FFFFFF;'%> </div>
+        <div class="prod-title" style="width: 65%;color:#FFFFFF;"><%= link_to  open_deal.name, {:controller => 'customers',:action=>'deal_details',:id => open_deal.id },  :style => "color:#FFFFFF;"%> </div>
         <div class="reason" style="width: 30%;">Date Expiry</div>
         <div class="reason" style="width: 30%;"><%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></div>
       </div>
