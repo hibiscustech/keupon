@@ -41,7 +41,7 @@ float:left;
 	padding:0px 5px;
 	position:absolute;
 	z-index:1;
-	left: 560px;
+	left: 600px;
 	top: 25px;
 }
 .listw{
@@ -141,7 +141,14 @@ font-weight:normal;
     </div>
        <%else%>
       <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span><br/> 
-      <div id="navw">
+     </div>
+      
+      <table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
+    <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
+    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
+    <td width="176"> <div id="navw">
   <ul>
 	<li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
 	<div class="listw">
@@ -151,22 +158,7 @@ font-weight:normal;
 	</div>
 	</li>
 	</ul>
-</div></div>
-      
-      <table width="700" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
-    <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
-    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
-    <td width="176"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td></td>
-      </tr>
-    </table></td>
+</div></td>
     <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p>
     <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
                   <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
