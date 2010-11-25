@@ -242,7 +242,7 @@ class CustomersController < ApplicationController
     discount = 50
     buy_value = deal.value.to_f - discount.to_f*deal.value.to_f/100.to_f
     save_amount = deal.value.to_f - buy_value
-    deal.update_attributes(:status => "tipped", :buy => buy_value, :dicount => discount, :save_amount => save_amount)
+    deal.update_attributes(:status => "tipped", :buy => buy_value, :discount => discount, :save_amount => save_amount)
     customer_deals = deal.customer_deals
     for cd in customer_deals
       customer = cd.customer
