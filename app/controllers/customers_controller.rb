@@ -377,6 +377,7 @@ class CustomersController < ApplicationController
   end
 
   def forgot_password
+      @page = 'Customer Forgot Password'
     if request.post?
       customer = Customer.find_by_email(params[:email])
       if !customer.nil?

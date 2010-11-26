@@ -177,7 +177,8 @@ class MerchantController < ApplicationController
     redirect_to "/admins/all_merchants"    
   end
 
-  def forgot_password    
+  def forgot_password
+    @page = 'Merchant Forgot Password'
     if request.post?
       merchant = Merchant.find_by_email(params[:email])
       if !merchant.nil?
