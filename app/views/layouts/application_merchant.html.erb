@@ -46,7 +46,7 @@
 
     <%= render :partial => "shared/merchant_header_menu"%>
 
-    <div id="todayHOT" style=" width: 998px;margin-left: 250px;">
+    <div id="todayHOT" style="">
       <div class="todHotdeal"><%=@page%></div>
     </div>
 
@@ -54,9 +54,9 @@
       <tr><td> <div id="main" style="margin-left: 90px;">
 
             <%if flash[:notice] %>
-              <br/><div style="text-align:center;background-color:grey;color:#fff;font-size: 17px;"><%= flash[:notice] %></div>
+              <br/><div style="text-align:center;background-color:grey;color:#fff;"><%= flash[:notice] %></div>
             <%else%>
-              <br/><div style="text-align:center;background-color:grey;color:#fff;font-size: 17px;"><%= flash[:error]%>  </div>
+              <br/><div style="text-align:center;background-color:grey;color:#fff;"><%= flash[:error]%>  </div>
             <%end%>
             <%= yield %><br/><br/>
             <%=image_tag('footer.gif')%>
