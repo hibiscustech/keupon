@@ -2,7 +2,6 @@
 <!--
 function form_validator1(min_discount){
   var theForm = document.forms['dd_form'];
-
   if (theForm.customer.value == "" || theForm.customer.value.length < 1)
   {
   alert("You must enter the number of Minimum Customers.");
@@ -26,6 +25,11 @@ function form_validator1(min_discount){
     theForm.max_customer.focus();
     return (false);
   }
+  else if(theForm.max_customer.value <= theForm.customer.value){
+    alert("Maximum Customers must be greater than "+theForm.customer.value);
+    theForm.max_customer.focus();
+    return (false);
+  }
 
   if (theForm.discount.value == "" || theForm.discount.value.length < 1)
   {
@@ -38,7 +42,7 @@ function form_validator1(min_discount){
     theForm.discount.focus();
     return (false);
   }
-  else if(theForm.discount.value < min_discount){
+  else if(theForm.discount.value <= min_discount){
     alert("The Discount has to be greater than "+min_discount);
     theForm.discount.focus();
     return (false);

@@ -1,4 +1,5 @@
 <%= form_remote_tag(:url => {:controller => "deals", :action => "add_new_deal_discount"},:html => {:id => "dd_form", :style=> "padding:0;margin:0;"})%>
+<input type="hidden" name="id" value="<%=@deal.id%>" />
 <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td style="color:#000000;" colspan="4"><h3>Step2</h3></td>
@@ -12,9 +13,9 @@
 
       <tr>
         <td id="minimum_customer"><input type="text" name="customer" id="customer"/></td>
-        <td><input type="text" name="max_customer" id="max_customer"/></td>
-        <td>
-          <input type="text" name="discount" id="discount"/><input type="hidden" name="id" value="<%=@deal.id%>" />
+        <td id="maximum_customer"><input type="text" name="max_customer" id="max_customer"/></td>
+        <td id="disc">
+          <input type="text" name="discount" id="discount"/>
         </td>
         <td id="dd_form_create">
           <a href="#" onclick="return form_validator1(0);return false;">Create</a>

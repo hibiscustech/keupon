@@ -18,7 +18,8 @@ class DealsController < ApplicationController
   def index
     @page = 'New Deal'
     @deal = (params[:id].blank?)? Deal.new : Deal.find(params[:id])
-    @categories = DealCategory.find(:all)    
+    @categories = DealCategory.find(:all)
+    session[:deal_discounts] = Hash.new
   end
   
   def new_discount_customers
@@ -45,7 +46,9 @@ class DealsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'minimum_customer', "<input type='text' name='customer' value='#{(max_customers.to_i+1).to_s}' disabled/>"
+            page.replace_html 'minimum_customer', "<input type='text' name='customer1' value='#{(max_customers.to_i+1).to_s}' disabled/><input type='hidden' name='customer' id='customer' value='#{(max_customers.to_i+1).to_s}'/>"
+            page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
+            page.replace_html 'disc', "<input type='text' name='discount' id='discount' />"
             page.replace_html 'dd_form_create', "<a href='#' onclick='return form_validator1(#{discount.to_i});return false;'>Create</a>"
             page.replace_html 'discount_summary',:partial => "deal_discount_summary"
             if !session[:deal_discounts].blank?
@@ -87,7 +90,7 @@ class DealsController < ApplicationController
       max_customers = dd[1][1]
       DealDiscount.create(:deal_id => params[:deal_id], :discount => discount, :customers => min_customers, :max_customers => max_customers, :buy_value => buy, :save_amount => save_amount)
     end
-    @deal.update_attributes(:min_number => min_customers, :number => max_customers, :buy => buy, :save_amount => save_amount, :discount => discount)
+    @deal.update_attributes(:minimum_number => min_customers, :number => max_customers, :buy => buy, :save_amount => save_amount, :discount => discount)
     session[:deal_discounts] = nil
     redirect_to "/deals_of_mine"
   end

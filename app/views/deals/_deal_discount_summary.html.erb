@@ -3,9 +3,9 @@
           <% deal_discounts = session[:deal_discounts].sort %>
 	  <% for dd in deal_discounts%>
 	  <tr>        
-        <td style="color:#000000;"><%= dd[1][0] %></td>
-        <td style="color:#000000;"><%= dd[1][1] %></td>
-        <td style="color:#000000;"><%= dd[0] %></td>
+        <td style="color:#000000;" align="center"><%= dd[1][0] %></td>
+        <td style="color:#000000;" align="center"><%= dd[1][1] %></td>
+        <td style="color:#000000;" align="center"><%= dd[0] %></td>
         <td></td>
       </tr>
 	  <% end %>
