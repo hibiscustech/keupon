@@ -48,7 +48,9 @@ class DealsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'minimum_customer', "<input type='text' name='customer' value='#{(max_customers.to_i+1).to_s}' disabled/>"
+            page.replace_html 'minimum_customer', "<input type='text' name='customer' value='#{(max_customers.to_i+1).to_s}' disabled/><input type='hidden' name='customer' id='customer' value='#{(max_customers.to_i+1).to_s}'/>"
+            page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
+            page.replace_html 'disc', "<input type='text' name='discount' id='discount' />"
             page.replace_html 'dd_form_create', "<a href='#' onclick='return form_validator1(#{discount.to_i});return false;'>Create</a>"
             page.replace_html 'discount_summary',:partial => "deal_discount_summary"
             if !session[:deal_discounts].blank?
