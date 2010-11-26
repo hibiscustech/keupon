@@ -18,7 +18,8 @@ class DealsController < ApplicationController
   def index
     @page = 'New Deal'
     @deal = (params[:id].blank?)? Deal.new : Deal.find(params[:id])
-    @categories = DealCategory.find(:all)    
+    @categories = DealCategory.find(:all)
+    session[:deal_discounts] = nil
   end
   
   def new_discount_customers
