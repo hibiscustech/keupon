@@ -40,6 +40,31 @@ class SessionsController < ApplicationController
     end
   end
 
+
+    def change_password_update
+     @page = "Change Password"
+     customer = Customer.find(params[:current_user])
+    if Customer.authenticate(customer.login, params[:old_password])
+      if ((params[:password] == params[:password_confirmation]) && !params[:password_confirmation].blank?)
+        customer.password_confirmation = params[:password_confirmation]
+        customer.password = params[:password]
+        if customer.save!
+          flash[:notice] = "Password successfully updated"
+          redirect_to :controller => 'customers' ,:action => 'change_password'
+        else
+          flash[:error] = "Password not changed"
+          redirect_to :controller => 'customers' ,:action => 'change_password'
+        end
+      else
+        flash[:error] = "New Password mismatch"
+        redirect_to :controller => 'customers' , :action => 'change_password'
+      end
+    else
+      flash[:error] = "Old password incorrect"
+     redirect_to :controller => 'customers' ,:action => 'change_password'
+    end
+  end
+
 protected
   # Track failed login attempts
   def note_failed_signin
@@ -87,5 +112,6 @@ protected
     end
   end
 
+  
   
 end

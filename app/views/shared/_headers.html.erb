@@ -1,185 +1,187 @@
 <style type="text/css">
-ul,li{
-margin:0px;
-padding:0px;
-}
-li{
-display:inline;
-list-style:none;
-list-style-position:outside;
-text-align:center;
-font-weight:bold;
-float:left;
-}
-.dropdownw{
-		color:#FFFFFF;
-	text-decoration:none;
-	float:left;
-	width:110px;
-	padding:3px 5px 0px 5px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+  ul,li{
+    margin:0px;
+    padding:0px;
+  }
+  li{
+    display:inline;
+    list-style:none;
+    list-style-position:outside;
+    text-align:center;
+    font-weight:bold;
+    float:left;
+  }
+  .dropdownw{
+    color:#FFFFFF;
+    text-decoration:none;
+    float:left;
+    width:110px;
+    padding:3px 5px 0px 5px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
 
-}
+  }
 
 
-.dropdownw:hover{
-	color:white;
-	float:left;
-	padding:3px 3px 0px 20px;
-	width:102px;
-	text-decoration:none;
-	background-color:#FF0000;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-}
+  .dropdownw:hover{
+    color:white;
+    float:left;
+    padding:3px 3px 0px 20px;
+    width:102px;
+    text-decoration:none;
+    background-color:#FF0000;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+  }
 
-#navw{
-	/*width:120px;
+  #navw{
+    /*width:120px;
 	height:30px;
 	border-bottom:0px;left: 560px;*/
-	padding:0px 5px;
-	position:absolute;
-	z-index:1;	
-	top: 25px;
-}
-.listw{
-line-height:20px;
-text-align:left;
-padding:4px;
-font-weight:normal;
-}
-.menu1w{
-	width:132px;
-	height:auto;
-	margin:6px 4px 0px 0px;
+    padding:0px 5px;
+    position:absolute;
+    z-index:1;
+    top: 25px;
+  }
+  .listw{
+    line-height:20px;
+    text-align:left;
+    padding:4px;
+    font-weight:normal;
+  }
+  .menu1w{
+    width:132px;
+    height:auto;
+    margin:6px 4px 0px 0px;
 
-	background-color:#000000;
-	color:#FFFFFF;
-	padding:6px 0px 0px 0px;
-	cursor:hand;
-	overflow-y:hidden;
+    background-color:#000000;
+    color:#FFFFFF;
+    padding:6px 0px 0px 0px;
+    cursor:hand;
+    overflow-y:hidden;
 
-	background-image:url(/images/btn_bg1.jpg);
-	/*margin-left:250px;*/
-	margin-top:40px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
-}
-.menu2w{
-	width:132px;
-	height:26px;
-	margin:6px 4px 0px 0px;
-	color:#FFFFFF;
-	padding:6px 0px 0px 0px;
-	overflow-y:hidden;
-	cursor:hand;
-	background-image:url(/images/btn_bg.jpg);
-	/*margin-left:250px;*/
-	margin-top:40px;
-        font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
-}
+    background-image:url(/images/btn_bg1.jpg);
+    /*margin-left:250px;*/
+    margin-top:40px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+  }
+  .menu2w{
+    width:132px;
+    height:26px;
+    margin:6px 4px 0px 0px;
+    color:#FFFFFF;
+    padding:6px 0px 0px 0px;
+    overflow-y:hidden;
+    cursor:hand;
+    background-image:url(/images/btn_bg.jpg);
+    /*margin-left:250px;*/
+    margin-top:40px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+  }
 
 
-  </style>
+</style>
 <div id="header">
-      <div id="logo"><img src="/images/logo.jpg" border="0px" /></div>
-       <%if !logged_in?%>
-      <div id="head1">
-        <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
-                <table width="490" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;" >
-           <tr>
-             <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" style="position:absolute;" /></a></td>
-    <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" style="position:absolute;"/></a></td>
-    <td width="164"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
+  <div id="logo"><%=link_to image_tag('logo.jpg',:border=>'0'), '/'%></div>
+  <%if !logged_in?%>
+    <div id="head1">
+      <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
+      <table width="490" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;" >
+        <tr>
+          <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" style="position:absolute;" /></a></td>
+          <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" style="position:absolute;"/></a></td>
+          <td width="164"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
 
+    </div>
+
+    <div id="head2">
+
+
+      <div id="addMoreFrnd"></div>
+
+
+
+      <div id="advertise"></div>
+
+
+
+      <div id="watchVid" style="width: 150px;">
+        <table width="306" border="0" cellspacing="0" cellpadding="0">
+
+          <tr>
+
+            <td width="21"><img src="/images/login_03.png" width="21" height="36" /></td>
+
+            <td width="63"><a href="/login"><img src="/images/login_04.png" width="63" height="36" border="0"/></a></td>
+
+            <td width="61"><img src="/images/login_05.png" width="61" height="36" border="0"/></td>
+
+            <td width="115" background="/images/login_06.png"><select name="select" id="select">
+
+                <option>As Customer</option>
+
+                <option>As Merchant</option>
+
+              </select>
+
+            </td>
+
+            <td width="47" align="left"><a href="#"><img src="/images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></a></td>
+
+          </tr>
+
+        </table>
       </div>
 
-         <div id="head2">
-
-
-        <div id="addMoreFrnd"></div>
-
-
-
-        <div id="advertise"></div>
-
-
-
-        <div id="watchVid" style="width: 150px;">
-<table width="306" border="0" cellspacing="0" cellpadding="0">
-
-  <tr>
-
-    <td width="21"><img src="/images/login_03.png" width="21" height="36" /></td>
-
-    <td width="63"><a href="/login"><img src="/images/login_04.png" width="63" height="36" border="0"/></a></td>
-
-    <td width="61"><img src="/images/login_05.png" width="61" height="36" border="0"/></td>
-
-    <td width="115" background="/images/login_06.png"><select name="select" id="select">
-
-      <option>As Customer</option>
-
-      <option>As Merchant</option>
-
-    </select>
-
-    </td>
-
-    <td width="47" align="left"><a href="#"><img src="/images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></a></td>
-
-  </tr>
-
-</table>
-        </div>
-
 
     </div>
-       <%else%>
-      <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span><br/> 
-     </div>
-      
-      <table width="700" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
-    <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
-    <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
-    <td width="176"><div id="navw" >
-  <ul>
-	<li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
-	<div class="listw">
-		<a href="/my_profile" class="dropdownw">My Profile</a><br />
-        <a href="/my_keupons" class="dropdownw">My Keupons</a><br />
-        <a href="/logout" class="dropdownw">Logout</a><br />
-	</div>
-	</li>
-	</ul>
+  <%else%>
+    <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span><br/>
+    </div>
+
+    <table width="700" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
+        <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
+        <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
+        <td width="176"><div id="navw" >
+            <ul>
+              <li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
+                <div class="listw">
+                  <a href="/my_profile" class="dropdownw">My Profile</a><br />
+                  <a href="/my_keupons" class="dropdownw">My Keupons</a><br />
+                  <a href="/logout" class="dropdownw">Logout</a><br />
+
+                </div>
+              </li>
+            </ul>
+          </div>
+        </td>
+      <%if !logged_in?%> <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p><%end%>
+      <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
+          <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
+        <%else%>
+          <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
+        <%end%></td>
+      </tr>
+    </table>
+
+  <%end%>
 </div>
-    </td>
-    <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p>
-    <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
-                  <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
-                <%else%>
-                  <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
-                <%end%></td>
-  </tr>
-</table>
-      
-       <%end%>
-    </div>
+<br/>
 
 <script>
-function find_link(){
-var user=document.getElementById("select").value;
-if (user=='As Customer')
-{
-window.location='/signup';
-}
-else
-{
-window.location='/merchant_signup';
-}
-}
+  function find_link(){
+    var user=document.getElementById("select").value;
+    if (user=='As Customer')
+    {
+      window.location='/signup';
+    }
+    else
+    {
+      window.location='/merchant_signup';
+    }
+  }
 </script>

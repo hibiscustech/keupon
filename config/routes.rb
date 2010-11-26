@@ -18,6 +18,8 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'customers', :action => 'create'
   map.signup '/signup', :controller => 'customers', :action => 'new'
   map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
+  map.change_password '/change_password', :controller => 'customers', :action => 'change_password'
+   
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
   map.get_location_deal '/get_location_deal' , :controller => 'customers', :action => 'get_location_deal'
   map.update '/update', :controller => 'customers', :action => 'settings'
@@ -33,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.location_deals '/customers/location_deals', :controller => 'customers', :action => 'location_deals'
   map.open_deals '/open_deals', :controller => 'customers', :action => 'open_deals'
   map.merchant_analytics '/merchant_analytics', :controller => 'merchant_analytics', :action => 'index'
+  map.change_password_updates '/change_password_update', :controller => 'sessions', :action => 'change_password_update'
   map.admin_analytics '/admin_analytics', :controller => 'admin_analytics', :action => 'index'
   map.connect '/get_sub_category',:controller=>'merchant',:action=>'company_sub_categories'  
   map.connect '/sub_category',:controller=>'merchant',:action=>'company_none_subcategories'  

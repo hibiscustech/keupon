@@ -5,7 +5,8 @@ class MerchantController < ApplicationController
   layout 'application_merchant'
   
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required , :only => [:deals_of_mine, :redeem_deals,:deals_on_demand,:location_deals]
+  before_filter :login_required , :only => [:deals_of_mine, :redeem_deals,:deals_on_demand,:location_deals,:my_profile,
+                                            :my_company,:password_change,:keupoint_deals,:gift_deals]
   def my_profile
     @page='Update Profile'
     @merchant = Merchant.find(current_merchant.id)
@@ -178,7 +179,7 @@ class MerchantController < ApplicationController
   end
 
   def forgot_password
-    @page = 'Merchant Forgot Password'
+    @page = 'Forgot Password'
     if request.post?
       merchant = Merchant.find_by_email(params[:email])
       if !merchant.nil?
@@ -190,6 +191,7 @@ class MerchantController < ApplicationController
         merchant.password = new_pwd
         merchant.password_confirmation = new_pwd
         flag = merchant.save!
+        CustomerMailer.deliver_forgot_password(merchant, new_pwd)
         if flag
           flash[:notice] = "Your password has been reset and send to your mail"
           redirect_to "/"
