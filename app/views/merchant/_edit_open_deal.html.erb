@@ -46,7 +46,7 @@
           <% if @deal.admin_preferred.to_s == @deal.preferred.to_s %>
           <input type="checkbox" name="preferred" value="1" disabled/> 
           <% else %>
-          <input type="checkbox" name="preferred" value="1" <%= (@deal.preferred.to_ == "1")? "checked" : ""%> />
+          <input type="checkbox" name="preferred" value="1" <%= (@deal.preferred.to_s == "1")? "checked" : ""%> />
           <% end %>
           I want to make this a highly Preferred Deal for Customers.
         </td>
