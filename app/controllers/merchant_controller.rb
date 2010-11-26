@@ -51,10 +51,10 @@ class MerchantController < ApplicationController
         flag = @merchant.save!
         if flag
           flash[:notice] = "Your password has been reset"
-          redirect_to "/"
+          redirect_to "/profile"
         else
           flash[:notice] = "Something went wrong while resetting password."
-          redirect_to '/'
+          redirect_to '/profile'
         end
 
   end 
