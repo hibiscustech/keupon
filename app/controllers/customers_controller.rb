@@ -283,7 +283,7 @@ class CustomersController < ApplicationController
     else
       customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
     end
-    total_price = demand_deal_bidding.buy.to_f*demand_deal_bidding.number.to_f
+    total_price = demand_deal_bidding.buy_value.to_f*demand_deal_bidding.number.to_f
     @transaction = do_transaction(customer_card_inform, 'sale', total_price)
     
     if @transaction.success?
@@ -298,7 +298,7 @@ class CustomersController < ApplicationController
       customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :quantity_left => deal.number, :status => "available", :deal_code => deal_code, :purchase_date => Time.now.to_i)
       customer_deal.save!
 
-      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
+      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
 
       points_earned = Constant.dollar_to_keupoint_convertion*total_price
