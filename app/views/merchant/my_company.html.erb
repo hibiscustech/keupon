@@ -29,6 +29,17 @@
     </tr>
     <tr>
       <td width="5%"> </td>
+      <td width="5%" style="color:#000000;">Company Logo :</td>
+      <td> 
+       <%if @company.company_photo.nil?%>
+          <img src="/images/profile_pic.jpg" border="0px" />
+        <%else%>
+          <%=image_tag (@company.company_photo.url(:small))%>
+        <%end%>
+      <%=f.file_field 'company_photo'%></td>
+    </tr>
+    <tr>
+      <td width="5%"> </td>
       <td width="5%" style="color:#000000;">Details:</td>
       <td width="10%"><%=f.text_area 'detail', :size=> '25'%>
     </tr>
