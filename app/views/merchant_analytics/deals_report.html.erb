@@ -5,8 +5,8 @@
     </td>
     <td style=" vertical-align: bottom;">
       <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "deals_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "deals_analytics_form1", :style=> "padding:0;margin:0;"})%>        
-        <div id="date_search" style="display: none;" width="100%">
-          <table width="100%">
+        <div id="date_search" style="display: none;">
+          <table>
             <tr>
               <td>
 		Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %>
@@ -17,7 +17,7 @@
             </tr>
           </table>
 	</div>
-        <div align="right" id="search-button" width="100%">
+        <div align="right" id="search-button">
           <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search</a>
         </div>
       </form>
@@ -26,7 +26,7 @@
   </tr>
 </table>
 <br/>
-<table width="100%" align="center">
+<table style="width: 1000px; margin: auto;">
   <tr>
     <td width="25%">
       <div id="analytic1">
