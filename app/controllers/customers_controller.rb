@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons]
+  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons,:change_password]
   before_filter :my_keupons_stats, :except => [:new, :create]
   session :session_key => '_PayPalSDK_session_id'
   filter_parameter_logging :password, :only => [:save_transaction_details, :tip_the_deal, :save_demand_deal_transaction_details]
@@ -55,6 +55,10 @@ class CustomersController < ApplicationController
   def open_deals
     @page = "Open Deals"
     @open_deals = Deal.all_hot_and_open_deals
+  end
+
+  def change_password
+     @page = "Change Password"
   end
 
   def deal_details
@@ -377,7 +381,7 @@ class CustomersController < ApplicationController
   end
 
   def forgot_password
-      @page = 'Customer Forgot Password'
+    @page = 'Forgot Password'
     if request.post?
       customer = Customer.find_by_email(params[:email])
       if !customer.nil?

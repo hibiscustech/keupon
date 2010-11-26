@@ -86,7 +86,7 @@
     <tr>
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;">Password :</td>
-      <td width="10%">**************<%#= f.select 'income', CustomerProfile::INCOME%> &nbsp;&nbsp;&nbsp;change</td>
+      <td width="10%">**************<%#= f.select 'income', CustomerProfile::INCOME%> &nbsp;&nbsp;&nbsp;<%=link_to 'change',:controller => 'customers',:action=> 'change_password'%></td>
     </tr>
 
 
