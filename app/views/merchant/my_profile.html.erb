@@ -1,0 +1,117 @@
+<script type="text/javascript">
+function changeMyProfile(i) {
+if (i == 1)
+     {
+        document.getElementById('myprofile').style.display="block";
+        document.getElementById('myaccount').style.display="none";
+        document.getElementById("Img1").src="/images/my_profile_activetab.jpg";
+        document.getElementById("Img2").src="/images/myaccount_tab.jpg";
+    }
+    else if (i == 2) {
+        document.getElementById("Img2").src="/images/myaccount_activetab.jpg";
+        document.getElementById("Img1").src="/images/my_profile_tab.jpg";
+        document.getElementById('myaccount').style.display="block";
+        document.getElementById('myprofile').style.display="none";
+
+    }
+    }
+</script>
+<style type="text/css">
+  .myprofile
+  {
+    width:946px;
+    background-image:url(/images/my_profile_header.jpg);
+    background-repeat: no-repeat;
+    color:#222222;
+    padding:4px;
+    _padding:0px;
+    text-align:center;
+  }
+  .myaccount
+  {
+    width:946px;
+    background-image:url(/images/my_account_header.jpg);
+    background-repeat: no-repeat;
+    color:#222222;
+    padding:4px;
+    _padding:0px;
+    text-align:center;
+  }
+</style>
+
+   <div id="offered_deals">
+    <table><tr><td>
+       <img src="/images/my_profile_activetab.jpg" onclick="changeMyProfile(1)" style="cursor:pointer;" id="Img1"/>
+        <img src="/images/myaccount_tab.jpg" onclick="changeMyProfile(2)" style="cursor:pointer;" id="Img2"/></td></tr>
+       </table>
+       <div id="myprofile" class="myprofile" style="border: 4px solid black; display: block; min-height: 450px; margin-bottom: 10px; width: 938px; margin-top: -8px; margin-left: 3px;">
+ <%=render :partial =>  'profile' %>
+        </div>
+         <div id="myaccount" class="myaccount" style="border: 4px solid black; display: none; min-height: 450px; margin-bottom: 10px; width: 938px; margin-top: -8px; margin-left: 3px;">
+          <%=render :partial =>  'my_account' %>
+        </div>
+
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

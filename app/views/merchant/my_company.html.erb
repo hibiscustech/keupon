@@ -1,0 +1,48 @@
+<div style="width:918px;text-align:left;border:3px solid black;">
+
+  <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
+           <% form_for @company, :url => {:controller => 'merchants', :action => 'my_company'} , :html => { :multipart => true } do |f| -%>
+    <tr>
+      <td width="5%"> </td>
+      <td width="5%" style="color:#000000;">Name:</td>
+      <td width="10%"><%=f.text_field 'name',:size=> '15'%>
+    </tr>
+    <tr>
+      <td width="5%"> </td>
+      <td width="5%" style="color:#000000;">Address1 :</td>
+      <td width="10%"><%=f.text_field 'address1', :size=> '15'%>
+    </tr>
+    <tr>
+      <td width="5%"> </td>
+      <td width="5%" style="color:#000000;">Address2 :</td>
+      <td width="10%"><%=f.text_field 'address2', :size=> '15'%>
+    </tr>
+    <tr>
+      <td width="5%"> </td>
+      <td width="5%" style="color:#000000;">City :</td>
+      <td width="10%"><%=f.text_field 'city', :size=> '15'%>
+    </tr>
+    <tr>
+      <td width="5%"> </td>
+      <td width="5%" style="color:#000000;">zipcode :</td>
+      <td width="10%"><%=f.text_field 'zipcode', :size=> '15'%>
+    </tr>
+    <tr>
+      <td width="5%"> </td>
+      <td width="5%" style="color:#000000;">Details:</td>
+      <td width="10%"><%=f.text_area 'detail', :size=> '25'%>
+    </tr>
+<tr>
+    <td>        <%=image_submit_tag ("upload_btn.jpg")%>&nbsp;&nbsp;</td>
+</tr>
+          <% end -%>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr><td></td><td></td></tr> 
+  </table>
+
+
+</div> 

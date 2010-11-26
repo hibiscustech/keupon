@@ -36,6 +36,12 @@ ActionController::Routing::Routes.draw do |map|
   map.admin_analytics '/admin_analytics', :controller => 'admin_analytics', :action => 'index'
   map.connect '/get_sub_category',:controller=>'merchant',:action=>'company_sub_categories'  
   map.connect '/sub_category',:controller=>'merchant',:action=>'company_none_subcategories'  
+  map.connect '/profile',:controller=>'merchant',:action=>'my_profile'  
+  map.connect '/merchants/profile_update',:controller=>'merchant',:action=>'profile_update'  
+  map.connect '/company',:controller=>'merchant',:action=>'my_company'  
+  map.connect '/password_change',:controller=>'merchant',:action=>'password_change'  
+  map.connect '/merchants/contact_details/:id',:controller=>'merchant',:action=>'contact_details'  
+  map.connect '/merchants/my_company',:controller=>'merchant',:action=>'my_company'  
   map.resources :customers  
   map.resource :merchant
   map.resource :session

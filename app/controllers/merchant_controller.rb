@@ -6,7 +6,59 @@ class MerchantController < ApplicationController
   
   protect_from_forgery :only => [:destroy]
   before_filter :login_required , :only => [:deals_of_mine, :redeem_deals,:deals_on_demand,:location_deals]
-  
+  def my_profile
+    @page='Update Profile'
+    @merchant = Merchant.find(current_merchant.id)
+    @merchant_profile = @merchant.merchant_profile
+ end
+  def profile_update
+    @merchant_profile = MerchantProfile.find_by_merchant_id(current_merchant.id)
+    merchant = Merchant.find_by_id(current_merchant.id)
+    if @merchant_profile.update_attributes(:gender => params[:merchant_profile][:gender],:first_name => params[:merchant_profile][:first_name],:merchant_pin=> params[:merchant_profile][:merchant_pin],:last_name => params[:merchant_profile][:last_name])
+    end
+      flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+      redirect_to '/profile'
+  end
+  def contact_details
+    @merchant_profile = MerchantProfile.find_by_merchant_id(current_merchant.id)
+    @merchant_profile.update_attributes(params[:merchant_profile])
+    flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+    redirect_to '/profile'
+  end
+
+  def my_company
+    @page='My Company'
+    @merchant_profile = MerchantProfile.find_by_merchant_id(current_merchant.id)
+    @company=@merchant_profile.company
+    if request.put?
+    @company.update_attributes(params[:company])
+    flash[:notice] = "Thank you for your valuable information"
+    redirect_to '/company'
+    end
+  end
+  def password_change
+    p params
+    @page='Password Change'
+    @merchant = Merchant.find_by_id(current_merchant.id)
+   if request.post?
+        new_pwd = params[:user][:password]
+        logger.info "----------------------------------------------------------"
+        logger.info "#{new_pwd}"
+        passphrase_digest = encrypted_password(new_pwd,@merchant.salt)
+        @merchant.crypted_password = passphrase_digest
+        @merchant.password = new_pwd
+        @merchant.password_confirmation = new_pwd
+        flag = @merchant.save!
+        if flag
+          flash[:notice] = "Your password has been reset"
+          redirect_to "/"
+        else
+          flash[:notice] = "Something went wrong while resetting password."
+          redirect_to '/'
+        end
+
+  end 
+  end 
   def index
     @page = "Welcome #{current_merchant.merchant_profile.first_name}"
   end

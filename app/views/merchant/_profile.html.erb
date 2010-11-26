@@ -1,0 +1,47 @@
+
+
+    <br/><br/><br/><br/><br/><br/><br/>
+    <div style="width:618px;text-align:left;">
+      <% form_for @merchant_profile, :url => {:controller => 'merchants', :action => 'profile_update'} do |f| -%>
+        <%=hidden_field_tag 'my_profile', 'profile'%>
+        <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="20%" style="color:#000000;">Gender:<font color="red">*</font></td>
+            <td width="30%"><%= f.radio_button 'gender', 'm'%> Male<%= f.radio_button 'gender', 'f'%> Female
+            </td>
+          </tr>
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">First Name:<font color="red">*</font></td>
+            <td width="30%"><%=f.text_field 'first_name', :size=> '15'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
+          </tr>
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">Last Name:<font color="red">*</font></td>
+            <td width="30%"><%=f.text_field 'last_name', :size=> '15'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
+          </tr>
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%" style="color:#000000;">NRIC/ FIN#:<font color="red">*</font></td>
+            <td width="30%"><%=f.text_field 'merchant_pin', :size=> '15'%></td>
+          </tr>
+          <tr>
+            <td width="5%" colspan="3"> &nbsp;</td>
+          </tr>
+
+          <tr>
+            <td width="5%"> </td>
+            <td width="15%"> </td>
+            <td width="35%" colspan="2">
+              <br/><%=image_submit_tag ("register.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/", {:style=>"padding-left:30px;"}%>
+            </td>
+          </tr>
+          <tr><td></td><td></td></tr> <% end -%>
+      </table>
+
+
+    </div> 
