@@ -1,16 +1,12 @@
 <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
-	  <% if !session[:deal_discounts].blank? %>
-      <tr>
-        <td></td>
-        <td style="color:#000000;">Discount(%)</td>
-        <td>No. of Customers</td>
-      </tr>
-	  <% deal_discounts = session[:deal_discounts].sort %>
+	  <% if !session[:deal_discounts].blank? %>      
+          <% deal_discounts = session[:deal_discounts].sort %>
 	  <% for dd in deal_discounts%>
-	  <tr>
-        <td></td>
+	  <tr>        
+        <td style="color:#000000;"><%= dd[1][0] %></td>
+        <td style="color:#000000;"><%= dd[1][1] %></td>
         <td style="color:#000000;"><%= dd[0] %></td>
-        <td style="color:#000000;"><%= dd[1] %></td>
+        <td></td>
       </tr>
 	  <% end %>
 	  <% end %>

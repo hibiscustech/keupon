@@ -1,11 +1,27 @@
+<%= form_remote_tag(:url => {:controller => "deals", :action => "add_new_deal_discount"},:html => {:id => "dd_form", :style=> "padding:0;margin:0;"})%>
 <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
-        <td style="color:#000000;"><h3>Step2</h3></td>
-      </tr>
+        <td style="color:#000000;" colspan="4"><h3>Step2</h3></td>
+      </tr>      
       <tr>
-        <td><a href="#" onclick="new Ajax.Request('/deals/new_discount_customers?id=<%=@deal.id%>', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Discounts and Customers</a></td>
+        <td>Minimum Customers</td>
+        <td>Maximum Customers</td>
+        <td>Discount(%)</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td id="minimum_customer"><input type="text" name="customer" id="customer"/></td>
+        <td><input type="text" name="max_customer" id="max_customer"/></td>
+        <td>
+          <input type="text" name="discount" id="discount"/><input type="hidden" name="id" value="<%=@deal.id%>" />
+        </td>
+        <td id="dd_form_create">
+          <a href="#" onclick="return form_validator1(0);return false;">Create</a>
+        </td>
       </tr>
 </table>
+</form>
 <div id="discount_summary">
   <%= render :partial => "deal_discount_summary" %>  
 </div>

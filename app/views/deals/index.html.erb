@@ -1,5 +1,50 @@
 <script Language="JavaScript">
 <!--
+function form_validator1(min_discount){
+  var theForm = document.forms['dd_form'];
+
+  if (theForm.customer.value == "" || theForm.customer.value.length < 1)
+  {
+  alert("You must enter the number of Minimum Customers.");
+  theForm.customer.focus();
+  return (false);
+  }
+  else if(!IsNumeric(theForm.customer.value,"0123456789")){
+    alert("You must enter only Numeric value for number of Minimum Customers.");
+    theForm.customer.focus();
+    return (false);
+  }
+
+  if (theForm.max_customer.value == "" || theForm.max_customer.value.length < 1)
+  {
+  alert("You must enter the number of Maximum Customers.");
+  theForm.max_customer.focus();
+  return (false);
+  }
+  else if(!IsNumeric(theForm.max_customer.value,"0123456789")){
+    alert("You must enter only Numeric value for number of Maximum Customers.");
+    theForm.max_customer.focus();
+    return (false);
+  }
+
+  if (theForm.discount.value == "" || theForm.discount.value.length < 1)
+  {
+  alert("You must enter the Discount");
+  theForm.discount.focus();
+  return (false);
+  }
+  else if(!IsNumeric(theForm.discount.value,"0123456789.")){
+    alert("You must enter only Numeric value for Discount.");
+    theForm.discount.focus();
+    return (false);
+  }
+  else if(theForm.discount.value < min_discount){
+    alert("The Discount has to be greater than "+min_discount);
+    theForm.discount.focus();
+    return (false);
+  }
+  theForm.onsubmit();
+}
 function form_validator(){
 var theForm = document.forms['new_deal'];
 var i;
@@ -53,6 +98,25 @@ return (false);
 }
 
 return true;
+}
+
+function IsNumeric(sText, ValidChars)
+
+{
+   var IsNumber=true;
+   var Char;
+
+
+   for (i = 0; i < sText.length && IsNumber == true; i++)
+      {
+      Char = sText.charAt(i);
+      if (ValidChars.indexOf(Char) == -1)
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+
 }
 
 //-->

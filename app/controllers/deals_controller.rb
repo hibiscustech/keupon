@@ -35,14 +35,18 @@ class DealsController < ApplicationController
   end
 
   def add_new_deal_discount
+    @deal = Deal.find(params[:id])
     discount = params[:discount]
     customers = params[:customer]
-    session[:deal_discounts][discount.to_i] = customers
+    max_customers = params[:max_customer]
+    session[:deal_discounts][discount.to_i] = [customers, max_customers]
     if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
           render :update do |page|
+            page.replace_html 'minimum_customer', "<input type='text' name='customer' value='#{(max_customers.to_i+1).to_s}' disabled/>"
+            page.replace_html 'dd_form_create', "<a href='#' onclick='return form_validator1(#{discount.to_i});return false;'>Create</a>"
             page.replace_html 'discount_summary',:partial => "deal_discount_summary"
             if !session[:deal_discounts].blank?
               page.replace_html 'ds_form',:partial => "deal_discount_form"
@@ -69,11 +73,21 @@ class DealsController < ApplicationController
   def create_step2
     deal_discounts = session[:deal_discounts].sort
     @deal = Deal.find(params[:deal_id])
+    min_customers = nil
+    max_customers = nil
+    buy = nil
+    save_amount = nil
+    discount = nil
+
     for dd in deal_discounts
-      buy = @deal.value.to_f*dd[0].to_f/100
+      buy = @deal.value.to_f - @deal.value.to_f*dd[0].to_f/100
       save_amount = @deal.value.to_f - buy.to_f
-      DealDiscount.create(:deal_id => params[:deal_id], :discount => dd[0], :customers => dd[1], :buy_value => buy, :save_amount => save_amount)
+      discount = dd[0]
+      min_customers = dd[1][0]
+      max_customers = dd[1][1]
+      DealDiscount.create(:deal_id => params[:deal_id], :discount => discount, :customers => min_customers, :max_customers => max_customers, :buy_value => buy, :save_amount => save_amount)
     end
+    @deal.update_attributes(:min_number => min_customers, :number => max_customers, :buy => buy, :save_amount => save_amount, :discount => discount)
     session[:deal_discounts] = nil
     redirect_to "/deals_of_mine"
   end

@@ -1,9 +1,9 @@
 <form action="/deals/create_step2" method="post">
   <div style="margin: 0pt; padding: 0pt; display: inline;"><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" /></div>
-  <input type="hidden" name="deal_id" value="<%=params[:id]%>" />
+  <input type="hidden" name="deal_id" value="<%=@deal.id%>" />
 <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
-        <td style="color:#000000;"><%=image_submit_tag ("register.jpg")%>   </td>
+        <td style="color:#000000;"><input type="submit" name="Create Step2" value="Create Step2" /></td>
       </tr>
 </table>
 </form>
