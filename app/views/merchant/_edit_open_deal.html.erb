@@ -42,17 +42,14 @@
         <td><input id="expiry_date" name="expiry_date" size="25%" type="text" value="<%=Time.at(@deal.expiry_date.to_i).strftime('%d-%m-%Y')%>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
       </tr>
       <tr>
-        <td> </td>
-        <td style="color:#000000;">Commission:</td>
-        <td><select name="commission" id="commission">
-            <% for commission in Deal::COMMISSIONS %>
-            <% if commission.to_i == @deal.commission.to_i %>
-            <option value="<%=commission %>" selected><%=commission %> %</option>
-            <% else %>
-            <option value="<%=commission %>"><%=commission %> %</option>
-            <% end %>
-            <% end %>
-          </select></td>
+        <td colspan="3">
+          <% if @deal.admin_preferred.to_s == @deal.preferred.to_s %>
+          <input type="checkbox" name="preferred" value="1" disabled/> 
+          <% else %>
+          <input type="checkbox" name="preferred" value="<%= @deal.preferred %>" />
+          <% end %>
+          I want to make this a highly Preferred Deal for Customers.
+        </td>
       </tr>
       <tr>
         <td> </td>

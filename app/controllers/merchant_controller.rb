@@ -429,8 +429,14 @@ class MerchantController < ApplicationController
   def update_open_deal
     @deal = Deal.find(params[:id])
     schedule = @deal.deal_schedule
+    preference = ((@deal.preferred.blank? || @deal.preferred.to_s == "0") && params[:preferred] == "1")? true : false
     @deal.update_attributes(:name => params[:name], :value => params[:actual_value], :rules => params[:rules], :highlights => params[:highlights], :expiry_date => Time.parse("#{params[:expiry_date].gsub('/','-')} 23:59:59").to_i.to_s, :commission => params[:commission])
     schedule.update_attributes(:start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:close_date].gsub('/','-')} 23:59:59").to_i.to_s)
+    if preference
+      @deal.update_attributes(:preferred => params[:preferred])
+      merchant_profile = @deal.merchant.merchant_profile
+      AdminMailer.deliver_merchant_created_preferred_deal(@deal, merchant_profile, merchant_profile.company)
+    end
     redirect_to "/deals_of_mine"
   end
   
