@@ -5,9 +5,9 @@
 	position: relative;
 }
 #header_merchant {
-	background: url(/images/header_bg.gif) no-repeat center top;
-        margin-left: 200px;
-
+	/*background: url(/images/header_bg.gif) no-repeat center top;*/
+        margin: auto;
+        width:890px;
 }
 #header_merchant .disclaimer {
 	color: #999;
