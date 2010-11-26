@@ -11,6 +11,12 @@ class AdminsController < ApplicationController
     deal.update_attributes(:status => 'open')
     redirect_to "/admins/view_all_deals"
   end
+
+  def deal_preferred
+    deal = Deal.find(params[:id])
+    deal.update_attributes(:admin_preferred => '1')
+    redirect_to "/admins/view_all_deals"
+  end
   
   def all_merchants
     @active_merchants = MerchantProfile.all_active_merchants
