@@ -2,7 +2,7 @@
   <% form_for @deal, :url => { :action => "create" } , :html => { :multipart => true }  do |f| %>
     <%=hidden_field :deal, :merchant_id, :value => current_merchant.id%>
     <input type="hidden" name="start_time" id="start_time" value="<%= params[:date] %>" />
-    <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6" width="100%">
+    <table align=left  style="font-size:14px;width: 600px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td style="color:#000000;" colspan="2"><h3>Step1</h3></td>
       </tr>
