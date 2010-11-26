@@ -46,12 +46,12 @@
 
     <%= render :partial => "shared/merchant_header_menu"%>
 
-   
-      <!--<div class="todHotdeals" style="background-color:black;color: #fff;width:1000px;height: 40px;margin-top: 12px;margin-left: 200px;font-size: 17px;"><%#=@page%></div>-->
-    
+    <div id="todayHOTs" style="width:1000px;margin:auto;">
+      <div class="todHotdeals"><%=@page%></div>
+    </div>
 
-    <table width="890"  border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr><td> <div id="main" style="margin-left: 90px;">
+    <table width="1000"  border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr><td> <div id="main" style="width:1000px;margin:auto;">
 
             <%if flash[:notice] %>
               <br/><div style="text-align:center;background-color:grey;color:#fff;"><%= flash[:notice] %></div>
