@@ -47,7 +47,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.all_deals
-    query = %Q{ select d.id, d.name, d.status, d.value as actual_value,ds.start_time, ds.end_time, count(cd.id) as no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount
+    query = %Q{ select d.id, d.name, d.status, d.value as actual_value,ds.start_time, ds.end_time, count(cd.id) as no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount, d.preferred, d.admin_preferred
                 from deals d
                 join deal_schedules ds on ds.deal_id = d.id
                 join deal_location_details dld on dld.deal_id = d.id
