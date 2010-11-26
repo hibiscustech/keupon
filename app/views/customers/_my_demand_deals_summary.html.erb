@@ -8,7 +8,7 @@
       <% accepted_deal = nil
       for demand_deal in @demand_deals_summary
         if demand_deal.status == "accepted"
-          accepted_deal = Deal.find(demand_deal.deal_id)
+          accepted_deals = CustomerDemandDeal.find(demand_deal.id).customer_accepted_demand_deal_biddings.length
         end
       %>
       <div id="testid" class="dateB1_center" style="padding-left: 25px; padding-top: 10px; cursor: pointer;" onMouseover="showtooltip('<%= demand_deal.description %>')" onMouseout="hidetooltip()" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');" >
@@ -20,6 +20,11 @@
               <% if demand_deal.status == "offered" %>
               <div style="position: absolute; top: 130px;">
                 <span style=" padding-left: 5px; font-weight: bold; font-size: 20px; color: black;"><%= demand_deal.offerings %></span>
+              </div>
+              <% end %>
+              <% if demand_deal.status == "accepted" %>
+              <div style="position: absolute; top: 130px;">
+                <span style=" padding-left: 5px; font-weight: bold; font-size: 20px; color: black;"><%= accepted_deals %></span>
               </div>
               <% end %>
             </div>        
