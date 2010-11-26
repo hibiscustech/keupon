@@ -2,12 +2,12 @@
   <% form_for @deal, :url => { :action => "create" } , :html => { :multipart => true }  do |f| %>
     <%=hidden_field :deal, :merchant_id, :value => current_merchant.id%>
     <input type="hidden" name="start_time" id="start_time" value="<%= params[:date] %>" />
-    <table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6" width="100%">
+    <table align=left  style="font-size:14px;width: 600px;" CELLPADDING="3" CELLSPACING="6">
       <tr>
         <td style="color:#000000;" colspan="2"><h3>Step1</h3></td>
       </tr>
       <tr>
-        <td style="color:#000000;width: 50px;">Deal Title:</td>
+        <td style="color:#000000;width: 250px;">Deal Title:</td>
         <td><%= f.text_field :name, :size=>"25%"  %> </td>
       </tr>      
       <tr>
@@ -37,13 +37,11 @@
       <tr>
         <td colspan="2"><input type="checkbox" name="deal[preferred]" id="deal_preferred" value="1" /> I want to make this a highly Preferred Deal for Customers.</td>
       </tr>
-      <tr>
-        <td> </td>
+      <tr>       
         <td style="color:#000000;">Deal Photo:</td>
         <td><%= f.file_field :deal_photo, :size=>"25%" %> </td>
       </tr>      
-      <tr>
-        <td> </td>        
+      <tr>     
         <td colspan="2">
           <br/><%=image_submit_tag ("register.jpg"), :onclick => "return form_validator();"%>         
         </td>
