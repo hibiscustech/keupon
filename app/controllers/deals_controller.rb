@@ -39,6 +39,9 @@ class DealsController < ApplicationController
     discount = params[:discount]
     customers = params[:customer]
     max_customers = params[:max_customer]
+    if session[:deal_discounts] == nil
+      session[:deal_discounts] = Hash.new
+    end
     session[:deal_discounts][discount.to_i] = [customers, max_customers]
     if request.xml_http_request?
       respond_to do |format|
