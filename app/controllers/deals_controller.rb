@@ -118,7 +118,7 @@ class DealsController < ApplicationController
       deal_schedule = DealSchedule.new(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
       deal_schedule.save!
       if @deal.preferred.to_s == "1"
-        AdminMailer.merchant_created_preferred_deal(@deal, merchant_profile, current_merchant.company)
+        AdminMailer.merchant_created_preferred_deal(@deal, merchant_profile, merchant_profile.company)
       end
       session[:deal_discounts] = Hash.new
       redirect_to "/deals/index?id=#{@deal.id}"
