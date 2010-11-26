@@ -42,13 +42,7 @@
         <td><input id="deal_expiry_date" name="deal[expiry_date]" size="25%" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
       </tr>
       <tr>
-        <td> </td>
-        <td style="color:#000000;">Commission:</td>
-        <td><select name="deal[commission]" id="deal_commission">
-            <% for commission in Deal::COMMISSIONS %>
-            <option value="<%=commission %>"><%=commission %> %</option>
-            <% end %>
-          </select></td>
+        <td colspan="3"><input type="checkbox" name="deal[preferred]" id="deal_preferred" value="1" /> I want to make this a highly Preferred Deal for Customers.</td>
       </tr>
       <tr>
         <td> </td>
