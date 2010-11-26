@@ -95,10 +95,30 @@ return true;
    </table>
   </div>
 </div>
+  <!--
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_new.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+          <span style="font-size:12px;margin-left:350px; font-weight: bold;" id="bid<%=deal.id%>">Time Left</span>
+           <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
+                <span style="text-align:justify;float:left;margin-left:5px;height: 60px; width: 500px;"><%= deal.description %></span>
+              <table style="border:0px;font-weight:bold;color:#034D7C;float: right;" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><span style="float:left;font-weight:bold;font-size:13px; color: #034D7C; margin-left:5px;">Expected Price: S$<%= deal.expected_value %> &nbsp;&nbsp; Expected Quantity: <%= deal.number %> </span></td>
+                    <td align="right" width="10%">
+                      <a href="#" onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" style="color: rgb(3, 77, 124);">Bid it</a>
+                    </td>
+                    <td align="right" width="10%">
+                      <a href="#" style="color: rgb(3, 77, 124);">Cancel it</a>
+                    </td>
+                  </tr>
+              </table>
+           </div>
+       </div>
+  -->
   <% elsif deal.bidding_status == "closed" %>
   <div style="width: 650px; height: 125px;" class="dealsoffered">
-         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_new.jpg"></div>
-         <span id="bid<%=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Time left: 00days 07:38:26</span>
+         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_closed.jpg"></div>
+         <span id="bid<%=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Bidding Closed</span>
 
   <div style="float: left; width: 510px; height: 90px; color: rgb(21, 21, 21); font-family: helvetica; font-size: 16px;">
     <table min-height="150px" cellspacing="0" cellpadding="0" style="border: 0px none ; width:510px;font-weight: bold; color: rgb(3, 77, 124);">
@@ -112,7 +132,47 @@ return true;
   </div>
   <% end %>
   <% end %>
+<!--
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_expired.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+          <font color="black" style="font-size:12px;margin-left:350px;">Time Left</font>
+           <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
+                <font style="text-align:justify;float:left;margin-left:5px;"> All KidPic Members can upload Great Photos for Free. You can also enter any photo(s) into our monthly child and baby contest. You never know when you can get spotted. Get Started.</font>
+                <font color="#034D7C" style="float:left;font-weight:bold;font-size:13px;margin-left:5px;">Price : &nbsp;&nbsp; Quantity : </font><br/>
+              <div style="float: right;width: 310px;margin-top:10px; ">
+                   <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;"><tr><td width="10%"><%=link_to "Bid it",'#', {:style=>'color:#034D7C;'}%></td><td width="10%"><%=link_to "Cancel it",'#', {:style=>'color:#034D7C;'}%></td></tr>
+                   </table>
+              </div>
+           </div>
+       </div>
 
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_lastday.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+          <font color="black" style="font-size:12px;margin-left:350px;">Time Left</font>
+           <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
+                <font style="text-align:justify;float:left;margin-left:5px;"> All KidPic Members can upload Great Photos for Free. You can also enter any photo(s) into our monthly child and baby contest. You never know when you can get spotted. Get Started.</font>
+                <font color="#034D7C" style="float:left;font-weight:bold;font-size:13px;margin-left:5px;">Price : &nbsp;&nbsp; Quantity : </font><br/>
+              <div style="float: right;width: 310px;margin-top:10px; ">
+                   <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;"><tr><td width="10%"><%=link_to "Bid it",'#', {:style=>'color:#034D7C;'}%></td><td width="10%"><%=link_to "Cancel it",'#', {:style=>'color:#034D7C;'}%></td></tr>
+                   </table>
+              </div>
+           </div>
+       </div>
+
+   <div  class="dealsoffered" style="width:650px;height:125px;">
+          <div style="float: left;"><img src="/images/bid_closed.jpg" style="margin-top:14px;margin-left:10px;"/></div>
+          <font color="black" style="font-size:12px;margin-left:350px;">Time Left</font>
+           <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
+                <font style="text-align:justify;float:left;margin-left:5px;"> All KidPic Members can upload Great Photos for Free. You can also enter any photo(s) into our monthly child and baby contest. You never know when you can get spotted. Get Started.</font>
+                <font color="#034D7C" style="float:left;font-weight:bold;font-size:13px;margin-left:5px;">Price : &nbsp;&nbsp; Quantity : </font><br/>
+              <div style="float: right;width: 310px;margin-top:10px; ">
+                   <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;"><tr><td width="10%"><%=link_to "Bid it",'#', {:style=>'color:#034D7C;'}%></td><td width="10%"><%=link_to "Cancel it",'#', {:style=>'color:#034D7C;'}%></td></tr>
+                   </table>
+              </div>
+           </div>
+       </div>
+
+-->
   </div>
   <div id="popup_create_deal">
     <%= render :partial => "view_create_demand_deal" %>
