@@ -9,20 +9,22 @@
   <br />
   <%for open_deal in @open_deals
     opd = Deal.find(open_deal.id)
-  %>
-    <div class="discounted-item freeshipping" style="margin-left: 140px;">
-      <a href="/deal_details?id=<%= open_deal.id %>"><img src="<%= opd.deal_photo.url(:small) %>" alt="img" border="0"/></a>
-      <div class="reasonbar">
-        <div class="prod-title" style="width: 65%;color:#FFFFFF;"><%= link_to  open_deal.name, {:controller => 'customers',:action=>'deal_details',:id => open_deal.id },  :style => "color:#FFFFFF;"%> </div>
-        <div class="reason" style="width: 30%;">Date Expiry</div>
-        <div class="reason" style="width: 30%;"><%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></div>
-      </div>
-      <div class="discount-bar">
-        No of Deals Bought &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; Location &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; Current Discount
-      </div>
-      <div class="price">
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=open_deal.no_of_customers%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=open_deal.discount%>
-      </div>
-    </div>
+  %>    
+
+    <div style="margin-left: 140px; opacity: 0.8;" class="discounted-item freeshipping">
+     <a href="/deal_details?id=<%= open_deal.id %>"><img border="0" alt="img" src="<%= opd.deal_photo.url(:small) %>"></a>
+     <div class="reasonbar">
+       <div style="width: 65%; color: rgb(255, 255, 255);" class="prod-title"><a style="color: rgb(255, 255, 255);" href="/customers/deal_details?id=<%=open_deal.id%>"><%=open_deal.name%></a> </div>
+       <div style="width: 30%;" class="reason">Date Expiry</div>
+       <div style="width: 30%;" class="reason"><%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></div>
+     </div>
+     <div class="discount-bar">
+      <table style="text-align:center;width: 510px;"><tr><td width="8%">Deals Bought</td><td  width="1%">|</td><td  width="2%">Discount</td><td  width="1%">|</td><td  width="30%">Location</td></tr>
+      <tr><td ><%=open_deal.no_of_customers%></td><td>|</td><td><%=open_deal.discount%></td><td> |</td><td><%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td></tr></table>
+     </div>
+
+   </div>
+
+
   <%end%>
 </div>
