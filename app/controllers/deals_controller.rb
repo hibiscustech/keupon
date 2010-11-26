@@ -19,7 +19,7 @@ class DealsController < ApplicationController
     @page = 'New Deal'
     @deal = (params[:id].blank?)? Deal.new : Deal.find(params[:id])
     @categories = DealCategory.find(:all)
-    session[:deal_discounts] = nil
+    session[:deal_discounts] = Hash.new
   end
   
   def new_discount_customers
