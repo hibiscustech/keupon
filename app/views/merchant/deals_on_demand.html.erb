@@ -85,10 +85,9 @@ return true;
           <span style="font-size:12px;margin-left:350px; font-weight: bold;" id="bid<%=deal.id%>">Time Left</span>
            <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
                 <span style="text-align:justify;float:left;margin-left:5px;height: 60px; width: 500px;"><%= deal.description %></span>
-                <span style="float:left;font-weight:bold;font-size:13px; color: #034D7C; margin-left:5px;">Expected Price: S$<%= deal.expected_value %> &nbsp;&nbsp; Expected Quantity: <%= deal.number %> </span><br/>
-              <div style="float: right;margin-top:10px; ">
-                <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;float: right;" cellpadding="0" cellspacing="0">
+              <table style="border:0px;font-weight:bold;color:#034D7C;float: right;" cellpadding="0" cellspacing="0">
                   <tr>
+                    <td><span style="float:left;font-weight:bold;font-size:13px; color: #034D7C; margin-left:5px;">Expected Price: S$<%= deal.expected_value %> &nbsp;&nbsp; Expected Quantity: <%= deal.number %> </span></td>
                     <td align="right" width="10%">
                       <a href="#" onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" style="color: rgb(3, 77, 124);">Bid it</a>
                     </td>
@@ -96,8 +95,7 @@ return true;
                       <a href="#" style="color: rgb(3, 77, 124);">Cancel it</a>
                     </td>
                   </tr>
-                </table>
-              </div>
+              </table>
            </div>
        </div>
   <% elsif deal.bidding_status == "closed" %>
