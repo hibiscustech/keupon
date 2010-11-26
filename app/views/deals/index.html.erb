@@ -26,7 +26,7 @@ function form_validator1(min_discount){
     theForm.max_customer.focus();
     return (false);
   }
-  else if(theForm.customer.value > theForm.max_customer.value){
+  else if(theForm.max_customer.value <= theForm.customer.value){
     alert("Maximum Customers must be greater than "+theForm.customer.value);
     theForm.max_customer.focus();
     return (false);
