@@ -39,7 +39,7 @@ class MerchantController < ApplicationController
   end
   def password_change
     p params
-    @page='Password Change'
+    @page='Change password'
     @merchant = Merchant.find_by_id(current_merchant.id)
    if request.post?
         new_pwd = params[:user][:password]
