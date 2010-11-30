@@ -19,7 +19,8 @@
                <p style="margin-left: 15px; margin-right:15px;text-align:justify;font-size:14px;">
                    Dear <%= @merchant_profile.first_name.camelize %>,<br/>
                    Thank you for using www.keupons.com. Please see below the details of the deal that you have added to our site. Please confirm that the details are correct before the deal goes live. In addition, see the commission to be paid to Keupons for the deals<br/>
-               Click below link for more details <%=link_to('Deal Details','/')%>
+               Click the link below for more details<br/>
+               <a href="<%=$server_name%>/deals/activate_the_deal/<%=@deal.id%>" style="font-size:14px;font-weight:bold;text-decoration:none;">Check Out Details</a>
 
                </p>
           </div>

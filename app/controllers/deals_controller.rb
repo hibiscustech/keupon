@@ -5,6 +5,20 @@ class DealsController < ApplicationController
   layout 'application_merchant'
 
   before_filter :login_required , :only => [:index]
+  def activate_the_deal
+    id=params[:id]
+    @deal=Deal.find(params[:id])
+    @end_time = @deal.deal_schedule.end_time
+    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @page = "Deal Activation"
+    render :layout => 'activation'
+  end
+  def activate
+    id=params[:id]
+    @deal=Deal.find(params[:id])
+    @deal.update_attribute(:activated,1)
+    redirect_to '/'
+  end
   def save_commission
     params[:commission].each_pair do |key,value|
     discount=DealDiscount.find(key)

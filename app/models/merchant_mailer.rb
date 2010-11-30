@@ -21,6 +21,7 @@ class MerchantMailer < ActionMailer::Base
     @subject     = "Confirm Deal"
     @body[:merchant_profile]  = merchant_profile
     @body[:merchant] = merchant
+    @body[:deal] = deal
     content_type "text/html"
 
   end
