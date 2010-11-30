@@ -1,0 +1,18 @@
+<%# @customer.password = @customer.password_confirmation = nil %>
+<br/><div style="color: red;"><%#= error_messages_for : %><br/></div>
+    <table cellspacing="4" cellpadding="4">
+<%form_tag('/admin_create',:method=>:post) do%>
+      <tr>
+        <td><label for="num_attendees">Admin E-mail ID :</label></td><td><%= text_field :user,:email , :size=>"25%"%></td>
+      </tr>
+      <tr>
+        <td><label for="name_attendee_1">Password :</label></td><td><%= password_field :user,:password,:size=>"25%"%></td>
+      </tr>
+      <tr>
+        <td><label for="name_attendee_1">Confirm Password :</label></td><td><%= password_field :user,:password_confirmation, :class=>'name_input',:size=>"25"%></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%=submit_tag('Create')%></td>
+      </tr>
+<%end%>
+    </table>

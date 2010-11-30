@@ -17,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.demand_deal_transaction_details '/demand_deal_transaction_details' , :controller => 'customers', :action =>  'demand_deal_transaction_details'
   map.register '/register', :controller => 'customers', :action => 'create'
   map.signup '/signup', :controller => 'customers', :action => 'new'
+  map.signup '/admin_create', :controller => 'sessions', :action => 'admin_create'
   map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.change_password '/change_password', :controller => 'customers', :action => 'change_password'
    

@@ -1,0 +1,25 @@
+<div style="width:608px;height:400px;text-align:left;">
+    <table CELLPADDING="3" CELLSPACING="6"  style="border:1px solid black;font-size:14px;margin-left:250px;" BACKGROUND="/images/bg_white.jpg">
+     <tr>
+              <td class="popup"><a href="#" onclick="document.getElementById('popup_create_deal_<%=deal_id%>').style.display='none';;" >X</a></td>
+            </tr>
+
+    <tr>
+      <th>Discount</th>
+      <th>#Customers</th>
+      <th>Saving</th>
+      <th>Commission</th>
+    </tr>
+     <form action='/deals/save_commission/<%=deal_id%>' method='post'>
+     <%deal_details(deal_id).each do |dl|%>
+     <tr>
+      <td><%=dl.discount%></td>
+      <td><%=dl.customers%></td>
+      <td><%=dl.save_amount%></td>
+      <td><input type='text' name='commission[<%=dl.id%>][]' value='<%=dl.commission%>' size='10'/></td>
+     </tr>
+     <%end%>
+     <tr><td><%=token_tag%><input type='submit' value='Set Commision'/></form></td></tr>
+    </table>
+</div>
+

@@ -26,4 +26,14 @@ class ApplicationController < ActionController::Base
       @my_keupons_stats["keupoints"] = current_customer.kupoints
     end
   end
+  def admin_login_required
+   user=AdminUser.find(session[:admin])if session[:admin]
+   if user
+    return true
+   else
+    flash[:notice]='Please login as admin!'
+    redirect_to'/'
+    return false
+   end
+  end
 end

@@ -8,7 +8,7 @@
 
 <p><%= label_tag 'password' %><br/>
 <%= password_field_tag 'password', nil %></p>
-I'm <input checked="checked" id="login_user_customer" name="login_user" value="customer" type="radio" onchange="new Ajax.Request('/sessions/forgot_password_for?type=customer', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;" /> Customer  <input id="login_user_merchant" name="login_user" value="merchant" type="radio" onchange="new Ajax.Request('/sessions/forgot_password_for?type=merchant', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;"/>   Merchant
+I'm <input checked="checked" id="login_user_customer" name="login_user" value="customer" type="radio" onchange="new Ajax.Request('/sessions/forgot_password_for?type=customer', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;" /> Customer  <input id="login_user_merchant" name="login_user" value="merchant" type="radio" onchange="new Ajax.Request('/sessions/forgot_password_for?type=merchant', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;"/>   Merchant <input checked="checked" id="login_user_customer" name="login_user" value="admin" type="radio"/> Admin
 <!-- Uncomment this if you want this functionality
 <p><%= label_tag 'remember_me', 'Remember me' %>
 <%= check_box_tag 'remember_me', '1', @remember_me %></p>

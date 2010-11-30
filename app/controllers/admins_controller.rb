@@ -1,7 +1,9 @@
 class AdminsController < ApplicationController
+
   layout "admins"
   protect_from_forgery :only => [:destroy]
-
+  before_filter :admin_login_required
+  include AuthenticatedSystemMerchant
   def view_all_deals
     @deals = Deal.all_deals
   end
@@ -17,7 +19,14 @@ class AdminsController < ApplicationController
     deal.update_attributes(:admin_preferred => '1')
     redirect_to "/admins/view_all_deals"
   end
-  
+  def confirm_the_deal
+    deal = Deal.find(params[:id])
+    deal.update_attributes(:confirm => '1')
+    merchant=Merchant.find(deal.merchant_id)
+    merchant_profile=merchant.merchant_profile
+    MerchantMailer.deliver_confirm_deal(merchant_profile,merchant,deal)
+    redirect_to "/admins/view_all_deals"
+  end  
   def all_merchants
     @active_merchants = MerchantProfile.all_active_merchants
     @merchants_count = MerchantProfile.merchant_counts

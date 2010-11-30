@@ -1,5 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def deal_details(deal_id)
+    @discount_details=DealDiscount.find_all_by_deal_id(deal_id)
+  end
   def state_select_for(model)
     states = %w(AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME
                 MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN

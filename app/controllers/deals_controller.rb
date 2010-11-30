@@ -5,6 +5,18 @@ class DealsController < ApplicationController
   layout 'application_merchant'
 
   before_filter :login_required , :only => [:index]
+  def save_commission
+    params[:commission].each_pair do |key,value|
+    discount=DealDiscount.find(key)
+    discount.update_attribute(:commission,value[0])
+    end
+    redirect_to '/admins/view_all_deals'
+  end
+  def get_deal_details
+    deal_id=params[:id]
+    @flag=true
+    @discount_details=DealDiscount.find_all_by_deal_id(deal_id)
+  end
 
   def get_by_email
   end

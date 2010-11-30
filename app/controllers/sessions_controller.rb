@@ -7,7 +7,21 @@ class SessionsController < ApplicationController
   # render new.rhtml
 
  
+  def admin_create
+   logout_keeping_session!
+    @user = AdminUser.new(params[:user])
+    @user.time_created = Time.now
+    @user.login = @user.email
+    success = @user && @user.save
+    if success && @user.errors.empty?
+      redirect_back_or_default('/')
+      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+    else
+      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      render :action => 'new', :layout=> 'signup'
+    end
 
+  end
   def new
     @page = "Login"
   end
@@ -16,6 +30,8 @@ class SessionsController < ApplicationController
     logout_keeping_session!
     if params[:login_user] == 'customer'
       customer
+    elsif params[:login_user] =='admin'
+      admin
     else
      merchant
     end
@@ -91,6 +107,27 @@ protected
       render :action => 'new'
     end
   end
+  def admin
+    customer = AdminUser.authenticate(params[:login], params[:password])
+    if customer
+      # Protects against session fixation attacks, causes request forgery
+      # protection if user resubmits an earlier form using back
+      # button. Uncomment if you understand the tradeoffs.
+      # reset_session
+      #self.current_admin = customer
+      session[:admin]=customer.id
+      new_cookie_flag = (params[:remember_me] == "1")
+      #handle_remember_cookie! new_cookie_flag
+      redirect_to '/admins'
+      flash[:notice] = "Logged in successfully"
+    else
+      note_failed_signin
+      @login       = params[:login]
+      @remember_me = params[:remember_me]
+      render :action => 'new'
+    end
+  end
+
 
   def merchant
       merchant = Merchant.authenticate(params[:login], params[:password])

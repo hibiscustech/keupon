@@ -16,6 +16,14 @@ class MerchantMailer < ActionMailer::Base
     @body[:merchant_company] = company
     content_type "text/html"
   end
+  def confirm_deal(merchant_profile,merchant,deal)
+    merchant_email(merchant_profile)
+    @subject     = "Confirm Deal"
+    @body[:merchant_profile]  = merchant_profile
+    @body[:merchant] = merchant
+    content_type "text/html"
+
+  end
 
   protected
   def  merchant_email(merchant_profile)

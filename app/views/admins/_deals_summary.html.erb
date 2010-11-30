@@ -1,3 +1,5 @@
+    <%= stylesheet_link_tag 'style' %>
+
 <table align=left  style="font-size: 14px; border-collapse: collapse; width:1000px; text-align: center; margin-left: -10px;" CELLPADDING="4" CELLSPACING="0">
     <tr>
       <th></th>
@@ -6,9 +8,10 @@
       <th style="border-collapse:collapse;" width="100px">Price</th>
       <th style="border-collapse:collapse;" width="100px">Discount</th>
       <th style="border-collapse:collapse;" width="100px">No. of Customers</th>
-      <th style="border-collapse:collapse;" width="150px">Start Date</th
+      <th style="border-collapse:collapse;" width="150px">Start Date</th>
       <th style="border-collapse:collapse;" width="150px">Close Date</th>
       <th style="border-collapse:collapse;" width="150px">Actions</th>
+      <th style="border-collapse:collapse;" width="150px"></th>
     </tr>
     <tr>
         <td style="color:#000000;height: 0px;max-height: 50px;" colspan="9"><hr/></td>
@@ -33,10 +36,22 @@
           <a href="/admins/open_the_deal/<%=deal.id%>">Open</a>&nbsp;
           <a href="/customers/tip_the_deal/<%=deal.id%>">Tip</a>&nbsp;
           <a href="/admins/deal_preferred/<%=deal.id%>">Preferred</a>
+          <a href="/admins/confirm_the_deal/<%=deal.id%>">Confirm the deal</a>
         </td>
+        <td style="background-color: #C0C0C0;color:#000000;"><a href='#' onclick="showElt('popup_create_deal_<%=deal.id%>');">Set Commission</a></td>
       </tr>
       <tr>
+       <td><div id='<%=deal.id%>'><div id="popup_create_deal_<%=deal.id%>" style=' width:100%;
+                height:           500%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                padding:          200px 0 0 138px;'><%=render :partial=>'/deals/deal_dis_details',:locals => { :deal_id => deal.id }%></div></div></td>
         <td style="color:#000000;height: 0px;max-height: 50px;" colspan="9"><hr/></td>
       </tr>
     <%end%>
   </table>
+
