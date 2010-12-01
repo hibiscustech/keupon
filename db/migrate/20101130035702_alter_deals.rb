@@ -5,7 +5,7 @@ class AlterDeals < ActiveRecord::Migration
   end
 
   def self.down
-#   remove_column :deals,:confirm
-#   remove_column :deals,:activated
+   remove_column :deals,:confirm
+   remove_column :deals,:activated
   end
 end
