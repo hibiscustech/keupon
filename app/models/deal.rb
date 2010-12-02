@@ -24,7 +24,7 @@ class Deal < ActiveRecord::Base
   DISCOUNTS = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95"]
 
   def self.all_hot_deals
-    query = %Q{ select d.id, d.name, count(cd.id) as no_of_customers, d.discount, d.value as actual_value, d.save_amount
+    query = %Q{ select d.id, d.name, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.discount, d.value as actual_value, d.save_amount
                 from deals d
                 join deal_schedules ds on ds.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
@@ -38,7 +38,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.all_hot_and_open_deals
-    query = %Q{ select d.id, d.name, d.status, d.value as actual_value, ds.end_time, count(cd.id) as no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount
+    query = %Q{ select d.id, d.name, d.status, d.value as actual_value, ds.end_time, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount
                 from deals d
                 join deal_schedules ds on ds.deal_id = d.id
                 join deal_location_details dld on dld.deal_id = d.id
@@ -53,7 +53,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.all_deals
-    query = %Q{ select d.id, d.name, d.status, d.value as actual_value,ds.start_time, ds.end_time, count(cd.id) as no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount, d.preferred, d.admin_preferred
+    query = %Q{ select d.id, d.name, d.status, d.value as actual_value,ds.start_time, ds.end_time, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount, d.preferred, d.admin_preferred
                 from deals d
                 join deal_schedules ds on ds.deal_id = d.id
                 join deal_location_details dld on dld.deal_id = d.id
@@ -67,7 +67,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.all_open_deals
-    query = %Q{ select d.id, d.name, d.value as actual_value, ds.end_time, count(cd.id) as no_of_customers, d.discount, d.value as actual_value, d.save_amount
+    query = %Q{ select d.id, d.name, d.value as actual_value, ds.end_time, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.discount, d.value as actual_value, d.save_amount
                 from deals d
                 join deal_schedules ds on ds.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
@@ -111,7 +111,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.merchants_deals(merchant_id)
-    query = %Q{ select d.id, d.discount, d.value as actual_value, d.save_amount, d.name, d.buy, d.status, ds.start_time, ds.end_time, d.expiry_date, count(cd.id) as no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode
+    query = %Q{ select d.id, d.discount, d.value as actual_value, d.save_amount, d.name, d.buy, d.status, ds.start_time, ds.end_time, d.expiry_date, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode
                 from merchants m
                 join deals d on d.merchant_id = m.id
                 join deal_types dt on dt.id = d.deal_type_id
@@ -128,7 +128,7 @@ class Deal < ActiveRecord::Base
   end
   
   def self.keupoint_deals(merchant_id)
-    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, count(cd.id) as no_of_customers, d.keupoints_required
+    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.keupoints_required
                 from merchants m
                 join deals d on d.merchant_id = m.id
                 left outer join customer_deals cd on cd.deal_id = d.id
@@ -139,7 +139,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.gift_deals(merchant_id)
-    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, count(cd.deal_id) as no_of_customers
+    query = %Q{ select d.id, d.name, d.buy, d.value, d.discount, d.status, d.expiry_date, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers
                 from merchants m
                 join deals d on d.merchant_id = m.id
                 left outer join customer_deals cd on cd.deal_id = d.id
