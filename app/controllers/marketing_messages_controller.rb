@@ -1,4 +1,5 @@
 class MarketingMessagesController < ApplicationController
+  before_filter :admin_login_required
   # GET /marketing_messages
   # GET /marketing_messages.xml
   include AuthenticatedSystem
