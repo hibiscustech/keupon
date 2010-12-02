@@ -89,6 +89,10 @@ class CustomersController < ApplicationController
     @deal = Deal.find(params[:id])
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
+    @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
     @page = "Deal Details"
     render :layout => 'application_home'
   end

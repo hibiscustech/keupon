@@ -1030,4 +1030,231 @@ font-size: 16px;
 
 }
 
+.deals_header{
 
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:30px;
+        text-align: left;
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.deals_header1{
+
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:20px;
+
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.deals_header2{
+
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:18px;
+	padding-left:5px;
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.deals_content{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#000000;
+	text-decoration:none;
+
+}
+.deals_content_right{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#000000;
+	text-decoration:none;
+	padding:8px 8px 8px 8px;
+
+}
+.deals_content_red{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+
+	color:#FF0000;
+	text-decoration:none;
+
+}
+.deals_content_blue_link{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#000099;
+	text-decoration:underline;
+
+}
+.deals_content_blue_link:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#000099;
+	text-decoration:none;
+
+}
+.time_text_red{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#ff4b4c;
+	text-decoration:none;
+
+}
+.time_text_white{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#ffffff;
+	text-decoration:none;
+
+}
+.price_text_red{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+
+	color:#FF0000;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+.price_text_black{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+
+	color:#000000;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+
+
+
+
+.percent{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+
+	color:#ffffff;
+	text-decoration:none;
+
+}
+.percent10{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:17px;
+
+}
+.percent20{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:35px;
+
+}
+.percent30{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:26px;
+
+}
+.percent40{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:30px;
+
+}
+.percent50{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:30px;
+
+}
+.percent60{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:25px;
+
+}
+.percent70{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FF0000;
+	text-decoration:none;
+	padding-left:30px;
+
+}
+.customer{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+
+	color:#ffffff;
+	text-decoration:none;
+
+}
+.customer0{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+
+	color:#ffffff;
+	text-decoration:none;
+
+}
+.customer10{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:38px;
+
+}
+.customer20{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:38px;
+
+}
+.customer30{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:40px;
+
+}
+.customer40{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:38px;
+
+}
+.customer50{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:38px;
+
+}
+.customer60{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-left:38px;
+
+}
