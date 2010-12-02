@@ -43,17 +43,7 @@ class AdminUser < ActiveRecord::Base
     activation_code.nil?
   end
 
-  def self.all_customers
-    Customer.find(:all)
-  end
 
-  def self.verify_customer(customer_pin)
-    query = %Q{ select c.id
-                from customers c
-                join customer_profiles cp on cp.customer_id = c.id
-                where cp.customer_pin = '#{customer_pin}' }
-    find_by_sql(query)[0]
-  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
@@ -63,7 +53,7 @@ class AdminUser < ActiveRecord::Base
   #
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
-    u = find :first, :conditions => ['login = ? and activated_at IS NOT NULL', login] # need to get the salt
+    u = find :first, :conditions => ['login = ?', login] # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
 
