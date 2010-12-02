@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required, :only => [:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons,:change_password]
+  before_filter :login_required, :only => [:invite_friends,:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons,:change_password]
   before_filter :my_keupons_stats, :except => [:new, :create]
   session :session_key => '_PayPalSDK_session_id'
   filter_parameter_logging :password, :only => [:save_transaction_details, :tip_the_deal, :save_demand_deal_transaction_details]
