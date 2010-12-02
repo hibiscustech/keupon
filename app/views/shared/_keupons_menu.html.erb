@@ -1,5 +1,5 @@
 
-<%if params[:action] != 'deal_details'%>
+<%if params[:action] != 'deal_details' && params[:action] != 'invite_friends'%>
 <div id="todayHOT">
 <div class="todHotdeal"><%=@page%></div>
 <% if !@my_keupons_stats.blank? %>

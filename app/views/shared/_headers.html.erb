@@ -88,13 +88,14 @@
   <%if !logged_in?%>
     <div id="head1">
       <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
-      <table width="600" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;" >
+      <table width="700" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;" >
         <tr>
           <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" style="position:absolute;" /></a></td>
           <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" style="position:absolute;"/></a></td>
           
           <td width="144"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" style="position:absolute;"/></a></td>
-        <td width="141"><a href="/invite_friends"><img src="/images/earn_money_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
+        <td width="141"><a href="/invite_friends"><img src="/images/earn_money_tab.jpg"  border="0" style="position:absolute;"/></a></td>
+        <td width="141"><a href="/invite_friends"><img src="/images/subscribe_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
 
     </div>
 
@@ -140,39 +141,33 @@
 
     </div>
   <%else%>
-    <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span><br/>
-    </div>
-
+    <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span>    </div>
+    <table style="float:right;margin-top:20px;margin-right:70px;font-size:18px;"><tr><td><%=link_to 'Logout','/logout',{:style=>'text-decoration: none;'}%></td></tr></table>
     <table width="700" border="0" cellspacing="0" cellpadding="0">
+
       <tr>
         <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
         <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
-        <td width="159"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
-        <td width="176"><div id="navw" >
-            <ul>
-              <li class="menu2w" onMouseOver="this.className='menu1w'" onMouseOut="this.className='menu2w'">Go To
-                <div class="listw">
-                  <a href="/my_profile" class="dropdownw">My Profile</a><br />
-                  <a href="/my_keupons" class="dropdownw">My Keupons</a><br />
-                  <a href="/logout" class="dropdownw">Logout</a><br />
+        <td width="149"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
+        <td width="176"><a href="/invite_friends"><img src="/images/earn_money_tab.jpg"  border="0" />  </td>       
+      <%if logged_in?%> <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p><%end%>
 
-                </div>
-              </li>
-            </ul>
-          </div>
-        </td>
-      <%if !logged_in?%> <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p><%end%>
-      <td width="99"><%if current_customer.customer_photo_file_name.nil?%>
+  
+      <td width="99">
+ <%if current_customer.customer_photo_file_name.nil?%>
           <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
         <%else%>
           <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
         <%end%></td>
+    
       </tr>
     </table>
-
+     
+  <br/><div style="float: right;">
+    <a href="/my_keupons" ><img src="/images/mykeupon.jpg"   border="0"/></a>&nbsp;&nbsp;<a href="/my_profile" ><img src="/images/my_profile_btn.jpg" border="0"   /></a></div><br/>
   <%end%>
 </div>
-<br/>
+<br/><br/>
 
 <script>
   function find_link(){
