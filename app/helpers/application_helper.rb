@@ -7,6 +7,10 @@ module ApplicationHelper
   def deal_current_discount(deal_id, no_of_customers)
     return DealDiscount.deal_current_discount(deal_id, no_of_customers)
   end
+
+  def current_deal_discount_for_deal(deal_id)
+    return DealDiscount.current_deal_discount_for_deal(deal_id)
+  end
   
   def state_select_for(model)
     states = %w(AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME
