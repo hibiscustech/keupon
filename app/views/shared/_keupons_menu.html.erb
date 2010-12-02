@@ -1,4 +1,4 @@
-
+<%if params[:action] != 'deal_details'%>
 <div id="todayHOT">
 <div class="todHotdeal"><%=@page%></div>
 <% if !@my_keupons_stats.blank? %>
@@ -16,3 +16,4 @@
     </div>
 <% end %>
 </div>
+<%end%>
