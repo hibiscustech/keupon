@@ -43,13 +43,37 @@ class CustomersController < ApplicationController
   def index
     
   end
-
+  def invite_friends
+   if request.post?
+   email=params[:email]
+   @customer_friend=CustomerFriends.create(:friend_email=>email,:customer_id=>current_customer.id)
+   flash[:notice]='Invite has been sent to email id specified'
+   #emailing with URL which will populate email id on email field os the signup page
+   CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
+   redirect_to '/'
+   end
+  end
+  
   def deal_of_the_day
     @page = "Hot Deals"
     @hot_deals = Deal.all_hot_deals
-    @open_deals = Deal.all_open_deals
+    @open_deals = Deal.all_open_deals.paginate(:page => params[:page], :per_page => 3)
     @recent_deals = Deal.all_recent_deals
-    render :layout => 'application_home'
+    if request.xml_http_request?
+    p params
+    respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+
+             page.replace_html 'featured_slider',:partial => "open_deals"
+           
+          end
+        }
+      end
+    else
+     render :layout => 'application_home'
+    end
   end
 
   def open_deals
@@ -357,6 +381,10 @@ class CustomersController < ApplicationController
   def new
     @page = 'Registration'
     @customer = Customer.new
+    if params[:id]
+     email=CustomerFriends.find(params[:id]).friend_email
+     @customer.email=email
+    end
     render :layout => 'signup'
   end
 
