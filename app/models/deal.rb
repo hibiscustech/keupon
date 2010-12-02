@@ -187,8 +187,7 @@ class Deal < ActiveRecord::Base
     return {"available" => available, "used" => used, "expired" => expired, "keupoints" => nil, "all" => (available.to_i+used.to_i+expired.to_i)}
   end
 
-  private
-  def convert_into_hash(resultset)
+  def self.convert_into_hash(resultset)
     result = Hash.new
     for res in resultset
       result[res.id.to_s] = res
@@ -196,7 +195,7 @@ class Deal < ActiveRecord::Base
     return result
   end
 
-  def deals_and_current_discounts(resultset)
+  def self.deals_and_current_discounts(resultset)
     result = Hash.new
     for res in resultset
       discount = DealDiscount.deal_current_discount(res.id, res.no_of_customers)
