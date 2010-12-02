@@ -187,7 +187,6 @@ class Deal < ActiveRecord::Base
     return {"available" => available, "used" => used, "expired" => expired, "keupoints" => nil, "all" => (available.to_i+used.to_i+expired.to_i)}
   end
 
-  private
   def convert_into_hash(resultset)
     result = Hash.new
     for res in resultset
