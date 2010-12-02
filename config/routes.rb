@@ -50,6 +50,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/merchants/contact_details/:id',:controller=>'merchant',:action=>'contact_details'  
   map.connect '/merchants/my_company',:controller=>'merchant',:action=>'my_company'  
   map.connect '/invite_friends',:controller=>'customers',:action=>'invite_friends'
+  map.connect '/add_a_friend',:controller=>'customers',:action=>'add_a_friend'
   map.resources :customers  
   map.resource :merchant
   map.resource :session
