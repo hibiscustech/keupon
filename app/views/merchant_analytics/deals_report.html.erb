@@ -1,11 +1,7 @@
-<table style="width: 1000px; margin: auto;">
+<table style="width: 1000px; margin: auto;">  
   <tr>
-    <td colspan="2" id="report_title"></td>
-  </tr>
-  <tr>
-    <td >      
-    </td>
-    <td style=" vertical-align: bottom;">
+    <td id="report_title"></td>
+    <td style=" vertical-align: bottom; height: 30px;" >
       <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "deals_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "deals_analytics_form1", :style=> "padding:0;margin:0;"})%>        
         <div id="date_search" style="display: none;">
           <table>
