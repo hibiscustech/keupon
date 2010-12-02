@@ -31,7 +31,10 @@ class Deal < ActiveRecord::Base
                 where d.status = 'open' and preferred = '1' and admin_preferred = '1'
                 group by d.id
                 order by ds.start_time }
-    find_by_sql(query)
+    resultset = find_by_sql(query)
+    resultset_hashed = convert_into_hash(resultset)
+    deal_discounts = deals_and_current_discounts(resultset)
+    return deal_discounts, resultset_hashed
   end
 
   def self.all_hot_and_open_deals
@@ -43,7 +46,10 @@ class Deal < ActiveRecord::Base
                 where d.status = 'open'
                 group by d.id
                 order by ds.start_time }
-    find_by_sql(query)
+    resultset = find_by_sql(query)
+    resultset_hashed = convert_into_hash(resultset)
+    deal_discounts = deals_and_current_discounts(resultset)
+    return deal_discounts, resultset_hashed
   end
 
   def self.all_deals
@@ -54,7 +60,10 @@ class Deal < ActiveRecord::Base
                 left outer join customer_deals cd on cd.deal_id = d.id
                 group by d.id
                 order by ds.start_time }
-    find_by_sql(query)
+    resultset = find_by_sql(query)
+    resultset_hashed = convert_into_hash(resultset)
+    deal_discounts = deals_and_current_discounts(resultset)
+    return deal_discounts, resultset_hashed
   end
 
   def self.all_open_deals
@@ -65,7 +74,10 @@ class Deal < ActiveRecord::Base
                 where d.status = 'open' and admin_preferred != '1'
                 group by d.id
                 order by ds.start_time }
-    find_by_sql(query)
+    resultset = find_by_sql(query)
+    resultset_hashed = convert_into_hash(resultset)
+    deal_discounts = deals_and_current_discounts(resultset)
+    return deal_discounts, resultset_hashed
   end
 
   def self.all_recent_deals
@@ -109,7 +121,10 @@ class Deal < ActiveRecord::Base
                 where merchant_id = #{merchant_id}
                 group by d.id
                 order by ds.start_time }
-    find_by_sql(query)
+    resultset = find_by_sql(query)
+    resultset_hashed = convert_into_hash(resultset)
+    deal_discounts = deals_and_current_discounts(resultset)
+    return deal_discounts, resultset_hashed
   end
   
   def self.keupoint_deals(merchant_id)
@@ -170,5 +185,23 @@ class Deal < ActiveRecord::Base
     expired = find_by_sql(query3)[0].expired
 
     return {"available" => available, "used" => used, "expired" => expired, "keupoints" => nil, "all" => (available.to_i+used.to_i+expired.to_i)}
+  end
+
+  private
+  def convert_into_hash(resultset)
+    result = Hash.new
+    for res in resultset
+      result[res.id.to_s] = res
+    end
+    return result
+  end
+
+  def deals_and_current_discounts(resultset)
+    result = Hash.new
+    for res in resultset
+      discount = DealDiscount.deal_current_discount(res.id, res.no_of_customers)
+      result[res.id.to_s] = discount.to_f
+    end
+    return result.sort{|l,r| r[1]<=>l[1]}
   end
 end

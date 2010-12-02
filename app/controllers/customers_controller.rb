@@ -58,18 +58,16 @@ class CustomersController < ApplicationController
   
   def deal_of_the_day
     @page = "Hot Deals"
-    @hot_deals = Deal.all_hot_deals
-    @open_deals = Deal.all_open_deals.paginate(:page => params[:page], :per_page => 3)
+    @hot_deal_discounts, @hot_deals = Deal.all_hot_deals
+    @open_deal_discounts, @open_deals = Deal.all_open_deals
+    @open_deal_discounts = @open_deal_discounts.paginate(:page => params[:page], :per_page => 3)
     @recent_deals = Deal.all_recent_deals
     if request.xml_http_request?
-    p params
-    respond_to do |format|
+      respond_to do |format|
         format.html
         format.js {
           render :update do |page|
-
              page.replace_html 'featured_slider',:partial => "open_deals"
-           
           end
         }
       end
@@ -80,7 +78,7 @@ class CustomersController < ApplicationController
 
   def open_deals
     @page = "Open Deals"
-    @open_deals = Deal.all_hot_and_open_deals
+    @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals
   end
 
   def change_password
