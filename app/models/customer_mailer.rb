@@ -37,6 +37,14 @@ class CustomerMailer < ActionMailer::Base
     @body[:profile] = customer.customer_profile
     content_type "text/html"
   end 
+  def send_invite(customer,email,id)
+    @recipients  = email
+    @from        = "#{Constant.get_admin_email_id}"
+    @sent_on     = Time.now
+    @body[:customer] = customer
+    @body[:id] = id
+    content_type "text/html"
+  end
   
   protected
   def setup_email(customer)

@@ -69,7 +69,7 @@
 
       </div>
 <form action='/deals/activate/<%=params[:id]%>' id='form' method='post'>
-<div><p><a href='#' onclick="document.getElementById('popup_center').style.display='block';">Agree to Terms and Conditions</a><input type="checkbox" id="tos" name='tos'></input></p></div>
+<div><p><input type="checkbox" id="tos" name='tos'/><a href='#' onclick="document.getElementById('popup_center').style.display='block';">Agree to Terms and Conditions</a></p></div>
 <p>Payment Terms: Which will be that www.keupons.com will pay the merchant 7 days after closing of the deals after deducting the commission payable; as given above.</p>
 <p>FAQs/ Contact us</p>
 <%=token_tag%>

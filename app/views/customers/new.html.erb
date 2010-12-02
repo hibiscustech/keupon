@@ -6,7 +6,7 @@
     <legend>Step 1</legend>
     <table cellspacing="4" cellpadding="4">
       <tr>
-        <td><label for="num_attendees">E-mail ID :</label></td><td><%= f.text_field :email , :size=>"25%"%></td>
+        <td><label for="num_attendees">E-mail ID :</label></td><td><%= (@customer.email.nil?)?(f.text_field :email , :size=>"25%"):(f.text_field :email , :size=>"25%",:disabled=>'disabled') %></td>
       </tr>
       <tr>
         <td><label for="name_attendee_1">Password :</label></td><td><%= f.password_field :password, :id=>"passwords", :size=>"25%"%></td>

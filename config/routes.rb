@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :marketing_messages
+
  
   map.root :controller => "customers", :action => "deal_of_the_day"
 
@@ -17,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.demand_deal_transaction_details '/demand_deal_transaction_details' , :controller => 'customers', :action =>  'demand_deal_transaction_details'
   map.register '/register', :controller => 'customers', :action => 'create'
   map.signup '/signup', :controller => 'customers', :action => 'new'
+  map.connect '/signup/:id', :controller => 'customers', :action => 'new'
   map.signup '/admin_create', :controller => 'sessions', :action => 'admin_create'
   map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.change_password '/change_password', :controller => 'customers', :action => 'change_password'
@@ -46,6 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/password_change',:controller=>'merchant',:action=>'password_change'  
   map.connect '/merchants/contact_details/:id',:controller=>'merchant',:action=>'contact_details'  
   map.connect '/merchants/my_company',:controller=>'merchant',:action=>'my_company'  
+  map.connect '/invite_friends',:controller=>'customers',:action=>'invite_friends'
   map.resources :customers  
   map.resource :merchant
   map.resource :session

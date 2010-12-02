@@ -51,6 +51,8 @@ class CustomersController < ApplicationController
    #emailing with URL which will populate email id on email field os the signup page
    CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
    redirect_to '/'
+   else
+     render :template=>'/customers/earn_money',:layout=>'application_home'
    end
   end
   
