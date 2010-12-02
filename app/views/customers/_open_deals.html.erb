@@ -108,4 +108,4 @@
     </div>
     <% end %>
   </div>
-<%=will_paginate (@open_deals, :remote => {:action=> "deal_of_the_day"},:id => 'featured_slider')%>
+<%=will_paginate @open_deals,:class=>'pagination ajax'%>
