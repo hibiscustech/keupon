@@ -1,0 +1,111 @@
+<div class="slider">
+  	<%
+                op_first = op_middle = op_last = nil
+		op_first = (@open_deals[2].blank?)? nil : @open_deals[2]
+		op_middle = (@open_deals[1].blank?)? nil : @open_deals[1]
+		op_last = (@open_deals[0].blank?)? nil : @open_deals[0]
+	%>
+    <% if !op_first.blank?
+        op1 = Deal.find(op_first.id)
+    %>
+    <div class="one_third">
+      <div class="plan_box" style="background-color:#222222;">
+        <div class="plan_info" style="background-color:#222222;">
+          <div class="content">
+            <h2>Keupons Bought: <%= op_first.no_of_customers %></h2>
+            <p><img SRC="<%= op1.deal_photo.url %>" alt="img" style="width: 128px; height: 128px;"/></p>
+          </div>
+        </div>
+        <div class="plan_details">
+          <div class="content">
+            <h3 class="price">Keupons Bought: <%= op_first.no_of_customers %></h3>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;"><%= op_first.name %></li>
+            </ul>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;">
+                <table>
+                  <tr><td align="center">Price</td><td align="center">Discount</td><td align="center">Savings</td></tr>
+                  <tr><td align="center">S$ <%= op_first.actual_value %></td><td align="center">10 %</td><td align="center">S$ 2</td></tr>
+                </table>
+              </li>
+            </ul>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_first.end_time.to_i).strftime("%d/%m/%Y") %></li>
+            </ul>
+            <a href="/deal_details?id=<%= op_first.id %>" style="color: orange" class="medium orange">Get this Deal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% if !op_middle.blank?
+        op2 = Deal.find(op_middle.id)
+    %>
+    <div class="one_third">
+      <div class="plan_box" style="background-color:#222222;">
+        <div class="plan_info" style="background-color:#222222;">
+          <div class="content">
+            <h2>Keupons Bought: <%= op_middle.no_of_customers %></h2>
+            <p><img SRC="<%= op2.deal_photo.url %>" alt="img"  style="width: 128px; height: 128px;"/></p>
+          </div>
+        </div>
+        <div class="plan_details">
+          <div class="content">
+            <h3 class="price">Keupons Bought: <%= op_middle.no_of_customers %></h3>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;"><%= op_middle.name %></li>
+            </ul>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;">
+                <table>
+                  <tr><td align="center">Price</td><td align="center">Discount</td><td align="center">Savings</td></tr>
+                  <tr><td align="center">S$ <%= op_middle.actual_value %></td><td align="center">10 %</td><td align="center">S$ 2</td></tr>
+                </table>
+              </li>
+            </ul>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_middle.end_time.to_i).strftime("%d/%m/%Y") %></li>
+            </ul>
+            <a href="/deal_details?id=<%= op_middle.id %>" style="color: orange" class="medium orange">Get this Deal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% if !op_last.blank?
+        op3 = Deal.find(op_last.id)
+    %>
+    <div class="plan_box last">
+      <div class="plan_box" style="background-color:#222222;">
+        <div class="plan_info" style="background-color:#222222;">
+          <div class="content">
+            <h2>Keupons Bought: <%= op_last.no_of_customers %></h2>
+            <p><img SRC="<%= op3.deal_photo.url %>" alt="img"  style="width: 128px; height: 128px;"/></p>
+          </div>
+        </div>
+        <div class="plan_details">
+          <div class="content">
+            <h3 class="price">Keupons Bought: <%= op_last.no_of_customers %></h3>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;"><%= op_last.name %></li>
+            </ul>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;">
+                <table>
+                  <tr><td align="center">Price</td><td align="center">Discount</td><td align="center">Savings</td></tr>
+                  <tr><td align="center">S$ <%= op_last.actual_value %></td><td align="center">10 %</td><td align="center">S$ 2</td></tr>
+                </table>
+              </li>
+            </ul>
+            <ul class="boxlist">
+              <li style="padding: 5px; width: 250px;">Keupon Closes on <%= Time.at(op_last.end_time.to_i).strftime("%d/%m/%Y") %></li>
+            </ul>
+            <a href="/deal_details?id=<%=op_last.id %>" style="color: orange" class="medium orange">Get this Deal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<%=will_paginate (@open_deals, :remote => {:action=> "deal_of_the_day"},:id => 'featured_slider')%>
