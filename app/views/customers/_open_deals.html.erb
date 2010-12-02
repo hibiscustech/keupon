@@ -9,7 +9,7 @@
         op1 = Deal.find(op_first.id)
     %>
     <div class="one_third">
-      <div class="plan_box" style="background-color:#222222;">
+      <div class="plan_box" style="background-color:#222222;max-width: 350px;">
         <div class="plan_info" style="background-color:#222222;">
           <div class="content">
             <h2>Keupons Bought: <%= op_first.no_of_customers %></h2>
@@ -43,7 +43,7 @@
         op2 = Deal.find(op_middle.id)
     %>
     <div class="one_third">
-      <div class="plan_box" style="background-color:#222222;">
+      <div class="plan_box" style="background-color:#222222;max-width: 350px;">
         <div class="plan_info" style="background-color:#222222;">
           <div class="content">
             <h2>Keupons Bought: <%= op_middle.no_of_customers %></h2>
@@ -77,7 +77,7 @@
         op3 = Deal.find(op_last.id)
     %>
     <div class="plan_box last">
-      <div class="plan_box" style="background-color:#222222;">
+      <div class="plan_box" style="background-color:#222222;max-width: 350px;">
         <div class="plan_info" style="background-color:#222222;">
           <div class="content">
             <h2>Keupons Bought: <%= op_last.no_of_customers %></h2>
