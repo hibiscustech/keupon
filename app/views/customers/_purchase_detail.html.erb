@@ -11,25 +11,27 @@
   <% end %>
   <tr>
     <th>Description</th>
+    <th width="50px"></th>
     <th>Quantity</th>
     <th></th>
-    <th>Price</th>
-    <th></th>
-    <th>Total</th>
+    <th style="background-color: #890f0e; color: #ffffff">Price</th>
+    <th style="background-color: #890f0e; color: #ffffff"></th>
+    <th style="background-color: #890f0e; color: #ffffff">Total</th>
   </tr>
   <tr>
     <td><%= @deal.name %></td>
-    <td align="center">
-      <input type="text" size="4" name="quantity" id="quantity" value="1" />
+    <td></td>
+    <td align="center" style="background-color: #c54544; color: #ffffff">
+      <input type="text" size="4" name="quantity" id="quantity" value="1" style="border: 1px solid black"/>
       <script type="text/javascript">
       //<![CDATA[
       new Form.Element.EventObserver('quantity', function(element, value) {new Ajax.Request('/customers/check_transaction_quantity', {asynchronous:true, evalScripts:true, parameters:'quantity=' + encodeURIComponent(value) + '&id=<%=@deal.id%>&authenticity_token=' + encodeURIComponent('BlUBplpSWg/1vcqOEoaaN9Epl9UKXe4Vc/qgC5r7Pus=')})})
       //]]>
       </script>
     </td>
-    <td align="center">x</td>
-    <td align="center">$<%= @deal.buy %></td>
-    <td align="center">=</td>
-    <td align="center" id="total">$<%= @deal.buy %></td>
+    <td align="center" style="background-color: #c54544; color: #ffffff">x</td>
+    <td align="center" style="background-color: #c54544; color: #ffffff">$<%= @deal.buy %></td>
+    <td align="center" style="background-color: #c54544; color: #ffffff">=</td>
+    <td align="center" id="total" style="background-color: #c54544; color: #ffffff">$<%= @deal.buy %></td>
   </tr>
 </table>
