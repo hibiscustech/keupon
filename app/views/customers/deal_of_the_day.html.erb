@@ -2,7 +2,9 @@
   <div id="slider" class="png">
     <div id="slideh">
       <% i = 1
-      for hot_deal in @hot_deals
+      for htd in @hot_deal_discounts
+        discount = htd[1]
+        hot_deal = @hot_deals[htd[0]]
         htdeal = Deal.find(hot_deal.id)
       %>
       <div class="slider_item sliderh<%=i%>">
