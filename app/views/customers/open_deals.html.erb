@@ -7,7 +7,9 @@
   <h1>&nbsp;</h1>
   <p id="catpicker"></p>
   <br />
-  <%for open_deal in @open_deals
+  <%for opdd in @open_deal_discounts
+    discount = opdd[1]
+    open_deal = @open_deals[opdd[0]]
     opd = Deal.find(open_deal.id)
   %>    
 
@@ -20,7 +22,7 @@
      </div>
      <div class="discount-bar">
       <table style="text-align:center;width: 510px;"><tr><td width="8%">Deals Bought</td><td  width="1%">|</td><td  width="2%">Discount</td><td  width="1%">|</td><td  width="30%">Location</td></tr>
-      <tr><td ><%=open_deal.no_of_customers%></td><td>|</td><td><%=deal_current_discount(open_deal.id, open_deal.no_of_customers)%> %</td><td> |</td><td><%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td></tr></table>
+      <tr><td ><%=open_deal.no_of_customers%></td><td>|</td><td><%=discount%> %</td><td> |</td><td><%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td></tr></table>
      </div>
 
    </div>

@@ -121,7 +121,7 @@ class MerchantController < ApplicationController
 
   def deals_of_mine
     @page = 'My Deals'
-    @deals = Deal.merchants_deals(current_merchant.id)
+    @deal_discounts, @deals = Deal.merchants_deals(current_merchant.id)
   end
 
   def create

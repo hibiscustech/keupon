@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101101045140) do
+ActiveRecord::Schema.define(:version => 20101130060737) do
+
+  create_table "admin_users", :force => true do |t|
+    t.integer  "time_created",                                     :null => false
+    t.string   "deleted",          :limit => 0,  :default => "No", :null => false
+    t.string   "login",            :limit => 50
+    t.string   "email",            :limit => 50
+    t.string   "salt",             :limit => 50
+    t.string   "crypted_password"
+    t.string   "activation_code"
+    t.datetime "activated_at"
+  end
 
   create_table "companies", :force => true do |t|
     t.string  "name",                       :limit => 50, :null => false
@@ -26,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20101101045140) do
     t.string  "company_photo_file_name"
     t.string  "company_photo_content_type"
     t.integer "company_photo_file_size"
+    t.string  "country",                    :limit => 50
   end
 
   add_index "companies", ["merchant_profile_id"], :name => "merchant_profile_id"
@@ -179,7 +191,7 @@ ActiveRecord::Schema.define(:version => 20101101045140) do
     t.string  "contact_number",     :limit => 15,                  :null => false
     t.string  "email_address",      :limit => 50,                  :null => false
     t.integer "customer_id",                                       :null => false
-    t.integer "dob"
+    t.date    "dob"
     t.string  "country"
     t.integer "industry_sector_id"
     t.string  "region",             :limit => 25
@@ -209,6 +221,18 @@ ActiveRecord::Schema.define(:version => 20101101045140) do
   create_table "deal_categories", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
+
+  create_table "deal_discounts", :force => true do |t|
+    t.integer "deal_id",       :null => false
+    t.integer "discount",      :null => false
+    t.integer "customers",     :null => false
+    t.integer "max_customers"
+    t.float   "save_amount",   :null => false
+    t.float   "buy_value",     :null => false
+    t.float   "commission"
+  end
+
+  add_index "deal_discounts", ["deal_id"], :name => "deal_discounts_Index_2"
 
   create_table "deal_location_details", :force => true do |t|
     t.integer "deal_id",                 :null => false
@@ -243,31 +267,45 @@ ActiveRecord::Schema.define(:version => 20101101045140) do
   end
 
   create_table "deals", :force => true do |t|
-    t.string  "name",                    :limit => 50,                    :null => false
-    t.float   "buy",                                                      :null => false
-    t.float   "value",                                                    :null => false
-    t.float   "discount",                                                 :null => false
-    t.float   "save_amount",                                              :null => false
+    t.text    "name",                                                    :null => false
+    t.float   "buy"
+    t.float   "value",                                                   :null => false
+    t.float   "discount"
+    t.float   "save_amount"
+    t.integer "minimum_number"
     t.integer "number"
     t.string  "rules"
     t.string  "highlights"
-    t.string  "status",                  :limit => 0,  :default => "new", :null => false
-    t.integer "expiry_date",                                              :null => false
+    t.string  "status",                  :limit => 0, :default => "new", :null => false
+    t.integer "expiry_date",                                             :null => false
     t.integer "start_date"
-    t.integer "deal_type_id",                                             :null => false
-    t.integer "merchant_id",                                              :null => false
-    t.integer "deal_category_id",                                         :null => false
-    t.integer "deal_sub_category_id",                                     :null => false
+    t.integer "deal_type_id",                                            :null => false
+    t.integer "merchant_id",                                             :null => false
+    t.integer "deal_category_id",                                        :null => false
+    t.integer "deal_sub_category_id",                                    :null => false
     t.string  "deal_photo_file_name"
     t.string  "deal_photo_content_type"
     t.integer "deal_photo_file_size"
     t.integer "keupoints_required"
+    t.string  "preferred",               :limit => 0, :default => "0",   :null => false
+    t.string  "activated",               :limit => 0, :default => "0",   :null => false
+    t.string  "confirm",                 :limit => 0, :default => "0",   :null => false
+    t.string  "admin_preferred",         :limit => 0, :default => "0",   :null => false
   end
 
   add_index "deals", ["deal_category_id"], :name => "deal_category_id"
   add_index "deals", ["deal_sub_category_id"], :name => "deal_sub_category_id"
   add_index "deals", ["deal_type_id"], :name => "deal_type_id"
   add_index "deals", ["merchant_id"], :name => "merchant_id"
+
+  create_table "email_deals", :force => true do |t|
+    t.integer  "deal_category_id"
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "industry_sectors", :force => true do |t|
     t.string "name", :limit => 100, :null => false
@@ -290,6 +328,7 @@ ActiveRecord::Schema.define(:version => 20101101045140) do
     t.string  "status",               :limit => 0,  :default => "new", :null => false
     t.integer "deal_category_id"
     t.integer "deal_sub_category_id"
+    t.string  "merchant_pin"
   end
 
   add_index "merchant_profiles", ["deal_category_id"], :name => "deal_category_id"
