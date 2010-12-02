@@ -1,0 +1,13 @@
+<p>
+  <b>Message:</b>
+  <%=h @marketing_message.message %>
+</p>
+
+<p>
+  <b>Display:</b>
+  <%=h @marketing_message.display %>
+</p>
+
+
+<%= link_to 'Edit', edit_marketing_message_path(@marketing_message) %> |
+<%= link_to 'Back', marketing_messages_path %>

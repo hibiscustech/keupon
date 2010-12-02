@@ -1,5 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def get_marketing_message
+    p "reached"
+    messages=MarketingMessage.find(:all).collect{|mar| mar.message}
+    p messages
+    return messages[rand(messages.length)]
+  end
   def deal_details(deal_id)
     @discount_details=DealDiscount.find_all_by_deal_id(deal_id)
   end
