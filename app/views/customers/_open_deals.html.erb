@@ -3,8 +3,8 @@
                 op_first = op_middle = op_last = nil
                 op_first_discount = op_middle_discount = op_last_discount = nil
 		op_first_discount, op_first = (@open_deal_discounts[2].blank?)? nil : [@open_deal_discounts[2][1], @open_deals[@open_deal_discounts[2][0]]]
-		op_middle_discount, op_middle = (@open_deals[1].blank?)? nil : [@open_deal_discounts[1][1], @open_deals[@open_deal_discounts[1][0]]]
-		op_last_discount, op_last = (@open_deals[0].blank?)? nil : [@open_deal_discounts[0][1], @open_deals[@open_deal_discounts[0][0]]]
+		op_middle_discount, op_middle = (@open_deal_discounts[1].blank?)? nil : [@open_deal_discounts[1][1], @open_deals[@open_deal_discounts[1][0]]]
+		op_last_discount, op_last = (@open_deal_discounts[0].blank?)? nil : [@open_deal_discounts[0][1], @open_deals[@open_deal_discounts[0][0]]]
 	%>
     <% if !op_first.blank?
         op1 = Deal.find(op_first.id)
