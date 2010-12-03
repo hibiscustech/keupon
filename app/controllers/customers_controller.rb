@@ -90,6 +90,7 @@ class CustomersController < ApplicationController
     @deal = Deal.find(params[:id])
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)

@@ -192,18 +192,24 @@
       </tr>
       <tr>
         <td height="500" valign="top" style="border:1px solid #000000; background-color:#d9d9d9;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="deals_content_right">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque <br /><br />
-              <a href="#"><img src="images/view_btn.png" width="63" height="22" border="0"/></a></td>
-          </tr>
-          <tr>
-            <td align="center"><img src="images/line1.jpg" width="165" height="5" /></td>
-          </tr>
-          <tr>
+            <tr>
+                <td>&nbsp;</td>
+              </tr>
+              <%for opdd in @open_deal_discounts_recent
+                discount = opdd[1]
+                open_deal = @open_deals_recent[opdd[0]]
+                opd = Deal.find(open_deal.id)
+              %>
+                <tr>
+                  <td class="deals_content_right">
+                    <%=opd.name%>
+                    <a href="#"><img src="images/view_btn.png" width="63" height="22" border="0"/></a></td>
+                </tr>
+                <tr>
+                  <td align="center"><img src="images/line1.jpg" width="165" height="5" /></td>
+                </tr>
+              <%end%>
+         <!-- <tr>
             <td class="deals_content_right">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque <br /><br />
               <a href="#"><img src="images/view_btn.png" width="63" height="22" border="0"/></a></td>
@@ -223,7 +229,7 @@
             <td class="deals_content_right">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque <br /><br />
               <a href="#"><img src="images/view_btn.png" width="63" height="22" border="0"/></a></td>
-          </tr>
+          </tr> -->
 
 
           <tr>
