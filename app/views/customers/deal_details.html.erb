@@ -24,27 +24,58 @@
                 <td colspan="2" align="center" style="padding-top:8px; "><span class="price_text_red">Price:</span> <span class="price_text_black">$<%=@deal.value%></span></td>
               </tr>
               <tr>
-                <td width="402" height="111" background="images/discount_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <td width="402" height="111" background="images/discount_bg.jpg">
+                  <% deal_discounts = @deal.deal_discounts %>
+                  <% customer_range = Array.new %>
+                  <% st_css = ["0","10","20","30","40","50","60"] %>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td height="5" colspan="2"></td>
                     </tr>
                   <tr>
                     <td width="16%" align="center" class="percent">Discount</td>
-                    <td width="84%"><span class="percent10">10%</span><span class="percent20">20%</span> <span class="percent30">30%</span> <span class="percent40">40%</span> <span class="percent50">50%</span> <span class="percent60">60%</span></td>
+                    <td width="84%">
+                      <%
+                      flag = true
+                      i = 1
+                      for dd in deal_discounts
+                      if flag
+                        customer_range.push(dd.customers)
+                        flag = false
+                      end
+                      customer_range.push(dd.max_customers)
+                      %>
+                      <span class="percent<%=i%>"><%= dd.discount %> %</span>
+                      <%
+                        i += 1
+                      end %>
+                    </td>
                     </tr>
                   <tr>
                     <td>&nbsp;</td>
-                    <td height="27" background="images/scale_img.gif"><table width="163" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td height="8" bgcolor="#000000"></td>
-                      </tr>
-                    </table></td>
+                    <td height="27" background="images/scale_img.gif">
+                      <table width="163" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="8" bgcolor="#000000"></td>
+                        </tr>
+                      </table>
+                    </td>
                     </tr>
                   <tr>
                     <td align="center" class="customer">Customer</td>
-                    <td><span class="customer0">0</span> <span class="customer10">10</span> <span class="customer20">20</span> <span class="customer30">30</span> <span class="customer40">40</span> <span class="customer50">50</span> <span class="customer60">60</span></td>
+                    <td>
+                      <% i=0
+                        for cr in customer_range
+                      %>
+                      <span class="customer<%=st_css[i]%>"><%=cr%></span>
+                      <% i+=1
+                        end
+                      %>
+                    </td>
                     </tr>
-                </table></td>
+                </table>
+
+                </td>
                 <td width="111" height="111" background="images/current_discount_img.jpg" style="background-repeat:repeat-x;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td align="center" class="price_text_black"><%=current_deal_discount_for_deal(@deal.id)%> % </td>
