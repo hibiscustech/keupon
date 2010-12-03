@@ -16,7 +16,7 @@
     <div style="margin-left: 140px; opacity: 0.8;" class="discounted-item freeshipping">
      <a href="/deal_details?id=<%= open_deal.id %>"><img border="0" alt="img" src="<%= opd.deal_photo.url(:small) %>"></a>
      <div class="reasonbar">
-       <div style="width: 65%; color: rgb(255, 255, 255);" class="prod-title"><a style="color: rgb(255, 255, 255);" href="/customers/deal_details?id=<%=open_deal.id%>"><%=open_deal.name%></a> </div>
+       <div style="width: 65%; color: rgb(255, 255, 255);" class="prod-title"><a style="color: rgb(255, 255, 255);" href="/deal_details?id=<%=open_deal.id%>"><%=open_deal.name%></a> </div>
        <div style="width: 30%;" class="reason">Date Expiry</div>
        <div style="width: 30%;" class="reason"><%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></div>
      </div>
