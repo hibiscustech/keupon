@@ -303,6 +303,7 @@ class MerchantController < ApplicationController
 
   def view_create_demand_deal
     @bid_deal = CustomerDemandDealBidding.find(params[:id])
+    @demand_deal = @bid_deal.customer_demand_deal
     if request.xml_http_request?
       respond_to do |format|
         format.html
