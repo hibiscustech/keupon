@@ -30,6 +30,14 @@ class CustomerMailer < ActionMailer::Base
     @body[:customer] = customer
     content_type "text/html"
   end
+
+  def change_password(mail,password)
+    setup_email(mail)
+    @subject    = 'You password has been changed'
+    @body[:password] = password
+    @body[:customer] = mail
+    content_type "text/html"
+  end
   
   def activation(customer)
     setup_email(customer)
