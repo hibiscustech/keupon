@@ -9,8 +9,8 @@
       </tr>
       <tr>
         <td> </td>
-        <td style="color:#000000;">Deal Title: <span style=" color: red;">*</span></td>
-        <td><input id="name" name="name" size="25%" type="text" value="<%=@demand_deal.description %>"/></td>
+        <td style="color:#000000;">Deal Title: </td>
+        <td><%=@demand_deal.description %><input id="name" name="name" size="25%" type="hidden" value="<%=@demand_deal.description %>"/></td>
       </tr>      
       <tr>
         <td> </td>
@@ -30,8 +30,8 @@
       </tr>     
       <tr>
         <td> </td>
-        <td style="color:#000000;">Quantity: <span style=" color: red;">*</span></td>
-        <td><input id="number" name="number" size="25%" type="text" value="<%=@demand_deal.number %>"/></td>
+        <td style="color:#000000;">Quantity: </td>
+        <td><%=@demand_deal.number %><input id="number" name="number" size="25%" type="hidden" value="<%=@demand_deal.number %>"/></td>
       </tr>
       <tr>
         <td> </td>
