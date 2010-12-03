@@ -386,13 +386,15 @@ class CustomersController < ApplicationController
     @page = 'Registration'
     @customer = Customer.new
     if params[:id]
-     email=CustomerFriends.find(params[:id]).friend_email
-     @customer.email=email
+     @friend=CustomerFriends.find(params[:id])
+     @email=@friend.friend_email
+     @customer.email=@email
     end
     render :layout => 'signup'
   end
 
   def create
+    p params
     logout_keeping_session!
     @customer = Customer.new(params[:customer])
     @customer.kupoints = 0
@@ -400,6 +402,10 @@ class CustomersController < ApplicationController
     @customer.login = @customer.email
     success = @customer && @customer.save
     if success && @customer.errors.empty?
+      if !params[:friend_id].nil?
+       @friend=CustomerFriends.find(params[:friend_id])
+       @friend.update_attribute(:signed_up,1)
+      end
       @profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
       @profile.customer = @customer
