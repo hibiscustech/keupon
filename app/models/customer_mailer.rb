@@ -47,6 +47,7 @@ class CustomerMailer < ActionMailer::Base
   end 
   def send_invite(customer,email,id)
     @recipients  = email
+    @subject    = 'I think you should get your Keupon!'
     @from        = "#{Constant.get_admin_email_id}"
     @sent_on     = Time.now
     @body[:customer] = customer
