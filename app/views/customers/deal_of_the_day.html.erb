@@ -42,7 +42,7 @@
                       opd = Deal.find(open_deal.id)
                     %>
                       <li>
-                        <a href="http://www.google.co.in/" ><img src="<%=opd.deal_photo.url%>" width="240" height="160" alt="Project Title 1" /></a></li>
+                        <a href="/deal_details?id=<%= open_deal.id %>" ><img src="<%=opd.deal_photo.url%>" width="240" height="160" alt="Project Title 1" /></a></li>
                     <%end%>
                   </ul>
                 </div>
