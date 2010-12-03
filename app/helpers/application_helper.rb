@@ -1,11 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def get_marketing_message
-    p "reached"
     messages=MarketingMessage.find(:all).collect{|mar| mar.message}
-    p messages
     return messages[rand(messages.length)]
   end
+
   def deal_details(deal_id)
     @discount_details=DealDiscount.find_all_by_deal_id(deal_id)
   end
@@ -16,6 +15,21 @@ module ApplicationHelper
 
   def current_deal_discount_for_deal(deal_id)
     return DealDiscount.current_deal_discount_for_deal(deal_id)
+  end
+
+  def sort_table_header(text, param, action, page)
+    key = param
+    key += "_reverse" if params[:sort] == param
+    options = {
+        :url => {:action => action, :params => params.merge({:sort => key, :page => page})},
+        :before => "Element.show('spinner')",
+        :success => "Element.hide('spinner')"
+    }
+    html_options = {
+      :title => "Sort by #{text}",
+      :href => url_for(:action => action, :params => params.merge({:sort => key, :page => page}))
+    }
+    link_to_remote(text, options, html_options)
   end
   
   def state_select_for(model)

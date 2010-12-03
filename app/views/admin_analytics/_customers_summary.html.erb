@@ -1,0 +1,50 @@
+<table  style="font-size: 12px; border-collapse: collapse; width: 100%;" CELLPADDING="4" CELLSPACING="0">
+  <thead>
+    <tr>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Sign-Up</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">NRIC/</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Phone</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Avg.M</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of Times</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Total</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of Friends</th>
+    </tr>
+    <tr>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Date", "time_created", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Name", "name", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("FIN", "customer_pin", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Age", "dob", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Number", "phone", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Email", "email", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Salary(S$)", "income", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Location", "location", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Bought", "total_bought", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Spending(S$)", "spendings", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Keupoints", "kupoints", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Introduced", "introduced", "customers_report", params[:page]) %></th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr>
+        <td>Sign-up Date</td>
+        <td>Name</td>
+        <td align="center">NRIC</td>
+        <td align="center">Age</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td align="center">Salary</td>
+        <td>Location</td>
+        <td align="center">Bought</td>
+        <td>Category</td>
+        <td align="center">Spending</td>
+        <td align="center">Keupoints</td>
+        <td align="center">Introduced</td>
+      </tr>
+      
+    </tbody>
+  </table>

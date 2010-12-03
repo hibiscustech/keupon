@@ -89,6 +89,25 @@ class Customer < ActiveRecord::Base
     write_attribute :email, (value ? value.downcase : nil)
   end
 
+  def self.customers_summary(sort)
+    query = %Q{ select c.id, c.time_created, concat(cp.first_name,' ',cp.last_name) as name, cp.customer_pin, cp.dob, cp.contact_number as phone, c.email, cp.income, concat(cp.address1,' ',cp.address2, ' ', cp.country,' - ',cp.zipcode) as location, c.kupoints, sum(case when cd.quantity is null then 0 else cd.quantity end) total_bought, sum(case when cf.signed_up = '1' then 1 else 0 end) introduced, sum(case when cdt.transaction_type = 'Postauth' then cdt.amount else 0 end) spendings
+                from customers c
+                join customer_profiles cp on c.id = cp.customer_id
+                left outer join customer_deals cd on cd.customer_id = c.id
+                left outer join customer_friends cf on cf.customer_id = c.id
+                left outer join customer_deal_transactions cdt on cdt.customer_deal_id = cd.id
+                group by c.id order by #{sort}}
+    find_by_sql(query)
+  end
+
+  def self.birthdate_to_age(bDate) 
+    age = Date.today.year - bDate.year
+    if Date.today.month < bDate.month || (Date.today.month == bDate.month && bDate.day >= Date.today.day)
+      age = age - 1
+    end
+    age.to_s
+  end
+
   protected
     
     def make_activation_code
