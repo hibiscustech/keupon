@@ -7,10 +7,14 @@ class DealsController < ApplicationController
   before_filter :login_required , :only => [:index]
   def activate_the_deal
     id=params[:id]
+    @page = "Deal activation & Preview "
     @deal=Deal.find(params[:id])
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
-    @page = "Deal Activation"
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
+    @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
     render :layout => 'activation'
   end
   def activate

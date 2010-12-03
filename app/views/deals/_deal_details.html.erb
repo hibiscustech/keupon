@@ -1,0 +1,219 @@
+<%if !@deal.nil?%>
+<br/>
+
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr>
+    <td width="16">&nbsp;</td>
+    <td width="773" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="98%" height="48" align="center" background="/images/todayBG.jpg" class="deals_header"><%=@page%></td>
+        </tr>
+      <tr>
+        <td class="deals_content"><p><br/><%=@deal.name%> </p></td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #000000;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="33%" align="left"><img src="/images/mobile_img.jpg" width="258" height="291" /></td>
+            <td width="67%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td colspan="2" align="center" style="padding-top:8px; "><span class="price_text_red">Price:</span> <span class="price_text_black">$<%=@deal.value%></span></td>
+              </tr>
+              <tr>
+                <td width="402" height="111" background="/images/discount_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="5" colspan="2"></td>
+                    </tr>
+                  <tr>
+                    <td width="16%" align="center" class="percent">Discount</td>
+                    <td width="84%"><span class="percent10">10%</span><span class="percent20">20%</span> <span class="percent30">30%</span> <span class="percent40">40%</span> <span class="percent50">50%</span> <span class="percent60">60%</span></td>
+                    </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td height="27" background="/images/scale_img.gif"><table width="163" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td height="8" bgcolor="#000000"></td>
+                      </tr>
+                    </table></td>
+                    </tr>
+                  <tr>
+                    <td align="center" class="customer">Customer</td>
+                    <td><span class="customer0">0</span> <span class="customer10">10</span> <span class="customer20">20</span> <span class="customer30">30</span> <span class="customer40">40</span> <span class="customer50">50</span> <span class="customer60">60</span></td>
+                    </tr>
+                </table></td>
+                <td width="111" height="111" background="/images/current_discount_img.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="center" class="price_text_black"><%=current_deal_discount_for_deal(@deal.id)%> % </td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center"><table width="254" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="14" align="left" bgcolor="#fe0002"><img src="/images/time_left_curve.jpg" width="7" height="27" /></td>
+                    <td width="224" align="center" bgcolor="#fe0002" class="deals_header1">Time Left</td>
+                    <td width="16" align="right" bgcolor="#fe0002"><img src="/images/time_right_curve.jpg" width="7" height="27" /></td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#2e2e2e">&nbsp;</td>
+                    <td height="54" bgcolor="#2e2e2e"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="18%" height="49" align="center" class="time1"><span class="time_text_red">Days</span> <br />
+                          <span class="time_text_white">02</span></td>
+                        <td width="19%" align="center" class="time"><span class="time_text_red">Hours</span><br />
+                          <span class="time_text_white">01</span></td>
+                        <td width="18%" align="center" class="time1"><span class="time_text_red">Min</span><br />
+                          <span class="time_text_white">07</span></td>
+                        <td width="18%" align="center" class="time"><span class="time_text_red">Sec</span><br />
+                          <span class="time_text_white">45</span></td>
+                      </tr>
+                    </table></td>
+                    <td bgcolor="#2e2e2e">&nbsp;</td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td height="15" colspan="2"></td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center"><a href="#">
+                    <%=link_to image_tag('buynow_btn.jpg',:border=>'0',:width=>"184", :height=>"42"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%>
+                    </a></td>
+              </tr>
+              <tr>
+                <td height="13" colspan="2"></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">The fine prints</td>
+            <td width="2%">&nbsp;</td>
+            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">Highlights</td>
+          </tr>
+          <tr>
+            <td bgcolor="#d9d9d9" class="deals_content" style="padding:6px 6px 6px 6px;"><%=@deal.rules%> </td>
+            <td>&nbsp;</td>
+            <td bgcolor="#d9d9d9" class="deals_content" style="padding:6px 6px 6px 6px;"><%=@deal.highlights%> </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">The Company</td>
+            <td>&nbsp;</td>
+            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">Deal Location</td>
+          </tr>
+          <tr>
+            <td valign="top" bgcolor="#d9d9d9"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="35%" style="padding:6px;">
+                  <%if @company.company_photo.nil?%>
+                  <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 116px; height: 73px;"/></a>
+                   <%else%>
+                  <img src="images/apple_img.jpg" width="116" height="73" /><br/>
+                  <%end%>
+                  <br/>
+                    <span class="deals_content_red"><%=@deal.merchant.merchant_profile.company.name%><br/>
+                    <%=@company.address1 %> <%=@company.address2 %><br/>
+                    <%=@company.city %><br/>
+                    </span></td>
+                <td width="4%">&nbsp;</td>
+                <td width="65%" valign="top" class="deals_content" style="padding:6px 6px 6px 6px;"><%= @company.detail %></td>
+              </tr>
+            </table></td>
+            <td>&nbsp;</td>
+            <td align="center" bgcolor="#d9d9d9" style="padding:6px 6px 6px 6px;">
+              <%= GMap.header %>
+<%= @map.to_html %>
+<div id="user1" style="height: 166px;  width: 352px;">
+<div align="center">
+  <%= @map.div(:width => 352, :height => 166, :style => "border-style: solid;") %>
+</div>
+</div>
+              </td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td width="12" valign="top">&nbsp;</td>
+    <td width="187" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td >&nbsp;</td>
+      </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td width="12">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+</table>
+<%else%>
+<img src="/images/deal_closed.jpg" border="0px" />
+<%end%>
+
+        
+
+<script language="JavaScript">
+  <% if !@deal.nil? %>
+  StartCountDown("deal_time_left","<%= Time.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
+  <% end %>
+
+  /*
+  	Author:		Robert Hashemian (http://www.hashemian.com/)
+  	Modified by:	Munsifali Rashid (http://www.munit.co.uk/)
+  	Modified by:	Tilesh Khatri
+  */
+
+  function StartCountDown(myDiv,myTargetDate)
+  {
+    var dthen	= new Date(myTargetDate);
+    var dnow	= new Date();
+    ddiff		= new Date(dthen-dnow);
+    gsecs		= Math.floor(ddiff.valueOf()/1000);
+    CountBack(myDiv,gsecs);
+  }
+
+  function Calcage(secs, num1, num2)
+  {
+    s = ((Math.floor(secs/num1))%num2).toString();
+    if (s.length < 2)
+    {
+      s = "0" + s;
+    }
+    return (s);
+  }
+
+  function CountBack(myDiv, secs)
+  {
+    var DisplayStr;
+    var DisplayFormat = "%%D%%&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fff'>%%M%%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
+    DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
+    DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
+    DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
+    DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
+    if(secs > 0)
+    {
+      document.getElementById(myDiv).innerHTML = DisplayStr;
+      setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
+    }
+    else
+    {
+      document.getElementById(myDiv).innerHTML = "Deal Closed";
+    }
+  }
+
+</script>
