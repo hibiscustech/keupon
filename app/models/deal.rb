@@ -208,7 +208,7 @@ class Deal < ActiveRecord::Base
         discount = deal_discount_details.discount.to_f
         commission = deal_discount_details.commission.to_f
         sales = res.actual_price.to_f*res.purchased.to_f
-        net_sales = sales*(1.0-discount)*(1.0-commission)
+        net_sales = sales*(1.0-(discount.to_f/100.to_f))*(1.0-(commission.to_f/100.to_f))
       end
       result[res.id.to_s] = {"expiry_date" => res.expiry_date.to_i, "posting_date" => res.posting_date.to_i, "closing_date" => res.closing_date.to_i,
                               "merchant_name" => res.merchant_name, "title" => res.title, "actual_price" => res.actual_price.to_f, "purchased" => res.purchased.to_i,

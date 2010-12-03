@@ -35,13 +35,11 @@
 		<div class="slider-frame">
                 <div class="sliderImages">
 					<ul>
-						<li><a href="http://www.google.co.in/" ><img src="/images/1-tn.jpg" width="240" height="160" alt="Project Title 1" /></a></li>
-						<li><a href="http://www.google.co.in/" ><img src="/images/2-tn.jpg" width="240" height="160" alt="Project Title 1" /></a></li>
-						<li><a href="http://www.google.co.in/" ><img src="/images/3-tn.jpg" width="240" height="160" alt="Project Title 1" /></a></li>
-						<li><a href="http://www.google.co.in/" ><img src="/images/4-tn.jpg" width="240" height="160" alt="Project Title 1" /></a></li>
-						<li><a href="http://www.google.co.in/" ><img src="/images/5-tn.jpg" width="240" height="160" alt="Project Title 1" /></a></li>
-						<li><a href="http://www.google.co.in/" ><img src="/images/6-tn.jpg" width="240" height="160" alt="Project Title 1" /></a></li>
-
+                                          <%# for recent in @open_deals%>
+                                          <%# recentdeal = Deal.find(recent.id)%>
+						<li>
+                                                    <a href="http://www.google.co.in/" ><img src="<%#=recentdeal.deal_photo.url%>" width="240" height="160" alt="Project Title 1" /></a></li>
+						<%#end%>
 					</ul>
                 </div>
 	 </div>
