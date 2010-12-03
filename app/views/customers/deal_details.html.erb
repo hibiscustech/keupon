@@ -2,21 +2,23 @@
 
 <%if !@deal.nil?%>
 <br/>
+
 <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
 
   <tr>
-    <td width="16">&nbsp;</td>
     <td width="773" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="98%" height="48" align="center" background="images/todayBG.jpg" class="deals_header">Deal Details</td>
         </tr>
       <tr>
-        <td class="deals_content"><p><br/><%=@deal.name%> </p></td>
+        <td class="deals_content"><p><br/><%=@deal.name%></p></td>
       </tr>
       <tr>
         <td style="border:1px solid #000000;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="33%" align="left"><img src="images/mobile_img.jpg" width="258" height="291" /></td>
+            <td width="33%" align="left">
+              <%if !@deal.deal_photo.url.nil? %> <%=image_tag (@deal.deal_photo.url),:width=>"258", :height=>"291" %> <%else%><img src="images/img1.jpg" border="0px" width="258" height="291"/> <%end%>
+            </td>
             <td width="67%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td colspan="2" align="center" style="padding-top:8px; "><span class="price_text_red">Price:</span> <span class="price_text_black">$<%=@deal.value%></span></td>
@@ -43,7 +45,7 @@
                     <td><span class="customer0">0</span> <span class="customer10">10</span> <span class="customer20">20</span> <span class="customer30">30</span> <span class="customer40">40</span> <span class="customer50">50</span> <span class="customer60">60</span></td>
                     </tr>
                 </table></td>
-                <td width="111" height="111" background="images/current_discount_img.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <td width="111" height="111" background="images/current_discount_img.jpg" style="background-repeat:repeat-x;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td align="center" class="price_text_black"><%=current_deal_discount_for_deal(@deal.id)%> % </td>
                   </tr>
@@ -52,9 +54,9 @@
               <tr>
                 <td colspan="2" align="center"><table width="254" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td width="14" align="left" bgcolor="#fe0002"><img src="images/time_left_curve.jpg" width="7" height="27" /></td>
-                    <td width="224" align="center" bgcolor="#fe0002" class="deals_header1">Time Left</td>
-                    <td width="16" align="right" bgcolor="#fe0002"><img src="images/time_right_curve.jpg" width="7" height="27" /></td>
+                    <td width="14" align="left" background="images/time_bg.jpg"><img src="images/time_left_curve.jpg" width="7" height="26" /></td>
+                    <td width="224" align="center" background="images/time_bg.jpg" class="deals_header1">Time Left</td>
+                    <td width="16" align="right" background="images/time_bg.jpg"><img src="images/time_right_curve.jpg" width="7" height="26" /></td>
                   </tr>
                   <tr>
                     <td bgcolor="#2e2e2e">&nbsp;</td>
@@ -78,9 +80,7 @@
                 <td height="15" colspan="2"></td>
               </tr>
               <tr>
-                <td colspan="2" align="center"><a href="#">
-                    <%=link_to image_tag('buynow_btn.jpg',:border=>'0',:width=>"184", :height=>"42"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%>
-                    </a></td>
+                <td colspan="2" align="center"><a href="#">   <%=link_to image_tag('buynow_btn.jpg',:border=>'0',:width=>"184", :height=>"42"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%></a></td>
               </tr>
               <tr>
                 <td height="13" colspan="2"></td>
@@ -95,9 +95,9 @@
       <tr>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">The fine prints</td>
+            <td width="49%" height="30" background="images/black_gradient_header.jpg" class="deals_header2">The fine prints</td>
             <td width="2%">&nbsp;</td>
-            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">Highlights</td>
+            <td width="49%" height="30" background="images/black_gradient_header.jpg" class="deals_header2">Highlights</td>
           </tr>
           <tr>
             <td bgcolor="#d9d9d9" class="deals_content" style="padding:6px 6px 6px 6px;"><%=@deal.rules%> </td>
@@ -110,21 +110,21 @@
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">The Company</td>
+            <td width="49%" height="30" background="images/black_gradient_header.jpg" class="deals_header2">The Company</td>
             <td>&nbsp;</td>
-            <td width="49%" bgcolor="#2e2e2e" class="deals_header2">Deal Location</td>
+            <td width="49%" height="30" background="images/black_gradient_header.jpg" class="deals_header2">Deal Location</td>
           </tr>
           <tr>
             <td valign="top" bgcolor="#d9d9d9"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="35%" style="padding:6px;">
-                  <%if @company.company_photo.nil?%>
+                <td width="31%" style="padding:6px;">
+                           <%if @company.company_photo.nil?%>
                   <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 116px; height: 73px;"/></a>
                    <%else%>
                   <img src="images/apple_img.jpg" width="116" height="73" /><br/>
                   <%end%>
                   <br/>
-                    <span class="deals_content_red"><%=@deal.merchant.merchant_profile.company.name%><br/>
+                   <span class="deals_content_red"><%=@deal.merchant.merchant_profile.company.name%><br/>
                     <%=@company.address1 %> <%=@company.address2 %><br/>
                     <%=@company.city %><br/>
                     </span></td>
@@ -134,96 +134,21 @@
             </table></td>
             <td>&nbsp;</td>
             <td align="center" bgcolor="#d9d9d9" style="padding:6px 6px 6px 6px;">
-              <%= GMap.header %>
+            <%= GMap.header %>
 <%= @map.to_html %>
 <div id="user1" style="height: 166px;  width: 352px;">
 <div align="center">
   <%= @map.div(:width => 352, :height => 166, :style => "border-style: solid;") %>
 </div>
 </div>
-              </td>
+            </td>
           </tr>
         </table></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
       </tr>
-      <tr>
-        <td bgcolor="#2e2e2e" class="deals_header2">Customers Who Bought This Item Also Bought</td>
-      </tr>
-      <tr>
-        <td><table width="120%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="3%"><img src="images/left_arrow_btn.jpg" width="19" height="34" border="0"/></td>
-            <td width="94%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="24%">&nbsp;</td>
-                <td width="26%">&nbsp;</td>
-                <td width="25%">&nbsp;</td>
-                <td width="25%">&nbsp;</td>
-                </tr>
-              <tr>
-                <td align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                <td align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                <td align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                <td align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                 
-                </tr>
-              <tr>
-                <td height="10" colspan="4"></td>
-                </tr>
-              <tr>
-                <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a> </td>
-                <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
-                <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
-                <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
-                </tr>
-            </table></td>
-            <td width="3%"><a href="#"><img src="images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td bgcolor="#2e2e2e" class="deals_header2">Customer Reviews</td>
-      </tr>
-      <tr>
-        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td><img src="images/stars.jpg" width="67" height="15" /> <span class="deals_content_red"><strong>Lorem ipsum dolor sit amet,</strong></span></td>
-          </tr>
-          <tr>
-            <td class="deals_content">Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula, Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. <br />
-              <br />
-              <a href="#" class="deals_content_blue_link">read more</a></td>
-          </tr>
-          <tr>
-            <td background="images/dot_line.jpg" style="background-repeat:repeat-x;">&nbsp;</td>
-          </tr>
-          <tr>
-            <td><img src="images/stars.jpg" width="67" height="15" /> <span class="deals_content_red"><strong>Lorem ipsum dolor sit amet,</strong></span></td>
-          </tr>
-          <tr>
-            <td class="deals_content">Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula, Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. <br />
-              <br />
-              <a href="#" class="deals_content_blue_link">read more</a></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="35" align="center" bgcolor="#2e2e2e"><a href="#"><img src="images/join_disscussion_btn.png" width="146" height="32" border="0"/></a></td>
-        </tr>
-      <tr>
-        <td>&nbsp;</td>
-        </tr>
+
     </table></td>
     <td width="12" valign="top">&nbsp;</td>
     <td width="187" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -267,8 +192,8 @@
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque <br /><br />
               <a href="#"><img src="images/view_btn.png" width="63" height="22" border="0"/></a></td>
           </tr>
-         
-          
+
+
           <tr>
             <td>&nbsp;</td>
           </tr>
@@ -277,19 +202,144 @@
       <tr>
         <td>&nbsp;</td>
       </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        </tr>
+
     </table></td>
-    <td width="12">&nbsp;</td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td height="30" colspan="3" background="images/black_gradient_header.jpg" class="deals_header2">Customers Who Bought This Item Also Bought</td>
+  </tr>
+  <tr>
+    <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="3%"><img src="images/left_arrow_btn.jpg" width="19" height="34" border="0"/></td>
+        <td width="94%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="20%">&nbsp;</td>
+              <td width="20%">&nbsp;</td>
+              <td width="20%">&nbsp;</td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
+              <td align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
+              <td align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
+              <td width="20%" align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
+              <td width="20%" align="center"><a href="#"><img src="images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="5"></td>
+            </tr>
+            <tr>
+              <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a> </td>
+              <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
+              <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
+              <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
+              <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
+            </tr>
+        </table></td>
+        <td width="3%"><a href="#"><img src="images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
     <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="50" colspan="3" background="images/comment_header_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="59%" align="center"><img src="images/customer_review_text.jpg" width="225" height="50" /></td>
+        <td width="41%" align="center"><img src="images/write_review_text.jpg" width="286" height="50" /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="573"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+          <tr>
+            <td bgcolor="#e8e8e8"><table width="100%" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td width="20%" rowspan="3" align="center"><img src="images/review_img.jpg" width="94" height="64" /></td>
+                <td width="64%" height="36" class="deals_content_red_bold">Posted by xyz<br />
+                  2010-12-02</td>
+                <td colspan="2" class="deals_content"><strong>2 comments</strong></td>
+              </tr>
+              <tr>
+                <td height="45" colspan="2" class="deals_content">Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet.</td>
+                <td width="2%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="19">&nbsp;</td>
+                <td colspan="2"><a href="#" class="readmore_link">Read more...</a></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td bgcolor="#dcdcdc"><table width="100%" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td width="20%" rowspan="3" align="center"><img src="images/review_img.jpg" width="94" height="64" /></td>
+                <td width="64%" height="36" class="deals_content_red_bold">Posted by xyz<br />
+                  2010-12-02</td>
+                <td colspan="2" class="deals_content"><strong>2 comments</strong></td>
+              </tr>
+              <tr>
+                <td height="45" colspan="2" class="deals_content">Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet.</td>
+                <td width="2%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="19">&nbsp;</td>
+                <td colspan="2"><a href="#" class="readmore_link">Read more...</a></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td bgcolor="#e8e8e8"><table width="100%" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td width="20%" rowspan="3" align="center"><img src="images/review_img.jpg" width="94" height="64" /></td>
+                <td width="64%" height="36" class="deals_content_red_bold">Posted by xyz<br />
+                  2010-12-02</td>
+                <td colspan="2" class="deals_content"><strong>2 comments</strong></td>
+              </tr>
+              <tr>
+                <td height="45" colspan="2" class="deals_content">Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet.</td>
+                <td width="2%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="19">&nbsp;</td>
+                <td colspan="2"><a href="#" class="readmore_link">Read more...</a></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+        <td width="1" bgcolor="#000000">&nbsp;</td>
+        <td width="389" valign="top" background="images/review_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="4%">&nbsp;</td>
+            <td width="91%">&nbsp;</td>
+            <td width="5%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="39">&nbsp;</td>
+            <td class="deals_content1">Please share your views about this product here:</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><textarea name="textarea" id="textarea" cols="40" rows="12"></textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="59">&nbsp;</td>
+            <td align="center"><a href="#"><img src="images/share_btn.jpg" width="102" height="34" border="0" /></a></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="35" colspan="3" background="images/comment_header_bg.jpg">&nbsp;</td>
   </tr>
 </table>
 <%else%>
