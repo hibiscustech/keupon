@@ -6,7 +6,9 @@ class SessionsController < ApplicationController
   protect_from_forgery :only => [:sample]
   # render new.rhtml
 
- 
+  def policy
+     send_file "#{RAILS_ROOT}/public/images/policy.docx",:type=>'application/docx',:disposition => 'inline',:stream => false
+  end 
   def admin_create
    logout_keeping_session!
     @user = AdminUser.new(params[:user])
