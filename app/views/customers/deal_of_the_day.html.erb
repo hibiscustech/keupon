@@ -35,7 +35,7 @@
 		<div class="slider-frame">
                 <div class="sliderImages">
 					<ul>
-                                          <% for recent in @recent_deals%>
+                                          <% for recent in @open_deals%>
                                           <% recentdeal = Deal.find(recent.id)%>
 						<li>
                                                     <a href="http://www.google.co.in/" ><img src="<%=recentdeal.deal_photo.url%>" width="240" height="160" alt="Project Title 1" /></a></li>
