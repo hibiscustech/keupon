@@ -62,14 +62,15 @@
                     <td bgcolor="#2e2e2e">&nbsp;</td>
                     <td height="54" bgcolor="#2e2e2e"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td width="18%" height="49" align="center" class="time1"><span class="time_text_red">Days</span> <br />
-                          <span class="time_text_white">02</span></td>
-                        <td width="19%" align="center" class="time"><span class="time_text_red">Hours</span><br />
-                          <span class="time_text_white">01</span></td>
-                        <td width="18%" align="center" class="time1"><span class="time_text_red">Min</span><br />
-                          <span class="time_text_white">07</span></td>
-                        <td width="18%" align="center" class="time"><span class="time_text_red">Sec</span><br />
-                          <span class="time_text_white">45</span></td>
+                        <td width="18%" height="20" align="center" class="time1"><span class="time_text_red">Days</span> </td>
+                        <td width="19%" align="center" class="time"><span class="time_text_red">Hours</span></td>
+                        <td width="18%" align="center" class="time1"><span class="time_text_red">Min</span></td>
+                        <td width="18%" align="center" class="time"><span class="time_text_red">Sec</span></td>
+                      </tr>
+                      <tr>
+                        <td height="20" align="center" class="time1" colspan="4">
+                          <span class="time_text_white" id="deal_time_left" ></span>
+                        </td>
                       </tr>
                     </table></td>
                     <td bgcolor="#2e2e2e">&nbsp;</td>
@@ -351,13 +352,7 @@
 <script language="JavaScript">
   <% if !@deal.nil? %>
   StartCountDown("deal_time_left","<%= Time.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
-  <% end %>
-
-  /*
-  	Author:		Robert Hashemian (http://www.hashemian.com/)
-  	Modified by:	Munsifali Rashid (http://www.munit.co.uk/)
-  	Modified by:	Tilesh Khatri
-  */
+  <% end %>  
 
   function StartCountDown(myDiv,myTargetDate)
   {
@@ -381,7 +376,7 @@
   function CountBack(myDiv, secs)
   {
     var DisplayStr;
-    var DisplayFormat = "%%D%%&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fff'>%%M%%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
+    var DisplayFormat = "&nbsp;&nbsp;&nbsp;&nbsp;%%D%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%M%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
     DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
     DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
     DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
