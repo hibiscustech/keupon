@@ -1,5 +1,13 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def confirmed_deal(id)
+   deal=Deal.find(id)
+   if deal.confirm!='1'
+    true
+   else
+    false
+   end
+  end
   def get_marketing_message
     messages=MarketingMessage.find(:all).collect{|mar| mar.message}
     return messages[rand(messages.length)]

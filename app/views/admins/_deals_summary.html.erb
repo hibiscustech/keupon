@@ -39,7 +39,9 @@
           <a href="/admins/open_the_deal/<%=deal.id%>">Open</a>&nbsp;
           <a href="/customers/tip_the_deal/<%=deal.id%>">Tip</a>&nbsp;
           <a href="/admins/deal_preferred/<%=deal.id%>">Preferred</a>
+          <%if confirmed_deal(deal.id)%>
           <a href="/admins/confirm_the_deal/<%=deal.id%>">Confirm the deal</a>
+          <%end%>
         </td>
         <td style="background-color: #C0C0C0;color:#000000;"><a href='#' onclick="showElt('popup_create_deal_<%=deal.id%>');">Set Commission</a></td>
       </tr>
