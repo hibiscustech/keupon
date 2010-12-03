@@ -20,7 +20,46 @@ class AdminAnalyticsController < ApplicationController
   end
 
   def accounting_report
+    @deals = Deal.accounting    
+    if !params['sort'].blank?
+      @deals = case params['sort']
+      when "expiry_date"  then sort_asc("expiry_date", @deals)
+      when "expiry_date_reverse"  then sort_desc("expiry_date", @deals)
+      when "posting_date"  then sort_desc("posting_date", @deals)
+      when "posting_date_reverse"  then sort_asc("posting_date", @deals)
+      when "closing_date"  then sort_asc("closing_date", @deals)
+      when "closing_date_reverse"  then sort_desc("closing_date", @deals)
+      when "merchant_name"  then sort_asc("merchant_name", @deals)
+      when "merchant_name_reverse"  then sort_desc("merchant_name", @deals)
+      when "title"  then sort_asc("title", @deals)
+      when "title_reverse"  then sort_desc("title", @deals)
+      when "actual_price"  then sort_asc("actual_price", @deals)
+      when "actual_price_reverse"  then sort_desc("actual_price", @deals)
+      when "purchased"  then sort_asc("purchased", @deals)
+      when "purchased_reverse"  then sort_desc("purchased", @deals)
+      when "discount"  then sort_asc("discount", @deals)
+      when "discount_reverse"  then sort_desc("discount", @deals)
+      when "commission"  then sort_asc("commission", @deals)
+      when "commission_reverse"  then sort_desc("commission", @deals)
+      when "sales"  then sort_asc("sales", @deals)
+      when "sales_reverse"  then sort_desc("sales", @deals)
+      when "net_sales"  then sort_asc("net_sales", @deals)
+      when "net_sales_reverse"  then sort_desc("net_sales", @deals)
+      end
+    else
+      @deals = sort_desc("posting_date", @deals)
+    end
 
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'accounting',:partial => "accounting_summary"
+          end
+        }
+      end
+    end
   end
 
   def customers_report
@@ -62,5 +101,15 @@ class AdminAnalyticsController < ApplicationController
         }
       end
     end
+  end
+
+  def sort_asc(column, summary)
+    sorted_hash = summary.sort  { | leftval, rightval | leftval[1][column]<=>rightval[1][column] }
+    return sorted_hash
+  end
+
+  def sort_desc(column, summary)
+    sorted_hash = summary.sort  { | leftval, rightval | rightval[1][column]<=>leftval[1][column] }
+    return sorted_hash
   end
 end
