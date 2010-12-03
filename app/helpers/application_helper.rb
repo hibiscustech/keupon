@@ -31,6 +31,10 @@ module ApplicationHelper
     }
     link_to_remote(text, options, html_options)
   end
+
+  def my_age(dob)
+    return (dob.blank?)? "-" : Customer.birthdate_to_age(Time.parse(dob)).to_s
+  end
   
   def state_select_for(model)
     states = %w(AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME

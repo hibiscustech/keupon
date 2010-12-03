@@ -1,3 +1,4 @@
+&nbsp;
 <table  style="font-size: 12px; border-collapse: collapse; width: 100%;" CELLPADDING="4" CELLSPACING="0">
   <thead>
     <tr>
@@ -30,20 +31,20 @@
     </tr>
   </thead>
     <tbody>
+      <% for customer in @customers %>
       <tr>
-        <td>Sign-up Date</td>
-        <td>Name</td>
-        <td align="center">NRIC</td>
-        <td align="center">Age</td>
-        <td>Phone</td>
-        <td>Email</td>
-        <td align="center">Salary</td>
-        <td>Location</td>
-        <td align="center">Bought</td>
-        <td>Category</td>
-        <td align="center">Spending</td>
-        <td align="center">Keupoints</td>
-        <td align="center">Introduced</td>
+        <td><%= Time.at(customer.time_created).strftime("%d-%m-%Y")  %></td>
+        <td><%= customer.name %></td>
+        <td align="center"><%= customer.customer_pin %></td>
+        <td align="center"><%= my_age(customer.dob) %></td>
+        <td><%= customer.phone %></td>
+        <td><%= customer.email %></td>
+        <td align="center"><%= customer.income %></td>
+        <td><%= customer.location %></td>
+        <td align="center"><%= customer.total_bought %></td>
+        <td align="center"><%= customer.spendings %></td>
+        <td align="center"><%= customer.kupoints %></td>
+        <td align="center"><%= customer.introduced %></td>
       </tr>
       
     </tbody>
