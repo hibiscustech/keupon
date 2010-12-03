@@ -2,7 +2,8 @@ class MerchantAnalyticsController < ApplicationController
   include AuthenticatedSystemMerchant
   layout 'application_merchant'
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required
+  before_filter :login_required, :only => [:index, :sales_report,:customers_report,:customers_usage_report,:customers_purchase_frequency,
+                                            :customers_kupoints,:deals_report,:location_deal_sales_revenue]
 
   def index
     
