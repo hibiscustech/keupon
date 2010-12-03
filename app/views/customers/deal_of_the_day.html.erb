@@ -34,13 +34,17 @@
 
 		<div class="slider-frame">
                 <div class="sliderImages">
-					<ul>
-                                          <% for recent in @open_deals%>
-                                          <% recentdeal = Deal.find(recent.id)%>
-						<li>
-                                                    <a href="http://www.google.co.in/" ><img src="<%=recentdeal.deal_photo.url%>" width="240" height="160" alt="Project Title 1" /></a></li>
-						<%end%>
-					</ul>
+                  <ul>
+
+                    <%for opdd in @open_deal_discounts
+                      discount = opdd[1]
+                      open_deal = @open_deals[opdd[0]]
+                      opd = Deal.find(open_deal.id)
+                    %>
+                      <li>
+                        <a href="http://www.google.co.in/" ><img src="<%=opd.deal_photo.url%>" width="240" height="160" alt="Project Title 1" /></a></li>
+                    <%end%>
+                  </ul>
                 </div>
 	 </div>
 			 <div class="arrow-but">
