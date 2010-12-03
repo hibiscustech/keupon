@@ -68,8 +68,8 @@
                         <td width="18%" align="center" class="time"><span class="time_text_red">Sec</span></td>
                       </tr>
                       <tr>
-                        <td height="49" align="center" class="time1">
-                          <span class="time_text_white" id="deal_time_left" colspan="4"></span>
+                        <td height="49" align="center" class="time1" colspan="4">
+                          <span class="time_text_white" id="deal_time_left" ></span>
                         </td>
                       </tr>
                     </table></td>
@@ -376,7 +376,7 @@
   function CountBack(myDiv, secs)
   {
     var DisplayStr;
-    var DisplayFormat = "%%D%%&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;%%M%%&nbsp;&nbsp;&nbsp;%%S%%";
+    var DisplayFormat = "&nbsp;&nbsp;&nbsp;%%D%%&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;%%M%%&nbsp;&nbsp;&nbsp;%%S%%";
     DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
     DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
     DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
