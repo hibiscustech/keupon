@@ -136,7 +136,7 @@ class CustomersController < ApplicationController
          if @demand_deal.status == "new"
            flash[:msg] = "'Update' this Demand Deal with changes or 'Confirm' in order to start receiving Offerings."
          else
-           flash[:msg] = "Your Demand Deal will receive offers soon."
+           flash[:msg] = "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond"
          end
          respond_to do |format|
           format.html
@@ -164,7 +164,7 @@ class CustomersController < ApplicationController
         end
         @demand_deal.update_attributes(:status => "confirmed")
         @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
-        flash[:msg] = "You have 'Confirmed' this demand deal request.You will receive Offers soon."
+        flash[:msg] = "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond."
       end
       respond_to do |format|
         format.html
