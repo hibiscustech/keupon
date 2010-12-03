@@ -36,9 +36,9 @@
                 <div class="sliderImages">
                   <ul>
 
-                    <%for opdd in @open_deal_discounts
+                    <%for opdd in @open_deal_recents
                       discount = opdd[1]
-                      open_deal = @open_deals[opdd[0]]
+                      open_deal = @open_deals_recents[opdd[0]]
                       opd = Deal.find(open_deal.id)
                     %>
                       <li>
