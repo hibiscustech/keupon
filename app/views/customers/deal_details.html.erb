@@ -62,13 +62,13 @@
                     <td bgcolor="#2e2e2e">&nbsp;</td>
                     <td height="54" bgcolor="#2e2e2e"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td width="18%" height="49" align="center" class="time1"><span class="time_text_red">Days</span> <br />
+                        <td width="18%" height="49" align="center" class="time1"><span class="time_text_red" id="t_day">Days</span> <br />
                           <span class="time_text_white">02</span></td>
-                        <td width="19%" align="center" class="time"><span class="time_text_red">Hours</span><br />
+                        <td width="19%" align="center" class="time"><span class="time_text_red" id="t_hour">Hours</span><br />
                           <span class="time_text_white">01</span></td>
-                        <td width="18%" align="center" class="time1"><span class="time_text_red">Min</span><br />
+                        <td width="18%" align="center" class="time1"><span class="time_text_red" id="t_min">Min</span><br />
                           <span class="time_text_white">07</span></td>
-                        <td width="18%" align="center" class="time"><span class="time_text_red">Sec</span><br />
+                        <td width="18%" align="center" class="time"><span class="time_text_red" id="t_sec">Sec</span><br />
                           <span class="time_text_white">45</span></td>
                       </tr>
                     </table></td>
@@ -350,22 +350,19 @@
 
 <script language="JavaScript">
   <% if !@deal.nil? %>
-  StartCountDown("deal_time_left","<%= Time.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
-  <% end %>
+  StartCountDown("<%= Time.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
+  <% end %>  
 
-  /*
-  	Author:		Robert Hashemian (http://www.hashemian.com/)
-  	Modified by:	Munsifali Rashid (http://www.munit.co.uk/)
-  	Modified by:	Tilesh Khatri
-  */
-
-  function StartCountDown(myDiv,myTargetDate)
+  function StartCountDown(myTargetDate)
   {
     var dthen	= new Date(myTargetDate);
     var dnow	= new Date();
     ddiff		= new Date(dthen-dnow);
     gsecs		= Math.floor(ddiff.valueOf()/1000);
-    CountBack(myDiv,gsecs);
+    CountBackDay("t_day",gsecs);
+    CountBackHour("t_hour",gsecs);
+    CountBackMin("t_min",gsecs);
+    CountBackSec("t_sec",gsecs);
   }
 
   function Calcage(secs, num1, num2)
@@ -378,10 +375,10 @@
     return (s);
   }
 
-  function CountBack(myDiv, secs)
+  function CountBackDay(myDiv, secs)
   {
     var DisplayStr;
-    var DisplayFormat = "%%D%%&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fff'>%%M%%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
+    var DisplayFormat = "%%D%%";
     DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
     DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
     DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
@@ -393,8 +390,63 @@
     }
     else
     {
-      document.getElementById(myDiv).innerHTML = "Deal Closed";
+      document.getElementById(myDiv).innerHTML = "00";
     }
   }
 
+  function CountBackHour(myDiv, secs)
+  {
+    var DisplayStr;
+    var DisplayFormat = "%%H%%";
+    DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
+    DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
+    DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
+    DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
+    if(secs > 0)
+    {
+      document.getElementById(myDiv).innerHTML = DisplayStr;
+      setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
+    }
+    else
+    {
+      document.getElementById(myDiv).innerHTML = "00";
+    }
+  }
+  function CountBackMin(myDiv, secs)
+  {
+    var DisplayStr;
+    var DisplayFormat = "%%M%%";
+    DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
+    DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
+    DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
+    DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
+    if(secs > 0)
+    {
+      document.getElementById(myDiv).innerHTML = DisplayStr;
+      setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
+    }
+    else
+    {
+      document.getElementById(myDiv).innerHTML = "00";
+    }
+  }
+
+  function CountBackSec(myDiv, secs)
+  {
+    var DisplayStr;
+    var DisplayFormat = "%%S%%";
+    DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
+    DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
+    DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
+    DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
+    if(secs > 0)
+    {
+      document.getElementById(myDiv).innerHTML = DisplayStr;
+      setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
+    }
+    else
+    {
+      document.getElementById(myDiv).innerHTML = "00";
+    }
+  }
 </script>
