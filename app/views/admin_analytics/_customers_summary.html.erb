@@ -2,18 +2,18 @@
 <table  style="font-size: 12px; border-collapse: collapse; width: 100%;" CELLPADDING="4" CELLSPACING="0">
   <thead>
     <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Sign-Up</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sign-Up", "time_created", "customers_report", params[:page]) %></th>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">NRIC/</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("NRIC/", "customer_pin", "customers_report", params[:page]) %>/</th>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Phone</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Phone", "phone", "customers_report", params[:page]) %></th>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Avg.M</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Avg.M", "income", "customers_report", params[:page]) %></th>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of Times</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Total</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of Friends</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("# of Times", "total_bought", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Total", "spendings", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("# of", "kupoints", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("# of Friends", "introduced", "customers_report", params[:page]) %></th>
     </tr>
     <tr>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Date", "time_created", "customers_report", params[:page]) %></th>
@@ -46,6 +46,6 @@
         <td align="center"><%= customer.kupoints %></td>
         <td align="center"><%= customer.introduced %></td>
       </tr>
-      
+      <% end %>
     </tbody>
   </table>

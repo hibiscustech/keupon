@@ -21,9 +21,7 @@ module ApplicationHelper
     key = param
     key += "_reverse" if params[:sort] == param
     options = {
-        :url => {:action => action, :params => params.merge({:sort => key, :page => page})},
-        :before => "Element.show('spinner')",
-        :success => "Element.hide('spinner')"
+        :url => {:action => action, :params => params.merge({:sort => key, :page => page})}
     }
     html_options = {
       :title => "Sort by #{text}",
