@@ -120,7 +120,7 @@
                   <%if @company.company_photo.nil?%>
                   <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 116px; height: 73px;"/></a>
                    <%else%>
-                  <img src="images/apple_img.jpg" width="116" height="73" /><br/>
+                  <img src="/images/apple_img.jpg" width="116" height="73" /><br/>
                   <%end%>
                   <br/>
                     <span class="deals_content_red"><%=@deal.merchant.merchant_profile.company.name%><br/>
