@@ -187,3 +187,42 @@
     }
   }
 </script>
+<script>
+function validate_email(){
+var theForm = document.forms['new_email_deal'];
+if (theForm.email_deal_email.value == "" || theForm.email_deal_email.value.length < 1)
+{
+alert("You must enter Email address.");
+theForm.email_deal_email.focus();
+return (false);
+}
+}
+</script>
+<script>
+function validate_loc(){
+var theForm = document.forms['new_email_deal'];
+if (theForm.email_deal_location.value == "" || theForm.email_deal_location.value.length < 1)
+{
+alert("You must enter a valid location.");
+theForm.email_deal_location.focus();
+return (false);
+}
+}
+</script>
+
+<script>
+function Validates(){
+  var reg =  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  var email = document.getElementById("email_deal_email").value;
+  if (email == "")
+    {
+      alert('Please enter the email')
+      return false;
+    }
+  if (reg.test(email) == false)
+     {
+      alert('Please enter the correct email')
+      return false;
+    }
+}
+</script>
