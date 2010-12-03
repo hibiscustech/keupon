@@ -149,3 +149,8 @@ function showElt(elementID)
 {
 	document.getElementById(elementID).style.display = "block";
 }
+
+function createsubscription(elementID)
+{
+    document.getElementById(elementID).style.display = "block";
+}
