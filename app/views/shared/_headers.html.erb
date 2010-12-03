@@ -95,9 +95,10 @@
           
           <td width="144"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" style="position:absolute;"/></a></td>
         <td width="141"><a href="/invite_friends"><img src="/images/earn_money_tab.jpg"  border="0" style="position:absolute;"/></a></td>
-        <td width="141"><a href="/invite_friends"><img src="/images/subscribe_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
+        <td width="141"><a href="#" onclick="createsubscription('popup_create_deal');" style="color: rgb(3, 77, 124);"><img src="/images/subscribe_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
 
     </div>
+
 
     <div id="head2">
 
@@ -138,8 +139,11 @@
         </table>
       </div>
 
-
+ <div id="popup_create_deal">
+    <%= render :partial => "shared/subscription" %>
+  </div>
     </div>
+   
   <%else%>
     <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span>    </div>
     <table style="float:right;margin-top:20px;margin-right:70px;font-size:18px;"><tr><td><%=link_to 'Logout','/logout',{:style=>'text-decoration: none;'}%></td></tr></table>
@@ -168,6 +172,7 @@
   <%end%>
 </div>
 <br/><br/>
+
 
 <script>
   function find_link(){
