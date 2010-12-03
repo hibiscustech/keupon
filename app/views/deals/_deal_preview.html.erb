@@ -1,6 +1,6 @@
 <%=render :partial=>'deal_details'%>       
 <h1>Commission details</h1>
-         <table CELLPADDING="3" CELLSPACING="6"  style="border:3px solid black;font-size:14px;margin-left:270px;margin-top:-22px;">
+<table style="font-size: 14px; border-collapse: collapse; width:1000px; text-align: center; margin-left: -10px;" CELLPADDING="4" CELLSPACING="0">
 
     <tr>
       <th>Discount</th>
@@ -23,10 +23,13 @@
 <form action='/deals/activate/<%=params[:id]%>' id='form' method='post'>
 <div><p><input type="checkbox" id="tos" name='tos'/><a href='#' onclick="document.getElementById('popup_center').style.display='block';">Agree to Terms and Conditions</a></p></div>
 <p>Payment Terms: Which will be that www.keupons.com will pay the merchant 7 days after closing of the deals after deducting the commission payable as given above.</p>
+<br/>
 <p><a href='/sessions/policy'>FAQs/ Contact us</a></p>
 <%=token_tag%>
+<br/>
 <input type='button' value='Activate the deal' onclick="validate_tos();"/>
 </form>
+<br/><br/>
 <script>
 function validate_tos(){
 var tos=document.getElementById("tos").checked;
