@@ -1,0 +1,51 @@
+&nbsp;
+<table  style="font-size: 12px; border-collapse: collapse; width: 100%;" CELLPADDING="4" CELLSPACING="0">
+  <thead>
+    <tr>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Sign-Up</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">NRIC/</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Phone</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Avg.M</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of Times</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Total</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of</th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"># of Friends</th>
+    </tr>
+    <tr>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Date", "time_created", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Name", "name", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("FIN", "customer_pin", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Age", "dob", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Number", "phone", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Email", "email", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Salary(S$)", "income", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Location", "location", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Bought", "total_bought", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Spending(S$)", "spendings", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Keupoints", "kupoints", "customers_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Introduced", "introduced", "customers_report", params[:page]) %></th>
+    </tr>
+  </thead>
+    <tbody>
+      <% for customer in @customers %>
+      <tr>
+        <td><%= Time.at(customer.time_created).strftime("%d-%m-%Y")  %></td>
+        <td><%= customer.name %></td>
+        <td align="center"><%= customer.customer_pin %></td>
+        <td align="center"><%= my_age(customer.dob) %></td>
+        <td><%= customer.phone %></td>
+        <td><%= customer.email %></td>
+        <td align="center"><%= customer.income %></td>
+        <td><%= customer.location %></td>
+        <td align="center"><%= customer.total_bought %></td>
+        <td align="center"><%= customer.spendings %></td>
+        <td align="center"><%= customer.kupoints %></td>
+        <td align="center"><%= customer.introduced %></td>
+      </tr>
+      
+    </tbody>
+  </table>

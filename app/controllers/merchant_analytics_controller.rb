@@ -56,6 +56,7 @@ class MerchantAnalyticsController < ApplicationController
   end
 
   def deals_report
+    @page = "Deals Profit/Loss"
     if request.xml_http_request?
       respond_to do |format|
         format.html
