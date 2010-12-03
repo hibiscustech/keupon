@@ -217,6 +217,37 @@ class Deal < ActiveRecord::Base
     return result
   end
 
+  def self.accounting_for_merchant(merchant_id)
+    query = %Q{ select d.id, d.expiry_date, ds.start_time as posting_date, ds.end_time as closing_date, c.name as merchant_name, d.name as title, d.value as actual_price, sum(case when cd.quantity is null then 0 else cd.quantity end) purchased
+                from deals d
+                join deal_schedules ds on ds.deal_id = d.id
+                join merchant_profiles mp on mp.merchant_id = d.merchant_id
+                join companies c on c.merchant_profile_id = mp.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where d.merchant_id = #{merchant_id}
+                group by d.id }
+    resultset = find_by_sql(query)
+    result = Hash.new
+
+    for res in resultset
+      deal_discount_details = DealDiscount.deal_current_discount_details(res.id, res.purchased)
+      discount = 0.0
+      commission = 0.0
+      sales = 0.0
+      net_sales = 0.0
+      if !deal_discount_details.blank?
+        discount = deal_discount_details.discount.to_f
+        commission = deal_discount_details.commission.to_f
+        sales = res.actual_price.to_f*res.purchased.to_f
+        net_sales = sales*(1.0-(discount.to_f/100.to_f))*(1.0-(commission.to_f/100.to_f))
+      end
+      result[res.id.to_s] = {"expiry_date" => res.expiry_date.to_i, "posting_date" => res.posting_date.to_i, "closing_date" => res.closing_date.to_i,
+                              "merchant_name" => res.merchant_name, "title" => res.title, "actual_price" => res.actual_price.to_f, "purchased" => res.purchased.to_i,
+                              "discount" => discount, "commission" => commission, "sales" => sales, "net_sales" => net_sales}
+    end
+    return result
+  end
+
   def self.convert_into_hash(resultset)
     result = Hash.new
     for res in resultset
