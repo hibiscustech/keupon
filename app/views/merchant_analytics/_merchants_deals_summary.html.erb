@@ -1,26 +1,32 @@
+<style type="text/css">
+  a {
+    color: #ffffff;
+    text-decoration: none;
+}
+</style>
 <table  style="font-size: 12px; border-collapse: collapse; width: 100%;" CELLPADDING="4" CELLSPACING="0">
   <thead>
     <tr>
-      <th style="color:#ffffff;border-collapse:collapse;max-width: 100px" class="discussionboard"><%= sort_table_header("Deal", "title", "accounting_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;max-width: 100px" class="discussionboard"><%= sort_table_header("Deal", "title", "deals_report", params[:page]) %></th>
       <th style="color:#ffffff;border-bottom: thin solid;" colspan="3" class="discussionboard">Date of</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Keupons", "purchased", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Price", "actual_price", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sales", "sales", "accounting_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Keupons", "purchased", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Price", "actual_price", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sales", "sales", "deals_report", params[:page]) %></th>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Net", "net_sales", "accounting_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Net", "net_sales", "deals_report", params[:page]) %></th>
     </tr>
     <tr>
-      <th style="color:#ffffff;border-collapse:collapse;max-width: 100px" class="discussionboard"><%= sort_table_header("Title", "title", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Posting", "posting_date", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Closing", "closing_date", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Expiry", "phone", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("bought", "purchased", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("(S$)", "actual_price", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("($$)", "sales", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Discount", "discount", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Commission", "commission", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sales(S$)", "net_sales", "accounting_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;max-width: 100px" class="discussionboard"><%= sort_table_header("Title", "title", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Posting", "posting_date", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Closing", "closing_date", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Expiry", "phone", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("bought", "purchased", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("(S$)", "actual_price", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("($$)", "sales", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Discount", "discount", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Commission", "commission", "deals_report", params[:page]) %></th>
+      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sales(S$)", "net_sales", "deals_report", params[:page]) %></th>
     </tr>
   </thead>
     <tbody>
