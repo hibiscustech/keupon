@@ -283,6 +283,7 @@
     <td colspan="3">&nbsp;</td>
   </tr>
   <tr>
+    <%if !@flag%>
     <td height="50" colspan="3" background="/images/comment_header_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="59%" align="center"><img src="/images/customer_review_text.jpg" width="225" height="50" /></td>
@@ -292,9 +293,17 @@
   </tr>
   </tr>
   <tr id='comments'>
-    <%if !@flag%>
     <%=render :partial=>'/discussions/reviews'%>
     <%else%>
+    <td height="50" colspan="3" background="/images/comment_header_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="59%" align="center"><img src="/images/customer_comment.jpg" width="225" height="50" /></td>
+        <td width="41%" align="center"><img src="/images/write_ur_comment.jpg" width="286" height="50" /></td>
+      </tr>
+    </table></td>
+  </tr>
+  </tr>
+  <tr id='comments'>
     <%=render :partial=>'/discussions/comments'%>
     <%end%>
   </tr>

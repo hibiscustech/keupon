@@ -3,7 +3,7 @@ class DiscussionsController < ApplicationController
 
  def create
    forum=Forum.create(:customer_id=>current_customer.id,:deal_id=>params[:deal_id],:description=>params[:description])
-   redirect_to :back
+   redirect_to "/deal_details?id=#{params[:deal_id]}/#comments"
  end
  def view
   id=params[:id]

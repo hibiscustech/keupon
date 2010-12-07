@@ -382,6 +382,9 @@ class CustomersController < ApplicationController
       
       customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i)
       customer_deal.save!
+      if user_is_invitee?
+        customer_deal.update_attribute(:invitee,1)
+      end
 
       customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
@@ -415,7 +418,7 @@ class CustomersController < ApplicationController
     if success && @customer.errors.empty?
       if !params[:friend_id].nil?
        @friend=CustomerFriends.find(params[:friend_id])
-       @friend.update_attribute(:signed_up,1)
+       #@friend.update_attribute(:signed_up,1)
       end
       @profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
@@ -697,6 +700,16 @@ class CustomersController < ApplicationController
       }
     )
     return void_transaction
+  end
+  protected
+  def user_is_invitee?
+    p "User is invitee"
+    friend=CustomerFriends.find_by_friend_email(current_customer.friend_email)
+    if friend.nil?
+     return false
+    else
+     return true
+    end
   end
 
 end
