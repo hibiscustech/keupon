@@ -376,7 +376,7 @@ class CustomersController < ApplicationController
 
     @transaction = do_transaction(customer_card_inform, 'Authorization', 1)
 
-    if @transaction.success?
+    if !@transaction.success?
       customer_card_inform.save! if !params[:new_card].blank?
       void_transaction = do_void_transaction(@transaction)
       
@@ -704,7 +704,7 @@ class CustomersController < ApplicationController
   protected
   def user_is_invitee?
     p "User is invitee"
-    friend=CustomerFriends.find_by_friend_email(current_customer.friend_email)
+    friend=CustomerFriends.find_by_friend_email(current_customer.email)
     if friend.nil?
      return false
     else
