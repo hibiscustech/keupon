@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  customer_id: 1
+  forum_id: 1
+  description: MyText
+
+two:
+  customer_id: 1
+  forum_id: 1
+  description: MyText
