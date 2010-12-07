@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
   include AuthenticatedSystem
-
+  before_filter :login_required
  def create
    forum=Forum.create(:customer_id=>current_customer.id,:deal_id=>params[:deal_id],:description=>params[:description])
    redirect_to "/deal_details?id=#{params[:deal_id]}/#comments"
