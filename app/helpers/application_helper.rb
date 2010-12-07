@@ -1,5 +1,9 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def author(id)
+   customer=Customer.find(id)
+   customer.customer_profile.first_name
+  end
   def confirmed_deal(id)
    deal=Deal.find(id)
    if deal.confirm!='1'

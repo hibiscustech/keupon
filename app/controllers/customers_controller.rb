@@ -88,6 +88,7 @@ class CustomersController < ApplicationController
 
   def deal_details
     @deal = Deal.find(params[:id])
+    @forums=Forum.find_all_by_deal_id(@deal.id)
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
@@ -96,6 +97,14 @@ class CustomersController < ApplicationController
     @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
     @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
     @page = "Deal Details"
+    if params[:comments].to_i==1
+      @forum=Forum.find(params[:forum_id])
+      p "comments"
+      @flag=true
+    else
+      p "reviews"
+      @flag=false
+    end
     render :layout => 'application_home'
   end
 

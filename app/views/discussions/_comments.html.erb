@@ -1,0 +1,73 @@
+    <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<%forum=@forum;@comments=forum.comments%>
+        <tr>
+        <td width="573">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td bgcolor="#e8e8e8">
+              <table width="100%" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td width="20%" rowspan="3" align="center"><img src="/images/review_img.jpg" width="94" height="64" /></td>
+                <td width="64%" height="36" class="deals_content_red_bold">Posted by <%=author(forum.customer_id)%><br />
+                  <%=forum.created_at%></td>
+                <td colspan="2" class="deals_content"><strong><%=forum.comments.size%> comments</strong></td>
+              </tr>
+              <tr>
+                <td height="45" colspan="2" class="deals_content"><%=forum.description%></td>
+                <td width="2%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td><strong>Comments</strong></td>
+              </tr>
+              <tr>
+                <td width="2%">&nbsp;</td>
+                 <td>
+                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
+                  <%@comments.each do |c|%>
+                   <tr>
+                    <td><img src="/images/review_img.jpg" width="94" height="64" /><br/>Posted by <%=author(c.customer_id)%></td>
+                   </tr>
+                   <tr>
+                    <td class="deals_content"><%=c.description%></td>
+                   </tr>
+                 <%end%>
+                  </table>
+
+                 </td>
+              </tr>
+              
+            </table>
+           </td>
+          </tr>
+        </table></td>
+        <td width="1" bgcolor="#000000">&nbsp;</td>
+        <td width="389" valign="top" background="/images/review_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="4%">&nbsp;</td>
+            <td width="91%">&nbsp;</td>
+            <td width="5%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="39">&nbsp;</td>
+            <td class="deals_content1">Please write your comment:</td>
+            <td>&nbsp;</td>
+</tr>
+<form action='/discussions/comments' method='post'>
+          <tr>
+            <td>&nbsp;</td>
+            <input type='hidden' value='<%=forum.id%>' name='forum_id'/>
+            <%=token_tag%>
+            <td><textarea name="description" id="textarea" cols="40" rows="12"></textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="59">&nbsp;</td>
+<td align="center"><input type="image" src="/images/share_btn.jpg" alt="Submit button" onclick="if (document.getElementById('textarea').value==''){alert('Please enter a description');return false;}"></td>
+            <td>&nbsp;</td>
+<td align="center"><%=link_to('Take back to Reviews',"/deal_details?id=#{params[:id]}")%></td>
+          </tr>
+          </form>
+        </table></td>
+      </tr>
+    </table></td>
+

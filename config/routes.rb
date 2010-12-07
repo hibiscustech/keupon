@@ -29,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   map.update '/update', :controller => 'customers', :action => 'settings'
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
   map.deal_details '/deal_details', :controller => 'customers', :action => 'deal_details'
+  map.deal_details '/deal_details/:id/:comments/:forum_id', :controller => 'customers', :action => 'deal_details'
   map.deal_of_the_day '/keupoint_deal', :controller => 'customers', :action => 'keupoint_deal'
   map.profile_update 'profile_update' , :controller => 'customers', :action => 'profile_update'
   map.my_profile 'my_profile' , :controller => 'customers', :action => 'my_profile'
