@@ -226,6 +226,48 @@ body {
 
 
 
+/*Open Deals on demand CSS*/
+.deals_on_demand_text1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+
+}
+.deals_on_demand_text2{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000000;
+
+}
+.deals_on_demand_text3{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#ffffff;
+	font-weight:bold;
+}
+.deals_on_demand_text_bold{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:24px;
+	color:#FFFFFF;
+	font-weight:bold;
+
+}
+.deals_on_demand_text1_link{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.deals_on_demand_text1_link:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+	text-decoration:underline;
+
+}
+
+
 /*----------------------Open Deal Silder--------------------------------------------*/
 .alignright {
   float: right;
