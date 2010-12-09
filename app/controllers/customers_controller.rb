@@ -121,7 +121,7 @@ class CustomersController < ApplicationController
   end
 
   def want_a_deal
-     flash[:msg] = nil
+     msg = nil
      @page = "I Want a Deal"
      @categories = DealCategory.find(:all)
      @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
