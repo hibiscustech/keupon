@@ -20,7 +20,7 @@
                       </tr>
                       <tr>
                         <td>&nbsp;</td>
-                        <td height="26" background="images/open_deal_red_bar.jpg" align="center" width="58%" style="background-repeat: no-repeat; cursor: pointer;" class="open_deal_text1" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');">
+                        <td height="26" background="images/open_deal_red_bar.jpg" align="right" style="background-repeat: no-repeat; cursor: pointer;" class="open_deal_text1" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');">
                         <%= demand_deal.status.camelize %>
                           <% if demand_deal.status == "offered" %>
                             : <%= demand_deal.offerings %>
