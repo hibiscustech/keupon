@@ -1,46 +1,39 @@
-<table border="0" cellpadding="0" cellspacing="0">
- <tr>
-   <td><div id="demandDealSubTitle"><div class="yourDemandDealSubTitle">Deals that You Demanded</div></div></td>
- </tr>
- <tr>
-  <td>
-    <div style="height:660px;width:349px;left:0;top:0;visibility:visible;margin: 0;padding: 0;overflow:auto; border-right: 1px solid;">
-      <% accepted_deal = nil
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<% accepted_deal = nil
       for demand_deal in @demand_deals_summary
+        deal_status = demand_deal.status
         if demand_deal.status == "accepted"
           accepted_deals = CustomerDemandDeal.find(demand_deal.id).customer_accepted_demand_deal_biddings.length
         end
-      %>
-      <div id="testid" class="dateB1_center" style="padding-left: 25px; padding-top: 10px; cursor: pointer;" onMouseover="showtooltip('<%= demand_deal.description %>')" onMouseout="hidetooltip()" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');" >
-            <div class="dateB1_C1" style="position:relative;">
-              <img src="/images/demand_<%= demand_deal.status %>.jpg" border="0px" style="width: 204px; height: 161px;"/>
-              <div style="position: absolute; top: 80px;">
-                <img src="/images/iwantdeal_<%= demand_deal.status %>.png" border="0px" />
-              </div>
-              <% if demand_deal.status == "offered" %>
-              <div style="position: absolute; top: 130px;">
-                <span style=" padding-left: 5px; font-weight: bold; font-size: 20px; color: black;"><%= demand_deal.offerings %></span>
-              </div>
-              <% end %>
-              <% if demand_deal.status == "accepted" %>
-              <div style="position: absolute; top: 130px;">
-                <span style=" padding-left: 5px; font-weight: bold; font-size: 20px; color: black;"><%= accepted_deals %></span>
-              </div>
-              <% end %>
-            </div>        
-            <div class="iwantdeal_vertical_tabs">
-            S$<%= demand_deal.expected_value %>
-            <br />
-            <br />
-            <br />
-            <p style="padding-top:10px;"><%= demand_deal.number %></p>
-            <br />
-            <br />
-            <p style="padding-top:10px;"><%= Time.at(demand_deal.deadline).strftime("%d-%m-%y") %></p>
-            </div>        
-          </div>      
-      <% end %>       
-    </div>
-</td> 
- </tr>
+%>
+                  <tr>
+                    <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="3%">&nbsp;</td>
+                        <td width="94%">&nbsp;</td>
+                        <td width="3%">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td align="left" class="deals_on_demand_text2"><%= demand_deal.description %></td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td height="26" background="images/open_deal_red_bar.jpg" align="center" width="58%" style="background-repeat: no-repeat; cursor: pointer;" class="open_deal_text1" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');">
+                        <%= demand_deal.status.camelize %>
+                          <% if demand_deal.status == "offered" %>
+                            : <%= demand_deal.offerings %>
+                          <% elsif demand_deal.status == "accepted" %>
+                            : <%= accepted_deals %>
+                          <% end %>
+                        </td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+<% end %>
 </table>

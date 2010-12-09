@@ -1,82 +1,45 @@
-<form class="jotform-form" action="/customers/want_a_deal" name="form_2730422465" id="2730422465" accept-charset="utf-8" method="post" onsubmit="new Ajax.Request('/customers/want_a_deal', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;" style="padding: 0pt; margin: 0pt;"><div style="margin: 0pt; padding: 0pt; display: inline;"><input name="authenticity_token" value="WHG5zDjP3BuRLy+4EHm0iZ5LTAvxLu24nOnxHqywhto=" type="hidden"/></div>
+<form action="/customers/want_a_deal" name="form_2730422465" id="2730422465" accept-charset="utf-8" method="post" onsubmit="new Ajax.Request('/customers/want_a_deal', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;" style="padding: 0pt; margin: 0pt;"><div style="margin: 0pt; padding: 0pt; display: inline;"><input name="authenticity_token" value="WHG5zDjP3BuRLy+4EHm0iZ5LTAvxLu24nOnxHqywhto=" type="hidden"/></div>
     <input type="hidden" name="formID" value="2730422465" />
-    <div class="form-all">
-        <ul class="form-section">
-            <li class="form-line" id="id_6">
-                <div id="cid_6" class="form-input-wide">
-                    <img alt="" class="form-image" border="0" src="images/head.png" height="228" width="570" />
-                </div>
-            </li>
-
-            <li class="form-line" id="id_8">
-              <% if !flash[:msg].blank? %>
-                <div id="cid_8" class="form-input-wide" style=" width: 570px; background-color: green;">                  
-                  <%= flash[:msg] %>                                    
-                </div>
-              <% else %>
-                <div id="cid_8" class="form-input-wide" style=" width: 570px;">                  
-                  &nbsp;                                   
-                </div>
-              <% end %>
-            </li>
-            
-            <li class="form-line" id="id_5">
-                <label class="form-label-left" id="label_5" for="input_5"> Describe the Keupon that you are looking for </label>
-                <div id="cid_5" class="form-input">
-                    <textarea id="description" class="form-textarea" name="description" cols="40" rows="6"></textarea>
-                </div>
-            </li>
-            <li class="form-line" id="id_3">
-                <label class="form-label-left" id="label_3" for="input_3"> Price for your Keupon </label>
-                <div id="cid_3" class="form-input">
-                    <input type="text" class="form-textbox" id="price" name="price" size="20" />S$
-                </div>
-            </li>
-            <li class="form-line" id="id_1">
-                <label class="form-label-left" id="label_1" for="input_1"> How many Keupons will you Buy? </label>
-                <div id="cid_1" class="form-input">
-                    <input type="text" class="form-textbox" id="quantity" name="quantity" size="20" />
-                </div>
-            </li>
-            <li class="form-line" id="id_2">
-                <label class="form-label-left" id="label_2" for="input_2"> By when do you require this Keupon? </label>
-                <div id="cid_2" class="form-input">
-                    <input type="text" class="form-textbox" id="deadline" name="deadline" size="20" />
-                    <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="border: 0px none; cursor: pointer;"/>
-                </div>
-            </li>
-            <li class="form-line" id="id_4">
-                <label class="form-label-left" id="label_4" for="input_4"> Categorize your Keupon </label>
-                <div id="cid_4" class="form-input">
-                    <select class="form-dropdown" style="width:150px" id="category" name="category">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <% if !flash[:msg].blank? %>
+            <tr>
+              <td colspan="3" style="background-color: green;">
+                <%= flash[:msg] %>
+              </td>
+            </tr>
+            <% end %>
+              <tr>
+                <td width="38%" align="left" class="deals_on_demand_text1">Describe the Keupon that you are looking for:</td>
+                <td colspan="2" align="left"><textarea name="description" id="description" cols="35" rows="5"></textarea></td>
+              </tr>
+              <tr>
+                <td align="left" class="deals_on_demand_text1">Price for your Keupon : </td>
+                <td height="30" align="left"><input type="text" name="price" id="price" />S$</td>
+                <td width="33%" rowspan="5" align="left"><img src="images/deals_on_demand_img.png" width="152" height="184" /></td>
+              </tr>
+              <tr>
+                <td align="left" class="deals_on_demand_text1">How many Keupons will you Buy?</td>
+                <td height="30" align="left"><input type="text" name="quantity" id="quantity" /></td>
+                </tr>
+              <tr>
+                <td align="left" class="deals_on_demand_text1">By when do you require this Keupon?</td>
+                <td height="30" align="left"><input type="text" name="deadline" id="deadline" /><img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="border: 0px none; cursor: pointer;"/></td>
+                </tr>
+              <tr>
+                <td align="left" class="deals_on_demand_text1">Categorize your Keupon: </td>
+                <td height="30" align="left">
+                    <select id="category" name="category">
                         <option value="0">Select a Category</option>
                         <% for category in @categories %>
                         <option value="<%= category.id %>"><%= category.name %></option>
                         <% end %>
                     </select>
-                    <%=observe_field "category",
-                      :url => {:controller => 'customers', :action => 'deal_sub_categories'},
-                      :on => 'change',
-                      :with => "category"%>
-                </div>
-            </li>
-            <li class="form-line" id="id_7">
-                <label class="form-label-left" id="label_7" for="input_7"> Sub-Categorize your Keupon </label>
-                <div id="cid_7" class="form-input">
-                    <%= render :partial => "deal_sub_categories" %>
-                </div>
-            </li>
-            <li class="form-line" id="id_2">
-              <input type="button" name="Confirm Deal" value="Confirm Deal" onclick="return form_validator();return false;" />
-            </li>
-            <li class="form-line" id="id_9">
-              <label class="form-label-left" id="label_9" for="input_9">&nbsp;</label>
-            </li>
-        </ul>
-    </div>
-
-    <input type="hidden" id="simple_spc" name="simple_spc" value="2730422465" />
-    <script type="text/javascript">
-        document.getElementById("si" + "mple" + "_spc").value = "2730422465-2730422465";
-    </script>
+                </td>
+                </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td width="29%" align="left">
+                    <a href="#" onclick="return form_validator();return false;"><img src="images/confirm_deal_btn.png" width="110" height="47" border="0" /></a></td>
+                </tr>
+            </table>
 </form>
