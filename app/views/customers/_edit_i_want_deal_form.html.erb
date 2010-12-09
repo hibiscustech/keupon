@@ -3,14 +3,7 @@
     <input type="hidden" name="demand_deal" id="demand_deal" value="<%= @demand_deal.id %>" />
     <input type="hidden" name="button_status" id="button_status" value="" />
 
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <% if !flash[:msg].blank? %>
-            <tr>
-              <td colspan="3" style="background-color: green;">
-                <%= flash[:msg] %>
-              </td>
-            </tr>
-            <% end %>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">            
             <tr>
                 <td width="38%" align="left" class="deals_on_demand_text1">Describe the Keupon that you are looking for:</td>
                 <td colspan="2" align="left"><textarea name="description" id="description" cols="35" rows="5"><%= @demand_deal.description %></textarea></td>

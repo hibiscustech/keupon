@@ -1,13 +1,6 @@
 <form action="/customers/want_a_deal" name="form_2730422465" id="2730422465" accept-charset="utf-8" method="post" onsubmit="new Ajax.Request('/customers/want_a_deal', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;" style="padding: 0pt; margin: 0pt;"><div style="margin: 0pt; padding: 0pt; display: inline;"><input name="authenticity_token" value="WHG5zDjP3BuRLy+4EHm0iZ5LTAvxLu24nOnxHqywhto=" type="hidden"/></div>
     <input type="hidden" name="formID" value="2730422465" />
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <% if !flash[:msg].blank? %>
-            <tr>
-              <td colspan="3" style="background-color: green;">
-                <%= flash[:msg] %>
-              </td>
-            </tr>
-            <% end %>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">            
               <tr>
                 <td width="38%" align="left" class="deals_on_demand_text1">Describe the Keupon that you are looking for:</td>
                 <td colspan="2" align="left"><textarea name="description" id="description" cols="35" rows="5"></textarea></td>
