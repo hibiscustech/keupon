@@ -1,178 +1,21 @@
-<style type="text/css">
-  ul,li{
-    margin:0px;
-    padding:0px;
-  }
-  li{
-    display:inline;
-    list-style:none;
-    list-style-position:outside;
-    text-align:center;
-    font-weight:bold;
-    float:left;
-  }
-  .dropdownw{
-    color:#FFFFFF;
-    text-decoration:none;
-    float:left;
-    width:110px;
-    padding:3px 5px 0px 5px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
-
-  }
-
-
-  .dropdownw:hover{
-    color:white;
-    float:left;
-    padding:3px 3px 0px 20px;
-    width:102px;
-    text-decoration:none;
-    background-color:#FF0000;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
-  }
-
-  #navw{
-    /*width:120px;
-	height:30px;
-	border-bottom:0px;left: 560px;*/
-    padding:0px 5px;
-    position:absolute;
-    z-index:1;
-    top: 25px;
-  }
-  .listw{
-    line-height:20px;
-    text-align:left;
-    padding:4px;
-    font-weight:normal;
-  }
-  .menu1w{
-    width:132px;
-    height:auto;
-    margin:6px 4px 0px 0px;
-
-    background-color:#000000;
-    color:#FFFFFF;
-    padding:6px 0px 0px 0px;
-    cursor:hand;
-    overflow-y:hidden;
-
-    background-image:url(/images/btn_bg1.jpg);
-    /*margin-left:250px;*/
-    margin-top:40px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:14px;
-  }
-  .menu2w{
-    width:132px;
-    height:26px;
-    margin:6px 4px 0px 0px;
-    color:#FFFFFF;
-    padding:6px 0px 0px 0px;
-    overflow-y:hidden;
-    cursor:hand;
-    background-image:url(/images/btn_bg.jpg);
-    /*margin-left:250px;*/
-    margin-top:40px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:14px;
-  }
-
-
-</style>
-<div id="header">
-  <div id="logo"><%=link_to image_tag('logo.jpg',:border=>'0'), '/'%></div>
-  <%if !logged_in?%>
-    <div id="head1">
-      <div id="hot_deals">Hot Deals in <span style="font-size:22px;">Singapore</span></div>
-      <table width="700" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;" >
-        <tr>
-          <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" style="position:absolute;" /></a></td>
-          <td width="141"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" style="position:absolute;"/></a></td>
-          
-          <td width="144"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" style="position:absolute;"/></a></td>
-        <td width="141"><a href="/invite_friends"><img src="/images/earn_money_tab.jpg"  border="0" style="position:absolute;"/></a></td>
-        <td width="141"><a href="#" onclick="createsubscription('popup_create_deal');" style="color: rgb(3, 77, 124);"><img src="/images/subscribe_tab.jpg"  border="0" style="position:absolute;"/></a></td></tr></table>
-
-    </div>
-
-
-    <div id="head2">
-
-
-      <div id="addMoreFrnd"></div>
-
-
-
-      <div id="advertise"></div>
-
-
-
-      <div id="watchVid" style="width: 150px;">
-        <table width="306" border="0" cellspacing="0" cellpadding="0" style="margin-top:-45px;margin-left: -20px;">
-
-          <tr>
-
-            <td width="21"><img src="/images/login_03.png" width="21" height="36" /></td>
-
-            <td width="63"><a href="/login"><img src="/images/login_04.png" width="63" height="36" border="0"/></a></td>
-
-            <td width="61"><img src="/images/login_05.png" width="61" height="36" border="0"/></td>
-
-            <td width="115" background="/images/login_06.png"><select name="select" id="select">
-
-                <option>As Customer</option>
-
-                <option>As Merchant</option>
-
-              </select>
-
-            </td>
-
-            <td width="47" align="left"><a href="#"><img src="/images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></a></td>
-
-          </tr>
-
-        </table>
-      </div>
-
- <div id="popup_create_deal">
-    <%= render :partial => "shared/subscription" %>
-  </div>
-    </div>
-   
-  <%else%>
-    <div id="hot_deals"> Hot Deals in <span style="font-size:18px;">Singapore</span>    </div>
-    <table style="float:right;margin-top:20px;margin-right:70px;font-size:18px;"><tr><td><%=link_to 'Logout','/logout',{:style=>'text-decoration: none;'}%></td></tr></table>
-    <table width="700" border="0" cellspacing="0" cellpadding="0">
-
-      <tr>
-        <td width="144"><a href="/deal_of_the_day"><img src="/images/hotdeals_tab.jpg"  border="0" /></a></td>
-        <td width="144"><a href="/want_a_deal"><img src="/images/deals_demand_tab.jpg"  border="0" /></a></td>
-        <td width="149"><a href="/open_deals"><img src="/images/open_deals_tab.jpg"  border="0" /></a></td>
-        <td width="176"><a href="/invite_friends"><img src="/images/earn_money_tab.jpg"  border="0" />  </td>       
-      <%if logged_in?%> <p style="font-size: 15px; color: rgb(0, 0, 0); margin-left:-70px;margin-top: 26px;float:left;"> welcome! <%=current_customer.customer_profile.first_name%></p><%end%>
-
-  
-      <td width="99">
- <%if current_customer.customer_photo_file_name.nil?%>
-          <img src="/images/profile_pic.jpg" style="border:2px solid red;"  />
-        <%else%>
-          <img src="<%=current_customer.customer_photo.url(:small)%>" style="border:2px solid red; width: 95px; height: 79px;"  />
-        <%end%></td>
-    
-      </tr>
-    </table>
-     
-  <br/><div style="float: right;">
-    <a href="/my_keupons" ><img src="/images/mykeupon.jpg"   border="0"/></a>&nbsp;&nbsp;<a href="/my_profile" ><img src="/images/my_profile_btn.jpg" border="0"   /></a></div><br/>
-  <%end%>
-</div>
-<br/><br/>
-
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="46%" align="left"><img src="images/hot_deals_singapore_text.jpg" width="332" height="78" /></td>
+                    <td width="8%">&nbsp;</td>
+                    <td width="46%"><table width="306" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="21"><img src="images/login_03.png" width="21" height="36" /></td>
+                        <td width="63"><a href="#"><img src="images/login_04.png" width="63" height="36"  border="0"/></a></td>
+                        <td width="61"><img src="images/login_05.png" width="61" height="36"/></td>
+                        <td width="115" background="images/login_06.png"><select name="select" id="select">
+                            <option>As Customer</option>
+                            <option>As Merchant</option>
+                          </select>                        </td>
+                        <td width="47" align="left"><a href="#"><img src="images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></a></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                </table>
 
 <script>
   function find_link(){
@@ -186,43 +29,4 @@
       window.location='/merchant_signup';
     }
   }
-</script>
-<script>
-function validate_email(){
-var theForm = document.forms['new_email_deal'];
-if (theForm.email_deal_email.value == "" || theForm.email_deal_email.value.length < 1)
-{
-alert("You must enter Email address.");
-theForm.email_deal_email.focus();
-return (false);
-}
-}
-</script>
-<script>
-function validate_loc(){
-var theForm = document.forms['new_email_deal'];
-if (theForm.email_deal_location.value == "" || theForm.email_deal_location.value.length < 1)
-{
-alert("You must enter a valid location.");
-theForm.email_deal_location.focus();
-return (false);
-}
-}
-</script>
-
-<script>
-function Validates(){
-  var reg =  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-  var email = document.getElementById("email_deal_email").value;
-  if (email == "")
-    {
-      alert('Please enter the email')
-      return false;
-    }
-  if (reg.test(email) == false)
-     {
-      alert('Please enter the correct email')
-      return false;
-    }
-}
 </script>

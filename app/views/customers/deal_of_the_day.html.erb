@@ -1,36 +1,39 @@
-<%=render :partial=>'/shared/marketing_message'%>
-<div id="slide">
-  <div id="slider" class="png">
-    <div id="slideh">
-      <% i = 1
-      for htd in @hot_deal_discounts
-        discount = htd[1]
-        hot_deal = @hot_deals[htd[0]]
-        htdeal = Deal.find(hot_deal.id)
-      %>
-      <div class="slider_item sliderh<%=i%>">
-        <h3>Keupons Bought: <%= hot_deal.no_of_customers%></h3>
-        <p style="color:red;"><%= link_to hot_deal.name, :controller => 'customers',:action=>'deal_details',:id => hot_deal.id  %></p>
-        <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" alt="" border="0" /></a>
-      </div>
-      <%
-        i+=1
-      end
-      %>
-    </div>
-    <img class="scrollButtons left" src="/images/leftarrow.jpg"/>
-    <img class="scrollButtons right" src="/images/rightarrow.jpg"/>
-  </div>
-</div>
-
-<br/> <img class="" src="/images/open_deal.jpg"/>
-<div id="featured_slider">
-<%=render :partial=>'open_deals'%>
-</div>
-<br/> <img class="" src="/images/recent_deals_header.jpg"/>
-
-<!-- Start Wrapper -->
-   <div id="wrapper">
+<tr>
+        <td background="images/marketing_msg_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="28%" align="left"><img src="images/marketing_msg_img.jpg" width="274" height="120" /></td>
+            <td width="70%" align="center" class="marketing_msg_text"> Welcome to Keupons, <br />
+              the only site where you are guaranteed a discount! </td>
+            <td width="2%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+<tr>
+        <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="17%" align="left"><img src="images/hot_deals_header_text.jpg" width="182" height="55" /></td>
+            <td width="83%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td height="336" >Hot Deals Slider comes here</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="17%" align="left"><img src="images/open_deals_header_text.jpg" width="196" height="55" /></td>
+            <td width="83%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td height="220">
+          <!-- ********************SLIDER IMAGES*******************************-->
+          <div id="wrapper">
 
 		<div class="slider-frame">
                 <div class="sliderImages">
@@ -53,3 +56,5 @@
 
 <!-- ********************END SLIDER IMAGES*******************************-->
    </div>
+        </td>
+      </tr>

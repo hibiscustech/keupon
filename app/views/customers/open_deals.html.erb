@@ -1,32 +1,133 @@
-<script src="http://www.google.com/jsapi" type="text/javascript"></script>
-<script type="text/javascript">
-  google.load("jquery", "1.3.2");
-</script>
-<script src='/javascripts/filter.js' type='text/javascript' ></script>
-<div id="page-wrap">  <br />
-  <h1>&nbsp;</h1>
-  <p id="catpicker"></p>
-  <br />
-  <%for opdd in @open_deal_discounts
-    discount = opdd[1]
-    open_deal = @open_deals[opdd[0]]
-    opd = Deal.find(open_deal.id)
-  %>    
-
-    <div style="margin-left: 140px; opacity: 0.8;" class="discounted-item freeshipping">
-     <a href="/deal_details?id=<%= open_deal.id %>"><img border="0" alt="img" src="<%= opd.deal_photo.url(:small) %>"></a>
-     <div class="reasonbar">
-       <div style="width: 65%; color: rgb(255, 255, 255);" class="prod-title"><a style="color: rgb(255, 255, 255);" href="/deal_details?id=<%=open_deal.id%>"><%=open_deal.name%></a> </div>
-       <div style="width: 30%;" class="reason">Date Expiry</div>
-       <div style="width: 30%;" class="reason"><%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></div>
-     </div>
-     <div class="discount-bar">
-      <table style="text-align:center;width: 510px;"><tr><td width="8%">Deals Bought</td><td  width="1%">|</td><td  width="2%">Discount</td><td  width="1%">|</td><td  width="30%">Location</td></tr>
-      <tr><td ><%=open_deal.no_of_customers%></td><td>|</td><td><%=discount%> %</td><td> |</td><td><%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td></tr></table>
-     </div>
-
-   </div>
 
 
-  <%end%>
-</div>
+<tr>
+  <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="13%" align="left"><img src="images/open_deals_header_text.jpg" width="196" height="55" /></td>
+        <td width="87%" class="header_text">&nbsp;</td>
+      </tr>
+    </table></td>
+</tr>
+<tr>
+  <td height="35" background="images/fine_print_black_gradient.jpg" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="3%">&nbsp;</td>
+        <td width="95%" align="left"><a href="#"><img src="images/location_btn.jpg" width="120" height="26" border="0" /></a><a href="#"><img src="images/discount_btn.jpg" width="120" height="26" border="0" /></a><a href="#"><img src="images/dateof_closing_btn.jpg" width="120" height="26" border="0" /></a><a href="#"><img src="images/date_btn.jpg" width="120" height="26" border="0" /></a></td>
+        <td width="2%">&nbsp;</td>
+      </tr>
+    </table></td>
+</tr>
+<tr>
+  <td >&nbsp;</td>
+</tr>
+<tr>
+  <td >
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="2%">&nbsp;</td>
+        <td width="52%" valign="top">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+            <tr>
+              <%for opdd in @open_deal_discounts
+                discount = opdd[1]
+                open_deal = @open_deals[opdd[0]]
+                opd = Deal.find(open_deal.id)
+              %>
+
+                <td height="115" bgcolor="#1c1316" style="border:2px solid #888888;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="27%" align="center">
+                         <a href="/deal_details?id=<%= open_deal.id %>"><img border="0" alt="img" src="<%= opd.deal_photo.url(:small) %>" width="108" height="89"/></a>
+                      </td>
+                      <td width="70%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td height="50" colspan="2" align="left" class="open_deal_text1"><%=open_deal.name%></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" align="left" class="open_deal_text_red">Deal Bought: <%=open_deal.no_of_customers%><br />
+                              Discount: <%=discount%> %<br />
+                              Location: <%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td>
+                          </tr>
+                          <tr>
+                            <td width="42%">&nbsp;</td>
+                            <td width="58%" height="26" align="center" background="images/open_deal_red_bar.jpg" class="open_deal_text1" style="background-repeat:no-repeat">Deal Exipires On: <%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></td>
+                          </tr>
+
+                        </table></td>
+                      <td width="3%">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+            <%end%>
+          </table>
+        </td>
+        <td width="3%">&nbsp;</td>
+        <td width="41%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #999999;">
+            <tr>
+              <td><img src="images/hottest_deal_text.jpg" width="402" height="53" /></td>
+            </tr>
+            <tr>
+              <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="5%">&nbsp;</td>
+                    <td height="45" colspan="2" align="left" class="open_deal_text2">Worth of Photo Books or Holiday Cards, Plus Four Free<br />
+                      Accordion Desktop Calendars at KODAK Gallery </td>
+                    <td width="3%">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td width="51%"><img src="images/hottest_iphone_img.jpg" width="210" height="181" /></td>
+                    <td width="41%" valign="top" bgcolor="#24272c"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Best Price Offered</td>
+                        </tr>
+                        <tr>
+                          <td height="26" align="center" class="open_deal_text1">$300</td>
+                        </tr>
+                        <tr>
+                          <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Discount Offered</td>
+                        </tr>
+                        <tr>
+                          <td height="26" align="center" class="open_deal_text1">50%</td>
+                        </tr>
+                        <tr>
+                          <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Keupons Bought</td>
+                        </tr>
+                        <tr>
+                          <td height="26" align="center" class="open_deal_text1">45</td>
+                        </tr>
+                      </table></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2">&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="center"><a href="#"><img src="images/buy_now_btn.png" width="179" height="50" border="0" /></a></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="center">&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table></td>
+        <td width="2%">&nbsp;</td>
+      </tr>
+    </table></td>
+</tr>
+<tr>
+  <td >&nbsp;</td>
+</tr>

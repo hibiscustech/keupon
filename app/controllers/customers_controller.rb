@@ -73,7 +73,7 @@ class CustomersController < ApplicationController
         }
       end
     else
-     render :layout => 'application_home'
+     
     end
   end
 
@@ -105,7 +105,7 @@ class CustomersController < ApplicationController
       p "reviews"
       @flag=false
     end
-    render :layout => 'application_home'
+    
   end
 
   def keupoint_deal
