@@ -52,7 +52,7 @@ class CustomersController < ApplicationController
    CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
    redirect_to '/'
    else
-     render :template=>'/customers/earn_money',:layout=>'application_home'
+     render :template=>'/customers/earn_money'
    end
   end
   
