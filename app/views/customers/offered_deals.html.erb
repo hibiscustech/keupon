@@ -1,35 +1,140 @@
-<div id="offered_deals">
-  <% for deal in @offerings
-    cddb = CustomerDemandDealBidding.find(deal.id)
-  %>
-  <div  class="dealsoffered" style="width:650px;height:125px;">
-          <div style="float: left;"><img src="<%= cddb.demand_deal_photo.url %>" style="margin-top:14px;margin-left:10px;width:100px;height:100px;"/></div>
-           <div style="float: left; width: 510px; height:90px;color:#151515;font-family:helvetica;font-size:16px;">
-                <span style="text-align:justify;color: #034D7C;float:left;font-weight:bold;font-size:16px;margin-left:5px;width: 500px;"><%= deal.name %></span>
-                <span style="text-align:justify;float:left;margin-left:5px;height: 60px; width: 500px;"><%= deal.highlights %></span>
-              <div style="float: right;width: 310px;">
-                <table style="border:0px;width: 210px;font-weight:bold;color:#034D7C;" align="right">
+      <tr>
+        <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="13%" align="left"><img src="images/offered_deals_header_text.jpg" width="250" height="55" /></td>
+            <td width="87%" class="header_text">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td >&nbsp;</td>
+      </tr>
+      <tr>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="2%">&nbsp;</td>
+            <td width="52%" valign="top">
+
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <% for deal in @offerings
+                cddb = CustomerDemandDealBidding.find(deal.id)
+              %>
+              <tr>
+                <td height="150" background="images/offered_deal_red_bar.jpg" style="border:2px solid #000000">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <% if deal.deal_id.blank? %>
-                    <td align="right" width="10%">
-                      <a href="#" onclick="showDemandDealOffer('popup_view_deal', '<%=cddb.id%>');" style="color: rgb(3, 77, 124);">See it</a>
-                    </td>
-                    <td align="right" width="10%">
-                      <a href="/demand_deal_transaction_details?id=<%=cddb.id%>" style="color: rgb(3, 77, 124);">Buy it</a>
-                    </td>
-                    <% else %>
-                    <td align="right" width="10%">
-                      <a href="#" onclick="showDemandDealOffer('popup_view_deal', '<%=cddb.id%>');" style="color: #006600;">Bought this Deal</a>
-                    </td>
-                    <% end %>
+                    <td width="27%" align="center"><img src="<%= cddb.demand_deal_photo.url %>" width="108" height="89" /></td>
+                    <td width="70%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="50" colspan="2" align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td height="30" background="images/offered_deal_red_bar_top.jpg" style="background-repeat:no-repeat"><table width="100%" border="0" cellspacing="1" cellpadding="0">
+                                <tr>
+                                  <td width="19%" height="29" align="center" class="open_deal_text1">Price</td>
+                                  <td width="24%" align="center" class="open_deal_text1">Discount</td>
+                                  <td width="25%" align="center" class="open_deal_text1">Savings</td>
+                                  <td width="32%" align="center" class="open_deal_text1">Deal expires on</td>
+                                </tr>
+                                <tr>
+                                  <td height="25" align="center" bgcolor="#FFFFFF" class="open_deal_text2">S$ <%= cddb.actual_value %></td>
+                                  <td align="center" bgcolor="#FFFFFF" class="open_deal_text2"><%= cddb.discount %> %</td>
+                                  <td align="center" bgcolor="#FFFFFF" class="open_deal_text2">S$ <%= cddb.savings %></td>
+                                  <td align="center" bgcolor="#FFFFFF" class="open_deal_text2"><%= Time.at(cddb.deal_end_date).strftime("%d-%m-%Y") %></td>
+                                </tr>
+                              </table></td>
+                            </tr>
+
+                          </table></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" align="left" class="open_deal_text_red"><%= deal.name %></td>
+                        </tr>
+                        <tr>
+                          <td width="74%">&nbsp;</td>
+                          <td width="26%" height="26" align="right" class="open_deal_text1" style="background-repeat:no-repeat">
+                            <% if deal.deal_id.blank? %>
+                            <a href="/demand_deal_transaction_details?id=<%=cddb.id%>"><img src="images/buyit_btn.png" width="74" height="29" border="0"/></a>
+                            <% else %>
+                            <img src="images/boughtit_btn.png" width="74" height="29" border="0"/>
+                            <% end %>
+                          </td>
+                        </tr>
+                    </table></td>
+                    <td width="3%">&nbsp;</td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td height="10">&nbsp;</td>
+              </tr>
+              <% end %>
+              <tr>
+                <td height="10">&nbsp;</td>
+              </tr>
+            </table>
+
+            </td>
+            <td width="3%">&nbsp;</td>
+            <td width="41%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #999999;">
+              <tr>
+                <td><img src="images/hottest_deal_text.jpg" width="402" height="53" /></td>
+              </tr>
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="5%">&nbsp;</td>
+                    <td height="45" colspan="2" align="left" class="open_deal_text2">Worth of Photo Books or Holiday Cards, Plus Four Free<br />
+                      Accordion Desktop Calendars at KODAK Gallery </td>
+                    <td width="3%">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td width="51%"><img src="images/hottest_iphone_img.jpg" width="210" height="181" /></td>
+                    <td width="41%" valign="top" bgcolor="#24272c"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Best Price Offered</td>
+                      </tr>
+                      <tr>
+                        <td height="26" align="center" class="open_deal_text1">$300</td>
+                      </tr>
+                      <tr>
+                        <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Discount Offered</td>
+                      </tr>
+                      <tr>
+                        <td height="26" align="center" class="open_deal_text1">50%</td>
+                      </tr>
+                      <tr>
+                        <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Keupons Bought</td>
+                      </tr>
+                      <tr>
+                        <td height="26" align="center" class="open_deal_text1">45</td>
+                      </tr>
+                    </table></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2">&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="center"><a href="#"><img src="images/buy_now_btn.png" width="179" height="50" border="0" /></a></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="center">&nbsp;</td>
+                    <td>&nbsp;</td>
                   </tr>
                 </table>
-              </div>
-           </div>
-       </div>
-  <% end %>
-
-  </div>
-  <div id="popup_view_deal">
-    <%= render :partial => "demand_deal_info" %>
-  </div>
+                </td>
+              </tr>
+            </table></td>
+            <td width="2%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td >&nbsp;</td>
+      </tr>
