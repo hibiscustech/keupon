@@ -190,7 +190,7 @@
  *      afterEnd: function(a) {
  *          alert("After animation ends:" + a);
  *      }
- * });
+ * });width
  * @desc If you wanted to do some logic in your page before the slide starts and after the slide ends, you can
  * register these 2 callbacks. The functions will be passed an argument that represents an array of elements that
  * are visible at the time of callback.
@@ -334,7 +334,7 @@ function css(el, prop) {
     return parseInt($.css(el[0], prop)) || 0;
 };
 function width(el) {
-    return  950;
+    return  100;
 };
 function height(el) {
     return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
