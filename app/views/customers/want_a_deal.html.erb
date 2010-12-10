@@ -9,7 +9,8 @@ function call_offers(deal, status){
     location.href='/offered_deals?deal='+deal;
   }
   else{
-    new Ajax.Request('/customers/want_a_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    location.href='/customers/want_a_deal?id='+deal;
+    //new Ajax.Request('/customers/want_a_deal?id='+deal, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
   }
 }
 
@@ -74,7 +75,7 @@ theForm.category.focus();
 return (false);
 }
 
-theForm.onsubmit();
+theForm.submit();
 }
 
 function checkDate(field) {
@@ -147,9 +148,7 @@ function IsNumeric(sText)
             <td height="121" background="images/deals_on_demand_sale_box.png" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="27%">&nbsp;</td>
-                <td width="63%" align="left" class="deals_on_demand_text2" id="dd_message">Please fill in the form below.<br />
-                  All the fields are required for submission<br />
-                  Do let us know which specific deal you want us to showcase on Keupon, We will get back to you soon!!</td>
+                <td width="63%" align="left" class="deals_on_demand_text2"><%= @msg  %></td>
                 <td width="10%">&nbsp;</td>
               </tr>
             </table></td>
@@ -194,7 +193,11 @@ function IsNumeric(sText)
             <td>&nbsp;</td>
             <td>
               <div id="userform">
+                <% if @demand_deal.blank? %>
                 <%= render :partial => "i_want_deal_form" %>
+                <% else %>
+                <%= render :partial => "edit_i_want_deal_form" %>
+                <% end %>
               </div>                            
             </td>
             <td>&nbsp;</td>

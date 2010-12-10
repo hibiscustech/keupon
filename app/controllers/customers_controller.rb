@@ -121,77 +121,42 @@ class CustomersController < ApplicationController
   end
 
   def want_a_deal
-     msg = nil
+     @msg = 
      @page = "I Want a Deal"
      @categories = DealCategory.find(:all)
      @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
-     if request.xml_http_request?
+     @demand_deal = (params[:id].blank?)? nil : CustomerDemandDeal.find(params[:id])
+     @msg = (@demand_deal.blank?)? "Please fill in the form below.<br/>All the fields are required for submission<br/>Do let us know which specific deal you want us to showcase on Keupon, We will get back to you soon!!" : (@demand_deal.status == "new")? "'Update' this Demand Deal with changes or 'Confirm' in order to start receiving Offerings." : "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond"
+      
+     if request.post?
        if params[:id].blank?
-         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
-         @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])         
          @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
-         msg = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."
-         respond_to do |format|
-          format.html
-          format.js {
-            render :update do |page|
-              page.replace_html 'dd_message', "#{msg}"
-              page.replace_html 'userform', :partial => "edit_i_want_deal_form"
-              page.replace_html 'userform2', :partial => "my_demand_deals_summary"
-            end
-          }
-         end
-       else
-         @demand_deal = CustomerDemandDeal.find(params[:id])
-         @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
-         if @demand_deal.status == "new"
-           msg = "'Update' this Demand Deal with changes or 'Confirm' in order to start receiving Offerings."
-         else
-           msg = "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond"
-         end
-         respond_to do |format|
-          format.html
-          format.js {
-            render :update do |page|
-              page.replace_html 'dd_message', "#{msg}"
-              page.replace_html 'userform', :partial => "edit_i_want_deal_form"
-            end
-          }
-         end
+         @msg = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."       
        end
      end
+     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
   end
 
   def update_or_confirm_want_a_deal
-    msg = nil
+    @msg = nil
     @demand_deal = CustomerDemandDeal.find(params[:demand_deal])
     @categories = DealCategory.find(:all)
     @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
-    if request.xml_http_request?
-      msg = "You have 'Updated' this demand deal request. Click on 'Confirm' to receive Offers soon."
+    if request.post?
+      @msg = "You have 'Updated' this demand deal request. Click on 'Confirm' to receive Offers soon."
       @demand_deal.update_attributes(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59"), :description => params[:description], :deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
       if params[:button_status] == "confirm"
-        merchants = MerchantProfile.all_merchants_for_my_demand_deal(@demand_deal.deal_category_id, @demand_deal.deal_sub_category_id)
+        merchants = MerchantProfile.all_merchants_for_my_demand_deal(@demand_deal.deal_category_id, nil)
         for merchant in merchants
           CustomerDemandDealBidding.create(:time_created => Time.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => @demand_deal.id)
         end
         @demand_deal.update_attributes(:status => "confirmed")
         @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
-        msg = "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond."
-      end
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'dd_message', "#{msg}"
-            if params[:button_status] == "confirm"
-              page.replace_html 'userform2', :partial => "my_demand_deals_summary"
-            end
-            page.replace_html 'userform', :partial => "edit_i_want_deal_form"
-          end
-        }
+        @msg = "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond."
       end
     end
+    redirect_to "/customers/want_a_deal?id=#{params[:demand_deal]}"
   end 
 
   def offered_deals

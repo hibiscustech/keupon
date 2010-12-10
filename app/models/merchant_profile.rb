@@ -30,7 +30,7 @@ class MerchantProfile < ActiveRecord::Base
   end
 
   def self.all_merchants_for_my_demand_deal(category, sub_category)
-    query = %Q{ select merchant_id from merchant_profiles where deal_category_id = '#{category}' and deal_sub_category_id = '#{sub_category}'}
+    query = %Q{ select merchant_id from merchant_profiles where deal_category_id = '#{category}' }
     find_by_sql(query)
   end
 
