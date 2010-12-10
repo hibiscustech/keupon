@@ -11,16 +11,17 @@
                     <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td width="3%">&nbsp;</td>
-                        <td width="94%">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
                         <td width="3%">&nbsp;</td>
                       </tr>
                       <tr>
                         <td>&nbsp;</td>
-                        <td align="left" class="deals_on_demand_text2"><%= demand_deal.description %></td>
+                        <td align="left" class="deals_on_demand_text2" colspan="2"><%= demand_deal.description %></td>
                         <td>&nbsp;</td>
                       </tr>
                       <tr>
                         <td>&nbsp;</td>
+                        <td width="68%" align="right">&nbsp;</td>
                         <td width="26%" height="23" align="center" background="images/deals_on_demand_red_bar1.png" style="background-repeat:no-repeat;"><a href="#" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');" class="deals_on_demand_text1_link"><%= demand_deal.status.camelize %>                        
                           <% if demand_deal.status == "offered" %>
                             : <%= demand_deal.offerings %>
