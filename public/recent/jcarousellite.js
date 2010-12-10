@@ -333,9 +333,9 @@ $.fn.jCarouselLite = function(o) {
 function css(el, prop) {
     return parseInt($.css(el[0], prop)) || 0;
 };
-//function width(el) {
-  //  return  el[0].offsetWidth + css(el, 'marginLeft') + css(el, 'marginRight');
-//};
+function width(el) {
+    return  950;
+};
 function height(el) {
     return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
 };
