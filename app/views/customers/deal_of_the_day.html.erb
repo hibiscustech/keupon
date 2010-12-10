@@ -28,7 +28,7 @@
             <div id="loopedSlider"><!-- begin loopedSlider -->
             		<div class="container">
                         <div class="slides_open">
-                             <% for htd in @hot_deal_discounts
+       <% for htd in @hot_deal_discounts
         discount = htd[1]
         hot_deal = @hot_deals[htd[0]]
         htdeal = Deal.find(hot_deal.id)
@@ -38,8 +38,7 @@
                             		<h1> <%=  hot_deal.name %></h1>
 									<a href="#" class="button2">GetDeal</a>
                                 </div>
-                            	<img src="./images/clouds.jpg"  />
-                                <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" width="512" height="218" alt="clouds" border="0" /></a>
+                            	<a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" width="512" height="218" alt="clouds" border="0" /></a>
                             </div>
 <%end%>
                  </div>
