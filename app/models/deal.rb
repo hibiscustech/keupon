@@ -47,7 +47,7 @@ class Deal < ActiveRecord::Base
     hotest_deal = find_by_sql(query)[0]
     if !hotest_deal.blank?
       deal_discount_details = DealDiscount.deal_current_discount_details(hotest_deal.id, hotest_deal.no_of_customers)
-      hotest_deal.discount = deal_discount_details.dicount
+      hotest_deal.discount = deal_discount_details.discount
       hotest_deal.buy = deal_discount_details.buy_value
     end
     return hotest_deal

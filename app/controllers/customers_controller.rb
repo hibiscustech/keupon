@@ -60,8 +60,7 @@ class CustomersController < ApplicationController
     @page = "Hot Deals"
     @hot_deal_discounts, @hot_deals = Deal.all_hot_deals
     @open_deal_discounts, @open_deals = Deal.all_open_deals
-    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals
-    @open_deal_discounts = @open_deal_discounts.paginate(:page => params[:page], :per_page => 3)
+    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals    
     @recent_deals = Deal.all_recent_deals
     if request.xml_http_request?
       respond_to do |format|
@@ -162,6 +161,7 @@ class CustomersController < ApplicationController
 
   def offered_deals
     @page = "Offered Deals"
+    @demand_deal = CustomerDemandDeal.find(params[:deal])
     @offerings = CustomerProfile.my_demand_deal_offerings(params[:deal])
     @hotest_deal = Deal.hottest_deal_of_today
   end

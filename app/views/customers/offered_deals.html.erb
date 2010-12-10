@@ -16,6 +16,27 @@
             <td width="52%" valign="top">
 
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="10" bgcolor="#000000" style="border:2px solid #CCCCCC;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2" align="left"><img src="images/deal_demanded_text.jpg" width="258" height="31" /></td>
+                    <td width="4%">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td width="4%" height="54">&nbsp;</td>
+                    <td width="92%" align="left" class="open_deal_text1"><%= @demand_deal.description %></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="right"><img src="images/deals_offered_text.jpg" width="258" height="32" /></td>
+                    </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td height="10">&nbsp;</td>
+              </tr>
+
               <% for deal in @offerings
                 cddb = CustomerDemandDealBidding.find(deal.id)
               %>
