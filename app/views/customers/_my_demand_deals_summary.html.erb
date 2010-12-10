@@ -1,4 +1,4 @@
-<div style="height: 300px; overflow:auto;">
+<div style="height: 320px; overflow:auto;">
 <table width="100%" border="0" cellspacing="2" cellpadding="0">
 <% accepted_deal = nil
       for demand_deal in @demand_deals_summary
@@ -21,13 +21,13 @@
                       </tr>
                       <tr>
                         <td>&nbsp;</td>
-                        <td height="26" align="center" style="cursor: pointer; color: #000000;" class="open_deal_text1" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');">
-                        <%= demand_deal.status.camelize %>
+                        <td width="26%" height="23" align="center" background="images/deals_on_demand_red_bar1.png" style="background-repeat:no-repeat;"><a href="#" onClick="call_offers('<%= demand_deal.id %>' , '<%= demand_deal.status %>');" class="deals_on_demand_text1_link"><%= demand_deal.status.camelize %>                        
                           <% if demand_deal.status == "offered" %>
                             : <%= demand_deal.offerings %>
                           <% elsif demand_deal.status == "accepted" %>
                             : <%= accepted_deals %>
                           <% end %>
+                          </a>
                         </td>
                         <td>&nbsp;</td>
                       </tr>

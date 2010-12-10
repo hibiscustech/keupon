@@ -36,12 +36,18 @@
                     </select>
                 </td>
               </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td width="29%" align="left">
-                <input type="button" name="Edit Deal" value="Edit Deal" onclick="return form_validator();return false;" <%= (@demand_deal.status != "new")? "disabled" : ""%>/>
-                &nbsp;&nbsp;
-                <input type="button" name="Confirm Deal" value="Confirm Deal" onclick="setButtonStatus('confirm');return form_validator();return false;" <%= (@demand_deal.status != "new")? "disabled" : ""%>/>
+              <tr>                
+                <td colspan="2" align="center">
+                  <% if @demand_deal.status != "new" %>
+                  <img src="images/edit_deal_btn_disabled.png" width="110" height="47" border="0" />
+                  &nbsp;
+                  &nbsp;
+                  <img src="images/confirm_deal_btn_disabled.png" width="110" height="47" border="0" />
+                  <% else %>
+                  <a href="#" onclick="return form_validator();return false;"><img src="images/edit_deal_btn.png" width="110" height="47" border="0" /></a>
+                  &nbsp;&nbsp;
+                  <a href="#" onclick="setButtonStatus('confirm');return form_validator();return false;"><img src="images/confirm_deal_btn.png" width="110" height="47" border="0" /></a>
+                  <% end %>
                 </td>
                 </tr>
             </table>
