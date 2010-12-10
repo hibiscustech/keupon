@@ -1,0 +1,60 @@
+<% if !@hotest_deal.blank?
+    ht_deal = Deal.find(@hotest_deal.id)
+%>
+end
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #999999;">
+              <tr>
+                <td><img src="images/hottest_deal_text.jpg" width="402" height="53" /></td>
+              </tr>
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="5%">&nbsp;</td>
+                    <td height="45" colspan="2" align="left" class="open_deal_text2"><%= @hotest_deal.name %></td>
+                    <td width="3%">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td width="51%"><img src="<%= ht_deal.deal_photo.url %>" width="210" height="181" /></td>
+                    <td width="41%" valign="top" bgcolor="#24272c"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Best Price Offered</td>
+                      </tr>
+                      <tr>
+                        <td height="26" align="center" class="open_deal_text1">S$ <%= @hotest_deal.buy %></td>
+                      </tr>
+                      <tr>
+                        <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Discount Offered</td>
+                      </tr>
+                      <tr>
+                        <td height="26" align="center" class="open_deal_text1"><%= @hotest_deal.discount %> %</td>
+                      </tr>
+                      <tr>
+                        <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Keupons Bought</td>
+                      </tr>
+                      <tr>
+                        <td height="26" align="center" class="open_deal_text1"><%= @hotest_deal.no_of_customers %></td>
+                      </tr>
+                    </table></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2">&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="center"><a href="/deal_details?id=<%= @hotest_deal.id %>"><img src="images/buy_now_btn.png" width="179" height="50" border="0" /></a></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="center">&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+            </table>
+<% end %>

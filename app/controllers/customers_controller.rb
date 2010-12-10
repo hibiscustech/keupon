@@ -80,6 +80,7 @@ class CustomersController < ApplicationController
   def open_deals
     @page = "Open Deals"
     @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals
+    @hotest_deal = Deal.hottest_deal_of_today
   end
 
   def change_password
@@ -162,6 +163,7 @@ class CustomersController < ApplicationController
   def offered_deals
     @page = "Offered Deals"
     @offerings = CustomerProfile.my_demand_deal_offerings(params[:deal])
+    @hotest_deal = Deal.hottest_deal_of_today
   end
 
   def view_demand_deal_offer

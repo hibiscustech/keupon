@@ -30,11 +30,27 @@ class Deal < ActiveRecord::Base
                 left outer join customer_deals cd on cd.deal_id = d.id
                 where d.status = 'open' and preferred = '1' and admin_preferred = '1'
                 group by d.id
-                order by ds.start_time }
+                order by no_of_customers desc}
     resultset = find_by_sql(query)
     resultset_hashed = convert_into_hash(resultset)
     deal_discounts = deals_and_current_discounts(resultset)
     return deal_discounts, resultset_hashed
+  end
+
+  def self.hottest_deal_of_today
+    query = %Q{ select d.id, d.name, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.discount, d.buy
+                from deals d
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where d.status = 'open' and preferred = '1' and admin_preferred = '1'
+                group by d.id
+                order by no_of_customers desc limit 1}
+    hotest_deal = find_by_sql(query)[0]
+    if !hotest_deal.blank?
+      deal_discount_details = DealDiscount.deal_current_discount_details(hotest_deal.id, hotest_deal.no_of_customers)
+      hotest_deal.discount = deal_discount_details.dicount
+      hotest_deal.buy = deal_discount_details.buy_value
+    end
+    return hotest_deal
   end
 
   def self.all_hot_and_open_deals
