@@ -425,3 +425,86 @@ height:20px;
 }
 
 /*----------------------End of Open Deal Silder--------------------------------------------*/
+
+/*//////////////////////////// FOR OPEN DEAL CSS ////////////////////////////////////////////////*/
+ div, h1, h2, h3, h4, h5, h6, p, font, img, caption {
+       margin: 0;
+       padding: 0;
+       border: 0;
+       outline: 0;
+       font-weight: inherit;
+       font-style: inherit;
+       font-size: 100%;
+       font-family: inherit;
+       vertical-align: baseline;
+}
+
+#loopedSlider {
+       line-height: 1;
+       color: black;
+       background: white;
+}
+
+h1{
+       font-size: 25px;
+       margin-bottom: 5px;
+       color: #477193;
+       text-transform: uppercase;
+}
+
+.text h1{
+       color: white;
+       margin-bottom: 15px;
+       font-size: 25px;
+        font-family:Arial, Helvetica, sans-serif;
+
+       font-weight:bold;
+}
+
+
+#loopedSlider{
+       position: relative;
+       margin: 0 auto;
+       width: 960px;
+       height: 335px;
+
+       background: url(/images/slider_bg_new.jpg) no-repeat;
+}
+
+.container { width:960px; height:335px; overflow:hidden; position:relative; }
+		.slides_open { position:relative;}
+		.slides_open div .text{ width: 300px; position: absolute; top: 50px; left: 45px;}
+		.slides_open div img{background: url(../images/slider_imageframe.jpg) no-repeat; padding:10px; padding-bottom: 20px; position: relative; top: 45px; left: 370px;}
+		ul.pagination { list-style-type:none; margin:0; padding:0; margin:9px auto; width:150px; }
+		ul.pagination li { float:left; margin:0; margin-right:0; padding: 0; }
+		ul.pagination a { display:block; width:12px; height:0; overflow:hidden; background-image:url(../images/pagination.gif); background-position:0 0; background-repeat:no-repeat; padding: 0; margin-right: 10px; padding-top:12px;}
+		ul.pagination li.active a {background-position:0 -13px}
+		a.previous_open { position:absolute; top:150px; left:-17px; background: none; }
+		a.next_open { position:absolute; top:150px; right:-15px; background: none; }
+		
+
+a.button{
+       background: url(/images/read_more_bt.jpg) no-repeat top left;
+       display: block;
+       width: 136px;
+       height: 36px;
+       float: left;
+       margin-top: 50px;
+       text-indent: -99999px;
+}
+a.button:hover{
+       background-position: 0 -36px;
+}
+
+a.button2{
+       background: url(/images/read_more_bt.jpg) no-repeat top left;
+       display: block;
+       width: 136px;
+       height: 36px;
+       float: left;
+       text-indent: -99999px;
+}
+a.button2:hover{
+       background-position: 0 -36px;
+}
+/*//////////////////////////// END OF OPEN DEAL ////////////////////////////////////////////////*/
