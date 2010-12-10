@@ -41,7 +41,7 @@
                 <td width="29%" align="left">
                 <input type="button" name="Edit Deal" value="Edit Deal" onclick="return form_validator();return false;" <%= (@demand_deal.status != "new")? "disabled" : ""%>/>
                 &nbsp;&nbsp;
-                <input type="button" name="Confirm Deal" value="Confirm Deal" onclick="return form_validator();return false;" <%= (@demand_deal.status != "new")? "disabled" : ""%>/>
+                <input type="button" name="Confirm Deal" value="Confirm Deal" onclick="setButtonStatus('confirm');return form_validator();return false;" <%= (@demand_deal.status != "new")? "disabled" : ""%>/>
                 </td>
                 </tr>
             </table>

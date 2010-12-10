@@ -156,7 +156,7 @@ class CustomersController < ApplicationController
         @msg = "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond."
       end
     end
-    redirect_to "/customers/want_a_deal?id=#{params[:demand_deal]}"
+    redirect_to "/want_a_deal?id=#{params[:demand_deal]}"
   end 
 
   def offered_deals
