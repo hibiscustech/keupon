@@ -334,7 +334,7 @@ function css(el, prop) {
     return parseInt($.css(el[0], prop)) || 0;
 };
 function width(el) {
-    return  100;
+    return  240;
 };
 function height(el) {
     return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
