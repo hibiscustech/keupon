@@ -17,7 +17,7 @@
     <script src="/javascripts/protoplus.js?v=3.1.3" type="text/javascript"></script>
     <script src="/javascripts/jotform.js?v=3.1.3" type="text/javascript"></script>
 
-    <script type="text/javascript" src="/recent/jquery.js" ></script>
+    
     <script type="text/javascript" src="/recent/jcarousellite.js"></script>
     <script type="text/javascript" src="/recent/easing.js"></script>
     <script type="text/javascript" src="/recent/superfish.js"></script>
@@ -53,7 +53,16 @@
         });
 
       });
+  
+       
     </script>
+  <script>
+   setTimeout(function() {
+    jquery('#mydiv').fadeOut('slow');
+}, 4000); // <-- time in milliseconds
+
+   </script>
+
 
 
     <title>Keupons</title>
@@ -79,9 +88,24 @@
                         </tr>
                       </table></td>
                     <td width="2%">&nbsp;</td>
+
                   </tr>
                 </table></td>
             </tr>
+ <tr>
+        <td background=""><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="28%" align="center">     <%if flash[:notice] %>
+        <div id="mydiv" style="text-align:center;background-color:black;color:#fff;font-size: 16px;margin-bottom: 5px;"><%= flash[:notice] %></div>
+      <%else%>
+        <div id="mydiv" style="text-align:center;background-color:black;color:#fff;font-size: 16px;margin-bottom: 5px;"><%= flash[:error]%>  </div>
+      <%end%></td>
+            
+          </tr>
+
+        </table></td>
+      </tr>
+
             <%=yield%>
             <tr>
               <%= render :partial => "shared/footer"%>
