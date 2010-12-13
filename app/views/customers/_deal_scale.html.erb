@@ -1,28 +1,10 @@
 <%
-data_xml = %Q{
-<chart bgColor='FFFFFF' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' upperLimit='100' lowerLimit='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' pointerRadius='5' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' pointerBgColor='FFFFFF' pointerBorderColor='000000' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50'>
-<colorRange>
-<color minValue='0' maxValue='60' code='B40001' borderColor='B40001' label='10%'/>
-<color minValue='60' maxValue='100' code='B40001' borderColor='B40001' label='30%'/>
-</colorRange>
-<value>10</value>
-<styles>
-<definition>
-<style name='limitFont' type='Font' bold='1'/>
-<style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/>
-</definition>
-<application>
-<apply toObject='GAUGELABELS' styles='labelFont'/>
-<apply toObject='LIMITVALUES' styles='limitFont'/>
-</application>
-</styles>
-</chart>
-}
+data_xml = "<chart bgColor='FFFFFF' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' upperLimit='100' lowerLimit='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' pointerRadius='5' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' pointerBgColor='FFFFFF' pointerBorderColor='000000' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50'><colorRange><color minValue='0' maxValue='60' code='B40001' borderColor='B40001' label='10%'/><color minValue='60' maxValue='100' code='B40001' borderColor='B40001' label='30%'/></colorRange><value>10</value><styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/></application></styles></chart>"
 %>
 <div id="chartdiv" align="center">FusionGadgets</div>
 
 <script type="text/javascript">
   var myChart = new FusionCharts("/charts/HLinearGauge.swf", "myChartId", "687", "85", "0", "0");
-  myChart.setDataURL("/charts/Linear.xml");
+  myChart.setDataXML("<%=data_xml%>");
   myChart.render("chartdiv");
 </script>
