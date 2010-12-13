@@ -218,7 +218,7 @@ class CustomersController < ApplicationController
           format.html
           format.js {
             render :update do |page|
-              page.replace_html 'total', "$#{total}"
+              page.replace_html 'total', "S$ #{total}"
             end
           }
         end
