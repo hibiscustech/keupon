@@ -86,7 +86,7 @@
                         <tr>
                           <td width="33%" height="82" align="center">
                             
-                             <%if @company.company_photo.nil?%>
+                             <%if !@company.company_photo.nil?%>
                   <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 82px; height: 72px;"/></a>
                    <%else%>
                   <img src="/images/apple_logo.jpg" width="82" height="72" /><br/>
