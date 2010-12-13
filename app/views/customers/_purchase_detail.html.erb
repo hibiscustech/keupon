@@ -1,43 +1,26 @@
-<table width="600" cellpadding="0" cellspacing="0">
-  <tr>
-    <td colspan="7"><h3>Your Purchase Details</h3></td>
-  </tr>
-  <tr>
-    <td colspan="7">&nbsp;</td>
-  </tr>
-  <% if !flash[:msg].blank? %>
-  <tr>
-    <td colspan="7" id="msg">
-      <div style="text-align:center;background-color:grey;color:#fff;" onclick="Effect.toggle('msg','appear');"><%= flash[:msg]%></div>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="7">&nbsp;</td>
-  </tr>
-  <% end %>
-  <tr>
-    <th>Description</th>
-    <th width="50px"></th>
-    <th style="background-color: #890f0e; color: #ffffff" width="80px">Quantity</th>
-    <th style="background-color: #890f0e; color: #ffffff"></th>
-    <th style="background-color: #890f0e; color: #ffffff" width="60px">Price</th>
-    <th style="background-color: #890f0e; color: #ffffff"></th>
-    <th style="background-color: #890f0e; color: #ffffff" width="60px">Total</th>
-  </tr>
-  <tr>
-    <td><%= @deal.name %></td>
-    <td></td>
-    <td align="center" style="background-color: #c54544; color: #ffffff">
-      <input type="text" size="4" name="quantity" id="quantity" value="1" style="border: 1px solid black"/>
-      <script type="text/javascript">
-      //<![CDATA[
-      new Form.Element.EventObserver('quantity', function(element, value) {new Ajax.Request('/customers/check_transaction_quantity', {asynchronous:true, evalScripts:true, parameters:'quantity=' + encodeURIComponent(value) + '&id=<%=@deal.id%>&authenticity_token=' + encodeURIComponent('BlUBplpSWg/1vcqOEoaaN9Epl9UKXe4Vc/qgC5r7Pus=')})})
-      //]]>
-      </script>
-    </td>
-    <td align="center" style="background-color: #c54544; color: #ffffff">x</td>
-    <td align="center" style="background-color: #c54544; color: #ffffff">$<%= @deal.buy %></td>
-    <td align="center" style="background-color: #c54544; color: #ffffff">=</td>
-    <td align="center" id="total" style="background-color: #c54544; color: #ffffff">$<%= @deal.buy %></td>
-  </tr>
-</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td colspan="5">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td width="29%" height="30" align="center" bgcolor="#b71415" class="billing_text1">Quantity</td>
+                      <td width="6%" bgcolor="#b71415">&nbsp;</td>
+                      <td width="33%" align="center" bgcolor="#b71415" class="billing_text1">Price</td>
+                      <td width="6%" align="center" bgcolor="#b71415">&nbsp;</td>
+                      <td width="26%" align="center" bgcolor="#b71415" class="billing_text1">Total</td>
+                    </tr>
+                    <tr>
+                      <td height="30" align="center" bgcolor="#000000">
+                        <input name="quantity" id="quantity" type="text" id="textfield" value="1" size="1" />
+                        <script type="text/javascript">
+                        //<![CDATA[
+                        new Form.Element.EventObserver('quantity', function(element, value) {new Ajax.Request('/customers/check_transaction_quantity', {asynchronous:true, evalScripts:true, parameters:'quantity=' + encodeURIComponent(value) + '&id=<%=@deal.id%>&authenticity_token=' + encodeURIComponent('BlUBplpSWg/1vcqOEoaaN9Epl9UKXe4Vc/qgC5r7Pus=')})})
+                        //]]>
+                        </script>
+                      </td>
+                      <td align="center" bgcolor="#000000" class="billing_text1">X</td>
+                      <td align="center" bgcolor="#000000" class="billing_text1">S$ <%= @deal.buy %></td>
+                      <td align="center" bgcolor="#000000" class="billing_text1">=</td>
+                      <td align="center" bgcolor="#000000" class="billing_text1">S$ <%= @deal.buy %></td>
+                    </tr>
+                  </table>

@@ -14,100 +14,156 @@ else{
 }
 </script>
 
-<div id="userform" style="height: auto;background :none;">
-<% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
-<%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
-<%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
-  <input type="hidden" name="return_to" value="/deal_of_the_day" />
+<tr>
+        <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="13%" align="left"><img src="images/billing_information_header_text.jpg" width="350" height="55" /></td>
+            <td width="87%" class="header_text">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
 
-<% if !params[:error].blank? %>
-  <table>
-<% params[:error].each do |k,v| %>
-<tr><td align="left"><%= "#{k}" %>:</td><td><%= "#{v}" %></td></tr>
- <% end -%>
-</table>
-<% end %>
-  
-<table>
-  <tr>
-    <td>
-      <div id="purchase">
-        <%= render :partial => "purchase_detail" %>
-      </div>
-    </td>
-  </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr><td><h3>Your Card Details</h3></td></tr>
-  <% if !@cards.blank? %>
-  <tr>
-    <td>
-      <select name="customer_creditcard" id="customer_creditcard" >
-        <option value="0">Select your Card that you wish to use for this Purchase</option>
-        <% for card in @cards %>
-        <option value="<%= card.id %>"><%=card.card_type%>-<%=card.credit_card_number%></option>
-        <% end %>
-      </select>
-      or Use New Card for this Purchase <input type="checkbox" name="new_card" id="new_card" value="new_card" onclick="javascript: show_new_card();" />
-    </td>
-  </tr>
-  <% else %>
-  <%=hidden_field :new_card, :value => "new_card"%>
-  <% end %>
-</table>
-<table id="credit_card_entry" style="display: <%=(@cards.blank?)? 'block' : 'none' %>;">
-  <tr>
-    <td>
-      <table>
-        <tr>
-          <td><%= label_tag 'Cardholder First Name' %></td><td><%= f.text_field 'first_name' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Cardholder Last Name' %></td><td><%= f.text_field 'last_name' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Card Number' %></td><td><%= f.text_field 'credit_card_number' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Card Type' %></td><td><%= f.select( "card_type", { "Visa" => "visa", "Mastercard" => "mastercard", "Mastercard" => "mastercard","American Express" => "amex"}) %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Security Code' %></td><td><%= f.text_field 'cvv2' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Expiration Date' %></td><td><%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;<%=select_year(Date.today, :start_year => 2020, :end_year => 2000)%></td>
-        </tr>
-      </table>
-    </td>
-    <td>
-      <table>
-        <tr>
-          <td><%= label_tag 'Billing Address 1' %></td><td><%= f.text_field 'address1' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Billing Address 2' %></td><td><%= f.text_field 'address2' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'City' %></td><td><%= f.text_field 'city' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Country' %></td><td><%= f.text_field 'country' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Zipcode' %></td><td><%= f.text_field 'zipcode' %></td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'Phone' %></td><td><%= f.text_field 'phone' %></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-<table width="100%">
-  <tr>
-    <td align="center"><%=image_submit_tag ("purchase_btn.jpg" )%> &nbsp;&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg" ,:border=>"0") ,'/deal_of_the_day' %></td>
-  </tr>
-</table>
-<% end -%>
-<br/>
-<br/>
-</div>
+      <tr>
+        <td >&nbsp;</td>
+      </tr>
+      <tr>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="55%" valign="top">
+              <% form_for @billing_information, :url=>{:controller => 'customers', :action =>'save_transaction_details'} do |f|-%>
+              <%=hidden_field :customer_credit_card, :customer_id, :value => current_customer.id%>
+              <%=hidden_field :customer_deal, :deal_id, :value => @deal.id%>
+              <input type="hidden" name="return_to" value="/deal_of_the_day" />
+
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="42%" align="center" class="billing_text_header">Your Purchase Detail</td>
+                <td width="1%">&nbsp;</td>
+                <td width="57%" align="left" class="billing_text"><%=@deal.name %></td>
+              </tr>
+              <tr>
+                <td colspan="3" id="error_msg">
+                  <%= render :partial => "error_message" %>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="<%=@deal.deal_photo.url %>" width="222" height="179" /></td>
+                <td>&nbsp;</td>
+                <td valign="top">
+                  <div id="purchase">
+                    <%= render :partial => "purchase_detail" %>
+                  </div>
+
+                  <% if !@cards.blank? %>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="12" colspan="5"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="5"><select name="customer_creditcard" id="customer_creditcard" class="billing_text">
+                          <option value="0">Select a card for this purchase</option>
+                          <% for card in @cards %>
+                          <option value="<%= card.id %>"><%=card.card_type%>-<%=card.credit_card_number%></option>
+                          <% end %>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="5" class="billing_text">or Use New Card for this Purchase
+                        <input type="checkbox" name="new_card" id="new_card" value="new_card" onclick="javascript: show_new_card();" /></td>
+                    </tr>
+                    <tr>
+                      <td height="12" colspan="5" class="billing_text"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="5" align="center" class="billing_text">&nbsp;</td>
+                    </tr>
+                </table>
+                  <% else %>
+                  <%=hidden_field :new_card, :value => "new_card"%>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="credit_card_entry" style="display: <%=(@cards.blank?)? 'block' : 'none' %>;">
+                    <tr>
+                      <td width="26%" align="right" class="billing_text"> Card holder first name:</td>
+                      <td width="29%" align="left"><input id="customer_credit_card_first_name" name="customer_credit_card[first_name]" type="text" class="billing_text" /></td>
+                      <td width="20%" align="right" class="billing_text"> Billing address 1:</td>
+                      <td width="25%" align="left"><input id="customer_credit_card_address1" name="customer_credit_card[address1]" type="text" class="billing_text" /></td>
+                    </tr>
+                    <tr>
+                      <td align="right" class="billing_text"> Card holder last name:</td>
+                      <td align="left"><input id="customer_credit_card_last_name" name="customer_credit_card[last_name]" type="text" class="billing_text" /></td>
+                      <td align="right" class="billing_text"> Billing address 2:</td>
+                      <td align="left"><input id="customer_credit_card_address2" name="customer_credit_card[address2]" type="text" class="billing_text" /></td>
+                    </tr>
+                    <tr>
+                      <td align="right" class="billing_text">Card Number:</td>
+                      <td align="left"><input id="customer_credit_card_credit_card_number" name="customer_credit_card[credit_card_number]" type="text" class="billing_text" /></td>
+                      <td align="right" class="billing_text">City:</td>
+                      <td align="left"><input id="customer_credit_card_city" name="customer_credit_card[city]" type="text" class="billing_text" /></td>
+                    </tr>
+                    <tr>
+                      <td align="right" class="billing_text">Card Type:</td>
+                      <td align="left">
+                        <select id="customer_credit_card_card_type" name="customer_credit_card[card_type]" class="billing_text">
+                          <option value="mastercard">Mastercard</option>
+                          <option value="visa">Visa</option>
+                          <option value="amex">American Express</option>
+                        </select>
+                      </td>
+                      <td align="right" class="billing_text">Country:</td>
+                      <td align="left"><input id="customer_credit_card_country" name="customer_credit_card[country]" type="text" class="billing_text" /></td>
+                    </tr>
+                    <tr>
+                      <td align="right" class="billing_text"> Security code:</td>
+                      <td align="left"><input id="customer_credit_card_cvv2" name="customer_credit_card[cvv2]" type="text" class="billing_text" /></td>
+                      <td align="right" class="billing_text">Zip Code:</td>
+                      <td align="left"><input id="customer_credit_card_zipcode" name="customer_credit_card[zipcode]" type="text" class="billing_text" /></td>
+                    </tr>
+                    <tr>
+                      <td align="right" class="billing_text"> Expiration date:</td>
+                      <td align="left"><%=select_month(Date.today,:use_month_numbers => true) %> &nbsp;<%=select_year(Date.today, :start_year => 2020, :end_year => 2000)%></td>
+                      <td align="right" class="billing_text">Phone:</td>
+                      <td align="left"><input id="customer_credit_card_phone" name="customer_credit_card[phone]" type="text" class="billing_text" /></td>
+                    </tr>
+                    <tr>
+                      <td align="right" class="billing_text">&nbsp;</td>
+                      <td align="left">&nbsp;</td>
+                      <td align="right" class="billing_text">&nbsp;</td>
+                      <td align="left">&nbsp;</td>
+                    </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td colspan="3" align="center">
+                  <span class="billing_text">
+                    <%=image_submit_tag ("purchase_btn.jpg" )%>
+                    <a href="/deal_of_the_day"><img src="images/cancel_btn1.jpg" width="101" height="30" border="0" /></a>
+                  </span>
+                </td>
+              </tr>
+            </table>
+            <% end -%>
+            </td>
+            <td width="1%">&nbsp;</td>
+            <td width="41%" align="right" valign="top">
+              <a href="/invite_friends">
+                <img src="images/earn_money_banner.jpg" width="400" height="276" />
+              </a>
+            </td>
+            <td width="2%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td >&nbsp;</td>
+      </tr>

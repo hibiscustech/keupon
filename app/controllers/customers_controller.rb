@@ -231,6 +231,7 @@ class CustomersController < ApplicationController
           format.js {
             render :update do |page|
               page.replace_html 'purchase', :partial => "purchase_detail"
+              page.replace_html 'error_msg', :partial => "error_message"
             end
           }
         end
