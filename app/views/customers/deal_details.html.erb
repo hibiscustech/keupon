@@ -118,7 +118,9 @@
             <td height="124" background="/images/scale_black_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="3%">&nbsp;</td>
-                <td width="73%" align="center"><img src="/images/scale_bar.jpg" width="687" height="20" /></td>
+                <td width="73%" align="center">
+                  <%= render :partial => "deal_scale" %>
+                </td>
                 <td width="24%" align="center">
                 <%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%></td>
               </tr>
