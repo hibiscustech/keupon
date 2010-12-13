@@ -1,35 +1,121 @@
-<div id="user1">
-    <div class="cont1">
-      <p class="for_Ph"><%=@deal.name%></p>
-      <br />
-      <p class="for_P"><%=@deal.rules%><br/><br/>
-    <%=@deal.highlights%></p>
-    </div>
-    <div class="cont2" style="background-image:url('/images/hurry_up_keupoint.jpg');">
-      <div class="save">Just Spend</div>
-      <div class="save" style="padding-top: 10px;"><%= @deal.keupoints_required %>/<%= current_customer.kupoints %></div>
-      <div class="save" style="padding-top: 0px;">Keupoints<br/>And this Deal is all yours</div>
-      <div class="clickHear" style="padding-top: 42px; font-size: 14px;"><a href="/my_keupons" class="for_nav">Click here to choose a different Deal</a></div>
-      <div class="socielICONs">
-        
-      </div>
-      <div class="buynow"><a href="#"><%=link_to image_tag('buy_now.jpg',:border=>'0'), :controller => 'customers', :action=>'save_keupoint_deal_transaction_details', :id => @deal.id%> </a></div>
-    </div>
-    <div class="cont3">
-      <p> <%if !@deal.deal_photo.url.nil? %> <%=image_tag (@deal.deal_photo.url),:width=>"304", :height=>"285" %> <%else%><img src="images/img1.jpg" border="0px" /> <%end%></p>
-      <div class="priseDisco"> &nbsp;&nbsp;$<%=@deal.value%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=@deal.discount.to_i%> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<%=@deal.save_amount.to_i%></div>
-    </div>
-  </div>
-  <div id="user2">
-  	<div class="user2IMG"><p class="for_PW" style="font-size:20px;">The Company</p><br />
-          <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 165px; height: 103px;"/></a>
+<tr>
+        <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="13%" align="left"><img src="images/purchase_deal_header_text.jpg" width="264" height="55" /></td>
+            <td width="87%" class="header_text">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
 
-<p class="for_PW" style="font-size:16px; padding-top:5px;"><%=@deal.merchant.merchant_profile.company.name%> </p>
-<p class="for_PW"><%=@company.address1 %> <%=@company.address2 %><br /><%=@company.city %></p>
-</div>
-    <div class="user2TEXT">
-    	<p class="for_P">
-          <%= @company.detail %>
-        </p>
-    </div>
-  </div>
+      <tr>
+        <td valign="top" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="2%">&nbsp;</td>
+            <td width="35%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="45" colspan="2" align="center" class="deals_content1"><%=@deal.name%> <br />
+                  Buy this deal for just <%= @deal.keupoints_required %> keupoints</td>
+              </tr>
+              <tr>
+                <td width="54%"><img src="<%=@deal.deal_photo.url%>" width="190" height="181" /></td>
+                <td width="46%" valign="top" bgcolor="#24272c"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;"> Keupoints Available</td>
+                    </tr>
+                    <tr>
+                      <td height="26" align="center" class="open_deal_text1"><%= current_customer.kupoints %></td>
+                    </tr>
+                    <tr>
+                      <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Keupoints Required</td>
+                    </tr>
+                    <tr>
+                      <td height="26" align="center" class="open_deal_text1"><%= @deal.keupoints_required %></td>
+                    </tr>
+                    <tr>
+                      <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Balance</td>
+                    </tr>
+                    <tr>
+                      <td height="26" align="center" class="open_deal_text1"><%= current_customer.kupoints.to_i - @deal.keupoints_required.to_i %></td>
+                    </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td colspan="2">&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center" class="deals_content_red_bold">Deal Expires on : <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+              </tr>
+
+            </table></td>
+            <td width="1%">&nbsp;</td>
+            <td width="29%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td><img src="images/deals_detail_header.jpg" width="281" height="53" /></td>
+              </tr>
+              <tr>
+                <td bgcolor="#e8e8e8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="10" colspan="3"></td>
+                    </tr>
+                  <tr>
+                    <td width="4%">&nbsp;</td>
+                    <td width="92%" class="deals_content"><%=@deal.rules%>
+                      <br />
+                      <br />
+                      <%=@deal.highlights%></td>
+                    <td width="4%">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td height="10" colspan="3"></td>
+                    </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td height="60" align="center">
+                  <a href="/customers/save_keupoint_deal_transaction_details?id=<%=@deal.id%>"><img src="images/buy_now_btn.png" width="179" height="50" border="0" /></a>
+                </td>
+              </tr>
+            </table></td>
+            <td width="1%">&nbsp;</td>
+            <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="140" valign="top" background="images/marchant_box_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+                    <tr>
+                      <td width="33%" height="82" align="center"><a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" width="82" height="72" /></a></td>
+                      <td width="67%" class="deals_content_white"><%=@deal.merchant.merchant_profile.company.name%></td>
+                    </tr>
+                    <tr>
+                      <td height="37" colspan="2" align="center" class="deals_content_red"><%=@deal_location.address1 %> <%=@deal_location.address2 %><br />
+                        <%=@deal_location.city %> - <%=@deal_location.zipcode %></td>
+                    </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td height="30" class="product_specification_text">About the Marchant</td>
+              </tr>
+              <tr>
+                <td class="deals_content"><p><%= @company.detail %></p></td>
+              </tr>
+            </table></td>
+            <td width="2%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>

@@ -112,6 +112,7 @@ class CustomersController < ApplicationController
     @page = "Purchase Deal"
     @deal = Deal.find(params[:id])
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @deal_location = (@deal.deal_location_detail.blank?)? @company : @deal.deal_location_detail
   end
 
   def recent_deals
