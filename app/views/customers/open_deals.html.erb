@@ -47,7 +47,7 @@
                           </tr>
                           <tr>
                             <td colspan="2" align="left" class="open_deal_text_red">Deal Bought: <%=open_deal.no_of_customers%><br />
-                              Discount: <%=discount%> %<br />
+                              Discount: <%=discount.nil? ? discount : ''%> %<br />
                               Location: <%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td>
                           </tr>
                           <tr>
