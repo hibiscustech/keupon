@@ -224,7 +224,7 @@ class CustomersController < ApplicationController
         end
       end
     else
-      flash[:msg] = "Quantity cannot be 0"
+      flash[:error_msg] = "Quantity cannot be 0"
       if request.xml_http_request?
         respond_to do |format|
           format.html
