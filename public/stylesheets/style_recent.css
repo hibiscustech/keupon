@@ -93,7 +93,7 @@ height:20px;
 	
 }
 .sliderImages  {
-	margin-left:10px;
+	margin-left:115px;
 	padding-top:11px;
 	height:171px;
         width:950px;
@@ -125,13 +125,13 @@ height:20px;
 }
 .prev {
 	position: absolute;
-	left:-21px;
+	left:40px;
 	top:-145px;
 	z-index:10;
 }
 .next {
 	position:absolute;
-	left:952px;
+	left:880px;
 	top:-145px;
 	z-index:10;
 }
