@@ -1,3 +1,4 @@
+ <%if !logged_in?%>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td width="46%" align="left"><img src="/images/hot_deals_singapore_text.jpg" width="332" height="78" /></td>
@@ -17,6 +18,38 @@
                   </tr>
                 </table>
 
+<%else%>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="46%" align="left"><img src="images/hot_deals_singapore_text.jpg" width="332" height="78" /></td>
+                    <td width="8%">&nbsp;</td>
+                    <td width="46%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td height="66" background="/images/logout_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td width="3%">&nbsp;</td>
+                            <td width="24%" rowspan="2" align="center">
+                              <%if current_customer.customer_photo_file_name.nil?%>
+          <img src="/images/profile_pic.jpg"  width="64" height="44"   />
+        <%else%>
+          <img src="<%=current_customer.customer_photo.url(:medium)%>"  /><%end%>
+                              </td>
+                            <td colspan="2" align="left" class="deals_content"><%=current_customer.customer_profile.first_name%></td>
+                            <td width="11%">&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td width="22%"><a href="/my_profile"><img src="/images/myprofile_btn.png" width="69" height="23" border="0" /></a></td>
+                             <td width="22%"><a href="/my_keupons"><img src="/images/my_keupons_btn.png" width="69" height="23" border="0" /></a></td>
+                            <td width="20%" align="right"><a href="/logout"><img src="/images/logout_btn.png" width="69" height="23" border="0" /></a></td>
+                            <td>&nbsp;</td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                </table>
+<%end%>
 <script>
   function find_link(){
     var user=document.getElementById("select").value;
