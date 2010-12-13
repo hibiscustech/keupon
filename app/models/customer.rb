@@ -37,6 +37,7 @@ class Customer < ActiveRecord::Base
   has_attached_file :customer_photo,
     :styles => {
       :thumb=> "100x100#",
+      :medium => "70x50#",
       :small  => "95x80#" }
 
   # Activates the user in the database.
