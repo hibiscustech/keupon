@@ -92,6 +92,7 @@ class CustomersController < ApplicationController
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
+    @deal_scale_xml = deal_scale_graph(@deal)
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
@@ -104,8 +105,26 @@ class CustomersController < ApplicationController
     else
       p "reviews"
       @flag=false
+    end    
+  end
+
+  def deal_scale_graph(deal)
+    deals_bought = Deal.deals_bought(deal.id)
+    deal_discounts = deal.deal_discounts
+    minimum = deal_discounts[0].customers
+    maximum = deal_discounts[deal_discounts.length-1].max_customers
+    customers_discount_ranges = "<colorRange>"
+    prev_max_customers = nil
+    for dd in deal_discounts
+      min_customers = dd.customers
+      max_customers = dd.max_customers
+      discount = dd.discount
+      current_min_customers = (prev_max_customers.blank?)? min_customers : prev_max_customers
+      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='B40001' borderColor='B40001' label='#{discount}%'/>"
+      prev_max_customers = max_customers
     end
-    
+    customers_discount_ranges += "</colorRange><value>#{deals_bought}</value>"
+    return "<chart borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' upperLimit='#{maximum}' lowerLimit='#{minimum}' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' pointerRadius='15' pointerBgColor='000000' pointerBorderColor='000000' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/></application></styles></chart>"
   end
 
   def keupoint_deal

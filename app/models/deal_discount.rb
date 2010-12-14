@@ -17,7 +17,7 @@ class DealDiscount < ActiveRecord::Base
     query = %Q{ select dd.discount
                 from deal_discounts dd
                 where dd.deal_id = #{deal_id} and
-                (select count(cd.id) as no_of_customers from deals d left outer join customer_deals cd on cd.deal_id = d.id where d.id = #{deal_id}) between customers and max_customers }
+                (select sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers from deals d left outer join customer_deals cd on cd.deal_id = d.id where d.id = #{deal_id}) between customers and max_customers }
     dd = find_by_sql(query)[0]
     return (dd.blank?)? "0" : dd.discount
   end

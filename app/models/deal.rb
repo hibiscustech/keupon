@@ -23,6 +23,12 @@ class Deal < ActiveRecord::Base
 
   DISCOUNTS = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95"]
 
+  def self.deals_bought(deal_id)
+    query = %Q{ select sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers from deals d left outer join customer_deals cd on cd.deal_id = d.id where d.id = #{deal_id}}
+    no_of_customers = find_by_sql(query)[0]
+    return (no_of_customers.blank?)? 0 : no_of_customers.no_of_customers
+  end
+  
   def self.all_hot_deals
     query = %Q{ select d.id, d.name, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.discount, d.value as actual_value, d.save_amount
                 from deals d
