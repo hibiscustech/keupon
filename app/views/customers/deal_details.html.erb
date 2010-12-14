@@ -2,8 +2,8 @@
       <tr>
         <td height="55" background="/images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="17%" align="left"><img src="/images/deal_detail_header_text.jpg" width="210" height="55" /></td>
-            <td width="83%" align="center" class="header_text">&nbsp;</td>
+            <td width="2%" align="left" class="header_text">&nbsp;</td>
+            <td width="98%" align="left" class="header_text"><%=@deal.name%></td>
           </tr>
         </table></td>
       </tr>
@@ -21,9 +21,7 @@
               <tr>
                 <td width="2%" valign="top">&nbsp;</td>
                 <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="50" align="left" class="product_specification_text"><%=@deal.name%><br /><br /></td>
-                  </tr>
+                  
                   <tr>
                     <td background="/images/price_black_bg.jpg" style="background-repeat:no-repeat;" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
@@ -73,6 +71,7 @@
                         </table></td>
                         <td>&nbsp;</td>
                       </tr>
+                      
                       <tr>
                         <td height="12" colspan="3"></td>
                         </tr>
@@ -80,6 +79,9 @@
 
                         </td>
                   </tr>
+                  <tr>
+                        <td align="center" ><%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%></td>
+                        </tr>
                 </table></td>
                 <td width="1%">&nbsp;</td>
                 <td width="34%" valign="top">
@@ -107,7 +109,7 @@
                     </table></td>
                   </tr>
                   <tr>
-                    <td height="39" class="product_specification_text">About the Marchant</td>
+                    <td height="39" class="product_specification_text">About the Merchant</td>
                   </tr>
                   <tr>
                     <td class="deals_content"><p><%= @company.detail %> </p></td>
@@ -119,19 +121,7 @@
           </tr>
           <tr>
             <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td height="85" background="/images/scale_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="3%">&nbsp;</td>
-                <td width="73%" align="center">
-                  
-                </td>
-                <td width="24%" align="center">
-                <%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%></td>
-              </tr>
-            </table></td>
-          </tr>
+          </tr>          
           <tr>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
