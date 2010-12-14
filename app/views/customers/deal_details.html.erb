@@ -112,7 +112,7 @@
                     <td height="39" class="product_specification_text">About the Merchant</td>
                   </tr>
                   <tr>
-                    <td class="deals_content"><p><%= @company.detail %> </p></td>
+                    <td class="deals_content"><p><%= truncate(@company.detail,100) %> </p></td>
                   </tr>
                 </table></td>
                 <td width="2%" valign="top">&nbsp;</td>
