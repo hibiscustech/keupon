@@ -61,7 +61,7 @@ class MerchantController < ApplicationController
   end 
   end 
   def index
-    @page = "Welcome #{current_merchant.merchant_profile.first_name}"
+@new_recent_deal = Deal.find_recent_add(current_merchant.id)
   end
 
   def new

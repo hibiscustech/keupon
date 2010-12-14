@@ -12,9 +12,8 @@
     <script type="text/javascript">
       var j = jQuery.noConflict();
     </script>
-    <%= stylesheet_link_tag 'royal' %>
     <%= stylesheet_link_tag 'style_merchant' %>
-    <%= stylesheet_link_tag 'style_new' %>    
+
     <script src="/javascripts/FusionMaps.js" type="text/javascript"></script>
     <script src="/javascripts/FusionCharts.js" type="text/javascript"></script>
     <link href="/stylesheets/charts/style.css" media="screen" rel="stylesheet" type="text/css" />
@@ -35,39 +34,28 @@
     </script>
   </head>
   <body>
-    <table width="890"  border="0" align="center" cellpadding="0" cellspacing="0"  class="bg">
+  <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="14" height="500" align="left" background="/images/merchant//left_gray_gradient.jpg"><img src="/images/merchant/left_gray_gradient.jpg" width="14" height="6" /></td>
+    <td width="972" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td class="main">
-          <td><%=link_to image_tag('logo.jpg',:border=>'0'), '/'%></td>
-          <td style="margin-top: 12px;"><%= render :partial => "shared/user_bar"%></td>
-        </td></tr>
-    </table>
-
-
-    <%= render :partial => "shared/merchant_header_menu"%>
-
-    <div id="todayHOTs" style="width:1000px;margin:auto;">
-      <div class="todHotdeals"><%=@page%></div>
-    </div>
-
-    <table width="1000"  border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr><td> <div id="main" style="width:1000px;margin:auto;">
-
-            <%if flash[:notice] %>
-              <br/><div style="text-align:center;background-color:grey;color:#fff;font-size: 17px;"><%= flash[:notice] %></div>
-            <%else%>
-              <br/><div style="text-align:center;background-color:grey;color:#fff;font-size: 17px;"><%= flash[:error]%>  </div>
-            <%end%>
-            <%= yield %><br/><br/>
-             <div id="footer">
-
-
-        <%= render :partial => "shared/footer"%>
-
-      </div>
-          </div>
-        </td>
+        <td><%= render :partial => "shared/user_bar"%></td>
       </tr>
-    </table>
+
+      <tr>
+       <%= render :partial => "shared/merchant_header_menu"%>
+      </tr>
+
+
+      <%=yield%>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+     <%= render :partial => "shared/footer"%>
+
+    </table></td>
+    <td width="14" align="right" background="/images/merchant/right_gray_gradient.jpg"><img src="/images/merchant/right_gray_gradient.jpg" width="14" height="6" /></td>
+  </tr>
+</table>
   </body>
 </html>

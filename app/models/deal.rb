@@ -296,4 +296,8 @@ class Deal < ActiveRecord::Base
     end
     return result.sort{|l,r| r[1]<=>l[1]}
   end
+
+  def self.find_recent_add(merchant_id)
+    
+  end
 end
