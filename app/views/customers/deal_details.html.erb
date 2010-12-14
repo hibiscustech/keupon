@@ -27,7 +27,13 @@
                   <tr>
                     <td background="/images/price_black_bg.jpg" style="background-repeat:no-repeat;" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td height="10" colspan="3"></td>
+                        <td colspan="3" height="2"></td>
+                        </tr>
+                      <tr>                        
+                        <td colspan="3"><%= render :partial => "deal_scale" %></td>
+                        </tr>
+                      <tr>
+                        <td height="3" colspan="3"></td>
                         </tr>
                       <tr>
                         <td width="7%">&nbsp;</td>
@@ -119,7 +125,7 @@
               <tr>
                 <td width="3%">&nbsp;</td>
                 <td width="73%" align="center">
-                  <%= render :partial => "deal_scale" %>
+                  
                 </td>
                 <td width="24%" align="center">
                 <%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%></td>
