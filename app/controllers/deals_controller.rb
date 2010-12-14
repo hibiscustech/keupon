@@ -41,7 +41,7 @@ class DealsController < ApplicationController
 
   def get_deals_by_email
    email_deal=EmailDeal.create(params[:email_deal])
-   flash[:message]='Your request has been submitted to site admin'
+   flash[:notice]='Your request has been submitted to site admin'
    redirect_to "/"
   end
 
