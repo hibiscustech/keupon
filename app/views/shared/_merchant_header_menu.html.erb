@@ -42,16 +42,12 @@
 	</ul>
 	</li>
 
-    <li class="list"><a href="#">Review Deals</a>
-	<ul class="nav-sub">
-    <li><a href="http://www.psdgraphics.com/about/">About PSDGraphics</a></li>
- 		<li><a href="http://www.psdgraphics.com/commercial-use/">Commercial Use</a></li>
-		<li><a href="http://www.psdgraphics.com/about/terms-of-use/">Terms Of Use</a></li>
-	</ul>
+    <li class="list"><a href="/deals_of_mine">Review Deals</a>
+	
 	</li>
 
     <li><a href="/deals_on_demand">On-Demand Deals Open</a></li>
-    <li><a href="http://www.psdgraphics.com/contact/">Redeem Deal</a></li>
+    <li><a href="/redeem_deals">Redeem Deal</a></li>
     <li class="list" ><a href="http://www.psdgraphics.com/contact/">Analytics</a>
        <ul class="nav-sub">
     <li><a href="/merchant_analytics/deals_report">Deals Profit/Loss</a></li>
@@ -66,6 +62,7 @@
  		<li><a href="/company">My Company</a></li>
 		<li><a href="/password_change">Change Password</a></li>
 	</ul></li>
-
-
+        <li ></li>
+        <%if logged_in?%>
+<li><a href="/logout" style="margin-left: 12px;color: red;font-size: 15px;">LOGOUT</a></li><%end%>
 </ul></td>
