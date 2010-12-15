@@ -85,10 +85,20 @@ class CustomersController < ApplicationController
   def change_password
      @page = "Change Password"
   end
-
+  def comments
+    @deal = Deal.find(params[:id])
+    @forums=Forum.find_all_by_deal_id(@deal.id)
+    @forums=@forums.paginate(:page => params['page'], :per_page => @forums.length)
+    render :update do |page|
+     page.replace_html 'comments',:partial=>'/discussions/reviews'
+    end
+  end
   def deal_details
     @deal = Deal.find(params[:id])
-    @forums=Forum.find_all_by_deal_id(@deal.id).paginate(:page => params['page'], :per_page => 3)
+    @forums=Forum.find_all_by_deal_id(@deal.id)
+    @page_number=(params[:page].nil?)?1:(params[:page])
+    @size=@forums.length
+    @forums=@forums.paginate(:page => params['page'], :per_page => 3)
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
