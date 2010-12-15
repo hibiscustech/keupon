@@ -560,7 +560,7 @@ a.button2:hover{
                 z-index:          15;
                 background:       transparent url(/images/transparent.png) repeat top left;
                 display:          none;
-                  padding:          200px 0 0 -138px;
+                  padding:          200px 0 0 138px;
                   
         }
 /*//////////////////////////// END OF POP UP WINDOW ////////////////////////////////////////////////*/
