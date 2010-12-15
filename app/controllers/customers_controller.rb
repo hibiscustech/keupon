@@ -88,7 +88,7 @@ class CustomersController < ApplicationController
 
   def deal_details
     @deal = Deal.find(params[:id])
-    @forums=Forum.find_all_by_deal_id(@deal.id)
+    @forums=Forum.find_all_by_deal_id(@deal.id).paginate(:page => params['page'], :per_page => 3)
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals

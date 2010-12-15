@@ -1,5 +1,5 @@
     <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-<%forum=@forum;@comments=forum.comments%>
+<%forum=@forum;@comments=forum.comments.paginate(:page => params['page'], :per_page => 3)%>
         <tr>
         <td width="573">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -70,4 +70,13 @@
         </table></td>
       </tr>
     </table></td>
+<tr>
+            <td height="36" background="/images/fine_print_black_gradient.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%">&nbsp;</td>
+                <td width="39%" align="center" class="pagination_link"><%=will_paginate(@comments,:class=>'pagination_link')%></td>
+                <td width="42%">&nbsp;</td>
+              </tr>
+            </table></td>
+          </tr>
 
