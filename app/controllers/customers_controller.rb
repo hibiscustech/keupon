@@ -120,7 +120,7 @@ class CustomersController < ApplicationController
       max_customers = dd.max_customers
       discount = dd.discount
       current_min_customers = (prev_max_customers.blank?)? min_customers : prev_max_customers
-      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='FF4646' borderColor='FF4646' label='#{discount}%'/>"
+      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='C11111' borderColor='C11111' label='#{discount}%'/>"
       prev_max_customers = max_customers
     end
     customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='10' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
