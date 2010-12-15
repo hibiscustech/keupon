@@ -154,3 +154,15 @@ function createsubscription(elementID)
 {
     document.getElementById(elementID).style.display = "block";
 }
+
+function merchantpassword(elementID)
+{
+    document.getElementById(elementID).style.display = "block";
+}
+
+function customerpassword(elementID)
+{
+    document.getElementById(elementID).style.display = "block";
+}
+
+
