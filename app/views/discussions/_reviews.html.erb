@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <td height="39">&nbsp;</td>
-            <td class="deals_content1">Please write your review:</td>
+            <td class="deals_content1">Please share your views about this product here:</td>
             <td>&nbsp;</td>
 </tr>
           <form action='/discussions/create' method='post'>
@@ -53,4 +53,14 @@
         </table></td>
       </tr>
     </table></td>
+ <tr>
+            <td height="36" background="/images/fine_print_black_gradient.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%">&nbsp;</td>
+                <td width="39%" align="center" class="pagination_link"><%=will_paginate(@forums,:class=>'pagination_link')%></td>
+                <td width="42%">&nbsp;</td>
+              </tr>
+            </table></td>
+          </tr>
+
 
