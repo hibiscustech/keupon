@@ -22,7 +22,13 @@
                 <td width="2%" valign="top">&nbsp;</td>
                 <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td background="/images/widget_header.jpg" height="61" style="background-repeat:no-repeat;" class="time">
+                    <td background="/images/widget_header.jpg" height="61" style="background-repeat:no-repeat;">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="30%" align="center" style="color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:13px;"><%=current_deal_discount_for_deal(@deal.id)%> %</td>
+                          <td width="70%" align="center" style="color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:13px;">S$ <%=@deal.value%></td>
+                        </tr>
+                      </table>
                       S$ <%=@deal.value%>
                     </td>
                   </tr>
