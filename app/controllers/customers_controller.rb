@@ -130,11 +130,11 @@ class CustomersController < ApplicationController
       max_customers = dd.max_customers
       discount = dd.discount
       current_min_customers = (prev_max_customers.blank?)? min_customers : prev_max_customers
-      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='B21F1F' borderColor='B21F1F' label='#{discount}%'/>"
+      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='c41111' borderColor='ffffff' label='#{discount}%'/>"
       prev_max_customers = max_customers
     end
-    customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='10' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
-    return "<chart bgSWF='/images/scale_bg.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='FFFFFF' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='FFFFFF' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
+    customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='5' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
+    return "<chart bgColor='e0e0e0' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
   end
 
   def keupoint_deal
