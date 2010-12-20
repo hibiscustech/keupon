@@ -58,14 +58,11 @@
               <td width="50%" style="color:#000000;">
 
                 <%for category in category_all%>
-                  <b><%=category.name%></b><br/>
-                  <%for sub_category in sub_category_all(category)%>
-                    <%if sub_category.id==get_selected(category.id,sub_category.id)%>
-                    <%= check_box_tag "customer_favourite_deal[deal_sub_category_id][]", category.id.to_s+':'+sub_category.id.to_s,true -%><%=sub_category.name%><br/>
-                    <%else%>
-                    <%= check_box_tag "customer_favourite_deal[deal_sub_category_id][]", category.id.to_s+':'+sub_category.id.to_s -%><%=sub_category.name%><br/>
-                    <%end%>
-                  <%end%>
+                 <%if category.id==get_selected_category(category.id)%>
+                   <b><%= check_box_tag "customer_favourite_deal[]",category.id,true%><%=category.name%></b><br/>
+                 <%else%>
+                   <b><%= check_box_tag "customer_favourite_deal[]",category.id%><%=category.name%></b><br/>
+                 <%end%>
                 <%end%>
 
               </td>

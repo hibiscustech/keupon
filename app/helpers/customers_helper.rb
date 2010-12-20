@@ -105,5 +105,12 @@ def category_all
     return false
    end
   end
-
+  def get_selected_category(cid)
+   categories=CustomerFavouriteDeal.find_by_deal_category_id_and_customer_id(cid,current_customer.id)
+   if !categories.nil?
+    return cid
+   else
+    return false
+   end
+  end
 end
