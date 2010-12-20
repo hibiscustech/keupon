@@ -43,7 +43,7 @@ module ApplicationHelper
   end
 
   def my_age(dob)
-    return (dob.blank?)? "-" : Customer.birthdate_to_age(Time.parse(dob)).to_s
+    return (dob.blank?or(dob='0000-00-00'))? "-" : Customer.birthdate_to_age(Time.parse(dob)).to_s
   end
   
   def state_select_for(model)

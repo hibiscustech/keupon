@@ -1,7 +1,7 @@
 class AdminAnalyticsController < ApplicationController
   layout "admins"
   protect_from_forgery :only => [:destroy]
-
+  require 'fastercsv'
   def index
     
   end
@@ -102,6 +102,36 @@ class AdminAnalyticsController < ApplicationController
       end
     end
   end
+ def customer_reports_csv
+    sort = "time_created" if sort.blank?
+    @customers = Customer.customers_summary(sort)
+    @outfile = "costomer_report_" + Time.now.strftime("%m-%d-%Y") + ".csv"
+    csv_data = FasterCSV.generate do |csv|
+      csv << ["Sign-up Date","Name","NRIC/FIN","Age","Phone Number","Email","Average M.Salary(S$)","Location","# of times Bought","total Spending(S$)","# of Keupoints","# of Friends Introduced"]
+      @customers.each do |customer|
+        csv << [Time.at(customer.time_created).strftime("%d-%m-%Y"),customer.name,customer.customer_pin,my_age(customer.dob),customer.phone,customer.email,customer.income,customer.location,customer.total_bought,customer.spendings,customer.kupoints,customer.introduced]
+      end
+    end
+
+    send_data csv_data,:type => 'text/csv; charset=iso-8859-1; header=present',:disposition => "attachment; filename=#{@outfile}"
+    flash[:notice] = "Customer report export complete!"
+  end
+   def accounting_reports_csv
+    @deals = Deal.accounting    
+    @deals = sort_desc("posting_date", @deals)
+    @outfile = "accounting_report_" + Time.now.strftime("%m-%d-%Y") + ".csv"
+    csv_data = FasterCSV.generate do |csv|
+      csv << ["Merchant Name","Date of Posting","Deal Title","Date of closing","Date of Expiry","Keupons Purchased","Usual Price(S$)","Sales(S$)","Final Discount","Keupons Commission","Net Sales"]
+      @deals.each do |deal|
+        result = deal[1]
+        csv << [result["merchant_name"],Time.at(result["posting_date"].to_i).strftime("%d-%m-%Y"),result["title"],Time.at(result["closing_date"].to_i).strftime("%d-%m-%Y"),Time.at(result["expiry_date"].to_i).strftime("%d-%m-%Y"),result["purchased"],result["actual_price"],result["sales"],result["discount"].to_s+"%",result["commission"].to_s+"%",result["net_sales"]]
+      end
+    end
+
+    send_data csv_data,:type => 'text/csv; charset=iso-8859-1; header=present',:disposition => "attachment; filename=#{@outfile}"
+    flash[:notice] = "Accounting report export complete!"
+  end
+
 
   def sort_asc(column, summary)
     sorted_hash = summary.sort  { | leftval, rightval | leftval[1][column]<=>rightval[1][column] }
@@ -112,4 +142,9 @@ class AdminAnalyticsController < ApplicationController
     sorted_hash = summary.sort  { | leftval, rightval | rightval[1][column]<=>leftval[1][column] }
     return sorted_hash
   end
+  protected
+   def my_age(dob)
+         return (dob.blank?or(dob='0000-00-00'))? "-" : Customer.birthdate_to_age(Time.parse(dob)).to_s
+   end
+
 end
