@@ -89,7 +89,7 @@ class DealsController < ApplicationController
   def deal_scale_graph(deal_discounts)
     minimum = deal_discounts[0][1][0]
     deals_bought = minimum
-    maximum = deal_discounts[deal_discounts.length-1][1][1]
+    maximum = "Infinite"#deal_discounts[deal_discounts.length-1][1][1]
     customers_discount_ranges = "<colorRange>"
     prev_max_customers = nil
     for dd in deal_discounts
