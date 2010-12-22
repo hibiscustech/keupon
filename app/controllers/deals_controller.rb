@@ -79,11 +79,40 @@ class DealsController < ApplicationController
             page.replace_html 'minimum_customer', "<input type='text' name='customer1' value='#{(max_customers.to_i+1).to_s}' disabled/><input type='hidden' name='customer' id='customer' value='#{(max_customers.to_i+1).to_s}'/>"
             page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
             page.replace_html 'disc', "<input type='text' name='discount' id='discount' />"
+            page.replace_html 'min_discount', "<input type='hidden' name='minimum_discount' id='minimum_discount' value='#{discount}'/>"
+            page.replace_html 'minimum_customer_heading', "Minimum Customers"
+            page.replace_html 'dd_operator', :partial => "deal_discount_form"
             page.replace_html 'discount_summary',:partial => "deal_discount_summary"            
           end
         }
       end
     end
+  end
+
+  def deal_discount_operator
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            if params[:operator] == "lesser"
+              page.replace_html 'minimum_customer', "<input type='hidden' name='customer' id='customer' value='0'/>"
+              page.replace_html 'minimum_customer_heading', ""
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
+            elsif params[:operator] == "greater"
+              page.replace_html 'minimum_customer', "<input type='text' name='customer' id='customer' />"
+              page.replace_html 'minimum_customer_heading', "Minimum Customers"
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' value='Any Number' disabled/><input type='hidden' name='max_customer' id='max_customer' value='' /> "
+            else
+              page.replace_html 'minimum_customer', "<input type='text' name='customer' id='customer' />"
+              page.replace_html 'minimum_customer_heading', "Minimum Customers"
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
+            end
+          end
+        }
+      end
+    end
+    return nil
   end
 
   def deal_scale_graph(deal_discounts)
@@ -101,7 +130,7 @@ class DealsController < ApplicationController
       prev_max_customers = max_customers
     end
     customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='5' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
-    return "<chart bgSWF='/images/gray_bg.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
+    return "<chart bgSWF='/images/gray_bg.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimitDisplay='#{maximum}' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
   end
 
   def cancel_new_discount_customers
