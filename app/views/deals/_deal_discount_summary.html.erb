@@ -1,13 +1,7 @@
-<table align=left  style="font-size:14px;" CELLPADDING="3" CELLSPACING="6">
-	  <% if !session[:deal_discounts].blank? %>      
-          <% deal_discounts = session[:deal_discounts].sort %>
-	  <% for dd in deal_discounts%>
-	  <tr>        
-        <td style="color:#000000;" align="center"><%= dd[1][0] %></td>
-        <td style="color:#000000;" align="center"><%= dd[1][1] %></td>
-        <td style="color:#000000;" align="center"><%= dd[0] %></td>
-        <td></td>
-      </tr>
-	  <% end %>
-	  <% end %>
-    </table>
+<div id="chartdiv" align="center">FusionGadgets</div>
+
+<script type="text/javascript">
+  var myChart = new FusionCharts("/charts/HLinearGauge.swf", "myChartId", "500", "70", "0", "0");
+  myChart.setDataXML("<%=@deal_scale_xml%>");
+  myChart.render("chartdiv");
+</script>
