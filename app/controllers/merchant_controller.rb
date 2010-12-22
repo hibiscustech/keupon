@@ -5,7 +5,7 @@ class MerchantController < ApplicationController
   layout 'application_merchant'
   
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required , :only => [:deals_of_mine, :redeem_deals,:deals_on_demand,:location_deals,:my_profile,
+  before_filter :login_required , :only => [:index, :deals_of_mine, :redeem_deals,:deals_on_demand,:location_deals,:my_profile,
                                             :my_company,:password_change,:keupoint_deals,:gift_deals]
   def my_profile
     @page='Update Profile'
@@ -67,7 +67,7 @@ class MerchantController < ApplicationController
   def new
     @merchant = Merchant.new
     @categories = DealCategory.find(:all)
-    render :layout =>'signup_merchant'
+    #render :layout =>'signup_merchant'
   end
   def preview
    
@@ -197,11 +197,11 @@ class MerchantController < ApplicationController
           redirect_to "/"
         else
           flash[:notice] = "Your Password could not be changed."
-          redirect_to :action =>"forgot_password", :controller => "merchant"
+           redirect_to "/"
         end
       else
         flash[:notice] = "Email-id doesnt exists"
-        render :controller => 'merchant',:action => 'forgot_password'
+        redirect_to "/"
       end    
     end
   end
