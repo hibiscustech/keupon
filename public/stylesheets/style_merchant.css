@@ -5,24 +5,24 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
-	background-image:url(../images/merchant/bg.jpg);
+	background-image:url(../images/bg.jpg);
 	background-repeat:repeat-x;
 }
 .marketing_msg_text{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:22px;
 	font-weight:bold;
-
+	
 	color:#ffffff;
 	text-decoration:none;
 
 }
 .header_text{
-
+	
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:22px;
 	font-weight:bold;
-
+	
 	color:#000000;
 	text-decoration:none;
 
@@ -60,7 +60,7 @@ body {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:20px;
 	font-weight:bold;
-
+	
 	color:#FF0000;
 	text-decoration:none;
 
@@ -68,7 +68,8 @@ body {
 .deals_content{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
-	color:#777777;
+	
+	color:#000000;
 	text-decoration:none;
 
 }
@@ -105,7 +106,7 @@ body {
 .deals_content_red{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
-
+	
 	color:#ff7d7f;
 	text-decoration:none;
 
@@ -141,111 +142,7 @@ body {
 
 }
 
-/*#################################Navigation#########################*/
-
-#navigation {
-	margin:auto;
-	padding: 0;
-	clear:both;
-	width:950px;
-	height:48px;
-	background: #d6eaf8 url(../images/merchant/dropdown-bg.gif) repeat-x left top;
-}
-
-
-ul.nav-main,
-ul.nav-main li {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-
-ul.nav-main {
-	position: relative;
-	z-index: 597;
-}
-
-ul.nav-main li:hover > ul {
-	visibility: visible;
-}
-
-
-ul.nav-main li.hover,
-ul.nav-main li:hover {
-	position: relative;
-	z-index: 599;
-	cursor: pointer;
-	background: url(../images/merchant/dropdown-bg-hover.gif) repeat-x left top;
-}
 
 
 
-ul.nav-main li {
-	float:left;
-	display:block;
-	height: 48px;
-	color: #999;
-	font: 14px Arial, Helvetica, sans-serif;
-	background: url(../images/merchant/separator.gif) no-repeat right center;
-}
 
-ul.nav-main li a {
-	display:block;
-	padding: 16px 16px 0 16px;
-	height: 35px;
-	color: #999;
-	font: 14px Arial, Helvetica, sans-serif;
-	text-decoration:none;
-}
-
-ul.nav-main li a:hover {
-	color:#D6D6D6;
-}
-
-
-
-ul.nav-main *.list {
-	padding-right: 22px;
-	background: url(../images/merchant/navigation-arrow.gif) no-repeat right top;
-}
-
-
-
-ul.nav-sub {
-	visibility: hidden;
-	position: absolute;
-	padding:10px;
-	top: 48px;
-	left: 0;
-	z-index: 598;
-	background: #353535 url(../images/merchant/dropdown-list-bg.gif) repeat-x left top;
-	border-right: 1px solid #000;
-	border-bottom: 1px solid #000;
-	border-left: 1px solid #000;
-}
-
-
-ul.nav-sub li {
-	list-style:none;
-	display:block;
-	padding: 0;
-	height: 27px;
-	float: none;
-	width:145px;
-	border-bottom: 1px solid #5a5a5a;
-	background: none;
-}
-
-ul.nav-sub li a {
-	list-style:none;
-	display:block;
-	padding: 6px 5px 6px 5px;
-	height: 15px;
-	float: none;
-	width:145px;
-	background: none;
-	font: 12px Arial, Helvetica, sans-serif;
-}
-
-/*#################################End of Navigation#########################*/
