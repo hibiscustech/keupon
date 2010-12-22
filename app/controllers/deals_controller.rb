@@ -80,7 +80,7 @@ class DealsController < ApplicationController
             page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
             page.replace_html 'disc', "<input type='text' name='discount' id='discount' />"
             page.replace_html 'min_discount', "<input type='hidden' name='minimum_discount' id='minimum_discount' value='#{discount}'/>"
-            page.replace_html 'dd_operator', "<select id='operator' name='operator'><option value='1'>Between</option><option value='2'>Greater than</option></select>"
+            page.replace_html 'dd_operator', "<select id='operator' name='operator'><option value=''>Select an Operator</option><option value='between'>Between</option><option value='greater'>Greater than</option></select>"
             page.replace_html 'discount_summary',:partial => "deal_discount_summary"            
           end
         }
