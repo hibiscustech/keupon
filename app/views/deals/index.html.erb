@@ -14,23 +14,18 @@ function form_validator1(min_discount){
     return (false);
   }
 
-  if (theForm.max_customer.value == "" || theForm.max_customer.value.length < 1)
+  if ((theForm.max_customer.value == "" || theForm.max_customer.value.length < 1) && theForm.operator.value != "greater")
   {
   alert("You must enter the number of Maximum Customers.");
   theForm.max_customer.focus();
   return (false);
   }
-  else if(!IsNumeric(theForm.max_customer.value,"0123456789")){
+  else if(theForm.operator.value != "greater" && !IsNumeric(theForm.max_customer.value,"0123456789")){
     alert("You must enter only Numeric value for number of Maximum Customers.");
     theForm.max_customer.focus();
     return (false);
   }
-  else if(parseInt(theForm.max_customer.value) < parseInt(theForm.customer.value)){
-    alert("Maximum Customers must be greater than "+theForm.customer.value);
-    theForm.max_customer.focus();
-    return (false);
-  }
-  else if(theForm.max_customer.value == theForm.customer.value){
+  else if(theForm.operator.value != "greater" && (parseInt(theForm.max_customer.value) <= parseInt(theForm.customer.value))){
     alert("Maximum Customers must be greater than "+theForm.customer.value);
     theForm.max_customer.focus();
     return (false);
