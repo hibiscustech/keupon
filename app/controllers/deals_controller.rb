@@ -96,15 +96,22 @@ class DealsController < ApplicationController
           render :update do |page|
             if params[:operator] == "lesser"
               page.replace_html 'minimum_customer', "<input type='hidden' name='customer' id='customer' value='0'/>"
+              page.replace_html 'minimum_customer_heading', ""
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
             elsif params[:operator] == "greater"
+              page.replace_html 'minimum_customer', "<input type='text' name='customer' id='customer' />"
+              page.replace_html 'minimum_customer_heading', "Minimum Customers"
               page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' value='Any Number' disabled/><input type='hidden' name='max_customer' id='max_customer' value='' /> "
             else
-              return nil
+              page.replace_html 'minimum_customer', "<input type='text' name='customer' id='customer' />"
+              page.replace_html 'minimum_customer_heading', "Minimum Customers"
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
             end
           end
         }
       end
     end
+    return nil
   end
 
   def deal_scale_graph(deal_discounts)
