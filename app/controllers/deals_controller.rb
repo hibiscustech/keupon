@@ -115,6 +115,24 @@ class DealsController < ApplicationController
     return nil
   end
 
+  def deal_discount_operator1
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            if params[:operator] == "greater"
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' value='Any Number' disabled/><input type='hidden' name='max_customer' id='max_customer' value='' /> "
+            else
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
+            end
+          end
+        }
+      end
+    end
+    return nil
+  end
+
   def deal_scale_graph(deal_discounts)
     minimum = deal_discounts[0][1][0]
     deals_bought = minimum
