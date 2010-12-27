@@ -1,29 +1,63 @@
-<table align=left  style="font-size: 14px; border-collapse: collapse; width:1000px; text-align: center;" CELLPADDING="4" CELLSPACING="0">
-    <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Title</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Starts On</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Closes On</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Expires On</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Location</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Discount</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard">Number of Deals Bought</th>
-       <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-    </tr>
-    <% for dd in @deal_discounts
-      discount = dd[1]
-    deal = @deals[dd[0]] %>
-      <tr>
-        <td style="color:#000000;"><%= deal.name%></td>
-        <td style="color:#000000;"><%= Time.at(deal.start_time.to_i).strftime("%Y-%m-%d")%></td>
-        <td style="color:#000000;"><%= Time.at(deal.end_time.to_i).strftime("%Y-%m-%d")%></td>
-        <td style="color:#000000;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
-        <td style="color:#000000;"><%= deal.address1%> <%= deal.address2%> <%= deal.state%> <%= deal.zipcode%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= discount %></td>
-        <td style="color:#000000;"><%= deal.no_of_customers%></td>
-        <td style="color:#000000;"><a href="#" onclick="showOpenDeal('popup_view_deal',<%= deal.id %>);" style="color: rgb(3, 77, 124);">View</a>&nbsp;&nbsp;<a href="#" onclick="editOpenDeal('popup_create_deal',<%= deal.id %>);" style="color: rgb(3, 77, 124);">Edit</a></td>
+<% for dd in @deal_discounts
+    discount = dd[1]
+    deal = @deals[dd[0]]
+    deal_photo = Deal.find(deal.id)
+%>
+<tr>
+        <td height="36" align="left" background="images/header_gray_bg.jpg"><img src="images/review_deals_text.jpg" width="238" height="36" /></td>
       </tr>
       <tr>
-        <td style="color:#000000;" colspan="8"><hr/></td>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="2%">&nbsp;</td>
+            <td width="96%" height="180" valign="top" bgcolor="#f4f4f4" style="border:1px solid #CCCCCC;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="8" colspan="4" align="center"></td>
+              </tr>
+              <tr>
+                <td width="22%" align="center"><img src="<%= deal_photo.deal_photo.url %>" width="184" height="148" /></td>
+                <td width="76%" colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="55" colspan="2" align="left" class="deals_content"><%= deal.name%></td>
+                    </tr>
+                    <tr>
+                      <td height="66" colspan="2" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td width="17%" height="30" align="center" bgcolor="#e4e1e2" class="deals_content2">Deal Starts On</td>
+                            <td width="29%" align="center" bgcolor="#e4e1e2" class="deals_content2" style="border-left:1px solid #8f8f8f;">Deals Closes On</td>
+                            <td width="19%" align="center" bgcolor="#e4e1e2" class="deals_content2" style="border-left:1px solid #8f8f8f;">Deal Expires on</td>
+                            <td width="35%" align="center" bgcolor="#e4e1e2" class="deals_content2" style="border-left:1px solid #8f8f8f;">Location</td>
+                          </tr>
+                          <tr>
+                            <td height="39" align="center" bgcolor="#151515" class="deals_content1"><%= Time.at(deal.start_time.to_i).strftime("%Y-%m-%d")%></td>
+                            <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= Time.at(deal.end_time.to_i).strftime("%Y-%m-%d")%></td>
+                            <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
+                            <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= deal.address1%> <%= deal.address2%><br />
+                              <%= deal.state%> <%= deal.zipcode%></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                    <tr>
+                      <td height="12" colspan="2" align="left" ></td>
+                    </tr>
+                    <tr>
+                      <td width="78%" height="25" align="left" ><img src="images/scale1.jpg" width="540" height="53" /></td>
+                      <td width="22%" align="center" ><a href="#"><img src="images/edit_deal_btn.jpg" width="75" height="30" border="0" /></a></td>
+                    </tr>
+                </table></td>
+                <td width="2%">&nbsp;</td>
+              </tr>
+            </table></td>
+            <td width="2%">&nbsp;</td>
+          </tr>
+        </table></td>
       </tr>
-    <%end%>
-  </table>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+<% end %>
