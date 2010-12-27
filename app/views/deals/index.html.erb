@@ -49,24 +49,7 @@ function form_validator1(min_discount){
     theForm.discount.focus();
     return (false);
   }
-  
-  if(theForm.address1.value == "" || theForm.address1.value.length < 1){
-    alert("You must enter Address1");
-    theForm.address1.focus();
-    return (false);
-  }
-
-  if(theForm.country.value == "" || theForm.country.value.length < 1){
-    alert("You must enter Country");
-    theForm.country.focus();
-    return (false);
-  }
-
-  if(theForm.zipcode.value == "" || theForm.zipcode.value.length < 1){
-    alert("You must enter Zipcode");
-    theForm.zipcode.focus();
-    return (false);
-  }
+    
   theForm.onsubmit();
 }
 function form_validator(){
@@ -127,6 +110,24 @@ alert("You must enter Expiry Date.");
 theForm.deal_expiry_date.focus();
 return (false);
 }
+
+if(theForm.address1.value == "" || theForm.address1.value.length < 1){
+    alert("You must enter Address1");
+    theForm.address1.focus();
+    return (false);
+  }
+
+  if(theForm.country.value == "" || theForm.country.value.length < 1){
+    alert("You must enter Country");
+    theForm.country.focus();
+    return (false);
+  }
+
+  if(theForm.zipcode.value == "" || theForm.zipcode.value.length < 1){
+    alert("You must enter Zipcode");
+    theForm.zipcode.focus();
+    return (false);
+  }
 
 if (theForm.ddcheck.value == "" || theForm.ddcheck.value.length < 1)
 {

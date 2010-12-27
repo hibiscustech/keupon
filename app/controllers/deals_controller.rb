@@ -137,19 +137,20 @@ class DealsController < ApplicationController
   def deal_scale_graph(deal_discounts)
     minimum = deal_discounts[0][1][0]
     deals_bought = minimum
-    maximum = deal_discounts[deal_discounts.length-1][1][1]
+    maximum = (deal_discounts[deal_discounts.length-1][1][1].blank?)? (deal_discounts[deal_discounts.length-2][1][1].to_i)+20 : deal_discounts[deal_discounts.length-1][1][1]
+    maximum_text = (deal_discounts[deal_discounts.length-1][1][1].blank?)? "Any" : deal_discounts[deal_discounts.length-1][1][1]
     customers_discount_ranges = "<colorRange>"
     prev_max_customers = nil
     for dd in deal_discounts
       min_customers = dd[1][0]
-      max_customers = dd[1][1]
+      max_customers = (dd[1][1].blank?)? min_customers.to_i+20 : dd[1][1]
       discount = dd[0]
       current_min_customers = (prev_max_customers.blank?)? min_customers : prev_max_customers
       customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='c41111' borderColor='ffffff' label='#{discount}%'/>"
       prev_max_customers = max_customers
     end
     customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='5' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
-    return "<chart bgSWF='/images/gray_bg.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimitDisplay='#{maximum}' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
+    return "<chart bgSWF='/images/gray_bg.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimitDisplay='#{maximum_text}' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
   end
 
   def cancel_new_discount_customers
