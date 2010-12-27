@@ -2,7 +2,13 @@
 <!--
 function form_validator1(min_discount){
   var theForm = document.forms['dd_form'];
-  alert(theForm.operator.options[theForm.operator.selectedIndex].value);
+
+  if(theForm.operator.selectedIndex == 0){
+    alert("You must Select an Operator.");
+    theForm.operator.focus();
+    return (false);
+  }
+  
   if (theForm.customer.value == "" || theForm.customer.value.length < 1)
   {
   alert("You must enter the number of Minimum Customers.");
@@ -15,18 +21,18 @@ function form_validator1(min_discount){
     return (false);
   }
 
-  if ((theForm.max_customer.value == "" || theForm.max_customer.value.length < 1) && theForm.operator.value != "greater")
+  if ((theForm.max_customer.value == "" || theForm.max_customer.value.length < 1) && theForm.operator.options[theForm.operator.selectedIndex].value != "greater")
   {
   alert("You must enter the number of Maximum Customers.");
   theForm.max_customer.focus();
   return (false);
   }
-  else if(theForm.operator.value != "greater" && !IsNumeric(theForm.max_customer.value,"0123456789")){
+  else if(theForm.operator.options[theForm.operator.selectedIndex].value != "greater" && !IsNumeric(theForm.max_customer.value,"0123456789")){
     alert("You must enter only Numeric value for number of Maximum Customers.");
     theForm.max_customer.focus();
     return (false);
   }
-  else if(theForm.operator.value != "greater" && (parseInt(theForm.max_customer.value) <= parseInt(theForm.customer.value))){
+  else if(theForm.operator.options[theForm.operator.selectedIndex].value != "greater" && (parseInt(theForm.max_customer.value) <= parseInt(theForm.customer.value))){
     alert("Maximum Customers must be greater than "+theForm.customer.value);
     theForm.max_customer.focus();
     return (false);
