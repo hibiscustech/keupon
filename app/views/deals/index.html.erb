@@ -2,6 +2,7 @@
 <!--
 function form_validator1(min_discount){
   var theForm = document.forms['dd_form'];
+  alert(theForm.operator.options[theForm.operator.selectedIndex].value);
   if (theForm.customer.value == "" || theForm.customer.value.length < 1)
   {
   alert("You must enter the number of Minimum Customers.");
