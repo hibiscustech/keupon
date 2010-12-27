@@ -103,7 +103,7 @@ class DealsController < ApplicationController
             elsif params[:operator] == "greater"
               page.replace_html 'minimum_customer', "<input type='text' name='customer' id='customer' />"
               page.replace_html 'minimum_customer_heading', "Minimum Customers"
-              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' value='Any Number' disabled/><input type='hidden' name='max_customer' id='max_customer' value='' /> "
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer_a' id='max_customer_a' value='Any Number' disabled/><input type='hidden' name='max_customer' id='max_customer' value='' /> "
             else
               page.replace_html 'minimum_customer', "<input type='text' name='customer' id='customer' />"
               page.replace_html 'minimum_customer_heading', "Minimum Customers"
@@ -123,7 +123,7 @@ class DealsController < ApplicationController
         format.js {
           render :update do |page|
             if params[:operator] == "greater"
-              page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' value='Any Number' disabled/><input type='hidden' name='max_customer' id='max_customer' value='' /> "
+              page.replace_html 'maximum_customer', "<input type='text' name='max_customer_a' id='max_customer_a' value='Any Number' disabled/><input type='hidden' name='max_customer' id='max_customer' value='' /> "
             else
               page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
             end
