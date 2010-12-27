@@ -1,69 +1,100 @@
-<% if !flash[:notice].blank? %>
-<div id="msg" style="text-align:center;background-color:grey;color:#fff;" onclick="Effect.toggle('msg','appear');"><%=flash[:notice]%></div><br/>
-<% end %>
 
 <% if @deal.blank? %>
-    <%= form_remote_tag(:url => {:controller => "merchant", :action => "verify_deal", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "verification_form", :style=> "padding:0;margin:0;"})%>
-    <table>
-      <tr>
-        <td>Enter Deal Code:</td>
-        <td><input type="text" name="code" id="code" /></td>
-      </tr>
-      <tr>
-        <td>Enter Customer NRIC/FIN#:</td>
-        <td><input type="text" name="customer_pin" id="customer_pin" /></td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="button" name="Verify" value="Verify" onclick="$('verification_form').onsubmit();return false;"/><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %>
-        </td>
-      </tr>
-    </table>
-    </form>
+
+  <tr>
+    <td> <% if !flash[:notice].blank? %>
+        <div id="msg" style="text-align:center;background-color:grey;color:#fff;" onclick="Effect.toggle('msg','appear');"><%=flash[:notice]%></div>
+      <% end %>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <%= form_remote_tag(:url => {:controller => "merchant", :action => "verify_deal", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "verification_form", :style=> "padding:0;margin:0;"})%>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="right" class="deals_content2"><strong>Enter deal code:</strong></td>
+          <td>&nbsp;</td>
+          <td align="left"><input type="text" name="code" id="code" /></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="1%">&nbsp;</td>
+          <td width="48%" align="right" valign="top" class="deals_content2"><strong>Enter Customer NRIC/FIN#:</strong></td>
+          <td width="1%">&nbsp;</td>
+          <td width="48%" align="left" valign="top"><input type="text" name="customer_pin" id="customer_pin" /></td>
+          <td width="1%">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td valign="top">&nbsp;</td>
+          <td>&nbsp;</td>
+          <td valign="top">&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td valign="top">&nbsp;</td>
+          <td>&nbsp;</td>
+          <td valign="top">&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td valign="top">&nbsp;</td>
+          <td>&nbsp;</td>
+          <td valign="top">&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="1%">&nbsp;</td>
+          <td width="48%" align="right" valign="top" class="deals_content2"></td>
+          <td width="1%">&nbsp;</td>
+          <td colspan="3">
+            <input type="button" name="Verify" value="Verify" onclick="$('verification_form').onsubmit();return false;"/><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %>
+          </td>
+        </tr>
+      </table></td>
+  </tr>
 <% else %>
   <% form_remote_tag :url => { :controller => 'merchant', :action => 'redeem_deal'},:html => {:id => "deal_form"} do -%>
-<table>
-  <tr>
-    <td>Deal Name : </td><td><%=@deal.name%></td>
-  </tr>
-  <tr>
-    <td>Deal Expiry Date : </td><td><%=Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y")%></td>
-  </tr>
-  <tr>
-    <td>Deal Status : </td><td><%= (@deal.expiry_date.to_i < Time.now.to_i)? "Expired" : @customer_deal.status.camelize %></td>
-  </tr>
-  <tr>
-    <td>Quantity : </td><td><%=@customer_deal.quantity_left%></td>
-  </tr>
-  <tr>
-    <td>Customer Name : </td><td><%=@customer_profile.first_name%> <%=@customer_profile.last_name%></td>
-  </tr>
-  <tr>
-    <td>Customer Email : </td><td> <%=@customer.email%></td>
-  </tr>
-  <% if @customer_deal.quantity_left.to_i > 0 && @deal.expiry_date.to_i > Time.now.to_i%>
-  <input type="hidden" name="id" value="<%=@customer_deal.id%>" />
-  <% if @customer_deal.quantity_left.to_i > 1 %>
-  <tr>
-    <td>No. of Quantities to Redeem : </td><td><%=text_field_tag  'deal[quantity]'%></td>
-  </tr>
-  <% else %>
-  <input type="hidden" name="deal[quantity]" value="1" />
-  <% end %>
-  <tr>
-    <td colspan="2" align="center"><input type="button" name="Verify" value="Redeem My Deal" onclick="$('deal_form').onsubmit();return false;"/>&nbsp;&nbsp;<a href="/redeem_deals">Cancel</a></td>
-  </tr>
-  <% else %>
-  <tr>
-    <td colspan="2" align="right"><a href="/redeem_deals">Back</a></td>
-  </tr>
-  <% end %>
-  
-</table>     
+    <table>
+      <tr>
+        <td>Deal Name : </td><td><%=@deal.name%></td>
+      </tr>
+      <tr>
+        <td>Deal Expiry Date : </td><td><%=Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y")%></td>
+      </tr>
+      <tr>
+        <td>Deal Status : </td><td><%= (@deal.expiry_date.to_i < Time.now.to_i)? "Expired" : @customer_deal.status.camelize %></td>
+      </tr>
+      <tr>
+        <td>Quantity : </td><td><%=@customer_deal.quantity_left%></td>
+      </tr>
+      <tr>
+        <td>Customer Name : </td><td><%=@customer_profile.first_name%> <%=@customer_profile.last_name%></td>
+      </tr>
+      <tr>
+        <td>Customer Email : </td><td> <%=@customer.email%></td>
+      </tr>
+      <% if @customer_deal.quantity_left.to_i > 0 && @deal.expiry_date.to_i > Time.now.to_i%>
+        <input type="hidden" name="id" value="<%=@customer_deal.id%>" />
+        <% if @customer_deal.quantity_left.to_i > 1 %>
+          <tr>
+            <td>No. of Quantities to Redeem : </td><td><%=text_field_tag  'deal[quantity]'%></td>
+          </tr>
+        <% else %>
+          <input type="hidden" name="deal[quantity]" value="1" />
+        <% end %>
+        <tr>
+          <td colspan="2" align="center"><input type="button" name="Verify" value="Redeem My Deal" onclick="$('deal_form').onsubmit();return false;"/>&nbsp;&nbsp;<a href="/redeem_deals">Cancel</a></td>
+        </tr>
+      <% else %>
+        <tr>
+          <td colspan="2" align="right"><a href="/redeem_deals">Back</a></td>
+        </tr>
+      <% end %>
+    </table>
   <% end -%>
-</form>
+  </form>
 <% end %>
 
 
 
-  
+
