@@ -136,7 +136,8 @@ theForm.ddcheck.focus();
 return (false);
 }
 
-theForm.submit();
+document.new_deal.submit();
+return true;
 }
 
 function IsNumeric(sText, ValidChars)
@@ -160,7 +161,7 @@ function IsNumeric(sText, ValidChars)
 
 //-->
 </script>
-<% form_for @deal, :url => { :action => "create" } , :html => { :multipart => true }  do |f| %>
+<% form_for @deal, :url => { :action => "create" } , :html => {:name=>"new_deal", :multipart => true }  do |f| %>
 <tr>
         <td height="36" align="left" background="/images/header_gray_bg.jpg"><img src="/images/new_deal_text.jpg" width="132" height="36" /></td>
       </tr>
