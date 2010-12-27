@@ -61,7 +61,6 @@ alert("You must enter Deal Title.");
 theForm.deal_name.focus();
 return (false);
 }
-
 if (theForm.deal_value.value == "" || theForm.deal_value.value.length < 1)
 {
 alert("You must enter Original Value.");
@@ -75,7 +74,6 @@ alert("You must enter Rules.");
 theForm.deal_rules.focus();
 return (false);
 }
-
 if (theForm.deal_highlights.value == "" || theForm.deal_highlights.value.length < 1)
 {
 alert("You must enter Highlights.");
@@ -122,22 +120,18 @@ if(theForm.address1.value == "" || theForm.address1.value.length < 1){
     theForm.country.focus();
     return (false);
   }
-
   if(theForm.zipcode.value == "" || theForm.zipcode.value.length < 1){
     alert("You must enter Zipcode");
     theForm.zipcode.focus();
     return (false);
   }
-
-if (theForm.ddcheck.value == "" || theForm.ddcheck.value.length < 1)
+if (document.forms['dd_form'].customer.value == "" || document.forms['dd_form'].customer.value.length < 1)
 {
 alert("You must enter Deal Discounts.");
-theForm.ddcheck.focus();
 return (false);
 }
 
 document.new_deal.submit();
-return true;
 }
 
 function IsNumeric(sText, ValidChars)
@@ -180,7 +174,7 @@ function IsNumeric(sText, ValidChars)
         </td>
       </tr>
       <tr>
-        <td align="center" id="dd_check">&nbsp;<input type="hidden" name="ddcheck" value="" id="ddcheck" /></td>
+        <td align="center" id="dd_check">&nbsp;<input type="hidden" name="ddcheckdis" value="" id="ddcheckdis" /></td>
       </tr>
 <% end %>
 
