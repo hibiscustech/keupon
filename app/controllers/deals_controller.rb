@@ -227,7 +227,7 @@ class DealsController < ApplicationController
         discount = dd[0]
         min_customers = dd[1][0]
         max_customers = dd[1][1]
-        DealDiscount.create(:deal_id => params[:deal_id], :discount => discount, :customers => min_customers, :max_customers => max_customers, :buy_value => buy, :save_amount => save_amount)
+        DealDiscount.create(:deal_id => @deal.id, :discount => discount, :customers => min_customers, :max_customers => max_customers, :buy_value => buy, :save_amount => save_amount)
       end
       @deal.update_attributes(:minimum_number => min_customers, :number => max_customers, :buy => buy, :save_amount => save_amount, :discount => discount)
       session[:deal_discounts] = nil
