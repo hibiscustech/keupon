@@ -156,12 +156,12 @@ class Deal < ActiveRecord::Base
                 join deal_schedules ds on ds.deal_id = d.id
                 join deal_location_details dld on dld.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
-                where merchant_id = #{merchant_id}
+                where merchant_id = #{merchant_id} and d.deal_type_id = 1
                 group by d.id
                 order by ds.start_time }
     resultset = find_by_sql(query)
     resultset_hashed = convert_into_hash(resultset)
-    deal_discounts = deals_and_current_discounts(resultset)
+    deal_discounts = deals_and_scales(resultset)
     return deal_discounts, resultset_hashed
   end
   
@@ -301,6 +301,34 @@ class Deal < ActiveRecord::Base
       result[res.id.to_s] = discount.to_f
     end
     return result.sort{|l,r| r[1]<=>l[1]}
+  end
+  
+  def self.deals_and_scales(resultset)
+    result = Hash.new
+    for res in resultset
+      deal_discounts = DealDiscount.find_by_sql("select * from deal_discounts where deal_id = #{res.id} order by discount")
+      dd_scale = deal_scale_graph(deal_discounts, res.no_of_customers)
+      result[res.id.to_s] = dd_scale
+    end
+    return result
+  end
+
+  def self.deal_scale_graph(deal_discounts, deals_bought)
+    minimum = deal_discounts[0].customers
+    maximum = (deal_discounts[deal_discounts.length-1].max_customers.blank?)? (deal_discounts[deal_discounts.length-2].max_customers.to_i)+20 : deal_discounts[deal_discounts.length-1].max_customers
+    maximum_text = (deal_discounts[deal_discounts.length-1].max_customers.blank?)? "Any" : deal_discounts[deal_discounts.length-1].max_customers
+    customers_discount_ranges = "<colorRange>"
+    prev_max_customers = nil
+    for dd in deal_discounts
+      min_customers = dd.customers
+      max_customers = (dd.max_customers.blank?)? min_customers.to_i+20 : dd.max_customers
+      discount = dd.discount
+      current_min_customers = (prev_max_customers.blank?)? min_customers : prev_max_customers
+      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='c41111' borderColor='ffffff' label='#{discount}%'/>"
+      prev_max_customers = max_customers
+    end
+    customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='5' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
+    return "<chart bgSWF='/images/gray_bg.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimitDisplay='#{maximum_text}' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
   end
 
   def self.find_recent_add(merchant_id)

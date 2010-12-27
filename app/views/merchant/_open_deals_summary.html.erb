@@ -1,5 +1,5 @@
 <% for dd in @deal_discounts
-    discount = dd[1]
+    graph = dd[1]
     deal = @deals[dd[0]]
     deal_photo = Deal.find(deal.id)
 %>
@@ -44,7 +44,15 @@
                       <td height="12" colspan="2" align="left" ></td>
                     </tr>
                     <tr>
-                      <td width="78%" height="25" align="left" ><img src="images/scale1.jpg" width="540" height="53" /></td>
+                      <td width="78%" height="25" align="left" >
+                        <img src="images/scale1.jpg" width="540" height="53" />
+                        <div id="chartdiv<%=deal.id%>" align="center">FusionGadgets</div>
+                          <script type="text/javascript">
+                            var myChart = new FusionCharts("/charts/HLinearGauge.swf", "myChartId<%=deal.id%>", "540", "70", "0", "0");
+                            myChart.setDataXML("<%=graph%>");
+                            myChart.render("chartdiv<%=deal.id%>");
+                          </script>
+                      </td>
                       <td width="22%" align="center" ><a href="#"><img src="images/edit_deal_btn.jpg" width="75" height="30" border="0" /></a></td>
                     </tr>
                 </table></td>
