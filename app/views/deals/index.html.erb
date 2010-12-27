@@ -49,9 +49,22 @@ function form_validator1(min_discount){
     theForm.discount.focus();
     return (false);
   }
-  else if(parseInt(theForm.discount.value) <= parseInt(theForm.minimum_discount.value)){
-    alert("The Discount has to be greater than "+theForm.minimum_discount.value);
-    theForm.discount.focus();
+  
+  if(theForm.address1.value == "" || theForm.address1.value.length < 1){
+    alert("You must enter Address1");
+    theForm.address1.focus();
+    return (false);
+  }
+
+  if(theForm.country.value == "" || theForm.country.value.length < 1){
+    alert("You must enter Country");
+    theForm.country.focus();
+    return (false);
+  }
+
+  if(theForm.zipcode.value == "" || theForm.zipcode.value.length < 1){
+    alert("You must enter Zipcode");
+    theForm.zipcode.focus();
     return (false);
   }
   theForm.onsubmit();
@@ -108,6 +121,20 @@ theForm.deal_expiry_date.focus();
 return (false);
 }
 
+if (theForm.deal_expiry_date.value == "" || theForm.deal_expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.deal_expiry_date.focus();
+return (false);
+}
+
+if (theForm.ddcheck.value == "" || theForm.ddcheck.value.length < 1)
+{
+alert("You must enter Deal Discounts.");
+theForm.ddcheck.focus();
+return (false);
+}
+
 return true;
 }
 
@@ -151,7 +178,7 @@ function IsNumeric(sText, ValidChars)
         </td>
       </tr>
       <tr>
-        <td align="center">&nbsp;</td>
+        <td align="center" id="dd_check">&nbsp;<input type="hidden" name="ddcheck" value="" id="ddcheck" /></td>
       </tr>
 <% end %>
 

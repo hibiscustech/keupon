@@ -76,6 +76,7 @@ class DealsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
+            page.replace_html 'dd_check', "&nbsp;<input type='hidden' name='ddcheck' value='1' id='ddcheck' />"
             page.replace_html 'minimum_customer', "<input type='text' name='customer1' value='#{(max_customers.to_i+1).to_s}' disabled/><input type='hidden' name='customer' id='customer' value='#{(max_customers.to_i+1).to_s}'/>"
             page.replace_html 'maximum_customer', "<input type='text' name='max_customer' id='max_customer' />"
             page.replace_html 'disc', "<input type='text' name='discount' id='discount' />"
