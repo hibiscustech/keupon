@@ -90,7 +90,7 @@ class MerchantAnalyticsController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'report_title', "<h3>Deals Report (#{params[:start_date]} - #{params[:end_date]})</h3>"
+            page.replace_html 'report_title', "<h3>#{params[:start_date]} - #{params[:end_date]}</h3>"
             page.replace_html 'table_analytic1',:partial => "merchants_deals_summary"
           end
         }

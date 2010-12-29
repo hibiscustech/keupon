@@ -1,76 +1,131 @@
-<table style="width: 1000px; margin: auto;">  
-  <tr>
-    <td id="report_title"></td>
-    <td style=" vertical-align: bottom; height: 50px;" >
-      <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "deals_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "deals_analytics_form1", :style=> "padding:0;margin:0;"})%>        
-        <div id="date_search" style="display: none;">
-          <table>
-            <tr>
-              <td align="right">
-		Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %>
-              </td>
-            </tr>
-            <tr>
-              <td align="right"><a href="#" onclick="$('deals_analytics_form1').onsubmit();return false;">Search</a>&nbsp;&nbsp;<a href="javascript:void(null);" onclick="Effect.BlindUp('date_search');Element.show('search-button');return false;" id="cancel-search">Cancel</a></td>
-            </tr>
-          </table>
-	</div>
-        <div align="right" id="search-button">
-          <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search</a>
-        </div>
-      </form>
-    </td>
-    <td><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %></td>
-  </tr>
-</table>
-<br/>
-<table style="width: 1000px; margin: auto;">
-  <tr>
-    <td>
-      <div id="analytic1" style=" vertical-align: text-top;">
-        <%= render :partial => "deals_funnel_report" %>
-      </div>
-    </td>
-    <td style=" vertical-align: text-top;">
-      <div id="table_analytic1">
-        <%= render :partial => "merchants_deals_summary" %>
-      </div>
-    </td>
-  </tr>  
-</table>
-<br/>
-<table width="100%" align="center">
-  <tr>
-    <td width="50%">
-      <div id="analytic1">
-        <%= render :partial => "deals_top_5" %>
-      </div>
-    </td>
-    <td width="50%">
-      <div id="analytic1">
-        <%= render :partial => "deals_bottom_5" %>
-      </div>
-    </td>
-  </tr>
-</table>
-<br/>
-<table width="100%" align="center">
-  <tr height="65px">
-    <td width="20%" id="report_title" style="padding-left: 25px">
-      <h3>Location Based Deals:</h3>
-    </td>
-    <td>
-      <select id="location_deal" name="location_deal">
-        <option value="0">Select a Location Deal</option>
-        <option value="1">S$112 for One Month of Unlimited Classes at Lion's Breath Yoga & Pilates ($170.35 Value)</option>
-      </select>
-          <%=observe_field "location_deal",
-          :url => {:controller => 'merchant_analytics', :action => 'location_deal_sales_revenue'},
-          :on => 'change',
-          :with => "location_deal"%>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" id="location_deal_sales_revenue_report"></td>
-  </tr>
-</table>
+<tr>
+        <td height="36" background="images/header_gray_bg.jpg"><img src="images/deals_profite_loss_text.jpg" width="238" height="36" /></td>
+      </tr>
+      <tr>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2" id="report_title">&nbsp;</td>
+            <td style=" vertical-align: bottom;">
+              <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "deals_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "deals_analytics_form1", :style=> "padding:0;margin:0;"})%>
+                <div id="date_search" style="display: none;">
+                  <table>
+                    <tr>
+                      <td align="right">
+                        Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right"><a href="#" onclick="$('deals_analytics_form1').onsubmit();return false;">Search</a>&nbsp;&nbsp;<a href="javascript:void(null);" onclick="Effect.BlindUp('date_search');Element.show('search-button');return false;" id="cancel-search">Cancel</a></td>
+                    </tr>
+                  </table>
+                </div>
+                <div align="right" id="search-button">
+                  <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search</a>
+                </div>
+              </form>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="19%" valign="top">
+              <div id="analytic1" style=" vertical-align: text-top;">
+                <%= render :partial => "deals_funnel_report" %>
+              </div>
+            <td width="1%">&nbsp;</td>
+            <td width="78%" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+              <tr>
+                <td bgcolor="#000000" style=" vertical-align: text-top;">
+                  <div id="table_analytic1">
+                    <%= render :partial => "merchants_deals_summary" %>
+                  </div>
+                </td>
+              </tr>
+
+            </table></td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+
+        </table></td>
+      </tr>
+
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td align="center">
+              <img src="images/deal_img2.jpg" width="400" height="323" />
+              <div id="analytic1">
+                <%= render :partial => "deals_top_5" %>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+            <td align="center">
+              <img src="images/deal_img3.jpg" width="400" height="323" />
+              <div id="analytic1">
+                <%= render :partial => "deals_bottom_5" %>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%" valign="top">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+            <td width="48%" valign="top">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right" class="deals_content2"><strong>Location based deals:</strong></td>
+            <td>&nbsp;</td>
+            <td align="left">
+              <select id="location_deal" name="location_deal">
+                <option value="0">Select a Location Deal</option>
+                <option value="1">S$112 for One Month of Unlimited Classes at Lion's Breath Yoga & Pilates ($170.35 Value)</option>
+              </select>
+                  <%=observe_field "location_deal",
+                  :url => {:controller => 'merchant_analytics', :action => 'location_deal_sales_revenue'},
+                  :on => 'change',
+                  :with => "location_deal"%>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="center" colspan="3" id="location_deal_sales_revenue_report"></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%" valign="top">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+            <td width="48%" valign="top">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
