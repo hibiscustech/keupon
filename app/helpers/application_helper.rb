@@ -29,6 +29,12 @@ module ApplicationHelper
     return DealDiscount.current_deal_discount_for_deal(deal_id)
   end
 
+  def sort_td_class_helper(param)
+    result = "<img src='/images/up_arrow.png' width='15' height='8' />'" if params[:sort] == param
+    result = "<img src='/images/down_arrow.png' width='15' height='8' />'" if params[:sort] == param + "_reverse"
+    return result
+  end
+
   def sort_table_header(text, param, action, page)
     key = param
     key += "_reverse" if params[:sort] == param
