@@ -15,17 +15,17 @@
                     <td width="16%" height="80" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Deal Title", "title", "deals_report", params[:page]) %></strong> <br/>
                       <%= sort_td_class_helper "title" %></td>
                     <td colspan="3" align="center" bgcolor="#FFFFFF"><strong>Date of</strong></td>
-                    <td width="11%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Keupons bought", "purchased", "deals_report", params[:page]) %></strong> <br/><img src="/images/up_arrow.png" width="15" height="8" /></td>
-                    <td width="9%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Price (S$)", "actual_price", "deals_report", params[:page]) %></strong> <br/><img src="/images/down_arrow.png" width="15" height="8" /></td>
-                    <td width="10%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Sales (S$)", "sales", "deals_report", params[:page]) %></strong> <br/><img src="/images/down_arrow.png" width="15" height="8" /></td>
-                    <td width="8%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Discount", "discount", "deals_report", params[:page]) %></strong> <br/><img src="/images/down_arrow.png" width="15" height="8" /></td>
-                    <td width="11%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Commission", "commission", "deals_report", params[:page]) %></strong> <br/><img src="/images/up_arrow.png" width="15" height="8" /></td>
-                    <td width="5%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Net Sales (S$)", "net_sales", "deals_report", params[:page]) %></strong> <br/><img src="/images/down_arrow.png" width="15" height="8" /></td>
+                    <td width="11%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Keupons bought", "purchased", "deals_report", params[:page]) %></strong> <br/><%= sort_td_class_helper "purchased" %></td>
+                    <td width="9%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Price (S$)", "actual_price", "deals_report", params[:page]) %></strong> <br/><%= sort_td_class_helper "actual_price" %></td>
+                    <td width="10%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Sales (S$)", "sales", "deals_report", params[:page]) %></strong> <br/><%= sort_td_class_helper "sales" %></td>
+                    <td width="8%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Discount", "discount", "deals_report", params[:page]) %></strong> <br/><%= sort_td_class_helper "discount" %></td>
+                    <td width="11%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Commission", "commission", "deals_report", params[:page]) %></strong> <br/><%= sort_td_class_helper "commission" %></td>
+                    <td width="5%" rowspan="2" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Net Sales (S$)", "net_sales", "deals_report", params[:page]) %></strong> <br/><%= sort_td_class_helper "net_sales" %></td>
                   </tr>
                   <tr>
-                    <td width="9%" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Posting", "posting_date", "deals_report", params[:page]) %></strong><br/><img src="/images/down_arrow.png" width="15" height="8" /></td>
-                    <td width="11%" height="20" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Closing", "closing_date", "deals_report", params[:page]) %> </strong><br/><img src="/images/down_arrow.png" width="15" height="8" /></td>
-                    <td width="10%" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Expiry", "phone", "deals_report", params[:page]) %></strong><br/><img src="/images/down_arrow.png" width="15" height="8" /></td>
+                    <td width="9%" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Posting", "posting_date", "deals_report", params[:page]) %></strong><br/><%= sort_td_class_helper "posting_date" %></td>
+                    <td width="11%" height="20" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Closing", "closing_date", "deals_report", params[:page]) %> </strong><br/><%= sort_td_class_helper "closing_date" %></td>
+                    <td width="10%" align="center" bgcolor="#FFFFFF"><strong><%= sort_table_header("Expiry", "expiry_date", "deals_report", params[:page]) %></strong><br/><%= sort_td_class_helper "expiry_date" %></td>
                   </tr>
                   
                   <% for deal in @deals
