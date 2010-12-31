@@ -1,5 +1,186 @@
-<br/>
-<div id="analytic1">
-  <%= render :partial => "analytic1" %>
-</div>
-<br/>
+<tr>
+        <td height="36" background="/images/header_gray_bg.jpg"><img src="/images/sales_report_text.jpg" width="238" height="36" /></td>
+      </tr>
+      <tr>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" style=" vertical-align: bottom;">
+              <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "sales_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "analytics_form1", :style=> "padding:0;margin:0;"})%>
+                <div id="date_search" style="display: none;" width="100%">
+                  <table width="100%">
+                    <tr>
+                      <td>
+                        Date Range: <%= calendar_date_select_tag "start_date"%> to <%= calendar_date_select_tag "end_date" %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right"><a href="#" onclick="$('analytics_form1').onsubmit();return false;">Search</a>&nbsp;&nbsp;<a href="javascript:void(null);" onclick="Effect.BlindUp('date_search');Element.show('search-button');return false;" id="cancel-search">Cancel</a></td>
+                    </tr>
+                  </table>
+                </div>
+                <div align="right" id="search-button" width="100%">
+                  <a href="javascript:void(null);" onclick="Element.hide('search-button');Effect.BlindDown('date_search');return false;">Date Search</a>
+                </div>
+              </form>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" valign="top">
+              <div id="table_sales" align="center">
+                <table width="50%" align="center">
+                  <thead>
+                    <tr>
+                      <th align="left">Region</th>
+                      <th align="left">Total Sales</th>
+                      <th align="left">Sales Revenue($)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>North Singapore</td>
+                      <td>5150</td>
+                      <td>5150</td>
+                    </tr>
+                    <tr>
+                      <td>South Singapore</td>
+                      <td>8900</td>
+                      <td>8900</td>
+                    </tr>
+                    <tr>
+                      <td>East Singapore</td>
+                      <td>4310</td>
+                      <td>4310</td>
+                    </tr>
+                    <tr>
+                      <td>West Singapore</td>
+                      <td>21000</td>
+                      <td>21000</td>
+                    </tr>
+                    <tr>
+                      <td>Central Singapore</td>
+                      <td>10515</td>
+                      <td>10515</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" valign="top">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+                <tr>
+                  <td>
+                    <div id="map_sales" align="center">
+                    </div>
+                    <script type="text/javascript">
+                               var map = new FusionMaps("/maps/FCMap_Singapore.swf", "Map1Id", "620", "400", "0", "0");
+                               map.setDataURL("/maps/SingaporeSales.xml");
+                               map.render("map_sales");
+                    </script>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" valign="top">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+                <tr>
+                  <td>
+                    <div id="combination_sales" align="center">
+                    </div>
+                    <script type="text/javascript">
+                       var chart = new FusionCharts("/charts/FCF_MSColumn3DLineDY.swf", "ChartId", "600", "350");
+                       chart.setDataURL("/charts/combination_sales.xml");
+                       chart.render("combination_sales");
+                    </script>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" valign="top">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+                <tr>
+                  <td>
+                    <div id="customer_gender_sales" align="center">
+                    </div>
+                    <script type="text/javascript">
+                       var chart = new FusionCharts("/charts/FCF_MSColumn3DLineDY.swf", "ChartId", "600", "350");
+                       chart.setDataURL("/charts/gender_combination_sales.xml");
+                       chart.render("customer_gender_sales");
+                    </script>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" valign="top">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+                <tr>
+                  <td>
+                    <div id="customer_age_sales" align="center">
+                    </div>
+                    <script type="text/javascript">
+                       var chart = new FusionCharts("/charts/FCF_MSColumn3DLineDY.swf", "ChartId", "600", "350");
+                       chart.setDataURL("/charts/customer_age_sales.xml");
+                       chart.render("customer_age_sales");
+                    </script>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>

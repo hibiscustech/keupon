@@ -1,50 +1,118 @@
-<table width="50%" style="padding-left: 115px">
-  <tr height="1px">
-    <td><h3>Customers Report</h3></td>
-  </tr>
-</table>
-<br/>
-<div id="analytic1">
-  <%= render :partial => "customers_map_report" %>
-</div>
-<br/>
-<table width="750px" align="center">
-  <tr>
-    <td width="375px">
-      <div id="analytic2">
-        <%= render :partial => "customers_regions_percentage" %>
-      </div>
-    </td>
-    <td>
-      <div id="analytic3">
-        <%= render :partial => "customers_gender_percentage" %>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td width="375px">
-      <div id="analytic3">
-        <%= render :partial => "customers_age_brackets" %>
-      </div>
-    </td>
-    <td>
-      <div id="analytic4">
-        <%= render :partial => "customers_marital_status" %>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <div id="analytic5">
-        <%= render :partial => "customers_industry_sectors" %>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <div id="analytic6">
-        <%= render :partial => "customers_income_brackets" %>
-      </div>
-    </td>    
-  </tr>
-</table>
+<tr>
+        <td height="36" background="/images/header_gray_bg.jpg"><img src="/images/customers_report_text.jpg" height="36" /></td>
+      </tr>
+      <tr>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>            
+            <td width="98%" colspan="3" valign="top">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+                <tr>
+                  <td>
+                    <div id="analytic1">
+                      <%= render :partial => "customers_map_report" %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="center">
+              <div id="analytic2">
+                <%= render :partial => "customers_regions_percentage" %>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+            <td align="center">
+              <div id="analytic3">
+                <%= render :partial => "customers_gender_percentage" %>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="center">
+              <div id="analytic3">
+                <%= render :partial => "customers_age_brackets" %>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+            <td align="center">
+              <div id="analytic4">
+                <%= render :partial => "customers_marital_status" %>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" valign="top">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+                <tr>
+                  <td>
+                    <div id="analytic5">
+                      <%= render :partial => "customers_industry_sectors" %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="2%">&nbsp;</td>
+            <td width="48%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="1%">&nbsp;</td>
+            <td width="98%" colspan="3" valign="top">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
+                <tr>
+                  <td>
+                    <div id="analytic6">
+                      <%= render :partial => "customers_income_brackets" %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="1%">&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>      

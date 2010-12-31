@@ -12,8 +12,7 @@
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td colspan="2" id="report_title">&nbsp;</td>
-            <td style=" vertical-align: bottom;">
+            <td colspan="3" style=" vertical-align: bottom;">
               <%= form_remote_tag(:url => {:controller => "merchant_analytics", :action => "deals_report", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "deals_analytics_form1", :style=> "padding:0;margin:0;"})%>
                 <div id="date_search" style="display: none;">
                   <table>
@@ -77,14 +76,12 @@
           <tr>
             <td>&nbsp;</td>
             <td align="center">
-              <img src="/images/deal_img2.jpg" width="400" height="323" />
               <div id="analytic1">
                 <%= render :partial => "deals_top_5" %>
               </div>
             </td>
             <td>&nbsp;</td>
             <td align="center">
-              <img src="/images/deal_img3.jpg" width="400" height="323" />
               <div id="analytic1">
                 <%= render :partial => "deals_bottom_5" %>
               </div>
