@@ -61,7 +61,9 @@ class MerchantController < ApplicationController
   end 
   end 
   def index
-@new_recent_deal = Deal.find_recent_add(current_merchant.id)
+    @new_deal = Deal.find_recent_add(current_merchant.id)
+    discounts = @new_deal.deal_discounts
+    @discounts = [discounts[0].discount, discounts[discounts.length-1].discount]
   end
 
   def new

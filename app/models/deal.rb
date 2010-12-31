@@ -332,6 +332,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.find_recent_add(merchant_id)
-    
+    query = %Q{ select * from deals where merchant_id = #{merchant_id} order by id desc limit 1}
+    return find_by_sql(query)[0]
   end
 end

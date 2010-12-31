@@ -32,9 +32,9 @@
                             <td width="35%" align="center" bgcolor="#e4e1e2" class="deals_content2" style="border-left:1px solid #8f8f8f;">Location</td>
                           </tr>
                           <tr>
-                            <td height="39" align="center" bgcolor="#151515" class="deals_content1"><%= Time.at(deal.start_time.to_i).strftime("%Y-%m-%d")%></td>
-                            <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= Time.at(deal.end_time.to_i).strftime("%Y-%m-%d")%></td>
-                            <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= Time.at(deal.expiry_date.to_i).strftime("%Y-%m-%d")%></td>
+                            <td height="39" align="center" bgcolor="#151515" class="deals_content1"><%= Time.at(deal.start_time.to_i).strftime("%d-%m-%Y")%></td>
+                            <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= Time.at(deal.end_time.to_i).strftime("%d-%m-%Y")%></td>
+                            <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= Time.at(deal.expiry_date.to_i).strftime("%d-%m-%Y")%></td>
                             <td align="center" bgcolor="#151515" class="deals_content1" style="border-left:1px solid #FFFFFF;"><%= deal.address1%> <%= deal.address2%><br />
                               <%= deal.state%> <%= deal.zipcode%></td>
                           </tr>
@@ -52,7 +52,7 @@
                             myChart.render("chartdiv<%=deal.id%>");
                           </script>
                       </td>
-                      <td width="22%" align="center" ><a href="#"><img src="images/edit_deal_btn.jpg" width="75" height="30" border="0" /></a></td>
+                      <td width="22%" align="center" ><a href="#"><img src="/images/edit_deal_btn.jpg" width="75" height="30" border="0" /></a></td>
                     </tr>
                 </table></td>
                 <td width="2%">&nbsp;</td>
