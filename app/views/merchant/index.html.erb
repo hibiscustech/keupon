@@ -17,12 +17,12 @@
           </tr>
           <tr>
             <td width="1%">&nbsp;</td>
-            <td width="48%" height="180" valign="top" background="<%= @new_deal.deal_photo.url %>" style="border:1px solid #CCCCCC;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <td width="48%" height="180" valign="top" background="/images/deal_bg.jpg" style="border:1px solid #CCCCCC;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td height="8" colspan="4" align="center"></td>
                 </tr>
               <tr>
-                <td width="43%" align="center"><img src="/images/deal_img.jpg" width="184" height="148" /></td>
+                <td width="43%" align="center"><img src="<%= @new_deal.deal_photo.url %>" width="184" height="148" /></td>
                 <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td height="55" align="left" class="deals_content"><%= @new_deal.name %></td>
