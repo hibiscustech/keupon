@@ -50,7 +50,7 @@ module ApplicationHelper
     html_options = {
       :title => "Sort by #{text}",
       :href => url_for(:action => action, :params => params.merge({:sort => key, :page => page})),
-      :style => "color: #ffffff"
+      :style => "color: #ffffff; text-decoration: none;"
     }
     link_to_remote(text, options, html_options)
   end
