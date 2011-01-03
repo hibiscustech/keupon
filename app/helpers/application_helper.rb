@@ -35,6 +35,12 @@ module ApplicationHelper
     return result
   end
 
+  def sort_admin_td_class_helper(param)
+    result = "<img src='/images/up_arrow_new.png' width='15' height='8' />'" if params[:sort] == param
+    result = "<img src='/images/down_arrow_new.png' width='15' height='8' />'" if params[:sort] == param + "_reverse"
+    return result
+  end
+
   def sort_table_header(text, param, action, page)
     key = param
     key += "_reverse" if params[:sort] == param

@@ -1,50 +1,54 @@
-&nbsp;
-<table  style="font-size: 12px; border-collapse: collapse; width: 100%;" CELLPADDING="4" CELLSPACING="0">
-  <thead>
-    <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Merchant", "merchant_name", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Date of", "posting_date", "accounting_report", params[:page]) %>/</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Deal", "title", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Date of", "closing_date", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Date of", "expiry_date", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Keupons", "purchased", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Usual", "actual_price", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sales", "sales", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Final", "discount", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Keupons", "commission", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Net", "net_sales", "accounting_report", params[:page]) %></th>
-    </tr>
-    <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Name", "merchant_name", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Posting", "posting_date", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Title", "title", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Closing", "closing_date", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Expiry", "expiry_date", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Purchased", "purchased", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Price(S$)", "actual_price", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("($$)", "sales", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Discount", "discount", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Commission", "commission", "accounting_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sales", "net_sales", "accounting_report", params[:page]) %></th>
-    </tr>
-  </thead>
-    <tbody>
-      <% for deal in @deals
-        result = deal[1]
-      %>
-      <tr>
-        <td><%= result["merchant_name"] %></td>
-        <td><%= Time.at(result["posting_date"].to_i).strftime("%d-%m-%Y") %></td>
-        <td><%= result["title"] %></td>
-        <td><%= Time.at(result["closing_date"].to_i).strftime("%d-%m-%Y") %></td>
-        <td><%= Time.at(result["expiry_date"].to_i).strftime("%d-%m-%Y") %></td>
-        <td align="center"><%= result["purchased"] %></td>
-        <td align="center"><%= result["actual_price"] %></td>
-        <td align="center"><%= result["sales"] %></td>
-        <td align="center"><%= result["discount"] %> %</td>
-        <td align="center"><%= result["commission"] %> %</td>
-        <td align="center"><%= result["net_sales"] %> </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+            <table width="100%" border="0" cellpadding="0" cellspacing="1" class="deals_content" >
+              <tr>
+                <td width="12%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Merchant", "merchant_name", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "merchant_name" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Posted On", "posting_date", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "posting_date" %>
+                </td>
+                <td width="16%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Deal", "title", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "title" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Closes On", "closing_date", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "closing_date" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Expires On", "expiry_date", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "expiry_date" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Keupons", "purchased", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "purchased" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Price(S$)", "actual_price", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "actual_price" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Sales(S$)", "sales", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "sales" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Discount", "discount", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "discount" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Commission", "commission", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "commission" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Net Sales(S$)", "net_sales", "accounting_report", params[:page]) %> <%= sort_admin_td_class_helper "net_sales" %>
+                </td>
+              </tr>
+              <% for deal in @deals
+                result = deal[1]
+              %>
+              <tr>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["merchant_name"] %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(result["posting_date"].to_i).strftime("%d-%m-%Y") %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["title"] %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(result["closing_date"].to_i).strftime("%d-%m-%Y") %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(result["expiry_date"].to_i).strftime("%d-%m-%Y") %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["purchased"] %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["actual_price"] %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["sales"] %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["discount"] %> %</td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["commission"] %> %</td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= result["net_sales"] %> </td>
+              </tr>
+              <% end %>
+            </table>
