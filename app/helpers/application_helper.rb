@@ -41,6 +41,20 @@ module ApplicationHelper
     return result
   end
 
+  def sort_admin_table_header(text, param, action, page)
+    key = param
+    key += "_reverse" if params[:sort] == param
+    options = {
+        :url => {:action => action, :params => params.merge({:sort => key, :page => page})}
+    }
+    html_options = {
+      :title => "Sort by #{text}",
+      :href => url_for(:action => action, :params => params.merge({:sort => key, :page => page})),
+      :style => "color: #ffffff"
+    }
+    link_to_remote(text, options, html_options)
+  end
+
   def sort_table_header(text, param, action, page)
     key = param
     key += "_reverse" if params[:sort] == param
