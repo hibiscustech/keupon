@@ -1,22 +1,24 @@
-<table>
-  <thead>
+
+
+<td></td>
+<td  bgcolor="#798c9b" ><table width="100%"   cellpadding="0" cellspacing="1" class="deals_content" id="merchants"  >
     <tr>
-      <th>Company</th>
-      <th>Website</th>
-      <th>Merchant</th>
-      <th>Contact #</th>
-      <th>Email</th>
+      <td width="26%" height="28" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Company <img src="/images/down_arrow_new.png" width="15" height="8" /></td>
+      <td width="21%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Website <img src="/images/up_arrow_new.png" width="15" height="8" /></td>
+      <td width="17%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Merchant <img src="/images/down_arrow_new.png" width="15" height="8" /></td>
+      <td width="14%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Contact # <img src="/images/down_arrow_new.png" width="15" height="8" /></td>
+      <td width="22%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Email <img src="/images/down_arrow_new.png" width="15" height="8" /></td>
     </tr>
-  </thead>
-  <tbody>
     <% for merchant in @active_merchants %>
-    <tr>
-      <td><%= merchant.company_name %></td>
-      <td><%= merchant.website %></td>
-      <td><%= merchant.merchant_name %></td>
-      <td><%= merchant.contact_number %></td>
-      <td><%= merchant.email_address %></td>
-    </tr>
+      <tr>
+        <td height="25" align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.company_name %></td>
+        <td align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.website %></td>
+        <td align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.merchant_name %></td>
+        <td align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.contact_number %></td>
+        <td align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.email_address %></td>
+      </tr>
     <% end %>
-  </tbody>
-</table>
+
+  </table></td>
+<td></td>
+
