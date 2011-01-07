@@ -1,51 +1,58 @@
-&nbsp;
-<table  style="font-size: 12px; border-collapse: collapse; width: 100%;" CELLPADDING="4" CELLSPACING="0">
-  <thead>
-    <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Sign-Up", "time_created", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("NRIC/", "customer_pin", "customers_report", params[:page]) %>/</th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Phone", "phone", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Avg.M", "income", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("# of Times", "total_bought", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Total", "spendings", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("# of", "kupoints", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("# of Friends", "introduced", "customers_report", params[:page]) %></th>
-    </tr>
-    <tr>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Date", "time_created", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Name", "name", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("FIN", "customer_pin", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Age", "dob", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Number", "phone", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Email", "email", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Salary(S$)", "income", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Location", "location", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Bought", "total_bought", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Spending(S$)", "spendings", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Keupoints", "kupoints", "customers_report", params[:page]) %></th>
-      <th style="color:#ffffff;border-collapse:collapse;" class="discussionboard"><%= sort_table_header("Introduced", "introduced", "customers_report", params[:page]) %></th>
-    </tr>
-  </thead>
-    <tbody>
-      <% for customer in @customers %>
-      <tr>
-        <td><%= Time.at(customer.time_created).strftime("%d-%m-%Y")  %></td>
-        <td><%= customer.name %></td>
-        <td align="center"><%= customer.customer_pin %></td>
-        <td align="center"><%= my_age(customer.dob) %></td>
-        <td><%= customer.phone %></td>
-        <td><%= customer.email %></td>
-        <td align="center"><%= customer.income %></td>
-        <td><%= customer.location %></td>
-        <td align="center"><%= customer.total_bought %></td>
-        <td align="center"><%= customer.spendings %></td>
-        <td align="center"><%= customer.kupoints %></td>
-        <td align="center"><%= customer.introduced %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+            <table width="100%" border="0" cellpadding="0" cellspacing="1" class="deals_content" >
+              <tr>
+                <td width="5%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Sign-Up Date", "time_created", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "time_created" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Name", "name", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "name" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("NRIC/FIN", "customer_pin", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "customer_pin" %>
+                </td>
+                <td width="5%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Age", "dob", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "dob" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Phone", "phone", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "phone" %>
+                </td>
+                <td width="15%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Email", "email", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "email" %>
+                </td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Avg. Monthly Salary(S$)", "income", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "income" %>
+                </td>
+                <td width="15%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Location", "location", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "location" %>
+                </td>
+                <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("# of Times Bought", "total_bought", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "total_bought" %>
+                </td>
+                <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Total Spending(S$)", "spendings", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "spendings" %>
+                </td>
+                <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Keupoints", "kupoints", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "kupoints" %>
+                </td>
+                <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_table_header("Friends Introduced", "introduced", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "introduced" %>
+                </td>
+              </tr>
+              <% 
+                for customer in @customers
+              %>
+              <tr>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(customer.time_created).strftime("%d-%m-%Y")  %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.name %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.customer_pin %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= my_age(customer.dob) %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.phone %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.email %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.income %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.location %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.total_bought %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.spendings %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.kupoints %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.introduced %></td>
+              </tr>
+              <% end %>
+            </table>

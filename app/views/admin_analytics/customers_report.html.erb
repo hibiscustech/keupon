@@ -1,4 +1,55 @@
-<div style='float:right;'><%=link_to 'Export as CSV','/admin_analytics/customer_reports_csv'%></div>
-<div id="customers">
-  <%= render :partial => "customers_summary" %>
-</div>
+<tr>
+        <td height="34" background="/images/header_bar_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="17%" align="left"><img src="/images/customers_admin_header_text.jpg" width="220" height="34" /></td>
+              <td width="83%">&nbsp;</td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="4%">&nbsp;</td>
+            <td width="92%">&nbsp;</td>
+            <td width="4%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><table width="100%" border="0" cellspacing="3" cellpadding="0">
+              <tr>
+                <td width="153">&nbsp;</td>
+                <td width="154">&nbsp;</td>
+                <td width="116">&nbsp;</td>
+                <td width="304">&nbsp;</td>
+                <td width="152" height="39" align="center" background="/images/btn_bg_new.jpg" style="background-repeat:no-repeat;">
+                  <a href="/admin_analytics/customer_reports_csv" class="button_link">Export to CSV</a>
+                </td>
+
+              </tr>
+            </table></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td bgcolor="#798c9b">
+              <div id="customers">
+                <%= render :partial => "customers_summary" %>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
