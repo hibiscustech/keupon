@@ -28,14 +28,14 @@
                   <% if deal.preferred.to_s == "1" && deal.admin_preferred.to_s == "1"%>
                   <image src="/images/star_green.gif"/>
                   <% elsif deal.preferred.to_s == "1" && (deal.admin_preferred.to_s == "0" || deal.admin_preferred.blank?)%>
-                  <a href="/admins/deal_preferred/<%=deal.id%>"><image src="/images/star_red.gif"/></a>
+                  <a href="/admins/deal_preferred/<%=deal.id%>"  style="border-style: none;"><image src="/images/star_red.gif"/></a>
                   <% end %>
                 </td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text">
                   <% if deal.confirm.to_s == "1" %>
                   <image src="/images/check_green.jpg"/>
                   <% else %>
-                  <a href="/admins/confirm_the_deal/<%=deal.id%>"><image src="/images/check_red.jpg"/></a>
+                  <a href="/admins/confirm_the_deal/<%=deal.id%>" style="border-style: none;"><image src="/images/check_red.jpg"/></a>
                   <% end %>
                 </td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text">
