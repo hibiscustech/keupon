@@ -1,64 +1,54 @@
-    <%= stylesheet_link_tag 'style' %>
-
-<table align=left  style="font-size: 14px; border-collapse: collapse; width:1000px; text-align: center; margin-left: -10px;" CELLPADDING="4" CELLSPACING="0">
-    <tr>
-      <th></th>
-      <th style="border-collapse:collapse;" width="550px">Title</th>
-      <th style="border-collapse:collapse;" width="100px">Status</th>
-      <th style="border-collapse:collapse;" width="100px">Activated</th>
-      <th style="border-collapse:collapse;" width="100px">Price</th>
-      <th style="border-collapse:collapse;" width="100px">Discount</th>
-      <th style="border-collapse:collapse;" width="100px">No. of Customers</th>
-      <th style="border-collapse:collapse;" width="150px">Start Date</th>
-      <th style="border-collapse:collapse;" width="150px">Close Date</th>
-      <th style="border-collapse:collapse;" width="150px">Actions</th>
-      <th style="border-collapse:collapse;" width="150px"></th>
-    </tr>
-    <tr>
-        <td style="color:#000000;height: 0px;max-height: 50px;" colspan="9"><hr/></td>
-      </tr>
-    <%
-    for dd in @deal_discounts
-      discount = dd[1]
-      deal = @deals[dd[0]]%>
-      <tr>
-        <td>
-          <% if deal.preferred.to_s == "1" && deal.admin_preferred.to_s == "1"%>
-          <image src="/images/check_green.jpg"/>
-          <% elsif deal.preferred.to_s == "1" && (deal.admin_preferred.to_s == "0" || deal.admin_preferred.blank?)%>
-          <image src="/images/check_red.jpg"/>
-          <% end %>
-        </td>
-        <td style="color:#000000;height: 0px;max-height: 50px;"><%= deal.name%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.status%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= (deal.activated=='1')?"YES":"NO"%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.actual_value%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= discount %> %</td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= deal.no_of_customers %></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= Time.at(deal.start_time.to_i).strftime("%d-%m-%Y")%></td>
-        <td style="background-color: #C0C0C0;color:#000000;"><%= Time.at(deal.end_time.to_i).strftime("%d-%m-%Y")%></td>
-        <td style="color:#000000;">
-          <a href="/admins/open_the_deal/<%=deal.id%>">Open</a>&nbsp;
-          <a href="/customers/tip_the_deal/<%=deal.id%>">Tip</a>&nbsp;
-          <a href="/admins/deal_preferred/<%=deal.id%>">Preferred</a>
-          <%if confirmed_deal(deal.id)%>
-          <a href="/admins/confirm_the_deal/<%=deal.id%>">Confirm the deal</a>
-          <%end%>
-        </td>
-        <td style="background-color: #C0C0C0;color:#000000;"><a href='#' onclick="showElt('popup_create_deal_<%=deal.id%>');">Set Commission</a></td>
-      </tr>
-      <tr>
-       <td><div id='<%=deal.id%>'><div id="popup_create_deal_<%=deal.id%>" style=' width:100%;
-                height:           500%;
-                position:         absolute;
-                top:              0;
-                left:             0;
-                z-index:          15;
-                background:       transparent url(/images/transparent.png) repeat top left;
-                display:          none;
-                padding:          200px 0 0 138px;'><%=render :partial=>'/deals/deal_dis_details',:locals => { :deal_id => deal.id }%></div></div></td>
-        <td style="color:#000000;height: 0px;max-height: 50px;" colspan="9"><hr/></td>
-      </tr>
-    <%end%>
-  </table>
+          <table width="100%" border="0" cellpadding="0" cellspacing="1" class="deals_content" >
+              <tr>
+                <td width="25%" height="28" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Title</td>
+                <td width="5%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Status</td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Price</td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Discount</td>
+                <td width="10%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Deals Bought</td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Open On</td>
+                <td width="8%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Closes On</td>
+                <td width="2%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Preference</td>
+                <td width="2%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Confirm</td>
+                <td width="24%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Actions</td>
+              </tr>
+              <%
+              for dd in @deal_discounts
+                discount = dd[1]
+                deal = @deals[dd[0]]
+              %>
+              <tr>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= deal.name%></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= deal.status%></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= deal.actual_value%></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= discount %> %</td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= deal.no_of_customers %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(deal.start_time.to_i).strftime("%d-%m-%Y")%></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(deal.end_time.to_i).strftime("%d-%m-%Y")%></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text">
+                  <% if deal.preferred.to_s == "1" && deal.admin_preferred.to_s == "1"%>
+                  <image src="/images/star_green.gif"/>
+                  <% elsif deal.preferred.to_s == "1" && (deal.admin_preferred.to_s == "0" || deal.admin_preferred.blank?)%>
+                  <a href="/admins/deal_preferred/<%=deal.id%>"><image src="/images/star_red.gif"/></a>
+                  <% end %>
+                </td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text">
+                  <% if deal.confirm.to_s == "1" %>
+                  <image src="/images/check_green.jpg"/>
+                  <% else %>
+                  <a href="/admins/confirm_the_deal/<%=deal.id%>"><image src="/images/check_red.jpg"/></a>
+                  <% end %>
+                </td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text">
+                  <a href="/admins/open_the_deal/<%=deal.id%>">Open</a>&nbsp;
+                  <a href="/customers/tip_the_deal/<%=deal.id%>">Tip</a>&nbsp;
+                  <a href='#' onclick="showElt('popup_create_deal_<%=deal.id%>');">Commission</a>
+                  <div id='<%=deal.id%>'>
+                    <div id="popup_create_deal_<%=deal.id%>" style=' width:100%;height:500%;position:absolute;top: 0;left: 0;z-index:15;background:transparent url(/images/transparent.png) repeat top left;display:none;padding:200px 0 0 138px;'>
+                      <%=render :partial=>'/deals/deal_dis_details',:locals => { :deal_id => deal.id }%>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <%end%>
+            </table>
 
