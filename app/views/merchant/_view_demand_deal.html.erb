@@ -1,23 +1,46 @@
-<div class="dateBlog">
-      <div class="dateB1">
-        <div class="dateB1_top"><%=@bid_deal.name%> </div>
-        <div class="dateB1_center">
-          <div class="dateB1_C1"><img src="<%= @bid_deal.demand_deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/></div>
-          <div class="dateB1_C2">
-          S$<%= @bid_deal.actual_value %>
-          <br />
-          <br />
-          <br />
+<table width="396" border="0" cellspacing="0" cellpadding="0" style="border:3px solid #FF0000;">
+  <tr>
+    <td bgcolor="#000000"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="5%" align="center">&nbsp;</td>
+        <td width="91%" height="60" align="left" class="deals_content_white"><%=@bid_deal.name%></td>
+        <td width="4%" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="60"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="51%"><img src="<%= @bid_deal.demand_deal_photo.url %>" width="210" height="181" /></td>
+            <td width="41%" valign="top" bgcolor="#24272c"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Orginal Price</td>
+                </tr>
+                <tr>
+                  <td height="26" align="center" class="open_deal_text1">S$<%= @bid_deal.actual_value.to_f %></td>
+                </tr>
+                <tr>
+                  <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Discount</td>
+                </tr>
+                <tr>
+                  <td height="26" align="center" class="open_deal_text1"><%= @bid_deal.discount %> %</td>
+                </tr>
+                <tr>
+                  <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Expires On</td>
+                </tr>
+                <tr>
+                  <td height="26" align="center" class="open_deal_text1"><%= Time.at(@bid_deal.deal_end_date).strftime("%d-%m-%Y") %></td>
+                </tr>
+            </table></td>
+          </tr>
 
-          <p style="padding-top:10px;"><%= @bid_deal.discount %> %</p>
-          <br />
-          <br />
 
-          <p style="padding-top:10px;">S$<%= (@bid_deal.actual_value.to_f - @bid_deal.buy_value.to_f).to_s %></p>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="19" colspan="3" align="center">&nbsp;</td>
+      </tr>
 
-          </div>
-        </div>
-        <div class="dateB1_text"><%= @bid_deal.highlights %></div>
-      </div>
-      <div class="dateB2">Expires On: <span style="color:#F00;"><%= Time.at(@bid_deal.deal_end_date).strftime("%d-%m-%Y") %></span></div>
-    </div>
+    </table></td>
+  </tr>
+</table>
