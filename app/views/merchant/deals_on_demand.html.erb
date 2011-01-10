@@ -59,6 +59,7 @@ return true;
 
 //-->
 </script>
+<!--
 <tr>
         <td height="36" background="/images/header_gray_bg.jpg"><img src="/images/on_demand_deals_text.jpg" width="238" height="36" /></td>
       </tr>
@@ -121,9 +122,7 @@ return true;
 
         </td>
       </tr>
-
-     
-      <tr>
+<tr>
         <td> <div id="popup_create_deal">
     <br/><%= render :partial => "view_create_demand_deal" %>
   </div>
@@ -133,6 +132,56 @@ return true;
       </tr>
 
 
+  -->
+
+
+<div id="offered_deals">
+  <% for deal in @demand_deals %>
+  <% if deal.bidding_status == "new" %>
+  <div style="width: 650px; height: 125px;" class="dealsoffered">
+         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_new.jpg"></div>
+         <span id="bid<%=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Time left: 00days 07:38:26</span>
+
+  <div style="float: left; width: 510px; height: 90px; color: rgb(21, 21, 21); font-family: helvetica; font-size: 16px;">
+    <table min-height="150px" cellspacing="0" cellpadding="0" style="border: 0px none ; width:510px;font-weight: bold; color: rgb(3, 77, 124);">
+          <tr><td colspan="3"> <span style="text-align: justify; float: left; margin-left: 5px;width: 500px;"><%= deal.description %></span> </td></tr>
+          <tr>
+              <td><span style="float: left;width: 350px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;">Expected Price: S$<%= deal.expected_value %>    Expected Quantity: <%= deal.number %> </span></td>
+              <td><span style="float: left;width: 50px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a style="color: rgb(3, 77, 124);" onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" href="#">Bid it</span></a></td>
+              <td><span style="float: left;width: 90px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a style="color: rgb(3, 77, 124);" href="#">Cancel it</span></a> </td>
+          </tr>
+   </table>
+  </div>
+</div>
+
+  <% elsif deal.bidding_status == "closed" %>
+  <div style="width: 650px; height: 125px;" class="dealsoffered">
+         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_closed.jpg"></div>
+         <span id="bid<%=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Bidding Closed</span>
+
+  <div style="float: left; width: 510px; height: 90px; color: rgb(21, 21, 21); font-family: helvetica; font-size: 16px;">
+    <table min-height="150px" cellspacing="0" cellpadding="0" style="border: 0px none ; width:510px;font-weight: bold; color: rgb(3, 77, 124);">
+          <tr><td colspan="3"> <span style="text-align: justify; float: left; margin-left: 5px;width: 500px;"><%#= deal.description %></span> </td></tr>
+          <tr>
+              <td><span style="float: left;width: 350px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;">Expected Price: S$<%= deal.expected_value %>    Expected Quantity: <%= deal.number %> </span></td>
+              <td colspan="2"><span style="float: left;width: 90px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a href="#" onclick="showBidDemandDeal('popup_view_deal',<%= deal.bid_id %>);" style="color: rgb(3, 77, 124);">Show Bid</a></td>
+          </tr>
+   </table>
+  </div>
+  </div>
+  <% end %>
+  <% end %>
+
+  </div>
+<div id="popup_create_deal">
+    <br/><%= render :partial => "view_create_demand_deal" %>
+  </div>
+  <div id="popup_view_deal">
+    <br/><%= render :partial => "demand_deal_info" %>
+  </div>
+
+
+      
       
   <script language="JavaScript">
 <% for deal in @demand_deals %>
@@ -190,45 +239,3 @@ return true;
 
 
 
-<!-- 
-
-
-<div id="offered_deals">
-  <%# for deal in @demand_deals %>
-  <%# if deal.bidding_status == "new" %>
-  <div style="width: 650px; height: 125px;" class="dealsoffered">
-         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_new.jpg"></div>
-         <span id="bid<%#=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Time left: 00days 07:38:26</span>
-
-  <div style="float: left; width: 510px; height: 90px; color: rgb(21, 21, 21); font-family: helvetica; font-size: 16px;">
-    <table min-height="150px" cellspacing="0" cellpadding="0" style="border: 0px none ; width:510px;font-weight: bold; color: rgb(3, 77, 124);">
-          <tr><td colspan="3"> <span style="text-align: justify; float: left; margin-left: 5px;width: 500px;"><%#= deal.description %></span> </td></tr>
-          <tr>
-              <td><span style="float: left;width: 350px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;">Expected Price: S$<%= deal.expected_value %>    Expected Quantity: <%= deal.number %> </span></td>
-              <td><span style="float: left;width: 50px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a style="color: rgb(3, 77, 124);" onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" href="#">Bid it</span></a></td>
-              <td><span style="float: left;width: 90px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a style="color: rgb(3, 77, 124);" href="#">Cancel it</span></a> </td>
-          </tr>
-   </table>
-  </div>
-</div>
-  
-  <%# elsif deal.bidding_status == "closed" %>
-  <div style="width: 650px; height: 125px;" class="dealsoffered">
-         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_closed.jpg"></div>
-         <span id="bid<%#=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Bidding Closed</span>
-
-  <div style="float: left; width: 510px; height: 90px; color: rgb(21, 21, 21); font-family: helvetica; font-size: 16px;">
-    <table min-height="150px" cellspacing="0" cellpadding="0" style="border: 0px none ; width:510px;font-weight: bold; color: rgb(3, 77, 124);">
-          <tr><td colspan="3"> <span style="text-align: justify; float: left; margin-left: 5px;width: 500px;"><%#= deal.description %></span> </td></tr>
-          <tr>
-              <td><span style="float: left;width: 350px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;">Expected Price: S$<%= deal.expected_value %>    Expected Quantity: <%= deal.number %> </span></td>
-              <td colspan="2"><span style="float: left;width: 90px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a href="#" onclick="showBidDemandDeal('popup_view_deal',<%= deal.bid_id %>);" style="color: rgb(3, 77, 124);">Show Bid</a></td>
-          </tr>
-   </table>
-  </div>
-  </div>
-  <%# end %>
-  <%# end %>
-
-  </div>
--->
