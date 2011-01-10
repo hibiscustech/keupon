@@ -69,7 +69,7 @@ return true;
           <% i = 0
              deal1 = nil
              deal = nil
-             until i > @demand_deals.length
+             until i >= @demand_deals.length
                deal = @demand_deals[i]
                deal1 = (@demand_deals[i+1].blank?)? nil : @demand_deals[i+1]
           %>
