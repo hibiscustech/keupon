@@ -54,13 +54,23 @@
 </tr>
 <tr>
   <td>&nbsp;</td>
-  <td bgcolor="#798c9b">
+  
+  <td  ><table width="20%" height="28" cellpadding="0" cellspacing="1" class="deals_content" id="merchants"  >
+    <tr>
+
+      <td width="20%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">Deal Categories</td>
+    </tr></table>
     <div id="accounting">
+
+
+
+      
       <ul id="subject_list">
         <% for c in @deal_categories %>
-          <table><tr>
-            <li><%= c.name -%>  </li>
-            </tr>
+          <table  cellpadding="0"  cellspacing="1" class="deals_content" id="merchants"><tr>
+        
+        <td align="center" bgcolor="#FFFFFF" class="content_text"><%= c.name %></td>
+      </tr>
           </table>
         <% end %>
       </ul>
