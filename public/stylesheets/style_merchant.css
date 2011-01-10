@@ -277,6 +277,25 @@ ul.nav-sub li a {
                 padding:          200px 0 0 138px;
         }
 
+/*Open Deals CSS*/
+.open_deal_text1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+
+}
+.open_deal_text_red{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ff9d9d;
+
+}
+.open_deal_text2{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000000;
+
+}
 
 
 

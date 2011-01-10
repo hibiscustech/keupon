@@ -13,19 +13,19 @@
             <td width="51%"><img src="<%= @bid_deal.demand_deal_photo.url %>" width="210" height="181" /></td>
             <td width="41%" valign="top" bgcolor="#24272c"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Orginal Price</td>
+                  <td height="32" align="center" background="/images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Orginal Price</td>
                 </tr>
                 <tr>
                   <td height="26" align="center" class="open_deal_text1">S$<%= @bid_deal.actual_value.to_f %></td>
                 </tr>
                 <tr>
-                  <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Discount</td>
+                  <td height="32" align="center" background="/images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Discount</td>
                 </tr>
                 <tr>
                   <td height="26" align="center" class="open_deal_text1"><%= @bid_deal.discount %> %</td>
                 </tr>
                 <tr>
-                  <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Expires On</td>
+                  <td height="32" align="center" background="/images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Expires On</td>
                 </tr>
                 <tr>
                   <td height="26" align="center" class="open_deal_text1"><%= Time.at(@bid_deal.deal_end_date).strftime("%d-%m-%Y") %></td>
