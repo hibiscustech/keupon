@@ -64,9 +64,15 @@ return true;
       </tr>
       <tr>
         <td >
-  <% for deal in @demand_deals %>
-  <% if deal.bidding_status == "new" %>
+  
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <% i = 0
+             deal1 = nil
+             deal = nil
+             until i > @demand_deals.length
+               deal = @demand_deals[i]
+               deal1 = (@demand_deals[i+1].blank?)? nil : @demand_deals[i+1]
+          %>
           <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -80,9 +86,9 @@ return true;
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="2%">&nbsp;</td>
-                <td width="28%" height="26" align="center" background="/images/red_btn_bg.jpg" style="background-repeat:no-repeat;"><a href="#" class="deals_white_link">Open</a></td>
+                <td width="28%" height="26" align="center" background="/images/red_btn_bg.jpg" style="background-repeat:no-repeat;"><a href="#" class="deals_white_link"><%= deal.bidding_status.camelize %></a></td>
                 <td width="29%">&nbsp;</td>
-                <td width="39%" align="center" bgcolor="#000000" class="deals_content1">Time left: 00days 07:38:26</td>
+                <td width="39%" align="center" bgcolor="#000000" class="deals_content1" id="bid<%=deal.id%>">Time left: 00days 07:38:26</td>
                 <td width="2%">&nbsp;</td>
               </tr>
               <tr>
@@ -101,77 +107,73 @@ return true;
                 <td>&nbsp;</td>
                 <td height="30">&nbsp;</td>
                 <td>&nbsp;</td>
-                <td align="center"><a href="#"><img src="/images/cancel_btn.jpg" width="62" height="24" border="0" /></a> <a onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" href="#"><img src="images/bidit_btn.jpg" width="62" height="24" border="0"/></a></td>
+                <td align="center">
+                  <a href="#"><img src="/images/cancel_btn.jpg" width="62" height="24" border="0" /></a>
+                  <% if deal.bidding_status == "new" %>
+                  <a onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" href="#"><img src="images/bidit_btn.jpg" width="62" height="24" border="0"/></a>
+                  <% elsif deal.bidding_status == "closed" %>
+                  <a  onclick="showBidDemandDeal('popup_view_deal',<%= deal.bid_id %>);" href="#"><img src="images/showbid.jpg" width="62" height="24" border="0"/></a>
+                  <% end %>
+                </td>
                 <td>&nbsp;</td>
               </tr>
 
             </table></td>
-  
-            <td width="1%">&nbsp;</td>
-          </tr>
-        </table>
-<% elsif deal.bidding_status == "closed" %>
-             <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
             <td width="1%">&nbsp;</td>
             <td width="48%" valign="top" bgcolor="#f7f7f7" style="border:1px solid #CCCCCC;">
+              <% if !deal1.blank? %>
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="2%">&nbsp;</td>
-                <td width="28%" height="26" align="center" background="/images/red_btn_bg.jpg" style="background-repeat:no-repeat;"><a href="#" class="deals_white_link">Bidding Closed</a></td>
+                <td width="28%" height="26" align="center" background="/images/red_btn_bg.jpg" style="background-repeat:no-repeat;"><a href="#" class="deals_white_link"><%= deal1.bidding_status.camelize %></a></td>
                 <td width="29%">&nbsp;</td>
-                <td width="39%" align="center" bgcolor="#000000" class="deals_content1">Closed</td>
+                <td width="39%" align="center" bgcolor="#000000" class="deals_content1" id="bid<%=deal1.id%>">Time left: 00days 07:38:26</td>
                 <td width="2%">&nbsp;</td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
-                <td height="30" align="center" class="deals_content_red_bold">Expected Price: S$5 </td>
+                <td height="30" align="center" class="deals_content_red_bold">Expected Price: S$ <%= deal1.expected_value %> </td>
                 <td>&nbsp;</td>
-                <td align="center" class="deals_content_red_bold">Expected Quantity: 11</td>
+                <td align="center" class="deals_content_red_bold">Expected Quantity: <%= deal1.number %></td>
                 <td>&nbsp;</td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
-                <td height="50" colspan="3" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur sadipiscing elit. In eget felis ac diam condimentum.</td>
+                <td height="50" colspan="3" align="left" class="deals_content"><%= deal1.description %></td>
                 <td>&nbsp;</td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
                 <td height="30">&nbsp;</td>
                 <td>&nbsp;</td>
-                <td align="center"><a href="#"><img src="/images/cancel_btn.jpg" width="62" height="24" border="0" /></a> <a  onclick="showBidDemandDeal('popup_view_deal',<%= deal.bid_id %>);" href="#"><img src="images/showbid.jpg" width="62" height="24" border="0"/></a></td>
+                <td align="center">
+                  <a href="#"><img src="/images/cancel_btn.jpg" width="62" height="24" border="0" /></a>
+                  <% if deal1.bidding_status == "new" %>
+                  <a onclick="showCreateDemandDeal('popup_create_deal',<%= deal1.bid_id %>);" href="#"><img src="images/bidit_btn.jpg" width="62" height="24" border="0"/></a>
+                  <% elsif deal1.bidding_status == "closed" %>
+                  <a  onclick="showBidDemandDeal('popup_view_deal',<%= deal1.bid_id %>);" href="#"><img src="images/showbid.jpg" width="62" height="24" border="0"/></a>
+                  <% end %>
+                </td>
                 <td>&nbsp;</td>
               </tr>
 
-            </table></td>
-
+            </table>
+              <% end %>
+            </td>
             <td width="1%">&nbsp;</td>
           </tr>
+          <%
+            i+=2
+          end %>
         </table>
- <% end %>
-  <% end %>
-
         </td>
       </tr>
-
-     
-      <tr>
-        <td> <div id="popup_create_deal">
+<div id="popup_create_deal">
     <br/><%= render :partial => "view_create_demand_deal" %>
-  </div>
-  <div id="popup_view_deal">
+</div>
+<div id="popup_view_deal">
     <br/><%= render :partial => "demand_deal_info" %>
-  </div></td>
-      </tr>
-
-
+</div>
       
   <script language="JavaScript">
 <% for deal in @demand_deals %>
@@ -226,48 +228,3 @@ return true;
 
 </script>
 
-
-
-
-<!-- 
-
-
-<div id="offered_deals">
-  <%# for deal in @demand_deals %>
-  <%# if deal.bidding_status == "new" %>
-  <div style="width: 650px; height: 125px;" class="dealsoffered">
-         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_new.jpg"></div>
-         <span id="bid<%#=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Time left: 00days 07:38:26</span>
-
-  <div style="float: left; width: 510px; height: 90px; color: rgb(21, 21, 21); font-family: helvetica; font-size: 16px;">
-    <table min-height="150px" cellspacing="0" cellpadding="0" style="border: 0px none ; width:510px;font-weight: bold; color: rgb(3, 77, 124);">
-          <tr><td colspan="3"> <span style="text-align: justify; float: left; margin-left: 5px;width: 500px;"><%#= deal.description %></span> </td></tr>
-          <tr>
-              <td><span style="float: left;width: 350px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;">Expected Price: S$<%= deal.expected_value %>    Expected Quantity: <%= deal.number %> </span></td>
-              <td><span style="float: left;width: 50px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a style="color: rgb(3, 77, 124);" onclick="showCreateDemandDeal('popup_create_deal',<%= deal.bid_id %>);" href="#">Bid it</span></a></td>
-              <td><span style="float: left;width: 90px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a style="color: rgb(3, 77, 124);" href="#">Cancel it</span></a> </td>
-          </tr>
-   </table>
-  </div>
-</div>
-  
-  <%# elsif deal.bidding_status == "closed" %>
-  <div style="width: 650px; height: 125px;" class="dealsoffered">
-         <div style="float: left;"><img style="margin-top: 14px; margin-left: 10px;" src="/images/bid_closed.jpg"></div>
-         <span id="bid<%#=deal.id%>" style="font-size: 12px; margin-left: 350px; font-weight: bold;">Bidding Closed</span>
-
-  <div style="float: left; width: 510px; height: 90px; color: rgb(21, 21, 21); font-family: helvetica; font-size: 16px;">
-    <table min-height="150px" cellspacing="0" cellpadding="0" style="border: 0px none ; width:510px;font-weight: bold; color: rgb(3, 77, 124);">
-          <tr><td colspan="3"> <span style="text-align: justify; float: left; margin-left: 5px;width: 500px;"><%#= deal.description %></span> </td></tr>
-          <tr>
-              <td><span style="float: left;width: 350px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;">Expected Price: S$<%= deal.expected_value %>    Expected Quantity: <%= deal.number %> </span></td>
-              <td colspan="2"><span style="float: left;width: 90px; font-weight: bold; font-size: 13px; color: rgb(3, 77, 124); margin-left: 5px;"><a href="#" onclick="showBidDemandDeal('popup_view_deal',<%= deal.bid_id %>);" style="color: rgb(3, 77, 124);">Show Bid</a></td>
-          </tr>
-   </table>
-  </div>
-  </div>
-  <%# end %>
-  <%# end %>
-
-  </div>
--->
