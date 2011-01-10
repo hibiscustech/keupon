@@ -1,115 +1,30 @@
 
-
-<script type="text/javascript">
-function changeMyProfile(i) {
-if (i == 1)
-     {
-        document.getElementById('myprofile').style.display="block";
-        document.getElementById('myaccount').style.display="none";
-        document.getElementById("Img1").src="/images/my_profile_activetab.jpg";
-        document.getElementById("Img2").src="/images/myaccount_tab.jpg";
-    }
-    else if (i == 2) {
-        document.getElementById("Img2").src="/images/myaccount_activetab.jpg";
-        document.getElementById("Img1").src="/images/my_profile_tab.jpg";
-        document.getElementById('myaccount').style.display="block";
-        document.getElementById('myprofile').style.display="none";
-
-    }
-    }
-</script>
-<style type="text/css">
-  .myprofile
-  {
-    width:946px;
-    background-image:url(/images/my_profile_header.jpg);
-    background-repeat: no-repeat;
-    color:#222222;
-    padding:4px;
-    _padding:0px;
-    text-align:center;
-  }
-  .myaccount
-  {
-    width:946px;
-    background-image:url(/images/my_account_header.jpg);
-    background-repeat: no-repeat;
-    color:#222222;
-    padding:4px;
-    _padding:0px;
-    text-align:center;
-  }
-</style>
-
-
-
-
-
-
-
+<% form_for @merchant_profile, :url => {:controller => 'merchants', :action => 'merchant_profile_update'} , :html => { :multipart => true } do |f| -%>
+<%#=hidden_field_tag 'merchant_profile', :value => @merchant_profile.id%>
+<%=hidden_field :merchant_profile_id, :merchant_profile_id, :value => @merchant_profile.id%>
+  <tr>
+    <td height="36" align="left" background="/images/header_gray_bg.jpg"><img src="/images/new_deal_text.jpg" width="132" height="36" /></td>
+  </tr>
+  <tr>
+    <td>
+      <%= render :partial => "profile" , :locals => { :f => f } %>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+  </tr>
 
   <tr>
-        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td width="1%">&nbsp;</td>
-            <td width="100%" height="180" valign="top"  ><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td height="8" colspan="4" align="center"></td>
-                </tr>
-              <tr>
+    <td align="center">
+      <%= render :partial => "my_account" , :locals => { :f => f } %>
+    </td>
+  <tr>
 
-                <td colspan="2">
+    <td align="center"> <br/><%=image_submit_tag ("upload_btn.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/index", {:style=>"padding-left:30px;"}%> </td>
+  </tr>
+  </tr>
 
-
-
- <div id="offered_deals">
-    <table><tr><td>
-       <img src="/images/my_profile_activetab.jpg" onclick="changeMyProfile(1)" style="cursor:pointer;" id="Img1"/>
-        <img src="/images/myaccount_tab.jpg" onclick="changeMyProfile(2)" style="cursor:pointer;" id="Img2"/></td></tr>
-       </table>
-       <div id="myprofile" class="myprofile" style="border: 4px solid black; display: block; min-height: 450px; margin-bottom: 10px; width: 938px; margin-top: -8px; margin-left: 3px;">
- <%=render :partial =>  'profile' %>
-        </div>
-         <div id="myaccount" class="myaccount" style="border: 4px solid black; display: none; min-height: 450px; margin-bottom: 10px; width: 938px; margin-top: -8px; margin-left: 3px;">
-          <%=render :partial =>  'my_account' %>
-        </div>
-
-   </div>
-
-
-
-
-                </td>
-                <td width="2%">&nbsp;</td>
-              </tr>
-
-            </table></td>
-            <td width="1%">&nbsp;</td>
-
-            <td width="1%">&nbsp;</td>
-          </tr>
-        </table></td>
-      </tr>
-     
-
-
-
-
-
-
-
-
-
-
-
-
+<% end %>
 
 
 

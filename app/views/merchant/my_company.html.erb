@@ -1,105 +1,81 @@
-
-  <tr>
-        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<% form_for @company, :url => {:controller => 'merchants', :action => 'my_company'} , :html => { :multipart => true } do |f| -%>
+<tr>
+        <td height="36" align="left" background="/images/header_gray_bg.jpg"><img src="/images/new_deal_text.jpg" width="132" height="36" /></td>
+      </tr>
+      <tr>
+        <td>
+           
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td width="1%">&nbsp;</td>
-            <td width="100%" height="180" valign="top" style="border:1px solid #CCCCCC;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <td width="30%" height="48" background="/images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td height="8" colspan="4" align="center"></td>
-                </tr>
-              <tr>
-
-                <td colspan="2">
-
-
-
-
-
-
-  <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
-           <% form_for @company, :url => {:controller => 'merchants', :action => 'my_company'} , :html => { :multipart => true } do |f| -%>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Name:</td>
-      <td width="10%"><%=f.text_field 'name',:size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Address1 :</td>
-      <td width="10%"><%=f.text_field 'address1', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Address2 :</td>
-      <td width="10%"><%=f.text_field 'address2', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">City :</td>
-      <td width="10%"><%=f.text_field 'city', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">zipcode :</td>
-      <td width="10%"><%=f.text_field 'zipcode', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Company Logo :</td>
-      <td>
-       <%if @company.company_photo.nil?%>
-          <img src="/images/profile_pic.jpg" border="0px" />
-        <%else%>
-          <%=image_tag (@company.company_photo.url(:small))%>
-        <%end%>
-      <%=f.file_field 'company_photo'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Details:</td>
-      <td width="10%"><%=f.text_area 'detail', :size=> '25'%></td>
-    </tr>
- <tr>
-            <td width="5%"> </td>
-            <td width="15%"> </td>
-            <td width="35%" colspan="2">
-              <br/><%=image_submit_tag ("upload_btn.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/index", {:style=>"padding-left:30px;"}%>
-            </td>
-          </tr>
-          <% end -%>
-
-
-
-
-
-  </table>
-
-
-
-
-
-
-                </td>
-                <td width="2%">&nbsp;</td>
+                <td width="6%">&nbsp;</td>
+                <td width="78%" align="left" class="deals_content1">Company Information</td>
+                <td width="16%">&nbsp;</td>
               </tr>
 
             </table></td>
-            <td width="1%">&nbsp;</td>
-
-            <td width="1%">&nbsp;</td>
+            <td width="59%">&nbsp;</td>
+            <td>&nbsp;</td>
           </tr>
-        </table></td>
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td width="19%" align="right">&nbsp;</td>
+                <td width="27%" align="left">&nbsp;</td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2">Name: </td>
+                <td align="left"><%=f.text_field 'name',:size=> '20'%></td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"><br/>Address1 :</td>
+                <td align="left"><br/><%=f.text_field 'address1', :size=> '20'%></td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"><br/>Address2 :</td>
+                <td align="left"><br/><%=f.text_field 'address2', :size=> '20'%></td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"> <br/>City :</td>
+                <td align="left"><br/><%=f.text_field 'city', :size=> '20'%></td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"> <br/>zipcode :</td>
+                <td align="left"><br/><%=f.text_field 'zipcode', :size=> '20'%></td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2"><br/> Company Logo :</td>
+                <td align="left">
+                  <%if @company.company_photo.nil?%>
+         <br/> <img src="/images/profile_pic.jpg" border="0px" />
+        <%else%>
+         <br/> <%=image_tag (@company.company_photo.url(:small))%>
+        <%end%>
+      <br/><%=f.file_field 'company_photo'%>
+
+                </td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2"></td>
+                <td align="left" class="deals_content2"> <br/><%=image_submit_tag ("upload_btn.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/index", {:style=>"padding-left:30px;"}%> </td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+            </table></td>
+            <td width="6%">&nbsp;</td>
+          </tr>
+        </table>
+
+
+        </td>
       </tr>
      
-
-
-
-
- 
+      <tr>
+        <td align="center" id="dd_check"></td>
+      </tr>
+<% end %>

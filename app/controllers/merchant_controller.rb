@@ -12,6 +12,7 @@ class MerchantController < ApplicationController
     @merchant = Merchant.find(current_merchant.id)
     @merchant_profile = @merchant.merchant_profile
  end
+ 
   def profile_update
     @merchant_profile = MerchantProfile.find_by_merchant_id(current_merchant.id)
     merchant = Merchant.find_by_id(current_merchant.id)
@@ -20,10 +21,18 @@ class MerchantController < ApplicationController
       flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
       redirect_to '/profile'
   end
+  
   def contact_details
     @merchant_profile = MerchantProfile.find_by_merchant_id(current_merchant.id)
     @merchant_profile.update_attributes(params[:merchant_profile])
     flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+    redirect_to '/profile'
+  end
+
+   def merchant_profile_update
+    @merchant_profile = MerchantProfile.find(params[:merchant_profile_id][:merchant_profile_id])
+    @merchant_profile.update_attributes(params[:merchant_profile])
+    flash[:notice] = "Your Successfully Update"
     redirect_to '/profile'
   end
 

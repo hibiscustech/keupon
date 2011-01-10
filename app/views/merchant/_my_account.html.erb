@@ -1,69 +1,52 @@
-    <script type="text/javascript" src="/javascripts/location_deal_slider/jquery-1-3-2-min.js"></script>
-<script type="text/javascript">
-  function avatar_down(){
-    jquery("#avatar").slideDown()}
-  function avatar_cancel(){
-    jquery("#avatar").slideUp()}
-  function email_down(){
-    jquery("#email").slideDown()}
-  function email_cancel(){
-    jquery("#email").slideUp()}
-   function name_down(){
-    jquery("#name").slideDown()}
-  function name_cancel(){
-    jquery("#name").slideUp()}
-</script>
-
-
-<br/><br/><br/><br/><br/><br/><br/>
-<div style="width:618px;text-align:left;">
-
-  <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
-           <% form_for @merchant_profile, :url => {:controller => 'merchants', :action => 'contact_details', :id=> @merchant.id} , :html => { :multipart => true } do |f| -%>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Email :</td>
-      <td width="10%"><%=f.text_field 'email_address',:size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Address1 :</td>
-      <td width="10%"><%=f.text_field 'address1', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Address2 :</td>
-      <td width="10%"><%=f.text_field 'address2', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Country :</td>
-      <td width="10%"><%=f.text_field 'country', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">zipcode :</td>
-      <td width="10%"><%=f.text_field 'zipcode', :size=> '15'%></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Phone :</td>
-      <td width="10%"><%=f.text_field 'contact_number', :size=> '15'%></td>
-    </tr>
- <tr>
-            <td width="5%"> </td>
-            <td width="15%"> </td>
-            <td width="35%" colspan="2">
-              <br/><%=image_submit_tag ("upload_btn.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/index", {:style=>"padding-left:30px;"}%>
-            </td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td width="30%" height="48" background="/images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="6%">&nbsp;</td>
+                  <td width="78%" align="left" class="deals_content1">Account Information</td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+            </table></td>
+            <td width="59%">&nbsp;</td>
+            <td>&nbsp;</td>
           </tr>
-          <% end -%>
-      
-   
-
-
-   
-  </table>
-
-
-</div> 
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="2" cellpadding="0">
+                <tr>
+                  <td width="19%" align="right">&nbsp;</td>
+                  <td width="27%" align="left">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td align="right" class="deals_content2"><br/> Email : </td>
+                  <td align="left"><br/><%=f.text_field 'email_address',:size=> '20'%></td>
+                </tr>
+                <tr>
+                  <td align="right" class="deals_content2"> <br/>Address1 : </td>
+                  <td align="left"><br/><%=f.text_field 'address1', :size=> '20'%></td>
+                </tr>
+                <tr>
+                  <td align="right" class="deals_content2"><br/> Address2 : </td>
+                  <td align="left"><br/><%=f.text_field 'address2', :size=> '20'%></td>
+                </tr>
+                  <tr>
+                  <td align="right" class="deals_content2"> <br/>Country : </td>
+                  <td align="left"><br/><%=f.text_field 'country', :size=> '15'%></td>
+                </tr>
+                  <tr>
+                  <td align="right" class="deals_content2"> <br/>Phone : </td>
+                  <td align="left"><br/><%=f.text_field 'contact_number', :size=> '15'%></td>
+                </tr>
+                <tr>
+                  <td align="right" class="deals_content2"><br/> Zipcode : </td>
+                  <td align="left"><br/><%=f.text_field 'zipcode', :size=> '15'%></td>
+                </tr>
+                <tr>
+                  <td align="right" class="deals_content2">&nbsp;</td>
+                  <td align="left">&nbsp;</td>
+                </tr>
+            </table></td>
+            <td width="6%">&nbsp;</td>
+          </tr>
+        </table>
