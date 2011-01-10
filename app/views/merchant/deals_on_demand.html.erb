@@ -59,13 +59,20 @@ return true;
 
 //-->
 </script>
-<!--
+
 <tr>
         <td height="36" background="/images/header_gray_bg.jpg"><img src="/images/on_demand_deals_text.jpg" width="238" height="36" /></td>
       </tr>
       <tr>
         <td >
-  <% for deal in @demand_deals %>  
+  <%
+  i = 0
+  deal = nil
+  deal1 = nil
+  until i >= @demand_deals.length
+    deal = @demand_deals[i]
+    deal1 = (@demand_deals[i+1].blank?)? nil : @demand_deals[i+1]
+  %>
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td>&nbsp;</td>
@@ -114,11 +121,51 @@ return true;
             </table></td>
   
             <td width="1%">&nbsp;</td>
-            <td width="48%">lorem lorem</td>
+            <td width="48%">
+              <% if !deal1.blank? %>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%">&nbsp;</td>
+                <td width="28%" height="26" align="center" background="/images/red_btn_bg.jpg" style="background-repeat:no-repeat;"><a href="#" class="deals_white_link"><%= deal1.bidding_status.camelize %></a></td>
+                <td width="29%">&nbsp;</td>
+                <td width="39%" align="center" bgcolor="#000000" class="deals_content1" id="bid<%=deal1.id%>"></td>
+                <td width="2%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td height="30" align="center" class="deals_content_red_bold">Expected Price: S$ <%= deal1.expected_value %> </td>
+                <td>&nbsp;</td>
+                <td align="center" class="deals_content_red_bold">Expected Quantity: <%= deal1.number %></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td height="50" colspan="3" align="left" class="deals_content"><%= deal1.description %></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td height="30">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="center"><a href="#"><img src="/images/cancel_btn.jpg" width="62" height="24" border="0" /></a>
+                  <% if deal1.bidding_status == "new" %>
+                  <a onclick="showCreateDemandDeal('popup_create_deal',<%= deal1.bid_id %>);" href="#"><img src="images/bidit_btn.jpg" width="62" height="24" border="0"/></a>
+                  <% elsif deal1.bidding_status == "closed" %>
+                  <a  onclick="showBidDemandDeal('popup_view_deal',<%= deal1.bid_id %>);" href="#"><img src="images/showbid.jpg" width="62" height="24" border="0"/></a>
+                  <% end %>
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+
+            </table>
+              <% end %>
+            </td>
             <td width="1%">&nbsp;</td>
           </tr>
         </table>
-  <% end %>
+  <%
+  i+=2
+  end %>
 
         </td>
       </tr>
@@ -132,9 +179,9 @@ return true;
       </tr>
 
 
-  -->
+  
 
-
+<!--
 <div id="offered_deals">
   <% for deal in @demand_deals %>
   <% if deal.bidding_status == "new" %>
@@ -180,7 +227,7 @@ return true;
     <br/><%= render :partial => "demand_deal_info" %>
   </div>
 
-
+-->
       
       
   <script language="JavaScript">
