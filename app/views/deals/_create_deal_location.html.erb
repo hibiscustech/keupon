@@ -20,19 +20,19 @@
                 </tr>
                 <tr>
                   <td align="right" class="deals_content2"> Address1 <span class="deals_content_red_bold">*</span>:</td>
-                  <td align="left"><input type="text" name="address1" id="address1" /></td>
+                  <td align="left"><input type="text" name="address1" id="address1" value='<%=@deal_location.address1 if !@deal_location.nil?%>'/></td>
                 </tr>
                 <tr>
                   <td align="right" class="deals_content2"> Address2 :</td>
-                  <td align="left"><input type="text" name="address2" id="address2" /></td>
+                  <td align="left"><input type="text" name="address2" id="address2" value='<%=@deal_location.address2 if !@deal_location.nil?%>'/></td>
                 </tr>
                 <tr>
                   <td align="right" class="deals_content2">Country <span class="deals_content_red_bold">*</span>:</td>
-                  <td align="left"><input type="text" name="country" id="country" /></td>
+                  <td align="left"><input type="text" name="country" id="country" value='<%=@deal_location.state if !@deal_location.nil?%>'/></td>
                 </tr>
                 <tr>
                   <td align="right" class="deals_content2">Zipcode <span class="deals_content_red_bold">*</span>:</td>
-                  <td align="left"><input type="text" name="zipcode" id="zipcode" /></td>
+                  <td align="left"><input type="text" name="zipcode" id="zipcode" value='<%=@deal_location.zipcode if !@deal_location.nil?%>'/></td>
                 </tr>
                 <tr>
                   <td align="right" class="deals_content2">&nbsp;</td>

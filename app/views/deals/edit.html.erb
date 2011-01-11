@@ -1,0 +1,126 @@
+<script Language="JavaScript">
+function form_validator(){
+var theForm = document.forms['edit_deal'];
+var i;
+if (theForm.deal_name.value == "" || theForm.deal_name.value.length < 1)
+{
+alert("You must enter Deal Title.");
+theForm.deal_name.focus();
+return (false);
+}
+if (theForm.deal_value.value == "" || theForm.deal_value.value.length < 1)
+{
+alert("You must enter Original Value.");
+theForm.deal_value.focus();
+return (false);
+}
+
+if (theForm.deal_rules.value == "" || theForm.deal_rules.value.length < 1)
+{
+alert("You must enter Rules.");
+theForm.deal_rules.focus();
+return (false);
+}
+if (theForm.deal_highlights.value == "" || theForm.deal_highlights.value.length < 1)
+{
+alert("You must enter Highlights.");
+theForm.deal_highlights.focus();
+return (false);
+}
+
+if (theForm.deal_start_date.value == "" || theForm.deal_start_date.value.length < 1)
+{
+alert("You must enter Start Date.");
+theForm.deal_start_date.focus();
+return (false);
+}
+
+if (theForm.deal_close_date.value == "" || theForm.deal_close_date.value.length < 1)
+{
+alert("You must enter Close Date.");
+theForm.deal_close_date.focus();
+return (false);
+}
+
+if (theForm.deal_expiry_date.value == "" || theForm.deal_expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.deal_expiry_date.focus();
+return (false);
+}
+
+if (theForm.deal_expiry_date.value == "" || theForm.deal_expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.deal_expiry_date.focus();
+return (false);
+}
+
+if(theForm.address1.value == "" || theForm.address1.value.length < 1){
+    alert("You must enter Address1");
+    theForm.address1.focus();
+    return (false);
+  }
+
+  if(theForm.country.value == "" || theForm.country.value.length < 1){
+    alert("You must enter Country");
+    theForm.country.focus();
+    return (false);
+  }
+  if(theForm.zipcode.value == "" || theForm.zipcode.value.length < 1){
+    alert("You must enter Zipcode");
+    theForm.zipcode.focus();
+    return (false);
+  }
+
+document.edit_deal.submit();
+}
+
+function IsNumeric(sText, ValidChars)
+
+{
+   var IsNumber=true;
+   var Char;
+
+
+   for (i = 0; i < sText.length && IsNumber == true; i++)
+      {
+      Char = sText.charAt(i);
+      if (ValidChars.indexOf(Char) == -1)
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+
+}
+
+//-->
+</script>
+<% form_for @deal, :url => { :action => "update",:id=>@deal.id } , :html => {:name=>"edit_deal", :multipart => true }  do |f| %>
+<tr>
+        <td height="36" align="left" background="/images/header_gray_bg.jpg"><img src="/images/new_deal_text.jpg" width="132" height="36" /></td>
+      </tr>
+      <tr>
+        <td>
+          <%= render :partial => "create_deal" %>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+      </tr>
+
+      <tr>
+        <td align="center">
+          <%= render :partial => "create_deal_location" %>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" id="dd_check">&nbsp;<input type="hidden" name="ddcheckdis" value="" id="ddcheckdis" /></td>
+      </tr>
+
+      <tr>
+        <td align="center"><a href="#" onclick="return form_validator();"><img src="/images/create_deal_btn.jpg" width="96" height="24" border="0" /></a> <a href="/index"><img src="/images/cancel_btn2b.jpg" width="62" height="24" border="0" /></a></td>
+
+      </tr>
+<% end %>

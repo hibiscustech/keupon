@@ -1,5 +1,21 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def get_start_time(deal_id)
+    ds=DealSchedule.find_by_deal_id(deal_id)
+    if ds.nil?
+     return 
+    else
+    Time.at(ds.start_time).strftime('%d/%m/%y')
+    end
+  end
+  def get_end_time(deal_id)
+    ds=DealSchedule.find_by_deal_id(deal_id)
+    if ds.nil?
+     return 
+    else
+    Time.at(ds.end_time).strftime('%d/%m/%y')
+    end
+  end
   def author(id)
    customer=Customer.find(id)
    customer.customer_profile.first_name
