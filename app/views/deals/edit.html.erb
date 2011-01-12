@@ -37,6 +37,17 @@ alert("You must enter Highlights.");
 theForm.deal_highlights.focus();
 return (false);
 }
+else
+{
+var size=document.getElementById('deal_highlights').value.split(',').length
+if(size >6)
+{
+alert("You can enter maximum of 6 highlights as comma separated.");
+theForm.deal_rules.focus();
+return (false);
+}
+
+}
 
 if (theForm.deal_start_date.value == "" || theForm.deal_start_date.value.length < 1)
 {

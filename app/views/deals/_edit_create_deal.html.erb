@@ -31,11 +31,11 @@
               <tr>
                 <td align="right" class="deals_content2">Rules of the deal<span class="deals_content_red_bold">*</span>:<br/>(<i style='font-size:9px;'>Enter comma separated maximum of 4 rules</i>)</td>
                 <td align="left">
-                <input type='text' name='deal[rules]' id='deal_rules' value='<%=@deal.rules%>' size=50></td>
+                <input type='text' name='deal[rules]' id='deal_rules' value='<%=@deal.rules%>' size=30></td>
                 </tr>
               <tr>
-                <td align="right" class="deals_content2"> Highlights of the deal <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[highlights]" id="deal_highlights" value='<%=@deal.highlights%>'/></td>
+                <td align="right" class="deals_content2"> Highlights of the deal <span class="deals_content_red_bold">*</span>:<br/>(<i style='font-size:9px;'>Enter comma separated maximum of 6 highlights</i>)</td>
+                <td align="left"><input type="text" name="deal[highlights]" id="deal_highlights" size='30'value='<%=@deal.highlights%>'/></td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Start Date <span class="deals_content_red_bold">*</span>:</td>
@@ -55,6 +55,7 @@
                 <%if @deal.deal_photo%>
                 <%= image_tag @deal.deal_photo.url(:thumb)%>
                 <%end%>
+                <br/>
                 <input type="file" name="deal[deal_photo]" id="deal_photo" /></td>
               </tr>
               <tr>
