@@ -19,6 +19,7 @@
 	tinyMCE.init({
 		// General options
 		mode : "textareas",
+    elements: "deal_rules",
 		theme : "advanced",
 		// Theme options
 		theme_advanced_buttons1 : "bullist",
@@ -28,7 +29,7 @@
 		theme_advanced_toolbar_location : "top",
 		theme_advanced_toolbar_align : "left",
 		theme_advanced_resizing : true,
-    valid_elements : "-ul/-ol,-li",
+    valid_elements : "ul,li",
 		// Example word content CSS (should be your site CSS) this one removes paragraph margins
 		// Drop lists for link/image/media/template dialogs
 		// Replace values for the template plugin
@@ -40,8 +41,15 @@
 	<p>
 	</p>
 	<!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
-	<textarea id='deal_rules' name='deal[rules]'rows="1" cols="80" style="width: 80%">
-   <%=@deal.rules%>
+	<textarea id='deal_rules' name='deal[rules]'rows="1" cols="80" style="width: 80%" onblur="alert('hi');">
+   <%rules=@deal.rules.split(",") if !@deal.rules.nil?%>
+   <%if !rules.nil?%>
+   <ul id='list'>
+   <% rules.each do |rule|%>
+    <li><%=rule%></li>
+   <%end%>
+   </ul>
+   <%end%>
 	</textarea>
 </body>
 </html>

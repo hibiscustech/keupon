@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <script type="text/javascript" src="/jquery-editInPlace/spec/support/jquery.js"></script>
+        <script type="text/javascript" src="/jquery-editInPlace/spec/support/jquery.ui.js"></script>
+        <script type="text/javascript" src="/jquery-editInPlace/lib/jquery.editinplace.js"></script>
+        <script type="text/javascript" src="/jquery-editInPlace/demo/js/demo.js"></script>
+        <link rel="stylesheet" href="/jquery-editInPlace/demo/css/styles.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+    </head>
+    <body>
+        <div id="container">
+              <%rules=@deal.rules.split(",") if !@deal.rules.nil?%>
+            <input id="editme1" value="<%=rules[0] if !@deal.rules.nil?%>" name='deal[rules][]'/><br/>
+            <span onclick="document.getElementById('2').style.display='block';">Add Rule 2</span><span id='2' style='display:none;'><input id="editme2"  value="<%=rules[1] if !@deal.rules.nil?%>" name='deal[rules][]'/></span>
+            <br/>
+            <span onclick="document.getElementById('3').style.display='block';">Add Rule 3</span><span id='3' style='display:none;'><input id="editme3"  name='deal[rules][]' value="<%=rules[2] if !@deal.rules.nil?%>"/></span><br/>
+            <span onclick="document.getElementById('4').style.display='block';">Add Rule 4</span><span id='4' style='display:none;'><input id="editme4"  name='deal[rules][]' value="<%=rules[3] if !@deal.rules.nil?%>"/></span>
+        </div>
+    </body>
+</html>
