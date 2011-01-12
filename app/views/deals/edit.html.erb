@@ -14,6 +14,23 @@ alert("You must enter Original Value.");
 theForm.deal_value.focus();
 return (false);
 }
+
+if (theForm.deal_rules.value == "" || theForm.deal_rules.value.length < 1)
+{
+alert("You must enter Rules.");
+theForm.deal_rules.focus();
+return (false);
+}
+else
+{
+var size=document.getElementById('deal_rules').value.split(',').length
+if(size >4)
+{
+alert("You can enter maximum of 4 rules as comma separated.");
+theForm.deal_rules.focus();
+return (false);
+}
+}
 if (theForm.deal_highlights.value == "" || theForm.deal_highlights.value.length < 1)
 {
 alert("You must enter Highlights.");
@@ -96,7 +113,7 @@ function IsNumeric(sText, ValidChars)
       </tr>
       <tr>
         <td>
-          <%= render :partial => "create_deal" %>
+          <%= render :partial => "edit_create_deal" %>
         </td>
       </tr>
       <tr>

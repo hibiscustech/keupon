@@ -250,7 +250,7 @@ class DealsController < ApplicationController
     @deal.update_attribute(:expiry_date,Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i)
     @deal.deal_category_id = merchant_profile.deal_category_id
     @deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
-    @deal.update_attributes(:name=>params[:deal][:name],:rules=>params[:deal][:rules].join(","),:highlights=>params[:deal][:highlights],:value=>params[:deal][:value])
+    @deal.update_attributes(:name=>params[:deal][:name],:rules=>params[:deal][:rules],:highlights=>params[:deal][:highlights],:value=>params[:deal][:value])
     if params[:deal][:deal_type_id]
       @deal.deal_type_id = params[:deal][:deal_type_id]
     else

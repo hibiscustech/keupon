@@ -1,4 +1,4 @@
-		      <%=hidden_field :deal, :merchant_id, :value => current_merchant.id%>
+      <%=hidden_field :deal, :merchant_id, :value => current_merchant.id%>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td>&nbsp;</td>
@@ -22,35 +22,40 @@
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Title <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[name]" id="deal_name" /></td>
+                <td align="left"><input type="text" name="deal[name]" value='<%=@deal.name%>' id="deal_name" /></td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Original Value <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[value]" id="deal_value" /></td>
+                <td align="left"><input type="text" name="deal[value]" id="deal_value" value='<%=@deal.value%>'/></td>
                 </tr>
               <tr>
-                <td align="right" class="deals_content2">Rules of the deal <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[rules]" id="deal_rules" /></td>
+                <td align="right" class="deals_content2">Rules of the deal<span class="deals_content_red_bold">*</span>:<br/>(<i style='font-size:9px;'>Enter comma separated maximum of 4 rules</i>)</td>
+                <td align="left">
+                <input type='text' name='deal[rules]' id='deal_rules' value='<%=@deal.rules%>' size=50></td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Highlights of the deal <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[highlights]" id="deal_highlights" /></td>
+                <td align="left"><input type="text" name="deal[highlights]" id="deal_highlights" value='<%=@deal.highlights%>'/></td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Start Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_start_date" name="start_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_start_date" name="start_date" type="text" value='<%=get_start_time(@deal.id)%>'/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Close Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_close_date" name="end_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_close_date" name="end_date" type="text" value='<%=get_end_time(@deal.id)%>'/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Expiry Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_expiry_date" name="deal[expiry_date]" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_expiry_date" name="deal[expiry_date]" type="text" value='<%=(Time.at(@deal.expiry_date).strftime('%d/%m/%y'))if !@deal.expiry_date.nil?%>'/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
-                <td align="right" class="deals_content2">Deal photo <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="file" name="deal[deal_photo]" id="deal_photo" /></td>
+                <td align="right" class="deals_content2">Deal photo <span class="deals_content_red_bold">*</span>:</td><br/>
+                <td align="left">
+                <%if @deal.deal_photo%>
+                <%= image_tag @deal.deal_photo.url(:thumb)%>
+                <%end%>
+                <input type="file" name="deal[deal_photo]" id="deal_photo" /></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"><input type="checkbox" name="deal[preferred]" id="deal_preferred" value="1" /></td>
@@ -64,3 +69,4 @@
             <td width="6%">&nbsp;</td>
           </tr>
         </table>
+
