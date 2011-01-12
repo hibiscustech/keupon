@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Another In-Place Editor, a jQuery Plugin by Dave Hauenstein</title>
+        <script type="text/javascript" src="../spec/support/jquery.js"></script>
+        <script type="text/javascript" src="../spec/support/jquery.ui.js"></script>
+        <script type="text/javascript" src="../lib/jquery.editinplace.js"></script>
+        <script type="text/javascript" src="js/demo.js"></script>
+        <link rel="stylesheet" href="./css/styles.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+    </head>
+    <body>
+        <div id="container">
+           <h2>Example 1 - Standard Text box</h2>
+            <p id="editme1">
+                This example is with no options except for a callback that will handle the value when the edit is complete.
+            </p>
+            <h2>Example 2 - Text area</h2>
+        </div>
+    </body>
+</html>
