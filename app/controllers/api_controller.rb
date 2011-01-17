@@ -5,7 +5,7 @@ class ApiController < ApplicationController
      @page = "I Want a Deal"
      @categories = DealCategory.find(:all)
      @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
-     @demand_deal = (params[:id].blank?)? nil : CustomerDemandDeal.find(params[:id])
+     #@demand_deal = (params[:id].blank?)? nil : CustomerDemandDeal.find(params[:id])
      @msg = (@demand_deal.blank?)? "Please fill in the form below.<br/>All the fields are required for submission<br/>Do let us know which specific deal you want us to showcase on Keupon, We will get back to you soon!!" : (@demand_deal.status == "new")? "'Update' this Demand Deal with changes or 'Confirm' in order to start receiving Offerings." : "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond"
 
      if request.post?
@@ -22,6 +22,7 @@ class ApiController < ApplicationController
       @demand_deals_summary.each { |d|
         if (d.status=="new") or (d.status="confirmed")
         xml.item(:type => d.status )do
+        xml.deal_id d.id
         xml.type d.status
         xml.name d.description
         xml.expected_price d.expected_value
@@ -45,22 +46,24 @@ class ApiController < ApplicationController
         xml.deals_on_demand do
       @open_deals.each { |d|
         for opdd in @open_deal_discounts
-            p discount = opdd[1]
+            discount = opdd[1]
             open_deal = @open_deals[opdd[0]]
             opd = Deal.find(open_deal.id)
             type=(d.id==@hotest_deal.id)?"HOT":(opd.status)
             xml.item(:type => type )do
-            xml.image_url opd.deal_photo.url
+            xml.image opd.deal_photo.url(:small)
             xml.unique_id_of_the_deal opd.id
             xml.title open_deal.name
             xml.deal_discount_in_float_percentage opd.discount#((discount.nil?)?discount :'')
             xml.deals_sold open_deal.no_of_customers
+            xml.address open_deal.address1,open_deal.address2,open_deal.city 
+            xml.expiry Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y")
           end
         end
       }
             xml.item(:type => 'hot' )do
             opd = Deal.find(@hotest_deal.id)
-            xml.image_url opd.deal_photo.url
+            xml.image_url opd.deal_photo.url(:small)
             xml.unique_id_of_the_deal @hotest_deal.id
             xml.title @hotest_deal.name
             xml.deal_discount_in_float_percentage @hotest_deal.discount#((discount.nil?)?discount :'')
@@ -86,7 +89,7 @@ class ApiController < ApplicationController
           if (available.expiry_date.to_i > Time.now.to_i && available.status == "available")
           xml.item(:type => "unused" )do
            xml.name available.name
-           xml.image deal.deal_photo.url
+           xml.image deal.deal_photo.url(:small)
            xml.purchased Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y")
            xml.expiry Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y")
            xml.code available.deal_code
@@ -97,7 +100,7 @@ class ApiController < ApplicationController
           if expired.expiry_date.to_i <= Time.now.to_i || expired.status == "expired"
           xml.item(:type => "expired" )do
            xml.name expired.name
-           xml.image deal.deal_photo.url
+           xml.image deal.deal_photo.url(:small)
            xml.purchased Time.at(expired.purchase_date.to_i).strftime("%d-%m-%Y")
            xml.expiry Time.at(expired.expiry_date.to_i).strftime("%d-%m-%Y")
            xml.code expired.deal_code
@@ -108,7 +111,7 @@ class ApiController < ApplicationController
            if used.status == "used"
            xml.item(:type => "used" )do
            xml.name used.name
-           xml.image deal.deal_photo.url
+           xml.image deal.deal_photo.url(:small)
            xml.purchased Time.at(used.purchase_date.to_i).strftime("%d-%m-%Y")
            xml.expiry Time.at(used.expiry_date.to_i).strftime("%d-%m-%Y")
            xml.code used.deal_code
@@ -132,12 +135,13 @@ class ApiController < ApplicationController
      for deal in @offerings
       cddb = CustomerDemandDealBidding.find(deal.id)
       xml.item(:type => "offered" )do
+       xml.deal_id deal.id
        xml.name_demanded deal.name
        xml.name_offered @demand_deal.description
        xml.offered_price cddb.actual_value
        xml.offered_discount cddb.discount
        xml.offered_expiry Time.at(cddb.deal_end_date).strftime("%d-%m-%Y")
-       xml.offered_icon cddb.demand_deal_photo.url
+       xml.offered_icon cddb.demand_deal_photo.url(:small)
      end
     end
    end
