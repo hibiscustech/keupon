@@ -8,11 +8,14 @@
                         <td width="21"><img src="/images/login_03.png" width="21" height="36" /></td>
                         <td width="63"><a href="/login"><img src="/images/login_04.png" width="63" height="36"  border="0"/></a></td>
                         <td width="61"><img src="/images/login_05.png" width="61" height="36"/></td>
-                        <td width="115" background="/images/login_06.png"><select name="select" id="select">
+                        <form action='/sessions/check_user' id='form'>
+                        <%=token_tag%>
+                        <td width="115" background="/images/login_06.png"><select id="select" name='user_type'>
                             <option>As Customer</option>
                             <option>As Merchant</option>
                           </select>                        </td>
-                        <td width="47" align="left"><a href="#"><img src="/images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></a></td>
+                        <td width="47" align="left"><img src="/images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></td>
+</form>
                       </tr>
                     </table></td>
                   </tr>
@@ -52,7 +55,10 @@
 <%end%>
 <script>
   function find_link(){
-    var user=document.getElementById("select").value;
+    var form=document.getElementById('form')
+    form.submit();
+
+/*    var user=document.getElementById("select").value;
     if (user=='As Customer')
     {
       window.location='/signup';
@@ -60,6 +66,6 @@
     else
     {
       window.location='/merchant_signup';
-    }
+    }*/
   }
 </script>

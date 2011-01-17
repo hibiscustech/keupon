@@ -5,7 +5,15 @@ class SessionsController < ApplicationController
   include AuthenticatedSystemMerchant 
   protect_from_forgery :only => [:sample]
   # render new.rhtml
-
+  
+  def check_user
+   type=params[:user_type]
+   if type=='As Customer'
+    redirect_to "/signup"
+   else
+    redirect_to "/merchant_signup"
+   end
+  end
   def policy
      send_file "#{RAILS_ROOT}/public/images/policy.doc",:type=>'application/doc',:disposition => 'inline',:stream => false
   end 
