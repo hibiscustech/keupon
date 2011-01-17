@@ -220,7 +220,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.my_keupons(customer)
-    query = %Q{ SELECT d.name, cd.purchase_date, d.expiry_date, deal_code, cd.status
+    query = %Q{ SELECT d.id,d.name, cd.purchase_date, d.expiry_date, deal_code, cd.status
                 FROM customer_deals cd
                 join deals d on d.id = cd.deal_id
                 where cd.customer_id = #{customer} }

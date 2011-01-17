@@ -41,8 +41,8 @@ class ApiController < ApplicationController
      @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals
      @hotest_deal = Deal.hottest_deal_of_today
         xml = Builder::XmlMarkup.new
-    xml.instruct!
-    xml.deals_on_demand do
+        xml.instruct!
+        xml.deals_on_demand do
       @open_deals.each { |d|
         for opdd in @open_deal_discounts
             p discount = opdd[1]
@@ -73,6 +73,76 @@ class ApiController < ApplicationController
     end 
 
   end
+  def my_keupons
+      current_customer=Customer.find(params[:user_id])
+      @keupoint_deals = Deal.available_keupoint_deals(current_customer.kupoints)
+      my_keupons = Deal.my_keupons(current_customer.id)
+        xml = Builder::XmlMarkup.new
+        xml.instruct!
+        xml.deals do
+        my_keupons.each { |k|
+        deal = Deal.find(k.id)
+         for available in my_keupons 
+          if (available.expiry_date.to_i > Time.now.to_i && available.status == "available")
+          xml.item(:type => "unused" )do
+           xml.name available.name
+           xml.image deal.deal_photo.url
+           xml.purchased Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y")
+           xml.expiry Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y")
+           xml.code available.deal_code
+          end
+          end
+         end
+         for expired in my_keupons 
+          if expired.expiry_date.to_i <= Time.now.to_i || expired.status == "expired"
+          xml.item(:type => "expired" )do
+           xml.name expired.name
+           xml.image deal.deal_photo.url
+           xml.purchased Time.at(expired.purchase_date.to_i).strftime("%d-%m-%Y")
+           xml.expiry Time.at(expired.expiry_date.to_i).strftime("%d-%m-%Y")
+           xml.code expired.deal_code
+          end
+          end
+         end
+         for used in my_keupons
+           if used.status == "used"
+           xml.item(:type => "used" )do
+           xml.name used.name
+           xml.image deal.deal_photo.url
+           xml.purchased Time.at(used.purchase_date.to_i).strftime("%d-%m-%Y")
+           xml.expiry Time.at(used.expiry_date.to_i).strftime("%d-%m-%Y")
+           xml.code used.deal_code
+           end
+           end
+        end
 
-  
+        }
+        end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
+  end
+  def offered_deals_api
+    @demand_deal = CustomerDemandDeal.find(params[:deal])
+    @offerings = CustomerProfile.my_demand_deal_offerings(params[:deal])
+    @hotest_deal = Deal.hottest_deal_of_today
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.deals_on_demand do
+     for deal in @offerings
+      cddb = CustomerDemandDealBidding.find(deal.id)
+      xml.item(:type => "offered" )do
+       xml.name_demanded deal.name
+       xml.name_offered @demand_deal.description
+       xml.offered_price cddb.actual_value
+       xml.offered_discount cddb.discount
+       xml.offered_expiry Time.at(cddb.deal_end_date).strftime("%d-%m-%Y")
+       xml.offered_icon cddb.demand_deal_photo.url
+     end
+    end
+   end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
+  end
 end
