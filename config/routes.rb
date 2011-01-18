@@ -54,7 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/merchants/my_company',:controller=>'merchant',:action=>'my_company'  
   map.connect '/invite_friends',:controller=>'customers',:action=>'invite_friends'
   map.connect '/add_a_friend',:controller=>'customers',:action=>'add_a_friend'
-  map.connect '/deals_on_demand_new_or_confirmed/:id/:user_id',:controller=>'api',:action=>'deals_on_demand_new_or_confirmed'
+  map.connect '/deals_on_demand_new_or_confirmed/:user_id',:controller=>'api',:action=>'deals_on_demand_new_or_confirmed'
   map.connect '/deals_available',:controller=>'api',:action=>'deals_available'
   map.connect '/my_keupons_api/:user_id',:controller=>'api',:action=>'my_keupons'
   map.connect '/offered_deals_api/:deal',:controller=>'api',:action=>'offered_deals_api'

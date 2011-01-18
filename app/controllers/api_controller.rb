@@ -2,7 +2,6 @@ class ApiController < ApplicationController
  def deals_on_demand_new_or_confirmed
  current_customer=Customer.find(params[:user_id])
  @msg =
-     @page = "I Want a Deal"
      @categories = DealCategory.find(:all)
      @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
      #@demand_deal = (params[:id].blank?)? nil : CustomerDemandDeal.find(params[:id])
