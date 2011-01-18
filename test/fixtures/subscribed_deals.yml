@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  keupon_subscriber_id: 1
+  deal_category_id: 1
+  deal_sub_category_id: 1
+
+two:
+  keupon_subscriber_id: 1
+  deal_category_id: 1
+  deal_sub_category_id: 1

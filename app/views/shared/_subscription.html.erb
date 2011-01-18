@@ -17,7 +17,7 @@
 
 </style>
 <br/>
-<%@deal=EmailDeal.new()%>
+<%@deal=KeuponSubscribers.new()%>
 <div id='popup_center' style=" width: 604px; padding-left: 210px; display: block;margin-top: -150px;">
   <table class="popup" align="center" width="100%" cellspacing="1px"  >
     <tr>
@@ -75,18 +75,19 @@
                       </tr>
                       <tr>
                         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                             
                             <tr>
-                              <td width="4%" height="25"><input type="checkbox" name="checkbox3" id="checkbox3" /></td>
-                              <td width="23%" class="subscription_text">Health and Beauty</td>
-                              <td width="4%" height="25"><input type="checkbox" name="checkbox3" id="checkbox3" /></td>
-                              <td width="20%" class="subscription_text">Food and Drink</td>
-                              <td width="4%" height="25"><input type="checkbox" name="checkbox3" id="checkbox3" /></td>
-                              <td width="45%" class="subscription_text">Restaurants</td>
-                            </tr>
+                             <%DealCategory.all.each_with_index do |cat,i| %>
+                              <%if i%3!=0%>
+                              <td width="4%" height="25"><input type="checkbox" name="category[]" id="checkbox3" value='<%=cat.id%>'/></td>
+                              <td width="23%" class="subscription_text"><%=cat.name%></td>
+                              <%else%>
+                              </tr>
                             <tr>
-                              <td width="4%" height="25"><input type="checkbox" name="checkbox3" id="checkbox3" /></td>
-                              <td width="23%" class="subscription_text">Retail and Services</td>
-                              
+                              <td width="4%" height="25"><input type="checkbox" name="category[]" id="checkbox3" value='<%=cat.id%>'/></td>
+                              <td width="23%" class="subscription_text"><%=cat.name%></td>
+                             <%end%>
+                             <%end%>
                             </tr>
                           </table></td>
                       </tr>
