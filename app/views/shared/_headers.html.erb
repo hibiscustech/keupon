@@ -8,12 +8,14 @@
                         <td width="21"><img src="/images/login_03.png" width="21" height="36" /></td>
                         <td width="63"><a href="/login"><img src="/images/login_04.png" width="63" height="36"  border="0"/></a></td>
                         <td width="61"><img src="/images/login_05.png" width="61" height="36"/></td>
+                        <td width="115" background="/images/login_06.png">
                         <form action='/sessions/check_user' id='form'>
                         <%=token_tag%>
-                        <td width="115" background="/images/login_06.png"><select id="select" name='user_type'>
+                          <select id="select" name='user_type'>
                             <option>As Customer</option>
                             <option>As Merchant</option>
-                          </select>                        </td>
+                          </select>                        
+                        </td>
                         <td width="47" align="left"><a href='#'><img src="/images/login_07.jpg" width="45" height="36" border="0" onclick="find_link();"/></a></td>
 </form>
                       </tr>
