@@ -1,5 +1,3 @@
-
-
   function check_tos(){
 
     if (document.getElementById("firstname").value == "")
@@ -36,6 +34,11 @@
     if (document.getElementById("merchant_profile_zipcode").value == "")
     {
       alert('Please enter your contact zipcode')
+      return false;
+    }
+    if (document.getElementById("referal_code").value == "")
+    {
+      alert('Please enter your referral code')
       return false;
     }
 
@@ -76,6 +79,11 @@
     if (document.getElementById("company_zipcode").value == "")
     {
       alert('Please enter your company zipcode')
+      return false;
+    }
+    if (document.getElementById("company_business_registration_number").value == "")
+    {
+      alert('Please enter your company business registration number')
       return false;
     }
     if (document.getElementById("merchant_company_photo").value == "")

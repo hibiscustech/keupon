@@ -48,8 +48,8 @@
                 <td align="left"><input id="merchant_pin" name="merchant_profile[merchant_pin]" class='required'/></td>
               </tr>
               <tr>
-                <td align="right"  class="deals_content2">Referral Code:</td>
-                <td align="left"><input id="lastname" name="merchant_profile[referal_code]" class='required'/></td>
+                <td align="right"  class="deals_content2">Referral Code:<font style="color:red;">*</font></td>
+                <td align="left"><input id="referal_code" name="merchant_profile[referal_code]" class='required'/></td>
                 <td align="right">&nbsp;</td>
                 <td align="left">&nbsp;</td>
               </tr>
@@ -167,19 +167,14 @@
                       <td width="37%"></td>
                     </tr>
                   </table></td>
-                <td align="right" class="deals_content2">Business Registration#:</td>
-                <td align="left"><input id="company_business_registration_number" name="company[business_registration_number]" type="text" class='required'/></td>
                 <td align="right">&nbsp;</td>
                 <td align="left">&nbsp;</td>
               </tr>
               <tr>
-                <td width="10%" align="right" class="deals_content2">Category:</td>
-                <td width="84%" align="left">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr><td width="63%">
-                      <%=select("company", "deal_category_id", @categories.collect {|p| [ p.name, p.id ] }, {:prompt => 'Select Sector'})%>
-                      </td>
-                </table></td>
+                <td align="right" class="deals_content2">Category:<font style="color:red;">*</font></td>
+                <td align="left"><%=select("company", "deal_category_id", @categories.collect {|p| [ p.name, p.id ] }, {:prompt => 'Select Sector'})%></td>
+                <td align="right" class="deals_content2">Business Registration#:<font style="color:red;">*</font></td>
+                <td align="left"><input id="company_business_registration_number" name="company[business_registration_number]" type="text" class='required'/></td>
               </tr>
             </table></td>
           <td width="6%">&nbsp;</td>
