@@ -19,7 +19,6 @@ class ApiController < ApplicationController
     xml.instruct!
     xml.deals_on_demand do
       @demand_deals_summary.each { |d|
-        p d
         if (d.status=="new") or (d.status="confirmed")
         xml.item(:type => d.status )do
         xml.deal_id d.id
@@ -161,21 +160,21 @@ class ApiController < ApplicationController
       xml.name   @deal.name
       xml.time_left '02 days 01 hours 45 secs'
       xml.buy_now_url "/transaction_details?id=#{params[:id]}"
-      xml.image @deal.deal_photo.url(:small)
+      xml.image @deal.deal_photo.url
       xml.rating do 
        xml.num_of_people Deal.deals_bought(@deal.id)
        xml.current_discount current_deal_discount_for_deal(@deal.id)
        xml.discount_range deal_scale_graph(@deal)
       end
       highlights=@deal.highlights.split(',')
-      highlights.each do |h|
        xml.highlights do
+      highlights.each do |h|
         xml.item h 
        end  
       end  
       rules=@deal.rules.split(',')
-      rules.each do |h|
        xml.terms_and_cond do
+      rules.each do |h|
         xml.item h
        end
       end
