@@ -51,3 +51,5 @@ config.gem "geokit"
   # config.i18n.default_locale = :de
 end
 require 'calendar_date_select'
+#$server_name = "http://dev.keupons.com"
+$server_name = "http://localhost:3000"

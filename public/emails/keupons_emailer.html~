@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>www.keupons.com</title>
-<link href="<%=$server_name%>/emails/css/emailer.css" rel="stylesheet" type="text/css" />
+<title>Untitled Document</title>
+<link href="css/emailer.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 <!--
 body {
@@ -17,33 +17,33 @@ body {
 
 <body>
 
-<table width="720" border="0" cellpadding="0" cellspacing="0">
+<table width="720" align="center" border="0" cellpadding="0" cellspacing="0">
   <tbody><tr>
-    <td><img src="<%=$server_name%>/emails/images/top_red_bar.jpg" width="720" height="21"></td>
+    <td><img src="images/top_red_bar.jpg" width="720" height="21"></td>
   </tr>
   <tr>
-    <td background="<%=$server_name%>/emails/images/middle_red_bar.jpg"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <td background="images/middle_red_bar.jpg"><table width="100%" border="0" cellpadding="0" cellspacing="0">
       <tbody><tr>
         <td height="8"></td>
         <td height="8"><table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tbody><tr>
-            <td width="20%" align="left"><img src="<%=$server_name%>/emails/images/logo.jpg" width="138" height="82"></td>
+            <td width="20%" align="left"><img src="images/logo.jpg" width="138" height="82"></td>
             <td width="54%"> <span class="emailer_content_red">Hot Deals in&nbsp;Singapore</span> 
                
                </td>
-            <td class="emailer_content" width="26%"><%=Time.now.strftime('%A %B %d,%Y')%></td>
+            <td class="emailer_content" width="26%">Friday, December 3, 2010</td>
           </tr>
         </tbody></table></td>
         <td height="8"></td>
       </tr>
       <tr>
         <td width="19" height="8"></td>
-        <td width="94%" background="<%=$server_name%>/emails/images/top_black_bar.jpg" height="8"></td>
+        <td width="94%" background="images/top_black_bar.jpg" height="8"></td>
         <td width="19" height="8"></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/banner.jpg" height="159"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <td background="images/banner.jpg" height="159"><table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tbody><tr>
             <td width="4%">&nbsp;</td>
             <td class="emailer_header" width="53%" align="left">Keupons, the only site where you are guaranteed a discount!</td>
@@ -54,9 +54,9 @@ body {
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/bottom_black_bar.jpg" height="35"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <td background="images/bottom_black_bar.jpg" height="35"><table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tbody><tr>
-            <td class="emailer_header2" width="100%" align="left"><%=@subject%></td>
+            <td class="emailer_header2" width="100%" align="left">Subject of Email</td>
              
           </tr>
         </tbody></table></td>
@@ -67,10 +67,7 @@ body {
         <td><table width="100%" border="0" cellpadding="0" cellspacing="6">
           <tbody> 
           <tr>
-            <td colspan="2" bgcolor="#eceded"><span class="emailer_content">Hi <strong>Customer</strong><br>Your password has been changed. <br/>
-                   Username: <%=h @customer.login %><br/>
-                   Password: <%=@password%><br/><br/>
-                   <br><br>Thank You,<br>Keupons.com</span></td>
+            <td colspan="2" bgcolor="#eceded"><span class="emailer_content">Hi <strong>Akshay</strong><br>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum <br><br>Thank You,<br>Keupons.com</span></td>
           </tr>
         </tbody></table></td>
         <td>&nbsp;</td>
@@ -79,11 +76,11 @@ body {
        
       <tr>
         <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/bottom_black_bar.jpg" height="49"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <td background="images/bottom_black_bar.jpg" height="49"><table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tbody><tr>
             <td class="emailer_header1" width="49%" align="right">Want to see all the deals?</td>
             <td width="3%">&nbsp;</td>
-            <td width="48%" align="left"><a href="<%=$server_name%>"><img src="<%=$server_name%>/emails/images/viewdeals_btn.jpg" width="114" border="0" height="29"></a></td>
+            <td width="48%" align="left"><a href="#"><img src="images/viewdeals_btn.jpg" width="114" border="0" height="29"></a></td>
           </tr>
         </tbody></table></td>
         <td>&nbsp;</td>
@@ -91,7 +88,7 @@ body {
     </tbody></table></td>
   </tr>
   <tr>
-    <td><img src="<%=$server_name%>/emails/images/bottom_red_bar.jpg" width="720" height="21"></td>
+    <td><img src="images/bottom_red_bar.jpg" width="720" height="21"></td>
   </tr>
 </tbody></table>
 

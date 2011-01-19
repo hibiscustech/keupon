@@ -1,49 +1,90 @@
-                      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>www.keupons.com</title>
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Activation Email</title>
+<link href="/emails/css/emailer.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style></head>
+
 <body>
-<div id="wraper">
-<div id="user1" style="width:650px;height:auto;">
-  <div style="margin-left:5px;text-align:center;border:4px solid red; width:650px; height:380px;">
-    <div>
-      <table style="text-align:center;" width="650" height="50">
-         <tr><td><a href="<%=$server_name%>" style="text-decoration:none;font-size:20px;font-weight:bold;text-align:center;">Keupons.com</a> </td></tr>
-      </table>
-    </div>
-    <hr style="background-color:grey;"/>
-    <div style="width:650px;height:250px;">
-          <div style="margin-left: 20px;width:350px;background:pink;height:auto;float:left;">
-               <font style="font-size:25px;font-weight:bold;">Welcome to Keupons!</font><br/> <br/>
-               <p style="margin-left: 15px; margin-right:15px;text-align:justify;font-size:14px;">
-                   Dear <%= @profile.first_name.camelize %>,<br/>
-                   Your account is now fully activated. <br/>
-                   Kindly click on the following link to Sign In with your Login Credentials:<br/><%=h "#{$server_name}/login" %>
-               </p>
-          </div>
-          <div style="width:250px;float:right;text-align:center;margin-right:15px;">
-             <table style="width:250px;color:blue;font-size:12px;font-weight:bold;text-align:center;" cellpadding="0" cellspacing="0">
-                 <tr><td><a href="<%=$server_name%>/deal_of_the_day" style="font-size:14px;font-weight:bold;text-decoration:none;">Check Out Today's Hot Deal</a></td></tr>
-                 <tr><td><hr style="border: 0;color: red;height: 1px;width: 98%;"/></td></tr>
-                 <tr><td><a href="<%=$server_name%>/recent_deals" style="font-size:14px;font-weight:bold;text-decoration:none;">Check Out Our Recent Deals</a></td></tr>
-                  <tr><td><hr style="border: 0;color: red;height: 1px;width: 98%;"/></td></tr>
-                 <tr><td><a href="<%=$server_name%>" style="font-size:14px;font-weight:bold;text-decoration:none;">Check Out How We Work</a></td></tr>
-                  <tr><td><hr style="border: 0;color: red;height: 1px;width: 98%;"/></td></tr>
-                 <tr><td><a href="<%=$server_name%>/want_a_deal" style="font-size:14px;font-weight:bold;text-decoration:none;">Demand The Deal That You Want</a></td></tr>
-                   <tr><td><hr style="border: 0;color: red;height: 1px;width: 98%;"/></td></tr>
-                 <tr><td><a href="<%=$server_name%>/customers/location_deals" style="font-size:14px;font-weight:bold;text-decoration:none;">Check Out Our Deal Around You</a></td></tr>
-                  <tr><td><hr style="border: 0;color: red;height: 1px;width: 98%;"/></td></tr>
-                 <tr><td><a href="<%=$server_name%>/my_keupons" style="font-size:14px;font-weight:bold;text-decoration:none;">Deal For Your Keupoints</a></td></tr>
-                 <tr><td><hr style="border: 0;color: red;height: 1px;width: 98%;"/></td></tr>
-             </table>
-          </div>
-      </div>
-      <div style="width:550px;height:10px;font-size:14px;margin-left:15px;margin-right:15px;">
-          <p style="text-align:center;">Explore all the cool things to do in your city at unbeatable prices.</p>
-      </div>
-    </div>
- </div>
-</div>
+
+<table width="720" border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td><img src="/emails/images/top_red_bar.jpg" width="720" height="21"></td>
+  </tr>
+  <tr>
+    <td background="/emails/images/middle_red_bar.jpg"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td height="8"></td>
+        <td height="8"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+            <td width="20%" align="left"><img src="/emails/images/logo.jpg" width="138" height="82"></td>
+            <td width="54%"> <span class="emailer_content_red">Hot Deals in&nbsp;Singapore</span> 
+               
+               </td>
+            <td class="emailer_content" width="26%"><%=Time.now.strftime('%A %B %d,%Y')%></td>
+          </tr>
+        </tbody></table></td>
+        <td height="8"></td>
+      </tr>
+      <tr>
+        <td width="19" height="8"></td>
+        <td width="94%" background="/emails/images/top_black_bar.jpg" height="8"></td>
+        <td width="19" height="8"></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td background="/emails/images/banner.jpg" height="159"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+            <td width="4%">&nbsp;</td>
+            <td class="emailer_header" width="53%" align="left">Keupons, the only site where you are guaranteed a discount!</td>
+            <td width="43%">&nbsp;</td>
+          </tr>
+        </tbody></table></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td background="/emails/images/bottom_black_bar.jpg" height="35"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+            <td class="emailer_header2" width="100%" align="left"><%=@subject%></td>
+             
+          </tr>
+        </tbody></table></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="6">
+          <tbody> 
+          <tr>
+            <td colspan="2" bgcolor="#eceded"><span class="emailer_content">Hi <strong><%= @profile.first_name.camelize %></strong><br>Your account is now fully activated.Kindly click on the following link to Sign In with your Login Credentials<br><br>Thank You,<br>Keupons.com</span></td>
+          </tr>
+        </tbody></table></td>
+        <td>&nbsp;</td>
+      </tr>
+      
+       
+      <tr>
+        <td>&nbsp;</td>
+        <td background="/emails/images/bottom_black_bar.jpg" height="49"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+            <td class="emailer_header1" width="49%" align="right">Want to see all the deals?</td>
+            <td width="3%">&nbsp;</td>
+            <td width="48%" align="left"><a href="<%=$server_name%>"><img src="/emails/images/viewdeals_btn.jpg" width="114" border="0" height="29"></a></td>
+          </tr>
+        </tbody></table></td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table></td>
+  </tr>
+  <tr>
+    <td><img src="/emails/images/bottom_red_bar.jpg" width="720" height="21"></td>
+  </tr>
+</tbody></table>
+
+
 </body>
 </html>
