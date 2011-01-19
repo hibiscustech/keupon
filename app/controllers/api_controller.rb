@@ -148,4 +148,72 @@ class ApiController < ApplicationController
       format.xml { render :xml => xml.target! }
     end 
   end
+  def deal_details_api
+    @deal = Deal.find(params[:id])
+    @end_time = @deal.deal_schedule.end_time
+    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.details do
+      xml.deal_id @deal.id
+      xml.name   @deal.name
+      xml.time_left '02 days 01 hours 45 secs'
+      xml.buy_now_url "/transaction_details?id=#{params[:id]}"
+      xml.image @deal.deal_photo.url(:small)
+      xml.rating do 
+       xml.num_of_people Deal.deals_bought(@deal.id)
+       xml.current_discount current_deal_discount_for_deal(@deal.id)
+       xml.discount_range deal_scale_graph(@deal)
+      end
+      highlights=@deal.highlights.split(',')
+      highlights.each do |h|
+       xml.highlights do
+        xml.item h 
+       end  
+      end  
+      rules=@deal.rules.split(',')
+      rules.each do |h|
+       xml.terms_and_cond do
+        xml.item h
+       end
+      end
+      xml.deal_loc do
+       xml.lat  @deal.deal_location_detail.latitude
+       xml.long @deal.deal_location_detail.longitude
+       xml.address @deal.merchant.merchant_profile.company.name,@company.address1,@company.address2," "+@company.city 
+      end
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
+
+  end
+  protected
+  def deal_current_discount(deal_id, no_of_customers)
+    return DealDiscount.deal_current_discount(deal_id, no_of_customers)
+  end
+
+   def current_deal_discount_for_deal(deal_id)
+    return DealDiscount.current_deal_discount_for_deal(deal_id)
+  end
+  def deal_scale_graph(deal)
+    deals_bought = Deal.deals_bought(deal.id)
+    deal_discounts = deal.deal_discounts
+    minimum = deal_discounts[0].customers
+    maximum = deal_discounts[deal_discounts.length-1].max_customers
+    customers_discount_ranges =""
+    prev_max_customers = nil
+    for dd in deal_discounts
+      min_customers = dd.customers
+      max_customers = dd.max_customers
+      discount = dd.discount
+      current_min_customers = (prev_max_customers.blank?)? min_customers : prev_max_customers
+      customers_discount_ranges += current_min_customers.to_s+'-'+max_customers.to_s+' people'+':'+"#{discount.to_s}% discount,"
+      prev_max_customers = max_customers
+    end
+    customers_discount_ranges.chop
+  end
+
+
 end

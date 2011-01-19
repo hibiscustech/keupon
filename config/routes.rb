@@ -58,6 +58,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/deals_available',:controller=>'api',:action=>'deals_available'
   map.connect '/my_keupons_api/:user_id',:controller=>'api',:action=>'my_keupons'
   map.connect '/offered_deals_api/:deal',:controller=>'api',:action=>'offered_deals_api'
+  map.connect '/deal_details_api/:id',:controller=>'api',:action=>'deal_details_api'
   map.resources :customers  
   map.resource :merchant
   map.resource :session
