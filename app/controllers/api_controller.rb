@@ -95,17 +95,17 @@ class ApiController < ApplicationController
           end
           end
          end
-         for expired in my_keupons 
-          if expired.expiry_date.to_i <= Time.now.to_i || expired.status == "expired"
-          xml.item(:type => "expired" )do
-           xml.name expired.name
-           xml.image deal.deal_photo.url(:small)
-           xml.purchased Time.at(expired.purchase_date.to_i).strftime("%d-%m-%Y")
-           xml.expiry Time.at(expired.expiry_date.to_i).strftime("%d-%m-%Y")
-           xml.code expired.deal_code
-          end
-          end
-         end
+         #for expired in my_keupons 
+          #if expired.expiry_date.to_i <= Time.now.to_i || expired.status == "expired"
+          #xml.item(:type => "expired" )do
+          # xml.name expired.name
+           #xml.image deal.deal_photo.url(:small)
+           #xml.purchased Time.at(expired.purchase_date.to_i).strftime("%d-%m-%Y")
+           #xml.expiry Time.at(expired.expiry_date.to_i).strftime("%d-%m-%Y")
+           #xml.code expired.deal_code
+          #end
+          #end
+         #end
          for used in my_keupons
            if used.status == "used"
            xml.item(:type => "used" )do
