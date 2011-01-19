@@ -22,7 +22,7 @@ class ApiController < ApplicationController
         if (d.status=="new") or (d.status="confirmed")
         xml.item(:type => d.status )do
         xml.deal_id d.id
-        xml.type d.status
+        xml.category d.status
         xml.name d.description
         xml.expected_price d.expected_value
         xml.no_of_deals d.number
