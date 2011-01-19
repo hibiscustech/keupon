@@ -19,10 +19,11 @@ class ApiController < ApplicationController
     xml.instruct!
     xml.deals_on_demand do
       @demand_deals_summary.each { |d|
+        p d
         if (d.status=="new") or (d.status="confirmed")
         xml.item(:type => d.status )do
         xml.deal_id d.id
-        xml.category d.status
+        xml.category DealCategory.find(d.deal_category_id).name
         xml.name d.description
         xml.expected_price d.expected_value
         xml.no_of_deals d.number
