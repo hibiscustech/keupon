@@ -141,6 +141,7 @@ class ApiController < ApplicationController
        xml.offered_discount cddb.discount
        xml.offered_expiry Time.at(cddb.deal_end_date).strftime("%d-%m-%Y")
        xml.offered_icon cddb.demand_deal_photo.url(:small)
+       xml.buy_it_url "/transaction_details?id=#{deal.id}"
      end
     end
    end
