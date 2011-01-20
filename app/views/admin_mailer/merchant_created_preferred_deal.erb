@@ -1,73 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>www.keupons.com</title>
-<link href="<%=$server_name%>/emails/css/emailer.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
--->
-</style></head>
-
-<body>
-
-<table width="720" border="0" cellpadding="0" cellspacing="0">
-  <tbody><tr>
-    <td><img src="<%=$server_name%>/emails/images/top_red_bar.jpg" width="720" height="21"></td>
-  </tr>
-  <tr>
-    <td background="<%=$server_name%>/emails/images/middle_red_bar.jpg"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-      <tbody><tr>
-        <td height="8"></td>
-        <td height="8"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td width="20%" align="left"><img src="<%=$server_name%>/emails/images/logo.jpg" width="138" height="82"></td>
-            <td width="54%"> <span class="emailer_content_red">Hot Deals in&nbsp;Singapore</span> 
-               
-               </td>
-            <td class="emailer_content" width="26%"><%=Time.now.strftime('%A %B %d,%Y')%></td>
-          </tr>
-        </tbody></table></td>
-        <td height="8"></td>
-      </tr>
-      <tr>
-        <td width="19" height="8"></td>
-        <td width="94%" background="<%=$server_name%>/emails/images/top_black_bar.jpg" height="8"></td>
-        <td width="19" height="8"></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/banner.jpg" height="159"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td width="4%">&nbsp;</td>
-            <td class="emailer_header" width="53%" align="left">Keupons, the only site where you are guaranteed a discount!</td>
-            <td width="43%">&nbsp;</td>
-          </tr>
-        </tbody></table></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/bottom_black_bar.jpg" height="35"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td class="emailer_header2" width="100%" align="left"><%=@subject%></td>
-             
-          </tr>
-        </tbody></table></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
+﻿
+<%=render :partial=>'/customer_mailer/top'%> 
+<tr>
         <td>&nbsp;</td>
         <td><table width="100%" border="0" cellpadding="0" cellspacing="6">
           <tbody> 
           <tr>
-            <td colspan="2" bgcolor="#eceded"><span class="emailer_content">Dear <strong>Admin,</strong><br>
+            <td colspan="2" bgcolor="#eceded"><span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Dear <strong>Admin,</strong><br>
 <%= @merchant_profile.first_name.camelize %> has created the following Deal as a Preferred Deal, kindly act on it immediately.<br/>
                    <%= @deal.name %><br/>
                    Firm: <%=@merchant_company.name %>.<br/>
@@ -79,26 +17,5 @@ body {
         </tbody></table></td>
         <td>&nbsp;</td>
       </tr>
-      
-       
-      <tr>
-        <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/bottom_black_bar.jpg" height="49"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td class="emailer_header1" width="49%" align="right">Want to see all the deals?</td>
-            <td width="3%">&nbsp;</td>
-            <td width="48%" align="left"><a href="<%=$server_name%>"><img src="<%=$server_name%>/emails/images/viewdeals_btn.jpg" width="114" border="0" height="29"></a></td>
-          </tr>
-        </tbody></table></td>
-        <td>&nbsp;</td>
-      </tr>
-    </tbody></table></td>
-  </tr>
-  <tr>
-    <td><img src="<%=$server_name%>/emails/images/bottom_red_bar.jpg" width="720" height="21"></td>
-  </tr>
-</tbody></table>
-
-
-</body>
-</html>
+     
+<%=render :partial=>'/customer_mailer/bottom'%> 
