@@ -1,4 +1,5 @@
 class CustomerMailer < ActionMailer::Base
+ layout 'plain'
   def signup_notification(customer)
     setup_email(customer)
     @subject    = 'Please activate your new account'
