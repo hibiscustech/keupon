@@ -161,17 +161,39 @@ function IsNumeric(sText)
                 <td>
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td height="33" background="images/deals_on_demand_red_bar.jpg"><table width="100%" border="0" cellspacing="2" cellpadding="0">
+                    <td height="33" background="images/deals_on_demand_red_bar.jpg">
+                      <table width="100%" border="0" cellspacing="2" cellpadding="0">
                       <tr>
-                        <td width="28%" height="28" align="center" class="deals_on_demand_text1"><a href="#" class="deals_on_demand_text1_link">Confirmed Deals</a></td>
-                        <td width="26%" align="center" background="images/deals_on_demand_red_bar1_over.jpg"><a href="#" class="deals_on_demand_text1_link">Accepted Deals</a></td>
-                        <td width="22%" align="center"><a href="#" class="deals_on_demand_text1_link">New Deals</a></td>
-                        <td width="24%" align="center"><a href="#" class="deals_on_demand_text1_link">Offered Deals</a> </td>
+                        <td width="28%" height="28" align="center" class="deals_on_demand_text1" background="images/deals_on_demand_red_bar1_over.jpg">
+                        <% form_remote_tag :url => { :action => "confirmed_deals",:controller=>'customers'},:html=>{:id=>'confirmed_form'} do %>
+                           <a href="#" class="deals_on_demand_text1_link" onclick="document.getElementById('confirmed_form').onsubmit();return false;">Confirmed Deals</a>
+                        <%end%>
+                        </td>
+                        <td width="26%" align="center" background="images/deals_on_demand_red_bar1_over.jpg">
+                        <% form_remote_tag :url => { :action => "accepted_deals",:controller=>'customers'},:html=>{:id=>'accepted_form'} do %>
+                           <a href="#" class="deals_on_demand_text1_link" onclick="document.getElementById('accepted_form').onsubmit();return false;">Accepted Deals</a>
+                        <%end%>
+                        </td>
+                        <td width="22%" align="center" background="images/deals_on_demand_red_bar1_over.jpg">
+                        <% form_remote_tag :url => { :action => "new_deals",:controller=>'customers'},:html=>{:id=>'new_form'} do %>
+                           <a href="#" class="deals_on_demand_text1_link" onclick="document.getElementById('new_form').onsubmit();return false;">New Deals</a>
+                        <%end%>
+                        </td>
+                        <td width="24%" align="center" background="images/deals_on_demand_red_bar1_over.jpg">
+                        <% form_remote_tag :url => { :action => "offered_demand_deals",:controller=>'customers'},:html=>{:id=>'offered_form'} do %>
+                           <a href="#" class="deals_on_demand_text1_link" onclick="document.getElementById('offered_form').onsubmit();return false;">Offered Deals</a>
+                        <%end%>
+                        </td>
                       </tr>
-                    </table></td>
+                    </table>
+                   </td>
                   </tr>
                   <tr>
-                    <td height="25" align="left" class="deals_on_demand_text3">View All Deals</td>
+                    <td height="25" align="left" class="deals_on_demand_text3">
+                        <% form_remote_tag :url => { :action => "all_deals",:controller=>'customers'},:html=>{:id=>'all_form'} do %>
+                           <a href="#" class="deals_on_demand_text1_link" onclick="document.getElementById('all_form').onsubmit();return false;">View all Deals</a>
+                        <%end%>
+                        </td>
                   </tr>
 	          </table>
 

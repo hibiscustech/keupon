@@ -165,11 +165,75 @@ class CustomersController < ApplicationController
     #@deal_schedule = DealSchedule.deal_schedule
     @deals = Deal.recents_deal#.paginate :page => params['page'], :per_page => 6
   end
-  def confirmed_deals
+  def all_deals
      @msg = 
      @page = "I Want a Deal"
      @categories = DealCategory.find(:all)
      @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'userform2',:partial => "my_demand_deals_summary"
+          end
+        }
+      end
+    end
+  end
+  def new_deals
+     @msg = 
+     @page = "I Want a Deal"
+     @categories = DealCategory.find(:all)
+     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_new_summary(current_customer.id)
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'userform2',:partial => "my_demand_deals_summary"
+          end
+        }
+      end
+    end
+  end
+  def offered_demand_deals
+     @msg = 
+     @page = "I Want a Deal"
+     @categories = DealCategory.find(:all)
+     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_offered_summary(current_customer.id)
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'userform2',:partial => "my_demand_deals_summary"
+          end
+        }
+      end
+    end
+  end
+  def accepted_deals
+     @msg = 
+     @page = "I Want a Deal"
+     @categories = DealCategory.find(:all)
+     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_accepted_summary(current_customer.id)
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'userform2',:partial => "my_demand_deals_summary"
+          end
+        }
+      end
+    end
+  end
+  def confirmed_deals
+     @msg = 
+     @page = "I Want a Deal"
+     @categories = DealCategory.find(:all)
+     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_confirmed_summary(current_customer.id)
      if request.xml_http_request?
       respond_to do |format|
         format.html
