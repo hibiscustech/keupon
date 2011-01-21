@@ -31,7 +31,7 @@
             </td>
             <td align="right" width="3%"><input type="checkbox" name="match" value="and" /></td>
             <td align="left" width="5%" class="open_deal_text1">Match All</td>
-            <td align="left" width="15%"><a href="#" onclick="$('open_deals_search_form').onsubmit();return false;"><img height="24" border="0" width="73" src="/images/search_btn.png"></a>&nbsp;<a href="#" onclick="Element.hide('open_deals_search');Element.show('search-button');return false;"><img height="24" border="0" width="73" src="/images/cancel_btn1.jpg"></a></td>
+            <td align="left" width="15%"><a href="#" onclick="$('open_deals_search_form').onsubmit();return false;"><img height="24" border="0" width="73" src="/images/search_btn.png"></a>&nbsp;<a href="#" onclick="Element.hide('open_deals_search');Element.show('search-button');new Ajax.Request('/customers/open_deals', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;"><img height="24" border="0" width="73" src="/images/cancel_btn1.jpg"></a></td>
             </tr>
           </tbody></table>
           </form>
