@@ -97,7 +97,27 @@ class CustomersController < ApplicationController
 
   def open_deals
     @page = "Open Deals"
-    @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals
+    operator = (params[:match] == "and")? "and" : "or"
+    time_condition = (params[:expiry_date].blank?)? nil : "ds.end_time = #{Time.parse(params[:expiry_date]+" 23:59:59").to_i}"
+    location_condition = (params[:location].blank?)? nil : "(dld.address1 like '%#{params[:location]}%' or dld.address2 like '%#{params[:location]}%' or dld.city like '%#{params[:location]}%' or dld.state like '%#{params[:location]}%' or dld.zipcode like '%#{params[:location]}%')"
+    conditions = ""
+    if operator == "and"
+      conditions += " and ds.end_time = #{Time.parse(params[:expiry_date]+" 23:59:59").to_i}"
+      conditions += " and (dld.address1 like '%#{params[:location]}%' or dld.address2 like '%#{params[:location]}%' or dld.city like '%#{params[:location]}%' or dld.state like '%#{params[:location]}%' or dld.zipcode like '%#{params[:location]}%')"
+    elsif operator == "or"
+      if !location_condition.blank?
+        conditions += " and ( #{!location_condition}"
+      end
+      inside_condition = (conditions.blank?)? "and" : "or"
+      if !time_condition.blank?
+        conditions += " #{inside_condition} #{time_condition}"
+      end
+      if !conditions.blank?
+        conditions += " ) "
+      end
+    end
+
+    @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals_for_summary(conditions)
     @hotest_deal = Deal.hottest_deal_of_today
     if request.xml_http_request?
       respond_to do |format|

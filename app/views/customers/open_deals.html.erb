@@ -24,15 +24,7 @@
           <tbody>
             <tr>            
             <td height="40" align="right" width="6%" class="open_deal_text1">Location:</td>
-            <td align="left" width="15%"><input type="text" id="location" name="location" size="30"/></td>
-            <td align="right" width="6%" class="open_deal_text1">Discount:</td>
-            <td align="left" width="5%">
-              <select name="discount" id="discount">                
-                <% for dis in (1..100).to_a %>
-                <option value="<%=dis%>"><%=dis%></option>
-                <% end %>
-              </select>
-            </td>
+            <td align="left" width="15%"><input type="text" id="location" name="location" size="30"/></td>            
             <td align="right" width="8%" class="open_deal_text1">Expiry Date:</td>
             <td align="left" width="16%">
               <input id="expiry_date" name="expiry_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="border: 0px none ; cursor: pointer;"/>
