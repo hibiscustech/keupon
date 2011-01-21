@@ -98,12 +98,11 @@ class CustomersController < ApplicationController
   def open_deals
     @page = "Open Deals"
     operator = (params[:match] == "and")? "and" : "or"
-    search_time = (params[:expiry_date].blank?)? nil : Time.parse(params[:expiry_date]).strftime("%d/%m/%Y")
-    time_condition = (search_time.blank?)? nil : "ds.end_time = #{Time.parse(search_time+" 23:59:59").to_i}"
+    time_condition = (params[:expiry_date].blank?)? nil : "ds.end_time = #{Time.parse(params[:expiry_date].gsub('/','-')+" 23:59:59").to_i}"
     location_condition = (params[:location].blank?)? nil : "(dld.address1 like '%#{params[:location]}%' or dld.address2 like '%#{params[:location]}%' or dld.city like '%#{params[:location]}%' or dld.state like '%#{params[:location]}%' or dld.zipcode like '%#{params[:location]}%')"
     conditions = ""
     if operator == "and"
-      conditions += " and ds.end_time = #{Time.parse(search_time+" 23:59:59").to_i}"
+      conditions += " and ds.end_time = #{Time.parse(params[:expiry_date].gsub('/','-')+" 23:59:59").to_i}"
       conditions += " and (dld.address1 like '%#{params[:location]}%' or dld.address2 like '%#{params[:location]}%' or dld.city like '%#{params[:location]}%' or dld.state like '%#{params[:location]}%' or dld.zipcode like '%#{params[:location]}%')"
     elsif operator == "or"
       if !location_condition.blank?
