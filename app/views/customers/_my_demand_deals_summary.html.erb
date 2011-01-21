@@ -1,6 +1,6 @@
 <div style="height: 320px; overflow:auto;">
 <table width="100%" border="0" cellspacing="2" cellpadding="0">
-<% accepted_deal = nil
+<% #accepted_deal = nil
       for demand_deal in @demand_deals_summary
         deal_status = demand_deal.status
         if demand_deal.status == "accepted"
