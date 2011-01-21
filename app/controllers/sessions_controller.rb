@@ -109,15 +109,40 @@ protected
       self.current_customer = customer
       new_cookie_flag = (params[:remember_me] == "1")
       #handle_remember_cookie! new_cookie_flag
+     if params[:dev]=='mob'
+       xml = Builder::XmlMarkup.new
+       xml.instruct!
+       xml.login do
+        xml.response 'success'
+        xml.user_id customer.id
+       end
+       respond_to do |format|
+         format.xml { render :xml => xml.target! }
+       end
+      else
       redirect_to :controller => 'customers',:action => "deal_of_the_day"
       flash[:notice] = "Logged in successfully"
+      end
     else
+      if params[:dev]=='mob'
+       xml = Builder::XmlMarkup.new
+       xml.instruct!
+       xml.login do
+        xml.response 'failure'
+        xml.message "UserId/password doesn't match"
+       end
+       respond_to do |format|
+         format.xml { render :xml => xml.target! }
+       end
+      else
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
       render :action => 'new'
+      end
     end
   end
+
   def admin
     customer = AdminUser.authenticate(params[:login], params[:password])
     if customer
