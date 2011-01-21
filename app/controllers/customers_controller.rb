@@ -107,7 +107,8 @@ class CustomersController < ApplicationController
     elsif operator == "or"
       if !location_condition.blank?
         conditions += " and ( #{location_condition}"
-      end      
+      end
+      inside_condition = (conditions.blank?)? "and" : "or"
       if !time_condition.blank?
         conditions += " #{inside_condition} #{time_condition}"
       end
