@@ -60,6 +60,12 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/offered_deals_api/:deal',:controller=>'api',:action=>'offered_deals_api'
   map.connect '/deal_details_api/:id',:controller=>'api',:action=>'deal_details_api'
   map.connect '/under_construction',:controller=>'customers',:action=>'under_construction'
+  map.connect '/contact',:controller=>'footer',:action=>'contact'
+  map.connect '/about',:controller=>'footer',:action=>'about'
+  map.connect '/jobs',:controller=>'footer',:action=>'jobs'
+  map.connect '/press',:controller=>'footer',:action=>'press'
+  map.connect '/legal',:controller=>'footer',:action=>'legal'
+  map.connect '/privacy',:controller=>'footer',:action=>'privacy'
   map.resources :customers  
   map.resource :merchant
   map.resource :session
