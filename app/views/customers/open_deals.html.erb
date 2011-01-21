@@ -23,10 +23,10 @@
           <table cellspacing="0" cellpadding="0" border="0" bgcolor="#000000" width="100%">
           <tbody>
             <tr>            
-            <td height="40" align="right" width="10%" class="open_deal_text1">Location:</td>
-            <td align="left" width="15%"><input type="text" id="location" name="location" size="40"/></td>
-            <td align="right" width="10%" class="open_deal_text1">Discount:</td>
-            <td align="left" width="15%">
+            <td height="40" align="right" width="6%" class="open_deal_text1">Location:</td>
+            <td align="left"><input type="text" id="location" name="location" size="28"/></td>
+            <td align="right" width="6%" class="open_deal_text1">Discount:</td>
+            <td align="left" width="12%">
               <select name="discount" id="discount">
                 <option value="">Select Discount</option>
                 <% for dis in (1..100).to_a %>
@@ -34,13 +34,13 @@
                 <% end %>
               </select>
             </td>
-            <td align="right" width="10%" class="open_deal_text1">Expiry Date:</td>
-            <td align="left" width="15%">
+            <td align="right" width="8%" class="open_deal_text1">Expiry Date:</td>
+            <td align="left" width="16%">
               <input id="expiry_date" name="expiry_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="border: 0px none ; cursor: pointer;"/>
             </td>
-            <td align="right" width="10%"><input type="checkbox" name="match" value="and" /></td>
-            <td align="left" width="10%" class="open_deal_text1">Match All:</td>
-            <td align="left" width="5%"><a href="#" onclick="$('open_deals_search_form').onsubmit();return false;"><img height="24" border="0" width="73" src="/images/search_btn.png"></a>&nbsp;<a href="#" onclick="Element.hide('open_deals_search');Element.show('search-button');return false;"><img height="24" border="0" width="73" src="/images/cancel_btn1.jpg"></a></td>
+            <td align="right" width="3%"><input type="checkbox" name="match" value="and" /></td>
+            <td align="left" width="5%" class="open_deal_text1">Match All</td>
+            <td align="left" width="15%"><a href="#" onclick="$('open_deals_search_form').onsubmit();return false;"><img height="24" border="0" width="73" src="/images/search_btn.png"></a>&nbsp;<a href="#" onclick="Element.hide('open_deals_search');Element.show('search-button');return false;"><img height="24" border="0" width="73" src="/images/cancel_btn1.jpg"></a></td>
             </tr>
           </tbody></table>
           </form>
