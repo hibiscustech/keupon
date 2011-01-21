@@ -9,13 +9,28 @@
     </table></td>
 </tr>
 <tr>
-  <td height="35" background="images/fine_print_black_gradient.jpg" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <td height="35" background="/images/fine_print_black_gradient.jpg" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="3%">&nbsp;</td>
-        <td width="95%" align="left"><a href="#"><img src="images/location_btn.jpg" width="120" height="26" border="0" /></a><a href="#"><img src="images/discount_btn.jpg" width="120" height="26" border="0" /></a><a href="#"><img src="images/dateof_closing_btn.jpg" width="120" height="26" border="0" /></a><a href="#"><img src="images/date_btn.jpg" width="120" height="26" border="0" /></a></td>
+        <td width="95%" align="right"><div id="search-button"><a href="#" onclick="Element.hide('search-button');Effect.BlindDown('open_deals_search');return false;"><img src="images/date_btn.jpg" width="120" height="26" border="0" /></a></div></td>
         <td width="2%">&nbsp;</td>
       </tr>
     </table></td>
+</tr>
+<tr id="open_deals_search" style="display: none;">
+        <td>
+          <%= form_remote_tag(:url => {:controller => "customers", :action => "open_deals"},:html => {:id => "open_deals_search_form"})%>
+          <table cellspacing="0" cellpadding="0" border="0" bgcolor="#000000" width="100%">
+          <tbody>
+            <tr>
+            <td height="40" width="3%">&nbsp;</td>
+            <td align="right" width="11%" class="open_deal_text1">Location:</td>
+            <td align="left" width="17%"><input type="text" id="location" name="location"/></td>
+            <td align="left" width="69%"><a href="#" onclick="$('open_deals_search_form').onsubmit();return false;"><img height="24" border="0" width="73" src="/images/search_btn.png"></a>&nbsp;<a href="#" onclick="Effect.BlindUp('open_deals_search');Element.show('search-button');return false;"><img height="24" border="0" width="73" src="/images/cancel_btn1.jpg"></a></td>
+            </tr>
+          </tbody></table>
+          </form>
+        </td>
 </tr>
 <tr>
   <td >&nbsp;</td>
@@ -25,47 +40,8 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="2%">&nbsp;</td>
-        <td width="52%" valign="top">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-
-            <tr>
-              <%for opdd in @open_deal_discounts
-                discount = opdd[1]
-                open_deal = @open_deals[opdd[0]]
-                opd = Deal.find(open_deal.id)
-              %>
-
-                <td height="115" bgcolor="#1c1316" style="border:2px solid #888888;">
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="27%" align="center">
-                         <a href="/deal_details?id=<%= open_deal.id %>"><img border="0" alt="img" src="<%= opd.deal_photo.url(:small) %>" width="108" height="89"/></a>
-                      </td>
-                      <td width="70%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td height="50" colspan="2" align="left" class="open_deal_text1"><%=open_deal.name%></td>
-                          </tr>
-                          <tr>
-                            <td colspan="2" align="left" class="open_deal_text_red">Deal Bought: <%=open_deal.no_of_customers%><br />
-                              Discount: <%=discount.nil? ? discount : ''%> %<br />
-                              Location: <%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td>
-                          </tr>
-                          <tr>
-                            <td width="42%">&nbsp;</td>
-                            <td width="58%" height="26" align="center" background="images/open_deal_red_bar.jpg" class="open_deal_text1" style="background-repeat:no-repeat">Deal Exipires On: <%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></td>
-                          </tr>
-
-                        </table></td>
-                      <td width="3%">&nbsp;</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-              </tr>
-            <%end%>
-          </table>
+        <td width="52%" valign="top" id="open_deals_summary">
+          <%= render :partial => "open_deals_summary" %>
         </td>
         <td width="3%">&nbsp;</td>
         <td width="41%" valign="top"><%= render :partial => "hottest_deal_of_the_day" %></td>

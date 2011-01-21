@@ -99,6 +99,16 @@ class CustomersController < ApplicationController
     @page = "Open Deals"
     @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals
     @hotest_deal = Deal.hottest_deal_of_today
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'open_deals_summary',:partial => "open_deals_summary"
+          end
+        }
+      end
+    end
   end
 
   def change_password

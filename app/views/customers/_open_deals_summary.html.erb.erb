@@ -1,0 +1,39 @@
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <%for opdd in @open_deal_discounts
+                discount = opdd[1]
+                open_deal = @open_deals[opdd[0]]
+                opd = Deal.find(open_deal.id)
+              %>
+
+                <td height="115" bgcolor="#1c1316" style="border:2px solid #888888;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="27%" align="center">
+                         <a href="/deal_details?id=<%= open_deal.id %>"><img border="0" alt="img" src="<%= opd.deal_photo.url(:small) %>" width="108" height="89"/></a>
+                      </td>
+                      <td width="70%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td height="50" colspan="2" align="left" class="open_deal_text1"><%=open_deal.name%></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" align="left" class="open_deal_text_red">Deal Bought: <%=open_deal.no_of_customers%><br />
+                              Discount: <%=discount.nil? ? discount : ''%> %<br />
+                              Location: <%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td>
+                          </tr>
+                          <tr>
+                            <td width="42%">&nbsp;</td>
+                            <td width="58%" height="26" align="center" background="images/open_deal_red_bar.jpg" class="open_deal_text1" style="background-repeat:no-repeat">Deal Exipires On: <%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></td>
+                          </tr>
+
+                        </table></td>
+                      <td width="3%">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+            <%end%>
+          </table>
