@@ -106,9 +106,8 @@ class CustomersController < ApplicationController
       conditions += " and (dld.address1 like '%#{params[:location]}%' or dld.address2 like '%#{params[:location]}%' or dld.city like '%#{params[:location]}%' or dld.state like '%#{params[:location]}%' or dld.zipcode like '%#{params[:location]}%')"
     elsif operator == "or"
       if !location_condition.blank?
-        conditions += " and ( #{!location_condition}"
-      end
-      inside_condition = (conditions.blank?)? "and" : "or"
+        conditions += " and ( #{location_condition}"
+      end      
       if !time_condition.blank?
         conditions += " #{inside_condition} #{time_condition}"
       end
