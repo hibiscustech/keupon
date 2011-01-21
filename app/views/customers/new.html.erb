@@ -6,12 +6,12 @@
     <legend>Step 1</legend>
     <table cellspacing="4" cellpadding="4">
       <tr>
-        <%if @customer.email.nil?%>
+        <%if @friend.nil?%>
         <td><label for="num_attendees">E-mail ID :</label></td><td><%= f.text_field :email , :size=>"25%"%></td>
         <%else%>
         <td><label for="num_attendees">E-mail ID :</label></td><td><%= f.text_field :email , :size=>"25%",:disabled=>'disabled' %></td>
         <input type='hidden' name='customer[email]' value='<%=@customer.email%>'/>
-        <input type='hidden' name='friend_id' value='<%=@friend.id%>'/>
+        <input type='hidden' name='friend_id' value='<%=@friend.id if !@friend.nil?%>'/>
         <%end%>
       </tr>
       <tr>
