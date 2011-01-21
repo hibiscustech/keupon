@@ -27,6 +27,7 @@
   </fieldset>
   <fieldset id="step_2">
     <legend>Step 2</legend>
+    <%p @customer_profile%>
     <% fields_for :customer_profile do |p| %>
       <table><tr>
           <td> <label for="name_attendee_1">First name :</label></td><td><%= p.text_field :first_name, :size=>"20%"%></td>

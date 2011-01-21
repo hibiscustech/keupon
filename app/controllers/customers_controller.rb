@@ -39,6 +39,9 @@ class CustomersController < ApplicationController
       @@SIGNATURE  = @@cre["SIGNATURE"]
       @@SUBJECT = @@email["SUBJECT"]
   end
+  def under_construction
+   render :template=>'customers/under_construction'
+  end
   def search
     @page = "Open Deals"
     @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals
