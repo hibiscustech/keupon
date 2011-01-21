@@ -39,7 +39,23 @@ class CustomersController < ApplicationController
       @@SIGNATURE  = @@cre["SIGNATURE"]
       @@SUBJECT = @@email["SUBJECT"]
   end
-
+  def search
+    @page = "Open Deals"
+    @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+             page.replace_html 'all',:partial => "open_deals_search"
+             page.hide "loc"
+             page.hide "discount"
+             page.hide "date"
+          end
+        }
+      end
+    end
+  end
   def index
     
   end
@@ -148,6 +164,22 @@ class CustomersController < ApplicationController
      @page = "Recent Deals"
     #@deal_schedule = DealSchedule.deal_schedule
     @deals = Deal.recents_deal#.paginate :page => params['page'], :per_page => 6
+  end
+  def confirmed_deals
+     @msg = 
+     @page = "I Want a Deal"
+     @categories = DealCategory.find(:all)
+     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'userform2',:partial => "my_demand_deals_summary"
+          end
+        }
+      end
+    end
   end
 
   def want_a_deal
@@ -410,19 +442,19 @@ class CustomersController < ApplicationController
   end
 
   def create
-    p params
     logout_keeping_session!
     @customer = Customer.new(params[:customer])
     @customer.kupoints = 0
     @customer.time_created = Time.now
     @customer.login = @customer.email
     success = @customer && @customer.save
+    @customer_profile = CustomerProfile.new(params[:customer_profile])
     if success && @customer.errors.empty?
       if !params[:friend_id].nil?
        @friend=CustomerFriends.find(params[:friend_id])
        #@friend.update_attribute(:signed_up,1)
       end
-      @profile = CustomerProfile.new(params[:customer_profile])
+      @customer_profile=@profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
       @profile.customer = @customer
       @profile.save     
