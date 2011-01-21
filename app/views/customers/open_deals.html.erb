@@ -27,8 +27,7 @@
             <td align="left" width="15%"><input type="text" id="location" name="location" size="28"/></td>
             <td align="right" width="6%" class="open_deal_text1">Discount:</td>
             <td align="left" width="12%">
-              <select name="discount" id="discount">
-                <option value="">Select Discount</option>
+              <select name="discount" id="discount">                
                 <% for dis in (1..100).to_a %>
                 <option value="<%=dis%>"><%=dis%></option>
                 <% end %>
