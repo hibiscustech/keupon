@@ -1,271 +1,500 @@
 
+
 <tr>
+
   <td height="36" align="left" background="images/header_gray_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
       <tr>
+
         <td width="78%" align="left"><img src="images/merchant_signup_text.jpg" width="238" height="36" /></td>
+
         <td width="21%" align="right"><a href="/login"><img src="images/already_member_text.jpg" width="189" height="36" border="0" /></a></td>
+
         <td width="1%">&nbsp;</td>
+
       </tr>
+
     </table></td>
+
 </tr>
+
+
 
 <form id="formElem" name="formElem" action="/merchant_register" enctype="multipart/form-data" method="post">
 
+
+
   <tr>
-    <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <td ><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+
         <tr>
-          <td>&nbsp;</td>
+
           <td width="30%" height="48" background="images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
               <tr>
+
                 <td width="6%">&nbsp;</td>
+
                 <td width="78%" align="left" class="deals_content1">Personal Information</td>
+
                 <td width="16%">&nbsp;</td>
+
               </tr>
+
             </table></td>
+
           <td width="59%">&nbsp;</td>
-          <td>&nbsp;</td>
+
         </tr>
+
         <tr>
-          <td width="5%">&nbsp;</td>
+
           <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
+
               <tr>
+
                 <td width="19%" align="right">&nbsp;</td>
+
                 <td width="27%" align="left">&nbsp;</td>
+
                 <td width="22%" align="right">&nbsp;</td>
+
                 <td width="32%" align="left">&nbsp;</td>
+
               </tr>
+
               <tr>
+
                 <td align="right" class="deals_content2">First Name:<font style="color:red;">*</font></td>
+
                 <td align="left">
+
                   <input id="firstname" name="merchant_profile[first_name]" class='required'/> </td>
+
                 <td align="right" class="deals_content2">Gender:</td>
+
                 <td align="left" class="deals_content2"><input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="m"/> Male <input id="merchant_profile_gender" name="merchant_profile[gender]" type="radio" value="f"/> Female</td>
+
               </tr>
+
               <tr>
+
                 <td align="right" class="deals_content2">Last Name:<font style="color:red;">*</font></td>
+
                 <td align="left"><input id="lastname" name="merchant_profile[last_name]" class='required'/></td>
+
                 <td align="right" class="deals_content2"> NRIC/ FIN#:<font style="color:red;">*</font></td>
+
                 <td align="left"><input id="merchant_pin" name="merchant_profile[merchant_pin]" class='required'/></td>
+
               </tr>
+
               <tr>
+
                 <td align="right"  class="deals_content2">Referral Code:<font style="color:red;">*</font></td>
+
                 <td align="left"><input id="referal_code" name="merchant_profile[referal_code]" class='required'/></td>
+
                 <td align="right">&nbsp;</td>
+
                 <td align="left">&nbsp;</td>
+
               </tr>
 
+
+
             </table></td>
-          <td width="6%">&nbsp;</td>
+
         </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
+
+    </table></td>
+
   </tr>
 
   <tr>
-    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+
+
+  <tr>
+
+    <td><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+
         <tr>
-          <td>&nbsp;</td>
+
           <td width="30%" height="48" background="images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
               <tr>
+
                 <td width="6%">&nbsp;</td>
+
                 <td width="78%" align="left" class="deals_content1">Contact Details </td>
+
                 <td width="16%">&nbsp;</td>
+
               </tr>
+
             </table></td>
+
           <td width="59%">&nbsp;</td>
-          <td>&nbsp;</td>
+
         </tr>
-        <tr>
-          <td width="5%">&nbsp;</td>
-          <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
-              <tr>
-                <td width="19%" align="right">&nbsp;</td>
-                <td width="27%" align="left">&nbsp;</td>
-                <td width="22%" align="right">&nbsp;</td>
-                <td width="32%" align="left">&nbsp;</td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Address 1:<font style="color:red;">*</font></td>
-                <td align="left"> <input id="merchant_profile_address1" name="merchant_profile[address1]"  type="text" class='required'/></td>
-                <td align="right" class="deals_content2">Country:<font style="color:red;">*</font></td>
-                <td align="left" class="deals_content2"><input id="merchant_profile_country" name="merchant_profile[country]" type="text" class='required'/></td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Address 2:</td>
-                <td align="left"><input id="merchant_profile_address2" name="merchant_profile[address2]"  type="text" class='required'/></td>
-                <td align="right" class="deals_content2"> Zip code:<font style="color:red;">*</font></td>
-                <td align="left"><input id="merchant_profile_zipcode" name="merchant_profile[zipcode]"  type="text" class='required'/></td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Phone:<font style="color:red;">*</font></td>
-                <td align="left"><input id="merchant_profile_contact_number" class='required' name="merchant_profile[contact_number]"  type="text" /></td>
-                <td align="right" class="deals_content2">Email:<font style="color:red;">*</font></td>
-                <td align="left"><input id="merchant_profile_email_address" class='required' name="merchant_profile[email_address]"  type="text" /></td>
-              </tr>
-              <tr>
-                <td align="right">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="right">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-              </tr>
-            </table></td>
-          <td width="6%">&nbsp;</td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>&nbsp;</td>
-          <td width="30%" height="48" background="images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="6%">&nbsp;</td>
-                <td width="78%" align="left" class="deals_content1">Company Details</td>
-                <td width="16%">&nbsp;</td>
-              </tr>
-            </table></td>
-          <td width="59%">&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td width="5%">&nbsp;</td>
-          <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
-              <tr>
-                <td width="19%" align="right">&nbsp;</td>
-                <td width="33%" align="left">&nbsp;</td>
-                <td width="16%" align="right">&nbsp;</td>
-                <td width="32%" align="left">&nbsp;</td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Name:<font style="color:red;">*</font></td>
-                <td align="left"><input id="company_name" name="company[name]"  type="text" class='required'/></td>
-                <td align="right" class="deals_content2">URL:<font style="color:red;">*</font></td>
-                <td align="left" class="deals_content2"><input id="company_website" name="company[website]" type="text" class='required'/></td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Address 1:<font style="color:red;">*</font></td>
-                <td align="left"><input id="company_address1" name="company[address1]" type="text" class='required'/></td>
-                <td align="right" class="deals_content2"> Address 2:</td>
-                <td align="left"><input id="company_address2" name="company[address2]" type="text" class='required'/></td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Country:<font style="color:red;">*</font></td>
-                <td align="left"><select id="company_country" name="company[city]" class='required'/><option>Singapore</option></select><%#=country_select("company", "city")%></td>
-                <td align="right" class="deals_content2">Zipcode:<font style="color:red;">*</font></td>
-                <td align="left"><input id="company_zipcode" name="company[zipcode]" type="text" class='required'/></td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Company Photo/Logo:<font style="color:red;">*</font></td>
-                <td align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="63%"><input id="merchant_company_photo" name="merchant[company_photo]" type="file" class='required'/></td>
-                      <td width="37%"></td>
-                    </tr>
-                  </table></td>
-                <td align="right">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2">Category:<font style="color:red;">*</font></td>
-                <td align="left"><%=select("company", "deal_category_id", @categories.collect {|p| [ p.name, p.id ] }, {:prompt => 'Select Sector'})%></td>
-                <td align="right" class="deals_content2">Business Registration#:<font style="color:red;">*</font></td>
-                <td align="left"><input id="company_business_registration_number" name="company[business_registration_number]" type="text" class='required'/></td>
-              </tr>
-            </table></td>
-          <td width="6%">&nbsp;</td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>&nbsp;</td>
-          <td width="27%" height="48" background="images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="6%">&nbsp;</td>
-                <td width="78%" align="left" class="deals_content1">About the Company</td>
-                <td width="16%">&nbsp;</td>
-              </tr>
-            </table></td>
-          <td width="56%">&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td width="8%">&nbsp;</td>
-          <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
-              <tr>
-                <td width="3%">&nbsp;</td>
-                <td colspan="2">&nbsp;</td>
-                <td width="3%">&nbsp;</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td colspan="2" align="left" class="deals_content2">Description:( A small introduction of your company)<font style="color:red;font-size: 18px;">*</font></td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td colspan="2" align="left">
-                  <textarea cols="90%" rows="5" id="company_detail" name="company[detail]" class='required'></textarea>
-                </td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td align="right" class="deals_content2">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-              </tr>
-            </table></td>
-          <td width="9%">&nbsp;</td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
 
         <tr>
-          <td width="5%">&nbsp;</td>
+
+          <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+              <tr>
+
+                <td width="19%" align="right">&nbsp;</td>
+
+                <td width="27%" align="left">&nbsp;</td>
+
+                <td width="22%" align="right">&nbsp;</td>
+
+                <td width="32%" align="left">&nbsp;</td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Address 1:<font style="color:red;">*</font></td>
+
+                <td align="left"> <input id="merchant_profile_address1" name="merchant_profile[address1]"  type="text" class='required'/></td>
+
+                <td align="right" class="deals_content2">Country:<font style="color:red;">*</font></td>
+
+                <td align="left" class="deals_content2"><input id="merchant_profile_country" name="merchant_profile[country]" type="text" class='required'/></td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Address 2:</td>
+
+                <td align="left"><input id="merchant_profile_address2" name="merchant_profile[address2]"  type="text" class='required'/></td>
+
+                <td align="right" class="deals_content2"> Zip code:<font style="color:red;">*</font></td>
+
+                <td align="left"><input id="merchant_profile_zipcode" name="merchant_profile[zipcode]"  type="text" class='required'/></td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Phone:<font style="color:red;">*</font></td>
+
+                <td align="left"><input id="merchant_profile_contact_number" class='required' name="merchant_profile[contact_number]"  type="text" /></td>
+
+                <td align="right" class="deals_content2">Email:<font style="color:red;">*</font></td>
+
+                <td align="left"><input id="merchant_profile_email_address" class='required' name="merchant_profile[email_address]"  type="text" /></td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right">&nbsp;</td>
+
+                <td align="left">&nbsp;</td>
+
+                <td align="right">&nbsp;</td>
+
+                <td align="left">&nbsp;</td>
+
+              </tr>
+
+            </table></td>
+
+        </tr>
+
+    </table></td>
+
+  </tr>
+
+  <tr>
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+  <tr>
+
+    <td><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+        <tr>
+
+          <td width="30%" height="48" background="images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+              <tr>
+
+                <td width="6%">&nbsp;</td>
+
+                <td width="78%" align="left" class="deals_content1">Company Details</td>
+
+                <td width="16%">&nbsp;</td>
+
+              </tr>
+
+            </table></td>
+
+          <td width="59%">&nbsp;</td>
+
+        </tr>
+
+        <tr>
+
+          <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+              <tr>
+
+                <td width="19%" align="right">&nbsp;</td>
+
+                <td width="33%" align="left">&nbsp;</td>
+
+                <td width="16%" align="right">&nbsp;</td>
+
+                <td width="32%" align="left">&nbsp;</td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Name:<font style="color:red;">*</font></td>
+
+                <td align="left"><input id="company_name" name="company[name]"  type="text" class='required'/></td>
+
+                <td align="right" class="deals_content2">URL:<font style="color:red;">*</font></td>
+
+                <td align="left" class="deals_content2"><input id="company_website" name="company[website]" type="text" class='required'/></td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Address 1:<font style="color:red;">*</font></td>
+
+                <td align="left"><input id="company_address1" name="company[address1]" type="text" class='required'/></td>
+
+                <td align="right" class="deals_content2"> Address 2:</td>
+
+                <td align="left"><input id="company_address2" name="company[address2]" type="text" class='required'/></td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Country:<font style="color:red;">*</font></td>
+
+                <td align="left"><select id="company_country" name="company[city]" class='required'/><option>Singapore</option></select><%#=country_select("company", "city")%></td>
+
+                <td align="right" class="deals_content2">Zipcode:<font style="color:red;">*</font></td>
+
+                <td align="left"><input id="company_zipcode" name="company[zipcode]" type="text" class='required'/></td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Company Photo/Logo:<font style="color:red;">*</font></td>
+
+                <td align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                    <tr>
+
+                      <td width="63%"><input id="merchant_company_photo" name="merchant[company_photo]" type="file" class='required'/></td>
+
+                      <td width="37%"></td>
+
+                    </tr>
+
+                  </table></td>
+
+                <td align="right">&nbsp;</td>
+
+                <td align="left">&nbsp;</td>
+
+              </tr>
+
+              <tr>
+
+                <td align="right" class="deals_content2">Category:<font style="color:red;">*</font></td>
+
+                <td align="left"><%=select("company", "deal_category_id", @categories.collect {|p| [ p.name, p.id ] }, {:prompt => 'Select Sector'})%></td>
+
+                <td align="right" class="deals_content2">Business Registration#:<font style="color:red;">*</font></td>
+
+                <td align="left"><input id="company_business_registration_number" name="company[business_registration_number]" type="text" class='required'/></td>
+
+              </tr>
+
+            </table></td>
+
+        </tr>
+
+    </table></td>
+
+  </tr>
+
+  <tr>
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+  <tr>
+
+    <td><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+        <tr>
+
+          <td width="27%" height="48" background="images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+              <tr>
+
+                <td width="6%">&nbsp;</td>
+
+                <td width="78%" align="left" class="deals_content1">About the Company</td>
+
+                <td width="16%">&nbsp;</td>
+
+              </tr>
+
+            </table></td>
+
+          <td width="56%">&nbsp;</td>
+
+        </tr>
+
+        <tr>
+
+          <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+              <tr>
+
+                <td width="3%">&nbsp;</td>
+
+                <td colspan="2">&nbsp;</td>
+
+                <td width="3%">&nbsp;</td>
+
+              </tr>
+
+              <tr>
+
+                <td>&nbsp;</td>
+
+                <td colspan="2" align="left" class="deals_content2">Description:( A small introduction of your company)<font style="color:red;font-size: 18px;">*</font></td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+              <tr>
+
+                <td>&nbsp;</td>
+
+                <td colspan="2" align="left">
+
+                  <textarea cols="90%" rows="5" id="company_detail" name="company[detail]" class='required'></textarea>                </td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+              <tr>
+
+                <td>&nbsp;</td>
+
+                <td align="right" class="deals_content2">&nbsp;</td>
+
+                <td align="left">&nbsp;</td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+            </table></td>
+
+        </tr>
+
+    </table></td>
+
+  </tr>
+
+  <tr>
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+  <tr>
+
+    <td><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+
+
+        <tr>
+
           <td width="89%" colspan="2" valign="top" ><table width="100%" border="0" cellspacing="3" cellpadding="0">
 
+
+
               <tr>
+
                 <td colspan="2" align="left" class="deals_content2">Everything in the form was correctly filled if all the steps have a green checkmark icon. A red checkmark icon
+
                   indicates that some field is missing or filled out with invalid data. In this last step the user can confirm the submission of the form. </td>
+
               </tr>
+
               <tr>
+
                 <td colspan="2" align="left">&nbsp;</td>
+
               </tr>
+
               <tr>
+
                 <td width="30%" align="left" class="deals_content2"><strong><input type="checkbox" id="tos" name='tos'></input><a href='#' style="text-decoration: none;color: black;"onclick="document.getElementById('popup_center').style.display='block';"> I Agree to Terms and Conditions</a>
+
                   </strong></td>
 
               </tr>
+
               <tr>
+
                 <td width="30%" align="left" class="deals_content2"></td>
+
                 <td width="70%" align="left">
-                  <br/><%=image_submit_tag("register_btn.jpg" , :width=>"92", :height=>"34", :border=>"0",:onclick=>'return check_tos() ')%>
-                </td>
+
+                  <br/><%=image_submit_tag("register_btn.jpg" , :width=>"92", :height=>"34", :border=>"0",:onclick=>'return check_tos() ')%>                </td>
+
               </tr>
 
+
+
             </table></td>
-          <td width="6%">&nbsp;</td>
+
         </tr>
-      </table></td>
+
+    </table></td>
+
   </tr>
+
   <tr>
+
     <td>&nbsp;</td>
+
   </tr>
+
 </form>
+
+
+
 
 
