@@ -77,7 +77,7 @@ $(function() {
     <legend>Step 3</legend>
     <label for="rock">
       Are you ready to rock?Go ahead and 
-   <a href='#' onclick="document.getElementById('popup_center').style.display='block';">Agree to Terms and Conditions</a></label><input type="checkbox" id="tos" name='tos'></input>
+  <!-- <a href='#' onclick="document.getElementById('popup_center').style.display='block';">Agree to Terms and Conditions</a>--> <a href='/privacy' target='_blank'>Agree to Terms and Conditions</a></label><input type="checkbox" id="tos" name='tos'></input>
     <%=image_tag ("complete_registration_btn.png",:onclick => 'check_tos();', :id=>"submit_button", :class => 'push')%>
   </fieldset>
 
