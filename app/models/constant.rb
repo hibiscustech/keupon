@@ -6,7 +6,7 @@ class Constant < ActiveRecord::Base
   end
 
   def self.get_admin_email_id
-    query = %Q{select value from constants where name = 'admin_email_id'}
+    query = %Q{select value from constants where name = 'support_email_id'}
     find_by_sql(query)[0].value
   end
   
