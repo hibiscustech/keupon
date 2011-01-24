@@ -34,6 +34,7 @@ class SessionsController < ApplicationController
   end
   def new
     @page = "Login"
+    render :layout => 'application_login'
   end
 
   def create
