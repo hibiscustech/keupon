@@ -1,4 +1,3 @@
-
 <tr>
   <td height="55" background="/images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
@@ -34,9 +33,9 @@
                           <tr>
                             <td width="6%">&nbsp;</td>
                             <td width="12%" class="login_text">I'm a</td>
-                            <td width="6%"><input checked="checked" id="login_user_customer" name="login_user" value="customer" type="radio" onchange="new Ajax.Request('/sessions/forgot_password_for?type=customer', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;" /></td>
+                            <td width="6%"><input checked="checked" id="login_user_customer" name="login_user" value="customer" type="radio"  /></td>
                             <td width="21%" align="left" class="login_text">Customer</td>
-                            <td width="6%"><input id="login_user_merchant" name="login_user" value="merchant" type="radio" onchange="new Ajax.Request('/sessions/forgot_password_for?type=merchant', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;"/></td>
+                            <td width="6%"><input id="login_user_merchant" name="login_user" value="merchant" type="radio" /></td>
                             <td width="21%" align="left" class="login_text">Merchant</td>
                             <td width="6%"><input checked="checked" id="login_user_customer" name="login_user" value="admin" type="radio"/></td>
                             <td width="22%" align="left" class="login_text">Admin</td>
@@ -56,7 +55,7 @@
                             <a href="#" class="forgot_password_text" onclick="customerpassword('popup_customer');" style="color: rgb(3, 77, 124);">Forgot Password</a>
                           <% else %>
                             <a href="#" class="forgot_password_text" onclick="merchantpassword('popup_merchant');" style="color: rgb(3, 77, 124);">Forgot Password</a>
-                          <% end %>
+        <% end %>
 
 
                           <div id="popup_merchant">
@@ -89,10 +88,4 @@
       </tr>
 
     </table></td>
-
 </tr>
-
-
-
-
-
