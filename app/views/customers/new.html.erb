@@ -1,3 +1,20 @@
+<%if @signup_failed%>
+<script>
+$(function() {
+    $.stepTwoComplete_one = "complete";
+    $.stepTwoComplete_two = "complete";
+    var all_complete = true;
+
+ // Fade out steps 2 and 3 until ready
+    $("#step_2").css({
+        opacity: 1
+    });
+    $("#step_3").css({
+        opacity: 1
+    });
+})
+</script>
+<%end%>
 <% @customer.password = @customer.password_confirmation = nil %>
 <br/><div style="color: red;"><%= error_messages_for :customer %><br/></div>
 <% form_for :customer, :url => customers_path,:html => {:id=>'form'} do |f| -%>
