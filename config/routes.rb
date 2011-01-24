@@ -66,6 +66,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/press',:controller=>'footer',:action=>'press'
   map.connect '/legal',:controller=>'footer',:action=>'legal'
   map.connect '/privacy',:controller=>'footer',:action=>'privacy'
+  map.connect '/customer_faqs',:controller=>'footer',:action=>'customer_faq'
+  map.connect '/merchant_faqs',:controller=>'footer',:action=>'merchant_faq'
   map.resources :customers  
   map.resource :merchant
   map.resource :session

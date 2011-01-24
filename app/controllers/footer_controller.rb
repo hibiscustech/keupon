@@ -12,4 +12,8 @@ include AuthenticatedSystem
  end
  def privacy
  end
+ def customer_faq
+ end
+ def merchant_faq
+ end
 end
