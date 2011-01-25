@@ -26,11 +26,11 @@ function setButtonStatus(status){
 function form_validator(){
 var theForm = document.forms['2730422465'];
 var i;
-if (theForm.description1.value == "" || theForm.description1.value.length < 1)
+if (document.getElementById("description").value == "" || document.getElementById("description").value.length < 1)
 {
 alert("You must Describe the Keupon that you are looking for.");
-theForm.description1.focus();
-return (false);
+  document.getElementById("description").focus();
+  return (false);
 }
 
 if (theForm.price.value == "" || theForm.price.value.length < 1)
