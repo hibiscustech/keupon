@@ -21,7 +21,8 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'customers', :action => 'new'
   map.connect '/signup/:id', :controller => 'customers', :action => 'new'
   map.signup '/admin_create', :controller => 'sessions', :action => 'admin_create'
-  map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
+  #map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
+  map.forgot_password '/forgot_password', :controller => 'sessions', :action => 'forgot_password_for'
   map.change_password '/change_password', :controller => 'customers', :action => 'change_password'
    
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
