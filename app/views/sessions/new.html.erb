@@ -1,91 +1,61 @@
-<tr>
-  <td height="55" background="/images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="13%" align="left"><img src="/images/login_header_text.jpg" width="127" height="55" /></td>
-        <td width="87%" align="center" class="header_text">&nbsp;</td>
+ <tr>
+        <td height="55" background="/images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="13%" align="left"><img src="/images/login_header_text.jpg" width="127" height="55" /></td>
+            <td width="87%" align="center" class="header_text">&nbsp;</td>
+          </tr>
+        </table></td>
       </tr>
-    </table></td>
-</tr>
-<tr>
-  <td height="265" background="/images/login_bg.jpg" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="2%">&nbsp;</td>
-        <td width="37%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td width="351" height="179" background="/images/login_box.png" style="background-repeat:no-repeat;">
-                <% form_tag session_path do -%>
-                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
+        <td height="265" background="/images/login_bg.jpg" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="2%">&nbsp;</td>
+            <td width="37%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <% form_tag session_path do -%>
+              <tr>
+                <td width="351" height="179" background="/images/login_box.png" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="2" cellpadding="0">
+                  <tr>
+                    <td width="41%" align="right" class="login_text">Login: </td>
+                    <td width="59%"><%= text_field_tag 'login', @login %></td>
+                  </tr>
+                  <tr>
+                    <td align="right" class="login_text">Password: </td>
+                    <td><%= password_field_tag 'password', nil %></td>
+                  </tr>
 
-                    <tr>
-                      <td width="41%" align="right" class="login_text">Login: </td>
-                      <td width="59%"><%= text_field_tag 'login', @login %></td>
+                  <tr>
+                    <td height="14" colspan="2"></td>
                     </tr>
-                    <tr>
-                      <td align="right" class="login_text">Password: </td>
-                      <td><%= password_field_tag 'password', nil %></td>
+                  <tr>
+                    <td height="29" colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="6%">&nbsp;</td>
+                        <td width="12%" class="login_text">I'm a</td>
+                        <td width="6%"><input type="radio" name="radio" id="radio" value="radio" /></td>
+                        <td width="21%" align="left" class="login_text">Customer</td>
+                        <td width="6%"><input type="radio" name="radio" id="radio2" value="radio" /></td>
+                        <td width="21%" align="left" class="login_text">Merchant</td>
+                        <td width="6%"><input type="radio" name="radio" id="radio3" value="radio" /></td>
+                        <td width="22%" align="left" class="login_text">Admin</td>
+                      </tr>
+                    </table></td>
                     </tr>
-
-                    <tr>
-                      <td height="14" colspan="2"></td>
+                  <tr>
+                    <td height="5" colspan="2" align="right"></td>
                     </tr>
-                    <tr>
-                      <td height="29" colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td width="6%">&nbsp;</td>
-                            <td width="12%" class="login_text">I'm a</td>
-                            <td width="6%"><input checked="checked" id="login_user_customer" name="login_user" value="customer" type="radio"  /></td>
-                            <td width="21%" align="left" class="login_text">Customer</td>
-                            <td width="6%"><input id="login_user_merchant" name="login_user" value="merchant" type="radio" /></td>
-                            <td width="21%" align="left" class="login_text">Merchant</td>
-                            <td width="6%"><input checked="checked" id="login_user_customer" name="login_user" value="admin" type="radio"/></td>
-                            <td width="22%" align="left" class="login_text">Admin</td>
-                          </tr>
-                        </table></td>
-                    </tr>
-                    <tr>
-                      <td height="5" colspan="2" align="right"></td>
-                    </tr>
-                    <tr>
-                      <td align="right"> <div id="forgot_pwd">
-
-
-  <%#= render :partial => "forgot_password" %>
-                          <% if params[:type].blank? || params[:type] == "customer" %>
-
-                            <a href="#" class="forgot_password_text" onclick="customerpassword('popup_customer');" style="color: rgb(3, 77, 124);">Forgot Password</a>
-                          <% else %>
-                            <a href="#" class="forgot_password_text" onclick="merchantpassword('popup_merchant');" style="color: rgb(3, 77, 124);">Forgot Password</a>
-        <% end %>
-
-
-                          <div id="popup_merchant">
-                            <%= render :partial => "merchant/forgot_password" %>
-                          </div>
-
-                          <div id="popup_customer">
-                            <%= render :partial => "customers/forgot_password" %>
-                          </div>
-
-
-
-
-                        </div></td>
-                      <td align="center"><%=image_submit_tag ("login_btn.png" ,:width=>"72" ,:height=>"34",:border=>"0")%></td>
-                    </tr>
-                  </table>
-                <% end -%></td>
-            </tr>
-          </table></td>
-
-        <td width="27%"><img src="/images/login_object_img.png" width="260" height="265" /></td>
-        <td width="34%" align="center" class="login_welcome_text">Welcome to Keupons
-          <br /><br />
-          <span class="login_welcome_text_small">The only site where <br />
-            YOU can decide on the <br />
-            deal that you want</span></td>
-
-
+                  <tr>
+                    <td align="right"><a href="#" class="forgot_password_text">Forgot Password?</a></td>
+                    <td align="center"><a href="#"><%=image_submit_tag ("login_btn.png" ,:width=>"72" ,:height=>"34",:border=>"0")%></a></td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table> <% end -%></td>
+            <td width="27%"><img src="/images/login_object_img.png" width="260" height="265" /></td>
+            <td width="34%" align="center" class="login_welcome_text">Welcome to Keupons
+              <br /><br />
+              <span class="login_welcome_text_small">The only site where <br />
+              YOU can decide on the <br />
+              deal that you want</span></td>
+          </tr>
+        </table></td>
       </tr>
-
-    </table></td>
-</tr>
