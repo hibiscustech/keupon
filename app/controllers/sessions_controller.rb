@@ -117,7 +117,7 @@ protected
         xml.response 'success'
         xml.user_id customer.id
         xml.login customer.login
-        xml.user_photo customer.customer_photo.url(:small)
+        xml.user_photo ((customer.customer_photo?)?(customer.customer_photo.url(:small)):('/images/user.png'))
        end
        respond_to do |format|
          format.xml { render :xml => xml.target! }
