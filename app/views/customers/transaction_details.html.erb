@@ -12,6 +12,82 @@ else{
   Effect.BlindUp('credit_card_entry');
 }
 }
+function validate_cc_form(cards){
+var card=document.getElementById("card").value;
+var theForm = document.forms['new_customer_credit_card'];
+var dis=document.getElementById('credit_card_entry').style.display;
+if(card!='yes'){
+var cc=document.getElementById("customer_creditcard").value;
+}
+if (dis=='none'){
+if ((card != 'yes') && (cc == '0')){
+alert('Please choose a mode of payment');
+return false;
+}
+else
+{
+theForm.submit();
+}
+}
+else{
+check_form_fields();
+}
+}
+function check_form_fields(){
+var theForm = document.forms['new_customer_credit_card'];
+if (document.getElementById('customer_credit_card_first_name').value=="")
+{
+alert('Please enter a valid first name.');
+return false;
+}
+if (document.getElementById('customer_credit_card_last_name').value=="")
+{
+alert('Please enter a valid last name.');
+return false;
+}
+if (document.getElementById('customer_credit_card_credit_card_number').value=="")
+{
+alert('Please enter a valid 16 digit credit card number.');
+return false;
+}
+if (document.getElementById('customer_credit_card_card_type').value=="")
+{
+alert('Please enter a valid credit card type.');
+return false;
+}
+if (document.getElementById('customer_credit_card_cvv2').value=="")
+{
+alert('Please enter a valid cvv.');
+return false;
+}
+
+if (document.getElementById('customer_credit_card_address1').value=="")
+{
+alert('Please enter a valid billing address.');
+return false;
+}
+if (document.getElementById('customer_credit_card_city').value=="")
+{
+alert('Please enter a valid city');
+return false;
+}
+if (document.getElementById('customer_credit_card_country').value=="")
+{
+alert('Please enter a valid country name.');
+return false;
+}
+if (document.getElementById('customer_credit_card_zipcode').value=="")
+{
+alert('Please enter a valid zipcode.');
+return false;
+}
+if (document.getElementById('customer_credit_card_phone').value=="")
+{
+alert('Please enter a valid phone number.');
+return false;
+}
+theForm.submit();
+}
 </script>
 
 <tr>
@@ -146,7 +222,11 @@ else{
               <tr>
                 <td colspan="3" align="center">
                   <span class="billing_text">
-                    <%=image_submit_tag ("purchase_btn.jpg" )%>
+                    <%#=image_submit_tag ("purchase_btn.jpg",{:onclick => "validate_cc_form;"})%>
+                    <%if @cards.blank?%>
+                     <input id='card' value='yes' type='hidden'>
+                    <%end%>
+                    <img src="/images/purchase_btn.jpg" onclick="validate_cc_form();"/>
                     <a href="/deal_of_the_day"><img src="images/cancel_btn1.jpg" width="101" height="30" border="0" /></a>
                   </span>
                 </td>
