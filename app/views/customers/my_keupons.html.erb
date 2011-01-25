@@ -120,14 +120,12 @@ hr {
                      <div class="containit ornament-right">
                         <div class="featureCarouselshadow">
                             <h1 class="mb4" style="color:#fff;">You got <%= current_customer.kupoints %> Keupoints</h1>
-                            <p class="mb20" style="color:#fff;">You can redeem it for these deals.</p>
-                            <!-- feature carousel with images and captions -->
-
+                            <p class="mb20" style="color:#fff;">You can redeem it for these deals.</p>                            
                             <div id="featureCarousel">
 
                             <% for deal in @keupoint_deals %>
                             	<% keup_deal = Deal.find(deal.id) %>
-                                <!-- start feature  -->
+                                
                                 <div class="feature">
                                   <a href="/keupoint_deal?id=<%=deal.id%>"><img alt="Keupoint Deal" src="<%=keup_deal.deal_photo.url %>" style="width: 420px; height: 270px;"/></a>
                                     <div>
@@ -135,13 +133,10 @@ hr {
                                             <%= deal.name %>
                                         </p>
                                     </div>
-                                </div>
-                                <!-- end feature  -->
+                                </div>                                
                             <% end %>
 
-                            </div>
-                            <!-- end feature carousel -->
-
+                            </div>                          
                         </div>
                      </div>
                  </div>
