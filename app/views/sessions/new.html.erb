@@ -44,22 +44,8 @@
                     <td height="5" colspan="2" align="right"></td>
                     </tr>
                   <tr>
-                    <td align="right"><!--<a href="#" class="forgot_password_text">Forgot Password?</a>-->
-                     <% if params[:type].blank? || params[:type] == "customer" %>
-
-                            <a href="#" class="forgot_password_text" onclick="customerpassword('popup_customer');" style="color: rgb(3, 77, 124);">Forgot Password</a>
-                          <% else %>
-                            <a href="#" class="forgot_password_text" onclick="merchantpassword('popup_merchant');" style="color: rgb(3, 77, 124);">Forgot Password</a>
-        <% end %>
-
-
-                          <div id="popup_merchant">
-                            <%= render :partial => "merchant/forgot_password" %>
-                          </div>
-
-                          <div id="popup_customer">
-                            <%= render :partial => "customers/forgot_password" %>
-                          </div>
+                    <td align="right"><a href="#" class="forgot_password_text">Forgot Password?</a>
+                   
 
                     </td>
                     <td align="center"><a href="#"><%=image_submit_tag ("login_btn.png" ,:width=>"72" ,:height=>"34",:border=>"0")%></a></td>
