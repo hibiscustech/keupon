@@ -33,6 +33,27 @@ class ApiController < ApplicationController
       format.xml { render :xml => xml.target! }
     end 
  end
+ def update_demand_deal_api
+    @demand_deal = CustomerDemandDeal.find(params[:deal_id])
+    @categories = DealCategory.find(:all)
+    @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+     begin
+    @demand_deal.update_attributes(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59"), :description => params[:description], :deal_category_id => params[:category])
+     xml.edit_deal do
+     xml.uniq_id @demand_deal.id
+     xml.message 'success'
+    end
+     rescue=>e
+    xml.edit_deal do
+     xml.message 'Failed-some unexpected error occured'
+    end
+     end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end
+ end
  def want_a_deal_api
      current_customer=Customer.find(params[:user_id])
      @categories = DealCategory.find(:all)
