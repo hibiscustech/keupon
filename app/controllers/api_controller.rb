@@ -190,6 +190,37 @@ class ApiController < ApplicationController
     end 
 
   end
+  def my_profile
+    user=Customer.find(params[:id])
+    customer_profile = user.customer_profile
+    favs=CustomerFavouriteDeal.find_all_by_customer_id(user.id)
+
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.profile do
+      xml.user_id user.id
+      xml.user_name user.login
+      xml.first_name customer_profile.first_name
+      xml.last_name customer_profile.last_name
+      xml.email user.email
+      xml.gender customer_profile.gender
+      xml.birthdate customer_profile.dob.strftime("%d/%b/%Y")
+      xml.marital_status customer_profile.relationship
+      xml.region customer_profile.region
+      xml.nric_fin customer_profile.customer_pin
+      xml.avg_sal customer_profile.income
+      xml.work_sector IndustrySector.find(customer_profile.industry_sector_id).name
+      xml.interests do
+       favs.each do |fav|
+        xml.item DealCategory.find(fav.deal_category_id).name
+       end
+      end
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
+    
+  end
   protected
   def deal_current_discount(deal_id, no_of_customers)
     return DealDiscount.deal_current_discount(deal_id, no_of_customers)
