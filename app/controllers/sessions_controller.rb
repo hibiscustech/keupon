@@ -55,20 +55,29 @@ class SessionsController < ApplicationController
   end
 
   def forgot_password_for
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'forgot_pwd',:partial => "forgot_password"
-          end
-        }
+    #    if request.xml_http_request?
+    #      respond_to do |format|
+    #        format.html
+    #        format.js {
+    #          render :update do |page|
+    #            page.replace_html 'forgot_pwd',:partial => "forgot_password"
+    #          end
+    #        }
+    #      end
+    #    end
+  end
+
+  def forgot_password
+    if request.post?
+      if params[:login_user] == 'merchant'
+        password_merchant
+      else
+        password_customer
       end
     end
   end
 
-
-    def change_password_update
+ def change_password_update
      @page = "Change Password"
      customer = Customer.find(params[:current_user])
     if Customer.authenticate(customer.login, params[:old_password])
@@ -188,6 +197,56 @@ protected
     end
   end
 
+
+  def password_customer
+    customer = Customer.find_by_email(params[:email])
+    if !customer.nil?
+      new_pwd = newpass(8)
+      logger.info "----------------------------------------------------------"
+      logger.info "#{new_pwd}"
+      passphrase_digest = encrypted_password(new_pwd,customer.salt)
+      customer.crypted_password = passphrase_digest
+      customer.password = new_pwd
+      customer.password_confirmation = new_pwd
+      flag = customer.save!
+      CustomerMailer.deliver_forgot_password(customer, new_pwd)
+      if flag
+        flash[:notice] = "Your password has been reset and send to your mail"
+        redirect_to "/"
+      else
+        flash[:notice] = "Your Password could not be changed."
+        redirect_to "/forgot_password"
+      end
+    else
+      flash[:notice] = "Email-id doesnt exists"
+      redirect_to "/forgot_password"
+    end
+  end
+
+  def password_merchant
+    merchant = Merchant.find_by_email(params[:email])
+    if !merchant.nil?
+      new_pwd = newpass(8)
+      logger.info "----------------------------------------------------------"
+      logger.info "#{new_pwd}"
+      passphrase_digest = encrypted_password(new_pwd,merchant.salt)
+      merchant.crypted_password = passphrase_digest
+      merchant.password = new_pwd
+      merchant.password_confirmation = new_pwd
+      flag = merchant.save!
+      CustomerMailer.deliver_forgot_password(merchant, new_pwd)
+      if flag
+        flash[:notice] = "Your password has been reset and send to your mail"
+        redirect_to "/"
+      else
+        flash[:notice] = "Your Password could not be changed."
+        redirect_to "/forgot_password"
+      end
+    else
+      flash[:notice] = "Email-id doesnt exists"
+      redirect_to "/forgot_password"
+    end
+  end
   
   
 end
