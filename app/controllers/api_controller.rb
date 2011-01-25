@@ -1,4 +1,38 @@
 class ApiController < ApplicationController
+ def static_xmls
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    regions=CustomerProfile::REGION
+    status=CustomerProfile::RELATIONSHIP
+    work_sector=IndustrySector.all
+    categories=DealCategory.all
+    xml.test do 
+    xml.region do
+     regions.each do |r|
+      xml.item r
+     end
+    end
+    xml.marital_status do
+     status.each do |r|
+      xml.item r
+     end
+    end
+    xml.work_sector do
+     work_sector.each do |r|
+      xml.item r.name
+     end
+    end
+    xml.categories do
+     categories.each do |r|
+      xml.item r.name
+     end
+    end
+
+   end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
+ end
  def deals_on_demand_new_or_confirmed
  current_customer=Customer.find(params[:user_id])
  @msg =
