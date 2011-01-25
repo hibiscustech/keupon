@@ -69,6 +69,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/customer_faqs',:controller=>'footer',:action=>'customer_faq'
   map.connect '/merchant_faqs',:controller=>'footer',:action=>'merchant_faq'
   map.connect '/myprofile/:id',:controller=>'api',:action=>'my_profile'
+  map.connect '/want_a_deal_api/:user_id',:controller=>'api',:action=>'want_a_deal_api'
   map.resources :customers  
   map.resource :merchant
   map.resource :session
