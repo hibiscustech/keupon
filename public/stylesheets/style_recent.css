@@ -118,6 +118,32 @@ height:20px;
 	
 }
 
+.sliderImage  {
+	margin-left:115px;
+	padding-top:11px;
+	height:171px;
+        width:950px;
+
+
+}
+
+.sliderImage ul{
+	margin:0px;
+	padding:0px;
+
+}
+.sliderImage ul li {
+	margin:0;
+	list-style:none;
+	width:245px;
+	height:160px;
+	margin-left:1px;
+	display:inline;
+
+
+
+}
+
 .arrow-but{
 	position:relative;
 	z-index:10;
