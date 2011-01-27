@@ -24,22 +24,24 @@ class ApiController < ApplicationController
     @customer.login = @customer.email
     success = @customer && @customer.save
     @customer_profile = CustomerProfile.new(:first_name=>params[:first_name],:last_name=>params[:last_name],:address1=>params[:address1],:address2=>params[:address2],:contact_number=>params[:contact_number],:country=>params[:country],:zipcode=>params[:zipcode])
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.signup_step_2 do
     if success && @customer.errors.empty?
-      if !params[:friend_id].nil?
-       @friend=CustomerFriends.find(params[:friend_id])
-       #@friend.update_attribute(:signed_up,1)
-      end
-      @customer_profile=@profile = CustomerProfile.new(params[:customer_profile])
+    @customer_profile =@profile=CustomerProfile.new(:first_name=>params[:first_name],:last_name=>params[:last_name],:address1=>params[:address1],:address2=>params[:address2],:contact_number=>params[:contact_number],:country=>params[:country],:zipcode=>params[:zipcode])
       @profile.email_address = @customer.email
       @profile.customer = @customer
       @profile.save
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      xml.status 'Success'
+      xml.message 'User created successfully'
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
-      @signup_failed=true
-      render :action => 'new', :layout=> 'signup'
+      xml.status 'failure'
+      xml.message @customer.errors.full_messages
     end
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
 
  end
  def static_xmls
@@ -183,7 +185,7 @@ class ApiController < ApplicationController
         xml.name d.description
         xml.expected_price d.expected_value
         xml.no_of_deals d.number
-        xml.deadline d.deadline
+        xml.deadline Time.at(d.deadline).strftime("%d/%m/%Y")
         end
         end
       }
