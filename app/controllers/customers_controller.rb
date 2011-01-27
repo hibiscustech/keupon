@@ -151,6 +151,7 @@ class CustomersController < ApplicationController
     @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
+    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals  
     @deal_scale_xml = deal_scale_graph(@deal)
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)

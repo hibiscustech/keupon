@@ -1,4 +1,18 @@
+ <script type="text/javascript">
+      jquery(function() {
+        jquery(".sliderImage").jCarouselLite({
+          btnNext: ".next",
+          btnPrev: ".prev",
+          visible: 4,
+          easing: "easeinout",
+          auto: 3000,
+          speed: 1000
+        });
 
+      });
+
+
+    </script>
       <tr>
         <td height="55" background="/images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -357,37 +371,34 @@
             <td height="55" align="left" background="/images/header_red_bg.jpg"><img src="/images/more_great_deals_header_text.jpg" width="280" height="55" /></td>
           </tr>
           <tr>
-            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="3%" align="center"><a href="#"><img src="/images/left_arrow_btn.jpg" width="19" height="34" border="0"/></a></td>
-                <td width="94%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="20%">&nbsp;</td>
-                      <td width="20%">&nbsp;</td>
-                      <td width="20%">&nbsp;</td>
-                      <td colspan="2">&nbsp;</td>
-                    </tr>
-                    <tr>
-                      <td align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td width="20%" align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td width="20%" align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                    </tr>
-                    <tr>
-                      <td height="10" colspan="5"></td>
-                    </tr>
-                    <tr>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a> </td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></td>
-                    </tr>
-                </table></td>
-                <td width="3%"><a href="#"><img src="/images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a></td>
-              </tr>
-            </table></td>
+            <td>
+              
+              <div id="wrapper">
+
+		<div class="slider-frame">
+                <div class="sliderImage">
+                  <ul>
+
+                    <%for opdd in @open_deal_recents
+                      discount = opdd[1]
+                      open_deal = @open_deals_recents[opdd[0]]
+                      opd = Deal.find(open_deal.id)
+                    %>
+                      <li>
+                        <a href="/deal_details?id=<%= open_deal.id %>" ><img src="<%=opd.deal_photo.url%>" width="200" height="140" alt="Project Title 1" /></a></li>
+                    <%end%>
+                  </ul>
+                </div>
+	 </div>
+			 <div class="arrow-but">
+				<a href="#" class="prev"><img src="./images/left_arrow_btn.jpg" width="19" height="34" border="0" /></a>
+				<a href="#" class="next"><img src="./images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a>
+</div>
+
+
+   </div>
+
+            </td>
           </tr>
           <tr>
             <td>&nbsp;</td>
