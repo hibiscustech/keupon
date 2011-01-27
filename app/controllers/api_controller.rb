@@ -1,9 +1,52 @@
 class ApiController < ApplicationController
+ def sign_up_step1
+  email=params[:email]
+  customer=Customer.find_by_email(email)
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.signup do
+     if customer.blank?
+      xml.status 'success'
+      xml.message 'No user existing in our sytem with this email, go ahead'
+     else
+      xml.status 'failure'
+      xml.message 'User already existing in our system with this email id'
+     end  
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
+ end 
+ def sign_up_step2
+    @customer = Customer.new(:email=>params[:email],:password=>params[:password],:password_confirmation=>params[:password_confirmation])
+    @customer.kupoints = 0
+    @customer.time_created = Time.now
+    @customer.login = @customer.email
+    success = @customer && @customer.save
+    @customer_profile = CustomerProfile.new(:first_name=>params[:first_name],:last_name=>params[:last_name],:address1=>params[:address1],:address2=>params[:address2],:contact_number=>params[:contact_number],:country=>params[:country],:zipcode=>params[:zipcode])
+    if success && @customer.errors.empty?
+      if !params[:friend_id].nil?
+       @friend=CustomerFriends.find(params[:friend_id])
+       #@friend.update_attribute(:signed_up,1)
+      end
+      @customer_profile=@profile = CustomerProfile.new(params[:customer_profile])
+      @profile.email_address = @customer.email
+      @profile.customer = @customer
+      @profile.save
+      redirect_back_or_default('/')
+      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+    else
+      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      @signup_failed=true
+      render :action => 'new', :layout=> 'signup'
+    end
+
+ end
  def static_xmls
     xml = Builder::XmlMarkup.new
     xml.instruct!
     regions=CustomerProfile::REGION
-    status=CustomerProfile::RELATIONSHIP
+    status=CustomerProfile::RELATIONSHIP.keys
     work_sector=IndustrySector.all
     categories=DealCategory.all
     xml.test do 
@@ -51,10 +94,12 @@ class ApiController < ApplicationController
      xml.edit_deal do
      xml.uniq_id @demand_deal.id
      xml.message @msg
+     xml.status 'Success'
     end
      rescue=>e
     xml.edit_deal do
      xml.message 'Failed-some unexpected error occured'
+     xml.status 'Failure'
     end
      end
     respond_to do |format|
@@ -73,10 +118,12 @@ class ApiController < ApplicationController
      xml.edit_deal do
      xml.uniq_id @demand_deal.id
      xml.message 'success'
+     xml.status 'Success'
     end
      rescue=>e
     xml.edit_deal do
      xml.message 'Failed-some unexpected error occured'
+     xml.status 'Failure'
     end
      end
     respond_to do |format|
@@ -96,10 +143,12 @@ class ApiController < ApplicationController
     xml.new_deal do
      xml.uniq_id @demand_deal.id
      xml.message 'success'
+     xml.status 'success'
     end
      rescue=>e
     xml.new_deal do
      xml.message 'Failed'
+     xml.status 'Failure'
     end
      end
     respond_to do |format|
