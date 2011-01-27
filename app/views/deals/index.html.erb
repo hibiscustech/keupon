@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'ckeditor' %>
 <script Language="JavaScript">
 <!--
 function form_validator1(min_discount){
@@ -67,13 +68,14 @@ alert("You must enter Original Value.");
 theForm.deal_value.focus();
 return (false);
 }
-
+theForm.deal_rules.value = CKEDITOR.instances.deal_rules.getData();
 if (theForm.deal_rules.value == "" || theForm.deal_rules.value.length < 1)
 {
 alert("You must enter Rules.");
 theForm.deal_rules.focus();
 return (false);
 }
+theForm.deal_highlights.value = CKEDITOR.instances.deal_highlights.getData();
 if (theForm.deal_highlights.value == "" || theForm.deal_highlights.value.length < 1)
 {
 alert("You must enter Highlights.");

@@ -30,11 +30,19 @@
                 </tr>
               <tr>
                 <td align="right" class="deals_content2">Rules of the deal <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[rules]" id="deal_rules" /></td>
+                <td align="left">
+                  <textarea name="deal[rules]" id="deal_rules">
+			<ul><li>&nbsp;</li></ul>
+                  </textarea>
+                </td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Highlights of the deal <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[highlights]" id="deal_highlights" /></td>
+                <td align="left">
+                  <textarea name="deal[highlights]" id="deal_highlights">
+			<ul><li>&nbsp;</li></ul>
+                  </textarea>
+                </td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Start Date <span class="deals_content_red_bold">*</span>:</td>
@@ -64,3 +72,26 @@
             <td width="6%">&nbsp;</td>
           </tr>
         </table>
+                <script type="text/javascript">
+		//<![CDATA[
+			// Replace the <textarea id="editor1"> with an CKEditor instance.
+			var editor1 = CKEDITOR.replace( 'deal_rules' ,
+				{
+					// Defines a simpler toolbar to be used in this sample.
+					// Note that we have added out "MyButton" button here. toolbar : [['BulletedList']]
+					toolbar : [['BulletedList']]
+				});
+			editor1.config.resize_enabled = false;
+			editor1.config.height = 85;
+			editor1.config.width= 500;
+			var editor2 = CKEDITOR.replace( 'deal_highlights' ,
+				{
+					// Defines a simpler toolbar to be used in this sample.
+					// Note that we have added out "MyButton" button here. toolbar : [['BulletedList']]
+					toolbar : [['BulletedList']]
+				});
+			editor2.config.resize_enabled = false;
+			editor2.config.height = 85;
+			editor2.config.width= 500;
+		//]]>
+		</script>
