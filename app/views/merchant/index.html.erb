@@ -90,32 +90,39 @@
           <tr>
             <td width="2%">&nbsp;</td>
             <td width="96%" height="180" valign="top" background="/images/deal_bg.jpg" style="border:1px solid #CCCCCC;">
-            
-               <div id="wrapper">
-
-                <div class="slider-frame">
-                <div class="sliderImagesmerchant">
-                  <ul>
-
-            <% for dd in @deal_discounts
-    graph = dd[1]
-    deal = @deals[dd[0]]
-    deal_photo = Deal.find(deal.id)
-%>
-                      <li>
-                        <a href="/" ><img src="<%= deal_photo.deal_photo.url %>" width="200" height="140" alt="Project Title 1" /></a></li>
-                    <%end%>
-                  </ul>
-                </div>
-         </div>
-                         <div class="arrow-but">
-                                <a href="#" class="prev"><img src="./images/left_arrow_btn.jpg" width="19" height="34" border="0" /></a>
-                                <a href="#" class="next"><img src="./images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a>
-</div>
-
-
-   </div>
-
+              <%if @deal_discounts.length <= 3 %>
+                  <table align="center" cellpadding="15"><tr>
+                      <% for dd in @deal_discounts
+                        graph = dd[1]
+                        deal = @deals[dd[0]]
+                        deal_photo = Deal.find(deal.id)
+                      %>
+                        <td>
+                          <a href="/" ><img src="<%= deal_photo.deal_photo.url %>" width="200" height="140" border="0" alt="Project Title 1" /></a></td>
+                      <%end%></tr>
+                  </table>
+                <%else%>
+                  <div id="wrapper">
+                    <div class="slider-frame">
+                      <div class="sliderImagesmerchant">
+                        <ul>
+                          <% for dd in @deal_discounts
+                            graph = dd[1]
+                            deal = @deals[dd[0]]
+                            deal_photo = Deal.find(deal.id)
+                          %>
+                            <li>
+                              <a href="/" ><img src="<%= deal_photo.deal_photo.url %>" width="200" height="140" alt="Project Title 1" /></a></li>
+                          <%end%>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="arrow-but">
+                      <a href="#" class="prev"><img src="./images/left_arrow_btn.jpg" width="19" height="34" border="0" /></a>
+                      <a href="#" class="next"><img src="./images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a>
+                    </div>
+                  </div>
+                <%end%>
 
             </td>
             <td width="2%">&nbsp;</td>
