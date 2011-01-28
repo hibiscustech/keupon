@@ -21,7 +21,7 @@ class DealsController < ApplicationController
   def activate
     id=params[:id]
     @deal=Deal.find(params[:id])
-    @deal.update_attribute(:activated,1)
+    @deal.update_attributes(:activated => "1", :status => 'open')
     redirect_to '/index'
   end
   def save_commission
