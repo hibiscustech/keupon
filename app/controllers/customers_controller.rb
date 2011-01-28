@@ -777,7 +777,7 @@ class CustomersController < ApplicationController
       flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
       redirect_to '/'
     else
-      flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+      flash[:notice] = "Your Profile is successfully updated."
       redirect_to '/my_profile'
     end
   end
