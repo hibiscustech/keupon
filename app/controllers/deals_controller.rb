@@ -4,7 +4,8 @@ class DealsController < ApplicationController
   include Geokit::Geocoders
   layout 'application_merchant'
 
-  before_filter :login_required , :only => [:index]
+  before_filter :login_required , :only => [:index, :activate_the_deal]
+
   def activate_the_deal
     id=params[:id]
     @page = "Deal activation & Preview "
