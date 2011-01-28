@@ -2,7 +2,7 @@
   <form action='/deals/save_commission/<%=deal_id%>' method='post'>
     <table CELLPADDING="3" CELLSPACING="6"  style="border:1px solid black;font-size:14px;" BACKGROUND="/images/bg_white.jpg">
      <tr>
-              <td class="popup"><a href="#" onclick="document.getElementById('popup_create_deal_<%=deal_id%>').style.display='none';;" >X</a></td>
+              <td class="popup" colspan="4" align="right"><a href="#" onclick="document.getElementById('popup_create_deal_<%=deal_id%>').style.display='none';;" >X</a></td>
             </tr>
     <tr>
       <th>Minimum Customers</th>
@@ -13,7 +13,7 @@
      <%deal_details(deal_id).each do |dl|%>
      <tr>     
       <td align="center"><%=dl.customers%></td>
-      <td align="center"><%=dl.max_customers%></td>
+      <td align="center"><%=(dl.max_customers.blank?)? "Any" : dl.max_customers%></td>
       <td align="center"><%=dl.discount%></td>
       <td align="center"><input type='text' name='commission[<%=dl.id%>][]' value='<%=dl.commission%>' size='10'/></td>
      </tr>
