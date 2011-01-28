@@ -59,6 +59,12 @@
                 </td>
               </tr>
               <tr>
+                <td align="right" class="deals_content2"> <br/>Company Description :</td>
+                <td align="left"><br/><textarea id="company_detail" name="company[detail]" rows="5" cols="30">
+                  <%= @company.detail %>
+                  </textarea></td>
+              </tr>
+              <tr>
                 <td align="right" class="deals_content2"></td>
                 <td align="left" class="deals_content2"> <br/><%=image_submit_tag ("update_btn.png"), :onclick => "return Validate();"%><%=link_to image_tag("cancel_search.png", :border=>0),"/index", {:style=>"padding-left:30px;"}%> </td>
               </tr>
