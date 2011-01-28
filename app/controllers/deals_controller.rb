@@ -4,7 +4,7 @@ class DealsController < ApplicationController
   include Geokit::Geocoders
   layout 'application_merchant'
 
-  before_filter :login_required , :only => [:index, :activate_the_deal]
+  before_filter :login_required , :only => [:index, :activate_the_deal, :activate]
 
   def activate_the_deal
     id=params[:id]
@@ -22,7 +22,7 @@ class DealsController < ApplicationController
     id=params[:id]
     @deal=Deal.find(params[:id])
     @deal.update_attribute(:activated,1)
-    redirect_to '/'
+    redirect_to '/index'
   end
   def save_commission
     params[:commission].each_pair do |key,value|
