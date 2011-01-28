@@ -431,7 +431,7 @@
   function CountBack(myDiv, secs)
   {
     var DisplayStr;
-    var DisplayFormat = "&nbsp;&nbsp;&nbsp;&nbsp;%%D%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%H%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%M%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%%S%%";
+    var DisplayFormat = "<table width='100%' border='0' cellpadding='0' cellspacing='0'><td width='18%' align='center' class='time'>Days<br />%%D%%</td><td width='19%' align='center' class='time' background='/images/black.jpg' style='background-repeat:repeat;'>Hours<br />%%H%%</td><td width='18%' align='center' class='time'>Min<br />%%M%%</td><td width='18%' align='center' class='time' background='/images/black.jpg' style='background-repeat:repeat;'>Sec<br />%%S%%</td></table>%%S%%";
     DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
     DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
     DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
