@@ -69,7 +69,13 @@
             <tr>
               <td><%= render :partial => "shared/admins_bar"%></td>
             </tr>
-
+            <tr>
+                <%if flash[:notice] %>
+        <div id="mydiv" style="text-align:center;background-color:black;color:#fff;font-size: 16px;margin-bottom: 5px;"><%= flash[:notice] %></div>
+      <%else%>
+        <div id="mydiv" style="text-align:center;background-color:black;color:#fff;font-size: 16px;margin-bottom: 5px;"><%= flash[:error]%>  </div>
+      <%end%>
+            </tr>
             <%=yield%>
             
             <tr>
