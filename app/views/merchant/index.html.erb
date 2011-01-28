@@ -78,34 +78,34 @@
           </tr>
           <tr>
             <td width="2%">&nbsp;</td>
-            <td width="96%" height="180" valign="top" background="/images/deal_bg.jpg" style="border:1px solid #CCCCCC;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="3%" align="center"><a href="#"><img src="/images/left_arrow_btn.jpg" width="19" height="34" border="0"/></a></td>
-                <td width="94%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td height="8" colspan="5"></td>
-                    </tr>
-                    <tr>
-                      <td width="20%" align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td width="20%" align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td width="20%" align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td width="20%" align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                      <td width="20%" align="center"><a href="#"><img src="/images/mobile_img_small.jpg" width="120" height="119" border="0"/></a></td>
-                    </tr>
-                    <tr>
-                      <td height="8" colspan="5"></td>
-                    </tr>
-                    <tr>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet</a> </td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet</a></td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet</a></td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet</a></td>
-                      <td align="center"><a href="#" class="deals_content_blue_link">Lorem ipsum dolor sit amet</a></td>
-                    </tr>
-                </table></td>
-                <td width="3%"><a href="#"><img src="/images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a></td>
-              </tr>
-            </table></td>
+            <td width="96%" height="180" valign="top" background="/images/deal_bg.jpg" style="border:1px solid #CCCCCC;">
+            
+              <div id="wrapper">
+
+		<div class="slider-frame">
+                <div class="sliderImage">
+                  <ul>
+
+            <% for dd in @deal_discounts
+    graph = dd[1]
+    deal = @deals[dd[0]]
+    deal_photo = Deal.find(deal.id)
+%>
+                      <li>
+                        <a href="/" ><img src="<%= deal_photo.deal_photo.url %>" width="200" height="140" alt="Project Title 1" /></a></li>
+                    <%end%>
+                  </ul>
+                </div>
+	 </div>
+			 <div class="arrow-but">
+				<a href="#" class="prev"><img src="./images/left_arrow_btn.jpg" width="19" height="34" border="0" /></a>
+				<a href="#" class="next"><img src="./images/right_arrow_btn.jpg" width="19" height="34" border="0"/></a>
+</div>
+
+
+   </div>
+
+            </td>
             <td width="2%">&nbsp;</td>
           </tr>
         </table></td>

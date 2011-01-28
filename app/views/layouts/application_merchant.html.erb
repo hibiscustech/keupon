@@ -10,6 +10,12 @@
     <!-- <link href="/stylesheets/calendar/red/style.css" rel="stylesheet" type="text/css" /> -->
     <script src="/javascripts/jquery-latest.js" type="text/javascript"></script>
     <script src="/javascripts/validation.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="/recent/jcarousellite.js"></script>
+    <script type="text/javascript" src="/recent/easing.js"></script>
+    <script type="text/javascript" src="/recent/superfish.js"></script>
+    <script type="text/javascript" src="/recent/jquery.prettyphoto.js" ></script>
+
     <script type="text/javascript">
       var j = jQuery.noConflict();
     </script>
@@ -33,6 +39,33 @@
 	});
 });
     </script>
+
+     <script type="text/javascript">
+      j(document).ready(function(){
+        j("ul.sf-menu").superfish({
+          animation: {height:'show'},   // slide-down effect without fade-in
+          delay:     200               // 1.2 second delay on mouseout
+        });
+      });
+    </script>
+
+
+    <script type="text/javascript">
+      j(function() {
+        j(".sliderImagesmerchant").jCarouselLite({
+          btnNext: ".next",
+          btnPrev: ".prev",
+          visible: 3,
+          easing: "easeinout",
+          auto: 3000,
+          speed: 1000
+        });
+
+      });
+
+
+    </script>
+
   </head>
   <body>
   <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
