@@ -60,13 +60,15 @@
     <script src="/javascripts/controls.js" type="text/javascript"></script>
     <% CalendarDateSelect.format = :american %>
     <%= calendar_date_select_includes "red" %>
+    <script type="text/javascript">
+      var jquery = jQuery.noConflict();
+    </script>
+    <script>
+      setTimeout(function() {
+        jquery('#mydiv').fadeOut('slow');
+      }, 4000); // <-- time in milliseconds
 
-     <script>
-   setTimeout(function() {
-    $('#mydiv').fadeOut('slow');
-}, 4000); // <-- time in milliseconds
-
-   </script>
+    </script>
 
   </head>
   <body>
