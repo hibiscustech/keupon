@@ -300,4 +300,60 @@ ul.nav-sub li a {
 
 
 
+/*---------------------slider--------------------*/
+
+.slider-frame{
+	width:800px;
+	height:191px;
+	margin-bottom:20px;
+	background-image: url(./images/slider-bg.png);
+	background-repeat: no-repeat;
+
+
+}
+.sliderImagesmerchant  {
+	margin-left:115px;
+	padding-top:11px;
+	height:171px;
+        width:950px;
+
+
+}
+
+.sliderImagesmerchant ul{
+	margin:0px;
+	padding:0px;
+
+}
+.sliderImagesmerchant ul li {
+	margin:0;
+	list-style:none;
+	width:245px;
+	height:160px;
+	margin-left:1px;
+	display:inline;
+
+
+
+}
+
+.arrow-but{
+	position:relative;
+	z-index:10;
+
+}
+.prev {
+	position: absolute;
+	left:40px;
+	top:-145px;
+	z-index:10;
+}
+.next {
+	position:absolute;
+	left:880px;
+	top:-145px;
+	z-index:10;
+}
+
+
 
