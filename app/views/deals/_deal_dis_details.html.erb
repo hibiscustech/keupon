@@ -5,17 +5,17 @@
             </tr>
 
     <tr>
+      <th>Minimum Customers</th>
+      <th>Maximum Customers</th>
       <th>Discount</th>
-      <th>#Customers</th>
-      <th>Saving</th>
       <th>Commission</th>
     </tr>
      <form action='/deals/save_commission/<%=deal_id%>' method='post'>
      <%deal_details(deal_id).each do |dl|%>
-     <tr>
-      <td><%=dl.discount%></td>
+     <tr>     
       <td><%=dl.customers%></td>
-      <td><%=dl.save_amount%></td>
+      <td><%=dl.max_customers%></td>
+      <td><%=dl.discount%></td>
       <td><input type='text' name='commission[<%=dl.id%>][]' value='<%=dl.commission%>' size='10'/></td>
      </tr>
      <%end%>
