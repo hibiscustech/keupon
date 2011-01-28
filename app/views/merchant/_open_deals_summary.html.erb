@@ -52,9 +52,9 @@
                             myChart.render("chartdiv<%=deal.id%>");
                           </script>
                       </td>
-                      <td width="22%" align="center" >
+                      <td width="22%" align="left" >
                         <% if deal.activated.to_s == "1" %>
-                        <img src="/images/iwantdeal_confirmed.png" width="105" height="30" border="0" />
+                        <img src="/images/iwantdeal_confirmed.png" width="105" height="70" border="0" />
                         <% else %>
                         <a href="/deals/edit/<%=deal.id%>"><img src="/images/edit_deal_btn.jpg" width="75" height="30" border="0" /></a>
                         <% end %>
