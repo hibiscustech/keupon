@@ -98,16 +98,23 @@ class ApiController < ApplicationController
     end
     xml.marital_status do
      status.each do |r|
+      if r=='Living with partner'
+      xml.value 'partner'
+      else
+      xml.value r.downcase
+      end
       xml.item r
      end
     end
     xml.work_sector do
      work_sector.each do |r|
+      xml.unique_id r.id
       xml.item r.name
      end
     end
     xml.categories do
      categories.each do |r|
+      xml.unique_id r.id
       xml.item r.name
      end
     end
