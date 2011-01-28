@@ -53,6 +53,7 @@ class ApiController < ApplicationController
  end
  def change_names_api
  customer = Customer.find(params[:customer_id])
+ flag=0
  profile=customer.customer_profile
     xml = Builder::XmlMarkup.new
     xml.instruct!
@@ -60,17 +61,22 @@ class ApiController < ApplicationController
      if !params[:first_name].blank?
           profile.update_attribute(:first_name,params[:first_name]) 
       xml.first_name do
-          xml.status 'Success'
           xml.message 'First Name changed successfully'
+          flag=1
       end
      end
      if !params[:last_name].blank?
           profile.update_attribute(:last_name,params[:last_name]) 
       xml.last_name do
-          xml.status 'Success'
           xml.message 'Last Name changed successfully'
+          flag=1
       end
      end
+         if flag==1
+          xml.status 'Success'
+         else
+          xml.status 'Failure'
+         end
     end
     respond_to do |format|
       format.xml { render :xml => xml.target! }
