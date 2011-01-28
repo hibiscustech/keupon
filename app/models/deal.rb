@@ -179,7 +179,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.merchants_deals(merchant_id)
-    query = %Q{ select d.id, d.discount, d.value as actual_value, d.save_amount, d.name, d.buy, d.status, ds.start_time, ds.end_time, d.expiry_date, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode
+    query = %Q{ select d.activated, d.id, d.discount, d.value as actual_value, d.save_amount, d.name, d.buy, d.status, ds.start_time, ds.end_time, d.expiry_date, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode
                 from merchants m
                 join deals d on d.merchant_id = m.id
                 join deal_types dt on dt.id = d.deal_type_id
