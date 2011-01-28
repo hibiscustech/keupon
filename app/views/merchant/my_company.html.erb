@@ -1,6 +1,6 @@
 <% form_for @company, :url => {:controller => 'merchants', :action => 'my_company'} , :html => { :multipart => true } do |f| -%>
 <tr>
-        <td height="36" align="left" background="/images/header_gray_bg.jpg"><img src="/images/my_company_text.jpg" width="132" height="36" /></td>
+        <td height="36" align="left" background="/images/header_gray_bg.jpg"><img src="/images/my_company_text.jpg" height="36" /></td>
       </tr>
       <tr>
         <td>
@@ -60,14 +60,10 @@
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> <br/>Company Description :</td>
-                <td align="left"><br/><textarea id="company_detail" name="company[detail]" rows="5" cols="30">
+                <td align="left"><br/><textarea id="company_detail" name="company[detail]" rows="5" cols="32">
                   <%= @company.detail %>
                   </textarea></td>
-              </tr>
-              <tr>
-                <td align="right" class="deals_content2"></td>
-                <td align="left" class="deals_content2"> <br/><%=image_submit_tag ("update_btn.png"), :onclick => "return Validate();"%><%=link_to image_tag("cancel_search.png", :border=>0),"/index", {:style=>"padding-left:30px;"}%> </td>
-              </tr>
+              </tr>              
               <tr>
                 <td align="right" class="deals_content2">&nbsp;</td>
                 <td align="left">&nbsp;</td>
@@ -83,5 +79,8 @@
      
       <tr>
         <td align="center" id="dd_check"></td>
+      </tr>
+      <tr>
+        <td align="center"> <br/><%=image_submit_tag ("update_btn.png"), :onclick => "return Validate();"%><%=link_to image_tag("cancel_search.png", :border=>0),"/index", {:style=>"padding-left:30px;"}%> </td>
       </tr>
 <% end %>
