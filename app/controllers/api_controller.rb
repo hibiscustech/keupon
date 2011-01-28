@@ -60,17 +60,17 @@ class ApiController < ApplicationController
     xml.name_change do
      if !params[:first_name].blank?
           profile.update_attribute(:first_name,params[:first_name]) 
-      xml.first_name do
+      #xml.first_name do
           #xml.message 'First Name changed successfully'
           flag=1
-      end
+      #end
      end
      if !params[:last_name].blank?
           profile.update_attribute(:last_name,params[:last_name]) 
-      xml.last_name do
+      #xml.last_name do
           #xml.message 'Last Name changed successfully'
           flag=1
-      end
+      #end
      end
          if flag==1
           xml.status 'Success'
