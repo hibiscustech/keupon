@@ -20,10 +20,14 @@ class ApiController < ApplicationController
           xml.message error
         end
       else
-        flash[:error] = "New Password mismatch"
+          error = "New Password mismatch"
+          xml.status 'Failure'
+          xml.message error
       end
     else
-      flash[:error] = "Old password incorrect"
+          error = "Old password incorrect"
+          xml.status 'Failure'
+          xml.message error
     end
    end
     respond_to do |format|
@@ -447,7 +451,7 @@ class ApiController < ApplicationController
       xml.last_name customer_profile.last_name
       xml.email user.email
       xml.gender customer_profile.gender
-      xml.birthdate customer_profile.dob.strftime("%Y-%d-%m")
+      xml.birthdate customer_profile.dob.strftime("%Y-%m-%d")
       xml.marital_status customer_profile.relationship
       xml.region customer_profile.region
       xml.nric_fin customer_profile.customer_pin
