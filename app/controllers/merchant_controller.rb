@@ -172,6 +172,13 @@ class MerchantController < ApplicationController
     end
   end
 
+  def invalid_merchant
+    merchant_profile = MerchantProfile.find(params[:id])
+    merchant_profile.update_attributes(:status => "invalid")
+    flash[:notice] = "Merchant: #{merchant_profile.first_name} #{merchant_profile.last_name} is Invalid!"
+    redirect_to "/admins/all_merchants"
+  end
+
   def authenticate_merchant
     merchant_profile = MerchantProfile.find(params[:id])
     password = newpass(8)

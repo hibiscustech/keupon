@@ -18,7 +18,7 @@
         <td align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.merchant_name %></td>
         <td align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.contact_number %></td>
         <td align="center" bgcolor="#FFFFFF" class="content_text"><%= merchant.email_address %></td>
-        <td align="center" bgcolor="#FFFFFF" class="content_text"><a href="/merchant/authenticate_merchant?id=<%= merchant.id %>">Authentic</a> | <a href="">Invalid</a></td>
+        <td align="center" bgcolor="#FFFFFF" class="content_text"><a href="/merchant/authenticate_merchant?id=<%= merchant.id %>">Authentic</a> | <a href="/merchant/invalid_merchant?id=<%= merchant.id %>">Invalid</a></td>
       </tr>
     <% end %>
 
