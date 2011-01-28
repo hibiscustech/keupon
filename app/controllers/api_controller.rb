@@ -1,4 +1,43 @@
 class ApiController < ApplicationController
+ def profile_update_api
+    @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_id])
+    customer = Customer.find_by_id(params[:customer_id])
+     @customer_profile.update_attribute(:dob,params[:dob]) if !params[:dob].blank?
+     @customer_profile.update_attribute(:region,params[:region])if !params[:region].blank?
+     @customer_profile.update_attribute(:relationship,params[:relationship])if !params[:relationship].blank?
+     @customer_profile.update_attribute(:gender,params[:gender])if !params[:gender].blank?
+     @customer_profile.update_attribute(:income,params[:income])if !params[:income].blank?
+     @customer_profile.update_attribute(:industry_sector_id,params[:industry_sector_id])if !params[:industry_sector_id].blank?
+     @customer_profile.update_attribute(:customer_pin,params[:customer_pin])if !params[:customer_pin].blank?
+     cfd=params[:customer_favourite_deal].split(',') 
+     if cfd
+        existing_deal_categories=CustomerFavouriteDeal.find_all_by_customer_id(customer.id)
+        existing_deal_categories.each do |cf|
+          cf.destroy
+        end
+
+       cfd.each do |d|
+         @cus_favourite = CustomerFavouriteDeal.create(:customer_id => params[:customer_id], :deal_category_id => d)
+       end
+     end
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.profile_update do
+      xml.status 'success'
+    end
+    #if params[:my_profile].nil?
+     # customer.activate!
+      #flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+      #redirect_to '/'
+    #else
+     # flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+     # redirect_to '/my_profile'
+    #end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
+
+ end
  def sign_up_step1
   email=params[:email]
   customer=Customer.find_by_email(email)
@@ -123,6 +162,7 @@ class ApiController < ApplicationController
      xml.status 'Success'
     end
      rescue=>e
+     p e.message
     xml.edit_deal do
      xml.message 'Failed-some unexpected error occured'
      xml.status 'Failure'
