@@ -153,7 +153,7 @@ class MerchantController < ApplicationController
 
       if params[:category] != "none"
         if params[:sub_category] != "none"
-          @merchant_profile.update_attributes(:deal_category_id => params[:category], :deal_sub_category_id => params[:sub_category])
+          @merchant_profile.update_attributes(:deal_category_id => params[:company][:deal_category_id], :deal_sub_category_id => params[:sub_category])
         else
           @new_sub_category = DealSubCategory.create(:name => params[:new_subcategory], :deal_category_id => params[:category])
           @merchant_profile.update_attributes(:deal_category_id => params[:category], :deal_sub_category_id => @new_sub_category.id)
