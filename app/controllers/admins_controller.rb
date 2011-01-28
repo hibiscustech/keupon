@@ -5,7 +5,7 @@ class AdminsController < ApplicationController
   before_filter :admin_login_required
   include AuthenticatedSystemMerchant
   def view_all_deals
-    @deal_discounts,@deals = Deal.all_activated_deals
+    @deal_discounts,@deals = Deal.all_deals
   end
   
   def open_the_deal
