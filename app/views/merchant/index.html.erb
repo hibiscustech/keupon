@@ -19,7 +19,7 @@
             <td width="1%">&nbsp;</td>
             <% if @new_deal.blank? %>
             <td width="48%" height="180" valign="top">
-              <a href="/deals/index"><img src="/images/start_create_img.jpg" /></a>
+              <a href="/deals/index"><img src="/images/start_create_img.jpg" border="0"/></a>
             </td>
             <% else %>
             <td width="48%" height="180" valign="top" background="/images/deal_bg.jpg" style="border:1px solid #CCCCCC;">
@@ -69,6 +69,7 @@
       <tr>
         <td>&nbsp;</td>
       </tr>
+      <% if !@new_deal.blank? %>
       <tr>
         <td height="36" background="/images/header_gray_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -84,7 +85,7 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
           </tr>
-          <% if !@new_deal.blank? %>
+          
           <tr>
             <td width="2%">&nbsp;</td>
             <td width="96%" height="180" valign="top" background="/images/deal_bg.jpg" style="border:1px solid #CCCCCC;">
