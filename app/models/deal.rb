@@ -337,13 +337,14 @@ class Deal < ActiveRecord::Base
     result = Hash.new
     for res in resultset
       deal_discounts = DealDiscount.find_by_sql("select * from deal_discounts where deal_id = #{res.id} order by discount")
-      dd_scale = deal_scale_graph(deal_discounts, res.no_of_customers)
+      image = "gray_bg"
+      dd_scale = deal_scale_graph(deal_discounts, res.no_of_customers, image)
       result[res.id.to_s] = dd_scale
     end
     return result
   end
 
-  def self.deal_scale_graph(deal_discounts, deals_bought)
+  def self.deal_scale_graph(deal_discounts, deals_bought, image)
     minimum = deal_discounts[0].customers
     maximum = (deal_discounts[deal_discounts.length-1].max_customers.blank?)? (deal_discounts[deal_discounts.length-2].max_customers.to_i)+20 : deal_discounts[deal_discounts.length-1].max_customers
     maximum_text = (deal_discounts[deal_discounts.length-1].max_customers.blank?)? "Any" : deal_discounts[deal_discounts.length-1].max_customers
@@ -358,7 +359,7 @@ class Deal < ActiveRecord::Base
       prev_max_customers = max_customers
     end
     customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='5' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
-    return "<chart bgSWF='/images/gray_bg.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimitDisplay='#{maximum_text}' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
+    return "<chart bgSWF='/images/#{image}.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' tickMarkDistance='3' valuePadding='-2' majorTMColor='000000' majorTMNumber='3' minorTMNumber='4' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimitDisplay='#{maximum_text}' upperLimit='#{maximum}' lowerLimit='#{minimum}'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
   end
 
   def self.find_recent_add(merchant_id)
