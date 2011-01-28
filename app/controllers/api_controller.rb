@@ -36,10 +36,45 @@ class ApiController < ApplicationController
    
  end
  def change_email_api
-
+ customer = Customer.find(params[:customer_id])
+ profile=customer.customer_profile
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.name_change do
+     if !params[:email].blank?
+          customer.update_attribute(:email,params[:email]) 
+          xml.status 'Success'
+          xml.message 'Email changed successfully'
+     end
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
  end
  def change_names_api
-
+ customer = Customer.find(params[:customer_id])
+ profile=customer.customer_profile
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.name_change do
+     if !params[:first_name].blank?
+          profile.update_attribute(:first_name,params[:first_name]) 
+      xml.first_name do
+          xml.status 'Success'
+          xml.message 'First Name changed successfully'
+      end
+     end
+     if !params[:last_name].blank?
+          profile.update_attribute(:last_name,params[:last_name]) 
+      xml.last_name do
+          xml.status 'Success'
+          xml.message 'Last Name changed successfully'
+      end
+     end
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml.target! }
+    end 
  end
  def profile_update_api
     @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_id])
