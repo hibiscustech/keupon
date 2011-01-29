@@ -36,12 +36,16 @@
       <tr>
         <td> </td>
         <td style="color:#000000;">Rules of the deal: <span style=" color: red;">*</span></td>
-        <td><textarea rows="6" cols="32" id="rules" name="rules"></textarea></td>
+        <td><textarea name="rules" id="rules">
+			<ul><li>&nbsp;</li></ul>
+                  </textarea></td>
       </tr>
       <tr>
         <td> </td>
         <td style="color:#000000;">Highlights of the deal: <span style=" color: red;">*</span></td>
-        <td><textarea rows="6" cols="32" id="highlights" name="highlights"></textarea></td>
+        <td><textarea name="highlights" id="highlights">
+			<ul><li>&nbsp;</li></ul>
+                  </textarea></td>
       </tr>
       <tr>
         <td> </td>
@@ -64,4 +68,27 @@
   </table>
     </form>
 </div>
+<script type="text/javascript">
+		//<![CDATA[
+			// Replace the <textarea id="editor1"> with an CKEditor instance.
+			var editor1 = CKEDITOR.replace( 'rules' ,
+				{
+					// Defines a simpler toolbar to be used in this sample.
+					// Note that we have added out "MyButton" button here. toolbar : [['BulletedList']]
+					toolbar : [['BulletedList']]
+				});
+			editor1.config.resize_enabled = false;
+			editor1.config.height = 85;
+			editor1.config.width= 400;
+			var editor2 = CKEDITOR.replace( 'highlights' ,
+				{
+					// Defines a simpler toolbar to be used in this sample.
+					// Note that we have added out "MyButton" button here. toolbar : [['BulletedList']]
+					toolbar : [['BulletedList']]
+				});
+			editor2.config.resize_enabled = false;
+			editor2.config.height = 85;
+			editor2.config.width= 400;
+		//]]>
+		</script>
 

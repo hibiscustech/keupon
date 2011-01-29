@@ -1,5 +1,4 @@
-
-
+<%= javascript_include_tag 'ckeditor' %>
 <script Language="JavaScript">
 <!--
 function form_validator(){
@@ -32,14 +31,14 @@ alert("You must enter Quantity.");
 theForm.number.focus();
 return (false);
 }
-
+theForm.rules.value = CKEDITOR.instances.rules.getData();
 if (theForm.rules.value == "" || theForm.rules.value.length < 1)
 {
 alert("You must enter Rules.");
 theForm.rules.focus();
 return (false);
 }
-
+theForm.highlights.value = CKEDITOR.instances.highlights.getData();
 if (theForm.highlights.value == "" || theForm.highlights.value.length < 1)
 {
 alert("You must enter Highlights.");
@@ -128,7 +127,7 @@ return true;
                 <td width="2%">&nbsp;</td>
                 <td width="28%" height="26" align="center" background="/images/red_btn_bg.jpg" style="background-repeat:no-repeat;"><a href="#" class="deals_white_link"><%= deal1.bidding_status.camelize %></a></td>
                 <td width="29%">&nbsp;</td>
-                <td width="39%" align="center" bgcolor="#000000" class="deals_content1" id="bid<%=deal1.id%>"></td>
+                <td width="39%" align="center" bgcolor="#000000" class="deals_content1" id="bid<%=deal1.id%>">Bidding Closed</td>
                 <td width="2%">&nbsp;</td>
               </tr>
               <tr>
