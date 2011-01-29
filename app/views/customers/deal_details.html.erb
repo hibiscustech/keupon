@@ -134,81 +134,52 @@
                     <td height="32" background="/images/fine_print_black_gradient.jpg"><table width="100%" border="0" cellspacing="5" cellpadding="0">
                       <tr>
                         <td width="12%" align="center"><img src="/images/arrow_bullet_red.png" width="10" height="11" /></td>
-                        <td width="88%" align="left" class="deals_content_white">Deal Expire on 21/12/2010</td>
+                        <td width="88%" align="left" class="deals_content_white">Deal Expire on <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y")  %></td>
                       </tr>
                     </table></td>
                   </tr>
+                  <%
+                    display_rules = @deal.rules.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>")
+                    for rule in display_rules
+                  %>
+                  <tr>
+                    <td height="40" bgcolor="#bababa"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="6%">&nbsp;</td>
+                        <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
+                        <td width="85%" align="left" class="deals_content"><%= rule %></td>
+                        <td width="4%">&nbsp;</td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                  <% end %>
                   <tr>
                     <td height="25" bgcolor="#e7e7e7"><table width="100%" border="0" cellspacing="5" cellpadding="0">
                       <tr>
                         <td width="8%" align="center">&nbsp;</td>
-                        <td width="92%" align="left" class="deals_content1">Deal Rules</td>
+                        <td width="92%" align="left" class="deals_content1"><a href="/privacy">Rules that apply to all Deals</a></td>
                       </tr>
                     </table></td>
                   </tr>
-                  <tr>
-                    <td height="40" bgcolor="#bababa"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td width="6%">&nbsp;</td>
-                        <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                        <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                        <td width="4%">&nbsp;</td>
-                      </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="1"></td>
-                  </tr>
-                  <tr>
-                    <td height="40" bgcolor="#bababa"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td width="6%">&nbsp;</td>
-                        <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                        <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                        <td width="4%">&nbsp;</td>
-                      </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="1"></td>
-                  </tr>
-                  <tr>
-                    <td height="40" bgcolor="#bababa"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td width="6%">&nbsp;</td>
-                        <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                        <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                        <td width="4%">&nbsp;</td>
-                      </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="1"></td>
-                  </tr>
-                  <tr>
-                    <td height="40" bgcolor="#bababa"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td width="6%">&nbsp;</td>
-                        <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                        <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                        <td width="4%">&nbsp;</td>
-                      </tr>
-                    </table></td>
-                  </tr>
-
                 </table></td>
                 <td width="1%">&nbsp;</td>
                 <td width="32%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td><img src="/images/highlights_header.jpg" width="315" height="100" /></td>
                   </tr>
-
+                  <%
+                    display_highlights = @deal.highlights.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>")
+                    for highlight in display_highlights
+                  %>
                   <tr>
                     <td height="40" bgcolor="#e5e5e5"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                           <td width="6%">&nbsp;</td>
                           <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                          <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                          <td width="85%" align="left" class="deals_content"><%= highlight %></td>
                           <td width="4%">&nbsp;</td>
                         </tr>
                     </table></td>
@@ -216,62 +187,7 @@
                   <tr>
                     <td height="1"></td>
                   </tr>
-                  <tr>
-                    <td height="40" bgcolor="#e5e5e5"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td width="6%">&nbsp;</td>
-                          <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                          <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                          <td width="4%">&nbsp;</td>
-                        </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="1"></td>
-                  </tr>
-                  <tr>
-                    <td height="40" bgcolor="#e5e5e5"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td width="6%">&nbsp;</td>
-                          <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                          <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                          <td width="4%">&nbsp;</td>
-                        </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="1"></td>
-                  </tr>
-                  <tr>
-                    <td height="40" bgcolor="#e5e5e5"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td width="6%">&nbsp;</td>
-                          <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                          <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                          <td width="4%">&nbsp;</td>
-                        </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="40" bgcolor="#e5e5e5"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td width="6%">&nbsp;</td>
-                          <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                          <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                          <td width="4%">&nbsp;</td>
-                        </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="40" bgcolor="#e5e5e5"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td width="6%">&nbsp;</td>
-                          <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
-                          <td width="85%" align="left" class="deals_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
-                          <td width="4%">&nbsp;</td>
-                        </tr>
-                    </table></td>
-                  </tr>
+                  <% end %>                  
                 </table></td>
                 <td width="1%">&nbsp;</td>
                 <td width="31%" background="/images/deal_location_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
