@@ -248,7 +248,7 @@ theForm.submit();
                      <input id='card' value='no' type='hidden'/>
                     <%end%>
                      <a href="#" onclick="validate_cc_form();"><img src="/images/purchase_btn.png" border="0"/></a>
-                    <a href="/offered_deals?deal=#{@deal.customer_demand_deal_id}"><img src="images/cancel_search.png" height="24" border="0" width="73"/></a>
+                    <a href="/offered_deals?deal=<%= @deal.customer_demand_deal_id %>"><img src="images/cancel_search.png" height="24" border="0" width="73"/></a>
                   </span>
                 </td>
               </tr>
