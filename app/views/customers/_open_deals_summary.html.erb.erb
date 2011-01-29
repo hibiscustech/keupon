@@ -1,11 +1,12 @@
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <%for opdd in @open_deal_discounts
+              <%i = 0
+                for opdd in @open_deal_discounts
                 discount = opdd[1]
                 open_deal = @open_deals[opdd[0]]
                 opd = Deal.find(open_deal.id)
               %>
-
+              <% if i%2 == 0 %>
                 <td height="115" bgcolor="#1c1316" style="border:2px solid #888888;">
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -31,9 +32,36 @@
                     </tr>
                   </table>
                 </td>
+              <% else %>
+                <td height="115" bgcolor="#f2f2f2" style="border: 2px solid rgb(136, 136, 136);"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tbody><tr>
+                    <td align="center" width="27%">
+                      <a href="/deal_details?id=<%= open_deal.id %>"><img border="0" alt="img" src="<%= opd.deal_photo.url(:small) %>" width="108" height="89"/></a>
+                    </td>
+                    <td width="70%" valign="top"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tbody><tr>
+                          <td height="50" align="left" class="open_deal_text2" colspan="2"><%=open_deal.name%></td>
+                        </tr>
+                        <tr>
+                          <td align="left" class="open_deal_text2" colspan="2">Deal Bought: <%=open_deal.no_of_customers%><br>
+                            Discount: <%=discount.nil? ? discount : ''%> %<br>
+                            Location: <%=open_deal.address1%> <%=open_deal.address2%> <%=open_deal.city%></td>
+                        </tr>
+                        <tr>
+                          <td width="42%">&nbsp;</td>
+                          <td height="26" background="/images/open_deal_black_bar.jpg" align="center" width="58%" style="background-repeat: no-repeat;" class="open_deal_text1">Deal Closes On: <%=Time.at(open_deal.end_time.to_i).strftime("%d-%m-%Y") %></td>
+                        </tr>
+                    </tbody></table></td>
+                    <td width="3%">&nbsp;</td>
+                  </tr>
+                </tbody></table></td>
+              <% end %>
               </tr>
               <tr>
                 <td>&nbsp;</td>
               </tr>
-            <%end%>
+            <%
+            i += 1  
+            end
+            %>
           </table>
