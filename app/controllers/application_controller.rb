@@ -31,8 +31,9 @@ class ApplicationController < ActionController::Base
    if user
     return true
    else
+    session[:return_to] = request.request_uri
     flash[:notice]='Please login as admin!'
-    redirect_to'/'
+    redirect_to'/login'
     return false
    end
   end
