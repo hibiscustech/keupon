@@ -132,7 +132,8 @@ protected
          format.xml { render :xml => xml.target! }
        end
       else
-      redirect_to :controller => 'customers',:action => "deal_of_the_day"
+     # redirect_to :controller => 'customers',:action => "deal_of_the_day"
+      redirect_back_or_default('/')
       flash[:notice] = "Logged in successfully"
       end
     else
@@ -187,7 +188,8 @@ protected
       self.current_merchant = merchant
       new_cookie_flag = (params[:remember_me] == "1")
       #handle_remember_cookie! new_cookie_flag
-      redirect_to :controller => 'merchant',:action => 'index'
+      #redirect_to :controller => 'merchant',:action => 'index'
+      redirect_back_or_default('/index')
       flash[:notice] = "Logged in successfully"
        else
       note_failed_signin
