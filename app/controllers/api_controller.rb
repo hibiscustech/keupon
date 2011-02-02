@@ -8,17 +8,19 @@ class ApiController < ApplicationController
     xml.instruct!
     xml.deals_on_demand do
      locations.each_with_index do |loc,i|
-     p i
      deal=Deal.find(loc.deal_id)
      dealer=Company.find_by_merchant_profile_id(deal.merchant.merchant_profile.id)
-     xml.deal_name deal.name 
-     xml.dealer_name dealer.name
-     xml.dealer_icon dealer.company_photo.url(:small)
-     xml.dealer_address loc.address1,loc.address2,dealer.city, dealer.zipcode 
-     xml.lat loc.latitude
-     xml.long loc.longitude
-     xml.distance loc.distance
-     xml.url dealer.website
+      xml.item do
+      xml.deal_id deal.id 
+      xml.deal_name deal.name 
+      xml.dealer_name dealer.name
+      xml.dealer_icon dealer.company_photo.url(:small)
+      xml.dealer_address loc.address1,loc.address2,dealer.city, dealer.zipcode 
+      xml.lat loc.latitude
+      xml.long loc.longitude
+      xml.distance loc.distance
+      xml.url dealer.website
+     end
      end
     end
     respond_to do |format|
