@@ -1,6 +1,5 @@
 class ApiController < ApplicationController
  def near_by_deals
- customer = Customer.find(params[:customer_id])
  lat=params[:lat] 
  long=params[:long]
  radius=params[:radius]
