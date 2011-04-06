@@ -24,12 +24,15 @@ class DealsController < ApplicationController
     @deal_scale_xml = Deal.deal_scale_graph(@deal.deal_discounts, Deal.deals_bought(@deal.id), "price_black_bg")
     #render :layout => 'activation'
   end
+
   def activate
     id=params[:id]
-    @deal=Deal.find(params[:id])
-    @deal.update_attributes(:activated => "1", :status => 'open')
+    @deal = Deal.find(params[:id])
+    @deal.update_attributes(:activated => "1")
+    flash[:notice] = "Your Deal is now Active and will be Opened on #{Time.at(@deal.deal_schedule.start_time).strftime("%d-%m-%Y")}"
     redirect_to '/index'
   end
+
   def save_commission
     params[:commission].each_pair do |key,value|
     discount=DealDiscount.find(key)
@@ -37,6 +40,7 @@ class DealsController < ApplicationController
     end
     redirect_to '/admins/view_all_deals'
   end
+
   def get_deal_details
     deal_id=params[:id]
     @flag=true
