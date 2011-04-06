@@ -10,7 +10,12 @@ class DealsController < ApplicationController
     id=params[:id]
     @page = "Deal activation & Preview "
     @deal=Deal.find(params[:id])
-    @end_time = @deal.deal_schedule.end_time
+    ds = @deal.deal_schedule
+    start_time = ds.start_time
+    @end_time = ds.end_time
+    st_arr = Time.at(start_time).strftime("%Y-%m-%d").split("-")
+    et_arr = Time.at(@end_time).strftime("%Y-%m-%d").split("-")
+    @days_left = (Date.new(et_arr[0].to_i,et_arr[1].to_i,et_arr[2].to_i)-Date.new(st_arr[0].to_i,st_arr[1].to_i,st_arr[2].to_i)).to_i+1
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)

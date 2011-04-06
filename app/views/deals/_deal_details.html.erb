@@ -57,7 +57,7 @@
                             <td width="27%" height="49" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;color: #FFFFFF">Time Left:</td>
                             <td width="73%" align="center" id="deal_time_left">
                               <table width="100%" border="0" cellpadding="0" cellspacing="0" style="color: #FFFFFF; font-color:#fff;">
-                                <td width="18%" align="center" class="time" >Days<br />02</td><td width="19%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Hours<br />01</td><td width="18%" align="center" class="time">Min<br />07</td><td width="18%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Sec<br />45</td>
+                                <td width="18%" align="center" class="time" >Days<br /><%= @days_left %></td><td width="19%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Hours<br />00</td><td width="18%" align="center" class="time">Min<br />00</td><td width="18%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Sec<br />00</td>
                               </table>
                             </td>
                           </tr>
@@ -264,7 +264,7 @@
      <%deal_details(params[:id]).each do |dl|%>
      <tr>
       <td><%=dl.customers%></td>
-      <td><%=dl.max_customers%></td>
+      <td><%=(dl.max_customers.blank?)? "Any Number" : dl.max_customers%></td>
       <td><%=dl.discount%></td>
       <td><%=dl.commission%></td>
      </tr>
@@ -305,47 +305,3 @@ return false;
       </tr>
 
 
-<script language="JavaScript">
-  <% if !@deal.nil? %>
-  StartCountDown("deal_time_left","<%= Time.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
-  <% end %>
-
-  function StartCountDown(myDiv,myTargetDate)
-  {
-    var dthen	= new Date(myTargetDate);
-    var dnow	= new Date();
-    ddiff		= new Date(dthen-dnow);
-    gsecs		= Math.floor(ddiff.valueOf()/1000);
-    CountBack(myDiv,gsecs);
-  }
-
-  function Calcage(secs, num1, num2)
-  {
-    s = ((Math.floor(secs/num1))%num2).toString();
-    if (s.length < 2)
-    {
-      s = "0" + s;
-    }
-    return (s);
-  }
-
-  function CountBack(myDiv, secs)
-  {
-    var DisplayStr;
-    var DisplayFormat = "<table width='100%' border='0' cellpadding='0' cellspacing='0'><td width='18%' height='49' align='center' class='time'>Days<br />%%D%%</td><td width='19%' align='center' class='time' background='/images/black.jpg' style='background-repeat:repeat;'>Hours<br />%%H%%</td><td width='18%' align='center' class='time'>Min<br />%%M%%</td><td width='18%' align='center' class='time' background='/images/black.jpg' style='background-repeat:repeat;'>Sec<br />%%S%%</td></table>";
-    DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
-    DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
-    DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
-    DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
-    if(secs > 0)
-    {
-      document.getElementById(myDiv).innerHTML = DisplayStr;
-      setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
-    }
-    else
-    {
-      document.getElementById(myDiv).innerHTML = "Deal Closed";
-    }
-  }
-
-</script>
