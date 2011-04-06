@@ -14,6 +14,22 @@ class AdminsController < ApplicationController
     redirect_to "/admins/view_all_deals"
   end
 
+  def open_the_deals
+    deals = Deal.deals_to_open
+    opened_deals = Array.new
+    for deal in deals
+      if (Time.parse("#{Time.at(Time.now.to_i).strftime('%d-%m-%Y')} 00:00:00").to_i >= deal.start_time.to_i) && (deal.start_time.to_i <=  Time.parse("#{Time.at(Time.now.to_i).strftime('%d-%m-%Y')} 23:59:59").to_i)
+        d = Deal.find(deal.id)
+        d.update_attributes(:status => "open")
+        opened_deals.push(d)
+      end
+    end
+    if opened_deals.size > 0
+      AdminMailer.deliver_opened_deals(opened_deals)
+    end
+    render(:text => 'deals opened')
+  end
+
   def deal_preferred
     deal = Deal.find(params[:id])
     deal.update_attributes(:admin_preferred => '1')

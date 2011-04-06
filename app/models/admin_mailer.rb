@@ -1,4 +1,11 @@
 class AdminMailer < ActionMailer::Base
+
+  def opened_deals(deals)
+    admin_email("Notification - Deals Opened Today")
+    @body[:deals]  = deals
+    content_type "text/html"
+  end
+
   def merchant_registration_notification(merchant_profile, merchant_company )
     admin_email("Notification - Merchant Application for Keupons")
     @body[:merchant_profile]  = merchant_profile
