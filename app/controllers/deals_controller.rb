@@ -16,6 +16,7 @@ class DealsController < ApplicationController
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
     @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
+    @deal_scale_xml = Deal.deal_scale_graph(@deal.deal_discounts, Deal.deals_bought(@deal.id), "price_black_bg")
     #render :layout => 'activation'
   end
   def activate

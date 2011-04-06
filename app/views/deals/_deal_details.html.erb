@@ -256,16 +256,16 @@
 <table style="font-size: 16px; border-collapse: collapse; font-family:Georgia,Times New Roman,Times, serif;width:1000px; text-align: center; margin-left: -10px;" CELLPADDING="4" CELLSPACING="0">
 
     <tr>
-      <th>Discount</th>
-      <th>#Customers</th>
-      <th>Saving</th>
-      <th>Commission</th>
+      <th>Min. Customers</th>
+      <th>Max. Customers</th>
+      <th>Discount(%)</th>
+      <th>Commission(%)</th>
     </tr>
      <%deal_details(params[:id]).each do |dl|%>
      <tr>
-      <td><%=dl.discount%></td>
       <td><%=dl.customers%></td>
-      <td><%=dl.save_amount%></td>
+      <td><%=dl.max_customers%></td>
+      <td><%=dl.discount%></td>
       <td><%=dl.commission%></td>
      </tr>
       <%end%>
