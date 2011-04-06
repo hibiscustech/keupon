@@ -77,6 +77,15 @@ class SessionsController < ApplicationController
     end
   end
 
+ def console_check_change_password
+   customer = Customer.find("4")
+   customer.password_confirmation = "password"
+   customer.password = "password"
+   customer.save!
+   CustomerMailer.deliver_change_password(customer, customer.password)
+   render(:text => 'Password Changed')
+ end
+
  def change_password_update
      @page = "Change Password"
      customer = Customer.find(params[:current_user])
@@ -126,7 +135,7 @@ protected
         xml.response 'success'
         xml.user_id customer.id
         xml.login customer.login
-        xml.user_photo ((customer.customer_photo?)?(customer.customer_photo.url(:small)):('/images/user.png'))
+        xml.user_photo((customer.customer_photo?)?(customer.customer_photo.url(:small)):('/images/user.png'))
        end
        respond_to do |format|
          format.xml { render :xml => xml.target! }
