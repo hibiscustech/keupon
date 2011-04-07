@@ -81,9 +81,7 @@ class CustomersController < ApplicationController
     @open_deal_discounts, @open_deals = Deal.all_open_deals
     @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals    
     @recent_deals = Deal.all_recent_deals
-    logger.info "-------------------------------------------------------------------------------------------------------------"
-    logger.info request.headers
-    logger.info "-------------------------------------------------------------------------------------------------------------"
+
     if request.xml_http_request?
       respond_to do |format|
         format.html
@@ -492,6 +490,10 @@ class CustomersController < ApplicationController
     end
 
     @transaction = do_transaction(customer_card_inform, 'Authorization', 1)
+
+    logger.info "--------------------------------------------------------------"
+    logger.info @transaction.inspect
+    logger.info "--------------------------------------------------------------"
 
     if !@transaction.success?
       customer_card_inform.save! if !params[:new_card].blank?
