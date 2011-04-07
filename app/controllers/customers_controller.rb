@@ -342,8 +342,8 @@ class CustomersController < ApplicationController
     @cards = current_customer.customer_credit_cards
     @profile = current_customer.customer_profile
     logger.info "----------------errors---------------------"
-    logger.info session[:paypal_error].inspect
-    @error = (params[:errors] == "1")? session[:paypal_error] : nil
+    logger.info session[:payment_error].inspect
+    @error = (params[:errors] == "1")? session[:payment_error] : nil
   end
 
   def demand_deal_transaction_details
@@ -515,6 +515,7 @@ class CustomersController < ApplicationController
       flash[:notice] = "Thank You for Purchasing the Deal. Your card will be charged only when the deal closes at a Price based on the Number of Total Purchases."
       redirect_to "#{params[:return_to]}"
     else
+      session[:payment_error] = session[:paypal_error]
       redirect_to "/transaction_details?id=#{deal.id}&errors=1"
     end
   end
