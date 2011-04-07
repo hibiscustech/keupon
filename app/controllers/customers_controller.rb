@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
   before_filter :login_required, :only => [:invite_friends,:transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons,:change_password]
   before_filter :my_keupons_stats, :except => [:new, :create]
   session :session_key => '_PayPalSDK_session_id'
-  filter_parameter_logging :password, :only => [:save_transaction_details, :tip_the_deal, :save_demand_deal_transaction_details]
+  filter_parameter_logging :password, :only => [:save_transaction_details, :save_demand_deal_transaction_details]
   
   layout 'application'
 
@@ -505,6 +505,9 @@ class CustomersController < ApplicationController
 
       customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
+
+      CustomerMailer.deliver_deal_ordered_notification(current_customer, current_customer.customer_profile, deal)
+
       flash[:notice] = "Thank You for Purchasing the Deal. Your card will be charged only when the deal closes at a Price based on the Number of Total Purchases."
       redirect_to "#{params[:return_to]}"
     else

@@ -7,6 +7,14 @@ class CustomerMailer < ActionMailer::Base
     content_type "text/html"
   end
 
+  def deal_ordered_notification(customer, profile, deal)
+    setup_email(customer)
+    @subject    = 'Your order has been received'
+    @body[:profile] = profile
+    @body[:deal] = deal
+    content_type "text/html"
+  end
+
   def deal_purchase_notification(customer, profile, customer_deal, deal)
     setup_email(customer)
     @subject    = 'You have purchased a Deal from Keupons'
