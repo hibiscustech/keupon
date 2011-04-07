@@ -81,6 +81,9 @@ class CustomersController < ApplicationController
     @open_deal_discounts, @open_deals = Deal.all_open_deals
     @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals    
     @recent_deals = Deal.all_recent_deals
+    logger.info "-------------------------------------------------------------------------------------------------------------"
+    logger.info request.headers
+    logger.info "-------------------------------------------------------------------------------------------------------------"
     if request.xml_http_request?
       respond_to do |format|
         format.html
@@ -340,6 +343,7 @@ class CustomersController < ApplicationController
     @billing_information = CustomerCreditCard.new
     @deal = Deal.find(params[:id])
     @cards = current_customer.customer_credit_cards
+    @profile = current_customer.customer_profile
   end
 
   def demand_deal_transaction_details

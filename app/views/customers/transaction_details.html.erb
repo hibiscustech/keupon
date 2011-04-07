@@ -150,7 +150,7 @@ theForm.submit();
                         <input type="checkbox" name="new_card" id="new_card" value="new_card" onclick="javascript: show_new_card();" /></td>
                     </tr>
                     <tr>
-                      <td height="12" colspan="5" class="billing_text"></td>
+                      <td height="12" colspan="5" class="billing_text">Your card will be charged only when the deal closes at a Price based on the Number of Total Purchases.</td>
                     </tr>
                     <tr>
                       <td colspan="5" align="center" class="billing_text">&nbsp;</td>
@@ -173,19 +173,19 @@ theForm.submit();
                       <td width="26%" align="right" class="billing_text"> Card holder first name:</td>
                       <td width="29%" align="left"><input id="customer_credit_card_first_name" name="customer_credit_card[first_name]" type="text" class="billing_text" /></td>
                       <td width="20%" align="right" class="billing_text"> Billing address 1:</td>
-                      <td width="25%" align="left"><input id="customer_credit_card_address1" name="customer_credit_card[address1]" type="text" class="billing_text" /></td>
+                      <td width="25%" align="left"><input id="customer_credit_card_address1" name="customer_credit_card[address1]" type="text" class="billing_text" value="<%= @profile.address1 %>"/></td>
                     </tr>
                     <tr>
                       <td align="right" class="billing_text"> Card holder last name:</td>
                       <td align="left"><input id="customer_credit_card_last_name" name="customer_credit_card[last_name]" type="text" class="billing_text" /></td>
                       <td align="right" class="billing_text"> Billing address 2:</td>
-                      <td align="left"><input id="customer_credit_card_address2" name="customer_credit_card[address2]" type="text" class="billing_text" /></td>
+                      <td align="left"><input id="customer_credit_card_address2" name="customer_credit_card[address2]" type="text" class="billing_text" value="<%= @profile.address2 %>"/></td>
                     </tr>
                     <tr>
                       <td align="right" class="billing_text">Card Number:</td>
                       <td align="left"><input id="customer_credit_card_credit_card_number" name="customer_credit_card[credit_card_number]" type="text" class="billing_text" /></td>
                       <td align="right" class="billing_text">City:</td>
-                      <td align="left"><input id="customer_credit_card_city" name="customer_credit_card[city]" type="text" class="billing_text" /></td>
+                      <td align="left"><input id="customer_credit_card_city" name="customer_credit_card[city]" type="text" class="billing_text" value="<%= @profile.city %>"/></td>
                     </tr>
                     <tr>
                       <td align="right" class="billing_text">Card Type:</td>
@@ -197,13 +197,13 @@ theForm.submit();
                         </select>
                       </td>
                       <td align="right" class="billing_text">Country:</td>
-                      <td align="left"><input id="customer_credit_card_country" name="customer_credit_card[country]" type="text" class="billing_text" /></td>
+                      <td align="left"><input id="customer_credit_card_country" name="customer_credit_card[country]" type="text" class="billing_text" value="<%= @profile.country %>"/></td>
                     </tr>
                     <tr>
                       <td align="right" class="billing_text"> Security code:</td>
                       <td align="left"><input id="customer_credit_card_cvv2" name="customer_credit_card[cvv2]" type="text" class="billing_text" /></td>
                       <td align="right" class="billing_text">Zip Code:</td>
-                      <td align="left"><input id="customer_credit_card_zipcode" name="customer_credit_card[zipcode]" type="text" class="billing_text" /></td>
+                      <td align="left"><input id="customer_credit_card_zipcode" name="customer_credit_card[zipcode]" type="text" class="billing_text" value="<%= @profile.zipcode %>"/></td>
                     </tr>
                     <tr>
                       <td align="right" class="billing_text"> Expiration date:</td>
