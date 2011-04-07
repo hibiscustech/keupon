@@ -81,7 +81,6 @@ class CustomersController < ApplicationController
     @open_deal_discounts, @open_deals = Deal.all_open_deals
     @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals    
     @recent_deals = Deal.all_recent_deals
-
     if request.xml_http_request?
       respond_to do |format|
         format.html
@@ -495,7 +494,7 @@ class CustomersController < ApplicationController
     logger.info @transaction.inspect
     logger.info "--------------------------------------------------------------"
 
-    if !@transaction.success?
+    if @transaction.success?
       customer_card_inform.save! if !params[:new_card].blank?
       void_transaction = do_void_transaction(@transaction)
       
