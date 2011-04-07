@@ -1,10 +1,10 @@
-<% if !flash[:error_msg].blank? || !params[:error].blank? %>
+<% if !flash[:error_msg].blank? || !@error.blank? %>
 <div style="background-color:grey;color:#fff;" onclick="Effect.toggle('error_msg','appear');">
   <% if !flash[:error_msg].blank? %>
     <%= flash[:error_msg] %>
-  <% elsif !params[:error].blank? %>
+  <% elsif !@error.blank? %>
     <table>
-      <% params[:error].each do |k,v| %>
+      <% @error.each do |k,v| %>
       <tr><td align="left"><%= "#{k}" %>:</td><td><%= "#{v}" %></td></tr>
       <% end -%>
     </table>
