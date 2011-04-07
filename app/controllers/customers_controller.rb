@@ -505,7 +505,7 @@ class CustomersController < ApplicationController
 
       customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
-
+      flash[:notice] = "Thank You for Purchasing the Deal. Your card will be charged only when the deal closes at a Price based on the Number of Total Purchases."
       redirect_to "#{params[:return_to]}"
     else
       render :action => 'transaction_details', :id => deal.id, :error => session[:paypal_error]
