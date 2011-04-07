@@ -512,6 +512,10 @@ class CustomersController < ApplicationController
       flash[:notice] = "Thank You for Purchasing the Deal. Your card will be charged only when the deal closes at a Price based on the Number of Total Purchases."
       redirect_to "#{params[:return_to]}"
     else
+      @billing_information = CustomerCreditCard.new
+      @deal = deal
+      @cards = current_customer.customer_credit_cards
+      @profile = current_customer.customer_profile
       render :action => 'transaction_details', :id => deal.id, :error => session[:paypal_error]
     end
   end
