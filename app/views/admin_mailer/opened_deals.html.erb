@@ -1,55 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>www.keupons.com</title>
-</head>
-<body>
-<table width="720" border="0" cellpadding="0" cellspacing="0">
-  <tbody><tr>
-    <td><img src="<%=$server_name%>/emails/images/top_red_bar.jpg" width="720" height="21"/></td>
-  </tr>
-  <tr>
-    <td background="<%=$server_name%>/emails/images/middle_red_bar.jpg"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-      <tbody><tr>
-        <td height="8"></td>
-        <td height="8"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td width="20%" align="left"><img src="<%=$server_name%>/emails/images/logo.jpg" width="138" height="82"></td>
-            <td width="54%"> <span style='font-family:Georgia, "Times New Roman", Times, serif; font-size:14px; color:#FF0000;text-decoration:none;font-weight:bold;'>Hot Deals in&nbsp;Singapore</span>
-
-               </td>
-            <td style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;' width="26%">
-             <%=Time.now.strftime('%A %B %d,%Y')%></td>
-          </tr>
-        </tbody></table></td>
-        <td height="8"></td>
-      </tr>
-      <tr>
-        <td width="19" height="8"></td>
-        <td width="94%" background="<%=$server_name%>/emails/images/top_black_bar.jpg" height="8"></td>
-        <td width="19" height="8"></td>
-      </tr>
- <tr>
-        <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/banner.jpg" height="159"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td width="4%">&nbsp;</td>
-            <td style='font-family:Georgia,"Times New Roman",Times, serif;font-size:30px;color:#FFFFFF;text-decoration:none;' width="53%" align="left">Keupons, the only site where you are guaranteed a discount!</td>
-            <td width="43%">&nbsp;</td>
-          </tr>
-        </tbody></table></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/bottom_black_bar.jpg" height="35"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td style='font-family:Georgia,"Times New Roman",Times,serif;font-size:18px;padding-left:5px;color:#FFFFFF;text-decoration:none;' width="100%" align="left"><%=@subject%></td>
-
-          </tr>
-        </tbody></table></td>
-        <td>&nbsp;</td>
-      </tr>
+<%= render :partial=>'/customer_mailer/top'%>
       <tr>
         <td>&nbsp;</td>
         <td><table width="100%" border="0" cellpadding="0" cellspacing="6">
@@ -64,28 +13,13 @@ for deal in @deals %>
                   <td width="20%" align="center"><%= i  %></td>
                   <td width="80%" align="left"><%= deal.name %></td>
                 </tr>
-<% i += 1 %></table>
+<% i += 1
+end
+%></table>
             </td>
           </tr>
         </tbody></table></td>
         <td>&nbsp;</td>
       </tr>
-       <tr>
-        <td>&nbsp;</td>
-        <td background="<%=$server_name%>/emails/images/bottom_black_bar.jpg" height="49"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tbody><tr>
-            <td style='font-family:Georgia,"Times New Roman",Times,serif;font-size:20px;color:#FFFFFF;text-decoration:none;' width="49%" align="right">Want to see all the deals?</td>
-            <td width="3%">&nbsp;</td>
-            <td width="48%" align="left"><a href="<%=$server_name%>"><img src="<%=$server_name%>/emails/images/viewdeals_btn.jpg" width="114" border="0" height="29"></a></td>
-          </tr>
-        </tbody></table></td>
-        <td>&nbsp;</td>
-      </tr>
-    </tbody></table></td>
-  </tr>
-  <tr>
-    <td><img src="<%=$server_name%>/emails/images/bottom_red_bar.jpg" width="720" height="21"/></td>
-  </tr>
-</tbody></table>
-</body>
-</html>
+<%=render :partial=>'/customer_mailer/bottom'%>
+
