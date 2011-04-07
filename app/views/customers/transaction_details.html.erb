@@ -66,11 +66,13 @@ if (document.getElementById('customer_credit_card_address1').value=="")
 alert('Please enter a valid billing address.');
 return false;
 }
+/*
 if (document.getElementById('customer_credit_card_city').value=="")
 {
 alert('Please enter a valid city');
 return false;
 }
+*/
 if (document.getElementById('customer_credit_card_country').value=="")
 {
 alert('Please enter a valid country name.');
@@ -228,7 +230,7 @@ theForm.submit();
                     <%else%>
                      <input id='card' value='no' type='hidden'>
                     <%end%>
-                    <img src="/images/purchase_btn.png" onclick="validate_cc_form();"/>
+                    <img src="/images/purchase_btn.png" onclick="validate_cc_form();" style="cursor: pointer;"/>
                     <a href="/deal_of_the_day"><img src="images/cancel_search.png" height="24" border="0" width="73"/></a>
                   </span>
                 </td>
