@@ -9,7 +9,7 @@ SIGNATURE: AKhpjCvdj3KVB2-fNZqxoZKi4iWFAlC-DupHgtdY2t3LB7uSb20IjddJ
        
    
 #    @@endpoints 
-SERVER:  api-3t.sandbox.paypal.com
+SERVER:  api-3t.paypal.com
 SERVICE: /nvp/
 # Proxy information of the client environment.   @@proxy_info 
 USE_PROXY:  false

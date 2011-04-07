@@ -31,7 +31,8 @@ module PayPalSDKProfiles
 #@@unipay = {"SUBJECT" => "bmuniy_1245144089_biz@paypal.com"   }
 
 # endpoint of PayPal server against which call will be made. For 3 token
-@@endpoints = {"SERVER" => "api-3t.sandbox.paypal.com", "SERVICE" => "/nvp/"}
+@@endpoints = {"SERVER" => "api-3t.paypal.com", "SERVICE" => "/nvp/"}
+#@@endpoints = {"SERVER" => "api-3t.sandbox.paypal.com", "SERVICE" => "/nvp/"}
 
 # endpoint of PayPal server against which call will be made. For certificate
 #@@endpoints = {"SERVER" => "api.sandbox.paypal.com", "SERVICE" => "/nvp/"}
