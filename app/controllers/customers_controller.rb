@@ -341,8 +341,6 @@ class CustomersController < ApplicationController
     @deal = Deal.find(params[:id])
     @cards = current_customer.customer_credit_cards
     @profile = current_customer.customer_profile
-    logger.info "----------------errors---------------------"
-    logger.info session[:payment_error].inspect
     @error = (params[:errors] == "1")? session[:payment_error] : nil
   end
 
@@ -792,7 +790,7 @@ class CustomersController < ApplicationController
         {
         :method          => 'DoDirectPayment',
         :amt             => price.to_s,
-        :currencycode    => 'USD',
+        :currencycode    => 'SGD',
         :paymentaction   => payment_action,
         :creditcardtype  => customer_card_inform.card_type,
         :acct            => customer_card_inform.credit_card_number,
@@ -801,7 +799,7 @@ class CustomersController < ApplicationController
         :street          => customer_card_inform.address1,
         :city            => customer_card_inform.city,
         :zip             => customer_card_inform.zipcode,
-        :countrycode     => 'US',
+        :countrycode     => 'SG',
         :expdate         => expMonth+customer_card_inform.expiration_year.to_s,
         :cvv2            => customer_card_inform.cvv2.to_s,
         :USER  => @@USER,
