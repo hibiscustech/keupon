@@ -341,6 +341,8 @@ class CustomersController < ApplicationController
     @deal = Deal.find(params[:id])
     @cards = current_customer.customer_credit_cards
     @profile = current_customer.customer_profile
+    logger.info "----------------errors---------------------"
+    logger.info session[:paypal_error].inspect
     @error = (params[:errors] == "1")? session[:paypal_error] : nil
   end
 
