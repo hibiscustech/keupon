@@ -513,7 +513,7 @@ class CustomersController < ApplicationController
       flash[:notice] = "Thank You for Purchasing the Deal. Your card will be charged only when the deal closes at a Price based on the Number of Total Purchases."
       redirect_to "#{params[:return_to]}"
     else
-      redirect_to "/customers/transaction_details?id=#{deal.id}&errors=1"
+      redirect_to "/transaction_details?id=#{deal.id}&errors=1"
     end
   end
 
