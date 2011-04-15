@@ -21,18 +21,18 @@ module PayPalSDKProfiles
 ###############################################################################################################################
 # specify the 3-token values.  
 #credentials for 3 token
-@@credentials =  {"USER" => "akshay_api1.keupons.com", "PWD" => "VYE9TNTSKZ5W7WFC", "SIGNATURE" => "AKhpjCvdj3KVB2-fNZqxoZKi4iWFAlC-DupHgtdY2t3LB7uSb20IjddJ" }
+#@@credentials =  {"USER" => "akshay_api1.keupons.com", "PWD" => "VYE9TNTSKZ5W7WFC", "SIGNATURE" => "AKhpjCvdj3KVB2-fNZqxoZKi4iWFAlC-DupHgtdY2t3LB7uSb20IjddJ" }
 
 #Credentials for certificate
-#@@credentials =  {"USER" => "sdk-seller_api1.sdk.com", "PWD" => "12345678"}
+@@credentials =  {"USER" => "alex_1290492158_biz_api1.gmail.com", "PWD" => "1290492213", "SIGNATURE" => "A8enwJLBFTWWh63BEP0tfysIp7.SAt6cVx19.lNEM3Y47INGmrLlh9a6" }
 
 # Use (uncomment) the following for UniPay that is to when API caller has only e-mail address, but no 3 token credentials  
 #uncomment @@unipay and @@credentials when making third party call, that is when you want to pass both subject and 3 token credentials
 #@@unipay = {"SUBJECT" => "bmuniy_1245144089_biz@paypal.com"   }
 
 # endpoint of PayPal server against which call will be made. For 3 token
-@@endpoints = {"SERVER" => "api-3t.paypal.com", "SERVICE" => "/nvp/"}
-#@@endpoints = {"SERVER" => "api-3t.sandbox.paypal.com", "SERVICE" => "/nvp/"}
+#@@endpoints = {"SERVER" => "api-3t.paypal.com", "SERVICE" => "/nvp/"}
+@@endpoints = {"SERVER" => "api-3t.sandbox.paypal.com", "SERVICE" => "/nvp/"}
 
 # endpoint of PayPal server against which call will be made. For certificate
 #@@endpoints = {"SERVER" => "api.sandbox.paypal.com", "SERVICE" => "/nvp/"}
