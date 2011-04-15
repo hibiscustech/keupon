@@ -9,5 +9,10 @@ class Constant < ActiveRecord::Base
     query = %Q{select value from constants where name = 'support_email_id'}
     find_by_sql(query)[0].value
   end
+
+  def self.get_show_deal_code
+    query = %Q{select value from constants where name = 'show_deal_code'}
+    find_by_sql(query)[0].value
+  end
   
 end

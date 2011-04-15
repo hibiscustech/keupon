@@ -16,6 +16,17 @@ class MerchantMailer < ActionMailer::Base
     @body[:merchant_company] = company
     content_type "text/html"
   end
+
+  def your_deal_closed(merchant, merchant_profile, file_path, deal, customers)
+    merchant_email(merchant_profile)
+    @subject     = "Deal Closed"
+    @body[:merchant_profile]  = merchant_profile
+    @body[:merchant] = merchant
+    @body[:deal] = deal
+    @body[:customers] = customers
+    attachments['customers.csv'] = File.read(file_path)
+  end
+
   def confirm_deal(merchant_profile,merchant,deal)
     merchant_email(merchant_profile)
     @subject     = "Confirm Deal"

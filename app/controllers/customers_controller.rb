@@ -398,11 +398,12 @@ class CustomersController < ApplicationController
   
   def tip_the_deal
     deal = Deal.find(params[:id])
-    discount = 50
+    discount = DealDiscount.current_deal_discount_for_deal(deal.id)
     buy_value = deal.value.to_f - discount.to_f*deal.value.to_f/100.to_f
     save_amount = deal.value.to_f - buy_value
     deal.update_attributes(:status => "tipped", :buy => buy_value, :discount => discount, :save_amount => save_amount)
     customer_deals = deal.customer_deals
+    successful_customers = Array.new
     for cd in customer_deals
       customer = cd.customer
       auth_transaction = cd.customer_deal_transactions[0]
@@ -421,9 +422,23 @@ class CustomersController < ApplicationController
         customer.kupoints = customer.kupoints.to_f + points_earned
         customer.save!
 
-        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, cd, deal)
+        customer_profile = customer.customer_profile
+        successful_customers << {"customer" => customer_profile, "quantity" => cd.quantity, "total_price" => total_price}
+        CustomerMailer.deliver_deal_purchase_notification(customer, customer_profile, cd, deal)
       end
     end
+    merchant = deal.merchant
+    merchant_profile = merchant.merchant_profile
+    file_path = "public/merchant_files/#{merchant_profile.first_name}.csv"
+    FasterCSV.open(file_path, "w") do |csv|
+      csv << ["Name", "Mobile Number", "NRIC", "No. of Keupons Bought", "Total Price Paid"]
+      for sc_cust in successful_customers
+        cprofile = sc_cust["customer"]
+        csv << ["#{cprofile.first_name} #{cprofile.last_name}", "#{cprofile.contact_number}", "#{cprofile.customer_pin}", sc_cust["quantity"], sc_cust["total_price"]]
+      end
+    end
+    MerchantMailer.deliver_your_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size)
+    File.delete(file_path)
     redirect_to "/admins/view_all_deals"
   end
 
@@ -498,8 +513,9 @@ class CustomersController < ApplicationController
     if @transaction.success?
       customer_card_inform.save! if !params[:new_card].blank?
       void_transaction = do_void_transaction(@transaction)
-      
-      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i)
+
+      show_deal_code = Constant.get_show_deal_code
+      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
       customer_deal.save!
       if user_is_invitee?
         customer_deal.update_attribute(:invitee,1)
