@@ -1,38 +1,56 @@
-<div id="offered_deals" >
- 
-  <%
-  
-  for deal in @deals
-    ds = deal.deal_schedule
-    display_date = Time.at(ds.start_time).strftime("%b %d, %Y")
-  %>
- 
- 
-    <div class="dateBlog">
-      <div class="dateB1">
-        <div class="dateB1_top"><%= display_date %></div>
-        <div class="dateB1_center">
-          <div class="dateB1_C1"><img src="<%= deal.deal_photo.url %>" border="0px" style="width: 204px; height: 161px;"/></div>
-          <div class="dateB1_C2">
-          S$<%= deal.value %>
-          <br />
-          <br />
-          <br />
 
-          <p style="padding-top:10px;"><%= deal.discount.to_i %><%="%"%></p>
-          <br />
-          <br />
 
-          <p style="padding-top:10px;">S$<%= deal.save_amount %></p>
+<tr><td>
 
-          </div>
-        </div>
-        <div class="dateB1_text"><%=deal.name%></div>
-      </div>
-      <div class="dateB2">Keupons Bought: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#F00;"><%= deal.customer_deals.length %></span></div>
-    </div>
- 
-  <% end %>      
-   
-  </div>
-  
+    <%
+
+    for deal in @deals
+      ds = deal.deal_schedule
+      display_date = Time.at(ds.start_time).strftime("%b %d, %Y")
+    %>
+      <table width="396" border="0" cellspacing="0" cellpadding="0" style="border:3px solid #FF0000;margin-left: 12px;">
+        <tr>
+          <td bgcolor="#000000"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="5%" align="center">&nbsp;</td>
+                <td width="91%" height="60" align="left" class="deals_content_white"><%=deal.name%></td>
+                <td width="4%" align="center">&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td height="60"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="51%"><img src="<%= deal.deal_photo.url %>" width="210" height="181" /></td>
+                      <td width="41%" valign="top" bgcolor="#24272c"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Orginal Price</td>
+                          </tr>
+                          <tr>
+                            <td height="26" align="center" class="open_deal_text1">S$ <%= deal.value %></td>
+                          </tr>
+                          <tr>
+                            <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">You Paid</td>
+                          </tr>
+                          <tr>
+                            <td height="26" align="center" class="open_deal_text1">$<%= deal.discount.to_i %><%="%"%></td>
+                          </tr>
+                          <tr>
+                            <td height="32" align="center" background="images/hottest_deal_red_box.jpg" class="open_deal_text1" style="background-repeat:no-repeat;">Keupons Bought</td>
+                          </tr>
+                          <tr>
+                            <td height="26" align="center" class="open_deal_text1"><%= deal.customer_deals.length %></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+
+
+                  </table></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="19" colspan="3" align="center">&nbsp;</td>
+              </tr>
+
+            </table></td>
+        </tr>
+      </table><br/><% end %></td></tr>
