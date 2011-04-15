@@ -51,6 +51,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/password_change',:controller=>'merchant',:action=>'password_change'  
   map.connect '/merchants/contact_details/:id',:controller=>'merchant',:action=>'contact_details'
   map.connect '/merchants/merchant_profile_update' ,:controller => 'merchant', :action => 'merchant_profile_update'
+  map.connect '/customers/tip_the_deal' ,:controller => 'customers', :action => 'tip_the_deal'
   
   map.connect '/merchants/my_company',:controller=>'merchant',:action=>'my_company'  
   map.connect '/invite_friends',:controller=>'customers',:action=>'invite_friends'
