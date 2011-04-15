@@ -24,7 +24,7 @@ class MerchantMailer < ActionMailer::Base
     @body[:merchant] = merchant
     @body[:deal] = deal
     @body[:customers] = customers
-    attachments['customers.csv'] = File.read(file_path)
+    @attachments['customers.csv'] = File.read(file_path)
   end
 
   def confirm_deal(merchant_profile,merchant,deal)
