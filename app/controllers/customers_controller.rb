@@ -790,7 +790,7 @@ class CustomersController < ApplicationController
         {
         :method          => 'DoDirectPayment',
         :amt             => price.to_s,
-        :currencycode    => 'SGD',
+        :currencycode    => 'USD',
         :paymentaction   => payment_action,
         :creditcardtype  => customer_card_inform.card_type,
         :acct            => customer_card_inform.credit_card_number,
@@ -799,7 +799,7 @@ class CustomersController < ApplicationController
         :street          => customer_card_inform.address1,
         :city            => customer_card_inform.city,
         :zip             => customer_card_inform.zipcode,
-        :countrycode     => 'SG',
+        :countrycode     => 'US',
         :expdate         => expMonth+customer_card_inform.expiration_year.to_s,
         :cvv2            => customer_card_inform.cvv2.to_s,
         :USER  => @@USER,
