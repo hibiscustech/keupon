@@ -17,14 +17,19 @@ class MerchantMailer < ActionMailer::Base
     content_type "text/html"
   end
 
-  def your_deal_closed(merchant, merchant_profile, file_path, deal, customers)
+  def your_deal_closed(merchant, merchant_profile, file_path, deal, customers, files)
     merchant_email(merchant_profile)
     @subject     = "Deal Closed"
     @body[:merchant_profile]  = merchant_profile
     @body[:merchant] = merchant
     @body[:deal] = deal
     @body[:customers] = customers
-    @attachments["customers.csv"] = File.read(file_path)
+    files.each do |file|
+      attachment "application/octet-stream" do |a|
+        a.body = file.read
+        a.filename = file.original_filename
+      end unless file.blank?
+    end
   end
 
   def confirm_deal(merchant_profile,merchant,deal)

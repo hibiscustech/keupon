@@ -437,7 +437,9 @@ class CustomersController < ApplicationController
         csv << ["#{cprofile.first_name} #{cprofile.last_name}", "#{cprofile.contact_number}", "#{cprofile.customer_pin}", sc_cust["quantity"], sc_cust["total_price"]]
       end
     end
-    MerchantMailer.deliver_your_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size)
+    files_to_send = Array.new
+    files_to_send << File.open(file_path)
+    MerchantMailer.deliver_your_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
     File.delete(file_path)
     redirect_to "/admins/view_all_deals"
   end
