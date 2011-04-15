@@ -24,14 +24,7 @@ class MerchantMailer < ActionMailer::Base
     @body[:merchant] = merchant
     @body[:deal] = deal
     @body[:customers] = customers
-    attachments['customers.csv'] = {:mime_type => 'application/octet-stream',
-                                    :content => File.read(file_path) }
-#    files.each do |file|
-#      attachment "application/octet-stream" do |a|
-#        a.body = file.read
-#        a.filename = file.original_filename
-#      end unless file.blank?
-#    end
+    attachment :content_type => files[0].content_type, :body => File.read(file_path), :filename => files[0].filename
   end
 
   def confirm_deal(merchant_profile,merchant,deal)
