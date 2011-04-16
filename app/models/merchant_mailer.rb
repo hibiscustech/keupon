@@ -27,7 +27,7 @@ class MerchantMailer < ActionMailer::Base
     #attachment :content_type => files[0].content_type, :body => File.read(file_path), :filename => "customers.csv"
     unless files[0].nil?
       part :content_type => files[0].content_type do |p|
-        p.attachment :content_type => document.content_type,
+        p.attachment :content_type => files[0].content_type,
         :body => File.open(file_path, 'rb') { |f| f.read },
         :filename => "customers.csv"
       end
