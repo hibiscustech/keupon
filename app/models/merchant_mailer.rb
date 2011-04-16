@@ -24,7 +24,14 @@ class MerchantMailer < ActionMailer::Base
     @body[:merchant] = merchant
     @body[:deal] = deal
     @body[:customers] = customers
-    attachment :content_type => files[0].content_type, :body => File.read(file_path), :filename => "customers.csv"
+    #attachment :content_type => files[0].content_type, :body => File.read(file_path), :filename => "customers.csv"
+    unless files[0].nil?
+      part :content_type => files[0].content_type do |p|
+        p.attachment :content_type => document.content_type,
+        :body => File.open(file_path, 'rb') { |f| f.read },
+        :filename => "customers.csv"
+      end
+    end
   end
 
   def confirm_deal(merchant_profile,merchant,deal)
