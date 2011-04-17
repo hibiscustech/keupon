@@ -260,7 +260,7 @@ class MerchantController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'redeem_deal',:partial => "redeem_deal"
+            page.replace_html 'redeem_deal',:partial => "view_deals_to_redeem"
           end
         }
       end
