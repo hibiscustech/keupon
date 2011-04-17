@@ -22,7 +22,7 @@ class CustomerDeal < ActiveRecord::Base
     query = %Q{ select deal_id, quantity, quantity_left, deal_code, purchase_date
                 from customer_deals cd
                 join deals d on d.id = cd.deal_id
-                where status = 'available' and d.merchant_id = '#{merchant_id}' #{conditions}}
+                where cd.status = 'available' and d.merchant_id = '#{merchant_id}' #{conditions}}
 
     find_by_sql(query)
   end
