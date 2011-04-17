@@ -161,7 +161,11 @@ hr {
             </tr>
             <% for available in @my_keupons %>
               <% if available.expiry_date.to_i > Time.now.to_i && available.status == "available" %>
-                <tr onclick="showCustomerDeal('popup_view_deal',<%= available.customer_deal_id %>);" style="cursor: pointer;"><td><%= available.name %></td><td align="center"><%=Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y") %></td><td align="center"><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                <!-- <tr onclick="showCustomerDeal('popup_view_deal',<%= available.customer_deal_id %>);" style="cursor: pointer;"> -->
+                  <tr onclick="new Ajax.Request('/customers/view_customer_deal_info?id='+<%= available.customer_deal_id %>, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});" style="cursor: pointer;">
+                  <td><%= available.name %></td>
+                  <td align="center"><%=Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
+                  <td align="center" id='viewcustomerdeal'><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
                   <% if @deal_code_visibility == "1" %>
                   <td align="center"><%= available.deal_code %></td>
                   <% end %>
