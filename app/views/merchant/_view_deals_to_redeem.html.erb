@@ -1,12 +1,5 @@
-<tr>
-        <td height="36" background="/images/header_gray_bg.jpg"><img src="/images/redeem_deal_text.jpg" width="238" height="36" /></td>
-      </tr>
-      <tr>
-        <td >&nbsp;</td>
-      </tr>
-      <tr>
-        <td>
-<table>
+
+<table width="100%" align="center">
   <% for cd in @customer_deals
     deal = Deal.find(cd.deal_id)
   %>
@@ -56,5 +49,3 @@
                 <td height="10">&nbsp;</td>
   </tr>
 </table>
-          </td>
-      </tr>
