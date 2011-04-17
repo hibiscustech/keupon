@@ -230,24 +230,24 @@ class MerchantController < ApplicationController
   def redeem_deals
     @page = 'Redeem Deals'
     flash[:notice] = nil
+    @deal_code_visibility = Constant.get_show_deal_code.to_s
   end
 
   def verify_deal
     flash[:notice] = nil
     customer = Customer.verify_customer(params[:customer_pin])
+    deal_code_visibility = Constant.get_show_deal_code.to_s
     if !customer.blank?
       if !customer.id.blank?
         @customer = Customer.find(customer.id)
         @customer_profile = @customer.customer_profile
-        @customer_deal = CustomerDeal.verify_customer_deal(params[:code], @customer.id)
-        if @customer_deal.blank?
-          flash[:notice] = "Invalid Code"
+        if deal_code_visibility == "1"
+          @customer_deals = CustomerDeal.customer_deals_from_merchant(current_merchant.id.to_s, params[:code])
         else
-          @deal = Deal.find(@customer_deal.deal_id)
-          if @deal.merchant_id.to_s != current_merchant.id.to_s
-            @deal = nil
-            flash[:notice] = "This Deal Code does not belong to this merchant."
-          end
+          @customer_deals = CustomerDeal.customer_deals_from_merchant(current_merchant.id.to_s, nil)
+        end
+        if @customer_deals.blank?
+          flash[:notice] = "No Deals brought from this Merchant"
         end
       else
         flash[:notice] = "Invalid Customer"
@@ -260,7 +260,11 @@ class MerchantController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'redeem_deal',:partial => "redeem_deal"
+            if flash[:notice].blank?
+              page.replace_html 'deals_toredeem',:partial => "view_deals_to_redeem"
+            else
+              page.replace_html 'redeem_deal',:partial => "redeem_deal"
+            end
           end
         }
       end
