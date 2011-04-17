@@ -161,7 +161,7 @@ hr {
             </tr>
             <% for available in @my_keupons %>
               <% if available.expiry_date.to_i > Time.now.to_i && available.status == "available" %>
-                <tr><td><%= available.name %></td><td align="center"><%=Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y") %></td><td align="center"><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                <tr onclick="showCustomerDeal('popup_view_deal',<%= deal.customer_deal_id %>);" style="cursor: pointer;"><td><%= available.name %></td><td align="center"><%=Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y") %></td><td align="center"><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
                   <% if @deal_code_visibility == "1" %>
                   <td align="center"><%= available.deal_code %></td>
                   <% end %>
@@ -231,3 +231,7 @@ hr {
       <tr>
         <td>&nbsp;</td>
       </tr>
+
+      <div id="popup_view_deal">
+        <br/><%= render :partial => "customer_deal_info" %>
+      </div>

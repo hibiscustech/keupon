@@ -307,6 +307,21 @@ class CustomersController < ApplicationController
     @hotest_deal = Deal.hottest_deal_of_today
   end
 
+  def view_customer_deal_info
+    @customer_deal = CustomerDeal.find(params[:id])
+    @deal = @customer_deal.deal
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_customer_deal',:partial => "view_customer_deal"
+          end
+        }
+      end
+    end
+  end
+
   def view_demand_deal_offer
     @bid_deal = CustomerDemandDealBidding.find(params[:id])
     if request.xml_http_request?
@@ -795,6 +810,7 @@ class CustomersController < ApplicationController
    @page = 'My Keupons'
    @keupoint_deals = Deal.available_keupoint_deals(current_customer.kupoints)
    @my_keupons = Deal.my_keupons(current_customer.id)
+   @deal_code_visibility = Constant.get_show_deal_code.to_s
   end
 
   def do_transaction(customer_card_inform, payment_action, price)
