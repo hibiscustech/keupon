@@ -13,7 +13,7 @@
                           <td bgcolor="#000000"><table cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tbody><tr>
                               <td align="center" width="5%">&nbsp;</td>
-                              <td height="60" align="left" width="91%" class="deals_content_white"><%= @deal.name %></td>
+                              <td height="60" align="left" width="91%" style="color: #FFFFFF;font-family: Arial,Helvetica,sans-serif;font-size: 12px;font-weight: bold;text-decoration: none;"><%= @deal.name %></td>
                               <td align="center" width="4%">&nbsp;</td>
                             </tr>
                             <tr>
@@ -23,22 +23,22 @@
                                   <td width="51%"><img height="181" width="210" src="<%=$server_name%>/<%=@deal.deal_photo.url%>"></td>
                                   <td bgcolor="#24272c" width="41%" valign="top"><table cellspacing="0" cellpadding="0" border="0" width="100%">
                                       <tbody><tr>
-                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;" class="open_deal_text1">Value</td>
+                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;" class="open_deal_text1">Value</td>
                                       </tr>
                                       <tr>
-                                        <td height="26" align="center" class="open_deal_text1">S$<%= @deal.buy %></td>
+                                        <td height="26" align="center" style="color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;">S$<%= @deal.buy %></td>
                                       </tr>
                                       <tr>
-                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;" class="open_deal_text1">Discount</td>
+                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;" class="open_deal_text1">Discount</td>
                                       </tr>
                                       <tr>
-                                        <td height="26" align="center" class="open_deal_text1"><%= @deal.discount %> %</td>
+                                        <td height="26" align="center" style="color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;"><%= @deal.discount %> %</td>
                                       </tr>
                                       <tr>
-                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;" class="open_deal_text1">Customers</td>
+                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;" class="open_deal_text1">Customers</td>
                                       </tr>
                                       <tr>
-                                        <td height="26" align="center" class="open_deal_text1"><%= "#{@customers}" %></td>
+                                        <td height="26" align="center" style="color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;"><%= "#{@customers}" %></td>
                                       </tr>
                                   </tbody></table></td>
                                 </tr>
