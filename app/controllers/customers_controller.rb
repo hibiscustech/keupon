@@ -315,7 +315,7 @@ class CustomersController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-            page.replace_html 'view_customer_deal',:partial => "view_customer_deal"
+            page.replace_html 'viewcustomerdeal',:partial => "view_customer_deal"
           end
         }
       end
