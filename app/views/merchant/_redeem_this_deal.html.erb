@@ -53,7 +53,7 @@
                 </tbody></table></td>
               </tr>
               <tr>
-                <td height="10">&nbsp;</td>
+                <td height="10" align="right"><a href="#" onclick="new Ajax.Request('/merchant/verify_deal?customer_pin=<%=@customer_pin%>', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Back</a> &nbsp;&nbsp; <a href="#" onclick="new Ajax.Request('/merchant/redeem_deals', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;">Cancel</a></td>
   </tr>
 </table>
 <% end -%>

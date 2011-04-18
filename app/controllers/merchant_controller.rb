@@ -279,6 +279,7 @@ class MerchantController < ApplicationController
 
   def redeem_this_deal
     @customer_deal = CustomerDeal.find(params[:id])
+    @customer_pin = @customer_deal.customer.customer_profile.customer_pin
     if request.xml_http_request?
       respond_to do |format|
         format.html
