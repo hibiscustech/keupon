@@ -113,4 +113,12 @@ def category_all
     return false
    end
   end
+
+  def earn_value
+    return Constant.get_earn_value
+  end
+
+  def invitees_value
+    return Constant.get_invitees
+  end
 end
