@@ -5,7 +5,13 @@
         <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
           <tr>
             <td width="5%"> </td>
-            <td colspan="2" align="left" width="55%" class="header_text" height="55" background="/images/header_red_bg.jpg">Earn S$<%= earn_value %> when <%= invitees_value %> customers sign-up </td>
+            <td colspan="2" align="left" width="55%" class="header_text" height="55" background="/images/header_red_bg.jpg">
+              <% if @invitees.to_s == invitees_value.to_s %>
+              Congratulations! <%= invitees_value %> invitees have signed-up as Customers and you have earned S$<%= earn_value %>
+              <% else %>
+              Earn S$<%= earn_value %> when <%= invitees_value %> customers sign-up
+              <% end %>
+            </td>
           </tr>
           <tr><td colspan="3">&nbsp;</td></tr>
           <% for cf in @friends %>

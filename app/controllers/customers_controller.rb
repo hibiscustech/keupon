@@ -773,6 +773,7 @@ class CustomersController < ApplicationController
     @customer_profile = @customer.customer_profile
     @cus_favourite=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
     @friends = @customer.customer_friends
+    @invitees = CustomerFriend.signed_up_invitees(customer)
  end
 
 
