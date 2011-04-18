@@ -19,7 +19,7 @@ class CustomerDeal < ActiveRecord::Base
     if !deal_code.blank?
       conditions += " and deal_code = '#{deal_code}'"
     end
-    query = %Q{ select deal_id, quantity, quantity_left, deal_code, purchase_date
+    query = %Q{ select deal_id, quantity, quantity_left, deal_code, purchase_date, cd.id
                 from customer_deals cd
                 join deals d on d.id = cd.deal_id
                 where cd.status = 'available' and d.merchant_id = '#{merchant_id}' #{conditions}}

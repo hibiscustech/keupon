@@ -267,6 +267,21 @@ class MerchantController < ApplicationController
     end
   end
 
+  def redeem_this_deal
+    deal_code_visibility = Constant.get_show_deal_code.to_s
+    @customer_deal = CustomerDeal.find(params[:id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'redeem_deal',:partial => "redeem_this_deal"
+          end
+        }
+      end
+    end
+  end
+
   def redeem_deal
     @redeem_deal = CustomerDeal.find(params[:id])
     if !@redeem_deal.nil?

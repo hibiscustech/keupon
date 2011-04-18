@@ -37,7 +37,11 @@
                         </tr>
                         <tr>
                           <td width="74%">&nbsp;</td>
-                          <td height="26" align="right" width="26%" style="background-repeat: no-repeat;" class="open_deal_text1"><a href="#"><img height="29" border="0" width="74" src="/images/buyit_btn.png"></a></td>
+                          <td height="26" align="right" width="26%" style="background-repeat: no-repeat;" class="open_deal_text1">
+                            <% if Time.now.to_i < deal.expiry_date.to_i && cd.quantity_left.to_i > 0%>
+                            <a href="#" onclick="new Ajax.Request('/merchant/redeem_this_deal?id=<%=cd.id%>', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;"><img height="29" border="0" width="74" src="/images/redeem_btn.png"/></a>
+                            <% end %>
+                          </td>
                         </tr>
                     </tbody></table></td>
                     <td width="3%">&nbsp;</td>
