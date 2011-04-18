@@ -1,0 +1,59 @@
+<% form_remote_tag :url => { :controller => 'merchant', :action => 'redeem_deal'},:html => {:id => "rd_deal_form"} do -%>
+<table width="52%" align="center">
+  <% cd = @customer_deal
+    deal = cd.deal
+  %>
+  <tr>
+                <td height="10">&nbsp;</td>
+  </tr>
+  <tr>
+                <td height="150" background="/images/offered_deal_red_bar.jpg" style="border: 2px solid rgb(0, 0, 0);"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tbody><tr>
+                    <td align="center" width="27%"><img height="89" width="108" src="/images/opendeal_img1.jpg"></td>
+                    <td width="70%" valign="top"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tbody><tr>
+                          <td height="50" align="left" colspan="2"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tbody><tr>
+                              <td height="30" background="/images/offered_deal_red_bar_top.jpg" style="background-repeat: no-repeat;"><table cellspacing="1" cellpadding="0" border="0" width="100%">
+                                <tbody><tr>
+                                  <td height="29" align="center" width="18%" class="open_deal_text1">Quantity</td>
+                                  <td align="center" width="18%" class="open_deal_text1">Quantity Left</td>
+                                  <td align="center" width="32%" class="open_deal_text1">Purchased On</td>
+                                  <td align="center" width="32%" class="open_deal_text1">Expires on</td>
+                                </tr>
+                                <tr>
+                                  <td height="25" bgcolor="#ffffff" align="center" class="open_deal_text2"><%= cd.quantity %></td>
+                                  <td bgcolor="#ffffff" align="center" class="open_deal_text2"><%= cd.quantity_left %></td>
+                                  <td bgcolor="#ffffff" align="center" class="open_deal_text2"><%= Time.at(cd.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
+                                  <td bgcolor="#ffffff" align="center" class="open_deal_text2"><%= Time.at(deal.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                                </tr>
+                              </tbody></table></td>
+                            </tr>
+
+                          </tbody></table></td>
+                        </tr>
+                        <tr>
+                          <td align="left" class="open_deal_text_red" colspan="2"><%= deal.name %></td>
+                        </tr>
+                        <tr>
+                          <td width="74%" class="open_deal_text1">
+                            <% if @customer_deal.quantity_left.to_i > 1 %>
+                            No. of Quantities to Redeem : <%=text_field_tag  'deal[quantity]'%>
+                            <% else %>
+                              <input type="hidden" name="deal[quantity]" value="1" />
+                            <% end %>
+                            <input type="hidden" name="id" value="<%=@customer_deal.id%>" /></td>
+                          <td height="26" align="right" width="26%" style="background-repeat: no-repeat;" class="open_deal_text1">
+                            <a href="#" onclick="$('rd_deal_form').onsubmit();return false;"><img height="29" border="0" width="74" src="/images/redeem_btn.png"></a>
+                          </td>
+                        </tr>
+                    </tbody></table></td>
+                    <td width="3%">&nbsp;</td>
+                  </tr>
+                </tbody></table></td>
+              </tr>
+              <tr>
+                <td height="10">&nbsp;</td>
+  </tr>
+</table>
+<% end -%>
