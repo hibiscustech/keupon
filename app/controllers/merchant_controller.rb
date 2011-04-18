@@ -231,6 +231,16 @@ class MerchantController < ApplicationController
     @page = 'Redeem Deals'
     flash[:notice] = nil
     @deal_code_visibility = Constant.get_show_deal_code.to_s
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'redeem_deal',:partial => "redeem_deal"
+          end
+        }
+      end
+    end
   end
 
   def verify_deal
