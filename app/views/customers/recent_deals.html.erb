@@ -1,10 +1,11 @@
 <tr><td>
-    <table width="900" border="0" cellspacing="0" cellpadding="0">
+ <table width="900" border="0" cellspacing="0" cellpadding="0">
       <%i=0%>
-      <%if i==0 or i==2 or i==9 or i==13%>
+      <%if i==0 or i==2 or i==4 or i==6%>
         <tr>
         <%end%>
         <%
+
         for deal in @deals
           ds = deal.deal_schedule
           display_date = Time.at(ds.start_time).strftime("%b %d, %Y")
@@ -51,12 +52,13 @@
                     </tr>
                   </table></td>
               </tr>
-            </table></td>
-          <td width="12%">&nbsp;</td>
-          <%if i==1 or i==3 or i==9 or i==13 %>
+            </table> </td>
+          <%if i==1 or i==3 or i==5 or i==7 %>
           </tr>
         <%end%>
         <%i=i+1%>
       <%end%>
-    </table><br/>
+    </table>
+
+<div style="text-align:center;color:#fff;"><%= will_paginate @deals %></div>
   </td></tr>
