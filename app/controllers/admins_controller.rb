@@ -112,4 +112,27 @@ class AdminsController < ApplicationController
     end
   end
 
+
+   def all_constants
+     @constant = Constant.find :all
+   end
+
+   def update_constant
+     @constant = Constant.find(params[:id])
+     @constant .update_attributes(:value => params['constant']['value'])
+     if request.xml_http_request?
+       respond_to do |format|
+         format.html
+         format.js {
+           render :update do |page|
+             page.insert_html :top, "subject_list", "<div id='msg' style='text-align:center;background-color:grey;color:#fff;' onclick='Effect.toggle('msg','appear');'>You Successfully update value for #{@constant.name}</div>"
+           end
+         }
+       end
+     end
+   end
+
 end
+
+
+
