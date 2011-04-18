@@ -242,9 +242,9 @@ class MerchantController < ApplicationController
         @customer = Customer.find(customer.id)
         @customer_profile = @customer.customer_profile
         if deal_code_visibility == "1"
-          @customer_deals = CustomerDeal.customer_deals_from_merchant(current_merchant.id.to_s, params[:code])
+          @customer_deals = CustomerDeal.customer_deals_from_merchant(current_merchant.id.to_s, params[:code], @customer.id)
         else
-          @customer_deals = CustomerDeal.customer_deals_from_merchant(current_merchant.id.to_s, nil)
+          @customer_deals = CustomerDeal.customer_deals_from_merchant(current_merchant.id.to_s, nil, @customer.id)
         end
         if @customer_deals.blank?
           flash[:notice] = "No Deals brought from this Merchant"
@@ -268,7 +268,6 @@ class MerchantController < ApplicationController
   end
 
   def redeem_this_deal
-    deal_code_visibility = Constant.get_show_deal_code.to_s
     @customer_deal = CustomerDeal.find(params[:id])
     if request.xml_http_request?
       respond_to do |format|
@@ -284,6 +283,7 @@ class MerchantController < ApplicationController
 
   def redeem_deal
     @redeem_deal = CustomerDeal.find(params[:id])
+    @deal_code_visibility = Constant.get_show_deal_code.to_s
     if !@redeem_deal.nil?
       #equal = @redeem_deal.quantity.to_i == @redeem_deal.quantity_left.to_i
       quantity_left = (@redeem_deal.quantity_left.to_i -  params[:deal][:quantity].to_i)

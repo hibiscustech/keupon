@@ -14,7 +14,7 @@ class CustomerDeal < ActiveRecord::Base
     find_by_sql(query)[0]
   end
 
-  def self.customer_deals_from_merchant(merchant_id, deal_code)
+  def self.customer_deals_from_merchant(merchant_id, deal_code, customer)
     conditions = ""
     if !deal_code.blank?
       conditions += " and deal_code = '#{deal_code}'"
@@ -22,7 +22,7 @@ class CustomerDeal < ActiveRecord::Base
     query = %Q{ select deal_id, quantity, quantity_left, deal_code, purchase_date, cd.id
                 from customer_deals cd
                 join deals d on d.id = cd.deal_id
-                where cd.status = 'available' and d.merchant_id = '#{merchant_id}' #{conditions}}
+                where cd.status = 'available' and d.merchant_id = '#{merchant_id}' and customer_id = '#{customer}' #{conditions}}
 
     find_by_sql(query)
   end
