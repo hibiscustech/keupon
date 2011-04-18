@@ -67,12 +67,13 @@ class CustomersController < ApplicationController
      email=params[:email]
      if Customer.verifying_already_member?(email)
       flash[:notice]= "#{email} is already a member."
+      redirect_to '/add_a_friend'
      else
        @customer_friend=CustomerFriends.create(:friend_email=>email,:customer_id=>current_customer.id)
        flash[:notice]='Invite has been sent to email id specified'
        #emailing with URL which will populate email id on email field os the signup page
        CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
-       redirect_to '/'
+       redirect_to '/add_a_friend'
      end
    else
      render :template=>'/customers/earn_money'
