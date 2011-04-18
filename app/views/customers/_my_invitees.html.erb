@@ -1,0 +1,22 @@
+
+
+    <br/><br/><br/><br/><br/><br/><br/>
+    <div style="width:618px;text-align:left;">
+        <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
+          <% for cf in @friends %>
+          <tr>
+            <td width="5%"> </td>
+            <td width="20%" style="color:#000000;"><%= cf.friend_email  %></td>
+            <td width="30%">
+              <% if cf.signed_up.to_s == "0" %>
+                <image src="/images/check_red.jpg"/>
+              <% else %>
+                <image src="/images/check_green.jpg"/>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+      </table>
+
+
+    </div>
