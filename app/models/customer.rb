@@ -101,6 +101,12 @@ class Customer < ActiveRecord::Base
     find_by_sql(query)
   end
 
+  def self.verifying_already_member?(email)
+    query = %Q{ select * from customers where login = '#{email}'}
+    results = find_by_sql(query)
+    return (results.blank?)? false : true
+  end
+
   def self.birthdate_to_age(bDate) 
     age = Date.today.year - bDate.year
     if Date.today.month < bDate.month || (Date.today.month == bDate.month && bDate.day >= Date.today.day)
