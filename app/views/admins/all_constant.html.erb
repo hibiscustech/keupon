@@ -1,0 +1,60 @@
+
+
+<tr>
+  <td height="34" background="/images/header_bar_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="17%" align="left"><img src="/images/deals_categories_header_text.jpg" width="220" height="31" /></td>
+        <td width="83%">&nbsp;</td>
+      </tr>
+    </table></td>
+</tr>
+<tr>
+  <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="4%">&nbsp;</td>
+        <td width="92%">&nbsp;</td>
+        <td width="4%">&nbsp;</td>
+      </tr>
+
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td  >
+          <div id="accounting">
+            <div></div>
+            <ul id="subject_list">
+              <% for c in @constant %>
+                <table  cellpadding="0"  cellspacing="1" class="deals_content" id="merchants">
+                  <tr>
+                    <td width="20%" align="center" bgcolor="#FFFFFF" class="content_text"><%= c.name.capitalize %></td><br/>
+                  <td  align="center" bgcolor="#FFFFFF" class="content_text"> <% form_remote_tag(:url => {:action => 'update_constant'},
+                      :html => {:id => 'subject_form'}) do %>
+                      <input id="constant_value" name="constant[value]" size="20" type="text" value="<%= c.value %>"/>
+                      <input type="hidden" name="id" value="<%= c.id %>"/>
+                      <%= image_submit_tag ("update_btn.png") %>
+    <%#=link_to image_tag ("cancel_btn2b.jpg", :border => '0'),{}, {:onclick => "return Validate();"}%>
+                    <% end %></td>
+                  </tr>
+                </table>
+              <% end %>
+            </ul>
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+</tr>
+
+
