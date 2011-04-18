@@ -4,7 +4,7 @@
         <div id="msg" style="text-align:center;background-color:grey;color:#fff;" onclick="Effect.toggle('msg','appear');"><%=flash[:notice]%></div>
       <% end %>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <%= form_remote_tag(:url => {:controller => "merchant", :action => "verify_deal", :loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');"},:html => {:id => "verification_form", :style=> "padding:0;margin:0;"})%>
+        <%= form_remote_tag(:url => {:controller => "merchant", :action => "verify_deal"},:html => {:id => "verification_form1", :style=> "padding:0;margin:0;"})%>
         <% if @deal_code_visibility == "1" %>
         <tr>
           <td>&nbsp;</td>
@@ -47,7 +47,7 @@
           <td width="48%" align="right" valign="top" class="deals_content2"></td>
           <td width="1%">&nbsp;</td>
           <td colspan="3">
-            <input type="button" name="Verify" value="Verify" onclick="$('verification_form').onsubmit();return false;"/><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %>
+            <input type="button" name="Verify" value="Verify" onclick="$('verification_form1').onsubmit();return false;"/><%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none;" ) %>
           </td>
         </tr>
       </table>
