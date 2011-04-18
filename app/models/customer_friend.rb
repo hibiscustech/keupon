@@ -1,4 +1,4 @@
-class CustomerFriends < ActiveRecord::Base
+class CustomerFriend < ActiveRecord::Base
   belongs_to :customer
 
   def self.who_invited_me(customer_email)
