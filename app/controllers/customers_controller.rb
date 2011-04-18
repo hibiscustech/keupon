@@ -424,17 +424,37 @@ class CustomersController < ApplicationController
     deal.update_attributes(:status => "tipped", :buy => buy_value, :discount => discount, :save_amount => save_amount)
     customer_deals = deal.customer_deals
     successful_customers = Array.new
+
     for cd in customer_deals
       customer = cd.customer
       auth_transaction = cd.customer_deal_transactions[0]
       customer_card_inform = auth_transaction.customer_credit_card
       total_price = deal.buy.to_f*cd.quantity.to_f
-      @transaction = do_transaction(customer_card_inform, 'sale', total_price)
-      if @transaction.success?
+
+      my_keupon_credits = 0
+      my_invitees = CustomerFriend.signed_up_invitees(customer.id)
+
+      if my_invitees.to_s == Constant.get_invitees.to_s
+        my_keupon_credits = Constant.get_earn_value.to_f
+        my_signed_up_invitees = CustomerFriend.my_signed_up_invitees(customer.id)
+        for msui in my_signed_up_invitees
+          msui.update_attributes(:used => '1')
+        end
+      end
+      credits_flag = false
+      if (total_price - my_keupon_credits) > 0
+        @transaction = do_transaction(customer_card_inform, 'sale', total_price - my_keupon_credits)
+      else
+        balance = my_keupon_credits - total_price
+        credits_flag = true
+        customer.update_attributes(:balance_credit => balance)
+      end
+      if @transaction.success? || credits_flag
         deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
         cd.update_attributes(:status => "available", :deal_code => deal_code)
 
-        customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => cd.id, :payment_type => "Reference", :status => "success")
+        trans_key = (credits_flag)? "Full Keupons Credit" : @transaction.response["TRANSACTIONID"]
+        customer_transaction = CustomerDealTransaction.new(:transaction_key => trans_key, :time_created => Time.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => cd.id, :payment_type => "Reference", :status => "success")
         customer_transaction.save!
 
         points_earned = Constant.dollar_to_keupoint_convertion*total_price
@@ -444,7 +464,7 @@ class CustomersController < ApplicationController
 
         customer_profile = customer.customer_profile
         successful_customers << {"customer" => customer_profile, "quantity" => cd.quantity, "total_price" => total_price}
-        CustomerMailer.deliver_deal_purchase_notification(customer, customer_profile, cd, deal)
+        CustomerMailer.deliver_deal_purchase_notification(customer, customer_profile, cd, deal, my_keupon_credits)
 
         customer_invited_by = CustomerFriend.who_invited_me(customer.login)
         if !customer_invited_by.blank?
@@ -766,7 +786,6 @@ class CustomersController < ApplicationController
     @customer_profile = CustomerProfile.find_by_customer_id(params[:id])
   end
 
-
   def my_profile
     @page = 'My Settings'
     @customer = Customer.find(current_customer.id)
@@ -774,8 +793,7 @@ class CustomersController < ApplicationController
     @cus_favourite=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
     @friends = @customer.customer_friends
     @invitees = CustomerFriend.signed_up_invitees(@customer.id)
- end
-
+  end
 
   def settings
     @customer = Customer.find(params[:id])

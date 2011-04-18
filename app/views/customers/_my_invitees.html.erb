@@ -14,7 +14,9 @@
             </td>
           </tr>
           <tr><td colspan="3">&nbsp;</td></tr>
-          <% for cf in @friends %>
+          <% for cf in @friends
+            if cf.used.to_s == '0'
+          %>
           <tr>
             <td width="5%"> </td>
             <td width="20%" style="color:#000000;"><%= cf.friend_email  %></td>
@@ -26,7 +28,9 @@
               <% end %>
             </td>
           </tr>
-          <% end %>
+          <%
+          end
+        end %>
 
       </table>
 
