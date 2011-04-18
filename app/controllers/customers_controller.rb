@@ -445,6 +445,12 @@ class CustomersController < ApplicationController
         customer_profile = customer.customer_profile
         successful_customers << {"customer" => customer_profile, "quantity" => cd.quantity, "total_price" => total_price}
         CustomerMailer.deliver_deal_purchase_notification(customer, customer_profile, cd, deal)
+
+        customer_invited_by = CustomerFriend.who_invited_me(customer.login)
+        if !customer_invited_by.blank?
+          cib = customer_invited_by[0]
+          cib.update_attributes(:signed_up => '1')
+        end
       end
     end
     merchant = deal.merchant
@@ -539,9 +545,6 @@ class CustomersController < ApplicationController
       show_deal_code = Constant.get_show_deal_code
       customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
       customer_deal.save!
-      if user_is_invitee?
-        customer_deal.update_attribute(:invitee,1)
-      end
 
       customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
@@ -864,16 +867,6 @@ class CustomersController < ApplicationController
       }
     )
     return void_transaction
-  end
-  protected
-  def user_is_invitee?
-    p "User is invitee"
-    friend=CustomerFriends.find_by_friend_email(current_customer.email)
-    if friend.nil?
-     return false
-    else
-     return true
-    end
   end
 
 end

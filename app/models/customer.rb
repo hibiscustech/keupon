@@ -33,6 +33,7 @@ class Customer < ActiveRecord::Base
   has_many :merchants_customers
   has_many :merchants, :through => :merchants_customers
   has_many :customer_demand_deals
+  has_many :customer_friends
 
   has_attached_file :customer_photo,
     :styles => {
