@@ -4,6 +4,21 @@ class AdminsController < ApplicationController
   protect_from_forgery :only => [:destroy]
   before_filter :admin_login_required, :except => [:open_the_deals]
   include AuthenticatedSystemMerchant
+
+  def email_subscribers
+    @subscribers = KeuponSubscriber.find(:all)
+    for subscriber in @subscribers
+      sub_deals = subscriber.subscribed_deals
+      cat_ids = sub_deals.collect{|sd| sd.deal_category_id}
+      category_ids = cat_ids.join(",")
+      merchants = MerchantProfile.merchants_for_categories(category_ids)
+      if !merchants.blank?
+        deal_discounts, deals = Deal.all_hot_and_open_deals_for_subscribers(merchants.join(","))
+        MerchantMailer.deliver_subscribers_notification(subscriber.email, deals, deal_discounts)
+      end
+    end
+  end
+
   def view_all_deals
     @deal_discounts,@deals = Deal.all_deals
   end

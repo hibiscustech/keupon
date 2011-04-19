@@ -81,7 +81,22 @@ class Deal < ActiveRecord::Base
     resultset_hashed = convert_into_hash(resultset)
     deal_discounts = deals_and_current_discounts(resultset)
     return deal_discounts, resultset_hashed
-  end 
+  end
+
+  def self.all_hot_and_open_deals_for_subscribers(merchant_ids)
+    query = %Q{ select d.id, d.name, d.status, d.value as actual_value, ds.end_time, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount
+                from deals d
+                join deal_schedules ds on ds.deal_id = d.id
+                join deal_location_details dld on dld.deal_id = d.id
+                left outer join customer_deals cd on cd.deal_id = d.id
+                where d.status = 'open' and d.merchant_id in (#{merchant_ids})
+                group by d.id
+                order by ds.start_time }
+    resultset = find_by_sql(query)
+    resultset_hashed = convert_into_hash(resultset)
+    deal_discounts = deals_and_current_discounts(resultset)
+    return deal_discounts, resultset_hashed
+  end
 
   def self.all_hot_and_open_deals
     query = %Q{ select d.id, d.name, d.status, d.value as actual_value, ds.end_time, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, dld.address1, dld.address2, dld.city, dld.state, dld.zipcode, d.discount, d.value as actual_value, d.save_amount

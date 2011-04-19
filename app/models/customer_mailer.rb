@@ -25,6 +25,16 @@ class CustomerMailer < ActionMailer::Base
     content_type "text/html"
   end
 
+  def subscribers_notification(subscriber, deals, deal_discounts)
+    @recipients  = "#{subscriber}"
+    @from        = "#{Constant.get_admin_email_id}"
+    @sent_on     = Time.now
+    @subject    = "Today's Deals"
+    @body[:deals] = deals
+    @body[:deal_discounts] = deal_discounts
+    content_type "text/html"
+  end
+
   def deal_redemption_notification(customer, profile, redeem_deal, deal)
     setup_email(customer)
     @subject    = 'You have Redeemed a Deal bought from Keupons'

@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="css/emailer.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.emailer_header{
+
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:30px;
+
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.emailer_header1{
+
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:20px;
+
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.emailer_header2{
+
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:18px;
+	padding-left:5px;
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.emailer_content{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+	color:#000000;
+	text-decoration:none;
+
+}
+.emailer_content1{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+	color:#000000;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+.emailer_content_red{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+
+	color:#FF0000;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+.emailer_content_red1{
+
+	font-family:Georgia, "Times New Roman", Times, serif;
+
+	font-size:12px;
+
+	color:#FF0000;
+	text-decoration:none;
+
+
+}
+.red_link{
+
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+
+	color:#ffb3b3;
+	text-decoration:underline;
+
+}
+.red_link:hover{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+	color:#ffb3b3;
+	text-decoration:none;
+
+}
+
+
+.time_text_red{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+	color:#ff4b4c;
+	text-decoration:none;
+
+}
+.time_text_white{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#ffffff;
+	text-decoration:none;
+
+}
+.price_text_red{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:18px;
+
+	color:#FF0000;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+.price_text_white{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:16px;
+
+	color:#ffffff;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+.price_text_white1{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+
+	color:#ffffff;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+-->
+</style></head>
+
+<body>
+<table width="720" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="<%=$server_name%>/images/top_red_bar.jpg" width="720" height="21" /></td>
+  </tr>
+  <tr>
+    <td background="<%=$server_name%>/images/middle_red_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="8"></td>
+        <td height="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="20%" align="left"><img src="<%=$server_name%>/images/email_logo.jpg" width="138" height="82" /></td>
+            <td width="54%"> <span class="emailer_content_red">Hot Deals in Singapore</span><br />
+              <br />
+              <span class="emailer_content">Today's Keupons for You</span></td>
+            <td width="26%" class="emailer_content"><%=Time.now.strftime('%A %B %d,%Y')%></td>
+          </tr>
+        </table></td>
+        <td height="8"></td>
+      </tr>
+      <tr>
+        <td width="19" height="8"></td>
+        <td width="94%" background="<%=$server_name%>/images/top_black_bar.jpg" height="8"></td>
+        <td width="19" height="8"></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="159" background="<%=$server_name%>/images/banner.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="4%">&nbsp;</td>
+            <td width="53%" align="left" class="emailer_header">Welcome to Keupons, the only site where you are guaranteed a discount! </td>
+            <td width="43%">&nbsp;</td>
+          </tr>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="35" background="<%=$server_name%>/images/bottom_black_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="78%" align="left" class="emailer_header2"><%=Time.now.strftime('%A')%>'s Deal</td>
+            <td width="22%" align="center">&nbsp;</td>
+          </tr>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td> <table width="100%" border="0" cellspacing="6" cellpadding="0">
+          <%i = 0
+                for opdd in @deal_discounts
+                discount = opdd[1]
+                open_deal = @deals[opdd[0]]
+                opd = Deal.find(open_deal.id)
+          %>
+          <% if i%2 == 0 %>
+          <tr>
+            <td width="51%" bgcolor="#eceded">
+              <table width="100%" border="0" cellspacing="5" cellpadding="0">
+              <tr>
+                <td colspan="2" align="center" class="emailer_content_red1"><%=open_deal.name%></td>
+                </tr>
+              <tr>
+                <td width="36%" valign="top" background="<%=$server_name%>/images/price_list.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="37" align="center" class="price_text_white"><%=discount.nil? ? discount : ''%> %</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="center" class="price_text_white"><%=open_deal.no_of_customers%> bought</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="center" class="price_text_white1">buy thru <%=Time.at(open_deal.end_time.to_i).strftime("%d/%m") %></td>
+                  </tr>
+                  <tr>
+                    <td height="31">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="center"><a href="<%=$server_name%>/deal_details?id=<%= open_deal.id %>"><img src="<%=$server_name%>/images/view_deal_btn.png" width="81" height="29" border="0" /></a></td>
+                  </tr>
+                </table></td>
+                <td width="64%"><img src="<%=$server_name%>/<%= opd.deal_photo.url%>" width="200" height="169" /></td>
+              </tr>
+            </table>
+            </td>
+            <% else %>
+            <td width="49%" bgcolor="#eceded">
+              <table width="100%" border="0" cellspacing="5" cellpadding="0">
+              <tr>
+                <td colspan="2" align="center" class="emailer_content_red1"><%=open_deal.name%></td>
+              </tr>
+              <tr>
+                <td width="36%" valign="top" background="<%=$server_name%>/images/price_list.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="37" align="center" class="price_text_white"><%=discount.nil? ? discount : ''%> %</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="center" class="price_text_white"><%=open_deal.no_of_customers%> bought</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="center" class="price_text_white1">buy thru <%=Time.at(open_deal.end_time.to_i).strftime("%d/%m") %></td>
+                  </tr>
+                  <tr>
+                    <td height="31">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="center"><a href="<%=$server_name%>/deal_details?id=<%= open_deal.id %>"><img src="<%=$server_name%>/images/view_deal_btn.png" width="81" height="29" border="0" /></a></td>
+                  </tr>
+                </table></td>
+                <td width="64%"><img src="<%=$server_name%>/<%= opd.deal_photo.url%>" width="200" height="169" /></td>
+              </tr>
+            </table></td>
+          </tr>
+          <% end %>
+          <% if @deals.size%2 != 0 %>
+          </tr>
+          <% end %>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="49" background="<%=$server_name%>/images/bottom_black_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" align="right" class="emailer_header1">Want to see all the deals?</td>
+            <td width="3%">&nbsp;</td>
+            <td width="48%" align="left"><a href="<%=$server_name%>"><img src="<%=$server_name%>/images/viewdeals_btn.jpg" width="114" height="29" border="0" /></a></td>
+          </tr>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><img src="<%=$server_name%>/images/bottom_red_bar.jpg" width="720" height="21" /></td>
+  </tr>
+</table>
+</body>
+</html>

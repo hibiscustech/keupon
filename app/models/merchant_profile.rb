@@ -42,4 +42,10 @@ class MerchantProfile < ActiveRecord::Base
 
     find_by_sql(query)
   end
+
+  def self.merchants_for_categories(categories)
+    query = %Q{ select merchant_id from merchant_profiles where deal_category_id in (#{categories})}
+    result = find_by_sql(query)
+    return result.collect{|res| res.merchant_id}
+  end
 end
