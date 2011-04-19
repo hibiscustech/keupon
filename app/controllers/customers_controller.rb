@@ -69,7 +69,7 @@ class CustomersController < ApplicationController
       flash[:notice]= "#{email} is already a member."
       redirect_to '/invite_friends'
      else
-       @customer_friend=CustomerFriends.create(:friend_email=>email,:customer_id=>current_customer.id)
+       @customer_friend=CustomerFriend.create(:friend_email=>email,:customer_id=>current_customer.id)
        flash[:notice]='Invite has been sent to email id specified'
        #emailing with URL which will populate email id on email field os the signup page
        CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
@@ -434,11 +434,17 @@ class CustomersController < ApplicationController
       my_keupon_credits = 0
       my_invitees = CustomerFriend.signed_up_invitees(customer.id)
 
-      if my_invitees.to_s == Constant.get_invitees.to_s
+      if my_invitees.to_i >= Constant.get_invitees.to_i
         my_keupon_credits = Constant.get_earn_value.to_f
         my_signed_up_invitees = CustomerFriend.my_signed_up_invitees(customer.id)
+        ms = 1
         for msui in my_signed_up_invitees
-          msui.update_attributes(:used => '1')
+          if ms <= Constant.get_invitees.to_i
+            msui.update_attributes(:used => '1')
+            ms += 1
+          else
+            break
+          end
         end
       end
       credits_flag = false
