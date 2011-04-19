@@ -111,6 +111,13 @@ theForm.deal_expiry_date.focus();
 return (false);
 }
 
+if (theForm.deal_photo.value == "" || theForm.deal_photo.value.length < 1)
+{
+alert("You must upload a Deal Photo.");
+theForm.deal_photo.focus();
+return (false);
+}
+
 if(theForm.address1.value == "" || theForm.address1.value.length < 1){
     alert("You must enter Address1");
     theForm.address1.focus();
