@@ -1,4 +1,5 @@
 <%= form_remote_tag(:url => {:controller => "deals", :action => "add_new_deal_discount"},:html => {:name => "dd_form", :id => "dd_form", :style=> "padding:0;margin:0;"})%>
+
             <table width="100%" border="0" cellspacing="2" cellpadding="0">
               <tr>
                 <td width="5%" align="center">&nbsp;</td>
@@ -21,6 +22,7 @@
               <tr>
                 <td width="5%" align="center" id="min_discount"><input type="hidden" name="minimum_discount" id="minimum_discount" value="0"/></td>
                 <td width="10%" align="center" id="dd_operator">
+                  <input type="hidden" name="no_of_discounts" id="no_of_discounts" value="<%=session[:deal_discounts].length%>" />
                   <select id="operator" name="operator"><option value="">Select an Operator</option><option value="lesser">Lesser than</option><option value="between">Between</option><option value="greater">Greater than</option></select>
                   <%=observe_field "operator",
                   :url => {:controller => 'deals', :action => 'deal_discount_operator'},
