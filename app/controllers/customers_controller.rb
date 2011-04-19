@@ -590,7 +590,7 @@ class CustomersController < ApplicationController
     @page = 'Registration'
     @customer = Customer.new
     if params[:id]
-     @friend=CustomerFriends.find(params[:id])
+     @friend=CustomerFriend.find(params[:id])
      @email=@friend.friend_email
      @customer.email=@email
     end
