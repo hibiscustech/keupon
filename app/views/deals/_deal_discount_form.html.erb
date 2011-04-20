@@ -1,3 +1,4 @@
+<input type="hidden" name="no_of_discounts" id="no_of_discounts" value="<%=session[:deal_discounts].length%>" />
 <select id="operator" name="operator"><option value="">Select an Operator</option><option value="between">Between</option><option value="greater">Greater than</option></select>
                   <%=observe_field "operator",
                   :url => {:controller => 'deals', :action => 'deal_discount_operator1'},
