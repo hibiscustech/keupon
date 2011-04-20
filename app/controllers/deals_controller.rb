@@ -108,6 +108,9 @@ class DealsController < ApplicationController
             page.replace_html 'min_discount', "<input type='hidden' name='minimum_discount' id='minimum_discount' value='#{discount}'/>"
             page.replace_html 'minimum_customer_heading', "Minimum Customers"
             page.replace_html 'dd_operator', :partial => "deal_discount_form"
+            if params["operator"] == "greater"
+              page.replace_html 'dd_table', ""
+            end
             page.replace_html 'discount_summary',:partial => "deal_discount_summary"            
           end
         }
