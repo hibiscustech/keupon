@@ -1,0 +1,97 @@
+		      <%=hidden_field :deal, :merchant_id, :value => current_merchant.id%>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td width="30%" height="48" background="/images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="6%">&nbsp;</td>
+                <td width="78%" align="left" class="deals_content1">Deal Details</td>
+                <td width="16%">&nbsp;</td>
+              </tr>
+
+            </table></td>
+            <td width="59%">&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td colspan="2" valign="top" bgcolor="#e1e1e1" ><table width="100%" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td width="19%" align="right">&nbsp;</td>
+                <td width="27%" align="left">&nbsp;</td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"> Deal Title <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left"><input type="text" name="deal[name]" id="deal_name" /></td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"> Original Value <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left"><input type="text" name="deal[value]" id="deal_value" /></td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2">Rules of the deal <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left">
+                  <textarea name="deal[rules]" id="deal_rules">
+			<ul><li>&nbsp;</li></ul>
+                  </textarea>
+                </td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"> Highlights of the deal <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left">
+                  <textarea name="deal[highlights]" id="deal_highlights">
+			<ul><li>&nbsp;</li></ul>
+                  </textarea>
+                </td>
+                </tr>
+              <tr>
+                <td align="right" class="deals_content2"> Deal Start Date <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left"><input id="deal_start_date" name="start_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2"> Deal Close Date <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left"><input id="deal_close_date" name="end_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2"> Deal Expiry Date <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left"><input id="deal_expiry_date" name="deal[expiry_date]" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2">Deal photo <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left"><input type="file" name="deal[deal_photo]" id="deal_photo" /></td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2"><input type="checkbox" name="deal[preferred]" id="deal_preferred" value="1" /></td>
+                <td align="left" class="deals_content2"> I want to make this a highly Preferred Deal for Customers. </td>
+              </tr>
+              <tr>
+                <td align="right" class="deals_content2">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+            </table></td>
+            <td width="6%">&nbsp;</td>
+          </tr>
+        </table>
+                <script type="text/javascript">
+		//<![CDATA[
+			// Replace the <textarea id="editor1"> with an CKEditor instance.
+			var editor1 = CKEDITOR.replace( 'deal_rules' ,
+				{
+					// Defines a simpler toolbar to be used in this sample.
+					// Note that we have added out "MyButton" button here. toolbar : [['BulletedList']]
+					toolbar : [['BulletedList']]
+				});
+			editor1.config.resize_enabled = false;
+			editor1.config.height = 85;
+			editor1.config.width= 500;
+			var editor2 = CKEDITOR.replace( 'deal_highlights' ,
+				{
+					// Defines a simpler toolbar to be used in this sample.
+					// Note that we have added out "MyButton" button here. toolbar : [['BulletedList']]
+					toolbar : [['BulletedList']]
+				});
+			editor2.config.resize_enabled = false;
+			editor2.config.height = 85;
+			editor2.config.width= 500;
+		//]]>
+		</script>

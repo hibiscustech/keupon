@@ -1,0 +1,48 @@
+<%= form_remote_tag(:url => {:controller => "deals", :action => "add_new_deal_discount"},:html => {:name => "dd_form", :id => "dd_form", :style=> "padding:0;margin:0;"})%>
+
+            <table width="100%" border="0" cellspacing="2" cellpadding="0" id="dd_table">
+              <tr>
+                <td width="5%" align="center">&nbsp;</td>
+                <td width="20%" align="center">&nbsp;</td>
+                <td width="10%" align="center">&nbsp;</td>
+                <td width="20%" align="center">&nbsp;</td>
+                <td width="20%" align="center">&nbsp;</td>
+                <td width="20%" align="center">&nbsp;</td>
+                <td width="5%" align="center">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width="5%" align="center">&nbsp;</td>
+                <td width="10%" align="center">&nbsp;</td>
+                <td width="20%" align="center" id="minimum_customer_heading">Minimum Customers</td>
+                <td width="20%" align="center">Maximum Customers</td>
+                <td width="20%" align="center">Discount(%)</td>
+                <td width="20%" align="center">&nbsp;</td>
+                <td width="5%" align="center">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width="5%" align="center" id="min_discount"><input type="hidden" name="minimum_discount" id="minimum_discount" value="0"/></td>
+                <td width="10%" align="center" id="dd_operator">
+                  <input type="hidden" name="no_of_discounts" id="no_of_discounts" value="<%=session[:deal_discounts].length%>" />
+                  <select id="operator" name="operator"><option value="">Select an Operator</option><option value="lesser">Lesser than</option><option value="between">Between</option><option value="greater">Greater than</option></select>
+                  <%=observe_field "operator",
+                  :url => {:controller => 'deals', :action => 'deal_discount_operator'},
+                  :on => 'change',
+                  :with => "operator"%>
+                </td>
+                <td width="20%" align="center" id="minimum_customer"><input type="text" name="customer" id="customer"/></td>
+                <td width="20%" align="center" id="maximum_customer"><input type="text" name="max_customer" id="max_customer"/></td>
+                <td width="20%" align="center" id="disc"><input type="text" name="discount" id="discount"/></td>
+                <td width="20%" align="center" id="dd_form_create"><a href="#dd_table" onclick="return form_validator1(0);return false;"><img src="/images/create1.jpg" border="0" /></a></td>
+                <td width="5%" align="center">&nbsp;</td>
+              </tr>
+
+              </table>
+</form>
+              <table width="100%" border="0" cellspacing="2" cellpadding="0">
+                <tr>
+                  <td width="5%" align="center">&nbsp;</td>
+                  <td width="90%" align="center" id="discount_summary">
+                  </td>
+                  <td width="5%" align="center">&nbsp;</td>
+                </tr>
+              </table>
