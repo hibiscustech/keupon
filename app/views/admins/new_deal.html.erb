@@ -1,0 +1,254 @@
+<%= javascript_include_tag 'ckeditor' %>
+<script Language="JavaScript">
+<!--
+function form_validator1(min_discount){
+  var theForm = document.forms['dd_form'];
+
+  if(theForm.operator.selectedIndex == 0){
+    alert("You must Select an Operator.");
+    theForm.operator.focus();
+    return (false);
+  }
+
+  if (theForm.customer.value == "" || theForm.customer.value.length < 1)
+  {
+  alert("You must enter the number of Minimum Customers.");
+  theForm.customer.focus();
+  return (false);
+  }
+  else if(!IsNumeric(theForm.customer.value,"0123456789")){
+    alert("You must enter only Numeric value for number of Minimum Customers.");
+    theForm.customer.focus();
+    return (false);
+  }
+
+  if ((theForm.max_customer.value == "" || theForm.max_customer.value.length < 1) && theForm.operator.options[theForm.operator.selectedIndex].value != "greater")
+  {
+  alert("You must enter the number of Maximum Customers.");
+  theForm.max_customer.focus();
+  return (false);
+  }
+  else if(theForm.operator.options[theForm.operator.selectedIndex].value != "greater" && !IsNumeric(theForm.max_customer.value,"0123456789")){
+    alert("You must enter only Numeric value for number of Maximum Customers.");
+    theForm.max_customer.focus();
+    return (false);
+  }
+  else if(theForm.operator.options[theForm.operator.selectedIndex].value != "greater" && (parseInt(theForm.max_customer.value) <= parseInt(theForm.customer.value))){
+    alert("Maximum Customers must be greater than "+theForm.customer.value);
+    theForm.max_customer.focus();
+    return (false);
+  }
+
+  if (theForm.discount.value == "" || theForm.discount.value.length < 1)
+  {
+  alert("You must enter the Discount");
+  theForm.discount.focus();
+  return (false);
+  }
+  else if(!IsNumeric(theForm.discount.value,"0123456789.")){
+    alert("You must enter only Numeric value for Discount.");
+    theForm.discount.focus();
+    return (false);
+  }
+
+  theForm.onsubmit();
+}
+function form_validator(){
+var theForm = document.forms['new_deal'];
+var i;
+if (theForm.deal_name.value == "" || theForm.deal_name.value.length < 1)
+{
+alert("You must enter Deal Title.");
+theForm.deal_name.focus();
+return (false);
+}
+if (theForm.deal_value.value == "" || theForm.deal_value.value.length < 1)
+{
+alert("You must enter Original Value.");
+theForm.deal_value.focus();
+return (false);
+}
+theForm.deal_rules.value = CKEDITOR.instances.deal_rules.getData();
+if (theForm.deal_rules.value == "" || theForm.deal_rules.value.length < 1)
+{
+alert("You must enter Rules.");
+theForm.deal_rules.focus();
+return (false);
+}
+theForm.deal_highlights.value = CKEDITOR.instances.deal_highlights.getData();
+if (theForm.deal_highlights.value == "" || theForm.deal_highlights.value.length < 1)
+{
+alert("You must enter Highlights.");
+theForm.deal_highlights.focus();
+return (false);
+}
+
+if (theForm.deal_start_date.value == "" || theForm.deal_start_date.value.length < 1)
+{
+alert("You must enter Start Date.");
+theForm.deal_start_date.focus();
+return (false);
+}
+
+if (theForm.deal_close_date.value == "" || theForm.deal_close_date.value.length < 1)
+{
+alert("You must enter Close Date.");
+theForm.deal_close_date.focus();
+return (false);
+}
+
+if (theForm.deal_expiry_date.value == "" || theForm.deal_expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.deal_expiry_date.focus();
+return (false);
+}
+
+if (theForm.deal_expiry_date.value == "" || theForm.deal_expiry_date.value.length < 1)
+{
+alert("You must enter Expiry Date.");
+theForm.deal_expiry_date.focus();
+return (false);
+}
+
+if (theForm.deal_photo.value == "" || theForm.deal_photo.value.length < 1)
+{
+alert("You must upload a Deal Photo.");
+theForm.deal_photo.focus();
+return (false);
+}
+
+if(theForm.address1.value == "" || theForm.address1.value.length < 1){
+    alert("You must enter Address1");
+    theForm.address1.focus();
+    return (false);
+  }
+
+  if(theForm.country.value == "" || theForm.country.value.length < 1){
+    alert("You must enter Country");
+    theForm.country.focus();
+    return (false);
+  }
+  if(theForm.zipcode.value == "" || theForm.zipcode.value.length < 1){
+    alert("You must enter Zipcode");
+    theForm.zipcode.focus();
+    return (false);
+  }
+if (document.forms['dd_form'].no_of_discounts.value == "0" || document.forms['dd_form'].customer.value.length < 1)
+{
+alert("You must enter Deal Discounts.");
+return (false);
+}
+
+document.new_deal.submit();
+}
+
+function IsNumeric(sText, ValidChars)
+
+{
+   var IsNumber=true;
+   var Char;
+
+
+   for (i = 0; i < sText.length && IsNumber == true; i++)
+      {
+      Char = sText.charAt(i);
+      if (ValidChars.indexOf(Char) == -1)
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+
+}
+
+//-->
+</script>
+<tr>
+        <td height="34" background="/images/header_bar_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="17%" align="left"><img src="/images/deals_header_text.jpg" width="121" height="31" /></td>
+              <td width="83%">&nbsp;</td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td >
+          <% form_for @deal, :url => { :action => "create_deal" } , :html => {:name=>"new_deal", :multipart => true }  do |f| %>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="4%">&nbsp;</td>
+            <td width="92%">&nbsp</td>
+            <td width="4%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <%= render :partial => "create_deal" %>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="center">
+              <%= render :partial => "create_deal_location" %>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="center" id="dd_check">&nbsp;<input type="hidden" name="ddcheckdis" value="" id="ddcheckdis" /></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        <% end %>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="4%">&nbsp;</td>
+            <td width="92%" align="center">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>&nbsp;</td>
+                  <td width="30%" height="48" background="/images/signup_red_header_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="6%">&nbsp;</td>
+                        <td width="78%" align="left" class="deals_content1">Discount  Details</td>
+                        <td width="16%">&nbsp;</td>
+                      </tr>
+                  </table></td>
+
+                  <td width="59%">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="5%">&nbsp;</td>
+                  <td colspan="2" valign="top" bgcolor="#e1e1e1" >
+                    <%= render :partial => "deal_discounts" %>
+                  </td>
+                  <td width="6%">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+            <td width="4%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><a href="#" onclick="return form_validator();"><img src="/images/create_deal_btn.jpg" width="96" height="24" border="0" /></a> <a href="/index"><img src="/images/cancel_btn2b.jpg" width="62" height="24" border="0" /></a></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>

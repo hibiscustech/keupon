@@ -148,6 +148,12 @@ class AdminsController < ApplicationController
      end
    end
 
+   def new_deal
+     @deal = (params[:id].blank?)? Deal.new : Deal.find(params[:id])
+     @categories = DealCategory.find(:all)
+     session[:deal_discounts] = Hash.new
+   end
+
 end
 
 
