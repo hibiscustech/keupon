@@ -169,6 +169,22 @@ body {
 
 
 }
+.deals_content_red_bold{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#FF0000;
+	text-decoration:none;
+
+}
+.deals_content1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	font-weight:bold;
+
+}
 
 
 
