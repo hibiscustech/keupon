@@ -2,13 +2,14 @@
 function formCommissionValidator(discounts, deal){
   var theForm = document.forms['commission_frm'];
   for(i=1;i<=parseInt(discounts);i++){
-    var ele_name = "commission"+deal+""+i;
-    if (document.getElementById(ele_name).value == "" || document.getElementById(ele_name).value.length < 1)
+    if (document.getElementById("commission"+deal+""+i).value == "" || document.getElementById("commission"+deal+""+i).value.length < 1)
     {
       alert("You must enter Deal Commissions.");
       return (false);
     }
-    if(!IsNumeric(document.getElementById(ele_name).value,"0123456789")){
+  }
+  for(i=1;i<=parseInt(discounts);i++){
+    if(!IsNumeric(document.getElementById("commission"+deal+""+i).value,"0123456789")){
       alert("You must enter only Numeric value for Commissions.");
       return (false);
     }
