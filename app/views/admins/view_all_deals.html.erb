@@ -3,7 +3,9 @@ function formCommissionValidator(discounts, deal){
   var theForm = document.forms['commission_frm'];
   alert("Hi");
   for(i=1;i<=parseInt(discounts);i++){
-    alert(document.getElementById("commission"+deal+""+i).value);
+    var ele_name = "commission"+deal+""+i;
+    alert(ele_name);
+    alert(document.getElementById(ele_name).value);
   }
 /*
   if(!IsNumeric(theForm.customer.value,"0123456789")){
