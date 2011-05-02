@@ -8,7 +8,7 @@ function formCommissionValidator(discounts, deal){
       alert("You must enter Deal Commissions.");
       return (false);
     }
-    else if(!IsNumeric(document.getElementById(ele_name).value,"0123456789")){
+    if(!IsNumeric(document.getElementById(ele_name).value,"0123456789")){
       alert("You must enter only Numeric value for Commissions.");
       return (false);
     }
