@@ -68,6 +68,13 @@ theForm.deal_expiry_date.focus();
 return (false);
 }
 
+if ((theForm.photo_already_exists.value == "" || theForm.photo_already_exists.value.length < 1) &&(theForm.deal_photo.value == "" || theForm.deal_photo.value.length < 1))
+{
+alert("You must upload a Deal Photo.");
+theForm.deal_photo.focus();
+return (false);
+}
+
 if(theForm.address1.value == "" || theForm.address1.value.length < 1){
     alert("You must enter Address1");
     theForm.address1.focus();
@@ -84,11 +91,7 @@ if(theForm.address1.value == "" || theForm.address1.value.length < 1){
     theForm.zipcode.focus();
     return (false);
   }
-if (document.forms['dd_form'].no_of_discounts.value == "0" || document.forms['dd_form'].customer.value.length < 1)
-{
-alert("You must enter Deal Discounts.");
-return (false);
-}
+
 
 document.edit_deal.submit();
 }
