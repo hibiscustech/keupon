@@ -56,6 +56,13 @@ function form_validator1(min_discount){
 function form_validator(){
 var theForm = document.forms['new_deal'];
 var i;
+if (theForm.deal_merchant_id.selectedIndex == 0)
+{
+alert("Please select a Merchant.");
+theForm.deal_merchant_id.focus();
+return (false);
+}
+
 if (theForm.deal_name.value == "" || theForm.deal_name.value.length < 1)
 {
 alert("You must enter Deal Title.");

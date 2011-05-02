@@ -152,9 +152,51 @@ class AdminsController < ApplicationController
      @deal = (params[:id].blank?)? Deal.new : Deal.find(params[:id])
      @categories = DealCategory.find(:all)
      session[:deal_discounts] = Hash.new
+     @merchants = Company.merchants_for_new_deal
    end
 
+   def create
+    merchant_profile = Merchant.find(params[:deal][:merchant_id]).merchant_profile
+    @deal = Deal.new(params[:deal])
+    @deal.expiry_date = Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i
+    @deal.deal_category_id = merchant_profile.deal_category_id
+    @deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
+    if params[:deal][:deal_type_id]
+      @deal.deal_type_id = params[:deal][:deal_type_id]
+    else
+      @deal.deal_type_id = 1
+    end
+
+    if @deal.save!
+      deal_location = DealLocationDetail.new(:deal_id => @deal.id, :address1 => params[:address1], :address2 => params[:address2], :state => params[:country], :city => params[:country], :zipcode => params[:zipcode])
+      get_lat_lng(deal_location)
+      deal_location.save!
+      deal_schedule = DealSchedule.new(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
+      deal_schedule.save!
+      if @deal.preferred.to_s == "1"
+        AdminMailer.deliver_merchant_created_preferred_deal(@deal, merchant_profile, merchant_profile.company)
+      end
+
+      deal_discounts = session[:deal_discounts].sort
+      min_customers = nil
+      max_customers = nil
+      buy = nil
+      save_amount = nil
+      discount = nil
+
+      for dd in deal_discounts
+        buy = @deal.value.to_f - @deal.value.to_f*dd[0].to_f/100
+        save_amount = @deal.value.to_f - buy.to_f
+        discount = dd[0]
+        min_customers = dd[1][0]
+        max_customers = dd[1][1]
+        DealDiscount.create(:deal_id => @deal.id, :discount => discount, :customers => min_customers, :max_customers => max_customers, :buy_value => buy, :save_amount => save_amount)
+      end
+      @deal.update_attributes(:minimum_number => min_customers, :number => max_customers, :buy => buy, :save_amount => save_amount, :discount => discount)
+      session[:deal_discounts] = nil
+      flash[:notice] = "Deal Created Successfully."
+      redirect_to "/index"
+    end
+  end
+
 end
-
-
-
