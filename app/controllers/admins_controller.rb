@@ -195,7 +195,7 @@ class AdminsController < ApplicationController
       @deal.update_attributes(:minimum_number => min_customers, :number => max_customers, :buy => buy, :save_amount => save_amount, :discount => discount)
       session[:deal_discounts] = nil
       flash[:notice] = "Deal Created Successfully."
-      redirect_to "/index"
+      redirect_to "/admins/view_all_deals"
     end
   end
 
