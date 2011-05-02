@@ -50,7 +50,11 @@ function form_validator1(min_discount){
     theForm.discount.focus();
     return (false);
   }
-    
+  else if((parseInt(theForm.discount.value) <= parseInt(min_discount))){
+    alert("You must enter a Discount greater than "+min_discount);
+    theForm.discount.focus();
+    return (false);
+  }
   theForm.onsubmit();
 }
 function form_validator(){

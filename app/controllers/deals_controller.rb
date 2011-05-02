@@ -108,6 +108,7 @@ class DealsController < ApplicationController
             page.replace_html 'min_discount', "<input type='hidden' name='minimum_discount' id='minimum_discount' value='#{discount}'/>"
             page.replace_html 'minimum_customer_heading', "Minimum Customers"
             page.replace_html 'dd_operator', :partial => "deal_discount_form"
+            page.replace_html 'dd_form_create', "<a href='#dd_table' onclick='return form_validator1(#{discount});return false;'><img src='/images/create1.jpg' border='0'/></a>"
             if params["operator"] == "greater"
               page.replace_html 'dd_table', "<input type='hidden' name='no_of_discounts' id='no_of_discounts' value='#{session[:deal_discounts].length}' />"
             end
