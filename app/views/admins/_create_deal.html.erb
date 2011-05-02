@@ -25,24 +25,32 @@
                   <select name="deal[merchant_id]" id="deal_merchant_id">
                     <option>Select a Merchant</option>
                     <% for mer in @merchants %>
+                    <% if @deal.merchant_id.to_s == mer.merchant_id.to_s %>
+                    <option value="<%=mer.merchant_id %>" selected><%= mer.company_name %></option>
+                    <% else %>
                     <option value="<%=mer.merchant_id %>"><%= mer.company_name %></option>
+                    <% end %>
                     <% end %>
                   </select>
                 </td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Title <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[name]" id="deal_name" /></td>
+                <td align="left"><input type="text" name="deal[name]" id="deal_name" value="<%= @deal.name %>"/></td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2"> Original Value <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="text" name="deal[value]" id="deal_value" /></td>
+                <td align="left"><input type="text" name="deal[value]" id="deal_value"  value="<%= @deal.value %>"/></td>
                 </tr>
               <tr>
                 <td align="right" class="deals_content2">Rules of the deal <span class="deals_content_red_bold">*</span>:</td>
                 <td align="left">
                   <textarea name="deal[rules]" id="deal_rules">
+                        <% if @deal.rules.blank? %>
 			<ul><li>&nbsp;</li></ul>
+                        <% else %>
+                        <%= @deal.rules %>
+                        <% end %>
                   </textarea>
                 </td>
                 </tr>
@@ -50,29 +58,42 @@
                 <td align="right" class="deals_content2"> Highlights of the deal <span class="deals_content_red_bold">*</span>:</td>
                 <td align="left">
                   <textarea name="deal[highlights]" id="deal_highlights">
+			<% if @deal.highlights.blank? %>
 			<ul><li>&nbsp;</li></ul>
+                        <% else %>
+                        <%= @deal.highlights %>
+                        <% end %>
                   </textarea>
                 </td>
                 </tr>
+                <%
+                  deal_schedule = @deal.deal_schedule
+                %>
               <tr>
                 <td align="right" class="deals_content2"> Deal Start Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_start_date" name="start_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_start_date" name="start_date" type="text" value="<%= (!deal_schedule.blank?)? Time.at(@deal.start_time.to_i).strftime("%d/%m/%Y") : "" %>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Close Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_close_date" name="end_date" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_close_date" name="end_date" type="text" value="<%= (!deal_schedule.blank?)? Time.at(@deal.end_time.to_i).strftime("%d/%m/%Y") : "" %>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Expiry Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_expiry_date" name="deal[expiry_date]" type="text" /> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_expiry_date" name="deal[expiry_date]" type="text" value="<%= (!@deal.expiry_date.blank?)? Time.at(@deal.expiry_date.to_i).strftime("%d/%m/%Y") : "" %>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2">Deal photo <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input type="file" name="deal[deal_photo]" id="deal_photo" /></td>
+                <td align="left">
+                  <%if @deal.deal_photo%>
+                  <%= image_tag @deal.deal_photo.url(:thumb)%>
+                  <%end%>
+                  <br/>
+                  <input type="file" name="deal[deal_photo]" id="deal_photo" />
+                </td>
               </tr>
               <tr>
-                <td align="right" class="deals_content2"><input type="checkbox" name="deal[preferred]" id="deal_preferred" value="1" /></td>
-                <td align="left" class="deals_content2"> I want to make this a highly Preferred Deal for Customers. </td>
+                <td align="right" class="deals_content2"><input type="checkbox" name="deal[preferred]" id="deal_preferred" value="1" <%=(@deal.preferred.to_s == "1")? "checked" : "" %> /></td>
+                <td align="left" class="deals_content2"> This is a Hot(Highly Preferred) Deal</td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2">&nbsp;</td>
