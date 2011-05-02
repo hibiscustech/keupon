@@ -1,4 +1,5 @@
 <div style="width:608px;height:400px;text-align:left;">
+  <% dd_details = deal_details(deal_id) %>
   <form action='/deals/save_commission/<%=deal_id%>' method='post' name="commission_frm<%=deal_id%>" id="commission_frm<%=deal_id%>" onsubmit="return formCommissionValidator('<%=dd_details.length%>','<%=deal_id%>')">
     <table CELLPADDING="3" CELLSPACING="6"  style="border:1px solid black;font-size:14px;" BACKGROUND="/images/bg_white.jpg">
      <tr>
@@ -11,7 +12,6 @@
       <th>Commission(%)</th>
     </tr>     
      <% i = 1
-     dd_details = deal_details(deal_id)
      dd_details.each do |dl|
      %>
     <input type="hidden" name="id" value="<%= deal_id %>" />
