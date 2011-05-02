@@ -1,20 +1,19 @@
 <script Language="JavaScript">
 function formCommissionValidator(discounts, deal){
   var theForm = document.forms['commission_frm'];
-  alert("Hi");
   for(i=1;i<=parseInt(discounts);i++){
     var ele_name = "commission"+deal+""+i;
-    alert(ele_name);
-    alert(document.getElementById(ele_name).value);
+    if (document.getElementById(ele_name).value == "" || document.getElementById(ele_name).value.length < 1)
+    {
+      alert("You must enter Deal Commissions.");
+      return (false);
+    }
+    else if(!IsNumeric(document.getElementById(ele_name).value,"0123456789")){
+      alert("You must enter only Numeric value for Commissions.");
+      return (false);
+    }
   }
-/*
-  if(!IsNumeric(theForm.customer.value,"0123456789")){
-    alert("You must enter only Numeric value for number of Minimum Customers.");
-    theForm.customer.focus();
-    return (false);
-  }
-*/
- // theForm.onsubmit();
+  theForm.submit();
 }
 
 function IsNumeric(sText, ValidChars)
