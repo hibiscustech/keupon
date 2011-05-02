@@ -224,7 +224,7 @@ class DealsController < ApplicationController
   def create
     merchant_profile = current_merchant.merchant_profile
     @deal = Deal.new(params[:deal])
-    @deal.expiry_date = Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i
+    @deal.expiry_date = Time.parse(params[:deal][:expiry_date]).to_i
     @deal.deal_category_id = merchant_profile.deal_category_id
     @deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
     if params[:deal][:deal_type_id]
@@ -237,7 +237,7 @@ class DealsController < ApplicationController
       deal_location = DealLocationDetail.new(:deal_id => @deal.id, :address1 => params[:address1], :address2 => params[:address2], :state => params[:country], :city => params[:country], :zipcode => params[:zipcode])
       get_lat_lng(deal_location)
       deal_location.save!
-      deal_schedule = DealSchedule.new(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
+      deal_schedule = DealSchedule.new(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date]} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date]} 23:59:59").to_i.to_s)
       deal_schedule.save!
       if @deal.preferred.to_s == "1"
         AdminMailer.deliver_merchant_created_preferred_deal(@deal, merchant_profile, merchant_profile.company)
@@ -267,7 +267,7 @@ class DealsController < ApplicationController
  def update
     merchant_profile = current_merchant.merchant_profile
     @deal = Deal.find(params[:id])
-    @deal.update_attribute(:expiry_date,Time.parse(params[:deal][:expiry_date].gsub('/','-')).to_i)
+    @deal.update_attribute(:expiry_date,Time.parse(params[:deal][:expiry_date]).to_i)
     @deal.deal_category_id = merchant_profile.deal_category_id
     @deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
     @deal.update_attributes(:name=>params[:deal][:name],:rules=>params[:deal][:rules],:highlights=>params[:deal][:highlights],:value=>params[:deal][:value])
@@ -281,7 +281,7 @@ class DealsController < ApplicationController
       deal_location.update_attributes(:deal_id => @deal.id, :address1 => params[:address1], :address2 => params[:address2], :state => params[:country], :city => params[:country], :zipcode => params[:zipcode])
       get_lat_lng(deal_location)
       deal_schedule = DealSchedule.find_by_deal_id(@deal.id)
-      deal_schedule.update_attributes(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date].gsub('/','-')} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date].gsub('/','-')} 23:59:59").to_i.to_s)
+      deal_schedule.update_attributes(:deal_id => @deal.id, :start_time => Time.parse("#{params[:start_date]} 00:00:00").to_i.to_s, :end_time => Time.parse("#{params[:end_date]} 23:59:59").to_i.to_s)
       if @deal.preferred.to_s == "1"
         AdminMailer.deliver_merchant_created_preferred_deal(@deal, merchant_profile, merchant_profile.company)
       end
