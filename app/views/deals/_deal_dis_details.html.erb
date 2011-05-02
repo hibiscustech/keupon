@@ -14,7 +14,7 @@
      dd_details = deal_details(deal_id)
      dd_details.each do |dl|
      %>
-     end
+    <input type="hidden" name="id" value="<%= deal_id %>" />
      <tr>     
       <td align="center"><%=dl.customers%></td>
       <td align="center"><%=(dl.max_customers.blank?)? "Any" : dl.max_customers%></td>
@@ -24,7 +24,7 @@
      <%
       i += 1
       end%>
-     <tr><td colspan="4" align="center"><%=token_tag%><input type='button' onclick="formCommissionValidator('<%=dd_details.length%>','<%=deal_id%>');" value='Set Commision and Confirm'/></td></tr>
+     <tr><td colspan="4" align="center"><%=token_tag%><input type='button' onclick="formCommissionValidator('<%=dd_details.length%>','<%=deal_id%>');" value='Set Commision'/></td></tr>
     </table>
     </form>
 </div>
