@@ -71,11 +71,11 @@
                 %>
               <tr>
                 <td align="right" class="deals_content2"> Deal Start Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_start_date" name="start_date" type="text" value="<%= (!deal_schedule.blank?)? Time.at(@deal.start_time.to_i).strftime("%d/%m/%Y") : "" %>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_start_date" name="start_date" type="text" value="<%= (!deal_schedule.blank?)? Time.at(deal_schedule.start_time.to_i).strftime("%d/%m/%Y") : "" %>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Close Date <span class="deals_content_red_bold">*</span>:</td>
-                <td align="left"><input id="deal_close_date" name="end_date" type="text" value="<%= (!deal_schedule.blank?)? Time.at(@deal.end_time.to_i).strftime("%d/%m/%Y") : "" %>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
+                <td align="left"><input id="deal_close_date" name="end_date" type="text" value="<%= (!deal_schedule.blank?)? Time.at(deal_schedule.end_time.to_i).strftime("%d/%m/%Y") : "" %>"/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
               </tr>
               <tr>
                 <td align="right" class="deals_content2"> Deal Expiry Date <span class="deals_content_red_bold">*</span>:</td>
