@@ -1,0 +1,19 @@
+<form action="/admins/upload_tranaction_details" class="new_person" id="new_person" enctype='multipart/form-data' method="post">
+  <table>
+    <tr>
+      <td width="30%">Item Name: </td>
+      <td width="70%"><%= @deal.name %></td>
+    </tr>
+    <br/>
+    <tr>
+      <td width="30%">CSV Upload: </td>
+      <td width="70%"><input type=file name=upload[upfile] /> </td>
+    </tr>
+    <br/>
+    <input type='hidden' id='signup_pass_confirm' name='deal' value='<%= @deal.id %>' />
+
+    <input type=submit value=Submit />
+  </table>
+</form>
+
+
