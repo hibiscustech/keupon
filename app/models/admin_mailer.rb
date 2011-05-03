@@ -30,7 +30,7 @@ class AdminMailer < ActionMailer::Base
 
     part :content_type => 'multipart/alternative' do |copy|
       copy.part :content_type => 'text/html' do |html|
-        html.body = render( :file => "your_deal_closed.html.erb",
+        html.body = render( :file => "merchant_deal_closed.erb",
           :body => @body )
       end
     end
