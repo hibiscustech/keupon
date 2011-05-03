@@ -18,6 +18,7 @@
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
     @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
+    @forums=@forums.paginate(:page => params['page'], :per_page => 3)
 %>
       <tr>
         <td height="55" background="/images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
