@@ -105,7 +105,7 @@ class AdminsController < ApplicationController
   end
 
   def view_deal_paypal_info
-    @deal = Deal.find(params[:deal_id])
+    @deal = Deal.find(params[:deal])
     if request.xml_http_request?
       respond_to do |format|
         format.html
