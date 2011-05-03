@@ -13,7 +13,12 @@
 
 
     </script>
-<% @company = @deal.merchant.merchant_profile.company if !@deal.blank? %>
+<% @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
+    @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
+%>
       <tr>
         <td height="55" background="/images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
