@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
  
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
-  before_filter :login_required, :only => [:invite_friends, :buy_deal_details, :transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons,:change_password]
+  before_filter :login_required, :only => [:invite_friends, :transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons,:change_password]
   before_filter :my_keupons_stats, :except => [:new, :create]
   session :session_key => '_PayPalSDK_session_id'
   filter_parameter_logging :password, :only => [:save_transaction_details, :save_demand_deal_transaction_details]
@@ -149,44 +149,6 @@ class CustomersController < ApplicationController
   end
 
   def deal_details
-    @deal = Deal.find(params[:id])
-    @forums=Forum.find_all_by_deal_id(@deal.id)
-    @page_number=(params[:page].nil?)?1:(params[:page])
-    @size=((@forums.length.to_f)/3).ceil
-    @forums=@forums.paginate(:page => params['page'], :per_page => 3)
-    @end_time = @deal.deal_schedule.end_time
-    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
-    @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
-    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals
-    @deal_scale_xml = Deal.deal_scale_graph(@deal.deal_discounts, Deal.deals_bought(@deal.id), "price_black_bg")
-    @map = GMap.new("map")
-    @map.control_init(:large_map => true, :map_type => true)
-    @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
-    @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
-    @page = "Deal Details"
-    if params[:comments].to_i==1
-      @forum=Forum.find(params[:forum_id])
-      p "comments"
-      @flag=true
-    else
-      p "reviews"
-      @flag=false
-    end
-    if params[:transaction] == "success"
-      if session[:customer_id].blank?
-        customer = Customer.find(session[:customer_id])
-        show_deal_code = Constant.get_show_deal_code
-        customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
-        customer_deal.save!
-
-        CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
-
-        flash[:notice] = "You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$<%= @deal.value %>.  Once this Keupon, has been successfully closed, the discount will then be applied to the Actual Price S$#{@deal.value}, based on the Total Buy. You will be notified on this through another email."
-      end
-    end
-  end
-
-  def buy_deal_details
     @deal = Deal.find(params[:id])
     @forums=Forum.find_all_by_deal_id(@deal.id)
     @page_number=(params[:page].nil?)?1:(params[:page])
@@ -407,12 +369,35 @@ class CustomersController < ApplicationController
   end
 
   def transaction_details
-    @page = "Billing Information"
-    @billing_information = CustomerCreditCard.new
+#    @page = "Billing Information"
+#    @billing_information = CustomerCreditCard.new
+#    @deal = Deal.find(params[:id])
+#    @cards = current_customer.customer_credit_cards
+#    @profile = current_customer.customer_profile
+#    @error = (params[:errors] == "1")? session[:payment_error] : nil
     @deal = Deal.find(params[:id])
-    @cards = current_customer.customer_credit_cards
-    @profile = current_customer.customer_profile
-    @error = (params[:errors] == "1")? session[:payment_error] : nil
+    @forums=Forum.find_all_by_deal_id(@deal.id)
+    @page_number=(params[:page].nil?)?1:(params[:page])
+    @size=((@forums.length.to_f)/3).ceil
+    @forums=@forums.paginate(:page => params['page'], :per_page => 3)
+    @end_time = @deal.deal_schedule.end_time
+    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
+    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals
+    @deal_scale_xml = Deal.deal_scale_graph(@deal.deal_discounts, Deal.deals_bought(@deal.id), "price_black_bg")
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
+    @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
+    @page = "Deal Details"
+    if params[:comments].to_i==1
+      @forum=Forum.find(params[:forum_id])
+      p "comments"
+      @flag=true
+    else
+      p "reviews"
+      @flag=false
+    end
   end
 
   def demand_deal_transaction_details
