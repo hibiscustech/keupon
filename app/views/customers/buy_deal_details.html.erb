@@ -43,7 +43,7 @@
                           <td height="55" width="27%" align="center" style="vertical-align: top;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:27px;"><%=current_deal_discount_for_deal(@deal.id)%><%="%"%></td>
                           <td width="73%" align="center" style="color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:22px;">S$<%=@deal.value%></td>
                         </tr>
-                      </table>                      
+                      </table>
                     </td>
                   </tr>
                   <tr>
@@ -81,11 +81,7 @@
 
                   <tr>
                         <td align="center" >
-                          <% if session[:customer_id].blank? %>
- <%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'buy_deal_details', :id => @deal.id%>
-                          <% else %>
- <a href="<%=@deal.buy_url%>"><img height="50" border="0" width="179" src="/images/buy_now_btn.png?" alt="Buy_now_btn"/></a>
-                          <% end %>
+                        <a href="<%=@deal.buy_url%>"><img height="50" border="0" width="179" src="/images/buy_now_btn.png?" alt="Buy_now_btn"/></a>
                         </td>
                         </tr>
                 </table></td>
@@ -99,7 +95,7 @@
                     <td height="140" valign="top" background="/images/marchant_box_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="5" cellpadding="0">
                         <tr>
                           <td width="33%" height="82" align="center">
-                            
+
                              <%if !@company.company_photo.nil?%>
                   <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 82px; height: 72px;"/></a>
                    <%else%>
@@ -127,7 +123,7 @@
           </tr>
           <tr>
             <td>&nbsp;</td>
-          </tr>          
+          </tr>
           <tr>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -193,7 +189,7 @@
                   <tr>
                     <td height="1"></td>
                   </tr>
-                  <% end %>                  
+                  <% end %>
                 </table></td>
                 <td width="1%">&nbsp;</td>
                 <td width="31%" background="/images/deal_location_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -202,7 +198,7 @@
                   </tr>
                   <tr>
                     <td align="center">
-                     
+
                                   <%= GMap.header %>
 <%= @map.to_html %>
 <div id="user1" style="height: 266px;  width: 270px;">
@@ -292,7 +288,7 @@
           </tr>
           <tr>
             <td>
-              
+
               <div id="wrapper">
 
 		<div class="slider-frame">
