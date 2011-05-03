@@ -42,6 +42,8 @@
                   <a href='#' onclick="showElt('popup_create_deal_<%=deal.id%>');">Commission</a>
                   &nbsp;
                   <a href="#" onclick="showDealPaypal('popup_view_deal',<%= deal.id %>);">Paypal</a>
+                    &nbsp;
+                  <a href="#" onclick="showTransactionDeal('tranaction_deal_details',<%= deal.id %>);">Tranactions</a>
                   <% if deal.status == "new" %>
                   <a href='/admins/edit_deal/<%=deal.id%>'>Edit</a>
                   <% end %>
@@ -56,6 +58,11 @@
               <tr><td colspan="10">
                   <div id="popup_view_deal">
                     <br/><%= render :partial => "deal_paypal_info" %>
+                  </div>
+                </td></tr>
+              <tr><td colspan="10">
+                  <div id="tranaction_deal_details">
+                    <br/><%= render :partial => "transaction_details" %>
                   </div>
                 </td></tr>
             </table>

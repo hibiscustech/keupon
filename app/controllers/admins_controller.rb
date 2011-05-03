@@ -118,6 +118,27 @@ class AdminsController < ApplicationController
     end
   end
 
+  def view_deal_transaction_details
+    @deal = Deal.find(params[:deal])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_tranaction_deal',:partial => "view_tranaction_deal"
+          end
+        }
+      end
+    end
+  end
+
+
+
+  def upload_tranaction_details
+    @deal = Deal.find(params[:deal])
+    post = Deal.save_csv(params[:upload])
+  end
+
   def paypal_deal_buy_url
     @deal = Deal.find(params[:id])
     @deal.update_attributes(:buy_url => params[:buy_url])

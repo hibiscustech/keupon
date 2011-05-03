@@ -390,4 +390,14 @@ class Deal < ActiveRecord::Base
     query = %Q{ select * from deals where merchant_id = #{merchant_id} order by id desc limit 1}
     return find_by_sql(query)[0]
   end
+
+   def self.save_csv(upload)
+    name =  upload['upfile']
+    directory = "public"
+    # create the file path
+    path = File.join(directory, name)
+    # write the file
+    File.open(path, "wb") { |f| f.write(upload['upfile'].read) }
+  end
+
 end
