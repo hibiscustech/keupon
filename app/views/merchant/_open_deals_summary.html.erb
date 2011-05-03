@@ -18,7 +18,15 @@
                 <td height="8" colspan="4" align="center"></td>
               </tr>
               <tr>
-                <td width="22%" align="center"><img src="<%= deal_photo.deal_photo.url %>" width="184" height="148" /></td>
+                <td width="22%" align="center">
+                  <% if deal.activated.to_s == "1" %>
+                  <a href="/deals/active_deal?id=<%=deal.id%>" style="border: 0px;">
+                  <img src="<%= deal_photo.deal_photo.url %>" width="184" height="148" alt="Preview"/>
+                  </a>
+                  <% else %>
+                   <img src="<%= deal_photo.deal_photo.url %>" width="184" height="148"/>
+                  <% end %>
+                </td>
                 <td width="76%" colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                       <td height="55" colspan="2" align="left" class="deals_content"><%= deal.name%></td>
@@ -56,7 +64,7 @@
                         <% if deal.activated.to_s == "1" %>
                         <img src="/images/iwantdeal_confirmed.png" width="105" height="70" border="0" />
                         <% else %>
-                        <a href="/deals/edit/<%=deal.id%>"><img src="/images/edit_deal_btn.jpg" width="75" height="30" border="0" /></a>
+                        <img src="/images/iwantdeal_new.png" width="105" height="70" border="0" />
                         <% end %>
                       </td>
                     </tr>
