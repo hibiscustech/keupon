@@ -149,6 +149,7 @@ class CustomersController < ApplicationController
   end
 
   def buy_deal
+    current_customer
     @deal = Deal.find(params[:id])
     @forums=Forum.find_all_by_deal_id(@deal.id)
     @page_number=(params[:page].nil?)?1:(params[:page])
