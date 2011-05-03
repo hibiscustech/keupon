@@ -1,10 +1,9 @@
+
 <div style="width:608px;height:400px;text-align:left;">
+  <div align="right" style="width: 628px;height: 0px;margin-top: 8px;"><a href="#" onclick="hideElt('popup_create_deal_<%=deal_id%>');" ><img src="/images/close_btn.png" height="33" width="33" border="0" style="margin-top: -17px;"/></a></div>
   <% dd_details = deal_details(deal_id) %>
   <form action='/deals/save_commission/<%=deal_id%>' method='post' name="commission_frm<%=deal_id%>" id="commission_frm<%=deal_id%>" onsubmit="return formCommissionValidator('<%=dd_details.length%>','<%=deal_id%>')">
     <table CELLPADDING="3" CELLSPACING="6"  style="border:1px solid black;font-size:14px;" BACKGROUND="/images/bg_white.jpg">
-     <tr>
-              <td class="popup" colspan="4" align="right"><a href="#" onclick="document.getElementById('popup_create_deal_<%=deal_id%>').style.display='none';;" >X</a></td>
-            </tr>
     <tr>
       <th>Minimum Customers</th>
       <th>Maximum Customers</th>

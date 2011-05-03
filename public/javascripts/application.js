@@ -8,6 +8,12 @@ function showViewDeal(elementID, deal_id)
     document.getElementById(elementID).style.display = "block";
 }
 
+function showDealPaypal(elementID, deal_id)
+{
+    new Ajax.Request('/admins/view_deal_paypal_info?deal='+deal_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    document.getElementById(elementID).style.display = "block";
+}
+
 function showCustomerDeal(elementID, customer_deal_id)
 {
     new Ajax.Request('/customers/view_customer_deal_info?id='+customer_deal_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});

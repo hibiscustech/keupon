@@ -1,0 +1,38 @@
+<table>
+  <tr>
+    <td width="30%">Item Name: </td>
+    <td width="70%"><%= @deal.name %></td>
+  </tr>
+  <tr>
+    <td width="30%">Item ID: </td>
+    <td width="70%"><%= @deal.id %></td>
+  </tr>
+  <tr>
+    <td width="30%">Price: </td>
+    <td width="70%"><%= @deal.value %></td>
+  </tr>
+  <tr>
+    <td width="30%">Take customers to this URL when they cancel their checkout: </td>
+    <td width="70%"><%=$server_name%>/deal_details?id=<%= @deal.id %></td>
+  </tr>
+  <tr>
+    <td width="30%">Take customers to this URL when they finish checkout: </td>
+    <td width="70%"><%=$server_name%>/deal_details?id=<%= @deal.id %>&transaction=success</td>
+  </tr>
+  <tr>
+    <td width="30%">Add Advanced variables: </td>
+    <td width="70%">
+      <textarea rows="4" cols="30">
+      amount=<%= @deal.value %>
+      item_number=<%= @deal.id %>
+      currency_code=SGD
+      paymentaction=authorization
+      </textarea>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" id="paypal_dbu">
+      <%= render :partial => "paypal_deal_buy_url" %>
+    </td>
+  </tr>
+</table>

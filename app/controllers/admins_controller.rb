@@ -89,7 +89,7 @@ class AdminsController < ApplicationController
     end
   end
 
-   def all_customers
+  def all_customers
     @customers = Customer.all_customers
     #@merchants_count = Customer.merchant_counts
     if request.xml_http_request?
@@ -98,6 +98,36 @@ class AdminsController < ApplicationController
         format.js {
           render :update do |page|
             page.replace_html 'merchants',:partial => "active_merchants"
+          end
+        }
+      end
+    end
+  end
+
+  def view_deal_paypal_info
+    @deal = Deal.find(params[:deal_id])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_deal_paypal',:partial => "view_deal_paypal"
+          end
+        }
+      end
+    end
+  end
+
+  def paypal_deal_buy_url
+    @deal = Deal.find(params[:id])
+    @deal.update_attributes(:buy_url => params[:buy_url])
+    flash[:notice] = "Buy Url has been Updated Successfully."
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'paypal_dbu',:partial => "paypal_deal_buy_url"
           end
         }
       end

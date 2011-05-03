@@ -1,0 +1,20 @@
+<% form_remote_tag(:url => {:controller => "admins", :action => "paypal_deal_buy_url"},:html => {:id => "buy_url_form", :style=> "padding:0;margin:0;"}) do -%>
+<% if !flash[:notice].blank? %>
+        <div id="msg" style="text-align:center;background-color:grey;color:#fff;" onclick="Effect.toggle('msg','appear');"><%=flash[:notice]%></div>
+<% end %>
+<table width="100%">
+       <tr>
+          <td width="30%">Buy Url: </td>
+          <td width="60%">
+            <input type="hidden" name="id" value="<%= @deal.id%>" />
+            <textarea cols="30" rows="4" name="buy_url" id="buy_url">
+            <%= @deal.buy_url %>
+            </textarea>
+          </td>
+          <td width="10%">
+            <input type="button" name="Update" value="Update" onclick="$('buy_url_form').onsubmit();return false;"/>
+          </td>
+        </tr>
+      </table>
+        <% end %>
+    </form>
