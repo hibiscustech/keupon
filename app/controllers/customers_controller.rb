@@ -369,12 +369,6 @@ class CustomersController < ApplicationController
   end
 
   def transaction_details
-#    @page = "Billing Information"
-#    @billing_information = CustomerCreditCard.new
-#    @deal = Deal.find(params[:id])
-#    @cards = current_customer.customer_credit_cards
-#    @profile = current_customer.customer_profile
-#    @error = (params[:errors] == "1")? session[:payment_error] : nil
     @deal = Deal.find(params[:id])
     @forums=Forum.find_all_by_deal_id(@deal.id)
     @page_number=(params[:page].nil?)?1:(params[:page])
@@ -398,6 +392,12 @@ class CustomersController < ApplicationController
       p "reviews"
       @flag=false
     end
+    #    @page = "Billing Information"
+#    @billing_information = CustomerCreditCard.new
+#    @deal = Deal.find(params[:id])
+#    @cards = current_customer.customer_credit_cards
+#    @profile = current_customer.customer_profile
+#    @error = (params[:errors] == "1")? session[:payment_error] : nil
   end
 
   def demand_deal_transaction_details
