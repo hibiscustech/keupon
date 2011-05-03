@@ -7,9 +7,7 @@
           <td width="30%">Buy Url: </td>
           <td width="60%">
             <input type="hidden" name="id" value="<%= @deal.id%>" />
-            <textarea cols="30" rows="4" name="buy_url" id="buy_url">
-            <%= @deal.buy_url %>
-            </textarea>
+            <textarea cols="30" rows="4" name="buy_url" id="buy_url"><%= @deal.buy_url %></textarea>
           </td>
           <td width="10%">
             <input type="button" name="Update" value="Update" onclick="$('buy_url_form').onsubmit();return false;"/>
