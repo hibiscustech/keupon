@@ -1,12 +1,11 @@
 class DealsController < ApplicationController
 
   include AuthenticatedSystemMerchant
-  include Geokit::Geocoders
   layout 'application_merchant'
 
-  before_filter :login_required , :only => [:index, :activate_the_deal, :activate]
+  before_filter :login_required , :only => [:index, :active_deal, :activate]
 
-  def activate_the_deal
+  def active_deal
     id=params[:id]
     @page = "Deal activation & Preview "
     @deal=Deal.find(params[:id])
@@ -34,11 +33,12 @@ class DealsController < ApplicationController
   end
 
   def save_commission
+    deal = Deal.find(params[:id])
+
     params[:commission].each_pair do |key,value|
-    discount=DealDiscount.find(key)
-    discount.update_attribute(:commission,value[0])
+      discount=DealDiscount.find(key)
+      discount.update_attribute(:commission,value[0])
     end
-    redirect_to '/admins/view_all_deals'
   end
 
   def get_deal_details

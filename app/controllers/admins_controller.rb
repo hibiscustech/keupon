@@ -53,7 +53,7 @@ class AdminsController < ApplicationController
   end
   def confirm_the_deal
     deal = Deal.find(params[:id])
-    deal.update_attributes(:confirm => '1')
+    deal.update_attributes(:confirm => '1',:activated => "1")
     merchant=Merchant.find(deal.merchant_id)
     merchant_profile=merchant.merchant_profile
     MerchantMailer.deliver_confirm_deal(merchant_profile,merchant,deal)

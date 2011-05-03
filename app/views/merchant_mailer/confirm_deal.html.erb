@@ -6,9 +6,9 @@
           <tbody> 
           <tr>
             <td colspan="2" bgcolor="#eceded"><span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Dear <strong><%= @merchant_profile.first_name.camelize %>,</strong><br>
-    Thank you for using www.keupons.com. Please see below the details of the deal that you have added to our site. Please confirm that the details are correct before the deal goes live. In addition, see the commission to be paid to Keupons for the deals<br/>
+               We have created a Keupon for you. This Keupon will be opened on <%=Time.at(@deal.deal_schedule.start_time).strftime("%d-%m-%Y")%><br/>
                Click the link below for more details<br/>
-               <a href="<%=$server_name%>/deals/activate_the_deal/<%=@deal.id%>" style="font-size:14px;font-weight:bold;text-decoration:none;">Check Out Details</a>
+               <a href="<%=$server_name%>/deals/active_deal/<%=@deal.id%>" style="font-size:14px;font-weight:bold;text-decoration:none;">Check Out Details</a>
  <br><br>Thank You,<br>Keupons.com</span></td>
           </tr>
         </tbody></table></td>
