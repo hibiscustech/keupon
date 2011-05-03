@@ -156,7 +156,7 @@ class AdminsController < ApplicationController
         customer.kupoints = customer.kupoints.to_f + points_earned
         customer.save!
 
-        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[5].to_i, customer)
+        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[5].to_i)
         successful_customers << {"customer" => customer.customer_profile, "quantity" => quantity, "total_price" => total_price}
 
         customer_invited_by = CustomerFriend.who_invited_me(customer.login)
