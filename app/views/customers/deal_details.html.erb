@@ -80,7 +80,13 @@
                   </tr>
 
                   <tr>
-                        <td align="center" ><%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%></td>
+                        <td align="center" >
+                          <% if session[:customer_id].blank? %>
+ <%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'buy_deal', :id => @deal.id%>
+                          <% else %>
+ <a href="<%=@deal.buy_url%>"><img height="50" border="0" width="179" src="/images/buy_now_btn.png?" alt="Buy_now_btn"/></a>
+                          <% end %>
+                        </td>
                         </tr>
                 </table></td>
                 <td width="1%">&nbsp;</td>
