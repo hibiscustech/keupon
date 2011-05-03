@@ -5,6 +5,21 @@ class DealsController < ApplicationController
 
   before_filter :login_required , :only => [:index, :active_deal, :activate]
 
+  def deal_transaction_success
+    @deal = Deal.find(params[:id])
+    if session[:customer_id].blank?
+        customer = Customer.find(session[:customer_id])
+        show_deal_code = Constant.get_show_deal_code
+        customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
+        customer_deal.save!
+
+        CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
+
+        flash[:notice] = "You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$<%= @deal.value %>.  Once this Keupon, has been successfully closed, the discount will then be applied to the Actual Price S$#{@deal.value}, based on the Total Buy. You will be notified on this through another email."
+    end
+    redirect_to "/deal_details?id=#{@deal.id}"
+  end
+
   def active_deal
     id=params[:id]
     @page = "Deal activation & Preview "
