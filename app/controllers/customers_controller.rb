@@ -470,7 +470,7 @@ class CustomersController < ApplicationController
   def tip_the_deal
     deal = Deal.find(params[:id])
     discount = DealDiscount.current_deal_discount_for_deal(deal.id)
-    buy_value = deal.value.to_f - discount.to_f*deal.value.to_f/100.to_f
+    buy_value = deal.value.to_f - (discount.to_f*deal.value.to_f/100.to_f)
     save_amount = deal.value.to_f - buy_value
     deal.update_attributes(:status => "tipped", :buy => buy_value, :discount => discount, :save_amount => save_amount)
     customer_deals = deal.customer_deals
@@ -478,9 +478,9 @@ class CustomersController < ApplicationController
 
     for cd in customer_deals
       customer = cd.customer
-      auth_transaction = cd.customer_deal_transactions[0]
-      customer_card_inform = auth_transaction.customer_credit_card
-      total_price = deal.buy.to_f*cd.quantity.to_f
+      #auth_transaction = cd.customer_deal_transactions[0]
+      #customer_card_inform = auth_transaction.customer_credit_card
+      #total_price = deal.buy.to_f*cd.quantity.to_f
 
       my_keupon_credits = 0
       my_invitees = CustomerFriend.signed_up_invitees(customer.id)
@@ -498,51 +498,47 @@ class CustomersController < ApplicationController
           end
         end
       end
-      credits_flag = false
-      if (total_price - my_keupon_credits) > 0
-        @transaction = do_transaction(customer_card_inform, 'sale', total_price - my_keupon_credits)
-      else
-        balance = (my_keupon_credits - total_price)
-        credits_flag = true
-        customer.update_attributes(:balance_credit => balance)
-      end
-      if @transaction.success? || credits_flag
-        deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
-        cd.update_attributes(:status => "available", :deal_code => deal_code)
+#      credits_flag = false
+#      if (total_price - my_keupon_credits) > 0
+#        @transaction = do_transaction(customer_card_inform, 'sale', total_price - my_keupon_credits)
+#      else
+#        balance = (my_keupon_credits - total_price)
+#        credits_flag = true
+#        customer.update_attributes(:balance_credit => balance)
+#      end
+#        deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
+#        cd.update_attributes(:status => "available", :deal_code => deal_code)
 
-        trans_key = (credits_flag)? "Full Keupons Credit" : @transaction.response["TRANSACTIONID"]
-        customer_transaction = CustomerDealTransaction.new(:transaction_key => trans_key, :time_created => Time.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => cd.id, :payment_type => "Reference", :status => "success")
-        customer_transaction.save!
-
-        points_earned = Constant.dollar_to_keupoint_convertion*total_price
-        CustomerKupoint.create(:customer_deal_id => cd.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
-        customer.kupoints = customer.kupoints.to_f + points_earned
-        customer.save!
+#        points_earned = Constant.dollar_to_keupoint_convertion*total_price
+#        CustomerKupoint.create(:customer_deal_id => cd.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
+#        customer.kupoints = customer.kupoints.to_f + points_earned
+#        customer.save!
 
         customer_profile = customer.customer_profile
-        successful_customers << {"customer" => customer_profile, "quantity" => cd.quantity, "total_price" => total_price}
-        CustomerMailer.deliver_deal_purchase_notification(customer, customer_profile, cd, deal, my_keupon_credits)
+        successful_customers << {"customer" => customer_profile, "current_credits" => my_keupon_credits, "balance_credits" => customer.balance_credit, "customer_deal" => cd}
+#        CustomerMailer.deliver_deal_purchase_notification(customer, customer_profile, cd, deal, my_keupon_credits, customer)
 
-        customer_invited_by = CustomerFriend.who_invited_me(customer.login)
-        if !customer_invited_by.blank?
-          cib = customer_invited_by[0]
-          cib.update_attributes(:signed_up => '1')
-        end
-      end
+#        customer_invited_by = CustomerFriend.who_invited_me(customer.login)
+#        if !customer_invited_by.blank?
+#          cib = customer_invited_by[0]
+#          cib.update_attributes(:signed_up => '1')
+#        end
     end
     merchant = deal.merchant
     merchant_profile = merchant.merchant_profile
-    file_path = "public/merchant_files/#{merchant_profile.first_name}.csv"
+    file_path = "public/admin_files/#{merchant_profile.first_name}.csv"
     FasterCSV.open(file_path, "w") do |csv|
-      csv << ["Name", "Mobile Number", "NRIC", "No. of Keupons Bought", "Total Price Paid"]
+      csv << ["ID","Customer Deal ID", "Name", "Mobile Number", "NRIC", "Earned Credits", "Balance Credits", "Price per Quantity", "No. of Keupons Bought", "Total Price Paid"]
       for sc_cust in successful_customers
         cprofile = sc_cust["customer"]
-        csv << ["#{cprofile.first_name} #{cprofile.last_name}", "#{cprofile.contact_number}", "#{cprofile.customer_pin}", sc_cust["quantity"], sc_cust["total_price"]]
+        cd = sc_cust["customer_deal"]
+        csv << ["#{cprofile.customer_id}","#{cd.id}","#{cprofile.first_name} #{cprofile.last_name}", "#{cprofile.contact_number}", "#{cprofile.customer_pin}", sc_cust["current_credits"], sc_cust["balance_credits"], buy_value,"",""]
       end
     end
     files_to_send = Array.new
     files_to_send << File.open(file_path)
-    MerchantMailer.deliver_your_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
+    AdminMailer.deliver_merchant_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
+    #MerchantMailer.deliver_your_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
     File.delete(file_path)
     redirect_to "/admins/view_all_deals"
   end

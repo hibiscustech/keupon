@@ -1,0 +1,63 @@
+﻿<%=render :partial=>'/customer_mailer/top'%>
+
+   <tr>
+        <td>&nbsp;</td>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="6">
+          <tbody>
+          <tr>
+            <td colspan="2" bgcolor="#eceded"><span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Dear <strong>Admin,</strong><br>
+    Please see below the details of the deal that closed today<br/>
+               <br/>
+               <table cellspacing="0" cellpadding="0" border="0" width="396" style="border: 3px solid rgb(255, 0, 0);">
+                        <tbody><tr>
+                          <td bgcolor="#000000"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tbody><tr>
+                              <td align="center" width="5%">&nbsp;</td>
+                              <td height="60" align="left" width="91%" style="color: #FFFFFF;font-family: Arial,Helvetica,sans-serif;font-size: 12px;font-weight: bold;text-decoration: none;"><%= @deal.name %></td>
+                              <td align="center" width="4%">&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td>
+                              <td height="60"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tbody><tr>
+                                  <td width="51%"><img height="181" width="210" src="<%=$server_name%>/<%=@deal.deal_photo.url%>"></td>
+                                  <td bgcolor="#24272c" width="41%" valign="top"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                      <tbody><tr>
+                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;" class="open_deal_text1">Value</td>
+                                      </tr>
+                                      <tr>
+                                        <td height="26" align="center" style="color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;">S$<%= @deal.buy %></td>
+                                      </tr>
+                                      <tr>
+                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;" class="open_deal_text1">Discount</td>
+                                      </tr>
+                                      <tr>
+                                        <td height="26" align="center" style="color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;"><%= @deal.discount %> %</td>
+                                      </tr>
+                                      <tr>
+                                        <td height="32" background="<%=$server_name%>/images/hottest_deal_red_box.jpg" align="center" style="background-repeat: no-repeat;color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;" class="open_deal_text1">Customers</td>
+                                      </tr>
+                                      <tr>
+                                        <td height="26" align="center" style="color: #FFFFFF; font-family: Arial,Helvetica,sans-serif; font-size: 12px;"><%= "#{@customers}" %></td>
+                                      </tr>
+                                  </tbody></table></td>
+                                </tr>
+                              </tbody></table></td>
+                              <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td>
+                            </tr>
+
+                          </tbody></table></td>
+                        </tr>
+                      </tbody></table>
+               <br/>
+               <br/>
+ <br><br>Thank You,<br>Keupons.com</span></td>
+          </tr>
+        </tbody></table></td>
+        <td>&nbsp;</td>
+      </tr>
+<%=render :partial=>'/customer_mailer/bottom'%>
+

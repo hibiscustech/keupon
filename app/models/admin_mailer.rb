@@ -21,6 +21,23 @@ class AdminMailer < ActionMailer::Base
     content_type "text/html"
   end
 
+  def merchant_deal_closed(merchant, merchant_profile, file_path, deal, customers, files)
+    admin_email("Notification - Deal Closed")
+    @body[:merchant_profile]  = merchant_profile
+    @body[:merchant] = merchant
+    @body[:deal] = deal
+    @body[:customers] = customers
+
+    part :content_type => 'multipart/alternative' do |copy|
+      copy.part :content_type => 'text/html' do |html|
+        html.body = render( :file => "your_deal_closed.html.erb",
+          :body => @body )
+      end
+    end
+
+    attachment :content_type => files[0].content_type, :body => File.read(file_path), :filename => "customers.csv"
+  end
+
   protected
   def admin_email(subject)
     @recipients  = "#{Constant.get_admin_email_id}"
