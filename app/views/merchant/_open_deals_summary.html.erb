@@ -20,8 +20,8 @@
               <tr>
                 <td width="22%" align="center">
                   <% if deal.activated.to_s == "1" %>
-                  <a href="/deals/active_deal?id=<%=deal.id%>" style="border: 0px;">
-                  <img src="<%= deal_photo.deal_photo.url %>" width="184" height="148" alt="Preview"/>
+                  <a href="/deals/active_deal?id=<%=deal.id%>">
+                    <img src="<%= deal_photo.deal_photo.url %>" width="184" height="148" alt="Preview" title="Preview" style="border: 0px;"/>
                   </a>
                   <% else %>
                    <img src="<%= deal_photo.deal_photo.url %>" width="184" height="148"/>
