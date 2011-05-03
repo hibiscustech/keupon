@@ -132,11 +132,57 @@ class AdminsController < ApplicationController
     end
   end
 
-
-
   def upload_tranaction_details
-    @deal = Deal.find(params[:deal])
-    post = Deal.save_csv(params[:upload])
+    deal = Deal.find(params[:deal])
+    csv = FasterCSV.new(params[:upload][:upfile])
+    successful_customers = Array.new
+
+    i = 0
+    csv.each do |row|
+      if i > 0
+        customer = Customer.find(row[0])
+        customer_deal = CustomerDeal.find(row[1])
+        quantity = row[8]
+        total_price = row[9]
+        if !row[6].blank? && row[6].to_i > 0
+          customer.update_attributes(:balance_credit => row[6])
+        end
+
+        deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
+        customer_deal.update_attributes(:status => "available", :deal_code => deal_code, :quantity => quantity, :quantity_left => quantity)
+
+        points_earned = Constant.dollar_to_keupoint_convertion.to_i*total_price.to_i
+        CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
+        customer.kupoints = customer.kupoints.to_f + points_earned
+        customer.save!
+
+        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[5].to_i, customer)
+        successful_customers << {"customer" => customer.customer_profile, "quantity" => quantity, "total_price" => total_price}
+
+        customer_invited_by = CustomerFriend.who_invited_me(customer.login)
+        if !customer_invited_by.blank?
+          cib = customer_invited_by[0]
+          cib.update_attributes(:signed_up => '1')
+        end
+      end
+      i += 1
+    end
+
+    merchant = deal.merchant
+    merchant_profile = merchant.merchant_profile
+    file_path = "public/merchant_files/#{merchant_profile.first_name}.csv"
+    FasterCSV.open(file_path, "w") do |csv|
+      csv << ["Name", "Mobile Number", "NRIC", "No. of Keupons Bought", "Total Price Paid"]
+      for sc_cust in successful_customers
+        cprofile = sc_cust["customer"]
+        csv << ["#{cprofile.first_name} #{cprofile.last_name}", "#{cprofile.contact_number}", "#{cprofile.customer_pin}", sc_cust["quantity"], sc_cust["total_price"]]
+      end
+    end
+    files_to_send = Array.new
+    files_to_send << File.open(file_path)
+    MerchantMailer.deliver_your_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
+    File.delete(file_path)
+    redirect_to "/admins/view_all_deals"
   end
 
   def paypal_deal_buy_url
