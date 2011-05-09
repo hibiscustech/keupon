@@ -1,75 +1,66 @@
-<script type="text/javascript" src="/javascripts/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="/javascripts/cufon-yui.js"></script>
-<script type="text/javascript" src="/javascripts/loopslider.js"></script>
-<script type="text/javascript" src="/javascripts/custom_open.js"></script>
+ <%= stylesheet_link_tag '/slider/layout' %>
+ <%= stylesheet_link_tag '/slider/style' %>
 
-<tr>
-        <td background="images/marketing_msg_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<script type="text/javascript" src="/javascripts/jquery_new_slider.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.easing.js"></script>
+<script type="text/javascript" src="/javascripts/script_new_slider.js"></script>
+
+
+
+<script type="text/javascript">
+ $(document).ready( function(){
+		$('#lofslidecontent45').lofJSidernews( { interval:2000,
+											 	easing:'easeInOutQuad',
+												duration:1200,
+												auto:true } );
+	});
+
+</script>
+<style>
+
+	ul.lof-main-wapper li {
+		position:relative;
+	}
+</style>
+
+ <tr>
+        <td background="/images/marketing_msg_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="28%" align="left"><img src="images/marketing_msg_img.jpg" width="274" height="120" /></td>
-            <td width="70%" align="center" class="marketing_msg_text"> Welcome to Keupons, <br />
-              the only site where you are guaranteed a discount! </td>
-            <td width="2%">&nbsp;</td>
+            <td align="left" background="/images/up_banner_img.jpg" width="973" height="118">
+            <div style="float:right; width:600px; text-align:center"><span class="marketing_msg_text1" style="padding-left:20px;">Welcome to Keupons,<br />
+              <span style="font-size:18px;">the only site where you are guaranteed a discount!</span></span> </div>
+             </td>
+
           </tr>
         </table></td>
       </tr>
-<tr>
-        <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+        <td height="48" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="17%" align="left"><img src="images/hot_deals_header_text.jpg" width="182" height="55" /></td>
-            <td width="83%">&nbsp;</td>
-          </tr>
+            <td align="left" ><img src="/images/hot_deals_strip.jpg" /></td>
+            </tr>
         </table></td>
       </tr>
-      <tr>
+
+
+       <tr>
         <td height="336" >
-
-           <!-- ********************OPEN IMAGES*******************************-->
-            <div id="loopedSlider"><!-- begin loopedSlider -->
-            		<div class="container">
-                        <div class="slides_open">
-       <% for htd in @hot_deal_discounts
-        discount = htd[1]
-        hot_deal = @hot_deals[htd[0]]
-        htdeal = Deal.find(hot_deal.id)
-      %>
-                            <div>
-                            	<div class="text">
-                            		<h1> <%=  hot_deal.name %></h1>
-									<a href="/deal_details?id=<%= hot_deal.id %>" class="button2">GetDeal</a>
-                                </div>
-                            	<a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" width="512" height="218" alt="clouds" border="0" /></a>
-                            </div>
-<%end%>
-                 </div>
-                    </div>
-                        <a href="#" class="previous_open"><img src="./images/previous_open.png" width="46" height="47" alt="Previous" /></a>
-                        <a href="#" class="next_open"><img src="./images/next_open.png" width="46" height="47" alt="Next" /></a>
-           </div> <!-- end loopedSlider -->
-
-        <div id="mini-footer"><!-- begin mini-footer -->
-        </div><!-- end mini-footer -->
-<script type="text/javascript"> Cufon.now(); </script>
-
- <!-- ********************END OPEN IMAGES*******************************-->
 
 
         </td>
       </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="55" background="images/header_red_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+
+       <tr>
+        <td height="48" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="17%" align="left"><img src="images/open_deals_header_text.jpg" width="196" height="55" /></td>
-            <td width="83%">&nbsp;</td>
-          </tr>
+            <td height="48" align="left"><img src="/images/open_deal_strip.jpg" /></td>
+            </tr>
         </table></td>
       </tr>
       <tr>
-        <td height="220">
-          <!-- ********************SLIDER IMAGES*******************************-->
+        <td height="220" align="center">
+       <!-- ********************SLIDER IMAGES*******************************-->
           <div id="wrapper">
 
 		<div class="slider-frame">
