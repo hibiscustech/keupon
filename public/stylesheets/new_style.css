@@ -1,0 +1,627 @@
+/*Home CSS*/
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	/*background-color: #900000;*/
+}
+/*.marketing_msg_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	color:#ffffff;
+	text-decoration:none;
+
+}*/
+.marketing_msg_text1{
+	font-family:"Trajan Pro";
+	font-size:1.5em;
+	font-weight:bold;
+	color:#ffffff;
+	text-decoration:none;
+	text-align:center;
+
+}
+.header_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	
+	color:#ffffff;
+	text-decoration:none;
+
+}
+.footer_links{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-style:normal;
+	color:#999999;
+	text-decoration:none;
+}
+.footer_links a{
+	color:#999999;
+	text-decoration:none;
+}
+.footer_links:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.break{
+	padding-left:5px;
+	padding-right:5px;
+	color:#FFFFFF;
+	}
+.copyright_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#ffffff;
+	text-decoration:none;
+
+
+}
+
+
+
+
+/*Earn Money CSS*/
+.invite_text{
+	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	
+	color:#FF0000;
+	text-decoration:none;
+
+}
+
+
+
+/*Deals Detail CSS*/
+.product_specification_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	
+	color:#FF0000;
+	text-decoration:none;
+
+}
+.deals_content{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000000;
+	text-decoration:none;
+
+}
+.deals_content1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000000;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+.deals_content_red{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	
+	color:#ff7d7f;
+	text-decoration:none;
+
+}
+.deals_content_white{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#ffffff;
+	text-decoration:none;
+
+}
+.deals_content_red_bold{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#FF0000;
+	text-decoration:none;
+
+}
+.deals_content_blue_link{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000099;
+	text-decoration:underline;
+
+}
+.deals_content_blue_link:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000099;
+	text-decoration:none;
+
+}
+.readmore_link{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	
+	color:#FF0000;
+	text-decoration:underline;
+
+}
+.readmore_link:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FF0000;
+	text-decoration:none;
+
+}
+.time{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#FFFFFF;
+
+}
+.time1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#000000;
+
+}
+.pagination_link{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#FFFFFF;
+
+}
+
+
+
+/*Login CSS*/
+.login_welcome_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:42px;
+	color:#FFFFFF;
+	font-weight:bold;
+
+}
+.login_welcome_text_small{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	color:#FFFFFF;
+	font-weight:bold;
+
+}
+.login_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#FFFFFF;
+
+}
+.forgot_password_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ff0000;
+	text-decoration:underline;
+}
+.forgot_password_text:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ff0000;
+	text-decoration:none;
+
+}
+
+
+
+
+/*Open Deals CSS*/
+.open_deal_text1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+
+}
+.open_deal_text_red{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ff9d9d;
+
+}
+.open_deal_text2{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000000;
+
+}
+
+
+
+/*Open Deals on demand CSS*/
+.deals_on_demand_text1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+
+}
+.deals_on_demand_text2{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000000;
+
+}
+.deals_on_demand_text3{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#ffffff;
+	font-weight:bold;
+}
+.deals_on_demand_text_bold{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:24px;
+	color:#FFFFFF;
+	font-weight:bold;
+
+}
+.deals_on_demand_text1_link{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+	text-decoration:none;
+
+}
+.deals_on_demand_text1_link:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+	text-decoration:underline;
+
+}
+
+
+
+/*Billing Information CSS*/
+.billing_text_header{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	color:#FF0000;
+	text-decoration:none;
+	font-weight:bold;
+
+}
+.billing_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000000;
+	text-decoration:none;
+	
+
+}
+.billing_text1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	
+
+}
+.admin_text{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:11px;
+color:#000000;
+font-style:normal;
+padding:5px 0px 5px 5px;
+text-align:left;
+}
+.admin_head{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:13px;
+color:#fff;
+font-weight:bold;
+height:22px;
+padding:1px 0px 1px 5px;
+text-align:left;
+}
+.table_line{
+	border-collapse:collapse;
+}
+.table_line tr, .table_line tr td{
+	border:1px solid #6a0c18;
+}
+
+.pop_up_text {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333333;
+	line-height:16px;
+	font-weight:bold;
+	}
+
+	
+/*//////////////////////////// POP UP WINDOW ////////////////////////////////////////////////*/
+#popup_view_deal
+        {
+                width:            100%;
+               height:           100%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                padding:          200px 0 0 138px;
+        }
+
+#popup_create_deal
+        {
+                width:            100%;
+                height:           100%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                padding:          200px 0 0 138px;
+        }
+
+        #first_time_popup
+        {
+                width:            100%;
+                height:           100%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                padding:          200px 0 0 138px;
+        }
+
+
+        #popup_merchant
+        {
+                width:            100%;
+                height:           100%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                 padding:          200px 0 0 138px;
+        }
+
+        #popup_customer
+        {
+                width:            100%;
+                height:           100%;
+                position:         absolute;
+                top:              0;
+                left:             0;
+                z-index:          15;
+                background:       transparent url(/images/transparent.png) repeat top left;
+                display:          none;
+                  padding:          200px 0 0 138px;
+
+        }
+/*//////////////////////////// END OF POP UP WINDOW ////////////////////////////////////////////////*/
+
+
+
+/*----------------------Open Deal Silder--------------------------------------------*/
+.alignright {
+  float: right;
+  margin: 0 0 20px 20px;
+  width:auto;
+}
+.alignleft {
+  float: left;
+  margin: 0 20px 10px 0;
+  width:auto;
+}
+a img {
+	border:none;
+}
+
+blockquote{
+	border:1px solid #ddd;
+	background-color:#eee;
+	padding:10px 10px 10px 20px;
+	margin:10px 0px 10px 0px;
+	border-left:3px solid #ddd;
+	font-size:12px;
+	color:#555;
+}
+.tn-br{
+	border:1px solid #eee;
+	background-color:#fff;
+	padding:5px;
+}
+.tn-br2{
+	border:1px solid #ccc;
+	background-color:#eee;
+	padding:8px;
+}
+
+p{
+margin-bottom:10px;
+
+}
+
+ol {
+	list-style: decimal;
+	margin-left:20px;
+	line-height:22px;
+}
+
+ul {
+	list-style: square;
+	padding-left:15px;
+
+}
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+img.view-more{
+
+}
+a.view-more2{
+background-color:#333;
+padding:3px 5px;
+text-decoration:none;
+color:#555;
+margin-top:20px;
+padding-top:30px;
+
+}
+.vpace{
+display:block;
+height:20px;
+
+}
+
+.slider-frame{
+	width:800px;
+	height:191px;
+	margin-bottom:20px;
+	background-image: url(./images/slider-bg.png);
+	background-repeat: no-repeat;
+
+
+}
+.sliderImages  {
+	margin-left:10px;
+	padding-top:11px;
+	height:171px;
+
+
+}
+
+.sliderImages ul{
+	margin:0px;
+	padding:0px;
+
+}
+.sliderImages ul li {
+	margin:0;
+	list-style:none;
+	width:245px;
+	height:160px;
+	margin-left:1px;
+	display:inline;
+
+
+
+}
+
+.arrow-but{
+	position:relative;
+	z-index:10;
+
+}
+.prev {
+	position: absolute;
+	left:-21px;
+	top:-145px;
+	z-index:10;
+}
+.next {
+	position:absolute;
+	left:978px;
+	top:-145px;
+	z-index:10;
+}
+
+/*----------------------End of Open Deal Silder--------------------------------------------*/
+
+/*//////////////////////////// FOR OPEN DEAL CSS ////////////////////////////////////////////////*/
+ div, h1, h2, h3, h4, h5, h6, p, font, img, caption {
+       margin: 0;
+       padding: 0;
+       border: 0;
+       outline: 0;
+       font-weight: inherit;
+       font-style: inherit;
+       font-size: 100%;
+       font-family: inherit;
+       vertical-align: baseline;
+}
+
+#loopedSlider {
+       line-height: 1;
+       color: black;
+       background: white;
+}
+
+h1{
+       font-size: 25px;
+       margin-bottom: 5px;
+       color: #477193;
+       text-transform: uppercase;
+}
+
+.text h1{
+       color: white;
+       margin-bottom: 15px;
+       font-size: 25px;
+        font-family:Arial, Helvetica, sans-serif;
+
+       font-weight:bold;
+}
+
+
+#loopedSlider{
+       position: relative;
+       margin: 0 auto;
+       width: 960px;
+       height: 335px;
+
+       background: url(/images/slider_bg_new.jpg) no-repeat;
+}
+
+.container { width:960px; height:335px; overflow:hidden; position:relative; }
+		.slides_open { position:relative;}
+		.slides_open div .text{ width: 300px; position: absolute; top: 50px; left: 45px;}
+		.slides_open div img{background: url(../images/slider_imageframe.jpg) no-repeat; padding:10px; padding-bottom: 20px; position: relative; top: 45px; left: 370px;}
+		ul.pagination { list-style-type:none; margin:0; padding:0; margin:9px auto; width:150px; }
+		ul.pagination li { float:left; margin:0; margin-right:0; padding: 0; }
+		ul.pagination a { display:block; width:12px; height:0; overflow:hidden; background-image:url(../images/pagination.gif); background-position:0 0; background-repeat:no-repeat; padding: 0; margin-right: 10px; padding-top:12px;}
+		ul.pagination li.active a {background-position:0 -13px}
+		a.previous_open { position:absolute; top:150px; left:-17px; background: none; }
+		a.next_open { position:absolute; top:150px; right:-15px; background: none; }
+
+
+a.button{
+       background: url(/images/read_more_bt.jpg) no-repeat top left;
+       display: block;
+       width: 136px;
+       height: 36px;
+       float: left;
+       margin-top: 50px;
+       text-indent: -99999px;
+}
+a.button:hover{
+       background-position: 0 -36px;
+}
+
+a.button2{
+       background: url(/images/read_more_bt.jpg) no-repeat top left;
+       display: block;
+       width: 136px;
+       height: 36px;
+       float: left;
+       text-indent: -99999px;
+}
+a.button2:hover{
+       background-position: 0 -36px;
+}
+/*//////////////////////////// END OF OPEN DEAL ////////////////////////////////////////////////*/
