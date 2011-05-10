@@ -25,10 +25,10 @@ if (i == 1)
         document.getElementById('expired').style.display="none";
         document.getElementById('all').style.display="none";
 
-        document.getElementById("Img1").src="/images/available_black.jpg";
-        document.getElementById("Img2").src="/images/used_red.jpg";
-        document.getElementById("Img3").src="/images/expired_red.jpg";
-        document.getElementById("Img4").src="/images/all_red.jpg";
+        document.getElementById("Img1").src="/images/available_b.jpg";
+        document.getElementById("Img2").src="/images/used_r.jpg";
+        document.getElementById("Img3").src="/images/expired_r.jpg";
+        document.getElementById("Img4").src="/images/all_r.jpg";
     }
     else if (i == 2) {
         document.getElementById('available').style.display="none";
@@ -36,10 +36,10 @@ if (i == 1)
         document.getElementById('expired').style.display="none";
         document.getElementById('all').style.display="none";
 
-        document.getElementById("Img1").src="/images/available_red.jpg";
-        document.getElementById("Img2").src="/images/used.jpg";
-        document.getElementById("Img3").src="/images/expired_red.jpg";
-        document.getElementById("Img4").src="/images/all_red.jpg";
+        document.getElementById("Img1").src="/images/available_r.jpg";
+        document.getElementById("Img2").src="/images/used_b.jpg";
+        document.getElementById("Img3").src="/images/expired_r.jpg";
+        document.getElementById("Img4").src="/images/all_r.jpg";
     }
      else if (i == 3) {
         document.getElementById('available').style.display="none";
@@ -47,10 +47,10 @@ if (i == 1)
         document.getElementById('expired').style.display="block";
         document.getElementById('all').style.display="none";
 
-        document.getElementById("Img1").src="/images/available_red.jpg";
-        document.getElementById("Img2").src="/images/used_red.jpg";
-        document.getElementById("Img3").src="/images/expired.jpg";
-        document.getElementById("Img4").src="/images/all_red.jpg";
+        document.getElementById("Img1").src="/images/available_r.jpg";
+        document.getElementById("Img2").src="/images/used_r.jpg";
+        document.getElementById("Img3").src="/images/expired_b.jpg";
+        document.getElementById("Img4").src="/images/all_r.jpg";
     }
     else if (i == 4) {
         document.getElementById('available').style.display="none";
@@ -58,10 +58,10 @@ if (i == 1)
         document.getElementById('expired').style.display="none";
         document.getElementById('all').style.display="block";
 
-        document.getElementById("Img1").src="/images/available_red.jpg";
-        document.getElementById("Img2").src="/images/used_red.jpg";
-        document.getElementById("Img3").src="/images/expired_red.jpg";
-        document.getElementById("Img4").src="/images/all_black.jpg";
+        document.getElementById("Img1").src="/images/available_r.jpg";
+        document.getElementById("Img2").src="/images/used_r.jpg";
+        document.getElementById("Img3").src="/images/expired_r.jpg";
+        document.getElementById("Img4").src="/images/all_b.jpg";
     }
     }
 </script>
@@ -87,7 +87,7 @@ border-bottom-right-radius: 6px;
 
 th
 {
-background-color:#C11515;
+
 border-collapse:collapse;
 color:#ffffff;
 height:30px;
@@ -140,20 +140,25 @@ hr {
 
        <table width="100%"><tr><td>
        <table><tr><td>
-       <img src="/images/available_black.jpg" onclick="changeMyProfile(1)" style="cursor:pointer;" id="Img1"/>
-        <img src="/images/used_red.jpg" onclick="changeMyProfile(2)" style="cursor:pointer;" id="Img2"/>
-        <img src="/images/expired_red.jpg" onclick="changeMyProfile(3)" style="cursor:pointer;" id="Img3"/>
-        <img src="/images/all_red.jpg" onclick="changeMyProfile(4)" style="cursor:pointer;" id="Img4"/>
+       <img src="/images/available_b.jpg" onclick="changeMyProfile(1)" style="cursor:pointer;" id="Img1"/>
+        <img src="/images/used_r.jpg" onclick="changeMyProfile(2)" style="cursor:pointer;" id="Img2"/>
+        <img src="/images/expired_r.jpg" onclick="changeMyProfile(3)" style="cursor:pointer;" id="Img3"/>
+        <img src="/images/all_r.jpg" onclick="changeMyProfile(4)" style="cursor:pointer;" id="Img4"/>
         </td></tr>
        </table>
        <!-- If gift Section is enabled the provide width: 650px -->
        <div id="available"  style="border: 4px solid black; display: block; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
           <table width="100%" cellpadding=0 cellspacing=0>
-            <tr><th style="width: 400px;">Details</th><th>Purchased On</th><th>Expires On</th>
-              <% if @deal_code_visibility == "1" %>
-              <th>Deal Code</th>
+            
+            <tr>
+              <th background="/images/tab_line.jpg" height="30" width="50%" class="tab_text" style="color: #fff;">Details</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;" >Purchased On</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;">Expires On</th>
+               <% if @deal_code_visibility == "1" %>
+              
+              <th background="/images/tab_line.jpg" height="30" width="10%" class="tab_text" style="color: #fff;">Deal Code</th>
               <% end %>
-            </tr>
+           </tr>
             <% for available in @my_keupons %>
               <% if available.expiry_date.to_i > Time.now.to_i && available.status == "available" %>
                 <!-- <tr onclick="showCustomerDeal('popup_view_deal',<%= available.customer_deal_id %>);" style="cursor: pointer;"> -->
@@ -172,7 +177,13 @@ hr {
 
          <div id="used" style="border: 4px solid black; display: none; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
           <table width="100%" cellpadding=0 cellspacing=0>
-            <tr><th>Details</th><th>Purchased On</th><th>Expires On</th></tr>
+            
+            <tr>
+              <th background="/images/tab_line.jpg" height="30" width="60%" class="tab_text" style="color: #fff;">Details</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;" >Purchased On</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;">Expires On</th>
+               
+           </tr>
             <% for used in @my_keupons %>
               <% if used.status == "used" %>
                <tr><td><%= used.name %></td><td align="center"><%=Time.at(used.purchase_date.to_i).strftime("%d-%m-%Y") %></td><td align="center"><%=Time.at(used.expiry_date.to_i).strftime("%d-%m-%Y") %></td></tr>
@@ -183,7 +194,12 @@ hr {
 
          <div id="expired" style="border: 4px solid black; display: none; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
           <table width="100%" cellpadding=0 cellspacing=0>
-            <tr><th style="width: 400px;">Details</th><th>Purchased On</th><th>Expired On</th></tr>
+           <tr>
+              <th background="/images/tab_line.jpg" height="30" width="60%" class="tab_text" style="color: #fff;">Details</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;" >Purchased On</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;">Expires On</th>
+              
+           </tr>
             <% for expired in @my_keupons %>
               <% if expired.expiry_date.to_i <= Time.now.to_i || expired.status == "expired" %>
                <tr><td><%= expired.name %></td><td align="center"><%=Time.at(expired.purchase_date.to_i).strftime("%d-%m-%Y") %></td><td align="center"><%=Time.at(expired.expiry_date.to_i).strftime("%d-%m-%Y") %></td></tr>
@@ -194,7 +210,14 @@ hr {
 
          <div id="all" style="border: 4px solid black; display: none; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
           <table width="100%" cellpadding=0 cellspacing=0>
-            <tr><th style="width: 400px;">Details</th><th>Purchased On</th><th>Expiry Date</th><th>Status</th></tr>
+           
+             <tr>
+              <th background="/images/tab_line.jpg" height="30" width="50%" class="tab_text" style="color: #fff;">Details</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;" >Purchased On</th>
+              <th background="/images/tab_line.jpg" height="30" width="20%" class="tab_text" style="color: #fff;">Expires On</th>
+                <th background="/images/tab_line.jpg" height="30" width="10%" class="tab_text" style="color: #fff;">Status</th>
+
+           </tr>
             <% for all in @my_keupons %>
               <% if all.status != "new" %>
                <tr><td><%= all.name %></td><td align="center"><%=Time.at(all.purchase_date.to_i).strftime("%d-%m-%Y") %></td><td align="center"><%=Time.at(all.expiry_date.to_i).strftime("%d-%m-%Y") %></td><td align="center"><%= all.status %></td></tr>
