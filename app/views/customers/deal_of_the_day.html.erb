@@ -45,56 +45,64 @@
 
        <tr>
         <td height="336" >
-<div id="containers">
+
+<div id="container"> 
 <!------------------------------------- THE CONTENT ------------------------------------------------->
 <div id="lofslidecontent45" class="lof-slidecontent">
 <div class="preload"><div></div></div>
- <!-- MAIN CONTENT -->
+ <!-- MAIN CONTENT --> 
   <div class="lof-main-outer">
   	<ul class="lof-main-wapper">
-           <% for htd in @hot_deal_discounts
+  <% for htd in @hot_deal_discounts
         discount = htd[1]
         hot_deal = @hot_deals[htd[0]]
         htdeal = Deal.find(hot_deal.id)
       %>
-  	 <li>
-
-        	<img src="images/416719news7.jpg" title="Newsflash 5" height="300" width="900"/><div class="lof-main-item-desc">
+  		<li>
+        		<img src="/images/416719news7.jpg" title="Newsflash 2" height="300" width="900"><div class="lof-main-item-desc">
                 <h3><a target="_parent" title="Newsflash 2" href="#">
-                <div class="banner_content">
-                  <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" style="padding-top:22px;padding-left:18px;" border="0" /></a>
-                  </div></a></h3>
-                <div class="ban_text"><%=  hot_deal.name %></div>
-                <div style="width:135px; height:29px; float:left; margin-top:20px; " ><a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/get.jpg" width="135" height="29" border="0" /></a></div>
+                <div class="banner_content"><img src="/images/img_ban.jpg" style="padding-top:22px;padding-left:18px;" /></div></a></h3>
+                <div class="ban_text">Worth of photo books or holiday cards, plus four free accordion desktop calendars at kodak gallery</div>
+                <div style="width:135px; height:29px; float:left; margin-top:20px; " ><a href="#"><img src="/images/get.jpg" width="135" height="29" border="0" /></a></div>
              </div>
-        </li>
+        </li> 
+      
         <%end%>
-      </ul>
+       
+        
+      
+       
+      </ul>  	
   </div>
-  <!-- END MAIN CONTENT -->
+  <!-- END MAIN CONTENT --> 
     <!-- NAVIGATOR -->
 
   <div class="lof-navigator-outer">
   		<ul class="lof-navigator">
-                    <% for htd in @hot_deal_discounts
+ <% for htd in @hot_deal_discounts
         discount = htd[1]
         hot_deal = @hot_deals[htd[0]]
         htdeal = Deal.find(hot_deal.id)
       %>
-           <li>
-           		<div>
-                    <img src="images/lofthumbs/416719news7.jpg" />
-                    <h3><%=  hot_deal.name %></h3>
-               		
-                </div>
+            <li>
+            	<div>
+                	<img src="/images/791902news3.jpg" />
+                	
+                  	<%=  hot_deal.name %>
+                </div>    
             </li>
-             <%end%>
+           <%end%>
+            
+            
+        
+          
+           		
         </ul>
   </div>
- </div>
+ </div> 
+<script type="text/javascript">
 
-
-<!------------------------------------- END OF THE CONTENT ------------------------------------------------->
+</script>
 
 
     </div>
