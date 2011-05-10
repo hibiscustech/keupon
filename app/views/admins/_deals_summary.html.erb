@@ -39,6 +39,10 @@
                   <% end %>
                 </td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text">
+                  <% if deal.confirm.to_s == "1" %>
+                  <%= render :partial => "shared/printable", :locals => {:link => "/admins/printable_merchant_copy?id=#{deal.id}"}%>
+                  &nbsp;
+                  <% end %>
                   <a href='#' onclick="showElt('popup_create_deal_<%=deal.id%>');">Commission</a>
                   &nbsp;
                   <a href="#" onclick="showDealPaypal('popup_view_deal',<%= deal.id %>);">Paypal</a>

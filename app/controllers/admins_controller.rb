@@ -304,6 +304,13 @@ class AdminsController < ApplicationController
     @merchants = Company.merchants_for_new_deal
   end
 
+  def printable_merchant_copy
+    @deal = Deal.find(params[:id])
+    @schedule = @deal.deal_schedule
+    @discounts = @deal.deal_discounts
+    render :layout => 'print'
+  end
+
   def update_deal
     merchant_profile = Merchant.find(params[:deal][:merchant_id]).merchant_profile
     @deal = Deal.find(params[:id])

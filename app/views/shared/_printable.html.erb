@@ -1,0 +1,27 @@
+<style>
+a:link, a:visited {
+        color: #27408B;
+}
+
+a:hover {
+        color: #2E8B57;
+}
+
+a:active, a:active.tests {
+        font-weight: bold;
+}
+
+a:link.tests, a:visited.tests {
+        color: #000000;
+}
+
+a:hover.tests {
+        color: #27408B;
+}
+</style>
+
+<div style="float:right;font-size:12px;border:1px dotted #CCCCCC;margin-right:16px;padding:2px;">
+    <a href="<%= link %>" id="printable" target="_blank">
+      <%= image_tag('printer_icon.gif', :style => "margin-bottom:-3px;border:0;") %>
+    </a>
+</div>

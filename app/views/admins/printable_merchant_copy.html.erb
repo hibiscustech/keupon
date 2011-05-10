@@ -1,0 +1,56 @@
+<table width="700px" bgcolor="#FFFFFF" align="right" border="0"  style="margin-top:100px;"cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <%= render :partial => "shared/print" %>
+    </td>
+  </tr>
+</table>
+<table width="700px" bgcolor="#FFFFFF" class="table_line" align="center" border="0"  style="margin-top:100px;"cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="7" align="center" height="22" background="/images/line_admin.jpg" class="admin_head">Package Mechanic </td>
+  </tr>
+  <tr>
+    <td colspan="7" class="admin_text" >(A) Campaign Name: <%= @deal.name %></td>
+  </tr>
+  <tr>
+    <td colspan="4" class="admin_text" >Target Date: <%= Time.at(@schedule.start_time.to_i).strftime("%d %b, %Y") %> ;</td>
+    <td colspan="3" class="admin_text" >Promotion Item: <%= @deal.deal_category.name %></td>
+  </tr>
+  <tr>
+    <td rowspan="2" class="admin_text" >Usual Price: S$<%= @deal.value %></td>
+    <td class="admin_text" >Discount (%)</td>
+    <% for discount in @discounts %>
+    <td class="admin_text" ><%=discount%></td>
+    <% end %>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="admin_text" >Quantity Order</td>
+    <%
+    prev_max = nil
+    for discount in @discounts
+      min_customers = discount.customers
+      max_customers = (discount.max_customers.blank?)? "Any" : discount.max_customers
+      current_min_customers = (prev_max.blank?)? min_customers : (prev_max.to_i+1)
+    %>
+    <td class="admin_text" ><%= current_min_customers %> - <%= max_customers %></td>
+    <%
+    prev_max = max_customers
+    end %>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" class="admin_text" >Redemption Period: <%= Time.at(@schedule.end_time.to_i).strftime("%d %b, %Y") %> - <%= Time.at(@deal.expiry_date.to_i).strftime("%d %b, %Y") %></td>
+    <td colspan="3" class="admin_text" >Method: (Please circle)    Retail Redemption     Home Delivery    </td>
+  </tr>
+  <tr>
+    <td colspan="7" class="admin_text" >Participating outlet: All Participating Outlets</td>
+  </tr>
+  <tr>
+    <td colspan="7" class="admin_text" >Material Submission Date: At least 7 Working Days prior to Live Date
+
+</td>
+  </tr>
+</table>
