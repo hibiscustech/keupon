@@ -17,7 +17,7 @@ class AdminsController < ApplicationController
         CustomerMailer.deliver_subscribers_notification(subscriber.email, deals, deal_discounts)
       end
     end
-    return nil
+    return "email sent"
   end
 
   def view_all_deals
