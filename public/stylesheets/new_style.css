@@ -28,7 +28,6 @@ body {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:18px;
 	font-weight:bold;
-	
 	color:#ffffff;
 	text-decoration:none;
 
@@ -69,12 +68,19 @@ body {
 
 /*Earn Money CSS*/
 .invite_text{
-	
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:16px;
 	font-weight:bold;
-	
 	color:#FF0000;
+	text-decoration:none;
+
+}
+.invite_text1{
+
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:#b61314;
 	text-decoration:none;
 
 }
@@ -86,7 +92,6 @@ body {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:20px;
 	font-weight:bold;
-	
 	color:#FF0000;
 	text-decoration:none;
 
@@ -109,7 +114,6 @@ body {
 .deals_content_red{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
-	
 	color:#ff7d7f;
 	text-decoration:none;
 
@@ -147,7 +151,6 @@ body {
 .readmore_link{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
-	
 	color:#FF0000;
 	text-decoration:underline;
 
@@ -297,16 +300,12 @@ body {
 	font-size:12px;
 	color:#000000;
 	text-decoration:none;
-	
-
 }
 .billing_text1{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	color:#ffffff;
 	text-decoration:none;
-	
-
 }
 .admin_text{
 font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -340,7 +339,6 @@ text-align:left;
 	font-weight:bold;
 	}
 
-	
 /*//////////////////////////// POP UP WINDOW ////////////////////////////////////////////////*/
 #popup_view_deal
         {
