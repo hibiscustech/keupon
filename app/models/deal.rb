@@ -39,7 +39,7 @@ class Deal < ActiveRecord::Base
   end
   
   def self.all_hot_deals
-    query = %Q{ select d.id, d.name, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.discount, d.value as actual_value, d.save_amount
+    query = %Q{ select d.id, d.name, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.discount, d.value as actual_value, d.save_amount, ds.end_time
                 from deals d
                 join deal_schedules ds on ds.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
