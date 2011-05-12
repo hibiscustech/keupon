@@ -87,7 +87,7 @@
       %>
             <li>
             	<div>
-                  <img src="<%=htdeal.deal_photo.url%>" /><h3>Value: S$<%= hot_deal.actual_value %><br/>Discount: <%= discount %> %<br/>You Save: <%= savings %><br/>Keupon Closes On: <%= Time.at(hot_deal.end_time.to_i).strftime("%d-%m-%Y") %></h3>
+                  <img src="<%=htdeal.deal_photo.url%>" /><h3>Value: S$<%= hot_deal.actual_value %><br/>Discount: <%= discount %> %<br/>You Save: S$<%= savings %><br/>Keupon Closes On: <%= Time.at(hot_deal.end_time.to_i).strftime("%d-%m-%Y") %></h3>
                 </div>
             </li>
            <%end%>
