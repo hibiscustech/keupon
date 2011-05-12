@@ -259,12 +259,14 @@ body {
                 <td width="64%"><img src="<%=$server_name%>/<%= opd.deal_photo.url%>" width="200" height="169" /></td>
               </tr>
             </table></td>
-          </tr>
-          <% end %>
           <% end %>
           <% if @deals.size%2 != 0 %>
           </tr>
           <% end %>
+          <%
+          i+=1
+          end
+          %>
         </table></td>
         <td>&nbsp;</td>
       </tr>
