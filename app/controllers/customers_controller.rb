@@ -848,9 +848,14 @@ class CustomersController < ApplicationController
         existing_deal_categories.each do |cfd|
           cfd.destroy
         end
+
+    keupon_subscriber = KeuponSubscriber.find_by_email(customer.login)
     if params[:customer_favourite_deal]
       params[:customer_favourite_deal].each do |d|
         @cus_favourite = CustomerFavouriteDeal.create(:customer_id => params[:customer_favourite][:customer_id], :deal_category_id => d)
+        if !keupon_subscriber.blank?
+          SubscribedDeal.create(:keupon_subscriber_id => keupon_subscriber.id, :deal_category_id => d)
+        end
       end
     end
     if params[:my_profile].nil?
