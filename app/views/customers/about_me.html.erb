@@ -20,13 +20,152 @@
     text-align:center;
   }
 </style>
+<script Language="JavaScript">
+<!--
+var dtCh= "/";
+var minYear=1900;
+var maxYear=1993;
+function Validate(){
+var theForm = document.forms['customerProfile'];
+var i;
+  if (theForm.customer_profile_dob.value == "" || theForm.customer_profile_dob.value.length < 1)
+  {
+    alert("You must choose the date on which you were born.");
+    theForm.customer_profile_dob.focus();
+    return (false);
+  }
+  else if(isDate(theForm.customer_profile_dob.value)==false){
+    theForm.customer_profile_dob.focus();
+    return (false);
+  }
+  if(theForm.customer_profile_region.selectedIndex == 0){
+    alert("You must Select a Region.");
+    theForm.customer_profile_region.focus();
+    return (false);
+  }
+  if(theForm.customer_profile_relationship.selectedIndex == 0){
+    alert("You must Select a Relationship Status.");
+    theForm.customer_profile_relationship.focus();
+    return (false);
+  }
 
+  if (theForm.customer_profile_income.value == "" || theForm.customer_profile_income.value.length < 1)
+  {
+  alert("You must enter the Average Monthly Salary");
+  theForm.customer_profile_income.focus();
+  return (false);
+  }
+  else if(!IsNumeric(theForm.customer_profile_income.value,"0123456789.")){
+    alert("You must enter only Numeric value for Average Monthly Salary.");
+    theForm.customer_profile_income.focus();
+    return (false);
+  }
+  else if((parseInt(theForm.customer_profile_income.value) > parseInt('0'))){
+    alert("Your Average Monthly Salary must be greater than 0 ");
+    theForm.customer_profile_income.focus();
+    return (false);
+  }
+  if(theForm.customer_profile_industry_sector_id.selectedIndex == 0){
+    alert("You must Select an Employment Status.");
+    theForm.customer_profile_industry_sector_id.focus();
+    return (false);
+  }
+
+  theForm.submit();
+}
+
+function IsNumeric(sText, ValidChars)
+{
+   var IsNumber=true;
+   var Char;
+
+
+   for (i = 0; i < sText.length && IsNumber == true; i++)
+      {
+      Char = sText.charAt(i);
+      if (ValidChars.indexOf(Char) == -1)
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+
+}
+
+function stripCharsInBag(s, bag){
+	var i;
+    var returnString = "";
+    // Search through string's characters one by one.
+    // If character is not in bag, append to returnString.
+    for (i = 0; i < s.length; i++){
+        var c = s.charAt(i);
+        if (bag.indexOf(c) == -1) returnString += c;
+    }
+    return returnString;
+}
+
+function daysInFebruary (year){
+	// February has 29 days in any year evenly divisible by four,
+    // EXCEPT for centurial years which are not also divisible by 400.
+    return (((year % 4 == 0) && ( (!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28 );
+}
+function DaysArray(n) {
+	for (var i = 1; i <= n; i++) {
+		this[i] = 31
+		if (i==4 || i==6 || i==9 || i==11) {this[i] = 30}
+		if (i==2) {this[i] = 29}
+   }
+   return this
+}
+
+function isDate(dtStr){
+	var daysInMonth = DaysArray(12)
+	var pos1=dtStr.indexOf(dtCh)
+	var pos2=dtStr.indexOf(dtCh,pos1+1)
+	var strDay=dtStr.substring(0,pos1)
+	var strMonth=dtStr.substring(pos1+1,pos2)
+	var strYear=dtStr.substring(pos2+1)
+	strYr=strYear
+	if (strDay.charAt(0)=="0" && strDay.length>1) strDay=strDay.substring(1)
+	if (strMonth.charAt(0)=="0" && strMonth.length>1) strMonth=strMonth.substring(1)
+	for (var i = 1; i <= 3; i++) {
+		if (strYr.charAt(0)=="0" && strYr.length>1) strYr=strYr.substring(1)
+	}
+	month=parseInt(strMonth)
+	day=parseInt(strDay)
+	year=parseInt(strYr)
+	if (pos1==-1 || pos2==-1){
+		alert("The date format should be : dd/mm/yyyy")
+		return false
+	}
+	if (strMonth.length<1 || month<1 || month>12){
+		alert("Please enter a valid month")
+		return false
+	}
+	if (strDay.length<1 || day<1 || day>31 || (month==2 && day>daysInFebruary(year)) || day > daysInMonth[month]){
+		alert("Please enter a valid day")
+		return false
+	}
+	if (strYear.length != 4 || year==0 || year<minYear || year>maxYear){
+		alert("Please enter a valid 4 digit year between "+minYear+" and "+maxYear)
+		return false
+	}
+	if (dtStr.indexOf(dtCh,pos2+1)!=-1 || IsNumeric(stripCharsInBag(dtStr, dtCh),"0123456789.")==false){
+		alert("Please enter a valid date")
+		return false
+	}
+return true
+}
+
+
+//-->
+</script>
       <tr>
         <td>
-          <div id="myprofile" class="myprofile" style="border: 4px solid black; display: block; min-height: 450px; margin-bottom: 10px; width: 938px; margin-top: -8px; margin-left: 3px;">
+          <div id="myprofile" class="myprofile" style="border: 4px solid black; display: block; min-height: 450px; margin-bottom: 10px; width: 938px; margin-top: 0px; margin-left: 3px;">
             <br/><br/><br/><br/><br/><br/><br/>
             <div style="width:618px;text-align:left;">
-              <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update'} do |f| -%>
+              <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update', :id=>'customerProfile'} do |f| -%>
                 <%=hidden_field :customer_favourite, :customer_id, :value => @customer_profile.customer_id%>
                 <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
 
@@ -51,7 +190,7 @@
                   <tr>
                     <td width="5%"> </td>
                     <td width="15%" style="color:#000000;">Relationship status :<font color="red">*</font></td>
-                    <td width="30%"><%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a region'}%></td>
+                    <td width="30%"><%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a Relationship Status'}%></td>
                   </tr>
                   <tr>
                     <td width="5%"> </td>
