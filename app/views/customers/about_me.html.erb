@@ -184,13 +184,13 @@ return true
                   <tr>
                     <td width="5%"> </td>
                     <td width="15%" style="color:#000000;">Region :<font color="red">*</font></td>
-                    <td width="30%"><%= f.select 'region', CustomerProfile::REGION ,{:prompt => 'Select a region'}%></td>
+                    <td width="30%"><%= f.select 'region', ['Select a region'].concat(CustomerProfile::REGION) %></td>
                   </tr>
 
                   <tr>
                     <td width="5%"> </td>
                     <td width="15%" style="color:#000000;">Relationship status :<font color="red">*</font></td>
-                    <td width="30%"><%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a Relationship Status'}%></td>
+                    <td width="30%"><%= f.select 'relationship', ['Select a Relationship Status'].concat(CustomerProfile::RELATIONSHIP)%></td>
                   </tr>
                   <tr>
                     <td width="5%"> </td>
