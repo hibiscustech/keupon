@@ -60,7 +60,7 @@ var i;
     theForm.customer_profile_income.focus();
     return (false);
   }
-  else if((parseInt(theForm.customer_profile_income.value) > parseInt('0'))){
+  else if((parseInt(theForm.customer_profile_income.value) < parseInt('0'))){
     alert("Your Average Monthly Salary must be greater than 0 ");
     theForm.customer_profile_income.focus();
     return (false);
