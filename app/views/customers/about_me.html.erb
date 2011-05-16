@@ -200,7 +200,7 @@ return true
                   <tr>
                     <td width="5%"> </td>
                     <td width="15%" style="color:#000000;">Employment status:<font color="red">*</font></td>
-                    <td width="30%"><%= f.select 'industry_sector_id', IndustrySector.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select an Employment status'}%></td>
+                    <td width="30%"><%= f.select 'industry_sector_id',[['Select an Employment status','Employment status']].concat(IndustrySector.all.collect {|p| [ p.name, p.id ] })%></td>
                   </tr>
                   <tr>
                     <td width="5%"> </td>
