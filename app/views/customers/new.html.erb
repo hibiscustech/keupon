@@ -39,9 +39,9 @@ $(function() {
     <table cellspacing="4" cellpadding="4">
       <tr>
         <%if @friend.nil?%>
-        <td><label for="num_attendees">E-mail ID :</label></td><td><%= f.text_field :email , :size=>"25%"%></td>
+        <td><label for="num_attendees">Your Email :</label></td><td><%= f.text_field :email , :size=>"25%"%></td>
         <%else%>
-        <td><label for="num_attendees">E-mail ID :</label></td><td><%= f.text_field :email , :size=>"25%",:disabled=>'disabled' %></td>
+        <td><label for="num_attendees">Your Email :</label></td><td><%= f.text_field :email , :size=>"25%",:disabled=>'disabled' %></td>
         <input type='hidden' name='customer[email]' value='<%=@customer.email%>'/>
         <input type='hidden' name='friend_id' value='<%=@friend.id if !@friend.nil?%>'/>
         <%end%>
@@ -81,7 +81,7 @@ $(function() {
           <td> <label for="name_attendee_1">Postal code :</label></td><td><%= p.text_field :zipcode,:size=>"20%" ,:id=> 'name_input_pin' %></td>
         </tr>
         <tr>
-          <td> <label for="name_attendee_1">Contact Number :</label></td><td> <%= p.text_field :contact_number,:size=>"20%" ,:id=> 'name_input_cn' %></td>
+          <td> <label for="name_attendee_1">Mobile Number :</label></td><td> <%= p.text_field :contact_number,:size=>"20%" ,:id=> 'name_input_cn' %></td>
         </tr>
         <tr>
           <td colspan="2"><a href="#" id="submit_step_2"><img src="/images/step3.png" border="0"/> </a></td>
@@ -92,8 +92,10 @@ $(function() {
   <fieldset id="step_3">
     <legend>Step 3</legend>
     <label for="rock">
-    Are you ready to rock?Go ahead and 
-    <a href='/privacy' target='_blank'>Agree to Terms and Conditions</a></label><input type="checkbox" id="tos" name='tos'></input><br/>
+    Are you ready for Super Bargains?
+    <br/><input type="checkbox" id="esubscribe" name='esubscribe' value="1"></input>Tell me what you have by email so I won’t miss any latest Super Bargain deals!
+    <br/><input type="checkbox" id="tos" name='tos'></input>
+    <a href='/privacy' target='_blank'>I certify I am at least 18 years old and I have read & agree to the Terms and Conditions.</a></label>
     <a href="#" onclick="check_tos();">
       <img src="/images/complete_registration_btn.png" border="0"/>
     </a>

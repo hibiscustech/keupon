@@ -478,10 +478,6 @@ class CustomersController < ApplicationController
 
     for cd in customer_deals
       customer = cd.customer
-      #auth_transaction = cd.customer_deal_transactions[0]
-      #customer_card_inform = auth_transaction.customer_credit_card
-      #total_price = deal.buy.to_f*cd.quantity.to_f
-
       my_keupon_credits = 0
       my_invitees = CustomerFriend.signed_up_invitees(customer.id)
 
@@ -498,31 +494,9 @@ class CustomersController < ApplicationController
           end
         end
       end
-#      credits_flag = false
-#      if (total_price - my_keupon_credits) > 0
-#        @transaction = do_transaction(customer_card_inform, 'sale', total_price - my_keupon_credits)
-#      else
-#        balance = (my_keupon_credits - total_price)
-#        credits_flag = true
-#        customer.update_attributes(:balance_credit => balance)
-#      end
-#        deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
-#        cd.update_attributes(:status => "available", :deal_code => deal_code)
 
-#        points_earned = Constant.dollar_to_keupoint_convertion*total_price
-#        CustomerKupoint.create(:customer_deal_id => cd.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
-#        customer.kupoints = customer.kupoints.to_f + points_earned
-#        customer.save!
-
-        customer_profile = customer.customer_profile
-        successful_customers << {"customer" => customer_profile, "current_credits" => my_keupon_credits, "balance_credits" => customer.balance_credit, "customer_deal" => cd}
-#        CustomerMailer.deliver_deal_purchase_notification(customer, customer_profile, cd, deal, my_keupon_credits, customer)
-
-#        customer_invited_by = CustomerFriend.who_invited_me(customer.login)
-#        if !customer_invited_by.blank?
-#          cib = customer_invited_by[0]
-#          cib.update_attributes(:signed_up => '1')
-#        end
+      customer_profile = customer.customer_profile
+      successful_customers << {"customer" => customer_profile, "current_credits" => my_keupon_credits, "balance_credits" => customer.balance_credit, "customer_deal" => cd}
     end
     merchant = deal.merchant
     merchant_profile = merchant.merchant_profile
@@ -538,7 +512,6 @@ class CustomersController < ApplicationController
     files_to_send = Array.new
     files_to_send << File.open(file_path)
     AdminMailer.deliver_merchant_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
-    #MerchantMailer.deliver_your_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
     File.delete(file_path)
     redirect_to "/admins/view_all_deals"
   end
@@ -660,7 +633,10 @@ class CustomersController < ApplicationController
       @customer_profile=@profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
       @profile.customer = @customer
-      @profile.save     
+      @profile.save
+      if !params[:esubscribe].blank? && params[:esubscribe] == "1"
+        KeuponSubscriber.create(:email => @customer.login)
+      end
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
