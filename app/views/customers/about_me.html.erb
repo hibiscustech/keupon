@@ -190,7 +190,7 @@ return true
                   <tr>
                     <td width="5%"> </td>
                     <td width="15%" style="color:#000000;">Relationship status :<font color="red">*</font></td>
-                    <td width="30%"><%= f.select 'relationship', ['Select a Relationship Status'].concat(CustomerProfile::RELATIONSHIP)%></td>
+                    <td width="30%"><%= f.select 'relationship', {'Select a Relationship Status' => 'Select a Relationship Status'}.merge(CustomerProfile::RELATIONSHIP)%></td>
                   </tr>
                   <tr>
                     <td width="5%"> </td>
