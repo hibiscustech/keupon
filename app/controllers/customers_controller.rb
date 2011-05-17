@@ -70,7 +70,7 @@ class CustomersController < ApplicationController
       redirect_to '/invite_friends'
      else
        @customer_friend=CustomerFriend.create(:friend_email=>email,:customer_id=>current_customer.id)
-       flash[:notice]='Invite has been sent to email id specified'
+       flash[:notice]='Great! Your friend will receive an email! You can Invite more friends for more ADD DISCOUNT! '
        #emailing with URL which will populate email id on email field os the signup page
        CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
        redirect_to '/invite_friends'
