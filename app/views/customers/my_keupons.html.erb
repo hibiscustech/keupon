@@ -147,7 +147,7 @@
               </td></tr>
           </table>
           <!-- If gift Section is enabled the provide width: 650px -->
-          <div id="available"  style="border: 4px solid black; display: block; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
+          <div id="available"  style="border-left: 3px solid #bb0a0a;border-right: 3px solid #bb0a0a;border-bottom: 3px solid #bb0a0a; display: block; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
             <table width="100%" cellpadding=0 cellspacing=0>
 
               <tr>
@@ -168,11 +168,11 @@
                     <td colspan="3" height="5"></td>
                   </tr>
                   <tr onclick="showCustomerDeal('popup_view_deal',<%= available.customer_deal_id %>);" style="cursor: pointer;">
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%= available.name %> </td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%= available.name %> </td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d058585d9" class="tab_undertext"><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
                     <% if @deal_code_visibility == "1" %>
-                      <td bgcolor="#ead5d9" class="tab_undertext"><%= available.deal_code %></td>
+                      <td bgcolor="#d05858" class="tab_undertext"><%= available.deal_code %></td>
                     <% end %>
                   </tr>
 
@@ -181,7 +181,7 @@
             </table>
           </div>
 
-          <div id="used" style="border: 4px solid black; display: none; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
+          <div id="used" style="border-left: 3px solid #bb0a0a;border-right: 3px solid #bb0a0a;border-bottom: 3px solid #bb0a0a; display: none; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
             <table width="100%" cellpadding=0 cellspacing=0>
 
               <tr>
@@ -197,16 +197,16 @@
                     <td colspan="3" height="5"></td>
                   </tr>
                   <tr>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%= used.name %> </td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(used.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(used.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%= used.name %> </td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(used.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(used.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
                   </tr>
                 <% end %>
               <% end %>
             </table>
           </div>
 
-          <div id="expired" style="border: 4px solid black; display: none; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
+          <div id="expired" style="border-left: 3px solid #bb0a0a;border-right: 3px solid #bb0a0a;border-bottom: 3px solid #bb0a0a; display: none; min-height: 150px; margin-bottom: 10px; margin-top: -8px; margin-left: 3px;">
             <table width="100%" cellpadding=0 cellspacing=0>
               <tr>
                 <th background="/images/tab_line.jpg" height="30" width="60%" class="tab_text" style="color: #fff;">Details</th>
@@ -221,9 +221,9 @@
                     <td colspan="3" height="5"></td>
                   </tr>
                   <tr>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%= expired.name %> </td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(expired.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(expired.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%= expired.name %> </td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(expired.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(expired.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
                   </tr>
                 <% end %>
               <% end %>
@@ -247,10 +247,10 @@
                     <td colspan="3" height="5"></td>
                   </tr>
                   <tr>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%= all.name %> </td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(all.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%=Time.at(all.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
-                    <td bgcolor="#ead5d9" class="tab_undertext"><%= all.status %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%= all.name %> </td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(all.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(all.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%= all.status %></td>
                   </tr>
                 <% end %>
               <% end %>
