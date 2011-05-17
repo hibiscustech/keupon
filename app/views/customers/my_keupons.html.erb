@@ -170,7 +170,7 @@
                   <tr onclick="showCustomerDeal('popup_view_deal',<%= available.customer_deal_id %>);" style="cursor: pointer;">
                     <td bgcolor="#d05858" class="tab_undertext"><%= available.name %> </td>
                     <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(available.purchase_date.to_i).strftime("%d-%m-%Y") %></td>
-                    <td bgcolor="#d058585d9" class="tab_undertext"><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
+                    <td bgcolor="#d05858" class="tab_undertext"><%=Time.at(available.expiry_date.to_i).strftime("%d-%m-%Y") %></td>
                     <% if @deal_code_visibility == "1" %>
                       <td bgcolor="#d05858" class="tab_undertext"><%= available.deal_code %></td>
                     <% end %>
