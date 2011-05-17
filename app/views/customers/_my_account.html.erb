@@ -47,13 +47,14 @@
     <tr>
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;">Name :</td>
-      <td width="10%"><%=@customer_profile.first_name%>&nbsp;<%=@customer_profile.last_name%>
-        <%=link_to 'change','#',:onclick=>'name_down()',:style=>'color:#19A2FF;'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
+      <td width="10%" id="cname_change">
+        <%= render :partial => "customer_name" %>
+      </td>
     </tr>
     <tr>
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;"></td>
-      <td width="10%"><div id ="name"style="display:none;">
+      <td width="10%"><div id="name" style="display:none;">
             <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'settings', :id=> @customer.id} , :html => { :multipart => true } do |f| -%>
             First Name:
             <%= f.text_field :first_name, :size=>"6%" %> <br/>

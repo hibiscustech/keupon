@@ -1,0 +1,22 @@
+<form action="/customers/update_customer_name" id="edit_customer_name" method="post" onsubmit="new Ajax.Request('/customers/update_customer_name', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;"><div style="margin: 0pt; padding: 0pt; display: inline;"><input name="authenticity_token" value="Q5GDeKFVogiBeoNx0qpfjD/VhmG7oqDAy++m7w2KkTE=" type="hidden"></div>
+  <input type="hidden" name="id" value="<%= @customer.id %>" />
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tbody>
+            <tr>
+            <td width="5%"> </td>
+            <td width="10%" style="color:#000000;">First Name:</td>
+            <td width="10%"><input type="text" name="first_name" value="<%= @customer_profile.first_name %>" /></td>
+            </tr>
+            <tr>
+            <td width="5%"> </td>
+            <td width="10%" style="color:#000000;">Last Name:</td>
+            <td width="10%"><input type="text" name="first_name" value="<%= @customer_profile.last_name %>" /></td>
+            </tr>
+            <tr>
+            <td colspan="3">
+              <a href="#" onclick="$('edit_customer_name').onsubmit();return false;"><img src="/images/update_btn.png" border="0" height="24" width="73"/></a>&nbsp;
+              <a href="#" onclick="new Ajax.Request('/customers/cancel_edit_customer_name/<%= @customer.id %>', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')}); return false;"><img src="/images/cancel_search.png" border="0" height="24" width="73"/></a>
+            </td>
+            </tr>
+          </tbody></table>
+</form>

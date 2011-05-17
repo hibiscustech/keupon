@@ -768,6 +768,52 @@ class CustomersController < ApplicationController
     end
   end
 
+  def edit_customer_name
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cname_change',:partial => "edit_customer_name"
+          end
+        }
+      end
+    end
+  end
+
+  def cancel_edit_customer_name
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cname_change',:partial => "customer_name"
+          end
+        }
+      end
+    end
+  end
+
+  def update_customer_name
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    @customer_profile.update_attributes(:first_name => params[:first_name], :last_name => params[:last_name])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cname_change',:partial => "customer_name"
+          end
+        }
+      end
+    end
+  end
+
   def view_location_deal_info
     @deal = DealLocationDetail.location_deal(params[:id])
     @loc_deal = Deal.find(params[:id])
