@@ -94,7 +94,7 @@ class SessionsController < ApplicationController
         customer.password_confirmation = params[:password_confirmation]
         customer.password = params[:password]
         if customer.save!
-          CustomerMailer.deliver_change_password(customer, customer.password)
+          CustomerMailer.deliver_change_password(customer, customer.password, customer.customer_profile)
           flash[:notice] = "Password successfully updated"
           redirect_to :controller => 'customers' ,:action => 'change_password'
         else
