@@ -27,6 +27,14 @@ if (i == 1)
     }
     }
 </script>
+<script type="text/javascript">
+  function editName(){
+    alert('hi');
+    new Ajax.Request('/customers/edit_customer_name/'<%=@customer.id%>, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+    alert('hi2');
+    return false;
+  }
+</script>
 <style type="text/css">
   .myprofile
   {
