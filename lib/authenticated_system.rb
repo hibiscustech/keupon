@@ -65,7 +65,7 @@ module AuthenticatedSystem
       respond_to do |format|
         format.html do
           store_location
-            flash[:notice] = "Please signin to view this page customer"
+            flash[:notice] = "Please Login to view this Page."
           redirect_to new_session_path
         end
         # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
