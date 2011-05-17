@@ -37,13 +37,12 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td class="subscription_text">Hi, Keupons.com keeps getting a regular stream of offers. <br />
-                    We understand you can't keep checking it every second of the day! <br />
-                    Why not subscribe to the Keupons mailing list and we'll send you<br />
-                    the latest offers and discounts via e-mail&quot;. <br />
+                  <td class="subscription_text">Great! Keupons.com and their shopping addicts team keeps getting stream of Super Bargain Deals.<br />
+                    You will be first to know what we have for you. So Why not subscribe to Keupons.com mailing list Now! <br />
                     <br />
-                    &quot;How do you want to hear about the Keupons offers <br />
-                    (you can click more than one)&quot;:<br /></td>
+                    The ONLY site where the price gets lower and lower as more people buy!<br />
+                    <br />
+                    </td>
                   <td colspan="2">&nbsp;</td>
                 </tr>
                 <tr>
@@ -59,7 +58,7 @@
                         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                               <td width="5%" height="25"><!--<input type="checkbox" name="checkbox" id="checkbox" />--></td>
-                              <td width="15%" class="subscription_text">Email</td>
+                              <td width="15%" class="subscription_text">Your Email:</td>
                               <td width="80%"><%= f.text_field :email, :size=>"20%",:onBlur=>"validate_email();"  %></td>
                             </tr>
                             <!--<tr>
@@ -73,7 +72,7 @@
                         <td>&nbsp;</td>
                       </tr>
                       <tr>
-                        <td height="40" class="subscription_text"><strong>What are the areas of discounts that you would like (you can choose as many as you want&quot; </strong></td>
+                        <td height="40" class="subscription_text"><strong>Now, choose as many categories you wish to receive. </strong></td>
                       </tr>
                       <tr>
                         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -81,12 +80,12 @@
                             <tr>
                              <%DealCategory.all.each_with_index do |cat,i| %>
                               <%if i%3!=0%>
-                              <td width="4%" height="25"><input type="checkbox" name="category[]" id="checkbox3" value='<%=cat.id%>'/></td>
+                              <td width="4%" height="25"><input checked type="checkbox" name="category[]" id="checkbox3" value='<%=cat.id%>'/></td>
                               <td width="23%" class="subscription_text"><%=cat.name%></td>
                               <%else%>
                               </tr>
                             <tr>
-                              <td width="4%" height="25"><input type="checkbox" name="category[]" id="checkbox3" value='<%=cat.id%>'/></td>
+                              <td width="4%" height="25"><input checked type="checkbox" name="category[]" id="checkbox3" value='<%=cat.id%>'/></td>
                               <td width="23%" class="subscription_text"><%=cat.name%></td>
                              <%end%>
                              <%end%>
@@ -101,10 +100,16 @@
                   <td align="left"><%=image_submit_tag ("subscribe_btn.jpg"), :onclick => "return Validates();"%></td>
                   <td colspan="2">&nbsp;</td>
                 </tr>
+
                 <% end %>
                 <tr>
                   <td>&nbsp;</td>
                   <td>&nbsp;</td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td class="subscription_text">Tell your friends about Keupons.com and get yourself more ADD DISCOUNT!</td>
                   <td colspan="2">&nbsp;</td>
                 </tr>
               </table>    </td>
