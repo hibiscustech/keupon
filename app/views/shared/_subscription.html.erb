@@ -1,21 +1,28 @@
 <style type="text/css">
   .subscription_text{
-
-
-
     font-family:Arial, Helvetica, sans-serif;
     font-size:13px;
-
-
     color:#ffffff;
     text-decoration:none;
-
   }
-
   }
-
-
 </style>
+<script Language="JavaScript">
+<!--
+function sform_validator(){
+  var theForm = document.forms['new_keupon_subscribers'];
+
+  if (theForm.keupon_subscribers_email.value == "" || theForm.keupon_subscribers_email.value.length < 1)
+  {
+  alert("You must enter your Email");
+  theForm.keupon_subscribers_email.focus();
+  return (false);
+  }
+
+  return true;
+}
+//-->
+</script>
 <br/>
 <%@deal=KeuponSubscribers.new()%>
 <div id='popup_center' style=" width: 604px; padding-left: 210px; display: block;margin-top: -150px;">
@@ -37,10 +44,10 @@
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td class="subscription_text">Great! Keupons.com and their shopping addicts team keeps getting stream of Super Bargain Deals.<br />
-                    You will be first to know what we have for you. So Why not subscribe to Keupons.com mailing list Now! <br />
+                  <td class="subscription_text">The shopping addicts team at Keupons.com promises you a steady stream of Super Bargain Deals!<br />
+                    Join the mailing list and be the first to know what deals we have for you. <br />
                     <br />
-                    The ONLY site where the price gets lower and lower as more people buy!<br />
+                    Keupons.com the ONLY site where the price gets lower and lower as more people buy!<br />
                     <br />
                     </td>
                   <td colspan="2">&nbsp;</td>
@@ -67,7 +74,7 @@
                         <td>&nbsp;</td>
                       </tr>
                       <tr>
-                        <td height="40" class="subscription_text"><strong>Now, choose as many categories you wish to receive. </strong></td>
+                        <td height="40" class="subscription_text"><strong>Choose the categories of Super Bargain Deals that you're interested in. </strong></td>
                       </tr>
                       <tr>
                         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -92,11 +99,12 @@
                 </tr>
                 <tr>
                   <td height="63">&nbsp;</td>
-                  <td align="left"><%=image_submit_tag ("subscribe_btn.jpg"), :onclick => "return Validates();"%></td>
+                  <td align="left"><%=image_submit_tag ("subscribe_btn.jpg"), :onclick => "return sform_validator();"%></td>
                   <td colspan="2">&nbsp;</td>
                 </tr>
 
                 <% end %>
+              </form>
                 <tr>
                   <td>&nbsp;</td>
                   <td class="subscription_text" colspan="2">Tell your friends about Keupons.com and get yourself more ADD DISCOUNT!</td>
