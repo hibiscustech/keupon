@@ -1,18 +1,16 @@
 /**
  * FusionCharts: Flash Player detection and Chart embedding.
- * Version 1.2.3F ( 22 November 2008) - Specialized for FusionChartsFREE 
- * 					Checking Flash Version >=6 and added updateChartXML() for FREE Charts.
- * Version: 1.2.3 (1st September, 2008) - Added Fix for % and & characters, scaled dimensions, fixes in to properly handling of double quotes and single quotes in setDataXML() function.
- * Version: 1.2.2 (10th July, 2008) - Added Fix for % scaled dimensions, fixes in setDataXML() and setDataURL() functions
- * Version: 1.2.1 (21st December, 2007) - Added setting up Transparent/opaque mode: setTransparent() function 
+ * Version: 1.2.4 (16th February, 2009) - Added fix for chart with % width/height.
+ * Version: 1.2.3 (15th September, 2008) - Added fix for % and & characters. Additional fixes to properly handle double quotes and single quotes in setDataXML() function.
+ * Version: 1.2.2 (10th July, 2008) - Added fix for % scaled dimensions, fixes in setDataXML() and setDataURL() functions
+ * Version: 1.2.1 (21st December, 2007) - Added setting up transparent/opaque mode: setTransparent() function
  * Version: 1.2 (1st November, 2007) - Added FORM fixes for IE 
  * Version: 1.1 (29th June, 2007) - Added Player detection, New conditional fixes for IE
  *
  * Morphed from SWFObject (http://blog.deconcept.com/swfobject/) under MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  *
- */
-if(typeof infosoftglobal == "undefined") var infosoftglobal = new Object();
+ */if(typeof infosoftglobal == "undefined") var infosoftglobal = new Object();
 if(typeof infosoftglobal.FusionChartsUtil == "undefined") infosoftglobal.FusionChartsUtil = new Object();
 infosoftglobal.FusionCharts = function(swf, id, w, h, debugMode, registerWithJS, c, scaleMode, lang, detectFlashVersion, autoInstallRedirect){
 	if (!document.getElementById) { return; }
@@ -28,6 +26,9 @@ infosoftglobal.FusionCharts = function(swf, id, w, h, debugMode, registerWithJS,
 	//Set attributes for the SWF
 	if(swf) { this.setAttribute('swf', swf); }
 	if(id) { this.setAttribute('id', id); }
+
+	debugMode = debugMode ? debugMode : 0;
+	this.addVariable('debugMode', debugMode);
 
 	w=w.toString().replace(/\%$/,"%25");
 	if(w) { this.setAttribute('width', w); }
@@ -49,8 +50,6 @@ infosoftglobal.FusionCharts = function(swf, id, w, h, debugMode, registerWithJS,
 	this.addVariable('chartHeight', h);
 
 	//Whether in debug mode
-	debugMode = debugMode ? debugMode : 0;
-	this.addVariable('debugMode', debugMode);
 	//Pass DOM ID to Chart
 	this.addVariable('DOMId', id);
 	//Whether to registed with JavaScript
@@ -208,11 +207,11 @@ infosoftglobal.FusionCharts.prototype = {
 	},
 	
 	render: function(elementId){
-		//First check for installed version of Flash Player - we need a minimum of 6
-		if((this.detectFlashVersion==1) && (this.installedVer.major < 6)){
+		//First check for installed version of Flash Player - we need a minimum of 8
+		if((this.detectFlashVersion==1) && (this.installedVer.major < 8)){
 			if (this.autoInstallRedirect==1){
 				//If we can auto redirect to install the player?
-				var installationConfirm = window.confirm("You need Adobe Flash Player 6 (or above) to view the charts. It is a free and lightweight installation from Adobe.com. Please click on Ok to install the same.");
+				var installationConfirm = window.confirm("You need Adobe Flash Player 8 (or above) to view the charts. It is a free and lightweight installation from Adobe.com. Please click on Ok to install the same.");
 				if (installationConfirm){
 					window.location = "http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash";
 				}else{
@@ -227,7 +226,27 @@ infosoftglobal.FusionCharts.prototype = {
 		}else{
 			//Render the chart
 			var n = (typeof elementId == 'string') ? document.getElementById(elementId) : elementId;
-			n.innerHTML = this.getSWFHTML();
+			// If loaded in IE and scaleMode and width/height specified in %, load the chart using onload event
+			if(  this.getVariable('scaleMode').search(/noscale/i)>=0 && ( this.getAttribute('width').search("%")>0 || this.getAttribute('height').search("%")>0) )
+			{
+				//store current object reference
+				var obj=this;
+				if(window.addEventListener) {
+					//add onload event on firefox
+			        window.addEventListener("load",function()
+                        { n.innerHTML = obj.getSWFHTML(); },false );
+				} else if(window.attachEvent) {
+					//add onload event on IE
+					window.attachEvent("onload", function()
+						{ n.innerHTML = obj.getSWFHTML(); } );
+				} else {
+					// if all onload fails fails
+					n.innerHTML = this.getSWFHTML();
+				}
+			} else {
+				//Normal case. Instantly load the chart
+				n.innerHTML = this.getSWFHTML();
+			}
 			
 			//Added <FORM> compatibility
 			//Check if it's added in Mozilla embed array or if already exits 
@@ -338,24 +357,6 @@ infosoftglobal.FusionChartsUtil.getChartObject = function(id)
   
   return chartRef;
 }
-/*
- Function to update chart's data at client side (FOR FusionCharts vFREE and 2.x
-*/
-infosoftglobal.FusionChartsUtil.updateChartXML = function(chartId, strXML){
-	//Get reference to chart object				
-	var chartObj = infosoftglobal.FusionChartsUtil.getChartObject(chartId);		
-	//Set dataURL to null
-	chartObj.SetVariable("_root.dataURL","");
-	//Set the flag
-	chartObj.SetVariable("_root.isNewData","1");
-	//Set the actual data
-	chartObj.SetVariable("_root.newData",strXML);
-	//Go to the required frame
-	chartObj.TGotoLabel("/", "JavaScriptHandler"); 
-}
-
-
 /* Aliases for easy usage */
 var getChartFromId = infosoftglobal.FusionChartsUtil.getChartObject;
-var updateChartXML = infosoftglobal.FusionChartsUtil.updateChartXML;
 var FusionCharts = infosoftglobal.FusionCharts;
