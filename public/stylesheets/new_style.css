@@ -32,7 +32,7 @@ body {
 	text-decoration:none;
 
 }
-.footer { background:#bcbcbc url(/images/footer_bg.jpg) repeat-x top; padding:30px 0;}
+.footer { background:#bcbcbc url(/images/footer_bg.jpg) repeat-x top; padding:10px 10px 0 10px;}
 .footer p { color:#333333; font:normal 11px Arial, Helvetica, sans-serif; text-align:center; padding:0;}
 .footer a { color:#333333; font:normal 11px Arial, Helvetica, sans-serif;}
 .footer_links{
@@ -45,7 +45,6 @@ body {
 .footer_links a{
 	color:#999999;
 	text-decoration:none;
-        padding:10px 10px 0 10px;
 }
 .footer_links:hover{
 	font-family:Arial, Helvetica, sans-serif;
