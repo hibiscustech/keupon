@@ -502,7 +502,7 @@ class CustomersController < ApplicationController
     merchant_profile = merchant.merchant_profile
     file_path = "public/admin_files/#{merchant_profile.first_name}.csv"
     FasterCSV.open(file_path, "w") do |csv|
-      csv << ["ID","Customer Deal ID", "Name", "Mobile Number", "NRIC", "Earned Credits", "Balance Credits", "Price per Quantity", "No. of Keupons Bought", "Total Price Paid"]
+      csv << ["ID","Customer Deal ID", "Name", "Mobile Number", "NRIC", "Earned Kredits", "Balance Kredits", "Price per Quantity", "No. of Keupons Bought", "Total Price Paid"]
       for sc_cust in successful_customers
         cprofile = sc_cust["customer"]
         cd = sc_cust["customer_deal"]
