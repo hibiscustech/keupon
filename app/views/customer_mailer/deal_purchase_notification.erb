@@ -6,7 +6,7 @@
           <tr>
             <td colspan="2" bgcolor="#eceded"><span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Dear <strong><%= @profile.first_name.camelize %>,</strong><br>
 
-                   Thank You for Purchasing the following Deal<br/>
+                   The deal has closed and the deal final discount as per follows:<br/>
                    <br/>
                    <table cellspacing="0" cellpadding="0" border="0" width="396" style="border: 3px solid rgb(255, 0, 0);">
                         <tbody><tr>
@@ -50,7 +50,7 @@
                             <tr>
                               <td align="center" width="5%">&nbsp;</td>
                               <td align="center" width="91%" style="color: #FFFFFF;font-family: Arial,Helvetica,sans-serif;font-size: 12px;font-weight: bold;text-decoration: none;">
-                                The Deal is available for you until <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y") %> 12:00<br/>
+                                <!--The Deal is available for you until <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y") %> 12:00<br/> -->
                                 <% if @credits.to_i > 0 %>
                                 Additional Discount of S$ <%= @credits %> offered for your Invitees SignUp<br/>
                                 <% end %>
@@ -64,12 +64,10 @@
                       </tbody></table>
                    <br/>
                    <br/>
-                   Kindly bring the following for Validation at the time of Redeeming this Keupon:<br/>
+                   Kindly bring your NRIC: <%=h "#{@profile.customer_pin}" %> following for Validation at the time of Redeeming this Keupon.<br/>
                    <% if @customer_deal.show_deal_code.to_s == "1" %>
                    Code: <%=h "#{@customer_deal.deal_code}" %><br/>
                    <% end %>
-                   NRIC: <%=h "#{@profile.customer_pin}" %><br/>
-
               <br><br>Thank You,<br>Keupons.com</span></td>
           </tr>
         </tbody></table></td>
