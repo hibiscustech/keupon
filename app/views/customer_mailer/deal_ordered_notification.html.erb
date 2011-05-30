@@ -4,9 +4,17 @@
         <td><table width="100%" border="0" cellpadding="0" cellspacing="6">
           <tbody>
           <tr>
-            <td colspan="2" bgcolor="#eceded"><span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Thank you very much for your order, <strong><%= @profile.first_name.camelize %>.</strong><br/>
-                   You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$<%= @deal.value %>.  Once this Keupon, "<%= @deal.name %>" has been successfully closed, the discount will then be applied to the Actual Price S$<%= @deal.value %>, based on the Total Buy. You will be notified on this through another email.
-                   <br/><br/>Thank You,<br/>Keupons.com</span>
+            <td colspan="2" bgcolor="#eceded">
+              <span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>
+                <strong>Dear <%= @profile.first_name.camelize %>,</strong> we have received your order.<br/>
+                   You are now successfully authorized by PayPal for the Credit Card details that you have just provided. Once this Keupon deal, "<%= @deal.name %>" has been successfully closed, you will enjoy the maximum discount.<br/><br/>
+                   Actual Price: S$<%= @deal.value %><br/>
+                   Final Discount: You will receive another email notification on the final discount once the deal is closed.
+                   <br/>
+                   The more people buy, the higher the discount gets!<br/>
+                   In the end, Everyone pays the lowest price of the deal!<br/>
+                   <br/>Thank You,<br/>Keupons.com
+              </span>
             </td>
           </tr>
         </tbody></table></td>
