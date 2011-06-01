@@ -32,9 +32,9 @@
                                              <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save S$<%= savings %></div>
                                              <div style="width:267px; float:left; height:38px; background:#be0909;">
                                              	<div style="width:80px; float:left;  padding-top:10px; height:28px;" class="timeleft">Time Left:</div>
-                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br /><%= time_left[2] %></div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br /><%= time_left[3] %></div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br /><%= time_left[4] %></div>
+                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br /><%= (time_left[0] < 0)? '0': time_left[2] %></div>
+                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br /><%= (time_left[0] < 0)? '00': time_left[3] %></div>
+                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Mins<br /><%= (time_left[0] < 0)? '00': time_left[4] %></div>
                                              </div>
 
                                              <div style="width:267px; float:left; padding-bottom:5px;" class="save"><a href="/open_deals">Click Here For More Deals</a></div>
