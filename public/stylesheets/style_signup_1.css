@@ -41,8 +41,8 @@ h3 {
 
 p, label { 
 	font-family: Georgia, serif;
-	font-style: italic;
-	font-size: 18px; 
+	/*font-style: italic; */
+	font-size: 17px;
 	margin: 4px 0;
 }	
 
