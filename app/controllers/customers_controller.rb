@@ -831,6 +831,7 @@ class CustomersController < ApplicationController
   end
 
  def slider
+   @hot_deal_discounts, @hot_deals = Deal.all_hot_deals
  end
 
   def get_location_deal

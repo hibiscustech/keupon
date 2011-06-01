@@ -10,15 +10,17 @@
  <div id="loopedSlider"><!-- begin loopedSlider -->
             		<div class="container">
                         <div class="slides">
+                          <% for htd in @hot_deal_discounts
+                            discount = htd[1]
+                            hot_deal = @hot_deals[htd[0]]
+                            htdeal = Deal.find(hot_deal.id)
+                            savings = ((hot_deal.actual_value.to_f*discount.to_f)/100.to_f).to_i
+                            time_left = time_diff(Time.now, Time.at(hot_deal.end_time.to_i))
+                          %>
                             <div>
-                            	<div class="text">
-                            		<div style="width:302px; height:279px;background:url(../images/text1.png) no-repeat left; ">
-                                    	<div style="width:255px; height:30px; padding-left:20px; padding-top:20px; padding-bottom:10px;" class="slider_heading">$189 for New iPhone 4G with wireless Speaker and Cover, Just go for it (Up to $700 Value)
-                                        </div>
-                                        <div style="width:255px; height:30px; padding-left:20px;" class="sliderbody_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.
-<br /><br />
-Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula.
-
+                              <div class="text"><div style="width:302px; height:279px;background:url(../images/text1.png) no-repeat left; "><div style="width:255px; height:30px; padding-left:20px; padding-top:20px; padding-bottom:10px;" class="slider_heading"><%= hot_deal.name %></div>
+                                        <div style="width:255px; height:30px; padding-left:20px;" class="sliderbody_text">
+                                        <%= hot_deal.highlights %>
                                         </div>
                                     </div>
 
@@ -26,289 +28,42 @@ Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis g
                                 <div style=" height:278px; width:222px; float:left;" >
                                             <div style=" height:267px; width:222px; float:left;">
                                             <div style="background:url(../images/bg_black1.png) no-repeat; height:230px; width:267px; margin-left:360px; margin-top:23px;" >
-                                            <div style="width:267px; height:49px; float:left; margin-left:-360px; margin-top:-25px;"><img src="../images/h_up.png" alt="" width="267" height="49" /></div>
-                                             <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save $500</div>
+                                            <div style="width:267px; height:49px; float:left; margin-left:-360px; margin-top:-25px;"><img src="/images/h_up.png" alt="" width="267" height="49" /></div>
+                                             <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save S$<%= savings %></div>
                                              <div style="width:267px; float:left; height:38px; background:#be0909;">
                                              	<div style="width:80px; float:left;  padding-top:10px; height:28px;" class="timeleft">Time Left:</div>
-                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br />02</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br />15</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br />02</div>
+                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br /><%= time_left[2] %></div>
+                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br /><%= time_left[3] %></div>
+                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br /><%= time_left[4] %></div>
                                              </div>
 
-                                            <div style="width:267px; float:left; padding-bottom:5px;" class="save">Click Here For More Deals</div>
-                                            <div style="width:267px; float:left; padding-bottom:5px; margin-left:-627px;" class="save"><a href="#"><img src="../images/discuss.png" alt="" width="258" height="55" /></a></div>
+                                             <div style="width:267px; float:left; padding-bottom:5px;" class="save"><a href="/open_deals">Click Here For More Deals</a></div>
+                                            <div style="width:267px; float:left; padding-bottom:5px; margin-left:-627px;" class="save"><a href="/deal_details?id=<%= hot_deal.id %>"><img src="/images/discuss.png" alt="" width="258" height="55" /></a></div>
 
                                             </div>
-                                            <div style=" height:55px; width:188px; margin-top:-30px; margin-left:40px;" ><a href="#"><img src="../images/buynow.png" alt="" width="188" height="55" border="0" /></a></div>
-                                            <div style="width:188px; float:left; height:28px; margin-left:400px; margin-top:-50px;" class="timeleft">Add 5 friends & get $20 off </div>
+                                            <div style=" height:55px; width:188px; margin-top:-30px; margin-left:40px;" ><a href="/deal_details?id=<%= hot_deal.id %>"><img src="/images/buynow.png" alt="" width="188" height="55" border="0" /></a></div>
+                                            <div style="width:188px; float:left; height:28px; margin-left:400px; margin-top:-50px;" class="timeleft">Invite <%= invitees_value %> friends & get S$<%= earn_value %> off </div>
                                             </div>
                                 </div>
 
 
                                 <div style=" height:250px; width:268px; float:left; margin-left:60px;">
-                                <div><img src="../images/img_main1.png" alt="" width="268" height="226" vspace="0" align="top"/></div>
+                                <div><img src="<%=htdeal.deal_photo.url%>" alt="" width="268" height="226" vspace="0" align="top"/></div>
                                 <div class="price" style="width:251px; background:#000000; margin-right:-355px; background:#bd0909;  margin-top:25px; float:right;">Price  <span class="bar">|</span> Discount <span class="bar">|</span> Saving</div>
                                 <div class="price" style="width:260px; font-weight:normal; background:url(../images/black_line.jpg) no-repeat; margin-right:-364px; margin-top:44px; height:26px; float:right;">
-                                <div style="float:left; width:90px; padding-top:5px;">$1300</div>
-                                <div style="float:left; padding-left:20px; padding-top:5px;">50% </div>
-                                <div style="float:left; padding-left:50px; padding-top:5px;"> $750</div>
+                                <div style="float:left; width:90px; padding-top:5px;">S$<%= hot_deal.actual_value %></div>
+                                <div style="float:left; padding-left:20px; padding-top:5px;"><%= discount.to_i %> %</div>
+                                <div style="float:left; padding-left:50px; padding-top:5px;">S$<%= savings %></div>
                                 </div>
 
                                 </div>
                             </div>
-
-                            <div>
-                            	<div>
-                            	<div class="text">
-                            		<div style="width:302px; height:279px;background:url(../images/text1.png) no-repeat left; ">
-                                    	<div style="width:255px; height:30px; padding-left:20px; padding-top:20px; padding-bottom:10px;" class="slider_heading">$189 for New iPhone 4G with wireless Speaker and Cover, Just go for it (Up to $700 Value)
-                                        </div>
-                                        <div style="width:255px; height:30px; padding-left:20px;" class="sliderbody_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.
-<br /><br />
-Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula.
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div style=" height:278px; width:222px; float:left;" >
-                                            <div style=" height:267px; width:222px; float:left;">
-                                            <div style="background:url(../images/bg_black1.png) no-repeat; height:230px; width:267px; margin-left:360px; margin-top:23px;" >
-                                            <div style="width:267px; height:49px; float:left; margin-left:-360px; margin-top:-25px;"><img src="../images/h_up.png" alt="" width="267" height="49" /></div>
-                                             <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save $500</div>
-                                             <div style="width:267px; float:left; height:38px; background:#be0909;">
-                                             	<div style="width:80px; float:left;  padding-top:10px; height:28px;" class="timeleft">Time Left:</div>
-                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br />02</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br />15</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br />02</div>
-                                             </div>
-
-                                            <div style="width:267px; float:left; padding-bottom:5px;" class="save">Click Here For More Deals</div>
-                                            <div style="width:267px; float:left; padding-bottom:5px; margin-left:-627px;" class="save"><a href="#"><img src="../images/discuss.png" alt="" width="258" height="55" /></a></div>
-
-                                            </div>
-                                            <div style=" height:55px; width:188px; margin-top:-30px; margin-left:40px;" ><a href="#"><img src="../images/buynow.png" alt="" width="188" height="55" border="0" /></a></div>
-                                            <div style="width:188px; float:left; height:28px; margin-left:400px; margin-top:-50px;" class="timeleft">Add 5 friends & get $20 off </div>
-                                            </div>
-                                </div>
-
-
-                                <div style=" height:250px; width:268px; float:left; margin-left:60px;">
-                                <div><img src="../images/img_main2.png" alt="" width="268" height="226" vspace="0" align="top"/></div>
-                                <div class="price" style="width:251px; background:#000000; margin-right:-355px; background:#bd0909;  margin-top:25px; float:right;">Price  <span class="bar">|</span> Discount <span class="bar">|</span> Saving</div>
-                                <div class="price" style="width:260px; font-weight:normal; background:url(../images/black_line.jpg) no-repeat; margin-right:-364px; margin-top:44px; height:26px; float:right;">
-                                <div style="float:left; width:90px; padding-top:5px;">$1300</div>
-                                <div style="float:left; padding-left:20px; padding-top:5px;">50% </div>
-                                <div style="float:left; padding-left:50px; padding-top:5px;"> $750</div>
-                                </div>
-
-                                </div>
-                            </div>
-                            </div>
-
-                             <div>
-                            	<div>
-                            	<div class="text">
-                            		<div style="width:302px; height:279px;background:url(../images/text1.png) no-repeat left; ">
-                                    	<div style="width:255px; height:30px; padding-left:20px; padding-top:20px; padding-bottom:10px;" class="slider_heading">$189 for New iPhone 4G with wireless Speaker and Cover, Just go for it (Up to $700 Value)
-                                        </div>
-                                        <div style="width:255px; height:30px; padding-left:20px;" class="sliderbody_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.
-<br /><br />
-Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula.
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div style=" height:278px; width:222px; float:left;" >
-                                            <div style=" height:267px; width:222px; float:left;">
-                                            <div style="background:url(../images/bg_black1.png) no-repeat; height:230px; width:267px; margin-left:360px; margin-top:23px;" >
-                                            <div style="width:267px; height:49px; float:left; margin-left:-360px; margin-top:-25px;"><img src="../images/h_up.png" alt="" width="267" height="49" /></div>
-                                             <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save $500</div>
-                                             <div style="width:267px; float:left; height:38px; background:#be0909;">
-                                             	<div style="width:80px; float:left;  padding-top:10px; height:28px;" class="timeleft">Time Left:</div>
-                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br />02</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br />15</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br />02</div>
-                                             </div>
-
-                                            <div style="width:267px; float:left; padding-bottom:5px;" class="save">Click Here For More Deals</div>
-                                            <div style="width:267px; float:left; padding-bottom:5px; margin-left:-627px;" class="save"><a href="#"><img src="../images/discuss.png" alt="" width="258" height="55" /></a></div>
-
-                                            </div>
-                                            <div style=" height:55px; width:188px; margin-top:-30px; margin-left:40px;" ><a href="#"><img src="../images/buynow.png" alt="" width="188" height="55" border="0" /></a></div>
-                                            <div style="width:188px; float:left; height:28px; margin-left:400px; margin-top:-50px;" class="timeleft">Add 5 friends & get $20 off </div>
-                                            </div>
-                                </div>
-
-
-                                <div style=" height:250px; width:268px; float:left; margin-left:60px;">
-                                <div><img src="../images/img_main3.png" alt="" width="268" height="226" vspace="0" align="top"/></div>
-                                <div class="price" style="width:251px; background:#000000; margin-right:-355px; background:#bd0909;  margin-top:25px; float:right;">Price  <span class="bar">|</span> Discount <span class="bar">|</span> Saving</div>
-                                <div class="price" style="width:260px; font-weight:normal; background:url(../images/black_line.jpg) no-repeat; margin-right:-364px; margin-top:44px; height:26px; float:right;">
-                                <div style="float:left; width:90px; padding-top:5px;">$1300</div>
-                                <div style="float:left; padding-left:20px; padding-top:5px;">50% </div>
-                                <div style="float:left; padding-left:50px; padding-top:5px;"> $750</div>
-                                </div>
-
-                                </div>
-                            </div>
-
-                            </div>
-
-                              <div>
-                            	<div>
-                            	<div class="text">
-                            		<div style="width:302px; height:279px;background:url(../images/text1.png) no-repeat left; ">
-                                    	<div style="width:255px; height:30px; padding-left:20px; padding-top:20px; padding-bottom:10px;" class="slider_heading">$189 for New iPhone 4G with wireless Speaker and Cover, Just go for it (Up to $700 Value)
-                                        </div>
-                                        <div style="width:255px; height:30px; padding-left:20px;" class="sliderbody_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.
-<br /><br />
-Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula.
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div style=" height:278px; width:222px; float:left;" >
-                                            <div style=" height:267px; width:222px; float:left;">
-                                            <div style="background:url(../images/bg_black1.png) no-repeat; height:230px; width:267px; margin-left:360px; margin-top:23px;" >
-                                            <div style="width:267px; height:49px; float:left; margin-left:-360px; margin-top:-25px;"><img src="../images/h_up.png" alt="" width="267" height="49" /></div>
-                                             <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save $500</div>
-                                             <div style="width:267px; float:left; height:38px; background:#be0909;">
-                                             	<div style="width:80px; float:left;  padding-top:10px; height:28px;" class="timeleft">Time Left:</div>
-                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br />02</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br />15</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br />02</div>
-                                             </div>
-
-                                            <div style="width:267px; float:left; padding-bottom:5px;" class="save">Click Here For More Deals</div>
-                                            <div style="width:267px; float:left; padding-bottom:5px; margin-left:-627px;" class="save"><a href="#"><img src="../images/discuss.png" alt="" width="258" height="55" /></a></div>
-
-                                            </div>
-                                            <div style=" height:55px; width:188px; margin-top:-30px; margin-left:40px;" ><a href="#"><img src="../images/buynow.png" alt="" width="188" height="55" border="0" /></a></div>
-                                            <div style="width:188px; float:left; height:28px; margin-left:400px; margin-top:-50px;" class="timeleft">Add 5 friends & get $20 off </div>
-                                            </div>
-                                </div>
-
-
-                                <div style=" height:250px; width:268px; float:left; margin-left:60px;">
-                                <div><img src="../images/img_main4.png" alt="" width="268" height="226" vspace="0" align="top"/></div>
-                                <div class="price" style="width:251px; background:#000000; margin-right:-355px; background:#bd0909;  margin-top:25px; float:right;">Price  <span class="bar">|</span> Discount <span class="bar">|</span> Saving</div>
-                                <div class="price" style="width:260px; font-weight:normal; background:url(../images/black_line.jpg) no-repeat; margin-right:-364px; margin-top:44px; height:26px; float:right;">
-                                <div style="float:left; width:90px; padding-top:5px;">$1300</div>
-                                <div style="float:left; padding-left:20px; padding-top:5px;">50% </div>
-                                <div style="float:left; padding-left:50px; padding-top:5px;"> $750</div>
-                                </div>
-
-                                </div>
-                            </div>
-                            </div>
-
-                              <div>
-                            	<div>
-                            	<div class="text">
-                            		<div style="width:302px; height:279px;background:url(../images/text1.png) no-repeat left; ">
-                                    	<div style="width:255px; height:30px; padding-left:20px; padding-top:20px; padding-bottom:10px;" class="slider_heading">$189 for New iPhone 4G with wireless Speaker and Cover, Just go for it (Up to $700 Value)
-                                        </div>
-                                        <div style="width:255px; height:30px; padding-left:20px;" class="sliderbody_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.
-<br /><br />
-Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula.
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div style=" height:278px; width:222px; float:left;" >
-                                            <div style=" height:267px; width:222px; float:left;">
-                                            <div style="background:url(../images/bg_black1.png) no-repeat; height:230px; width:267px; margin-left:360px; margin-top:23px;" >
-                                            <div style="width:267px; height:49px; float:left; margin-left:-360px; margin-top:-25px;"><img src="../images/h_up.png" alt="" width="267" height="49" /></div>
-                                             <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save $500</div>
-                                             <div style="width:267px; float:left; height:38px; background:#be0909;">
-                                             	<div style="width:80px; float:left;  padding-top:10px; height:28px;" class="timeleft">Time Left:</div>
-                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br />02</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br />15</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br />02</div>
-                                             </div>
-
-                                            <div style="width:267px; float:left; padding-bottom:5px;" class="save">Click Here For More Deals</div>
-                                            <div style="width:267px; float:left; padding-bottom:5px; margin-left:-627px;" class="save"><a href="#"><img src="../images/discuss.png" alt="" width="258" height="55" /></a></div>
-
-                                            </div>
-                                            <div style=" height:55px; width:188px; margin-top:-30px; margin-left:40px;" ><a href="#"><img src="../images/buynow.png" alt="" width="188" height="55" border="0" /></a></div>
-                                            <div style="width:188px; float:left; height:28px; margin-left:400px; margin-top:-50px;" class="timeleft">Add 5 friends & get $20 off </div>
-                                            </div>
-                                </div>
-
-
-                                <div style=" height:250px; width:268px; float:left; margin-left:60px;">
-                                <div><img src="../images/img_main5.png" alt="" width="268" height="226" vspace="0" align="top"/></div>
-                                <div class="price" style="width:251px; background:#000000; margin-right:-355px; background:#bd0909;  margin-top:25px; float:right;">Price  <span class="bar">|</span> Discount <span class="bar">|</span> Saving</div>
-                                <div class="price" style="width:260px; font-weight:normal; background:url(../images/black_line.jpg) no-repeat; margin-right:-364px; margin-top:44px; height:26px; float:right;">
-                                <div style="float:left; width:90px; padding-top:5px;">$1300</div>
-                                <div style="float:left; padding-left:20px; padding-top:5px;">50% </div>
-                                <div style="float:left; padding-left:50px; padding-top:5px;"> $750</div>
-                                </div>
-
-                                </div>
-                            </div>
-                            </div>
-
-                              <div>
-                            	<div>
-                            	<div class="text">
-                            		<div style="width:302px; height:279px;background:url(../images/text1.png) no-repeat left; ">
-                                    	<div style="width:255px; height:30px; padding-left:20px; padding-top:20px; padding-bottom:10px;" class="slider_heading">$189 for New iPhone 4G with wireless Speaker and Cover, Just go for it (Up to $700 Value)
-                                        </div>
-                                        <div style="width:255px; height:30px; padding-left:20px;" class="sliderbody_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia facilisis sapien, lacinia ultrices augue scelerisque at.
-<br /><br />
-Sed in purus sed lectus faucibus dapibus. Nam in lacinia est. Quisque lobortis gravida sapien eget tincidunt. Aliquam erat volutpat. Ut nec odio in ipsum malesuada aliquet. Ut arcu ante, fringilla tristique fringilla sed, hendrerit at ligula.
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div style=" height:278px; width:222px; float:left;" >
-                                            <div style=" height:267px; width:222px; float:left;">
-                                            <div style="background:url(../images/bg_black1.png) no-repeat; height:230px; width:267px; margin-left:360px; margin-top:23px;" >
-                                            <div style="width:267px; height:49px; float:left; margin-left:-360px; margin-top:-25px;"><img src="../images/h_up.png" alt="" width="267" height="49" /></div>
-                                             <div style="width:267px; float:left; padding-bottom:5px; margin-top:50px;" class="save">Save $500</div>
-                                             <div style="width:267px; float:left; height:38px; background:#be0909;">
-                                             	<div style="width:80px; float:left;  padding-top:10px; height:28px;" class="timeleft">Time Left:</div>
-                                                <div style="width:50px; float:left;  padding-top:5px; background:#FFFFFF; height:33px; color:#000000; text-align:center; font-weight:bold;">Days<br />02</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; height:33px;">Hours<br />15</div>
-                                                <div style="width:50px; float:left; text-align:center; padding-top:5px; background:#FFFFFF; height:33px;  color:#000000; font-weight:bold;">Days<br />02</div>
-                                             </div>
-
-                                            <div style="width:267px; float:left; padding-bottom:5px;" class="save">Click Here For More Deals</div>
-                                            <div style="width:267px; float:left; padding-bottom:5px; margin-left:-627px;" class="save"><a href="#"><img src="../images/discuss.png" alt="" width="258" height="55" /></a></div>
-
-                                            </div>
-                                            <div style=" height:55px; width:188px; margin-top:-30px; margin-left:40px;" ><a href="#"><img src="../images/buynow.png" alt="" width="188" height="55" border="0" /></a></div>
-                                            <div style="width:188px; float:left; height:28px; margin-left:400px; margin-top:-50px;" class="timeleft">Add 5 friends & get $20 off </div>
-                                            </div>
-                                </div>
-
-
-                                <div style=" height:250px; width:268px; float:left; margin-left:60px;">
-                                <div><img src="../images/img_main6.png" alt="" width="268" height="226" vspace="0" align="top"/></div>
-                                <div class="price" style="width:251px; background:#000000; margin-right:-355px; background:#bd0909;  margin-top:25px; float:right;">Price  <span class="bar">|</span> Discount <span class="bar">|</span> Saving</div>
-                                <div class="price" style="width:260px; font-weight:normal; background:url(../images/black_line.jpg) no-repeat; margin-right:-364px; margin-top:44px; height:26px; float:right;">
-                                <div style="float:left; width:90px; padding-top:5px;">$1300</div>
-                                <div style="float:left; padding-left:20px; padding-top:5px;">50% </div>
-                                <div style="float:left; padding-left:50px; padding-top:5px;"> $750</div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-
-
+                            <%end%>
                     </div>
                     </div>
-                        <a href="#" class="previous"><img src="./images/previous_slider.png" width="46" height="47" alt="Previous" /></a>
-                        <a href="#" class="next"><img src="./images/next_slider.png" width="46" height="47" alt="Next" /></a>
+                        <a href="#" class="previous"><img src="/images/previous_slider.png" width="46" height="47" alt="Previous" /></a>
+                        <a href="#" class="next"><img src="/images/next_slider.png" width="46" height="47" alt="Next" /></a>
            </div> <!-- end loopedSlider -->
-         </div><!-- end wrapper-blue -->
 
         <div id="mini-footer"><!-- begin mini-footer -->
         </div><!-- end mini-footer -->
