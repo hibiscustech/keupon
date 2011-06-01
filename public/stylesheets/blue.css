@@ -23,7 +23,9 @@ body {
 	background: white;
 }
 ul {
-	list-style: none;
+	font-size: 14px;
+	padding-left: 15px;
+	line-height: 20px;
 }
 /* tables still need 'cellspacing="0"' in the markup */
 table {
