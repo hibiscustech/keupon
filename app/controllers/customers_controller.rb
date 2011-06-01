@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
   session :session_key => '_PayPalSDK_session_id'
   filter_parameter_logging :password, :only => [:save_transaction_details, :save_demand_deal_transaction_details]
   
-  layout 'application'
+  layout 'application' ,:except=>[:slider]
 
   @@profile = PayPalSDKProfiles::Profile
   @@email=@@profile.unipay
@@ -828,7 +828,10 @@ class CustomersController < ApplicationController
         }
       end
     end
-  end 
+  end
+
+ def slider
+ end
 
   def get_location_deal
     @page = 'Billing Information'
