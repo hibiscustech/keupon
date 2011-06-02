@@ -111,21 +111,25 @@ body {
 	margin-bottom: 0px;
 }
 
+.footer { background:#bcbcbc url(/images/footer_bg.jpg) repeat-x top; padding:10px 10px 0 10px;}
+.footer p { color:#333333; font:normal 11px Arial, Helvetica, sans-serif; text-align:center; padding:0;}
+.footer a { color:#333333; font:normal 11px Arial, Helvetica, sans-serif;}
 .footer_links{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
-	color:#fe4646;
+	font-size:13px;
+	font-style:normal;
+	color:#999999;
 	text-decoration:none;
-
-
+}
+.footer_links a{
+	color:#999999;
+	text-decoration:none;
 }
 .footer_links:hover{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
-	color:#ffa000;
+	font-size:13px;
+	color:#FFFFFF;
 	text-decoration:none;
-
-
 }
 .copyright_text{
 	font-family:Arial, Helvetica, sans-serif;
