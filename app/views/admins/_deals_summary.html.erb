@@ -43,7 +43,7 @@
                   <%= render :partial => "shared/printable", :locals => {:link => "/admins/printable_merchant_copy?id=#{deal.id}"}%>
                   &nbsp;
                   <% end %>
-                  <a href='#' onclick="showElt('popup_create_deal_<%=deal.id%>');">Commission</a>
+                  <a href='#' onclick="showDealCommission('deal_commission_details',<%=deal.id%>);">Commission</a>
                   &nbsp;
                   <a href="#" onclick="showDealPaypal('popup_view_deal',<%= deal.id %>);">Paypal</a>
                     &nbsp;
@@ -51,11 +51,6 @@
                   <% if deal.status == "new" %>
                   <a href='/admins/edit_deal/<%=deal.id%>'>Edit</a>
                   <% end %>
-                  <div id='<%=deal.id%>'>
-                    <div id="popup_create_deal_<%=deal.id%>" style=' width:100%;height:500%;position:absolute;top: 0;left: 0;z-index:15;background:transparent url(/images/transparent.png) repeat top left;display:none;padding:170px 0 0 60px;'>
-                      <%=render :partial=>'/deals/deal_dis_details',:locals => { :deal_id => deal.id }%>
-                    </div>
-                  </div>
                 </td>
               </tr>
               <%end%>
@@ -67,6 +62,11 @@
               <tr><td colspan="10">
                   <div id="tranaction_deal_details">
                     <br/><%= render :partial => "transaction_details" %>
+                  </div>
+                </td></tr>
+               <tr><td colspan="10">
+                  <div id="deal_commission_details">
+                    <br/><%= render :partial => "deal_commission_details" %>
                   </div>
                 </td></tr>
             </table>

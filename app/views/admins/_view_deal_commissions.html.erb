@@ -1,0 +1,24 @@
+  <form action='/admins/save_commission' method='post' name="commission_frm" id="commission_frm" onsubmit="return formCommissionValidator('<%=@discount_details.length%>')">
+    <table CELLPADDING="3" CELLSPACING="6"  style="border:1px solid black;font-size:14px;" BACKGROUND="/images/bg_white.jpg">
+    <tr>
+      <th>Minimum Customers</th>
+      <th>Maximum Customers</th>
+      <th>Discount(%)</th>
+      <th>Commission(%)</th>
+    </tr>
+     <% i = 1
+     @discount_details.each do |dl|
+     %>
+    <input type="hidden" name="id" value="<%= @deal.id %>" />
+     <tr>
+      <td align="center"><%=dl.customers%></td>
+      <td align="center"><%=(dl.max_customers.blank?)? "Any" : dl.max_customers%></td>
+      <td align="center"><%=dl.discount%></td>
+      <td align="center"><input type='text' name='commission[<%=@deal.id%>][]' id="commission<%=i%>" value='<%=dl.commission%>' size='10'/></td>
+     </tr>
+     <%
+      i += 1
+      end%>
+     <tr><td colspan="4" align="center"><%=token_tag%><input type='submit' value='Set Commision'/></td></tr>
+    </table>
+    </form>

@@ -23,6 +23,16 @@ class AdminsController < ApplicationController
   def view_all_deals
     @deal_discounts,@deals = Deal.all_deals
   end
+
+  def save_commission
+    deal = Deal.find(params[:id])
+
+    params[:commission].each_pair do |key,value|
+      discount=DealDiscount.find(key)
+      discount.update_attribute(:commission,value[0])
+    end
+    redirect_to "/admins/view_all_deals"
+  end
   
   def open_the_deal
     deal = Deal.find(params[:id])
@@ -112,6 +122,21 @@ class AdminsController < ApplicationController
         format.js {
           render :update do |page|
             page.replace_html 'view_deal_paypal',:partial => "view_deal_paypal"
+          end
+        }
+      end
+    end
+  end
+
+  def view_deal_commission_info
+    @deal = Deal.find(params[:deal])
+    @discount_details = DealDiscount.find_all_by_deal_id(@deal.id)
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'view_deal_commissions',:partial => "view_deal_commissions"
           end
         }
       end
