@@ -40,6 +40,18 @@ function customer_name(customer_id)
     new Ajax.Request('/customers/edit_customer_name/'+customer_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
 }
 
+
+function customer_email(customer_id)
+{
+
+    new Ajax.Request('/customers/edit_customer_email/'+customer_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+}
+
+function customer_password()
+{
+    new Ajax.Request('/customers/change_password', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+}
+
 function showLocationDeal(elementID, deal_id)
 {
     new Ajax.Request('/customers/view_location_deal_info?id='+deal_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
