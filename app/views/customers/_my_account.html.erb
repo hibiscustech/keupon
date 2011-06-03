@@ -38,40 +38,24 @@
     <tr>
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;"></td>
-      <td width="10%"><div id="name" style="display:none;">
-            <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'settings', :id=> @customer.id} , :html => { :multipart => true } do |f| -%>
-            First Name:
-            <%= f.text_field :first_name, :size=>"6%" %> <br/>
-            last Name:
-            <%= f.text_field :last_name, :size=>"6%" %><br/>
-            <%=image_submit_tag ("upload_btn.jpg")%><%=link_to image_tag("cancel.jpg", :border=>0),"#", :onclick=>'name_cancel()',:style=>"padding-left:5px;"%>
-          <% end -%>
-        </div>
+      <td width="10%">
       </td>
     </tr>
     
     <tr>
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;">Email :</td>
-      <td width="10%"><%=@customer.email%><%#=f.text_field 'email', :size=> '15'%> &nbsp;&nbsp;&nbsp;<%=link_to 'change','#',:onclick=>'email_down()',:style=>'color:#19A2FF;'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
+      <td width="10%" id="cemail_change">  <%= render :partial => "customer_email" %> </td>
     </tr>
     <tr>
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;"></td>
-      <td width="10%">
-         <div id ="email" style="display:none;">
-           <% form_for @customer, :url => {:controller => 'customers', :action => 'settings', :id=> @customer.id} , :html => { :multipart => true } do |f| -%>
-            Email:
-            <%= f.text_field :email, :size=>"16%" %> <br/><br/>
-            <%=image_submit_tag ("upload_btn.jpg")%>&nbsp;&nbsp;<%=link_to image_tag("cancel.jpg", :border=>0),"#", :onclick=>'email_cancel()',:style=>"padding-left:5px;"%>
-          <% end -%>
-        </div>
-      </td>
+      <td width="10%"></td>
     </tr>
     <tr>
       <td width="5%"> </td>
       <td width="5%" style="color:#000000;">Password :</td>
-      <td width="10%">**************<%#= f.select 'income', CustomerProfile::INCOME%> &nbsp;&nbsp;&nbsp;<%=link_to 'change',:controller => 'customers',:action=> 'change_password'%></td>
+      <td width="10%" id="cpassword_change"><%= render :partial => "customer_password" %></td>
     </tr>
 
 
