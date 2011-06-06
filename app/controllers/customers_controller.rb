@@ -136,9 +136,7 @@ class CustomersController < ApplicationController
     end
   end
 
-  def change_password
-     @page = "Change Password"
-  end
+ 
   def comments
     @deal = Deal.find(params[:id])
     @forums=Forum.find_all_by_deal_id(@deal.id)
@@ -783,6 +781,36 @@ class CustomersController < ApplicationController
     end
   end
 
+   def change_password
+     @page = "Change Password"
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cpassword_change',:partial => "change_password"
+          end
+        }
+      end
+    end
+  end
+  
+
+   def edit_customer_email
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cemail_change',:partial => "edit_customer_email"
+          end
+        }
+      end
+    end
+  end
+
   def cancel_edit_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
@@ -798,6 +826,34 @@ class CustomersController < ApplicationController
     end
   end
 
+   def cancel_edit_customer_email
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cemail_change',:partial => "customer_email"
+          end
+        }
+      end
+    end
+  end
+
+   def cancel_customer_password
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cpassword_change',:partial => "customer_password"
+          end
+        }
+      end
+    end
+   end
+
   def update_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
@@ -808,6 +864,23 @@ class CustomersController < ApplicationController
         format.js {
           render :update do |page|
             page.replace_html 'cname_change',:partial => "customer_name"
+          end
+        }
+      end
+    end
+  end
+
+  def update_customer_email
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    @customer_profile.update_attributes(:email_address => params[:email])
+    @customer.update_attributes(:email => params[:email])
+    if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cemail_change',:partial => "customer_email"
           end
         }
       end

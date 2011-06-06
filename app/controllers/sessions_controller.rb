@@ -87,7 +87,13 @@ class SessionsController < ApplicationController
  end
 
  def change_password_update
+
+
+
+     
+
      @page = "Change Password"
+     if request.xml_http_request?
      customer = Customer.find(params[:current_user])
     if Customer.authenticate(customer.login, params[:old_password])
       if ((params[:password] == params[:password_confirmation]) && !params[:password_confirmation].blank?)
@@ -108,7 +114,7 @@ class SessionsController < ApplicationController
     else
       flash[:error] = "Old password incorrect"
      redirect_to :controller => 'customers' ,:action => 'change_password'
-    end
+    end end
   end
 
 protected
