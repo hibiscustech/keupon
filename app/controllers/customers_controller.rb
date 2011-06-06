@@ -841,6 +841,19 @@ class CustomersController < ApplicationController
     end
   end
 
+   def cancel_customer_password
+     if request.xml_http_request?
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace_html 'cpassword_change',:partial => "customer_password"
+          end
+        }
+      end
+    end
+   end
+
   def update_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
