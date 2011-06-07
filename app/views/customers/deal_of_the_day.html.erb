@@ -1,27 +1,7 @@
- <%= stylesheet_link_tag '/slider/layout' %>
- <%= stylesheet_link_tag '/slider/style' %>
-
-<script type="text/javascript" src="/javascripts/jquery_new_slider.js"></script>
-<script type="text/javascript" src="/javascripts/jquery.easing.js"></script>
-<script type="text/javascript" src="/javascripts/script_new_slider.js"></script>
-
-
-
-<script type="text/javascript">
- $(document).ready( function(){
-		$('#lofslidecontent45').lofJSidernews( { interval:2000,
-											 	easing:'easeInOutQuad',
-												duration:1200,
-												auto:true } );
-	});
-
-</script>
-<style>
-
-	ul.lof-main-wapper li {
-		position:relative;
-	}
-</style>
+<script type="text/javascript" src="/javascripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/javascripts/cufon-yui.js"></script>
+<script type="text/javascript" src="/javascripts/loopslider.js"></script>
+<script type="text/javascript" src="/javascripts/custom_open.js"></script>
 
  <tr>
         <td background="/images/marketing_msg_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -46,7 +26,34 @@
 
        <tr>
         <td height="350" width="955" >
+          <!--
         <iframe src="/slider" height="335" width="973" style="position:static; margin-top:0px;" hspace="0" scrolling="no" vspace="0" frameborder="0" align="middle" ></iframe>
+          -->
+          <div id="loopedSlider"><!-- begin loopedSlider -->
+            <div class="container">
+              <div class="slides_open">
+       <% for htd in @hot_deal_discounts
+        discount = htd[1]
+        hot_deal = @hot_deals[htd[0]]
+        htdeal = Deal.find(hot_deal.id)
+      %>
+                            <div>
+                              <div class="text">
+                                <h1> <%=  hot_deal.name %></h1>
+									<a href="/deal_details?id=<%= hot_deal.id %>" class="button2">GetDeal</a>
+                                </div>
+                              <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url%>" width="512" height="218" alt="clouds" border="0" /></a>
+                            </div>
+<%end%>
+                 </div>
+                    </div>
+                        <a href="#" class="previous_open"><img src="./images/previous_open.png" width="46" height="47" alt="Previous" /></a>
+                        <a href="#" class="next_open"><img src="./images/next_open.png" width="46" height="47" alt="Next" /></a>
+           </div> <!-- end loopedSlider -->
+
+        <div id="mini-footer"><!-- begin mini-footer -->
+        </div><!-- end mini-footer -->
+<script type="text/javascript"> Cufon.now(); </script>
         </td>
       </tr>
 
