@@ -76,6 +76,12 @@ alert("You must enter Deal Title.");
 theForm.deal_name.focus();
 return (false);
 }
+if (theForm.deal_description.value == "" || theForm.deal_description.value.length < 1)
+{
+alert("You must enter Deal Description.");
+theForm.deal_description.focus();
+return (false);
+}
 if (theForm.deal_value.value == "" || theForm.deal_value.value.length < 1)
 {
 alert("You must enter Original Value.");

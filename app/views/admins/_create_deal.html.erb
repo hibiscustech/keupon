@@ -39,6 +39,10 @@
                 <td align="left"><input type="text" name="deal[name]" id="deal_name" value="<%= @deal.name %>"/></td>
                 </tr>
               <tr>
+                <td align="right" class="deals_content2"> Deal Description <span class="deals_content_red_bold">*</span>:</td>
+                <td align="left"><textarea name="deal[description]" id="deal_description" rows="3" cols="10"><%= @deal.description %></textarea></td>
+              </tr>
+              <tr>
                 <td align="right" class="deals_content2"> Original Value <span class="deals_content_red_bold">*</span>:</td>
                 <td align="left"><input type="text" name="deal[value]" id="deal_value"  value="<%= @deal.value %>"/></td>
                 </tr>
