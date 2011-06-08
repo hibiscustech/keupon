@@ -17,11 +17,7 @@
           </tr>
           <tr>
             <td width="1%">&nbsp;</td>
-            <% if @new_deal.blank? %>
-            <td width="48%" height="180" valign="top">
-              <a href="/deals/index"><img src="/images/start_create_img.jpg" border="0"/></a>
-            </td>
-            <% else %>
+            <% if !@new_deal.blank? %>
             <td width="48%" height="180" valign="top" background="/images/deal_bg.jpg" style="border:1px solid #CCCCCC;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
