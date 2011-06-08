@@ -983,7 +983,7 @@ class CustomersController < ApplicationController
     end
     if params[:my_profile].nil?
       customer.activate!
-      flash[:notice] = "Thank you for your valuable information. Please sign in to continue."
+      flash[:notice] = "Thank you for your valuable information. Please Login to continue."
       redirect_to '/'
     else
       flash[:notice] = "Your Profile is successfully updated."
