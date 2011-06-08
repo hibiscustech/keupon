@@ -635,7 +635,7 @@ class CustomersController < ApplicationController
       if !params[:esubscribe].blank? && params[:esubscribe] == "1"
         KeuponSubscriber.create(:email => @customer.login)
       end
-      redirect_back_or_default('/')
+      redirect_to '/'
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
