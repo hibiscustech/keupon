@@ -209,7 +209,7 @@ return true
                       <td width="5%"> </td>
                       <td width="80%" colspan="2" style="color:#000000;">
                         <%for category in category_all%>
-                         <b><%= check_box_tag "customer_favourite_deal[]",category.id%><%=category.name%></b><br/>
+                         <b><%= check_box_tag "customer_favourite_deal[]",category.id, true%><%=category.name%></b><br/>
                         <%end%>                       
                       </td>                      
                     </tr>
