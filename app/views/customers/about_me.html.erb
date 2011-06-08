@@ -24,7 +24,7 @@
 var dtCh= "/";
 var minYear=1900;
 var maxYear=1993;
-function Validate(){
+function Validate123(){
 var theForm = document.getElementById('edit_customer_profile_46');
 var i;
   if (theForm.customer_profile_dob.value == "" || theForm.customer_profile_dob.value.length < 1)
@@ -219,7 +219,7 @@ return true
                     <td width="5%"> </td>
                     <td width="15%"> </td>
                     <td width="35%" colspan="2">
-                      <br/><%=image_submit_tag ("register.jpg"), :onclick => "return Validate();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/", {:style=>"padding-left:30px;"}%>
+                      <br/><%=image_submit_tag ("register.jpg"), :onclick => "return Validate123();"%><%=link_to image_tag("cancel.jpg", :border=>0),"/", {:style=>"padding-left:30px;"}%>
                     </td>
                   </tr>
                   <tr><td></td><td></td></tr> <% end -%>
