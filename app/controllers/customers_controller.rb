@@ -171,7 +171,7 @@ class CustomersController < ApplicationController
       @flag=false
     end
     if params[:transaction] == "success"
-      if session[:customer_id].blank?
+      if !session[:customer_id].blank?
         customer = Customer.find(session[:customer_id])
         show_deal_code = Constant.get_show_deal_code
         customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
