@@ -179,7 +179,7 @@ class CustomersController < ApplicationController
 
         CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
 
-        flash[:notice] = "You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$<%= @deal.value %>.  Once this Keupon, has been successfully closed, the discount will then be applied to the Actual Price S$#{@deal.value}, based on the Total Buy. You will be notified on this through another email."
+        flash[:notice] = "You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$#{@deal.value}.  Once this Keupon, has been successfully closed, the discount will then be applied to the Actual Price S$#{@deal.value}, based on the Total Buy. You will be notified on this through another email."
       end
     end
   end
