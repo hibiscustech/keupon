@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
 
   layout "admins"
   protect_from_forgery :only => [:destroy]
-  before_filter :admin_login_required, :except => [:open_the_deals, :email_subscribers]
+  before_filter :admin_login_required, :except => [:open_the_deals, :email_subscribers, :save_commission ]
   include AuthenticatedSystemMerchant
 
   def email_subscribers
