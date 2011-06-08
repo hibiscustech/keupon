@@ -155,8 +155,8 @@ $(function(){
     $("#submit_step_2").click(function(){
           var fn =  document.getElementById("customer_profile_first_name").value
           var ln =  document.getElementById("customer_profile_last_name").value
-          var ad1 =  document.getElementById("customer_profile_address1").value
-          var ad2 =  document.getElementById("customer_profile_address2").value
+          var ad1 =  document.getElementById("customer_profile_customer_pin").value
+          var ad2 =  document.getElementById("customer_profile_address1").value
           var coun =  document.getElementById("name_input_country").value
           var pin =  document.getElementById("name_input_pin").value
           var cn =  document.getElementById("name_input_cn").value
@@ -172,7 +172,12 @@ $(function(){
         }
           if (ad1 == '')
         {
-            alert('Enter Address1')
+            alert('Enter NRIC#')
+            return false;
+        }
+        if (ad2 == '')
+        {
+            alert('Enter Address')
             return false;
         }
           if (coun == '')
