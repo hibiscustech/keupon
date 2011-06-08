@@ -146,6 +146,7 @@ class MerchantController < ApplicationController
     if success && @merchant_profile.errors.empty?
       @merchant_company = Company.new(params[:company])
       @merchant_company.merchant_profile = @merchant_profile
+      @merchant_company.company_photo = params[:merchant][:company_photo]
       @merchant_company.save
 
       res = MultiGeocoder.geocode("#{@merchant_company.address1},#{@merchant_company.address2},#{@merchant_company.city},#{@merchant_company.zipcode}")
