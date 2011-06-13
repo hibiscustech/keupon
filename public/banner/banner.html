@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Awkward Showcase - Demo #1</title>
+<link rel="stylesheet" href="css/style.css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.aw-showcase.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+	$("#showcase").awShowcase(
+	{
+		content_width:			610,
+		content_height:			245,
+		hundred_percent:		false,
+		auto:					true,
+		interval:				3000,
+		continuous:				true,
+		loading:				true,
+		tooltip_width:			200,
+		tooltip_icon_width:		32,
+		tooltip_icon_height:	32,
+		tooltip_offsetx:		18,
+		tooltip_offsety:		0,
+		arrows:					false,
+		buttons:				true,
+		btn_numbers:			false,
+		keybord_keys:			true,
+		mousetrace:				false,
+		pauseonover:			true,
+		transition:				'hslide', /* hslide/vslide/fade */
+		transition_delay:		0,
+		transition_speed:		500,
+		show_caption:			'onload', /* onload/onhover/show */
+		thumbnails:				false,
+		thumbnails_position:	'outside-last', /* outside-last/outside-first/inside-last/inside-first */
+		thumbnails_direction:	'vertical', /* vertical/horizontal */
+		thumbnails_slidex:		1, /* 0 = auto / 1 = slide one thumbnail / 2 = slide two thumbnails / etc. */
+		dynamic_height:			false,
+		speed_change:			true,
+		viewline:				false
+	});
+});
+
+</script>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+
+
+<div style="width: 610px; margin: auto;">
+
+	
+    <div id="showcase" class="showcase">
+     
+      <div class="showcase-slide">
+        
+        <div >        
+          <img src="/banner/images/spa1.jpg" width="622" height="226">
+        </div>
+      </div>
+     
+      <div class="showcase-slide">
+        
+        <div >
+            <img src="/banner/images/spa2.jpg" width="622" height="226">
+          
+        </div>
+      </div>
+    
+      
+     
+    </div>
+</div>
+
+
+
+</body>
+</html>
