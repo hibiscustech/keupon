@@ -111,39 +111,29 @@ body {
 	margin-bottom: 0px;
 }
 
-.footer { background:#bcbcbc url(/images/footer_bg.jpg) repeat-x top; padding:10px 10px 0 10px;}
+.footer { background:#bcbcbc url(/images/footer_bg.jpg) repeat-x top; height:152px;}
 .footer p { color:#333333; font:normal 11px Arial, Helvetica, sans-serif; text-align:center; padding:0;}
 .footer a { color:#333333; font:normal 11px Arial, Helvetica, sans-serif;}
-.footer_links{
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:13px;
-	font-style:normal;
-	color:#999999;
-	text-decoration:none;
-}
-.footer_links a{
-	color:#999999;
-	text-decoration:none;
-}
-.footer_links:hover{
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:13px;
-	color:#FFFFFF;
-	text-decoration:none;
+#footer {
+	float: left;
+	height: 152px;
+	width: 967px;
+	background: url(/images/footer.jpg);
+	padding-left: 33px;
 }
 .quickLink {
 	float: left;
-	height: 178px;
+	height: 152px;
 	width: 495px;
 }
 .Quick1 {
 	float: left;
 	width: 165px;
 	height: auto;
-	padding-top: 15px;
-	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 18px;
-	font-weight: normal;
+	padding-top: 10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	/*font-weight:bold;*/
 	color: #FFF;
 }
 .Quick1 ul {
@@ -156,31 +146,38 @@ body {
 .Quick1 ul li {
 	display: block;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: normal;
-	color: #FF4546;
+	color: #ff4646;
 	list-style-type: none;
-	margin-top: 3px;
+	/*margin-top: 3px;*/
 }
 .Quick1 ul li a {
-	color: #FF4546;
+	color: #ff4646;
 	text-decoration: none;
 }
 .Quick1 ul li a:hover {
 	color: #FFF;
 }
+.footer_new{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+	text-align:left;
+	float:left;
+	width:400px;
+	padding-top:10px;
+	}
 #partner {
 	float: left;
 	width: 424px;
 	height: auto;
-	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 18px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 14px;
 	color: #FFF;
 	margin-top: 15px;
-	padding-left: 26px;
-	border-left-width: 1px;
-	border-left-style: solid;
-	border-left-color: #333;
+	/*padding-left: 26px;*/
+
 }
 #partner img {
 	margin-top: 10px;
@@ -202,7 +199,7 @@ body {
 	padding-top: 10px;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 14px;
-	line-height: 5px;
+	line-height: 40px;
 	color: #FFF;
 	padding-left: 150px;
 }
@@ -215,14 +212,6 @@ body {
 	float: left;
 	margin-left: 5px;
 	list-style-type: none;
-}
-.copyright_text{
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
-	color:#ffffff;
-	text-decoration:none;
-
-
 }
 .table_header_text{
 	font-family:Arial, Helvetica, sans-serif;
