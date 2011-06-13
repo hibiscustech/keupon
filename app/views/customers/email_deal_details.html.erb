@@ -1,0 +1,217 @@
+      <tr>
+        <td height="48" background="/images/blank_strip.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="2%" align="left" class="header_text">&nbsp;</td>
+            <td width="96%" align="center" class="header_text"><%=@deal.name%></td>
+            <td width="2%" align="left" class="header_text">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <%if !@deal.nil?%>
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top">&nbsp;</td>
+                <td valign="top">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width="2%" valign="top">&nbsp;</td>
+                <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td background="/images/widget_header.jpg" height="61" style="background-repeat:no-repeat;">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="55" width="27%" align="center" style="vertical-align: top;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:27px;"><%=current_deal_discount_for_deal(@deal.id)%><%="%"%></td>
+                          <td width="73%" align="center" style="color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:22px;">S$<%=@deal.value%></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td background="/images/price_black_bg.jpg" style="background-repeat:repeat;" >
+                      <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td colspan="3" height="2"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" height="100" background="/images/widgetslider_bg.jpg"><%= render :partial => "deal_scale" %></td>
+                        </tr>
+                        <tr>
+                          <td height="5" colspan="3"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td height="5"></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0" background="/images/timeleft_bg.jpg" style="border:1px solid #FFFFFF;">
+                          <tr>
+                            <td width="27%" height="49" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Time Left:</td>
+                            <td width="73%" align="center" id="deal_time_left">
+                              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                              <td width="18%" align="center" class="time">Days<br />02</td><td width="19%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Hours<br />01</td><td width="18%" align="center" class="time">Min<br />07</td><td width="18%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Sec<br />45</td>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                        <td align="center" >
+                          <% if session[:customer_id].blank? %>
+ <%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%>
+                          <% else %>
+ <a href="<%=@deal.buy_url%>&email=<%=current_customer.email %>"><img height="50" border="0" width="179" src="/images/buy_now_btn.png?" alt="Buy_now_btn"/></a>
+                          <% end %>
+                        </td>
+                        </tr>
+                        <tr>
+                          <td align="center" class="deals_content" style="padding-top: 8px;"><p>Your card will be charged only when the deal ends.<br/>
+Everyone pays the lowest price even if you buy now!
+</p></td>
+                        </tr>
+                </table></td>
+                <td width="1%">&nbsp;</td>
+                <td width="34%" valign="top">
+                  <%if !@deal.deal_photo.url.nil? %> <%=image_tag (@deal.deal_photo.url),:width=>"330", :height=>"310" %> <%else%><img src="/images/iphone_img.jpg" width="330" height="310" border="0"/> <%end%>
+                  </td>
+                <td width="1%">&nbsp;</td>
+                <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="140" valign="top" background="/images/marchant_box_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+                        <tr>
+                          <td width="33%" height="82" align="center">
+
+                             <%if !@company.company_photo.nil?%>
+                  <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 82px; height: 72px;"/></a>
+                   <%else%>
+                  <img src="/images/apple_logo.jpg" width="82" height="72" /><br/>
+                  <%end%>
+                          </td>
+                          <td width="67%" class="deals_content_white" align="center"><%=@deal.merchant.merchant_profile.company.name%></td>
+                        </tr>
+                        <tr>
+                          <td height="37" colspan="2" align="center" class="deals_content_red">A<%=@company.address1 %> <%=@company.address2 %><br/>
+                          <%=@company.city %></td>
+                        </tr>
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td height="39" class="product_specification_text">About the Merchant</td>
+                  </tr>
+                  <tr>
+                    <td class="deals_content"><p><%= truncate(@company.detail,400) %> </p></td>
+                  </tr>
+                </table></td>
+                <td width="2%" valign="top">&nbsp;</td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%">&nbsp;</td>
+                <td width="32%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+                  <tr>
+                    <td><img src="/images/fine_print_header.jpg" width="312" height="118" /></td>
+                  </tr>
+                  <tr>
+                    <td height="32" background="/images/fine_print_black_gradient.jpg"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+                      <tr>
+                        <td width="12%" align="center"><img src="/images/arrow_bullet_red.png" width="10" height="11" /></td>
+                        <td width="88%" align="left" class="deals_content_white">Deal Expire on <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y")  %></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                  <%
+                    display_rules = @deal.rules.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>")
+                    for rule in display_rules
+                  %>
+                  <tr>
+                    <td height="40" bgcolor="#bababa"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="6%">&nbsp;</td>
+                        <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
+                        <td width="85%" align="left" class="deals_content"><%= rule %></td>
+                        <td width="4%">&nbsp;</td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                  <% end %>
+                  <tr>
+                    <td height="25" bgcolor="#e7e7e7"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+                      <tr>
+                        <td width="8%" align="center">&nbsp;</td>
+                        <td width="92%" align="left" class="deals_content1"><a href="/legal">Rules that apply to all Deals</a></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                </table></td>
+                <td width="1%">&nbsp;</td>
+                <td width="32%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><img src="/images/highlights_header.jpg" width="315" height="100" /></td>
+                  </tr>
+                  <%
+                    display_highlights = @deal.highlights.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>")
+                    for highlight in display_highlights
+                  %>
+                  <tr>
+                    <td height="40" bgcolor="#e5e5e5"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="6%">&nbsp;</td>
+                          <td width="5%" valign="top"><img src="/images/arrow_bullet.png" width="10" height="11" /></td>
+                          <td width="85%" align="left" class="deals_content"><%= highlight %></td>
+                          <td width="4%">&nbsp;</td>
+                        </tr>
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                  <% end %>
+                </table></td>
+                <td width="1%">&nbsp;</td>
+                <td width="31%" background="/images/deal_location_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="53" align="center">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+
+                                  <%= GMap.header %>
+<%= @map.to_html %>
+<div id="user1" style="height: 266px;  width: 270px;">
+<div align="center">
+  <%= @map.div(:width => 270, :height => 266, :style => "border-style: solid;") %>
+</div>
+</div>
+                    </td>
+                  </tr>
+                </table></td>
+                <td width="1%">&nbsp;</td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <%end%>
+
+
+        </table></td>
+      </tr>
