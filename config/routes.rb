@@ -31,6 +31,8 @@ ActionController::Routing::Routes.draw do |map|
   map.deal_of_the_day '/deal_of_the_day', :controller => 'customers', :action => 'deal_of_the_day'
   map.deal_details '/deal_details', :controller => 'customers', :action => 'deal_details'
   map.deal_details '/deal_details/:id/:comments/:forum_id', :controller => 'customers', :action => 'deal_details'
+  map.deal_details '/email_deal_details', :controller => 'customers', :action => 'email_deal_details'
+  map.deal_details '/email_deal_details/:id/:comments/:forum_id', :controller => 'customers', :action => 'email_deal_details'
   map.deal_transaction_success '/deal_transaction_success/:id', :controller => 'customers', :action => 'deal_transaction_success'
   map.deal_transaction_success '/deal_transaction_success', :controller => 'customers', :action => 'deal_transaction_success'
   map.deal_of_the_day '/keupoint_deal', :controller => 'customers', :action => 'keupoint_deal'
