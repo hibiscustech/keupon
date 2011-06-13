@@ -1,0 +1,231 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:auto;
+	padding:0;
+	background-color:#263b88;
+	}
+.left_nav_text{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-style:normal;
+	color:#5c5b5b;
+	text-align:left;
+	padding-left:5px;
+	padding-top:5px;
+	padding-bottom:5px;
+	}
+.left_nav_text a{
+	text-decoration:none;
+	color:#5c5b5b;
+	}
+.left_nav_text a:hover{
+	text-decoration:none;
+	color:#2b4197;
+	}
+.body_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	line-height:16px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;
+	padding-left:10px;
+	padding-right:10px;
+	text-align:justify;
+}
+.body_text1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	line-height:16px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;
+	padding-left:10px;
+
+	text-align:justify;
+}
+.readmore{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.70em;
+	font-weight:600;
+	text-align:right;
+	color:#06629d;
+	}
+.readmore a{
+	text-decoration:none;
+	color:#06629d;
+	}
+.readmore a:hover{
+	text-decoration:none;
+	color:#06629d;
+	}
+.footer_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.70em;
+	padding-left:20px;
+	padding-top:15px;
+	color:#999999;
+	}
+.icon{
+	padding-right:3px;
+	}
+.about_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	line-height:16px;
+	color:#333333;
+
+	text-align:justify;
+}
+.about_text1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	line-height:16px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;
+	padding-left:15px;
+	padding-right:20px;
+	text-align:justify;
+}
+.about_text1a{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	line-height:16px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;
+	padding-left:5px;
+	padding-right:5px;
+	text-align:justify;
+}
+.aboutbox_text1a{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.75em;
+	line-height:16px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;
+	font-weight:bold;
+	padding-left:5px;
+	text-align:justify;
+}
+.about_content{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	padding-left:40px;
+	padding-top:10px;
+	color:#2b4197;
+	}
+.about_content1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	padding-left:10px;
+	padding-top:5px;
+	color:#2b4197;
+	}
+.about_text1a{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	line-height:16px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;
+	padding-bottom:5px;
+	text-align:justify;
+}
+.aboutbox_text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	line-height:16px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;	
+	text-align:justify;
+}
+.serviceboxtext{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	/*font-size:12px;*/
+	/*font-weight:bold;*/
+	color:#333333;	
+	text-align:justify;
+	padding-left:80px;
+	font-weight:bold;
+	
+}
+.service_heading{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	padding-top:10px;
+	color:#333333;
+	}
+.report{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#333434;
+	font-size:11px;
+	text-align:right;
+	}
+.contact_text{
+	font-family:"Times New Roman", Times, serif;
+	font-size:16px;
+	color:#222;
+	}
+.textbox{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#333333;
+	padding-left:10px;
+	text-align:left;
+	}
+.homefootertabs{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	text-align:justify;
+	background:../images/icon1a.png) no-repeat left center;
+	padding-bottom:10px;
+	padding-right:50px;	
+	}
+.homefootertabs a{
+	text-decoration:none;
+	}
+.homefootertabs a:hover{
+	text-decoration:none;
+	color:#0066FF;
+	}
+.icon{
+	font-size:30px; 
+	margin-top:10px; 
+	color:#990000;
+	position:absolute;
+	}
+.icon1{
+	font-size:30px; 
+	margin-top:-30px; 
+	color:#990000;
+	text-align:right;
+	margin-left:155px;
+	position:absolute;
+	float:right;
+	}
+.name{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:.70em;
+	padding-right:18px;
+	font-style:italic;
+	color:#006600;
+	font-weight:600;
+	text-align:right;
+	}
+.contact{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.80em;
+	font-style:normal;
+	text-align:left;
+	padding-left:10px;
+	}
+	
