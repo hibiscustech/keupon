@@ -32,16 +32,13 @@
                     </td>
                   </tr>
                   <tr>
-                    <td background="/images/price_black_bg.jpg" style="background-repeat:repeat;" >
+                    <td bgcolor="#e7e7e7" >
                       <table width="98%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                          <td colspan="3" height="2"></td>
+                          <td height="39" class="product_specification_text">About the Deal</td>
                         </tr>
                         <tr>
-                          <td colspan="3" height="100" background="/images/widgetslider_bg.jpg"><%= render :partial => "deal_scale" %></td>
-                        </tr>
-                        <tr>
-                          <td height="5" colspan="3"></td>
+                          <td class="deals_content"><p><%= truncate(@deal.description,400) %> </p></td>
                         </tr>
                       </table>
                     </td>
@@ -53,29 +50,15 @@
                     <td>
                       <table width="100%" border="0" cellpadding="0" cellspacing="0" background="/images/timeleft_bg.jpg" style="border:1px solid #FFFFFF;">
                           <tr>
-                            <td width="27%" height="49" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Time Left:</td>
-                            <td width="73%" align="center" id="deal_time_left">
-                              <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                              <td width="18%" align="center" class="time">Days<br />02</td><td width="19%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Hours<br />01</td><td width="18%" align="center" class="time">Min<br />07</td><td width="18%" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Sec<br />45</td>
-                              </table>
-                            </td>
+                            <td width="27%" height="49" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Purchase Detail:</td>
+                            <td width="25%" height="49" align="center" class="time">Quantity<br/>12</td>
+                            <td width="48%" height="49" align="center" class="time" background="/images/black.jpg" style="background-repeat:repeat;">Total Price<br/>S$123</td>
                           </tr>
                         </table>
                     </td>
                   </tr>
-
-                  <tr>
-                        <td align="center" >
-                          <% if session[:customer_id].blank? %>
- <%=link_to image_tag('buy_now_btn.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%>
-                          <% else %>
- <a href="<%=@deal.buy_url%>&email=<%=current_customer.email %>"><img height="50" border="0" width="179" src="/images/buy_now_btn.png?" alt="Buy_now_btn"/></a>
-                          <% end %>
-                        </td>
-                        </tr>
                         <tr>
-                          <td align="center" class="deals_content" style="padding-top: 8px;"><p>Your card will be charged only when the deal ends.<br/>
-Everyone pays the lowest price even if you buy now!
+                          <td align="center" class="deals_content" style="padding-top: 8px;"><p>Kindly bring your NRIC: <%=h "@profile.customer_pin" %> <br/>For Validation at the time of Redeeming this Keupon.
 </p></td>
                         </tr>
                 </table></td>
