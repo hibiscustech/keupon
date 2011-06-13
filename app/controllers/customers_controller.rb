@@ -148,19 +148,8 @@ class CustomersController < ApplicationController
 
   def email_deal_details
     @deal = Deal.find(params[:id])
-    @forums=Forum.find_all_by_deal_id(@deal.id)
-    @page_number=(params[:page].nil?)?1:(params[:page])
-    @size=((@forums.length.to_f)/3).ceil
-    @forums=@forums.paginate(:page => params['page'], :per_page => 3)
-    @end_time = @deal.deal_schedule.end_time
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
-    @open_deal_discounts_recent, @open_deals_recent = Deal.all_and_open_deals
-    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals
-    @deal_scale_xml = Deal.deal_scale_graph(@deal.deal_discounts, Deal.deals_bought(@deal.id), "price_black_bg")
-    @map = GMap.new("map")
-    @map.control_init(:large_map => true, :map_type => true)
-    @map.center_zoom_init([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude],8)
-    @map.overlay_init(GMarker.new([@deal.deal_location_detail.longitude,@deal.deal_location_detail.latitude] ))
+    @location = @deal.deal_location_detail
   end
 
   def deal_details
