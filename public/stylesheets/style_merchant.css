@@ -27,12 +27,12 @@ body {
 	text-decoration:none;
 
 }
-.footer { background:#bcbcbc url(/images/footer_bg.jpg) repeat-x top; height:152px;}
+.footer { background:#bcbcbc url(/images/footer_bg.jpg) repeat-x top; height:auto;}
 .footer p { color:#333333; font:normal 11px Arial, Helvetica, sans-serif; text-align:center; padding:0;}
 .footer a { color:#333333; font:normal 11px Arial, Helvetica, sans-serif;}
 #footer {
 	float: left;
-	height: 152px;
+	height: auto;
 	width: 967px;
 	background: url(/images/footer.jpg);
 	padding-left: 33px;
