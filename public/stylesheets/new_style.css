@@ -135,7 +135,26 @@ body {
 	list-style-type: none;
 }
 
-
+.homeup_text{
+	font-family:"Times New Roman", Times, serif;
+	font-size:.90em;
+	font-style:normal;
+	color:#b20808;
+	padding-top:10px;
+	}
+.homeup1_text{
+	font-family:"Times New Roman", Times, serif;
+	font-size:1.30em;
+	font-style:normal;
+	color:#b20808;
+	}
+.homeup2_text{
+	font-family:"Times New Roman", Times, serif;
+	font-size:1.70em;
+	font-style:normal;
+	color:#b20808;
+	/*font-weight:600;*/
+	}
 
 
 /*Earn Money CSS*/
