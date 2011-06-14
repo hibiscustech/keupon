@@ -51,7 +51,7 @@ class DealsController < ApplicationController
   end
 
   def get_deals_by_email
-    ks = KeuponSubscriber.find_by_sql(%Q{ select * from keupon_subscribers where email = '#{params[:keupon_subscribers]}'})[0]
+    ks = KeuponSubscriber.find_by_sql(%Q{ select * from keupon_subscribers where email = '#{params[:keupon_subscribers][:email]}'})[0]
     if ks.blank?
       keupon_subscriber = KeuponSubscriber.create(params[:keupon_subscribers])
       if params[:category]
