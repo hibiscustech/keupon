@@ -15,13 +15,16 @@ class CustomerMailer < ActionMailer::Base
     content_type "text/html"
   end
 
-  def deal_purchase_notification(customer, profile, customer_deal, deal, my_keupon_credits)
+  def deal_purchase_notification(customer, profile, customer_deal, deal, my_keupon_credits, company, location, merchant_profile)
     setup_email(customer)
     @subject    = 'You have purchased a Deal from Keupons'
     @body[:profile] = profile
     @body[:customer_deal] = customer_deal
     @body[:deal] = deal
     @body[:credits] = my_keupon_credits
+    @body[:company] = company
+    @body[:location] = location
+    @body[:merchant_profile] = merchant_profile
     content_type "text/html"
   end
 
