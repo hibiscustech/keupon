@@ -71,7 +71,7 @@
               <tr>
                 <td width="36%" valign="top" background="<%=$server_name%>/images/price_list.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td height="37" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=  discount %> %</td>
+                    <td height="37" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=(!discount.nil?)? discount : ''%> %</td>
                   </tr>
                   <tr>
                     <td>&nbsp;</td>
@@ -105,7 +105,7 @@
               <tr>
                 <td width="36%" valign="top" background="<%=$server_name%>/images/price_list.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td height="37" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=discount.nil? ? discount : ''%> %</td>
+                    <td height="37" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=(!discount.nil?)? discount : ''%> %</td>
                   </tr>
                   <tr>
                     <td>&nbsp;</td>
