@@ -51,14 +51,18 @@ class DealsController < ApplicationController
   end
 
   def get_deals_by_email
-   keupon_subscriber=KeuponSubscribers.create(params[:keupon_subscribers])
-   if params[:category]
-    params[:category].each do |cat|
-     SubscribedDeals.create(:keupon_subscriber_id=>keupon_subscriber.id,:deal_category_id=>cat)
+    if KeuponSubscribers.find_by_email(params[:keupon_subscribers]).blank?
+      keupon_subscriber=KeuponSubscribers.create(params[:keupon_subscribers])
+      if params[:category]
+        params[:category].each do |cat|
+          SubscribedDeals.create(:keupon_subscriber_id=>keupon_subscriber.id,:deal_category_id=>cat)
+        end
+      end
+      flash[:notice]='Thank you for Subscribing for Keupons Mailer'
+    else
+      flash[:notice]='You have already subscribed for Keupons Mailer'
     end
-   end
-   flash[:notice]='Your request has been submitted to site admin'
-   redirect_to "/"
+    redirect_to "/"
   end
 
   def index
