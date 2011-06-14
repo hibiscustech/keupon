@@ -51,8 +51,9 @@ class DealsController < ApplicationController
   end
 
   def get_deals_by_email
-    if KeuponSubscriber.find_by_email(params[:keupon_subscribers]).blank?
-      keupon_subscriber=KeuponSubscriber.create(params[:keupon_subscribers])
+    ks = KeuponSubscriber.find_by_sql(%Q{ select * from keupon_subscribers where email = '#{params[:keupon_subscribers]}'})[0]
+    if ks.blank?
+      keupon_subscriber = KeuponSubscriber.create(params[:keupon_subscribers])
       if params[:category]
         params[:category].each do |cat|
           SubscribedDeal.create(:keupon_subscriber_id=>keupon_subscriber.id,:deal_category_id=>cat)
