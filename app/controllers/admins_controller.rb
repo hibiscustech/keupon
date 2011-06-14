@@ -17,7 +17,7 @@ class AdminsController < ApplicationController
         CustomerMailer.deliver_subscribers_notification(subscriber.email, deals, deal_discounts)
       end
     end
-    return "email sent"
+    render(:text => 'Emails Sent')
   end
 
   def view_all_deals
@@ -159,6 +159,11 @@ class AdminsController < ApplicationController
 
   def upload_tranaction_details
     deal = Deal.find(params[:deal])
+    company = deal.merchant.merchant_profile.company
+    location = deal.deal_location_detail
+    merchant = deal.merchant
+    merchant_profile = merchant.merchant_profile
+
     csv = FasterCSV.new(params[:upload][:upfile])
     successful_customers = Array.new
 
@@ -181,7 +186,7 @@ class AdminsController < ApplicationController
         customer.kupoints = customer.kupoints.to_f + points_earned
         customer.save!
 
-        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[5].to_i)
+        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[5].to_i, company, location, merchant_profile)
         successful_customers << {"customer" => customer.customer_profile, "quantity" => quantity, "total_price" => total_price}
 
         customer_invited_by = CustomerFriend.who_invited_me(customer.login)
@@ -193,8 +198,6 @@ class AdminsController < ApplicationController
       i += 1
     end
 
-    merchant = deal.merchant
-    merchant_profile = merchant.merchant_profile
     file_path = "public/merchant_files/#{merchant_profile.first_name}.csv"
     FasterCSV.open(file_path, "w") do |csv|
       csv << ["Name", "Mobile Number", "NRIC", "No. of Keupons Bought", "Total Price Paid"]
