@@ -639,7 +639,7 @@ class CustomersController < ApplicationController
       @profile.email_address = @customer.email
       @profile.customer = @customer
       @profile.save
-      @profile.update_attributes(:customer_pin => params[:customer_profile][:customer_pin])
+      @profile.update_attributes(:customer_pin => params["customer_profile"]["customer_pin"])
       if !params[:esubscribe].blank? && params[:esubscribe] == "1"
         KeuponSubscriber.create(:email => @customer.login)
       end
