@@ -972,8 +972,7 @@ class CustomersController < ApplicationController
     p params
     @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_favourite][:customer_id])
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
-    if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],
-        :gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id],:customer_pin=> params[:customer_profile][:customer_pin])
+    if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],:gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
     end
         existing_deal_categories=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
         existing_deal_categories.each do |cfd|
