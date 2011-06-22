@@ -172,10 +172,10 @@ class AdminsController < ApplicationController
       if i > 0
         customer = Customer.find(row[0])
         customer_deal = CustomerDeal.find(row[1])
-        quantity = row[8]
-        total_price = row[9]
-        if !row[6].blank? && row[6].to_i > 0
-          customer.update_attributes(:balance_credit => row[6])
+        quantity = row[9]
+        total_price = row[10]
+        if !row[7].blank? && row[7].to_i > 0
+          customer.update_attributes(:balance_credit => row[7])
         end
 
         deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
@@ -186,7 +186,7 @@ class AdminsController < ApplicationController
         customer.kupoints = customer.kupoints.to_f + points_earned
         customer.save!
 
-        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[5].to_i, company, location, merchant_profile)
+        CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[6].to_i, company, location, merchant_profile)
         successful_customers << {"customer" => customer.customer_profile, "quantity" => quantity, "total_price" => total_price}
 
         customer_invited_by = CustomerFriend.who_invited_me(customer.login)
