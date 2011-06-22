@@ -11,7 +11,7 @@ class AdminsController < ApplicationController
       sub_deals = subscriber.subscribed_deals
       cat_ids = sub_deals.collect{|sd| sd.deal_category_id}
       category_ids = cat_ids.join(",")
-      merchants = MerchantProfile.merchants_for_categories(category_ids)
+      merchants = MerchantProfile.merchants_for_categories(category_ids) if !category_ids.blank?
       if !merchants.blank?
         deal_discounts, deals = Deal.all_hot_and_open_deals_for_subscribers(merchants.join(","))
         CustomerMailer.deliver_subscribers_notification(subscriber.email, deals, deal_discounts)
