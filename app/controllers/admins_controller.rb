@@ -6,17 +6,27 @@ class AdminsController < ApplicationController
   include AuthenticatedSystemMerchant
 
   def email_subscribers
-    @subscribers = KeuponSubscriber.find(:all)
-    for subscriber in @subscribers
-      sub_deals = subscriber.subscribed_deals
-      cat_ids = sub_deals.collect{|sd| sd.deal_category_id}
-      category_ids = cat_ids.join(",")
-      merchants = MerchantProfile.merchants_for_categories(category_ids) if !category_ids.blank?
-      if !merchants.blank?
-        deal_discounts, deals = Deal.all_hot_and_open_deals_for_subscribers(merchants.join(","))
-        CustomerMailer.deliver_subscribers_notification(subscriber.email, deals, deal_discounts)
+    id = 0
+    label "redo_email_subscribers"
+      @subscribers = KeuponSubscriber.find_by_sql(%Q{select * from keupon_subscribers where id > #{id}})
+      for subscriber in @subscribers
+        id = subscriber.id
+        sub_deals = subscriber.subscribed_deals
+        cat_ids = sub_deals.collect{|sd| sd.deal_category_id}
+        category_ids = cat_ids.join(",")
+        merchants = MerchantProfile.merchants_for_categories(category_ids) if !category_ids.blank?
+        if !merchants.blank?
+          deal_discounts, deals = Deal.all_hot_and_open_deals_for_subscribers(merchants.join(","))
+          begin
+            logger.info "----------Sending: #{subscriber.email}"
+            CustomerMailer.deliver_subscribers_notification(subscriber.email, deals, deal_discounts)
+            logger.info "----------Sent: #{subscriber.email}"
+          rescue
+            logger.info "----------Email Failed: #{subscriber.email}"
+            goto redo_email_subscribers
+          end
+        end
       end
-    end
     render(:text => 'Emails Sent')
   end
 
