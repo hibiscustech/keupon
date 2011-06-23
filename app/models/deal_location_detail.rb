@@ -13,7 +13,7 @@ class DealLocationDetail < ActiveRecord::Base
                 join deals d on d.id = dld.deal_id
                 join merchant_profiles mp on mp.merchant_id = d.merchant_id
                 join companies c on c.merchant_profile_id = mp.id
-                where d.expiry_date > #{Time.now.to_i}
+                where d.expiry_date > #{Time.zone.now.to_i}
                 order by d.expiry_date }
     find_by_sql(query)
   end

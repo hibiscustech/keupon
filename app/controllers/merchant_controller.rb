@@ -189,7 +189,7 @@ class MerchantController < ApplicationController
     @merchant = Merchant.new( :login => merchant_profile.email_address, :email => merchant_profile.email_address, :password => password,
       :password_confirmation => password)
 
-    @merchant.time_created = Time.now.to_i
+    @merchant.time_created = Time.zone.now.to_i
     @merchant.save!
 
     merchant_profile.update_attributes(:merchant_id => @merchant.id, :status => "active")
@@ -306,7 +306,7 @@ class MerchantController < ApplicationController
       if quantity_left >= 0
         new_status = (quantity_left > 0)? "available" : "used"
         @redeem_deal.update_attributes(:status => new_status, :quantity_left => quantity_left)
-        @deal_redemption = CustomerDealRedemption.create(:customer_deal_id =>@redeem_deal.id, :redeemed_time => Time.now.to_i, :redeemed_quantity =>params[:deal][:quantity]  )
+        @deal_redemption = CustomerDealRedemption.create(:customer_deal_id =>@redeem_deal.id, :redeemed_time => Time.zone.now.to_i, :redeemed_quantity =>params[:deal][:quantity]  )
 
         CustomerMailer.deliver_deal_redemption_notification(@redeem_deal.customer, @redeem_deal.customer.customer_profile, @deal_redemption, @redeem_deal.deal)
         flash[:notice] = "Deal Redeemed Successfully."
@@ -388,7 +388,7 @@ class MerchantController < ApplicationController
     save_amount = params[:actual_value].to_f - buy.to_f
     @bid_deal.update_attributes(:name => params[:name], :actual_value => params[:actual_value], :buy_value => buy, :savings => save_amount, 
       :discount => params[:discount], :number => params[:number], :demand_deal_photo => params[:demand_deal_photo], :rules => params[:rules],
-      :highlights => params[:highlights], :bid_time => Time.now.to_i, :deal_end_date => Time.parse(params[:expiry_date].gsub('/','-')).to_i, :status => "closed")
+      :highlights => params[:highlights], :bid_time => Time.zone.now.to_i, :deal_end_date => Time.parse(params[:expiry_date].gsub('/','-')).to_i, :status => "closed")
 
     demand_deal = @bid_deal.customer_demand_deal
     demand_deal.update_attributes(:status => "offered")

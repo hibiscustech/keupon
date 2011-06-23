@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def admin_create
    logout_keeping_session!
     @user = AdminUser.new(params[:user])
-    @user.time_created = Time.now
+    @user.time_created = Time.zone.now
     @user.login = @user.email
     success = @user && @user.save
     if success && @user.errors.empty?
@@ -121,7 +121,7 @@ protected
   # Track failed login attempts
   def note_failed_signin
     flash[:error] = "Couldn't log you in as '#{params[:login]}'"
-    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.zone.now}"
   end
 
   def customer

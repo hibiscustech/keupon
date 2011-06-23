@@ -93,7 +93,7 @@ module Paperclip
       instance_write(:content_type,    uploaded_file.content_type.to_s.strip)
       instance_write(:file_size,       uploaded_file.size.to_i)
       instance_write(:fingerprint,     uploaded_file.fingerprint)
-      instance_write(:updated_at,      Time.now)
+      instance_write(:updated_at,      Time.zone.now)
 
       @dirty = true
 

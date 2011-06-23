@@ -170,7 +170,7 @@ class ApiController < ApplicationController
  def sign_up_step2
     @customer = Customer.new(:email=>params[:email],:password=>params[:password],:password_confirmation=>params[:password_confirmation])
     @customer.kupoints = 0
-    @customer.time_created = Time.now
+    @customer.time_created = Time.zone.now
     @customer.login = @customer.email
     success = @customer && @customer.save
     @customer_profile = CustomerProfile.new(:first_name=>params[:first_name],:last_name=>params[:last_name],:address1=>params[:address1],:address2=>params[:address2],:contact_number=>params[:contact_number],:country=>params[:country],:zipcode=>params[:zipcode])
@@ -245,7 +245,7 @@ class ApiController < ApplicationController
     @demand_deal.update_attributes(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59"), :description => params[:description], :deal_category_id => params[:category])
        merchants = MerchantProfile.all_merchants_for_my_demand_deal(@demand_deal.deal_category_id, nil)
         for merchant in merchants
-          CustomerDemandDealBidding.create(:time_created => Time.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => @demand_deal.id)
+          CustomerDemandDealBidding.create(:time_created => Time.zone.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => @demand_deal.id)
         end
         @demand_deal.update_attributes(:status => "confirmed")
         @msg = "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond."
@@ -297,7 +297,7 @@ class ApiController < ApplicationController
     xml = Builder::XmlMarkup.new
     xml.instruct!
      begin 
-     @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])
+     @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.zone.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])
      @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
      @msg = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."
     xml.new_deal do
@@ -326,7 +326,7 @@ class ApiController < ApplicationController
 
      if request.post?
        if params[:id].blank?
-         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])
+         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.zone.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])
          @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
          @msg = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."
        end
@@ -402,7 +402,7 @@ class ApiController < ApplicationController
         my_keupons.each { |k|
         deal = Deal.find(k.id)
          for available in my_keupons 
-          if (available.expiry_date.to_i > Time.now.to_i && available.status == "available")
+          if (available.expiry_date.to_i > Time.zone.now.to_i && available.status == "available")
           xml.item(:type => "unused" )do
            xml.name available.name
            xml.image deal.deal_photo.url(:small)
@@ -413,7 +413,7 @@ class ApiController < ApplicationController
           end
          end
          #for expired in my_keupons 
-          #if expired.expiry_date.to_i <= Time.now.to_i || expired.status == "expired"
+          #if expired.expiry_date.to_i <= Time.zone.now.to_i || expired.status == "expired"
           #xml.item(:type => "expired" )do
           # xml.name expired.name
            #xml.image deal.deal_photo.url(:small)

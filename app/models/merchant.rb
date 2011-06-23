@@ -35,7 +35,7 @@ class Merchant < ActiveRecord::Base
   # Activates the user in the database.
   def activate!
     @activated = true
-    self.activated_at = Time.now.utc
+    self.activated_at = Time.zone.now
     self.activation_code = nil
     save(false)
   end

@@ -43,7 +43,7 @@ class AdminMailer < ActionMailer::Base
     @recipients  = "#{Constant.get_admin_email_id}"
     @from        = "#{Constant.get_admin_email_id}"
     @subject     = subject
-    @sent_on     = Time.now
+    @sent_on     = Time.zone.now
   end
 
 end

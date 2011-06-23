@@ -187,7 +187,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.todays_deal
-    sdate = Time.parse("#{Time.now.year}-#{Time.now.month}-#{Time.now.day} 00:00:00").to_i.to_s
+    sdate = Time.parse("#{Time.zone.now.year}-#{Time.zone.now.month}-#{Time.zone.now.day} 00:00:00").to_i.to_s
 
     query = %Q{ select end_time, deal_id from deal_schedules where start_time = '#{sdate}'}
     deal = find_by_sql(query)[0]
@@ -196,7 +196,7 @@ class Deal < ActiveRecord::Base
 
 
   def self.recents_deal
-    sdate = Time.parse("#{Time.now.year}-#{Time.now.month}-#{Time.now.day} 00:00:00").to_i.to_s
+    sdate = Time.parse("#{Time.zone.now.year}-#{Time.zone.now.month}-#{Time.zone.now.day} 00:00:00").to_i.to_s
     query_schedule = DealSchedule.find :all, :conditions => ["start_time < ?", sdate ]
     query = Deal.find(:all , :conditions => ["id in(?)", query_schedule.collect{|x|x.deal_id} ] )
     return query
@@ -244,7 +244,7 @@ class Deal < ActiveRecord::Base
   def self.available_keupoint_deals(keupoints)
     query = %Q{ select d.id, d.name
                 from deals d 
-                where d.deal_type_id = 4 and d.keupoints_required <= #{keupoints} and status = 'open' and expiry_date > #{Time.now.to_i} }
+                where d.deal_type_id = 4 and d.keupoints_required <= #{keupoints} and status = 'open' and expiry_date > #{Time.zone.now.to_i} }
                 
     find_by_sql(query)
   end
@@ -273,7 +273,7 @@ class Deal < ActiveRecord::Base
     query2 = %Q{ select count(*) as used from customer_deals where customer_id = #{customer} and status = 'used'}
     used = find_by_sql(query2)[0].used
 
-    query3 = %Q{ select count(*) as expired from customer_deals cd join deals d on d.id = cd.deal_id where customer_id = #{customer} and d.expiry_date < #{Time.now.to_i}}
+    query3 = %Q{ select count(*) as expired from customer_deals cd join deals d on d.id = cd.deal_id where customer_id = #{customer} and d.expiry_date < #{Time.zone.now.to_i}}
     expired = find_by_sql(query3)[0].expired
 
     return {"available" => available, "used" => used, "expired" => expired, "keupoints" => nil, "all" => (available.to_i+used.to_i+expired.to_i)}

@@ -31,7 +31,7 @@ class CustomerMailer < ActionMailer::Base
   def subscribers_notification(subscriber, deals, deal_discounts)
     @recipients  = "#{subscriber}"
     @from        = "#{Constant.get_admin_email_id}"
-    @sent_on     = Time.now
+    @sent_on     = Time.zone.now
     @subject    = "Today's Deals"
     @body[:deals] = deals
     @body[:deal_discounts] = deal_discounts
@@ -74,7 +74,7 @@ class CustomerMailer < ActionMailer::Base
     @recipients  = email
     @subject    = 'I think you should get your Keupon!'
     @from        = "#{Constant.get_admin_email_id}"
-    @sent_on     = Time.now
+    @sent_on     = Time.zone.now
     @body[:customer] = customer
     @body[:id] = id
     content_type "text/html"
@@ -84,7 +84,7 @@ class CustomerMailer < ActionMailer::Base
   def setup_email(customer)
     @recipients  = "#{customer.email}"
     @from        = "#{Constant.get_admin_email_id}"
-    @sent_on     = Time.now
+    @sent_on     = Time.zone.now
     @body[:customer] = customer
   end 
 end

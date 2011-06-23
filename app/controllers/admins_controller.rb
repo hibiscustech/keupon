@@ -44,7 +44,7 @@ class AdminsController < ApplicationController
     deals = Deal.deals_to_open
     opened_deals = Array.new
     for deal in deals
-      if (Time.parse("#{Time.at(Time.now.to_i).strftime('%d-%m-%Y')} 00:00:00").to_i >= deal.start_time.to_i) && (deal.start_time.to_i <=  Time.parse("#{Time.at(Time.now.to_i).strftime('%d-%m-%Y')} 23:59:59").to_i)
+      if (Time.parse("#{Time.at(Time.zone.now.to_i).strftime('%d-%m-%Y')} 00:00:00").to_i >= deal.start_time.to_i) && (deal.start_time.to_i <=  Time.parse("#{Time.at(Time.zone.now.to_i).strftime('%d-%m-%Y')} 23:59:59").to_i)
         d = Deal.find(deal.id)
         d.update_attributes(:status => "open")
         opened_deals.push(d)
@@ -182,7 +182,7 @@ class AdminsController < ApplicationController
         customer_deal.update_attributes(:status => "available", :deal_code => deal_code, :quantity => quantity, :quantity_left => quantity)
 
         points_earned = Constant.dollar_to_keupoint_convertion.to_i*total_price.to_i
-        CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
+        CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.zone.now.to_i, :status => "earned")
         customer.kupoints = customer.kupoints.to_f + points_earned
         customer.save!
 

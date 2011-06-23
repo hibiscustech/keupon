@@ -105,7 +105,7 @@ class AdminAnalyticsController < ApplicationController
  def customer_reports_csv
     sort = "time_created" if sort.blank?
     @customers = Customer.customers_summary(sort)
-    @outfile = "costomer_report_" + Time.now.strftime("%m-%d-%Y") + ".csv"
+    @outfile = "costomer_report_" + Time.zone.now.strftime("%m-%d-%Y") + ".csv"
     csv_data = FasterCSV.generate do |csv|
       csv << ["Sign-up Date","Name","NRIC/FIN","Age","Phone Number","Email","Average M.Salary(S$)","Location","# of times Bought","total Spending(S$)","# of Keupoints","# of Friends Introduced"]
       @customers.each do |customer|
@@ -119,7 +119,7 @@ class AdminAnalyticsController < ApplicationController
    def accounting_reports_csv
     @deals = Deal.accounting    
     @deals = sort_desc("posting_date", @deals)
-    @outfile = "accounting_report_" + Time.now.strftime("%m-%d-%Y") + ".csv"
+    @outfile = "accounting_report_" + Time.zone.now.strftime("%m-%d-%Y") + ".csv"
     csv_data = FasterCSV.generate do |csv|
       csv << ["Merchant Name","Date of Posting","Deal Title","Date of closing","Date of Expiry","Keupons Purchased","Usual Price(S$)","Sales(S$)","Final Discount","Keupons Commission","Net Sales"]
       @deals.each do |deal|

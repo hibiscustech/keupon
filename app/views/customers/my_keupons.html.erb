@@ -160,7 +160,7 @@
                 <% end %>
               </tr>
               <% for available in @my_keupons %>
-                <% if available.expiry_date.to_i > Time.now.to_i && available.status == "available" %>
+                <% if available.expiry_date.to_i > Time.zone.now.to_i && available.status == "available" %>
                        <!-- <tr onclick="showCustomerDeal('popup_view_deal',<%= available.customer_deal_id %>);" style="cursor: pointer;"> -->
 
 
@@ -215,7 +215,7 @@
 
               </tr>
               <% for expired in @my_keupons %>
-                <% if expired.expiry_date.to_i <= Time.now.to_i || expired.status == "expired" %>
+                <% if expired.expiry_date.to_i <= Time.zone.now.to_i || expired.status == "expired" %>
 
                   <tr>
                     <td colspan="3" height="5"></td>

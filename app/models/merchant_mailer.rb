@@ -56,6 +56,6 @@ class MerchantMailer < ActionMailer::Base
   def  merchant_email(merchant_profile)
     @recipients  = "#{merchant_profile.email_address}"
     @from        = "#{Constant.get_admin_email_id}"    
-    @sent_on     = Time.now
+    @sent_on     = Time.zone.now
   end
 end

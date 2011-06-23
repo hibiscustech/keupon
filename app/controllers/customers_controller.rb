@@ -181,7 +181,7 @@ class CustomersController < ApplicationController
       if !session[:customer_id].blank?
         customer = Customer.find(session[:customer_id])
         show_deal_code = Constant.get_show_deal_code
-        customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
+        customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.zone.now.to_i, :show_deal_code => show_deal_code)
         customer_deal.save!
 
         CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
@@ -294,7 +294,7 @@ class CustomersController < ApplicationController
       
      if request.post?
        if params[:id].blank?
-         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])         
+         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.zone.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])
          @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
          @msg = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."       
        end
@@ -313,7 +313,7 @@ class CustomersController < ApplicationController
       if params[:button_status] == "confirm"
         merchants = MerchantProfile.all_merchants_for_my_demand_deal(@demand_deal.deal_category_id, nil)
         for merchant in merchants
-          CustomerDemandDealBidding.create(:time_created => Time.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => @demand_deal.id)
+          CustomerDemandDealBidding.create(:time_created => Time.zone.now.to_i, :merchant_id => merchant.merchant_id, :customer_demand_deal_id => @demand_deal.id)
         end
         @demand_deal.update_attributes(:status => "confirmed")
         @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
@@ -378,7 +378,7 @@ class CustomersController < ApplicationController
     if !session[:customer_id].blank?
         customer = Customer.find(session[:customer_id])
         show_deal_code = Constant.get_show_deal_code
-        customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
+        customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.zone.now.to_i, :show_deal_code => show_deal_code)
         customer_deal.save!
 
         CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
@@ -461,7 +461,7 @@ class CustomersController < ApplicationController
     deal = Deal.find(params[:id])
 
     deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
-    customer_deal = CustomerDeal.new(:deal_id =>deal.id, :customer_id => current_customer.id, :quantity => 1, :quantity_left => 1, :status => "available", :deal_code => deal_code, :purchase_date => Time.now.to_i)
+    customer_deal = CustomerDeal.new(:deal_id =>deal.id, :customer_id => current_customer.id, :quantity => 1, :quantity_left => 1, :status => "available", :deal_code => deal_code, :purchase_date => Time.zone.now.to_i)
     customer_deal.save!
 
     current_customer.kupoints = current_customer.kupoints.to_f - deal.keupoints_required
@@ -527,8 +527,8 @@ class CustomersController < ApplicationController
     customer_card_inform = nil
     if !params[:new_card].blank?
       customer_card_inform = CustomerCreditCard.new(params[:customer_credit_card])
-      customer_card_inform.time_created = Time.now.to_i
-      customer_card_inform.time_modified = Time.now.to_i
+      customer_card_inform.time_created = Time.zone.now.to_i
+      customer_card_inform.time_modified = Time.zone.now.to_i
       customer_card_inform.expiration_year = params[:date][:year]
       customer_card_inform.expiration_month = params[:date][:month]
       customer_card_inform.save!
@@ -547,14 +547,14 @@ class CustomersController < ApplicationController
       deal.save!
       
       deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
-      customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :quantity_left => deal.number, :status => "available", :deal_code => deal_code, :purchase_date => Time.now.to_i)
+      customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :quantity_left => deal.number, :status => "available", :deal_code => deal_code, :purchase_date => Time.zone.now.to_i)
       customer_deal.save!
 
-      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
+      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.zone.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
 
       points_earned = Constant.dollar_to_keupoint_convertion*total_price
-      CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.now.to_i, :status => "earned")
+      CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.zone.now.to_i, :status => "earned")
       current_customer.kupoints = current_customer.kupoints.to_f + points_earned
       current_customer.save!
 
@@ -575,8 +575,8 @@ class CustomersController < ApplicationController
     customer_card_inform = nil
     if !params[:new_card].blank?
       customer_card_inform = CustomerCreditCard.new(params[:customer_credit_card])
-      customer_card_inform.time_created = Time.now.to_i
-      customer_card_inform.time_modified = Time.now.to_i
+      customer_card_inform.time_created = Time.zone.now.to_i
+      customer_card_inform.time_modified = Time.zone.now.to_i
       customer_card_inform.expiration_year = params[:date][:year]
       customer_card_inform.expiration_month = params[:date][:month]      
     else
@@ -594,10 +594,10 @@ class CustomersController < ApplicationController
       void_transaction = do_void_transaction(@transaction)
 
       show_deal_code = Constant.get_show_deal_code
-      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.now.to_i, :show_deal_code => show_deal_code)
+      customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.zone.now.to_i, :show_deal_code => show_deal_code)
       customer_deal.save!
 
-      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
+      customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.zone.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
 
       CustomerMailer.deliver_deal_ordered_notification(current_customer, current_customer.customer_profile, deal)
@@ -626,7 +626,7 @@ class CustomersController < ApplicationController
     logout_keeping_session!
     @customer = Customer.new(params[:customer])
     @customer.kupoints = 0
-    @customer.time_created = Time.now
+    @customer.time_created = Time.zone.now
     @customer.login = @customer.email
     success = @customer && @customer.save
     @customer_profile = CustomerProfile.new(params[:customer_profile])
