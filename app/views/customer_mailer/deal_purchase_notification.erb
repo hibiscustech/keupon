@@ -1,130 +1,192 @@
-<%=render :partial=>'top'%>
-<tr>
-  <td>
-    <span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Dear <strong><%= @profile.first_name.camelize %>,</strong><br/>Following are the details of the Deal that you purchased:<br/><br/></span>
-  </td>
-</tr>
-       <tr>
-        <td height="48" background="<%=$server_name%>/images/blank_strip.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Purchase Email</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+<body>
+<table width="1000" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="<%=$server_name%>/images/subscribers/top_red_bar.jpg" width="1000" height="21" /></td>
+  </tr>
+  <tr>
+    <td background="<%=$server_name%>/images/subscribers/middle_red_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="8"></td>
+        <td height="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="2%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;color:#ffffff;text-decoration:none;">&nbsp;</td>
-            <td width="96%" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;color:#ffffff;text-decoration:none;"><%=@deal.name%></td>
-            <td width="2%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;color:#ffffff;text-decoration:none;">&nbsp;</td>
+            <td width="20%" align="left"><img src="<%=$server_name%>/images/subscribers/logo.jpg" width="138" height="82" /></td>
+            <td width="54%"> <span style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:14px;color:#FF0000;text-decoration:none;font-weight:bold;">Hot Deals in Singapore</span><br />
+              <br />
+              <span style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#000000;text-decoration:none;">Keupons Deal Purchase Notification</span></td>
+            <td width="26%" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#000000;text-decoration:none;"><%=Time.zone.now.strftime('%A %B %d,%Y')%></td>
           </tr>
         </table></td>
+        <td height="8"></td>
       </tr>
       <tr>
-        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <%if !@deal.nil?%>
+        <td width="12" height="8"></td>
+        <td width="934" background="<%=$server_name%>/images/subscribers/top_black_bar.jpg" height="8"></td>
+        <td width="9" height="8"></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="159" background="<%=$server_name%>/images/subscribers/banner.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td valign="top">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td colspan="4">&nbsp;</td>
-              </tr>
-              <tr>
-                <td width="2%" valign="top">&nbsp;</td>
-                <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td background="<%=$server_name%>/images/widget_header.jpg" height="61" style="background-repeat:no-repeat;">
-                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td height="55" width="27%" align="center" style="vertical-align: top;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:27px;"><%=@deal.discount%><%="%"%></td>
-                          <td width="73%" align="center" style="color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:22px;">S$<%=@deal.value%></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td bgcolor="#ececec" >
-                      <table width="98%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td height="39" style="font-family:Arial, Helvetica, sans-serif;font-size:20px;font-weight:bold;color:#FF0000;text-decoration:none;">About the Deal</td>
-                        </tr>
-                        <tr>
-                          <td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;"><p><%= truncate(@deal.description,400) %> </p></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td height="5"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <table width="100%" border="0" cellpadding="0" cellspacing="0" background="<%=$server_name%>/images/timeleft_bg.jpg" style="border:1px solid #FFFFFF;">
-                          <tr>
-                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;" background="<%=$server_name%>/images/black.jpg" style="background-repeat:repeat;">Purchase Detail:</td>
-                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;">Price/Quantity<br/>S$<%= @deal.buy %> </td>
-                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;" background="<%=$server_name%>/images/black.jpg" style="background-repeat:repeat;">Quantity<br/>12</td>
-                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;">Paid<br/>S$<%= (@deal.buy.to_i*@customer_deal.quantity.to_i) - @credits.to_i %></td>
-                          </tr>
-                        </table>
-                    </td>
-                  </tr>
-                        <tr>
-                          <td align="center" style="padding-top: 8px;font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;">
-                            <% if @credits.to_i > 0 %>
+            <td width="4%">&nbsp;</td>
+            <td width="53%" align="left" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:30px;color:#FFFFFF;text-decoration:none;">Keupons, the only site where you are guaranteed a discount!</td>
+            <td width="43%">&nbsp;</td>
+          </tr>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="35" background="<%=$server_name%>/images/subscribers/bottom_black_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="78%" align="left" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:18px;padding-left:5px;color:#FFFFFF;text-decoration:none;"><%=@subject%></td>
+            <td width="22%" align="center"><a href="<%=$server_name%>" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:14px;color:#ffb3b3;text-decoration:underline;">See all deals&gt;&gt;</a></td>
+          </tr>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none; padding-left:5px;'>Dear <strong><%= @profile.first_name.camelize %>,</strong><br/>Following are the details of the Deal that you purchased:<br/><br/></span></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><table width="100%">
+	  	       <tr>
+	  	        <td height="48" background="<%=$server_name%>/images/blank_strip.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	          <tr>
+	  	            <td width="2%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;color:#ffffff;text-decoration:none;">&nbsp;</td>
+	  	            <td width="96%" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;color:#ffffff;text-decoration:none;"><%=@deal.name%></td>
+	  	            <td width="2%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;color:#ffffff;text-decoration:none;">&nbsp;</td>
+	  	          </tr>
+	  	        </table></td>
+	  	      </tr>
+	  	      <tr>
+	  	        <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	          <tr>
+	  	            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	              <tr>
+	  			<td valign="top">&nbsp;</td>
+	  	                <td valign="top">&nbsp;</td>
+	  	                <td>&nbsp;</td>
+	  	                <td colspan="4">&nbsp;</td>
+	  	              </tr>
+	  	              <tr>
+	  	                <td width="2%" valign="top">&nbsp;</td>
+	  	                <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	                  <tr>
+	  	                    <td background="<%=$server_name%>/images/widget_header.jpg" height="61" style="background-repeat:no-repeat;">
+	  	                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	                        <tr>
+	  	                          <td height="55" width="27%" align="center" style="vertical-align: top;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:27px;"><%=@deal.discount%> %</td>
+	  	                          <td width="73%" align="center" style="color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:22px;">S$<%=@deal.value%></td>
+	  	                        </tr>
+	  	                      </table>
+	  	                    </td>
+	  	                  </tr>
+	  	                  <tr>
+	  	                    <td bgcolor="#ececec" >
+	  	                      <table width="98%" border="0" cellspacing="0" cellpadding="0">
+	  	                        <tr>
+	  	                          <td height="39" style="font-family:Arial, Helvetica, sans-serif;font-size:20px;font-weight:bold;color:#FF0000;text-decoration:none;">About the Deal</td>
+	  	                        </tr>
+	  	                        <tr>
+	  	                          <td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;"><p><%= truncate(@deal.description,400) %> </p></td>
+	  	                        </tr>
+	  	                      </table>
+	  	                    </td>
+	  	                  </tr>
+	  	                  <tr>
+	  	                    <td height="5"></td>
+	  	                  </tr>
+	  	                  <tr>
+	  	                    <td>
+	  	                      <table width="100%" border="0" cellpadding="0" cellspacing="0" background="<%=$server_name%>/images/timeleft_bg.jpg" style="border:1px solid #FFFFFF;">
+	  	                          <tr>
+	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;" background="<%=$server_name%>/images/black.jpg" style="background-repeat:repeat;">Purchase Detail:</td>
+	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;">Price/Quantity<br/>S$<%= @deal.buy %> </td>
+
+	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;" background="<%=$server_name%>/images/black.jpg" style="background-repeat:repeat;">Quantity<br/><%= @customer_deal.quantity %></td>
+	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;">Paid<br/>S$<%= (@deal.buy.to_i*@customer_deal.quantity.to_i) - @credits.to_i %></td>
+	  	                          </tr>
+	  	                        </table>
+	  	                    </td>
+	  	                  </tr>
+	  	                        <tr>
+	  	                          <td align="center" style="padding-top: 8px;font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;">
+
+	  	                            <% if @credits.to_i > 0 %>
                             <p>Additional Discount of S$ <%= @credits %> offered for your Invitees SignUp<br/></p>
                             <% end %>
                             <p>Kindly bring your NRIC: <%=h @profile.customer_pin %> <br/>For Validation at the time of Redeeming this Keupon.</p></td>
-                        </tr>
-                </table></td>
-                <td width="1%">&nbsp;</td>
-                <td width="34%" valign="top">
-                  <%if !@deal.deal_photo.url.nil? %> <%=image_tag (@deal.deal_photo.url),:width=>"330", :height=>"310" %> <%else%><img src="<%=$server_name%>/images/iphone_img.jpg" width="330" height="310" border="0"/> <%end%>
-                  </td>
-                <td width="1%">&nbsp;</td>
-                <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="140" valign="top" background="<%=$server_name%>/images/marchant_box_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="5" cellpadding="0">
-                        <tr>
-                          <td width="33%" height="82" align="center">
-                             <%if !@company.company_photo.nil?%>
-                  <a href="<%=@company.website%>"><img src="<%=@company.company_photo.url %>" style="width: 82px; height: 72px;"/></a>
-                  <%end%>
-                          </td>
-                          <td width="67%" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:#ffffff;text-decoration:none;" align="center"><%=@deal.merchant.merchant_profile.company.name%></td>
-                        </tr>
-                        <tr>
-                          <td height="37" colspan="2" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;color:#ff7d7f;text-decoration:none;">A<%=@company.address1 %> <%=@company.address2 %><br/>
+	  	                        </tr>
+	  	                </table></td>
+	  	                <td width="1%">&nbsp;</td>
+	  	                <td width="34%" valign="top">
+	  	                   <img height="310" src="<%=$server_name%><%= @deal.deal_photo.url %>" width="330" />
+	  	                  </td>
+	  	                <td width="1%">&nbsp;</td>
+	  	                <td width="30%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	                  <tr>
+	  	                    <td height="140" valign="top" background="<%=$server_name%>/images/marchant_box_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+	  	                        <tr>
+	  	                          <td width="33%" height="82" align="center">
+	  	                  <a href="www.bodycontours.com.sg"><img src="<%=$server_name%><%=@company.company_photo.url %>" style="width: 82px; height: 72px;"/></a>
+	  	                          </td>
+	  	                          <td width="67%" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:#ffffff;text-decoration:none;" align="center"><%=@deal.merchant.merchant_profile.company.name%></td>
+	  	                        </tr>
+	  	                        <tr>
+	  	                          <td height="37" colspan="2" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;color:#ff7d7f;text-decoration:none;"><%=@company.address1 %> <%=@company.address2 %><br/>
                           <%=@company.city %></td>
-                        </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="39" style="font-family:Arial, Helvetica, sans-serif;font-size:20px;font-weight:bold;color:#FF0000;text-decoration:none;">About the Merchant</td>
-                  </tr>
-                  <tr>
-                    <td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;"><p><%= truncate(@company.detail,400) %> </p></td>
-                  </tr>
-                </table></td>
-                <td width="2%" valign="top">&nbsp;</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="2%">&nbsp;</td>
-                <td width="32%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" >
-                  <tr>
-                    <td><img src="<%=$server_name%>/images/fine_print_header.jpg" width="312" height="118" /></td>
-                  </tr>
-                  <tr>
-                    <td height="32" background="<%=$server_name%>/images/fine_print_black_gradient.jpg"><table width="100%" border="0" cellspacing="5" cellpadding="0">
-                      <tr>
-                        <td width="12%" align="center"><img src="<%=$server_name%>/images/arrow_bullet_red.png" width="10" height="11" /></td>
-                        <td width="88%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:#ffffff;text-decoration:none;">Deal Expire on <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y")  %></td>
-                      </tr>
-                    </table></td>
-                  </tr>
-                  <%
+	  	                        </tr>
+	  	                    </table></td>
+	  	                  </tr>
+	  	                  <tr>
+	  	                    <td height="39" style="font-family:Arial, Helvetica, sans-serif;font-size:20px;font-weight:bold;color:#FF0000;text-decoration:none;">About the Merchant</td>
+	  	                  </tr>
+	  	                  <tr>
+	  	                    <td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;"><p><%= truncate(@company.detail,400) %> </p></td>
+	  	                  </tr>
+	  	                </table></td>
+	  	                <td width="2%" valign="top">&nbsp;</td>
+	  	              </tr>
+	  	            </table></td>
+	  	          </tr>
+	  	          <tr>
+	  	            <td>&nbsp;</td>
+	  	          </tr>
+	  	          <tr>
+	  	            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	              <tr>
+	  	                <td width="1%">&nbsp;</td>
+	  	                <td width="32%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+	  	                  <tr>
+	  	                    <td><img src="<%=$server_name%>/images/fine_print_header.jpg" width="312" height="118" /></td>
+	  	                  </tr>
+	  	                  <tr>
+	  	                    <td height="32" background="<%=$server_name%>/images/fine_print_black_gradient.jpg"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+	  	                      <tr>
+	  	                        <td width="12%" align="center"><img src="<%=$server_name%>/images/arrow_bullet_red.png" width="10" height="11" /></td>
+	  	                        <td width="88%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:#ffffff;text-decoration:none;">Deal Expires on <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y")  %></td>
+	  	                      </tr>
+	  	                    </table></td>
+	  	                  </tr>
+	  	                  <%
                     display_rules = @deal.rules.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>")
                     for rule in display_rules
                   %>
@@ -141,22 +203,22 @@
                   <tr>
                     <td height="1"></td>
                   </tr>
-                  <% end %>
-                  <tr>
-                    <td height="25" bgcolor="#e7e7e7"><table width="100%" border="0" cellspacing="5" cellpadding="0">
-                      <tr>
-                        <td width="8%" align="center">&nbsp;</td>
-                        <td width="92%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;font-weight:bold;"><a href="/legal">Rules that apply to all Deals</a></td>
-                      </tr>
-                    </table></td>
-                  </tr>
-                </table></td>
-                <td width="1%">&nbsp;</td>
-                <td width="32%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td><img src="<%=$server_name%>/images/highlights_header.jpg" width="315" height="100" /></td>
-                  </tr>
-                  <%
+                  <% end %>	  	                
+	  	                  <tr>
+	  	                    <td height="25" bgcolor="#e7e7e7"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+	  	                      <tr>
+	  	                        <td width="8%" align="center">&nbsp;</td>
+	  	                        <td width="92%" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;font-weight:bold;"><a href="<%=$server_name%>/legal">Rules that apply to all Deals</a></td>
+	  	                      </tr>
+	  	                    </table></td>
+	  	                  </tr>
+	  	                </table></td>
+	  	                <td width="1%">&nbsp;</td>
+	  	                <td width="32%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	                  <tr>
+	  	                    <td><img src="<%=$server_name%>/images/highlights_header.jpg" width="315" height="100" /></td>
+	  	                  </tr>
+	  			<%
                     display_highlights = @deal.highlights.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>")
                     for highlight in display_highlights
                   %>
@@ -173,41 +235,64 @@
                   <tr>
                     <td height="1"></td>
                   </tr>
-                  <% end %>
-                </table></td>
-                <td width="1%">&nbsp;</td>
-                <td width="31%" background="<%=$server_name%>/images/email_deal_location_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="53" align="center">
-                      <table width="100%" border="0" cellspacing="5" cellpadding="0">
-                      <tr>
-                        <td width="10%" align="center">&nbsp;</td>
-                        <td width="80%" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;font-weight:bold;"><%= @location.address1 %>, <%= @location.address2 %> <br/><%= @location.city %> - <%= @location.zipcode %><br/><%= @merchant_profile.contact_number  %></td>
-                        <td width="10%" align="center">&nbsp;</td>
-                      </tr>
-                    </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="center">
-                    </td>
-                  </tr>
-                </table></td>
-                <td width="1%">&nbsp;</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <%end%>
-
-
-        </table></td>
+                  <% end %>	  	                  
+	  	                </table></td>
+	  	                <td width="1%">&nbsp;</td>
+	  	                <td width="31%" background="<%=$server_name%>/images/email_deal_location_bg.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  	                  <tr>
+	  	                    <td height="53" align="center">
+	  	                      <table width="100%" border="0" cellspacing="5" cellpadding="0">
+	  	                      <tr>
+	  	                        <td width="10%" align="center">&nbsp;</td>
+	  	                        <td width="80%" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#000000;text-decoration:none;font-weight:bold;"><%= @location.address1 %>, <%= @location.address2 %> <br/><%= @location.city %> - <%= @location.zipcode %><br/><%= @merchant_profile.contact_number  %></td>
+	  	                        <td width="10%" align="center">&nbsp;</td>
+	  	                      </tr>
+	  	                    </table>
+	  	                    </td>
+	  	                  </tr>
+	  	                  <tr>
+	  	                    <td align="center">
+	  	                    </td>
+	  	                  </tr>
+	  	                </table></td>
+	  	                <td width="1%">&nbsp;</td>
+	  	              </tr>
+	  	            </table></td>
+	  	          </tr>
+	  	          <tr>
+	  	            <td>&nbsp;</td>
+	  	          </tr>
+	  	        </table></td>
+	  	      </tr>
+	  	      <tr>
+	  	        <td>
+	  	          <span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Thank You,<br/>Keupons.com</span>
+	  	        </td>
+	  	      </tr>
+	  </table></td>
+        <td>&nbsp;</td>
       </tr>
       <tr>
-        <td>
-          <span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Thank You,<br/>Keupons.com</span>
-        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
       </tr>
-<%=render :partial=>'bottom'%>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="49" background="<%=$server_name%>/images/subscribers/bottom_black_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" align="right" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:20px;color:#FFFFFF;text-decoration:none;">Want to see all the deals?</td>
+            <td width="3%">&nbsp;</td>
+            <td width="48%" align="left"><a href="<%=$server_name%>"><img src="<%=$server_name%>/images/subscribers/viewdeals_btn.jpg" width="114" height="29" border="0" /></a></td>
+          </tr>
+        </table></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><img src="<%=$server_name%>/images/subscribers/bottom_red_bar.jpg" width="1000" height="21" /></td>
+  </tr>
+</table>
+</body>
+</html>
