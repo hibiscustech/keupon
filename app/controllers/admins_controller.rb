@@ -5,9 +5,9 @@ class AdminsController < ApplicationController
   before_filter :admin_login_required, :except => [:open_the_deals, :email_subscribers, :save_commission ]
   include AuthenticatedSystemMerchant
 
-  def email_subscribers
-    id = 0
-    label "redo_email_subscribers"
+  def email_subscriber
+    if Time.zone.now.strftime("%H:%M:%S") == "00:15:00"
+      id = 0
       @subscribers = KeuponSubscriber.find_by_sql(%Q{select * from keupon_subscribers where id > #{id}})
       for subscriber in @subscribers
         id = subscriber.id
@@ -23,11 +23,13 @@ class AdminsController < ApplicationController
             logger.info "----------Sent: #{subscriber.email}"
           rescue
             logger.info "----------Email Failed: #{subscriber.email}"
-            goto redo_email_subscribers
+            next
           end
         end
       end
-    render(:text => 'Emails Sent')
+      sleep(60)
+      render(:text => 'Emails Sent')
+    end
   end
 
   def view_all_deals
@@ -51,6 +53,7 @@ class AdminsController < ApplicationController
   end
 
   def open_the_deals
+  if Time.zone.now.strftime("%H:%M:%S") == "00:05:00"
     deals = Deal.deals_to_open
     opened_deals = Array.new
     for deal in deals
@@ -63,6 +66,8 @@ class AdminsController < ApplicationController
     if opened_deals.size > 0
       AdminMailer.deliver_opened_deals(opened_deals)
     end
+    sleep(60)
+  end
     render(:text => 'deals opened')
   end
 
