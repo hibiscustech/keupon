@@ -54,7 +54,7 @@
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td> <table width="100%" border="0" cellspacing="6" cellpadding="0">
+        <td> <table width="680" border="0" cellspacing="6" cellpadding="0">
           <%i = 0
                 for opdd in @deal_discounts
                 discount = opdd[1]
@@ -63,7 +63,7 @@
           %>
           <% if i%2 == 0 %>
           <tr>
-            <td width="51%" bgcolor="#eceded">
+            <td width="340" bgcolor="#eceded">
               <table width="100%" border="0" cellspacing="5" cellpadding="0">
               <tr>
                 <td colspan="2" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#FF0000;text-decoration:none;"><%=open_deal.name%></td>
@@ -97,7 +97,7 @@
             </table>
             </td>
             <% else %>
-            <td width="49%" bgcolor="#eceded">
+            <td width="340" bgcolor="#eceded">
               <table width="100%" border="0" cellspacing="5" cellpadding="0">
               <tr>
                 <td colspan="2" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#FF0000;text-decoration:none;"><%=open_deal.name%></td>
@@ -128,15 +128,16 @@
                 </table></td>
                 <td width="64%"><img src="<%=$server_name%>/<%= opd.deal_photo.url%>" width="200" height="169" /></td>
               </tr>
-            </table></td>
-          <% end %>
-          <% if @deals.size%2 != 0 %>
-          </tr>
-          <% end %>
+            </table></td></tr>
           <%
+          end
           i+=1
           end
           %>
+          <% if @deals.size%2 != 0 %>
+          <td width="340">&nbsp</td>
+          </tr>
+          <% end %>
         </table></td>
         <td>&nbsp;</td>
       </tr>
