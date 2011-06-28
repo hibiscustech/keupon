@@ -329,7 +329,7 @@ Everyone pays the lowest price even if you buy now!
 
 <script language="JavaScript">
   <% if !@deal.nil? %>
-  StartCountDown("deal_time_left","<%= Time.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
+  StartCountDown("deal_time_left","<%= Time.zone.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
   <% end %>
 
   function StartCountDown(myDiv,myTargetDate)
