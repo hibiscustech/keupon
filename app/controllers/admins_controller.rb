@@ -7,8 +7,9 @@ class AdminsController < ApplicationController
 
   def close_deals
     if Time.zone.now.strftime("%H:%M:%S") == "00:05:00"
-      deals = Deal.all_deals
-      for d in deals
+      discounts, deals = Deal.all_deals
+      for dd in discounts
+        d = deals[dd[0]]
         if Time.zone.now.to_i > d.end_time.to_i
           deal = Deal.find(d.id)
           discount = DealDiscount.current_deal_discount_for_deal(deal.id)
