@@ -59,6 +59,7 @@ class AdminsController < ApplicationController
         end
       end
     end
+    render(:text => 'Deals Closed')
   end
 
   def email_subscribers
@@ -419,7 +420,7 @@ class AdminsController < ApplicationController
     if @deal.preferred.to_s == "1" && Deal.find(params[:id]).preferred.to_s == "0"
       AdminMailer.deliver_merchant_created_preferred_deal(@deal, merchant_profile, merchant_profile.company)
     end
-    @deal.update_attributes(:name=>params[:deal][:name],:description => params[:deal][:description],:rules=>params[:deal][:rules],:highlights=>params[:deal][:highlights],:value=>params[:deal][:value])
+    @deal.update_attributes(:name=>params[:deal][:name],:deal_photo => params[:deal][:deal_photo], :description => params[:deal][:description],:rules=>params[:deal][:rules],:highlights=>params[:deal][:highlights],:value=>params[:deal][:value])
     if params[:deal][:deal_type_id]
       @deal.deal_type_id = params[:deal][:deal_type_id]
     else
