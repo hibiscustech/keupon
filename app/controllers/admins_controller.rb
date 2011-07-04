@@ -6,7 +6,7 @@ class AdminsController < ApplicationController
   include AuthenticatedSystemMerchant
 
   def close_deals
-    if Time.zone.now.strftime("%H:%M:%S") == "00:05:00"
+    #if Time.zone.now.strftime("%H:%M:%S") == "00:05:00"
       discounts, deals = Deal.all_deals
       for dd in discounts
         d = deals[dd[0]]
@@ -58,12 +58,12 @@ class AdminsController < ApplicationController
           File.delete(file_path)
         end
       end
-    end
+    #end
     render(:text => 'Deals Closed')
   end
 
   def email_subscribers
-    if Time.zone.now.strftime("%H:%M:%S") == "00:15:00"
+    #if Time.zone.now.strftime("%H:%M:%S") == "00:15:00"
       id = 0
       @subscribers = KeuponSubscriber.find_by_sql(%Q{select * from keupon_subscribers where id > #{id}})
       for subscriber in @subscribers
@@ -86,7 +86,7 @@ class AdminsController < ApplicationController
       end
       sleep(60)
       render(:text => 'Emails Sent')
-    end
+    #end
   end
 
   def view_all_deals
@@ -110,7 +110,7 @@ class AdminsController < ApplicationController
   end
 
   def open_the_deals
-  if Time.zone.now.strftime("%H:%M:%S") == "00:05:00"
+  #if Time.zone.now.strftime("%H:%M:%S") == "00:05:00"
     deals = Deal.deals_to_open
     opened_deals = Array.new
     for deal in deals
@@ -124,7 +124,7 @@ class AdminsController < ApplicationController
       AdminMailer.deliver_opened_deals(opened_deals)
     end
     sleep(60)
-  end
+  #end
     render(:text => 'deals opened')
   end
 
@@ -414,7 +414,7 @@ class AdminsController < ApplicationController
   def update_deal
     merchant_profile = Merchant.find(params[:deal][:merchant_id]).merchant_profile
     @deal = Deal.find(params[:id])
-    @deal.update_attribute(:expiry_date,Time.zone.parse(params[:deal][:expiry_date].gsub("/","-")).to_i)
+    @deal.update_attribute(:expiry_date,Time.zone.parse(params[:deal][:expiry_date]).to_i)
     @deal.deal_category_id = merchant_profile.deal_category_id
     @deal.deal_sub_category_id = merchant_profile.deal_sub_category_id
     if @deal.preferred.to_s == "1" && Deal.find(params[:id]).preferred.to_s == "0"
@@ -431,7 +431,7 @@ class AdminsController < ApplicationController
     deal_location.update_attributes(:deal_id => @deal.id, :address1 => params[:address1], :address2 => params[:address2], :state => params[:country], :city => params[:country], :zipcode => params[:zipcode])
     get_lat_lng(deal_location)
     deal_schedule = DealSchedule.find_by_deal_id(@deal.id)
-    deal_schedule.update_attributes(:deal_id => @deal.id, :start_time => Time.zone.parse("#{params[:start_date].gsub("/","-")} 00:00:00").to_i.to_s, :end_time => Time.zone.parse("#{params[:end_date].gsub("/","-")} 23:59:59").to_i.to_s)
+    deal_schedule.update_attributes(:deal_id => @deal.id, :start_time => Time.zone.parse("#{params[:start_date]} 00:00:00").to_i.to_s, :end_time => Time.zone.parse("#{params[:end_date]} 23:59:59").to_i.to_s)
 
     redirect_to "/admins/view_all_deals"
   end

@@ -22,8 +22,8 @@
                 <td align="center" bgcolor="#FFFFFF" class="content_text"><%= deal.actual_value%></td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text"><%= discount %> %</td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text"><%= deal.no_of_customers %></td>
-                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(deal.start_time.to_i).strftime("%d-%m-%Y")%></td>
-                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.at(deal.end_time.to_i).strftime("%d-%m-%Y")%></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.zone.at(deal.start_time.to_i).strftime("%d-%m-%Y")%></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= Time.zone.at(deal.end_time.to_i).strftime("%d-%m-%Y")%></td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text">
                   <% if deal.preferred.to_s == "1" && deal.admin_preferred.to_s == "1"%>
                   <image src="/images/star_green.gif"/>
