@@ -114,7 +114,7 @@ class AdminsController < ApplicationController
     deals = Deal.deals_to_open
     opened_deals = Array.new
     for deal in deals
-      if (Time.parse("#{Time.at(Time.zone.now.to_i).strftime('%d-%m-%Y')} 00:00:00").to_i >= deal.start_time.to_i) && (deal.start_time.to_i <=  Time.parse("#{Time.at(Time.zone.now.to_i).strftime('%d-%m-%Y')} 23:59:59").to_i)
+      if (Time.zone.parse("#{Time.zone.at(Time.zone.now.to_i).strftime('%d-%m-%Y')} 00:00:00").to_i >= deal.start_time.to_i) && (deal.start_time.to_i <=  Time.zone.parse("#{Time.zone.at(Time.zone.now.to_i).strftime('%d-%m-%Y')} 23:59:59").to_i)
         d = Deal.find(deal.id)
         d.update_attributes(:status => "open")
         opened_deals.push(d)
