@@ -25,11 +25,20 @@ class DealDiscount < ActiveRecord::Base
   end
 
   def self.current_deal_discount_for_deal(deal_id)
-    query = %Q{ select dd.discount
-                from deal_discounts dd
-                where dd.deal_id = #{deal_id} and
-                (select sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers from deals d left outer join customer_deals cd on cd.deal_id = d.id where d.id = #{deal_id}) between customers and max_customers }
-    dd = find_by_sql(query)[0]
-    return (dd.blank?)? "0" : dd.discount
+    dds = Deal.find(deal_id).deal_discounts
+    discount = nil
+    no_of_customers = find_by_sql(%Q{ select sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers from deals d left outer join customer_deals cd on cd.deal_id = d.id where d.id = #{deal_id}})[0].no_of_customers
+    for dd in dds
+      min_cust = dd.customers
+      max_cust = dd.max_customers
+      if max_cust.blank? && (no_of_customers.to_i >= min_cust)
+        discount = dd.discount
+        break
+      elsif (no_of_customers.to_i >= min_cust) && (no_of_customers.to_i <= max_cust)
+        discount = dd.discount
+        break
+      end
+    end
+    return discount
   end
 end
