@@ -26,7 +26,7 @@ class DealDiscount < ActiveRecord::Base
 
   def self.current_deal_discount_for_deal(deal_id)
     dds = Deal.find(deal_id).deal_discounts
-    discount = nil
+    discount = 0
     no_of_customers = find_by_sql(%Q{ select sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers from deals d left outer join customer_deals cd on cd.deal_id = d.id where d.id = #{deal_id}})[0].no_of_customers
     for dd in dds
       min_cust = dd.customers
