@@ -17,7 +17,7 @@ class Deal < ActiveRecord::Base
 
   has_attached_file :deal_photo,
     :styles => {
-      :thumb=> "259x220#",
+      :thumb=> "259x218#",
       :small  => "150x150>",
       :deal_detail  => "330x310#"}
 
