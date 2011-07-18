@@ -17,8 +17,9 @@ class Deal < ActiveRecord::Base
 
   has_attached_file :deal_photo,
     :styles => {
-      :thumb=> "100x100#",
-      :small  => "150x150>" }
+      :thumb=> "259x225#",
+      :small  => "150x150>",
+      :deal_detail  => "330x310#"}
 
 
   DISCOUNTS = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95"]
