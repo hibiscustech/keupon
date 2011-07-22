@@ -93,7 +93,7 @@ body {
 	  	                    <td background="<%=$server_name%>/images/widget_header.jpg" height="61" style="background-repeat:no-repeat;">
 	  	                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	  	                        <tr>
-	  	                          <td height="55" width="27%" align="center" style="vertical-align: top;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:27px;"><%=@deal.discount%> %</td>
+	  	                          <td height="55" width="27%" align="center" style="vertical-align: top;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:27px;"><%=@deal.discount.to_i%>%</td>
 	  	                          <td width="73%" align="center" style="color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:22px;">S$<%=@deal.value%></td>
 	  	                        </tr>
 	  	                      </table>
@@ -122,7 +122,7 @@ body {
 	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;">Price/Quantity<br/>S$<%= @deal.buy %> </td>
 
 	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;" background="<%=$server_name%>/images/black.jpg" style="background-repeat:repeat;">Quantity<br/><%= @customer_deal.quantity %></td>
-	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;">Paid<br/>S$<%= (@deal.buy.to_i*@customer_deal.quantity.to_i) - @credits.to_i %></td>
+	  	                            <td width="25%" height="49" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#FFFFFF;">Paid<br/>S$<%= (@deal.buy.to_f*@customer_deal.quantity.to_f) - @credits.to_f %></td>
 	  	                          </tr>
 	  	                        </table>
 	  	                    </td>

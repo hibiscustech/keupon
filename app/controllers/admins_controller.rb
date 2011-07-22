@@ -243,9 +243,10 @@ class AdminsController < ApplicationController
     csv.each do |row|
       if i > 0
         customer = Customer.find(row[0])
-        customer_deal = CustomerDeal.find(row[1])
+        customer_deal = CustomerDeal.find(row[2])
         quantity = row[9]
         total_price = row[10]
+        deal.update_attributes(:buy => row[8])
         if !row[7].blank? && row[7].to_i > 0
           customer.update_attributes(:balance_credit => row[7])
         end
