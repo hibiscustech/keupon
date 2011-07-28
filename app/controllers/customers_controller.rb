@@ -635,7 +635,7 @@ class CustomersController < ApplicationController
        @friend=CustomerFriends.find(params[:friend_id])
        #@friend.update_attribute(:signed_up,1)
       end
-      @customer_profile=@profile = CustomerProfile.new(params[:customer_profile])
+      @profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
       @profile.customer = @customer
       @profile.save
