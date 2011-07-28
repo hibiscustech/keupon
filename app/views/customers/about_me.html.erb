@@ -25,7 +25,7 @@ var dtCh= "/";
 var minYear=1900;
 var maxYear=1993;
 function Validate123(){
-var theForm = document.getElementById('edit_customer_profile_52');
+var theForm = document.getElementById('edit_customer_profile_1');
 var i;
   if (theForm.customer_profile_dob.value == "" || theForm.customer_profile_dob.value.length < 1)
   {
@@ -161,7 +161,7 @@ return true
           <div id="myprofile" class="myprofile" style="border: 4px solid black; display: block; min-height: 450px; margin-bottom: 10px; width: 938px; margin-top: 0px; margin-left: 3px;">
             <br/><br/><br/><br/><br/><br/><br/>
             <div style="width:618px;text-align:left;">
-              <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update', :id=>'customerProfile'} do |f| -%>
+              <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update'} ,:html => {:id => 'edit_customer_profile_1'}do |f| -%>
                 <%=hidden_field :customer_favourite, :customer_id, :value => @customer_profile.customer_id%>
                 <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
 
