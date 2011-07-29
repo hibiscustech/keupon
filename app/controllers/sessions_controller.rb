@@ -251,7 +251,7 @@ protected
       merchant.password = new_pwd
       merchant.password_confirmation = new_pwd
       flag = merchant.save!
-      CustomerMailer.deliver_forgot_password(merchant, new_pwd)
+      CustomerMailer.deliver_forgot_password(merchant, new_pwd,merchant.merchant_profile)
       if flag
         flash[:notice] = "Your password has been reset and send to your mail"
         redirect_to "/"
