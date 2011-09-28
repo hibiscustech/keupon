@@ -114,6 +114,11 @@
             <div class="header">
                 <%= render :partial => "/layouts/header" %>
             </div>
+			<% if flash[:notice] %>
+			<div style="text-align:center;background:#ddd;">
+				<%= flash[:notice] %>
+			</div>
+			<% end %>
             <div class="mid_body">
                 <%= yield %>
             </div>
