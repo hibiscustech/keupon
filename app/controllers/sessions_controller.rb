@@ -180,7 +180,8 @@ protected
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      flash[:notice] = "Please Login with correct username and password pair"
+      redirect_back_or_default('/')
       end
     end
   end
