@@ -15,11 +15,17 @@ class Deal < ActiveRecord::Base
   has_one :deal_schedule
   has_one :deal_location_detail
 
+#  has_attached_file :deal_photo,
+#    :styles => {
+#      :thumb=> "259x218#",
+#      :small  => "150x150>",
+#      :deal_detail  => "330x310#"}
+
   has_attached_file :deal_photo,
     :styles => {
-      :thumb=> "259x218#",
-      :small  => "150x150>",
-      :deal_detail  => "330x310#"}
+      :open_deal_main=> "220X130#",
+      :hot_deal_main  => "370X290#",
+      :deal_detail  => "420X300#"}
 
 
   DISCOUNTS = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95"]
@@ -52,7 +58,7 @@ class Deal < ActiveRecord::Base
     deal_discounts = deals_and_current_discounts(resultset)
     return deal_discounts, resultset_hashed
   end
-
+  
   def self.hottest_deal_of_today
     query = %Q{ select d.id, d.name, sum(case when cd.quantity is null then 0 else cd.quantity end) no_of_customers, d.discount, d.buy
                 from deals d
