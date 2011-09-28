@@ -1,0 +1,36 @@
+<% form_tag session_path do -%>
+    <div id="popup_center" class="login_pos">
+        <a href="javascript:void(0);" onclick="Effect.Fade('RB_window', {duration: 0.4});Effect.Fade('RB_overlay', {duration: 0.4});">
+			<img src="images/close_btn1.png" border="0" style="margin-top:15px; position:absolute; margin-left:520px;"/>
+		</a>
+        <div id="popup" class="login">
+            <div class="login_txt">
+                LOG IN
+            </div>
+            <div>
+                <img src="/images/keupons.jpg" hspace="35" />
+            </div>
+            <div style="font-size:22px; padding-left:35px;">
+                WELCOME BACK
+                <br/>
+                <span style="font-size:14px;">Please enter your details</span>
+            </div>
+            <div class="login_mainbox">
+                <div style="height:25px;">
+                    <span style="width:79px;">Name</span>
+                    <%= text_field_tag 'login', @login, :class => "login_tb1a" %></td>
+                </div>
+                <div style="height:25px; margin-top:10px;">
+                    <span style="width:79px;">Password</span>
+                    <%= password_field_tag 'password', nil, :class => "login_tb1a" %>
+                </div>
+                <div class="login_forget">
+                    <a href="#">forget your password?</a>
+                </div>
+            </div>
+            <div class="login_go">
+                <%= image_submit_tag("/images/go_big.jpg") %>
+            </div>
+        </div>
+    </div>
+<% end -%>

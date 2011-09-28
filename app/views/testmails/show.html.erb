@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @testmail.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @testmail.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_testmail_path(@testmail) %> |
+<%= link_to 'Back', testmails_path %>

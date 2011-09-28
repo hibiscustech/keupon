@@ -1,98 +1,62 @@
-<script type="text/javascript" src="/javascripts/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="/javascripts/cufon-yui.js"></script>
-<script type="text/javascript" src="/javascripts/loopslider.js"></script>
-<script type="text/javascript" src="/javascripts/custom_open.js"></script>
-<!--
- <tr>
-        <td background="/images/marketing_msg_bg.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td align="left" background="/images/up_banner_img.jpg" width="973" height="118" align="center" class="login_welcome_text">
-            <div style="float:right;width:600px; text-align:center">
-              <span  style="padding-left:20px;">Welcome to Keupons,
-                <span class="login_welcome_text_small"><p>The only site where you are guaranteed a discount!</p></span></span>
-            </div>
-             </td>
-          </tr>
-        </table></td>
-      </tr>
--->
-       <tr>
-        <td height="48" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td align="left" ><img src="/images/hot_deals_strip.jpg" /></td>
-            </tr>
-        </table></td>
-      </tr>
-
-
-       <tr>
-        <td height="350" width="955" >
-          <!--
-        <iframe src="/slider" height="335" width="973" style="position:static; margin-top:0px;" hspace="0" scrolling="no" vspace="0" frameborder="0" align="middle" ></iframe>
-          -->
-          <div id="loopedSlider"><!-- begin loopedSlider -->
-            <div class="container">
-              <div class="slides_open">
-       <% for htd in @hot_deal_discounts
+<div class="midb_left">
+    <div class="img_hot_deals">
+        <img src="/images/hot_deals.png" />
+    </div>
+	<% htd = @hot_deal_discounts[0]
         discount = htd[1]
         hot_deal = @hot_deals[htd[0]]
-        htdeal = Deal.find(hot_deal.id)
-      %>
-                            <div>
-                              <div class="text">
-                                <h1> <%=  hot_deal.name %></h1>
-                                <p><%=  truncate(htdeal.description, 175, "...") %></p>
-									<a href="/deal_details?id=<%= hot_deal.id %>" class="button2">GetDeal</a>
-                                </div>
-                              <a href="/deal_details?id=<%= hot_deal.id %>"><img class="item" src="<%=htdeal.deal_photo.url(:thumb)%>" alt="clouds" border="0" /></a>
-                            </div>
-<%end%>
-                 </div>
-                    </div>
-                        <a href="#" class="previous_open"><img src="./images/previous_open.png" width="46" height="47" alt="Previous" /></a>
-                        <a href="#" class="next_open"><img src="./images/next_open.png" width="46" height="47" alt="Next" /></a>
-           </div> <!-- end loopedSlider -->
-
-        <div id="mini-footer"><!-- begin mini-footer -->
-        </div><!-- end mini-footer -->
-<script type="text/javascript"> Cufon.now(); </script>
-        </td>
-      </tr>
-
-<% if !@open_deal_recents.blank? && @open_deal_recents.size > 2 %>
-       <tr>
-        <td height="48" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td height="48" align="left"><img src="/images/open_deal_strip.jpg" /></td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td height="220" align="center">
-       <!-- ********************SLIDER IMAGES*******************************-->
-          <div id="wrapper">
-
-		<div class="slider-frame">
-                <div class="sliderImages">
-                  <ul>
-
-                    <%for opdd in @open_deal_recents
-                      discount = opdd[1]
-                      open_deal = @open_deals_recents[opdd[0]]
-                      opd = Deal.find(open_deal.id)
-                    %>
-                      <li>
-                        <a href="/deal_details?id=<%= open_deal.id %>" ><img src="<%=opd.deal_photo.url%>" width="240" height="160" alt="Project Title 1" /></a></li>
-                    <%end%>
-                  </ul>
-                </div>
-	 </div>
-			 <div class="arrow-but">
-				<a href="#" class="prev"><img src="./images/previous.png" alt="Previous" width="43" height="42" /></a>
-				<a href="#" class="next"><img src="./images/next.png" alt="Next"  width="43" height="42"/></a>			</div>
-
-<!-- ********************END SLIDER IMAGES*******************************-->
-   </div>
-        </td>
-      </tr>
-<% end %>
+        htdeal = Deal.find(hot_deal.id) %>
+    <div class="img1">
+        <a href="/deal_details?id=<%= hot_deal.id %>">
+    		<img class="item" src="<%=htdeal.deal_photo.url(:hot_deal_main)%>" alt="clouds" border="0" />
+		</a>
+		<div class="img1_round_bg">
+			Only
+    		<br/>
+            <span style="font-size:27px;">$<%=htdeal.value.round %></span>
+			<br/>
+			or less
+		</div>
+    </div>
+    <div class="txt_box">
+        <div class="txt1">
+            <%= truncate(htdeal.name, 40, "...") %>
+        </div>
+        <div class="txt2">
+            <%= truncate(htdeal.description, 200, "...") %>
+        </div>
+        <div style="float:left; margin-top:15px;">
+            <a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/read_more.png" align="left" border="0" vspace="10" /></a>
+			<a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/buy_now1.png" hspace="15" align="right" border="0" /></a>
+        </div>
+    </div>
+</div>
+<div class="midb_right">
+    <div class="open_deal">
+        <img src="/images/open_deals.png" />
+    </div>
+    <div class="up_box">
+    	<%for opdd in @open_deal_recents
+                        discount = opdd[1]
+                        open_deal = @open_deals_recents[opdd[0]]
+                        opd = Deal.find(open_deal.id) %>
+        <div class="open_deal_box1">
+            <div class="open_deal_box1_inner">
+            	<a href="/deal_details?id=<%= open_deal.id %>">
+            		<img src="<%=opd.deal_photo.url(:open_deal_main)%>" alt="Project Title 1" />
+				</a>
+			</div>
+            <div class="txt3">
+            	<div class="round_small">
+            		Only
+            		<br/>
+		            <span style="font-size:13px;">$<%=opd.value.round %></span>
+					<br/>
+					or less
+	            </div>
+				<%= truncate(open_deal.name, 75, "...") %>
+            </div>
+        </div>
+		<% end %>
+    </div>
+</div>

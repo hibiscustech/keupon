@@ -1,0 +1,38 @@
+<div class="head_left">
+    <div class="logo_padd">
+        <img src="/images/ke_logo.png" />
+    </div>
+    <div class="grey_buttons">
+    	<% if logged_in? %>
+			<a href="/logout"><img src="/images/logout.png" width="87" height="39" border="0" /></a>
+		<% else %>
+	        <%= link_to_remote_redbox image_tag('/images/login.png'), :url => {:controller => "sessions", :action => "new"} %>
+			<%= link_to_remote_redbox image_tag('/images/sign_up.png'), :url => {:controller => "customers", :action => "new"} %>
+		<% end%>
+		<a href="javascript:void(0);"><img src="/images/if.png" width="87" height="39" border="0" /></a>
+    </div>
+</div>
+<div class="legs">
+    <img src="/images/legs.png"/>
+</div>
+<div class="head_right">
+    <div class="head_rightin">
+        <div>
+            <img src="/images/paypal_pur.jpg" /><img src="/images/paypal.png" align="top" vspace="15" hspace="5"/><img src="/images/bestdeal.png" hspace="3" /><img src="/images/moneyback.png" width="83" height="61" />
+        </div>
+        <div style="float:right;">
+            <img src="/images/safe1.png"/><img src="/images/100monyback.png" hspace="12" /><img src="/images/best_deal.png"/>
+        </div>
+    </div>
+</div>
+<div class="go">
+    <div class="deal_img">
+        <img src="/images/receivedeals.jpg" hspace="4" />
+    </div>
+    <div class="head_box">
+        <input name="tb1" type="text" class="head_box1" />
+    </div>
+    <div class="go_img">
+        <img src="/images/go.png" hspace="4" />
+    </div>
+</div>

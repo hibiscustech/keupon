@@ -1,0 +1,17 @@
+<% @customer.password = @customer.password_confirmation = nil %>
+<div id="popup_create_deal">
+	<% form_for :customer, :url => customers_path,:html => {:id=>'form'} do |f| -%>
+		<div id="customerBasic">
+			<%= render :partial => "customerbasic", :locals => {:f => f} %>
+		</div>
+		<div id="customerProfile" style="display:none;">
+			<%p @customer_profile%>
+    		<% fields_for :customer_profile do |p| %>
+				<%= render :partial => "customerprofile", :locals => {:p => p} %>
+			<% end %>
+		</div>
+		<div id="customerFinal" style="display:none;">
+			<%= render :partial => "customerfinal", :locals => {:f => f} %>
+		</div>
+	<% end %>
+</div>

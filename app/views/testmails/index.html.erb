@@ -1,0 +1,22 @@
+<h1>Listing testmails</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+
+<% @testmails.each do |testmail| %>
+  <tr>
+    <td><%=h testmail.name %></td>
+    <td><%=h testmail.email %></td>
+    <td><%= link_to 'Show', testmail %></td>
+    <td><%= link_to 'Edit', edit_testmail_path(testmail) %></td>
+    <td><%= link_to 'Destroy', testmail, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New testmail', new_testmail_path %>
