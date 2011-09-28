@@ -159,3 +159,97 @@ function customerpassword(elementID)
 }
 
 
+function changeScreenStepOne(){
+	var email = document.getElementById("customer_email").value
+	var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+	var password = document.getElementById("passwords").value
+	var password_confirmation = document.getElementById("customer_password_confirmation").value
+	if (email == '') {
+		alert('Enter a valid E-email ID');
+		email.focus
+		return false;
+	}
+	
+	if (!filter.test(email)) {
+		alert('Please provide a valid email address');
+		email.focus
+		return false;
+	}
+	
+	if (password == '') {
+		alert('Please enter the Password')
+		return false;
+	}
+	if (password_confirmation == '') {
+		alert('Please Confirm your Password again')
+		return false;
+	}
+	if (password == password_confirmation) {
+		var all_complete = true;
+	}
+	else {
+		alert('Password and Confirm Password needs to match');
+		return false;
+	}
+	if (all_complete) {
+		document.getElementById("customerBasic").style.display = "none";
+		document.getElementById("customerProfile").style.display = "block";
+	}
+}
+
+function changeScreenStepTwo(){
+	var fn =  document.getElementById("customer_profile_first_name").value
+  	var ln =  document.getElementById("customer_profile_last_name").value
+  	var nric =  document.getElementById("customer_profile_customer_pin").value
+  	var ad2 =  document.getElementById("customer_profile_address1").value
+  	var coun =  document.getElementById("customer_profile_country").value
+  	var pin =  document.getElementById("customer_profile_zipcode").value
+  	var cn =  document.getElementById("customer_profile_contact_number").value
+	
+    if (fn == '') {
+    	alert('Enter your First Name')
+        return false;
+    }
+	if (ln == ''){
+        alert('Enter your Last Name')
+        return false;
+    }
+	if (nric == ''){
+        alert('Enter NRIC#')
+        return false;
+    }
+	if (ad2 == ''){
+		alert('Enter Address')
+        return false;
+    }
+	if (coun == ''){
+		alert('Enter your Country ')
+        return false;
+    }
+	if (pin == ''){
+		alert('Enter your Pincode')
+        return false;
+    }
+	if (cn != ''){
+		var all_complete = true;
+    }
+	else{
+		alert('Enter your Contact Number')
+        return false;
+	}
+	if (all_complete) {
+		document.getElementById("customerProfile").style.display = "none";
+		document.getElementById("customerFinal").style.display = "block";
+	}
+}
+
+function check_tos(){
+    var tos = document.getElementById("tos").checked;
+    if (tos == true) {
+        document.getElementById("form").submit();
+    }
+    else {
+        alert("Please put a tick mark on Terms and conditions");
+        return false;
+    }
+}

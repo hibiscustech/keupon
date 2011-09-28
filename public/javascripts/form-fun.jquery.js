@@ -76,7 +76,8 @@ $(function(){
 
         if (email == '')
         {
-            alert('Enter a valid E-email ID')
+            alert('Enter a valid E-email ID');
+			email.focus
             return false;
         }
 
