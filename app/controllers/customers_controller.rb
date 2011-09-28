@@ -4,7 +4,7 @@ require 'caller'
 
 class CustomersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
- 
+  
   include AuthenticatedSystem
   protect_from_forgery :only => [:destroy]
   before_filter :login_required, :only => [:deal_transaction_success, :invite_friends, :transaction_details,:save_transaction_details,:get_location_deal,:want_a_deal, :my_keupons,:change_password]
@@ -13,34 +13,34 @@ class CustomersController < ApplicationController
   filter_parameter_logging :password, :only => [:save_transaction_details, :save_demand_deal_transaction_details]
   
   layout 'application' ,:except=>[:slider]
-
+  
   @@profile = PayPalSDKProfiles::Profile
   @@email=@@profile.unipay
   @@cre=@@profile.credentials
-
+  
   #condition to check if 3 token credentials are passed
   if((@@email.nil?) && (@@cre.nil? == false))
-      @@USER = @@cre["USER"]
-      @@PWD = @@cre["PWD"]
-      @@SIGNATURE  = @@cre["SIGNATURE"]
-      @@SUBJECT = ""
+    @@USER = @@cre["USER"]
+    @@PWD = @@cre["PWD"]
+    @@SIGNATURE  = @@cre["SIGNATURE"]
+    @@SUBJECT = ""
   end
   #condition to check if UNIPAY credentials are passed
   if((@@cre.nil?) && (@@email.nil? == false) )
-      @@USER = ""
-      @@PWD = ""
-      @@SIGNATURE  = ""
-      @@SUBJECT = @@email["SUBJECT"]
+    @@USER = ""
+    @@PWD = ""
+    @@SIGNATURE  = ""
+    @@SUBJECT = @@email["SUBJECT"]
   end
   #condition to check if 3rd party credentials are passed
   if((@@cre.nil? == false) && (@@email.nil? == false))
-      @@USER = @@cre["USER"]
-      @@PWD = @@cre["PWD"]
-      @@SIGNATURE  = @@cre["SIGNATURE"]
-      @@SUBJECT = @@email["SUBJECT"]
+    @@USER = @@cre["USER"]
+    @@PWD = @@cre["PWD"]
+    @@SIGNATURE  = @@cre["SIGNATURE"]
+    @@SUBJECT = @@email["SUBJECT"]
   end
   def under_construction
-   render :template=>'customers/under_construction'
+    render :template=>'customers/under_construction'
   end
   def search
     @page = "Open Deals"
@@ -50,10 +50,10 @@ class CustomersController < ApplicationController
         format.html
         format.js {
           render :update do |page|
-             page.replace_html 'all',:partial => "open_deals_search"
-             page.hide "loc"
-             page.hide "discount"
-             page.hide "date"
+            page.replace_html 'all',:partial => "open_deals_search"
+            page.hide "loc"
+            page.hide "discount"
+            page.hide "date"
           end
         }
       end
@@ -63,21 +63,21 @@ class CustomersController < ApplicationController
     
   end
   def invite_friends
-   if request.post?
-     email=params[:email]
-     if Customer.verifying_already_member?(email)
-      flash[:notice]= "#{email} is already a member."
-      redirect_to '/invite_friends'
-     else
-       @customer_friend=CustomerFriend.create(:friend_email=>email,:customer_id=>current_customer.id)
-       flash[:notice]='Great! Your friend will be receiving an email from Keupons.com soon! Invite more friends, earn more Kredits and save more!'
-       #emailing with URL which will populate email id on email field os the signup page
-       CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
-       redirect_to '/invite_friends'
-     end
-   else
-     render :template=>'/customers/earn_money'
-   end
+    if request.post?
+      email=params[:email]
+      if Customer.verifying_already_member?(email)
+        flash[:notice]= "#{email} is already a member."
+        redirect_to '/invite_friends'
+      else
+        @customer_friend=CustomerFriend.create(:friend_email=>email,:customer_id=>current_customer.id)
+        flash[:notice]='Great! Your friend will be receiving an email from Keupons.com soon! Invite more friends, earn more Kredits and save more!'
+        #emailing with URL which will populate email id on email field os the signup page
+        CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
+        redirect_to '/invite_friends'
+      end
+    else
+      render :template=>'/customers/earn_money'
+    end
   end
   
   def deal_of_the_day
@@ -86,20 +86,21 @@ class CustomersController < ApplicationController
     @open_deal_discounts, @open_deals = Deal.all_open_deals
     @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals    
     @recent_deals = Deal.all_recent_deals
+    #    @hot_deal = Deal.hot_deal_for_today
     if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
           render :update do |page|
-             page.replace_html 'featured_slider',:partial => "open_deals"
+            page.replace_html 'featured_slider',:partial => "open_deals"
           end
         }
       end
     else
-     
+      
     end
   end
-
+  
   def open_deals
     @page = "Open Deals"
     operator = (params[:match] == "and")? "and" : "or"
@@ -121,7 +122,7 @@ class CustomersController < ApplicationController
         conditions += " ) "
       end
     end
-
+    
     @open_deal_discounts, @open_deals = Deal.all_hot_and_open_deals_for_summary(conditions)
     @hotest_deal = Deal.hottest_deal_of_today
     if request.xml_http_request?
@@ -135,24 +136,24 @@ class CustomersController < ApplicationController
       end
     end
   end
-
- 
+  
+  
   def comments
     @deal = Deal.find(params[:id])
     @forums=Forum.find_all_by_deal_id(@deal.id)
     @forums=@forums.paginate(:page => params['page'], :per_page => @forums.length)
     render :update do |page|
-     page.replace_html 'comments',:partial=>'/discussions/reviews'
+      page.replace_html 'comments',:partial=>'/discussions/reviews'
     end
   end
-
+  
   def email_deal_details
     @deal = Deal.find(params[:id])
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @location = @deal.deal_location_detail
     @merchant_profile = @deal.merchant.merchant_profile
   end
-
+  
   def deal_details
     @deal = Deal.find(params[:id])
     @forums=Forum.find_all_by_deal_id(@deal.id)
@@ -183,32 +184,32 @@ class CustomersController < ApplicationController
         show_deal_code = Constant.get_show_deal_code
         customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.zone.now.to_i, :show_deal_code => show_deal_code)
         customer_deal.save!
-
+        
         CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
-
+        
         flash[:notice] = "You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$#{@deal.value}.  Once this Keupon, has been successfully closed, the discount will then be applied to the Actual Price S$#{@deal.value}, based on the Total Buy. You will be notified on this through another email."
       end
     end
   end
-
+  
   def keupoint_deal
     @page = "Purchase Deal"
     @deal = Deal.find(params[:id])
     @company = @deal.merchant.merchant_profile.company if !@deal.blank?
     @deal_location = (@deal.deal_location_detail.blank?)? @company : @deal.deal_location_detail
   end
-
+  
   def recent_deals
-     @page = "Recent Deals"
+    @page = "Recent Deals"
     #@deal_schedule = DealSchedule.deal_schedule
     @deals = Deal.recents_deal.paginate :page => params['page'], :per_page => 10
   end
   def all_deals
-     @msg = 
-     @page = "I Want a Deal"
-     @categories = DealCategory.find(:all)
-     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
-     if request.xml_http_request?
+    @msg = 
+    @page = "I Want a Deal"
+    @categories = DealCategory.find(:all)
+    @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+    if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
@@ -220,11 +221,11 @@ class CustomersController < ApplicationController
     end
   end
   def new_deals
-     @msg = 
-     @page = "I Want a Deal"
-     @categories = DealCategory.find(:all)
-     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_new_summary(current_customer.id)
-     if request.xml_http_request?
+    @msg = 
+    @page = "I Want a Deal"
+    @categories = DealCategory.find(:all)
+    @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_new_summary(current_customer.id)
+    if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
@@ -236,11 +237,11 @@ class CustomersController < ApplicationController
     end
   end
   def offered_demand_deals
-     @msg = 
-     @page = "I Want a Deal"
-     @categories = DealCategory.find(:all)
-     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_offered_summary(current_customer.id)
-     if request.xml_http_request?
+    @msg = 
+    @page = "I Want a Deal"
+    @categories = DealCategory.find(:all)
+    @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_offered_summary(current_customer.id)
+    if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
@@ -252,11 +253,11 @@ class CustomersController < ApplicationController
     end
   end
   def accepted_deals
-     @msg = 
-     @page = "I Want a Deal"
-     @categories = DealCategory.find(:all)
-     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_accepted_summary(current_customer.id)
-     if request.xml_http_request?
+    @msg = 
+    @page = "I Want a Deal"
+    @categories = DealCategory.find(:all)
+    @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_accepted_summary(current_customer.id)
+    if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
@@ -268,11 +269,11 @@ class CustomersController < ApplicationController
     end
   end
   def confirmed_deals
-     @msg = 
-     @page = "I Want a Deal"
-     @categories = DealCategory.find(:all)
-     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_confirmed_summary(current_customer.id)
-     if request.xml_http_request?
+    @msg = 
+    @page = "I Want a Deal"
+    @categories = DealCategory.find(:all)
+    @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_confirmed_summary(current_customer.id)
+    if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
@@ -283,25 +284,25 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def want_a_deal
-     @msg = 
-     @page = "I Want a Deal"
-     @categories = DealCategory.find(:all)
-     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
-     @demand_deal = (params[:id].blank?)? nil : CustomerDemandDeal.find(params[:id])
-     @msg = (@demand_deal.blank?)? "Please fill in the form below.<br/>All the fields are required for submission<br/>Do let us know which specific deal you want us to showcase on Keupon, We will get back to you soon!!" : (@demand_deal.status == "new")? "'Update' this Demand Deal with changes or 'Confirm' in order to start receiving Offerings." : "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond"
-      
-     if request.post?
-       if params[:id].blank?
-         @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.zone.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])
-         @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
-         @msg = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."       
-       end
-     end
-     @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+    @msg = 
+    @page = "I Want a Deal"
+    @categories = DealCategory.find(:all)
+    @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
+    @demand_deal = (params[:id].blank?)? nil : CustomerDemandDeal.find(params[:id])
+    @msg = (@demand_deal.blank?)? "Please fill in the form below.<br/>All the fields are required for submission<br/>Do let us know which specific deal you want us to showcase on Keupon, We will get back to you soon!!" : (@demand_deal.status == "new")? "'Update' this Demand Deal with changes or 'Confirm' in order to start receiving Offerings." : "Thank you! The Deal will be shared with the merchants. We will update you via e-mail/ SMS when the merchants respond"
+    
+    if request.post?
+      if params[:id].blank?
+        @demand_deal = CustomerDemandDeal.create(:expected_value => params[:price], :number => params[:quantity], :deadline => Time.parse(params[:deadline].gsub('/','-')+" 23:59:59").to_i, :description => params[:description], :status => "new", :time_created => Time.zone.now.to_i, :customer_id => current_customer.id, :deal_category_id => params[:category])
+        @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{@demand_deal.deal_category_id}")
+        @msg = "The New Deal that you demanded has been created. 'Update' the new Deal with changes or 'Confirm' in order to receive Offerings."       
+      end
+    end
+    @demand_deals_summary = CustomerDemandDeal.customer_demand_deals_summary(current_customer.id)
   end
-
+  
   def update_or_confirm_want_a_deal
     @msg = nil
     @demand_deal = CustomerDemandDeal.find(params[:demand_deal])
@@ -322,14 +323,14 @@ class CustomersController < ApplicationController
     end
     redirect_to "/want_a_deal?id=#{params[:demand_deal]}"
   end 
-
+  
   def offered_deals
     @page = "Offered Deals"
     @demand_deal = CustomerDemandDeal.find(params[:deal])
     @offerings = CustomerProfile.my_demand_deal_offerings(params[:deal])
     @hotest_deal = Deal.hottest_deal_of_today
   end
-
+  
   def view_customer_deal_info
     @customer_deal = CustomerDeal.find(params[:id])
     @deal = @customer_deal.deal
@@ -344,7 +345,7 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def view_demand_deal_offer
     @bid_deal = CustomerDemandDealBidding.find(params[:id])
     if request.xml_http_request?
@@ -358,7 +359,7 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def deal_sub_categories
     @sub_categories = DealSubCategory.find_by_sql("select * from deal_sub_categories where deal_category_id = #{params[:category]}")
     if request.xml_http_request?
@@ -372,22 +373,22 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def deal_transaction_success
     @deal = Deal.find(params[:id])
     if !session[:customer_id].blank?
-        customer = Customer.find(session[:customer_id])
-        show_deal_code = Constant.get_show_deal_code
-        customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.zone.now.to_i, :show_deal_code => show_deal_code)
-        customer_deal.save!
-
-        CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
-
-        flash[:notice] = "You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$<%= @deal.value %>.  Once this Keupon, has been successfully closed, the discount will then be applied to the Actual Price S$#{@deal.value}, based on the Total Buy. You will be notified on this through another email."
+      customer = Customer.find(session[:customer_id])
+      show_deal_code = Constant.get_show_deal_code
+      customer_deal = CustomerDeal.new(:deal_id =>@deal.id, :customer_id => session[:customer_id], :quantity => 1, :quantity_left => 1, :purchase_date => Time.zone.now.to_i, :show_deal_code => show_deal_code)
+      customer_deal.save!
+      
+      CustomerMailer.deliver_deal_ordered_notification(customer, customer.customer_profile, @deal)
+      
+      flash[:notice] = "You are now successfully Authorized by Paypal for the Credit Card Details that you just provided for S$<%= @deal.value %>.  Once this Keupon, has been successfully closed, the discount will then be applied to the Actual Price S$#{@deal.value}, based on the Total Buy. You will be notified on this through another email."
     end
     redirect_to "/deal_details?id=#{@deal.id}"
   end
-
+  
   def transaction_details
     @deal = Deal.find(params[:id])
     @forums=Forum.find_all_by_deal_id(@deal.id)
@@ -413,20 +414,20 @@ class CustomersController < ApplicationController
       @flag=false
     end
     #    @page = "Billing Information"
-#    @billing_information = CustomerCreditCard.new
-#    @deal = Deal.find(params[:id])
-#    @cards = current_customer.customer_credit_cards
-#    @profile = current_customer.customer_profile
-#    @error = (params[:errors] == "1")? session[:payment_error] : nil
+    #    @billing_information = CustomerCreditCard.new
+    #    @deal = Deal.find(params[:id])
+    #    @cards = current_customer.customer_credit_cards
+    #    @profile = current_customer.customer_profile
+    #    @error = (params[:errors] == "1")? session[:payment_error] : nil
   end
-
+  
   def demand_deal_transaction_details
     @page = "Billing Information"
     @billing_information = CustomerCreditCard.new
     @deal = CustomerDemandDealBidding.find(params[:id])
     @cards = current_customer.customer_credit_cards
   end
-
+  
   def check_transaction_quantity
     @deal = Deal.find(params[:id])
     if params[:quantity].to_i > 0
@@ -456,17 +457,17 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def save_keupoint_deal_transaction_details
     deal = Deal.find(params[:id])
-
+    
     deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
     customer_deal = CustomerDeal.new(:deal_id =>deal.id, :customer_id => current_customer.id, :quantity => 1, :quantity_left => 1, :status => "available", :deal_code => deal_code, :purchase_date => Time.zone.now.to_i)
     customer_deal.save!
-
+    
     current_customer.kupoints = current_customer.kupoints.to_f - deal.keupoints_required
     current_customer.save!
-
+    
     CustomerMailer.deliver_deal_purchase_notification(current_customer, current_customer.customer_profile, customer_deal, deal)
     flash[:notice] = "Thanks for Purchasing the Deal!"
     redirect_to "/my_keupons"
@@ -480,12 +481,12 @@ class CustomersController < ApplicationController
     deal.update_attributes(:status => "tipped", :buy => buy_value, :discount => discount, :save_amount => save_amount)
     customer_deals = deal.customer_deals
     successful_customers = Array.new
-
+    
     for cd in customer_deals
       customer = cd.customer
       my_keupon_credits = 0
       my_invitees = CustomerFriend.signed_up_invitees(customer.id)
-
+      
       if my_invitees.to_i >= Constant.get_invitees.to_i
         my_keupon_credits = Constant.get_earn_value.to_f
         my_signed_up_invitees = CustomerFriend.my_signed_up_invitees(customer.id)
@@ -499,7 +500,7 @@ class CustomersController < ApplicationController
           end
         end
       end
-
+      
       customer_profile = customer.customer_profile
       successful_customers << {"customer" => customer_profile, "current_credits" => my_keupon_credits, "balance_credits" => customer.balance_credit, "customer_deal" => cd}
     end
@@ -520,7 +521,7 @@ class CustomersController < ApplicationController
     File.delete(file_path)
     redirect_to "/admins/view_all_deals"
   end
-
+  
   def save_demand_deal_transaction_details
     demand_deal_bidding = CustomerDemandDealBidding.find(params[:customer_deal][:deal_id])
     demand_deal = demand_deal_bidding.customer_demand_deal
@@ -549,27 +550,27 @@ class CustomersController < ApplicationController
       deal_code = rand(36 ** 4 - 1).to_s(36).rjust(4, "0")+current_customer.id.to_s+deal.id.to_s+deal.merchant_id.to_s
       customer_deal = CustomerDeal.new(:deal_id => deal.id, :customer_id => params[:customer_credit_card][:customer_id], :quantity => deal.number, :quantity_left => deal.number, :status => "available", :deal_code => deal_code, :purchase_date => Time.zone.now.to_i)
       customer_deal.save!
-
+      
       customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.zone.now.to_i, :transaction_type => "Postauth", :customer_credit_card_id => customer_card_inform.id, :amount => total_price, :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
-
+      
       points_earned = Constant.dollar_to_keupoint_convertion*total_price
       CustomerKupoint.create(:customer_deal_id => customer_deal.id, :kupoints => points_earned, :time_created => Time.zone.now.to_i, :status => "earned")
       current_customer.kupoints = current_customer.kupoints.to_f + points_earned
       current_customer.save!
-
+      
       demand_deal.update_attributes(:status => "accepted")
       CustomerAcceptedDemandDealBidding.create(:customer_demand_deal_id => demand_deal.id, :customer_demand_deal_bidding_id => demand_deal_bidding.id, :deal_id => deal.id)
-
+      
       CustomerMailer.deliver_deal_purchase_notification(current_customer, current_customer.customer_profile, customer_deal, deal)
-    
+      
       flash[:notice] = "Thanks for Purchasing the Deal!"
       redirect_to "#{params[:return_to]}"
     else
       render :action => 'demand_deal_transaction_details', :id => demand_deal_bidding.id, :error => session[:paypal_error]
     end
   end
-
+  
   def save_transaction_details
     deal = Deal.find(params[:customer_deal][:deal_id])
     customer_card_inform = nil
@@ -582,26 +583,26 @@ class CustomersController < ApplicationController
     else
       customer_card_inform = CustomerCreditCard.find(params[:customer_creditcard])
     end
-
+    
     @transaction = do_transaction(customer_card_inform, 'Authorization', 1)
-
+    
     logger.info "--------------------------------------------------------------"
     logger.info @transaction.inspect
     logger.info "--------------------------------------------------------------"
-
+    
     if @transaction.success?
       customer_card_inform.save! if !params[:new_card].blank?
       void_transaction = do_void_transaction(@transaction)
-
+      
       show_deal_code = Constant.get_show_deal_code
       customer_deal = CustomerDeal.new(:deal_id =>params[:customer_deal][:deal_id], :customer_id => params[:customer_credit_card][:customer_id], :quantity => params[:quantity], :quantity_left => params[:quantity], :purchase_date => Time.zone.now.to_i, :show_deal_code => show_deal_code)
       customer_deal.save!
-
+      
       customer_transaction = CustomerDealTransaction.new(:transaction_key => @transaction.response["TRANSACTIONID"], :time_created => Time.zone.now.to_i, :transaction_type => "Preauth", :customer_credit_card_id => customer_card_inform.id, :amount => '1', :customer_deal_id => customer_deal.id, :payment_type => "Direct")
       customer_transaction.save!
-
+      
       CustomerMailer.deliver_deal_ordered_notification(current_customer, current_customer.customer_profile, deal)
-
+      
       flash[:notice] = "Thank You for Purchasing the Deal. Your card will be charged only when the deal closes at a Price based on the Number of Total Purchases."
       redirect_to "#{params[:return_to]}"
     else
@@ -609,19 +610,20 @@ class CustomersController < ApplicationController
       redirect_to "/transaction_details?id=#{deal.id}&errors=1"
     end
   end
-
+  
   # render new.rhtml
   def new
     @page = 'Registration'
     @customer = Customer.new
     if params[:id]
-     @friend=CustomerFriend.find(params[:id])
-     @email=@friend.friend_email
-     @customer.email=@email
+      @friend=CustomerFriend.find(params[:id])
+      @email=@friend.friend_email
+      @customer.email=@email
+      #     @customer_profile = CustomerProfile.new
     end
-    render :layout => 'signup'
+    render :partial => 'new'
   end
-
+  
   def create
     logout_keeping_session!
     @customer = Customer.new(params[:customer])
@@ -632,8 +634,8 @@ class CustomersController < ApplicationController
     @customer_profile = CustomerProfile.new(params[:customer_profile])
     if success && @customer.errors.empty?
       if !params[:friend_id].nil?
-       @friend=CustomerFriends.find(params[:friend_id])
-       #@friend.update_attribute(:signed_up,1)
+        @friend=CustomerFriends.find(params[:friend_id])
+        #@friend.update_attribute(:signed_up,1)
       end
       @profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
@@ -651,7 +653,7 @@ class CustomersController < ApplicationController
       render :action => 'new', :layout=> 'signup'
     end
   end
-
+  
   def forgot_password
     @page = 'Forgot Password'
     if request.post?
@@ -679,16 +681,16 @@ class CustomersController < ApplicationController
       end
     end
   end 
-
+  
   def activate
     logout_keeping_session!
     customer = Customer.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
-    when (!params[:activation_code].blank?) && customer && !customer.active?
+      when (!params[:activation_code].blank?) && customer && !customer.active?
       #customer.activate!
       flash[:notice] = "The Activation Process will be successfully completed only after this Profile Creation."
       redirect_to :action => 'about_me', :id => customer.id
-    when params[:activation_code].blank?
+      when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')
     else 
@@ -696,11 +698,11 @@ class CustomersController < ApplicationController
       redirect_back_or_default('/')
     end
   end
-
+  
   def location_deals
     @page = "Open Deals"
     @deals = DealLocationDetail.available_location_deals
-
+    
     if @deals.blank?
       @map = GMap.new("map")
       @map.control_init(:large_map => true, :map_type => true)
@@ -770,10 +772,10 @@ class CustomersController < ApplicationController
                                   </div>                                  
                               </div></div>} ))
       end
-    
+      
     end
   end
-
+  
   def edit_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
@@ -788,10 +790,10 @@ class CustomersController < ApplicationController
       end
     end
   end
-
-   def change_password
-     @page = "Change Password"
-     if request.xml_http_request?
+  
+  def change_password
+    @page = "Change Password"
+    if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
@@ -803,8 +805,8 @@ class CustomersController < ApplicationController
     end
   end
   
-
-   def edit_customer_email
+  
+  def edit_customer_email
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
     if request.xml_http_request?
@@ -818,7 +820,7 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def cancel_edit_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
@@ -833,8 +835,8 @@ class CustomersController < ApplicationController
       end
     end
   end
-
-   def cancel_edit_customer_email
+  
+  def cancel_edit_customer_email
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
     if request.xml_http_request?
@@ -848,9 +850,9 @@ class CustomersController < ApplicationController
       end
     end
   end
-
-   def cancel_customer_password
-     if request.xml_http_request?
+  
+  def cancel_customer_password
+    if request.xml_http_request?
       respond_to do |format|
         format.html
         format.js {
@@ -860,8 +862,8 @@ class CustomersController < ApplicationController
         }
       end
     end
-   end
-
+  end
+  
   def update_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
@@ -877,7 +879,7 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def update_customer_email
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
@@ -894,7 +896,7 @@ class CustomersController < ApplicationController
       end
     end
   end
-
+  
   def view_location_deal_info
     @deal = DealLocationDetail.location_deal(params[:id])
     @loc_deal = Deal.find(params[:id])
@@ -910,11 +912,11 @@ class CustomersController < ApplicationController
       end
     end
   end
-
- def slider
-   @hot_deal_discounts, @hot_deals = Deal.all_hot_deals
- end
-
+  
+  def slider
+    @hot_deal_discounts, @hot_deals = Deal.all_hot_deals
+  end
+  
   def get_location_deal
     @page = 'Billing Information'
     @billing_information = CustomerCreditCard.new
@@ -925,8 +927,8 @@ class CustomersController < ApplicationController
     @map.center_zoom_init([ params[:lon],params[:lat]],14)
     @map.overlay_init(GMarker.new([params[:lon],params[:lat]] ))
   end
-
-
+  
+  
   def check_transaction_details
     customer_card_inform = CustomerCreditCard.find_by_cvv2_and_customer_id(params[:billing_information][:cvv2],params[:customer_credit_card][:customer_id])
     if !customer_card_inform.blank?
@@ -939,13 +941,13 @@ class CustomersController < ApplicationController
       redirect_to "/get_location_deal?id=#{params[:customer_deal][:deal_id]}&lon=#{params[:map][:lon]}&lat=#{params[:map][:lat]}"
     end
   end
-
-
+  
+  
   def about_me
     @page = 'My Profile'
     @customer_profile = CustomerProfile.find_by_customer_id(params[:id])
   end
-
+  
   def my_profile
     @page = 'My Settings'
     @customer = Customer.find(current_customer.id)
@@ -954,7 +956,7 @@ class CustomersController < ApplicationController
     @friends = @customer.customer_friends
     @invitees = CustomerFriend.signed_up_invitees(@customer.id)
   end
-
+  
   def settings
     @customer = Customer.find(params[:id])
     if !params[:customer].nil?
@@ -962,10 +964,10 @@ class CustomersController < ApplicationController
         @customer.customer_photo = params[:customer][:customer_photo]
         @customer.save
       end
-     end
+    end
     @customer.update_attributes(params[:customer]) if !params[:customer].blank?
     @customer.customer_profile.update_attributes(params[:customer_profile]) if !params[:customer_profile].blank?
-     redirect_to '/my_profile'
+    redirect_to '/my_profile'
   end
   
   def profile_update
@@ -974,11 +976,13 @@ class CustomersController < ApplicationController
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
     if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],:gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
     end
-        existing_deal_categories=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
-        existing_deal_categories.each do |cfd|
-          cfd.destroy
-        end
-
+    existing_deal_categories=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id) rescue nil
+    if !existing_deal_categories.nil?
+      existing_deal_categories.each do |cfd|
+        cfd.destroy
+      end
+    end
+    
     keupon_subscriber = KeuponSubscriber.find_by_email(customer.login)
     if params[:customer_favourite_deal]
       params[:customer_favourite_deal].each do |d|
@@ -997,23 +1001,23 @@ class CustomersController < ApplicationController
       redirect_to '/my_profile'
     end
   end
-
+  
   def my_keupons
-   @page = 'My Keupons'
-   @keupoint_deals = Deal.available_keupoint_deals(current_customer.kupoints)
-   @my_keupons = Deal.my_keupons(current_customer.id)
-   @deal_code_visibility = Constant.get_show_deal_code.to_s
+    @page = 'My Keupons'
+    @keupoint_deals = Deal.available_keupoint_deals(current_customer.kupoints)
+    @my_keupons = Deal.my_keupons(current_customer.id)
+    @deal_code_visibility = Constant.get_show_deal_code.to_s
   end
-
+  
   def do_transaction(customer_card_inform, payment_action, price)
     if (customer_card_inform.expiration_month.to_s.length == 1)
-        expMonth =   "0" + customer_card_inform.expiration_month.to_s
-      else
-        expMonth =    customer_card_inform.expiration_month.to_s
-      end
-      @caller =  PayPalSDKCallers::Caller.new(false)
-      transaction = @caller.call(
-        {
+      expMonth =   "0" + customer_card_inform.expiration_month.to_s
+    else
+      expMonth =    customer_card_inform.expiration_month.to_s
+    end
+    @caller =  PayPalSDKCallers::Caller.new(false)
+    transaction = @caller.call(
+                               {
         :method          => 'DoDirectPayment',
         :amt             => price.to_s,
         :currencycode    => 'USD',
@@ -1032,15 +1036,15 @@ class CustomersController < ApplicationController
         :PWD   => @@PWD,
         :SIGNATURE => @@SIGNATURE,
         :SUBJECT => @@SUBJECT
-        }
-      )
+    }
+    )
     return transaction
   end
-
+  
   def do_void_transaction(transaction)
     @caller =  PayPalSDKCallers::Caller.new(false)
     void_transaction = @caller.call(
-      { :method          => 'DoVoid',
+                                    { :method          => 'DoVoid',
         :authorizationid => transaction.response["TRANSACTIONID"],
         :note            => 'Test Transaction',
         :trxtype         => 'V',
@@ -1048,9 +1052,19 @@ class CustomersController < ApplicationController
         :PWD   => @@PWD,
         :SIGNATURE => @@SIGNATURE,
         :SUBJECT => @@SUBJECT
-      }
+    }
     )
     return void_transaction
   end
-
+  
+  def how_it_works
+    render :layout => false
+  end
+  
+  def deal_view_more_details
+    @deal = Deal.find(params[:deal_id])
+    @company = @deal.merchant.merchant_profile.company if !@deal.blank?
+    render :layout => false
+  end
+  
 end

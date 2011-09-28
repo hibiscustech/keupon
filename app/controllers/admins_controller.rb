@@ -260,7 +260,7 @@ class AdminsController < ApplicationController
         customer.save!
 
         CustomerMailer.deliver_deal_purchase_notification(customer, customer.customer_profile, customer_deal, deal, row[6].to_i, company, location, merchant_profile)
-        successful_customers << {"customer" => customer.customer_profile, "quantity" => quantity, "total_price" => total_price}
+        successful_customers << {"customer" => customer.customer_profile, "quantity" => quantity, "total_price" => (quantity.to_f*row[8].to_f)}
 
         customer_invited_by = CustomerFriend.who_invited_me(customer.login)
         if !customer_invited_by.blank?

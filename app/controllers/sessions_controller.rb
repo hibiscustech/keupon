@@ -34,18 +34,20 @@ class SessionsController < ApplicationController
   end
   def new
     @page = "Login"
-    render :layout => 'application_login'
+#    render :layout => 'application_login'
+    render :partial => 'new'
   end
 
   def create
     logout_keeping_session!
-    if params[:login_user] == 'customer'
-      customer
-    elsif params[:login_user] =='admin'
-      admin
-    else
-     merchant
-    end
+    check_user_type
+#    if params[:login_user] == 'customer'
+#      customer
+#    elsif params[:login_user] =='admin'
+#      admin
+#    else
+#     merchant
+#    end
   end
 
   def destroy
@@ -122,6 +124,18 @@ protected
   def note_failed_signin
     flash[:error] = "Couldn't log you in as '#{params[:login]}'"
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.zone.now}"
+  end
+  
+  def check_user_type
+    email = params[:login]
+    password = params[:password]
+    if Customer.find(:first, :conditions => ['login = ?', email])
+      customer
+    elsif AdminUser.find(:first, :conditions => ['login = ?', email])
+      admin
+    else
+      merchant
+    end
   end
 
   def customer
