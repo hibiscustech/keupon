@@ -5,27 +5,27 @@
 		</a>
         <div id="popup" class="login">
             <div class="login_txt">
-                LOG IN
+                <span>LOG IN</span>
             </div>
             <div>
                 <img src="/images/keupons.jpg" hspace="35" />
             </div>
-            <div style="font-size:22px; padding-left:35px;">
-                WELCOME BACK
+            <div style="padding:10px 0 0 25px;">
+                <span style="font-size:20px;"><b>WELCOME BACK</b></span>
                 <br/>
-                <span style="font-size:14px;">Please enter your details</span>
+                <span style="padding:5px 0 0 0;float:left;"><b>Please enter your details</b></span>
             </div>
             <div class="login_mainbox">
                 <div style="height:25px;">
-                    <span style="width:79px;">Name</span>
+                    <span style="width:79px;"><b>Name</b></span>
                     <%= text_field_tag 'login', @login, :class => "login_tb1a" %></td>
                 </div>
                 <div style="height:25px; margin-top:10px;">
-                    <span style="width:79px;">Password</span>
+                    <span style="width:79px;"><b>Password</b></span>
                     <%= password_field_tag 'password', nil, :class => "login_tb1a" %>
                 </div>
                 <div class="login_forget">
-                    <a href="#">forget your password?</a>
+                    <a href="javascript:void(0);"><b>forget your password?</b></a>
                 </div>
             </div>
             <div class="login_go">

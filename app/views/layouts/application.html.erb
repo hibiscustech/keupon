@@ -2,19 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   	<head>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<%= stylesheet_link_tag 'stylesheet' %>
-		<script src="/javascripts/cufon-yui.js" type="text/javascript"></script>
+		<!--<script src="/javascripts/cufon-yui.js" type="text/javascript"></script>
         <script src="/javascripts/Knockout_500.font.js" type="text/javascript"></script>
-		<%= stylesheet_link_tag 'redbox' %>
-		<%= javascript_include_tag 'redbox' %>
-        <script type="text/javascript">
-            Cufon.replace('h1', {
-                fontFamily: 'Frutiger LT Std'
-            });
-            Cufon.replace('h2', {
+	    <script type="text/javascript">
+            Cufon.replace('.addFont', {
                 fontFamily: 'Knockout'
             });
-        </script>
+        </script>-->
+		<%= stylesheet_link_tag 'redbox' %>
+		<%= javascript_include_tag 'redbox' %>
+		<%= stylesheet_link_tag 'stylesheet' %>
         <%= javascript_include_tag 'creditcard' %>
         <script src="/javascripts/application.js" type="text/javascript"></script>
         <script src="/javascripts/prototype.js" type="text/javascript"></script>
@@ -111,7 +108,7 @@
 	</head>
     <body>
         <div class="wrapper">
-            <div class="header">
+            <div class="header fontAdd">
                 <%= render :partial => "/layouts/header" %>
             </div>
 			<% if flash[:notice] %>
@@ -119,10 +116,10 @@
 				<%= flash[:notice] %>
 			</div>
 			<% end %>
-            <div class="mid_body">
+            <div class="mid_body fontAdd">
                 <%= yield %>
             </div>
-            <div class="footer_main">
+            <div class="footer_main fontAdd">
                 <%= render :partial => "/layouts/footer"%>
             </div>
 		 	<div class="footer">

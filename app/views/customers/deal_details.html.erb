@@ -6,15 +6,12 @@
         <div class="deal_whitebg">
             <img class="item" src="<%=@deal.deal_photo.url(:deal_detail)%>" alt="clouds" border="0" />
 			<div class="red_dot_txt">
-            	<%=current_deal_discount_for_deal(@deal.id) %><%="%" %>
-                <br/>
-                <span style="font-size:14px;">OFF
-                    <br/>
-                    SGD <%=@deal.value %>
-                </span>
+            	<h2><%=current_deal_discount_for_deal(@deal.id) %><%="%" %></h2>
+                <span>OFF<br/>SGD <%=@deal.value %></span>
             </div>
             <div class="greybar_txt">
-                <span class="price">PRICE NOW &nbsp;&nbsp;</span>SGD<%= Deal.find(@deal.id).deal_discounts[0].buy_value.round %>
+                <span class="price">PRICE NOW &nbsp;&nbsp;</span>
+				<span class="price_val">SGD<%= Deal.find(@deal.id).deal_discounts[0].buy_value.round %></span>
             </div>
         </div>
         <div class="greybox">
@@ -42,14 +39,12 @@
                     Everyone pays the lowest price even if you buy now!
                 </div>
             </div>
-            <div style="float:left;  padding-top:5px;width:180px;">
+            <div style="float:left;;width:180px;">
                 <div class="deal_ex">
-                    DEAL EXPIRES IN
-                    <br/>
-                    <span id="deal_time_left" style="font-size:12px; color:#FFFFFF;"></span>
-                    <br/><br/>
-                    <a href="javascript:void(0);"><img src="/images/sharedeal.png" border="0" /></a>
+                    <h2>DEAL EXPIRES IN</h2>
+					<span id="deal_time_left"></span>
                 </div>
+                <a href="javascript:void(0);" class="deal_ex_link"><img src="/images/sharedeal.png" border="0" /></a>
             </div>
         </div>
         <div class="dealright_3rd">

@@ -13,49 +13,45 @@
             <img src="images/brown_ban.png" />
         </div>
         <div class="sign_up_left_con">
-            <div style="font-size:53px; color:#AB0F14; text-align:left;">
-                SIGN UP
-            </div>
-            <div>
-                Purchased items may be delivered to this registered mailing address
-            </div>
+            <h2>SIGN UP</h2>
+            <span>Purchased items may be delivered to this registered mailing address</span>
             <div class="signup_mainbox2">
             	<div  class="signup_mainbox_left">
-	                <div style="height:25px;">
-	                    <span style="width:80px;float:left;font-size:14px;">FIRST NAME</span>
+	                <div style="height:30px;">
+	                    <span style="width:80px;float:left;">FIRST NAME</span>
 						<%= p.text_field :first_name, :class=> "login_tb1b" %>
 	                </div>
-	                <div style="height:25px; margin-top:10px;">
-	                    <span class="email"  style="width:80px;float:left;font-size:14px;">LAST NAME</span>
+	                <div style="height:30px; margin-top:10px;">
+	                    <span class="email"  style="width:80px;float:left;">LAST NAME</span>
 						<%= p.text_field :last_name, :class=> "login_tb1b" %>
 	                </div>
-	                <div style="height:25px; margin-top:10px;">
-	                    <span class="email" style="width:80px;float:left;font-size:14px;">NRIC</span>
+	                <div style="height:30px; margin-top:10px;">
+	                    <span class="email" style="width:120px;float:left;">NRIC</span>
 						<%= p.text_field :customer_pin, :class=> "login_tb1b" %>
-	                    <span style="font-size:13px;color:#663300;position:absolute;margin-top:25px;margin-left:17px">NRIC No. needed for verification
+	                    <span style="color:#663300;position:absolute;margin-top:25px;">NRIC No. needed for verification
 	                        <br/>
 	                        to redeem Keupons
 	                    </span>
 	                </div>
-	                <div style="height:25px; margin-top:35px;">
-	                    <span class="email" style="width:80px;float:left;font-size:14px;">MOBILE NUMBER</span>
+	                <div style="height:30px; margin-top:35px;">
+	                    <span class="email" style="width:120px;float:left;">MOBILE NUMBER</span>
 	                    <%= p.text_field :contact_number, :class=> "login_tb1b" %>
-						<span style="font-size:13px; color:#663300;  position:absolute; margin-top:25px; margin-left:17px">
+						<span style="color:#663300;position:absolute; margin-top:25px;">
 							SMS Keupons may be sent to your<br/>mobile number
 	                    </span>
 	                </div>
 				</div>
 				<div class="signup_mainbox_right">
-                    <div style="height:67px;">
-                        <span style="width:80px;float:left;font-size:14px;">ADDRESS</span>
+                    <div style="height:73px;">
+                        <span style="width:100px;float:left;">ADDRESS</span>
                         <%= p.text_area :address1, :class=> "login_ta1b" %>
 					</div>
-                    <div style="height:25px; margin-top:10px;">
-                        <span class="email" style="width:80px;float:left;font-size:14px;">COUNTRY</span>
+                    <div style="height:30px; margin-top:10px;">
+                        <span class="email" style="width:100px;float:left;">COUNTRY</span>
                         <%= p.text_field :country, :class=> "login_tb1b" %>
 					</div>
-                    <div style="height:25px; margin-top:10px;">
-                        <span  style="width:80px;float:left;font-size:14px;" class="email">POSTAL CODE</span>
+                    <div style="height:30px; margin-top:10px;">
+                        <span  style="width:100px;float:left;" class="email">POSTAL CODE</span>
 						<%= p.text_field :zipcode, :class=> "login_tb1b" %>
                     </div>
                     <div class="login_forget">

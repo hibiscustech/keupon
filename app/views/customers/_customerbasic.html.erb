@@ -16,14 +16,10 @@
             <img src="images/signup_rightimg.jpg" />
         </div>
         <div class="sign_up_left_con">
-            <div style="font-size:53px; color:#AB0F14; text-align:left;">
-                SIGN UP
-            </div>
-            <div>
-                Please fill in these particulars
-            </div>
+            <h2>SIGN UP</h2>
+            <span>Please fill in these particulars</span>
             <div class="signup_mainbox">
-                <div style="height:25px; margin-top:10px;">
+                <div style="height:30px; margin-top:10px;">
                     <%if @friend.nil?%>
 			        	<span class="email">EMAIL</span>
 						<%= f.text_field :email , :size=>"25%", :class => "login_tb1a" %>
@@ -34,12 +30,12 @@
 				        <input type='hidden' name='friend_id' value='<%=@friend.id if !@friend.nil?%>'/>
 			        <%end%>
                 </div>
-                <div style="height:25px; margin-top:10px;">
+                <div style="height:30px; margin-top:10px;">
                     <span class="email">PASSWORD</span>
                     <%= f.password_field :password, :id=>"passwords", :size=>"25%", :class => "login_tb1a" %>
                 </div>
-                <div style="height:25px; margin-top:10px;">
-                    <span class="email">CONFIRM
+                <div style="height:30px; margin-top:10px;">
+                    <span class="email" style="padding:0;">CONFIRM
                         <br/>
                         PASSWORD
                     </span>
