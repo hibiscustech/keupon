@@ -113,7 +113,8 @@ class Deal < ActiveRecord::Base
                 left outer join customer_deals cd on cd.deal_id = d.id
                 where d.status = 'open'
                 group by d.id
-                order by ds.start_time }
+                order by ds.start_time 
+                limit 4}
     resultset = find_by_sql(query)
     resultset_hashed = convert_into_hash(resultset)
     deal_discounts = deals_and_current_discounts(resultset)
@@ -172,7 +173,8 @@ class Deal < ActiveRecord::Base
                 left outer join customer_deals cd on cd.deal_id = d.id
                 where d.status = 'open' and admin_preferred != '1'
                 group by d.id
-                order by ds.start_time }
+                order by ds.start_time
+                limit 4 }
     resultset = find_by_sql(query)
     resultset_hashed = convert_into_hash(resultset)
     deal_discounts = deals_and_current_discounts(resultset)
