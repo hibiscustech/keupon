@@ -66,9 +66,7 @@ a{outline:none;}
 .midb_left{
 	float:left; width:446px; background:#404041;float:left;
 	}
-.midb_right{
-	float:left; width:575px;background:#A5A5A5;padding:0 0 35px;
-	}
+.midb_right{float:left; width:575px;background:#A5A5A5;padding:0 0 45px;}
 .img_hot_deals{
 	text-align:center; position:absolute; margin-left:120px;
 	}
