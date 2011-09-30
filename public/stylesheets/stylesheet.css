@@ -1,5 +1,5 @@
 body{
-	padding:0; margin:auto; font-family:"Knockout HTF51-Middleweight";
+	padding:0; margin:auto;font-family:Helvetica, Arial, sans-serif;font-size:12px;
 	}
 img{border:0;}
 a{outline:none;}
@@ -31,6 +31,7 @@ a{outline:none;}
 .grey_buttons{
 	margin-top:40px; margin-left:26px;
 	}
+.grey_buttons a{float:left;padding:0 10px 0 0;}
 .head_rightin{
 	width:388px;
 	height:128px;
@@ -76,26 +77,20 @@ a{outline:none;}
 	}
 .img1 a{float:left; margin:34px 0 0 40px;}
 .img1_round_bg{background: url("/images/big_round.png") no-repeat scroll right bottom transparent;
-    color: #FFFFFF;
     display: block;
-    font-size: 20px;
     height: 84px;
     margin: 235px 0 0 302px;
     padding: 10px;
     position: absolute;
     width: 84px;}
+.img1_round_bg span{color:#fff;font-weight:bold;padding:0;margin:0;font-size:18px;}
+.img1_round_bg span h2{padding:0;margin:0;font-size:28px;line-height:25px;}
 .txt_box{
 	padding:25px 35px 15px 35px;
 	}
-.txt1{
-	font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; padding-bottom:15px;
-	}
-.txt2{
-	font-family:Arial, Helvetica, sans-serif; font-size:10px; font-weight:bold; color:#FFFFFF; text-align:justify;
-	}
-.txt3{
-	font-family:Arial, Helvetica, sans-serif; font-size:10px; font-weight:bold; color:#FFFFFF; text-align:left; width:150px; margin-top:10px; margin-left:15px; position:absolute;
-	}
+.txt1{font-weight:bold;color:#FFF;font-size:14px;padding-bottom:15px;}
+.txt2{color:#FFF;}
+.txt3{font-size:9px;color:#FFF;width:150px;margin:10px 0 0 15px;position:absolute;}
 .open_deal{
 	position:absolute; margin-left:45px;
 	}
@@ -118,26 +113,22 @@ a{outline:none;}
     position: absolute;
     text-align: center;
     width: 63px;}
-
+.round_small span{color:#fff;font-weight:bold;padding:0;margin:0;font-size:10px;}
+.round_small span h2{padding:0;margin:0;font-size:17px;line-height:14px;}
 
 /**/
 
 .footer_main{
 	background:url(/images/footer.png) no-repeat; height:150px; width:1021px; margin-top:6px;float:left;
 	}
-.footer_txt{
-	font-family:"Knockout HTF51-Middleweight"; color:#FFF; font-size:1.2em; padding-left:6px;
-	}
+.footer_txt{color:#FFF; padding-left:6px;font-size:15px;font-weight:bold;}
 .footer_txtsmall{
 	
 	}
 .footer_txtsmall ul{
 	list-style:none; margin-left:-32px; 
 	}
-.footer_txtsmall ul li{
-	list-style:none;
-	font-family:"Knockout HTF49-Liteweight" ; font-size:17px; letter-spacing:.5px; text-align:left; color:#FFF;
-	}
+.footer_txtsmall ul li{color:#FFF;padding:3px 0 0;}
 .footer_txtsmall ul li a{
 	list-style:none; color:#FFF; text-decoration:none;
 	}
@@ -145,10 +136,10 @@ a{outline:none;}
 	list-style:none; color:#FFF; text-decoration:underline;
 	}
 .first_box{
-	float:left; height:auto; width:auto; margin:10px 0px 0px 20px;
+	float:left; height:auto; width:auto; margin:16px 0px 0px 22px;
 	}
 .footer{
-	font-family:"Knockout HTF30-JuniorWelterwt" ; text-align:center; width:1021px; font-weight:normal; font-size:14px; font-style:normal; color:#7d7e81; padding-top:10px; padding-bottom:10px;float:left;
+	text-align:center; width:1021px; font-weight:normal; font-style:normal; color:#7d7e81; padding-top:10px; padding-bottom:10px;float:left;
 	}
 	
 /**/
@@ -162,36 +153,25 @@ a{outline:none;}
 .red_dot_txt {
     background: url("/images/big_round.png") no-repeat scroll right bottom transparent;
     color: #FFFFFF;
-    font-family: "Knockout HTF51-Middleweight";
-    font-size: 32px;
     height: 89px;
     margin: -56px 0 0 21px;
     padding: 15px 0 0;
     position: absolute;
     text-align: center;
     width: 104px;
+	font-weight:bold;
 }
-.greybar_txt {
-    color: #FFF;
-    font-family: 'Knockout HTF51-Middleweight';
-    font-size: 32px;
-    margin-left: 145px;
-    margin-top: 23px;
-}
-.price{
-	font-size:14px; vertical-align:text-top; padding-top:5px;
-	}
+.red_dot_txt h2{padding:0;margin:0;font-size:28px;}
+.greybar_txt{color:#FFF;margin-left:135px;margin-top:20px;font-weight:bold;}
+.price{padding-top:5px;font-size:12px;float:left;}
+.price_val{font-size:30px;padding:0;margin:0;}
 .dealpage_right{
 	float:left; width:492px; margin-left:20px; height:auto; margin-right:20px;
 }
-.dealright_1st{
-	 color:#FFF; font-family:Helvetica, sans-serif; font-size:20px; margin-top:30px; font-weight:bold; text-align:left; margin-bottom:30px; padding-left:12px;
-	}
+.dealright_1st{color:#FFF;font-weight:bold;padding:20px 0 0 12px;height:90px;font-size:14px;}
 	
-.dealright_2nd{float:left;padding-left:12px;width:480px}
-.dealright_3rd{
-	font-family:'Knockout HTF51-Middleweight'; float:left; font-size:16px; color:#FFFFFF; width:493px; margin-top:30px;
-	}
+.dealright_2nd{float:left;padding:25px 0 0 12px;width:480px;height:120px;}
+.dealright_3rd{float:left;color:#FFF;width:493px;margin-top:30px;font-size:13px;font-weight:bold;}
 .dealright_4th{
 	height:3px; width:493px; background:#545455; margin-top:9px; margin-bottom:5px; float:left;
 	}
@@ -204,15 +184,12 @@ a{outline:none;}
 .listmenu ul{
 	margin:0px; padding:0px; text-align:left; color:#FFFFFF; 
 	}
-.listmenu ul li{
-	list-style:url(/images/dot.png) outside;  padding-bottom:12px; font-family:Helvetica, sans-serif; font-size:11px; margin-left:11px; color:#FFFFFF; text-align:left; line-height:15px;
-	}
-.deal_ex{
-	font-family:'Knockout HTF51-Middleweight'; font-size:22px; color:#ff5f9a;
-	}
-.your_card{
-	font-family:Helvetica, sans-serif; font-size:12px; color:#FFF; font-weight:normal; width:280px; margin-top:10px;
-	}
+.listmenu ul li{list-style:url(/images/dot.png) outside;padding-bottom:12px;margin-left:11px;color:#FFFFFF;font-size:11px;}
+.deal_ex{color:#fff;height:62px;font-weight:bold;}
+.deal_ex h2{font-size:17px;color:#ff5f9a;padding:0 0 2px 0;margin:0;}
+.deal_ex span{font-size:14px;}
+.deal_ex_link{padding:6px 0 0;float:left;}
+.your_card{color:#FFF;width:280px;padding:10px 0 0;font-size:11px}
 .greybox{
 	height:124px; width:448px; background:#b3b3b3; -moz-border-radius:40px; margin-top:13px;
 	}
@@ -228,63 +205,37 @@ a{outline:none;}
 .login_pos{
 	
 	}
-.login_mainbox{
-	height:105px; width:333px; position:absolute;  margin-top:-40px; margin-left:210px
-	}
+.login_mainbox{height:105px;width:333px;position:absolute;margin-top:-30px;margin-left:210px;}
 .login_tb1a{
 	width:254px; float:right; height:23px; background:#babcbe; border:none;
 	}
-.login_tb1b{
-	width:202px; float:right; height:23px; background:#babcbe; border:none;
-	}
-.login_ta1b{
-	width:202px; float:right; height:66px; background:#babcbe; border:none; resize:none;
-	}
-.login_forget{
-	text-align:right; font-size:14px; margin-top:14px;
-	}
+.login_tb1b{width:200px;float:right;height:23px;background:#babcbe;border:none;}
+.login_ta1b{width:200px;float:right;height:66px;background:#babcbe;border:none;resize:none;}
+.login_forget{text-align:right;margin-top:30px;}
 .login_forget a{
-	text-align:right; font-size:14px; color:#000000; text-decoration:none;
+	text-align:right; color:#000000; text-decoration:none;
 	}
 .login_forget a:hover{
-	text-align:right; font-size:14px; text-decoration:underline;
+	text-align:right; text-decoration:underline;
 	}
-.login_go{
-	position:absolute; height:50px; width:50px; margin-left:554px; margin-top:-30px; 
-	}
-.login_txt{
-	position:absolute; font-size:53px; color:#414142; margin-left:208px; margin-top:30px;
-	}
+.login_go{position:absolute;height:50px;width:50px;margin-left:560px;margin-top:-15px;}
+.login_txt{position:absolute;color:#414142;margin-left:208px;margin-top:20px;font-size:45px;font-weight:bold;}
 
 
 
 
 /*contact_start*/
 
-.Contact_bg{
- position:absolute; margin-top:75px; margin-left:348px; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#FFF; font-weight:bold;
-}
-.contact_box1{
-	position:absolute; float:left; height:230px; width:318px; background:#FFFFFF; -moz-border-radius:25px;  -webkit-border-radius:25px; margin-left:165px; margin-top:150px;  border:1px solid #707071;  
-	}
-.contact_box2{
-	position:absolute; float:left; height:230px; width:318px; background:#FFFFFF; -moz-border-radius:25px;  -webkit-border-radius:25px; border:1px solid #707071; margin-left:550px; margin-top:150px;  
-	}
-.con_txt1{
-	color:#404041; font:'Knockout HTF50-Welterweight'; font-size:25px; text-align:center; margin-top:28px;
-	}
+.Contact_bg{position:absolute;margin-top:75px;margin-left:345px;color:#FFF;font-weight:bold;font-size:13px;}
+.contact_box1{position:absolute;float:left;height:230px;width:318px;background:#FFF;-moz-border-radius:25px;-webkit-border-radius:25px;margin-left:175px;margin-top:140px;border:1px solid #707071;}
+.contact_box2{position:absolute;float:left;height:230px;width:318px;background:#FFF;-moz-border-radius:25px;-webkit-border-radius:25px;border:1px solid #707071;margin-left:550px;margin-top:140px;}
+.con_txt1{color:#404041;text-align:center;margin-top:28px;font-size:20px;font-weight:bold;}
 .con_line1{
 	height:5px; width:269px; text-align:center; margin-top:10px; background:#404041; margin-left:25px; margin-bottom:5px;
 	}
-.con_txt2{
-	text-align:center; width:270px; margin:auto; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold;
-	}
-.con_txt3{
-	font-family:Arial, Helvetica, sans-serif; margin:auto; text-align:center; /*margin:30px 0px 0px 38px; */ font-size:22px; color:#AB0F14; font-weight:bolder;
-	}
-.con_txt3 a{
-	color:#AB0F14; text-decoration:none;
-	}
+.con_txt2{text-align:center;width:270px;margin:auto;font-weight:bold;font-size:13px;}
+.con_txt3{margin:auto;text-align:center;color:#AB0F14;font-weight:bolder;font-size:22px;}
+.con_txt3 a{color:#AB0F14; text-decoration:none;}
 .con_txt3 a:hover{
 	color:#AB0F14; text-decoration:none;
 	}
@@ -293,39 +244,31 @@ a{outline:none;}
 
 /*aboutus_start*/
 .aboutwhite_bg{
-	height:547px; width:236px; color:#333333; background:#FFF; -moz-border-radius:23px; -webkit-border-radius:23px;margin:0px 0px 0px 23px;    padding:30px 20px 0px 20px; text-align:justify; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;
+	height:547px; width:236px; color:#333333; background:#FFF; -moz-border-radius:23px; -webkit-border-radius:23px;margin:0px 0px 0px 23px;    padding:30px 20px 0px 20px; text-align:justify;font-weight:bold;
 	}
 .aboutus_1stboxcon{
-	position:absolute; width:204px; height:703px; margin-left:330px; margin-top:50px; 
+	position:absolute; width:204px;margin-left:330px; margin-top:50px; 
 	}
 .aboutus_2ndboxcon{
-	position:absolute; width:204px; height:703px; margin-left:560px; margin-top:49px; 
+	position:absolute; width:204px;margin-left:560px; margin-top:49px; 
 	}
 .aboutus_3rdboxcon{
 	position:absolute;
 	width:204px;
-	height:703px;
 	margin-left:640px;
-	margin-top:52px;
+	margin-top:49px;
 	left: 311px;
 	}
-.aboutus_boldtxt1{
-	font-size:27px; color:#FFF; font-family:'Knockout HTF50-Welterweight';
-	}
-.aboutus_boldtxt2{
-	font-size:16px; color:#FFF; font-family:'Knockout HTF50-Welterweight'; padding-top:30px;
-	}
-.aboutus_boldtxt2a{
-	font-size:16px; color:#FFF; font-family:'Knockout HTF50-Welterweight'; 
-	}
-.aboutus_boldtxt2b{
-	font-size:14px; color:#FFF; font-family:'Knockout HTF50-Welterweight'; padding-top:30px; letter-spacing:.1px; 
-	}
-.aboutus_line1{
-	height:4px; background:#FFFFFF;
-	}
+.aboutus_1stboxcon_main{height:100px;font-weight:bold;}
+	.aboutus_boldtxt1{color:#FFF;font-size:20px;height:68px;}
+	.aboutus_boldtxt2{color: #FFFFFF;height: 32px;}
+	.aboutus_line1{height:4px; background:#FFFFFF;}
+
+.aboutus_boldtxt2a{color:#FFF;}
+.aboutus_boldtxt2b{color:#FFF;}
+
 .aboutus_txt1{
-	color:#bcbdc0; font-family:Arial, Helvetica, sans-serif; text-align:left; font-size:12px; font-weight:bold;
+	color:#bcbdc0; text-align:left;font-weight:bold;
 }
 /*aboutus_end*/
 .signup_pos{
@@ -335,7 +278,7 @@ a{outline:none;}
 	position:absolute; margin-top:80px; margin-left:-99px;
 	}
 .sign_up_welcome{
-	position:absolute; font-size:36px; color:#414142; margin-left:113px; margin-top:60px; 
+	position:absolute; color:#414142; margin-left:113px; margin-top:60px; 
 	}
 .sign_up_keu{
 	position:absolute; margin-left:337px;
@@ -343,14 +286,12 @@ a{outline:none;}
 .sign_up_rightimg{
 	position:absolute; margin-left:360px; margin-top:240px;"><img src="/images/signup_rightimg.jpg
 }
-.signup_mainbox{
-	height:105px; width:329px; position:absolute; margin-top:15px;
-	}
+.signup_mainbox{height:105px;width:329px;position:absolute;margin-top:30px;}
 .email{
-	width:65px; float:left; font-size:13px;
+	width:65px; float:left; 
 }
 .email2{
-	width:auto; float:left; font-size:13px;
+	width:auto; float:left; 
 }
 .signup_footer1{
 	position:absolute; width:550px; margin-top:255px; margin-left:70px;
@@ -361,20 +302,16 @@ a{outline:none;}
 
 /**/
 
-.jobs_lexttxt{
-	height:auto; width:323px; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding-top:45px; padding-left:60px; float:left;
-	}
+.jobs_lexttxt{height:auto;width:323px;color:#FFF;font-weight:bold;padding-top:45px;padding-left:60px;float:left;font-size:13px;}
 .job_righttxt1{
-	height:auto; width:323px; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; float:right; margin-right:242px;
+	height:auto; width:323px; color:#FFFFFF; font-weight:bold; float:right; margin-right:242px;
 	}
 .job_line1{
 	height:5px; width:345px; background:#FFFFFF; margin:5px 0px 15px 0px;
 	}
-.bussiness{
-	font-family:"Knockout HTF50-Welterweight"; font-size:26px;
-	}
+.bussiness{font-size:20px;}
 .terms_lexttxt{
-	height:auto; width:947px; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; padding-top:35px; padding-left:30px; float:left;
+	height:auto; width:947px; color:#FFFFFF; font-weight:bold; padding-top:35px; padding-left:30px; float:left;
 	}
 /**/
 
@@ -386,11 +323,9 @@ a{outline:none;}
 .faq_left{
 	float:left; width:411px; height:auto; margin:40px 20px 0px 20px;
 	}
-.faq_redtxt{
-	font-family:"Knockout HTF50-Welterweight"; font-size:21px; color:#AB0F14;
-	}
+.faq_redtxt{color:#AB0F14;font-size:18px;}
 #faq_txtnor{
-	font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#414142; font-weight:bold;
+	color:#414142; font-weight:bold;
 	}
 .faq_mid_line{
 	height:719px; width:1px; background:#707071; float:left; margin-top:20px; margin-left:25px;
@@ -408,7 +343,7 @@ a{outline:none;}
 	height:999px; width:851px; margin:auto; margin-top:350px; -moz-border-radius:40px; -webkit-border-radius:40px; background:#FFF;
 	}
 .more{
-	width:687px; height:auto; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold; color:#231F20;
+	width:687px; height:auto; font-weight:bold; color:#231F20;
 	}
 .more ul{
 	margin:0px; padding:0px; list-style:none; 
@@ -416,12 +351,8 @@ a{outline:none;}
 .more ul li{
 	line-height:18px; margin-left:40px; margin-bottom:5px; background:url(/images/red_dot.png) left no-repeat; padding-left:20px;
 	}
-.more_txt{
-	font-size:29px; color:#414142; padding:50px 0px 5px 40px;
-	}
-.more1_txt{
-	font-size:29px; color:#414142; padding:40px 0px 5px 40px;
-	}
+.more_txt{color:#414142;padding:50px 0px 5px 40px;font-weight:bold;font-size:22px;}
+.more1_txt{color:#414142;padding:40px 0px 5px 40px;font-weight:bold;font-size:22px;}
 /**/
 ------------------------------------------Popupstart-----------------------------------------------------
 #popup_view_deal
@@ -542,7 +473,6 @@ a{outline:none;}
 
 .sign_up_welcome {
     position: absolute;
-    font-size: 36px;
     color: #414142;
     margin-left: 113px;
     margin-top: 60px;
@@ -553,12 +483,7 @@ a{outline:none;}
     margin-left: 337px;
 }
 
-.sign_up_rightimg {
-    position: absolute;
-    margin-left: 360px;
-    margin-top: 240px;
-    "><img src="images /signup_rightimg.jpg
-}
+.sign_up_rightimg{position:absolute;margin-left:380px;margin-top: 240px;}
 
 .sign_up_left_con {
     height: auto;
@@ -567,29 +492,19 @@ a{outline:none;}
     width:auto;
     position: absolute;
 }
-
-.signup_mainbox2 {
-    width:650px;
-    float:left;
-	padding:15px 0 0 0;
+.sign_up_left_con h2{font-size: 40px;font-weight: bold;padding:0;margin:0;color:#AB0F14;}
+.sign_up_left_con span{float:left;font-weight:bold;margin:0;padding:5px 0 0;}
+.signup_mainbox2 {width:650px;float:left;padding:15px 0 0 0;
 }
 
-.signup_mainbox_right {
-    width: 300px;
-    float: left;
-	padding:0 0 0 42px;
-}
+.signup_mainbox_right{width: 300px;float: left;padding:0 0 0 20px;}
 
-.signup_footer1 {
-    position: absolute;
-    width: 550px;
-    margin-top: 255px;
-    margin-left: 70px;
-}
+.signup_footer1{position:absolute;width:550px;margin-top:285px;margin-left:70px;}
 
 .signup_line1 {
     float: left;
     margin: 38px 5px 0px 5px;
 }
 
-.signup_mainbox_left{width:300px;float:left;}
+.signup_mainbox_left{width:320px;float:left;}
+
