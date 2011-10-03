@@ -31,7 +31,7 @@
         <script type="text/javascript">
             var jquery = jQuery.noConflict();
         </script>
-        <link href="/stylesheets/charts/style.css" media="screen" rel="stylesheet" type="text/css" />
+        <!--<link href="/stylesheets/charts/style.css" media="screen" rel="stylesheet" type="text/css" />-->
         <link href="/stylesheets/dhtmltooltip.css" media="screen" rel="stylesheet" type="text/css" />
         <script type="text/javascript">
             jquery(document).ready(function(){
@@ -108,7 +108,7 @@
 	</head>
     <body>
         <div class="wrapper">
-            <div class="header fontAdd">
+            <div class="header">
                 <%= render :partial => "/layouts/header" %>
             </div>
 			<% if flash[:notice] %>
@@ -116,10 +116,10 @@
 				<%= flash[:notice] %>
 			</div>
 			<% end %>
-            <div class="mid_body fontAdd">
+            <div class="mid_body">
                 <%= yield %>
             </div>
-            <div class="footer_main fontAdd">
+            <div class="footer_main">
                 <%= render :partial => "/layouts/footer"%>
             </div>
 		 	<div class="footer">

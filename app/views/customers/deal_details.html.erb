@@ -44,7 +44,7 @@
                     <h2>DEAL EXPIRES IN</h2>
 					<span id="deal_time_left"></span>
                 </div>
-                <a href="javascript:void(0);" class="deal_ex_link"><img src="/images/sharedeal.png" border="0" /></a>
+				<%= link_to_remote_redbox image_tag('/images/sharedeal.png'), :url => {:controller => "customers", :action=> "share_this_deal", :deal_id => @deal.id}, :class => "deal_ex_link" %>
             </div>
         </div>
         <div class="dealright_3rd">

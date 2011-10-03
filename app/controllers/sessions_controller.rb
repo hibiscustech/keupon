@@ -148,40 +148,40 @@ protected
       self.current_customer = customer
       new_cookie_flag = (params[:remember_me] == "1")
       #handle_remember_cookie! new_cookie_flag
-     if params[:dev]=='mob'
-       xml = Builder::XmlMarkup.new
-       xml.instruct!
-       xml.login do
-        xml.response 'success'
-        xml.user_id customer.id
-        xml.login customer.login
-        xml.user_photo((customer.customer_photo?)?(customer.customer_photo.url(:small)):('/images/user.png'))
-       end
-       respond_to do |format|
-         format.xml { render :xml => xml.target! }
-       end
+      if params[:dev]=='mob'
+        xml = Builder::XmlMarkup.new
+        xml.instruct!
+        xml.login do
+          xml.response 'success'
+          xml.user_id customer.id
+          xml.login customer.login
+          xml.user_photo((customer.customer_photo?)?(customer.customer_photo.url(:small)):('/images/user.png'))
+        end
+        respond_to do |format|
+          format.xml { render :xml => xml.target! }
+        end
       else
-     # redirect_to :controller => 'customers',:action => "deal_of_the_day"
-      redirect_back_or_default('/')
-      flash[:notice] = "Logged in successfully"
+        # redirect_to :controller => 'customers',:action => "deal_of_the_day"
+        redirect_back_or_default('/')
+        flash[:notice] = "Logged in successfully"
       end
     else
       if params[:dev]=='mob'
-       xml = Builder::XmlMarkup.new
-       xml.instruct!
-       xml.login do
-        xml.response 'failure'
-        xml.message "UserId/password doesn't match"
-       end
-       respond_to do |format|
-         format.xml { render :xml => xml.target! }
-       end
+        xml = Builder::XmlMarkup.new
+        xml.instruct!
+        xml.login do
+          xml.response 'failure'
+          xml.message "UserId/password doesn't match"
+        end
+        respond_to do |format|
+          format.xml { render :xml => xml.target! }
+        end
       else
-      note_failed_signin
-      @login       = params[:login]
-      @remember_me = params[:remember_me]
-      flash[:notice] = "Please Login with correct username and password pair"
-      redirect_back_or_default('/')
+        note_failed_signin
+        @login       = params[:login]
+        @remember_me = params[:remember_me]
+        flash[:notice] = "Please Login with correct username and password pair"
+        redirect_back_or_default('/')
       end
     end
   end
@@ -203,7 +203,8 @@ protected
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      flash[:notice] = "Please Login with correct username and password pair"
+      redirect_back_or_default('/')
     end
   end
 
@@ -225,7 +226,8 @@ protected
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      flash[:notice] = "Please Login with correct username and password pair"
+      redirect_back_or_default('/')
     end
   end
 

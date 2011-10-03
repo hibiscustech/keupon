@@ -230,13 +230,31 @@ function changeScreenStepTwo(){
 		alert('Enter your Pincode')
         return false;
     }
-	if (cn != ''){
-		var all_complete = true;
-    }
-	else{
-		alert('Enter your Contact Number')
-        return false;
+//	if (cn != ''){
+//		var all_complete = true;
+//    }
+//	else{
+//		alert('Enter your Contact Number')
+//        return false;
+//	}
+
+
+	if (isNaN(cn) || cn.indexOf(" ") != -1) {
+	    alert("Enter numeric value for Mobile Number")
+	    return false;
 	}
+	else if (cn.length != 8) {
+	    alert("Enter 8 characters for Mobile Number");
+	    return false;
+	}
+	else if (cn.charAt(0) == "9" || cn.charAt(0) == "8") {
+	    var all_complete = true;
+	}
+	else{
+		alert("Mobile Number should start with 8 or 9 ");
+	    return false
+	}
+	
 	if (all_complete) {
 		document.getElementById("customerProfile").style.display = "none";
 		document.getElementById("customerFinal").style.display = "block";

@@ -45,12 +45,8 @@ a{outline:none;}
 .head_box{
 	height:24px; width:290px; -moz-border-radius:15px; -webkit-border-radius:15px; margin-top:13px; float:left; background:#FFFFFF; border:1px solid #cbccce;
 	}
-.go{
-	height:45px; width:462px; position:absolute; margin:130px 0px 0px 400px;
-	}
-.deal_img{
-	float:left; margin-top:15px;
-	}
+.go{height:45px; width:480px; position:absolute; margin:130px 0px 0px 390px;}
+.deal_img{float: left;font-size: 15px;font-weight: bold;margin: 15px 7px 0 0;}
 .go_img{
 	float:left; margin-top:3px;
 	}
@@ -501,3 +497,17 @@ a{outline:none;}
 
 .signup_mainbox_left{width:320px;float:left;}
 
+.share_close{width:75px; height:24px; position:absolute; margin-left:600px; margin-top:10px;}
+.share_keured{background:url(/images/share_keu.png) no-repeat; height:102px; width:166px; margin-left:40px;}
+.share_mainbg{background:url(/images/sharethisdealbg.png) no-repeat;margin:auto; width:717px; height:427px;font-weight:bold;}
+.share_txtbox{position:absolute; margin:-70px 0px 0px 225px;}
+.share_mainbox{height:auto;width:300px;float:left;padding:0 0 0 5px;}
+.share_tb1b{width:230px; float:right; height:23px; background:#babcbe; border:none;}
+.share_midbox{width:664px; height:auto; float:left; margin:20px;}
+.share_line1{width:640px; height:1px; background:#bdbfc1; margin:10px 0px 18px 0px; float:left;}
+.share_login{color:#ab0f14;}
+.share_login a{color:#ab0f14; text-decoration:underline;}
+.share_login a{color:#ab0f14; text-decoration:underline;}
+.share_login a:hover{color:#ab0f14; text-decoration:underline;}
+.share_logbox{width:50px; float:left;}
+.share_log2bx{height:auto; float:left;}

@@ -1067,4 +1067,7 @@ class CustomersController < ApplicationController
     render :layout => false
   end
   
+  def share_this_deal
+    render :partial => "share_this_deal"
+  end
 end
