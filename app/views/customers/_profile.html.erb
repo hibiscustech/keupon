@@ -1,84 +1,127 @@
-
-
-    <br/><br/><br/><br/><br/><br/><br/>
-    <div style="width:618px;text-align:left;">
-      <% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update'} do |f| -%>
-        <%=hidden_field :customer_favourite, :customer_id, :value => @customer_profile.customer_id%>
-        <%=hidden_field_tag 'my_profile', 'profile'%>
-        <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
-
-          <tr>
-            <td width="5%"> </td>
-            <td width="20%" style="color:#000000;">Gender:<font color="red">*</font></td>
-            <td width="30%"><%= f.radio_button 'gender', 'm'%> Male<%= f.radio_button 'gender', 'f'%> Female
-            </td>
-          </tr>
-          <tr>
-            <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">I was born on:<font color="red">*</font></td>
-            <td width="30%"><input id="customer_profile_dob" name="customer_profile[dob]" size="15%" type="text" value='<%=@customer_profile.dob%>'/> <img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif?1272281657" style="border: 0px none ; cursor: pointer;"/></td>
-          </tr>
-
-          <tr>
-            <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">Region :<font color="red">*</font></td>
-            <td width="30%"><%= f.select 'region', CustomerProfile::REGION ,{:prompt => 'Select a region'}%></td>
-          </tr>
-
-          <tr>
-            <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">Marital status :<font color="red">*</font></td>
-            <td width="30%"><%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a Martial status'}%></td>
-          </tr>
-          <tr>
-            <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">Average Monthly Salary:<font color="red">*</font></td>
-            <td width="30%"><%=f.text_field 'income', :size=> '15'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
-          </tr>
-          <tr>
-            <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">NRIC/ FIN#:<font color="red">*</font></td>
-            <td width="30%"><%=f.text_field 'customer_pin', :size=> '15'%></td>
-          </tr>
-          <tr>
-            <td width="5%"> </td>
-            <td width="15%" style="color:#000000;">Work Sector:<font color="red">*</font></td>
-            <td width="30%"><%= f.select 'industry_sector_id', IndustrySector.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select a Work Sector'}%></td>
-          </tr>
-          <tr>
-            <td width="5%" colspan="3"> &nbsp;</td>
-          </tr>
-          <tr>
-            <td colspan="3" style="color:#000000;"><h3>Choose the Categories that interest you the most</h3></td>
-          </tr>
-          <% fields_for "customer_favourite_deals" do |s| %>
-
-            <tr>
-              <td width="5%"> </td>
-              <td width="50%" style="color:#000000;">
-
-                <%for category in category_all%>
-                 <%if category.id==get_selected_category(category.id)%>
-                   <b><%= check_box_tag "customer_favourite_deal[]",category.id,true%><%=category.name%></b><br/>
-                 <%else%>
-                   <b><%= check_box_tag "customer_favourite_deal[]",category.id%><%=category.name%></b><br/>
-                 <%end%>
-                <%end%>
-
-              </td>
-              <td width="30%"><%#= f.text_field :login, :size=>"25%"  %> </td>
-            </tr>
-          <% end %>
-
-          <tr>
-            <td width="5%"> </td>
-            <td width="15%"> </td>
-            <td width="35%" colspan="2">
-              <br/><%=image_submit_tag ("update_btn.png"), :onclick => "return Validate();"%><%=link_to image_tag("cancel_search.png", :border=>0),"/", {:style=>"padding-left:30px;"}%>
-            </td>
-          </tr>
-          <tr><td></td><td></td></tr> <% end -%>
-      </table>
-
-
-    </div> 
+<% form_for @customer_profile, :url => {:controller => 'customers', :action => 'profile_update'} do |f| -%>
+<%=hidden_field :customer_favourite, :customer_id, :value => @customer_profile.customer_id %>
+<%=hidden_field_tag 'my_profile', 'profile' %>
+	<div class="myacc_nav">
+	    <ul>
+	        <li>
+	            <a href="javascript:void(0);" class="visited">MY PROFILE</a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);">MY ACCOUNT</a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);">MY INVITEES</a>
+	        </li>
+	    </ul>
+	</div>
+	<div class="myacc_boxmain">
+	    <div class="myacc_mainb">
+	        <div class="myacc_left">
+	            GENDER:*
+	        </div>
+	        <div class="myacc_right">
+	        	<%= f.radio_button 'gender', 'm' %>MALE
+				<%= f.radio_button 'gender', 'f' %> FEMALE
+	        </div>
+	    </div>
+	    <div class="myacc_mainb">
+	        <div class="myacc_left">
+	            I WAS BORN ON:*
+	        </div>
+	        <div class="myacc_right">
+	        	<input class="myacc_tb4" id="customer_profile_dob" name="customer_profile[dob]" size="15%" type="text" value='<%=@customer_profile.dob%>'/>
+				<img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="cursor: pointer;"/>
+	        </div>
+	    </div>
+	    <div class="myacc_mainb">
+	        <div class="myacc_left">
+	            REGION:*
+	        </div>
+	        <div class="myacc_right">
+	        	<%= f.select 'region', CustomerProfile::REGION ,{:prompt => 'Select a region'}, :class=> "myacc_tb1" %>
+	        </div>
+	    </div>
+	    <div class="myacc_mainb">
+	        <div class="myacc_left">
+	            MARITAL STATUS:*
+	        </div>
+	        <div class="myacc_right">
+	            <input name="tb1a" type="text" class="myacc_tb1" />
+	        </div>
+	    </div>
+	    <div class="myacc_mainb">
+	        <div class="myacc_left">
+	            AVERAGE MONTHLY SALARY:*
+	        </div>
+	        <div class="myacc_right">
+	            <input name="tb1a" type="text" class="myacc_tb1" />
+	        </div>
+	    </div>
+	    <div class="myacc_mainb">
+	        <div class="myacc_left">
+	            NRIC/FIN#:*
+	        </div>
+	        <div class="myacc_right">
+	            <input name="tb1a" type="text" class="myacc_tb1" />
+	        </div>
+	    </div>
+	    <div class="myacc_mainb">
+	        <div class="myacc_left">
+	            WORK SECTOR:*
+	        </div>
+	        <div class="myacc_right">
+	            <input name="tb1a" type="text" class="myacc_tb1" />
+	        </div>
+	    </div>
+	</div>
+	<div class="myacc_choose">
+	    <span>CHOOSE THE CATEGORIES THAT INTEREST YOU</span>
+	</div>
+	<div class="myacc_cate" style="margin-left:15px;">
+	    <ol>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />RESTAURANTS
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />TRAVEL
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />WELLNESS/SPAS/YOGA/MASSAGE
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />KIDS AND FAMILY
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />BARS/NIGHTLIFE
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />FITNESS
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />FASHION
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />ELECTRONICS
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />ACTIVITIES
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />BEAUTY & GROOMING
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />HOME DECOR AND SERVICES
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />EDUCATION
+	        </li>
+	        <li>
+	            <input name="ch1" type="checkbox" value="" />SOCIAL SERVICE/CHARITY
+	        </li>
+	    </ol>
+	</div>
+	<div class="myacc_buttons">
+	    <a href="javascript:void(0);"><img src="/images/update.jpg" border="0" hspace="20" /></a>
+		<a href="javascript:void(0);"><img src="/images/cancel.jpg" border="0" /></a>
+	</div>
+<% end %>

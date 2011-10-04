@@ -45,8 +45,8 @@ a{outline:none;}
 .head_box{
 	height:24px; width:290px; -moz-border-radius:15px; -webkit-border-radius:15px; margin-top:13px; float:left; background:#FFFFFF; border:1px solid #cbccce;
 	}
-.go{height:45px; width:480px; position:absolute; margin:130px 0px 0px 390px;}
-.deal_img{float: left;font-size: 15px;font-weight: bold;margin: 15px 7px 0 0;}
+.go{height:45px;width:480px;position:absolute;margin:130px 0px 0px 390px;}
+.deal_img{float:left;margin:15px 0 0 0;}
 .go_img{
 	float:left; margin-top:3px;
 	}
@@ -162,7 +162,7 @@ a{outline:none;}
 .dealpage_right{
 	float:left; width:492px; margin-left:20px; height:auto; margin-right:20px;
 }
-.dealright_1st{color:#FFF;font-weight:bold;padding:20px 0 0 12px;height:90px;font-size:14px;}
+.dealright_1st{color:#FFF;font-weight:bold;padding:20px 0 0 12px;height:90px;font-size:17px;}
 	
 .dealright_2nd{float:left;padding:25px 0 0 12px;width:480px;height:120px;}
 .dealright_3rd{float:left;color:#FFF;width:493px;margin-top:30px;font-size:13px;font-weight:bold;}
@@ -462,7 +462,7 @@ a{outline:none;}
  .sign_up_banner {
     position: absolute;
     margin-top: 80px;
-    margin-left: -99px;
+    margin-left: -89px;
 }
 
 .sign_up_welcome {position:absolute;color:#414142;margin-left:113px;margin-top:60px;font-weight:bold;font-size:30px;}
@@ -511,3 +511,131 @@ a{outline:none;}
 .share_login a:hover{color:#ab0f14; text-decoration:underline;}
 .share_logbox{width:50px; float:left;}
 .share_log2bx{height:auto; float:left;}
+
+
+.myacc_bg{
+	background:#FFFFFF; height:auto; width:1021px; float:left;
+	}
+.myacc_nav{
+	height:auto; width:1020px;; float:left;
+	}
+.myacc_nav ul{
+	margin:0px; padding:0px;
+	}
+.myacc_nav li{
+	display:inline;font-size:22px; font-weight:bold;  float:left; /* padding:10px;*/ color:#a60f13;
+	margin-right:70px;  text-align:center;  margin-left:20px;
+	}
+.myacc_nav li a{
+	display:inline;font-size:22px; font-weight:bold; color:#a60f13; background:url(/images/meroon_bg.png) no-repeat;text-decoration:none; /*padding:15px 55px;*/ padding:1px 54px 22px;
+	}
+.myacc_nav li a:hover{
+	display:inline;font-size:22px; font-weight:bold;color:#FFF; background:url(/images/red_bg.png) no-repeat;text-decoration:none; padding:1px 54px 22px;
+	}
+.myacc_nav li a:hover, .myacc_nav li focus{
+	background:url(/images/red_bg.png) no-repeat;text-decoration:none; color:#FFF;
+	}
+.myacc_nav li a:hover, .myacc_nav li .visited{
+	background:url(/images/red_bg.png) no-repeat;text-decoration:none; color:#FFF;
+	}
+.myacc_boxmain{
+	height:auto; float:left; margin:30px 0 0 0;
+	}
+.myacc_mainb{
+     height:30px; width:600px;margin:0px 0 0 60px; padding:5px 0px 5px 0px;font-size:13px; font-weight:bold;
+	}
+	.myacc_left{
+	width:250px; height:auto; float:left;
+	}
+	.myacc_right{
+	width:300px; height:auto; float:left;
+	}
+	.myacc_tb1{
+		width:262px; height:26px; border:none; background:#babcbe;
+		}	
+.myacc_cate{
+	height:auto; width:auto; float:left; margin:10px 0 0 15px;
+	}	
+.myacc_choose{font-size:15px; font-weight:bold; float:left; width:964px; margin:26px 0 0 57px;}
+.myacc_buttons{
+	float:right; width:1021px; margin:10px 0px 20px 0px; text-align:right;
+	}
+.myacc_mainb1{
+	 height:35px; width:800px;margin:0px 0 0 60px; padding:5px 0px 5px 0px;font-size:13px; font-weight:bold;
+	}
+	.myacc_right1{
+	width:354px; height:auto; float:left;
+	}
+	.myacc_tb2{
+		width:354px; height:26px; border:none; background:#babcbe;
+		}
+	.myacc_tb3{
+		width:146px; height:26px; border:none; background:#babcbe;
+		}
+	.myacc_tb4{width:244px;height:26px;border:none;background:#babcbe;}
+.myacc_mainb2{
+	 height:30px; width:830px;margin:0px 0 0 60px; padding:5px 0px 5px 0px;font-size:13px; font-weight:bold;
+	}
+.my_invittb1 {
+	width:790px; height:35px; background:#bcbdc0; border:none;
+	}
+
+/*headernew Tab*/
+.header_newtab{
+	height:76px; width:194px; float:left; background:url(/images/header_tableft.png); margin-top:-38px;
+	}
+.head_left_txt {
+	float:left;font-size:11px; width:160px; margin:25px 0 0 16px; color:#FFFFFF;
+	}
+	.head_left_txt a{
+	color:#FFFFFF; text-decoration:none;
+	}
+	.head_left_txt a:hover{
+	color:#FFFFFF; text-decoration:underline;
+	}
+.head_left_nametxt{
+	float:right; width:110px; height:18px; margin:12px 16px 0 0; font-size:12px;color:#FFFFFF;
+	}
+	
+.head_left_img	{
+	position:absolute; height:35px; width:35px; margin:12px 0 0 18px; background:#FFFFFF;
+	}
+
+/**/
+/**/
+
+ol
+{
+  width: 80em;  /* room for 4 columns */
+  list-style:none;
+}
+ol li
+{
+  float: left;
+  width: 20em;  /* accommodate the widest item */
+  font-size:12px;
+  line-height:30px;
+  font-weight:bold;
+}
+/* stop the floating after the list */
+br
+{
+  clear: left;
+}
+/* separate the list from what follows it */
+div.wrapper
+{
+  margin-bottom: 1em;
+}
+
+/* anchor styling */
+ol li a
+{
+  display: block;
+  width: 10em;
+  text-decoration: none;
+}
+ol li a:hover
+{
+  color: #FFF; /* white */
+  background-color: #A52A2A;} /* brown */

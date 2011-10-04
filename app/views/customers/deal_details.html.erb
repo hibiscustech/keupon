@@ -27,7 +27,7 @@
     </div>
     <div class="dealpage_right">
         <div class="dealright_1st">
-            <%= @deal.name %>
+        	<%= truncate(@deal.name, 190, "...") %>
         </div>
         <div class="dealright_2nd">
             <div style="width:300px; float:left;">
