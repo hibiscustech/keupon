@@ -23,9 +23,11 @@ class Deal < ActiveRecord::Base
 
   has_attached_file :deal_photo,
     :styles => {
+      :small  => "150x150#",
       :open_deal_main=> "220X130#",
       :hot_deal_main  => "370X290#",
-      :deal_detail  => "420X300#"}
+      :deal_detail  => "420X300#",
+      :deal_mailer => "250X210#"}
 
 
   DISCOUNTS = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95"]
@@ -267,8 +269,16 @@ class Deal < ActiveRecord::Base
     find_by_sql(query)[0]
   end
 
+#  def self.my_keupons(customer)
+#    query = %Q{ SELECT d.id,d.name, cd.purchase_date, d.expiry_date, deal_code, cd.status, cd.id as customer_deal_id
+#                FROM customer_deals cd
+#                join deals d on d.id = cd.deal_id
+#                where cd.customer_id = #{customer} }
+#    find_by_sql(query)
+#  end
+
   def self.my_keupons(customer)
-    query = %Q{ SELECT d.id,d.name, cd.purchase_date, d.expiry_date, deal_code, cd.status, cd.id as customer_deal_id
+    query = %Q{ SELECT d.id, d.name, cd.purchase_date, d.value, d.expiry_date, d.deal_photo_file_name, deal_code, cd.status, cd.id as customer_deal_id
                 FROM customer_deals cd
                 join deals d on d.id = cd.deal_id
                 where cd.customer_id = #{customer} }

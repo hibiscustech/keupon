@@ -5,12 +5,22 @@ class Customer < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
+#  before_save :validate_email
 #  validates_presence_of     :login
 #  validates_length_of       :login,    :within => 3..40
 #  validates_uniqueness_of   :login
 #  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
-
+  has_attached_file :customer_photo,
+    :styles => {
+      :thumb=> "100x100#",
+      :medium => "70x50#",
+      :small  => "60x60#",
+      :smallest => "35x35#"}
+  
+  validates_attachment_presence :customer_photo, :on => :update
+  validates_attachment_size :customer_photo, :less_than=>1.megabyte, :on => :update
+  validates_attachment_content_type :customer_photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :on => :update
 
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 #r@a.wk
@@ -35,11 +45,25 @@ class Customer < ActiveRecord::Base
   has_many :customer_demand_deals
   has_many :customer_friends
 
-  has_attached_file :customer_photo,
-    :styles => {
-      :thumb=> "100x100#",
-      :medium => "70x50#",
-      :small  => "95x80#" }
+#  has_attached_file :customer_photo,
+#    :styles => {
+#      :thumb=> "100x100#",
+#      :medium => "70x50#",
+#      :small  => "95x80#" }
+
+  
+#  def validate_email
+#    self.errors.add(:email,"should look like email") unless email =~ /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
+#    errors.add(:house_area,"should not be blank") if house_property == 'Yes' and house_area.blank?
+#    errors.add(:house_city,"should not be blank") if house_property == 'Yes' and house_city.blank?
+#    errors.add(:house_state,"should not be blank") if house_property == 'Yes' and house_state.blank?
+#    errors.add(:house_pin_code,"should not be blank") if house_property == 'Yes' and house_pin_code.blank?
+#    errors.add(:house_interest_amt,"should not be blank") if house_property == 'Yes' and house_interest_amt.blank?
+#    #errors.add(:house_pin_code,"should be 6 digits")  if house_pin_code =~ /[0-9]{6}/ and house_property == 'Yes'
+#    if house_property == 'Yes' and house_pin_code!=nil
+#      errors.add("house_pin_code","should be 6 digits") unless house_pin_code =~ /[0-9]{6}/
+#    end
+  
 
   # Activates the user in the database.
   def activate!
@@ -115,6 +139,7 @@ class Customer < ActiveRecord::Base
     end
     age.to_s
   end
+
 
   protected
     

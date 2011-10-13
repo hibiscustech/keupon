@@ -70,13 +70,26 @@ class CustomerMailer < ActionMailer::Base
     @body[:profile] = customer.customer_profile
     content_type "text/html"
   end 
-  def send_invite(customer,email,id)
+  
+  def send_invite(customer,customer_profile,email,friend_id)
     @recipients  = email
     @subject    = 'I think you should get your Keupon!'
     @from        = "#{Constant.get_admin_email_id}"
     @sent_on     = Time.zone.now
     @body[:customer] = customer
-    @body[:id] = id
+    @body[:customer_profile] = customer_profile
+    @body[:friend_id] = friend_id
+    content_type "text/html"
+  end
+  
+  def share_this_deal(customer,customer_profile,email,deal)
+    @recipients  = email
+    @subject    = 'I think you should intrested in this deaal!'
+    @from        = "#{Constant.get_admin_email_id}"
+    @sent_on     = Time.zone.now
+    @body[:customer] = customer
+    @body[:customer_profile] = customer_profile
+    @body[:deal] = deal
     content_type "text/html"
   end
   

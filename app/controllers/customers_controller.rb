@@ -62,22 +62,30 @@ class CustomersController < ApplicationController
   def index
     
   end
+  
+  def earn_money
+    render :partial => "earn_money"
+  end
+  
+  def earn_money2
+    @customer = Customer.find(current_customer.id)
+    render :partial=>'invite_friends'
+  end
+  
   def invite_friends
-    if request.post?
-      email=params[:email]
-      if Customer.verifying_already_member?(email)
-        flash[:notice]= "#{email} is already a member."
-        redirect_to '/invite_friends'
-      else
-        @customer_friend=CustomerFriend.create(:friend_email=>email,:customer_id=>current_customer.id)
-        flash[:notice]='Great! Your friend will be receiving an email from Keupons.com soon! Invite more friends, earn more Kredits and save more!'
-        #emailing with URL which will populate email id on email field os the signup page
-        CustomerMailer.deliver_send_invite(current_customer,email,@customer_friend.id)
-        redirect_to '/invite_friends'
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    @friends_name = params[:friend][:name].delete_if {|name| name == "" }
+    @friends_email = params[:friend][:email].delete_if {|email| email == "" }
+    @friends_email.each do |friend_email|
+      if !Customer.verifying_already_member?(friend_email)
+        @customer_friend = CustomerFriend.create(:friend_email => friend_email, :customer_id => @customer.id)
+        CustomerMailer.deliver_send_invite(@customer,@customer_profile,friend_email,@customer_friend.id)
+        @invited = true
       end
-    else
-      render :template=>'/customers/earn_money'
     end
+    @invited ? flash[:notice]='Great! Your friend will be receiving an email from Keupons.com soon! Invite more friends, earn more Kredits and save more!' : flash[:notice]='Error sending invitations to your Friends.'
+    redirect_to :action => "deal_of_the_day"
   end
   
   def deal_of_the_day
@@ -650,7 +658,7 @@ class CustomersController < ApplicationController
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       @signup_failed=true
-      render :action => 'new', :layout=> 'signup'
+      redirect_to '/'
     end
   end
   
@@ -779,122 +787,86 @@ class CustomersController < ApplicationController
   def edit_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cname_change',:partial => "edit_customer_name"
-          end
-        }
-      end
-    end
+    render :partial => "edit_customer_name"
   end
   
-  def change_password
-    @page = "Change Password"
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cpassword_change',:partial => "change_password"
-          end
-        }
-      end
-    end
-  end
-  
-  
-  def edit_customer_email
+  def update_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cemail_change',:partial => "edit_customer_email"
-          end
-        }
-      end
+    if params[:customer][:first_name] =~ /\A[^[:cntrl:]\\<>\/&]*\z/ && params[:customer][:last_name] =~ /\A[^[:cntrl:]\\<>\/&]*\z/
+      @customer_profile.update_attributes(:first_name => params[:customer][:first_name].strip, :last_name => params[:customer][:last_name].strip)
+      flash[:notice] = "Successfully updated Name"
+      redirect_to :action => "my_profile", :disp_page => "account"
+    else
+      flash[:notice] = "Please avoid non-printing characters for Name"
+      redirect_to :action => "my_profile", :disp_page => "account"
     end
   end
   
   def cancel_edit_customer_name
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cname_change',:partial => "customer_name"
-          end
-        }
-      end
+    redirect_to :action => "my_profile", :disp_page => "account"
+  end
+  
+  def edit_customer_email
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    render :partial => "edit_customer_email"
+  end
+  
+  def update_customer_email
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    if params[:customer][:email] =~ /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
+      @customer.update_attribute(:email, params[:customer][:email])
+      @customer_profile.update_attributes(:email_address => params[:customer][:email])
+      flash[:notice] = "Successfully updated Email"
+      redirect_to :action => "my_profile", :disp_page => "account"
+    else
+      flash[:notice] = "Email should look like email"
+      redirect_to :action => "my_profile", :disp_page => "account"
     end
   end
   
   def cancel_edit_customer_email
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cemail_change',:partial => "customer_email"
-          end
-        }
-      end
-    end
+    redirect_to :action => "my_profile", :disp_page => "account"
   end
   
-  def cancel_customer_password
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cpassword_change',:partial => "customer_password"
-          end
-        }
-      end
-    end
-  end
-  
-  def update_customer_name
+  def edit_customer_password
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
-    @customer_profile.update_attributes(:first_name => params[:first_name], :last_name => params[:last_name])
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cname_change',:partial => "customer_name"
-          end
-        }
+    render :partial => "edit_customer_password"
+  end
+  
+  def update_customer_password
+    if Customer.authenticate(current_customer.login, params[:old_password])
+      if ((params[:password] == params[:password_confirmation]) && !params[:password_confirmation].blank?)
+        current_customer.password_confirmation = params[:password_confirmation]
+        current_customer.password = params[:password]
+        if current_customer.save!
+          flash[:notice] = "Password successfully updated"
+          redirect_to :action => "my_profile", :disp_page => "account"
+        else
+          flash[:alert] = "Password not changed"
+          redirect_to :action => "my_profile", :disp_page => "account"
+        end
+      else
+        flash[:alert] = "New Password mismatch" 
+        redirect_to :action => "my_profile", :disp_page => "account"
       end
+    else
+      flash[:alert] = "Old password incorrect" 
+      redirect_to :action => "my_profile", :disp_page => "account"
     end
   end
   
-  def update_customer_email
+  def cancel_edit_customer_password
     @customer = Customer.find(params[:id])
     @customer_profile = @customer.customer_profile
-    @customer_profile.update_attributes(:email_address => params[:email])
-    @customer.update_attributes(:email => params[:email])
-    if request.xml_http_request?
-      respond_to do |format|
-        format.html
-        format.js {
-          render :update do |page|
-            page.replace_html 'cemail_change',:partial => "customer_email"
-          end
-        }
-      end
-    end
+    redirect_to :action => "my_profile", :disp_page => "account"
   end
   
   def view_location_deal_info
@@ -950,6 +922,7 @@ class CustomersController < ApplicationController
   
   def my_profile
     @page = 'My Settings'
+    @disp_page = params[:disp_page]
     @customer = Customer.find(current_customer.id)
     @customer_profile = @customer.customer_profile
     @cus_favourite=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
@@ -971,10 +944,11 @@ class CustomersController < ApplicationController
   end
   
   def profile_update
-    p params
+#    p params
+    debugger
     @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_favourite][:customer_id])
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
-    if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob], :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],:gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
+    if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob].gsub('/','-').to_date.strftime("%Y-%m-%d"), :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],:gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
     end
     existing_deal_categories=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id) rescue nil
     if !existing_deal_categories.nil?
@@ -1067,7 +1041,63 @@ class CustomersController < ApplicationController
     render :layout => false
   end
   
-  def share_this_deal
-    render :partial => "share_this_deal"
+  def share_this_deal_form
+    @deal = Deal.find(params[:deal_id])
+    render :partial => "share_this_deal_form"
   end
+  
+  def share_this_deal
+    @customer = Customer.find(current_customer.id)
+    @customer_profile = @customer.customer_profile
+    @deal = Deal.find(params[:deal_id])
+    @share_names = params[:share][:name].delete_if {|name| name == "" }
+    @share_emails = params[:share][:email].delete_if {|email| email == "" }
+    @share_emails.each do |share_email|
+      if share_email =~ /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
+        CustomerMailer.deliver_share_this_deal(@customer,@customer_profile,share_email,@deal)
+        @shared = true
+      end
+    end
+    @shared ? flash[:notice]='You have successfully shared this deal.' : flash[:notice]='Error sharing the deal'
+    redirect_to :action => "deal_details", :id => @deal.id
+  end
+  
+  def my_account
+    @customer = Customer.find(current_customer.id)
+    @customer_profile = @customer.customer_profile
+    render :partial => "my_account"
+  end
+  
+  def my_invitees
+    @customer = Customer.find(current_customer.id)
+    @customer_profile = @customer.customer_profile
+    @cus_favourite=CustomerFavouriteDeal.find_all_by_customer_id(current_customer.id)
+    @friends = @customer.customer_friends
+    @invitees = CustomerFriend.signed_up_invitees(@customer.id)
+    render :partial => "my_invitees"
+  end
+  
+  def edit_customer_avatar
+    @customer = Customer.find(current_customer.id)
+    @customer_profile = @customer.customer_profile
+    render :partial => "edit_customer_avatar"
+  end
+  
+  def update_customer_avatar
+    @customer = Customer.find(params[:id])
+    @customer_profile = @customer.customer_profile
+    if !params[:customer][:customer_photo].nil?
+      if @customer.update_attribute(:customer_photo, params[:customer][:customer_photo])
+        flash[:notice] = "Successfully uploaded profile picture."
+        redirect_to :action => "my_profile", :disp_page => "account"
+      else
+        flash[:notice] = "Error in uploading profile picture."
+        redirect_to :action => "my_profile", :disp_page => "account"
+      end
+    else
+      flash[:notice] = "Make sure you have choosen the profile picture."
+      redirect_to :action => "my_profile", :disp_page => "account"
+    end
+  end
+  
 end
