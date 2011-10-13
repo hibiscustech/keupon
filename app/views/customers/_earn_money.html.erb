@@ -1,0 +1,8 @@
+<div class="invite_friend_bg">
+	<a href="javascript:void(0);" onclick="Effect.Fade('RB_window', {duration: 0.4});Effect.Fade('RB_overlay', {duration: 0.4});">
+		<img src="/images/close_grey.jpg" border="0" style="margin-top:15px; position:absolute; margin-left:596px;"/>
+	</a>
+    <div class="invite_friend_img">
+        <%=link_to_remote(image_tag('/images/invitefriendsnow.png'),:url => {:controller => 'customers',:action => 'earn_money2'}, :update => 'RB_window')%>
+    </div>
+</div>

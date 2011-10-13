@@ -4,12 +4,24 @@
     </div>
     <div class="grey_buttons">
     	<% if logged_in? %>
-			<a href="/logout"><img src="/images/logout.png" width="87" height="39" border="0" /></a>
+			<div class="header_newtab">
+	        	<div class="head_left_img">
+	        		<% @customer = Customer.find(current_customer.id)
+    				@customer_profile = @customer.customer_profile %>
+					<%= @customer_profile.nil? ? image_tag("/images/user1.jpg", :alt => "no profile image") : (image_tag @customer.customer_photo.url(:smallest)) %>
+				</div>
+	            <div class="head_left_nametxt"><%= @customer_profile.first_name %> <%= @customer_profile.last_name %></div>
+	            <div class="head_left_txt"><a href="/my_profile">My Profile</a> | <a href="/my_keupons">My Keupons</a> | <a href="/logout">Log out</a></div>
+        	</div>
 		<% else %>
-	        <%= link_to_remote_redbox image_tag('/images/login.png'), :url => {:controller => "sessions", :action => "new"} %>
-			<%= link_to_remote_redbox image_tag('/images/sign_up.png'), :url => {:controller => "customers", :action => "new"} %>
+			<div style="float:left;">
+		        <%= link_to_remote_redbox image_tag('/images/login.png'), :url => {:controller => "sessions", :action => "new"}, :html_options => {:style => "padding:0 10px 0 0;float:left;"} %>
+				<%= link_to_remote_redbox image_tag('/images/sign_up.png'), :url => {:controller => "customers", :action => "new"}, :style => "float:left;" %>
+			</div>
 		<% end%>
-		<a href="javascript:void(0);"><img src="/images/if.png" width="87" height="39" border="0" /></a>
+		<div style="float:right;" class="invite_link">
+			<%= link_to_remote_redbox image_tag('/images/if.png'), :url => {:controller => "customers", :action => "earn_money"} %>
+		</div>
     </div>
 </div>
 <div class="legs">

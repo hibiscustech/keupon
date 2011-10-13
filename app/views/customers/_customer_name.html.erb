@@ -1,3 +1,9 @@
-<%=@customer_profile.first_name%>&nbsp;<%=@customer_profile.last_name%>
-<!-- <a style="color:#19A2FF;" href="#" onclick="new Ajax.Request('/customers/edit_customer_name/'<%=@customer.id%>, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});return false;">Change</a> -->
- <a style="color:#19A2FF;" href="#" onclick="customer_name(<%=@customer.id%>)">Change</a>
+<div class="myacc_left">
+    NAME
+</div>
+<div class="myacc_right1">
+    <input name="tb1a" type="text" class="myacc_tb2" value="<%= @customer_profile.first_name %> <%= @customer_profile.last_name %>" />
+</div>
+<div style="float:right; ">
+    <%= link_to_remote image_tag('/images/change.jpg'), :update => "customer_name", :url => {:controller => "customers", :action => "edit_customer_name", :id => @customer.id} %>
+</div>

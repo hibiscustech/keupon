@@ -1,0 +1,59 @@
+<div class="invite_friend2_bg">
+    <a href="javascript:void(0);" onclick="Effect.Fade('RB_window', {duration: 0.4});Effect.Fade('RB_overlay', {duration: 0.4});">
+		<img src="/images/close_grey.jpg" border="0" style="margin-top:15px;margin-left:596px;"/>
+	</a>
+	<% form_tag :controller => 'customers', :action => 'invite_friends', :id => @customer.id do |f| %>
+	<div class="main_divbox">
+    	<div style="height:auto; float:left;">
+            <div class="share_mainbox">
+                <div style="height:35px;">
+                    <span class="share_logbox">FIRST NAME</span>
+					<input name="friend[name][]" id="friend_name" type="text" class="share_tb1b"/>
+                </div>
+                <div style="height:35px; margin-top:5px;">
+                    <span class="email" style="width:50px;">FRIEND’S EMAIL</span>
+                    <input name="friend[email][]" id="friend_email" type="text" class="share_tb1b"/>
+                </div>
+            </div>
+            <div class="share_mainbox" style="width:300px; margin-left:30px;">
+                <div style="height:35px;">
+                    <span style="width:50px; float:left;">FIRST NAME</span>
+                    <input name="friend[name][]" id="friend_name" type="text" class="share_tb1b"/>
+                </div>
+                <div style="height:35px; margin-top:5px;">
+                    <span class="email" style="width:50px;">FRIEND’S EMAIL</span>
+                    <input name="friend[email][]" id="friend_email" type="text" class="share_tb1b"/>
+            </div>
+        </div>
+        <div class="share_line2">
+        </div>
+        <div class="share_log2bx">
+            <div class="share_mainbox">
+                <div style="height:35px;">
+                    <span class="share_logbox">FIRST NAME</span>
+                    <input name="friend[name][]" id="friend_name" type="text" class="share_tb1b"/>
+                </div>
+                <div style="height:35px; margin-top:5px;">
+                    <span class="email" style="width:50px;">FRIEND’S EMAIL</span>
+                    <input name="friend[email][]" id="friend_email" type="text" class="share_tb1b"/>
+                </div>
+            </div>
+            <div class="share_mainbox" style="width:300px; margin-left:30px;">
+                <div style="height:35px;">
+                    <span style="width:50px; float:left;">FIRST NAME</span>
+                    <input name="friend[name][]" id="friend_name" type="text" class="share_tb1b"/>
+                </div>
+                <div style="height:35px; margin-top:5px;">
+                    <span class="email" style="width:50px;">FRIEND’S EMAIL</span>
+                    <input name="friend[email][]" id="friend_email" type="text" class="share_tb1b"/>
+                </div>
+            </div>
+        </div>
+        <div class="share_line2">
+        </div>
+        <div>
+        	<%= image_submit_tag('/images/submit.jpg', :align => "right", :hspace => "48")%>
+        </div>
+    </div>
+	<% end %>
+</div>

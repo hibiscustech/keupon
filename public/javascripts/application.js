@@ -271,3 +271,54 @@ function check_tos(){
         return false;
     }
 }
+
+function changeButton(id){
+    if (id == "available") {
+        document.getElementById('available').style.display = "block";
+        document.getElementById('used').style.display = "none";
+        document.getElementById('expired').style.display = "none";
+        document.getElementById('all').style.display = "none";
+        
+        document.getElementById("visited_btn_available").className=""
+        document.getElementById("visited_btn_used").className=""
+        document.getElementById("visited_btn_expired").className=""
+        document.getElementById("visited_btn_all").className=""
+		document.getElementById("visited_btn_available").className="visited"
+    }
+    else if (id == "used") {
+        document.getElementById('available').style.display = "none";
+        document.getElementById('used').style.display = "block";
+        document.getElementById('expired').style.display = "none";
+        document.getElementById('all').style.display = "none";
+        
+        document.getElementById("visited_btn_available").className=""
+        document.getElementById("visited_btn_used").className=""
+        document.getElementById("visited_btn_expired").className=""
+        document.getElementById("visited_btn_all").className=""
+		document.getElementById("visited_btn_used").className="visited"
+    }
+    else if (id == "expired") {
+        document.getElementById('available').style.display = "none";
+        document.getElementById('used').style.display = "none";
+        document.getElementById('expired').style.display = "block";
+        document.getElementById('all').style.display = "none";
+        
+        document.getElementById("visited_btn_available").className=""
+        document.getElementById("visited_btn_used").className=""
+        document.getElementById("visited_btn_expired").className=""
+        document.getElementById("visited_btn_all").className=""
+		document.getElementById("visited_btn_expired").className="visited"
+    }
+    else if (id == "all") {
+        document.getElementById('available').style.display = "none";
+        document.getElementById('used').style.display = "none";
+        document.getElementById('expired').style.display = "none";
+        document.getElementById('all').style.display = "block";
+        
+        document.getElementById("visited_btn_available").className=""
+        document.getElementById("visited_btn_used").className=""
+        document.getElementById("visited_btn_expired").className=""
+        document.getElementById("visited_btn_all").className=""
+		document.getElementById("visited_btn_all").className="visited"
+    }
+}

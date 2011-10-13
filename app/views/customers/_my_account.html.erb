@@ -1,66 +1,27 @@
-<br/><br/><br/><br/><br/><br/><br/>
-<div style="width:618px;text-align:left;">
-
-  <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Avatar :</td>
-      <td width="10%">
-        <%if current_customer.customer_photo.nil?%>
-          <img src="/images/profile_pic.jpg" border="0px" />
-        <%else%>
-          <%=image_tag (@customer.customer_photo.url(:small))%>
-        <%end%>
-        <%=link_to 'change','#',:onclick=>'avatar_down()',:style=>'color:#19A2FF;'%><%#= f.select 'income', CustomerProfile::INCOME%></td>
-    </tr>
-
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;"></td>
-      <td width="10%">
-        <div id ="avatar"style="display:none;">
-          <% form_for @customer, :url => {:controller => 'customers', :action => 'settings', :id=> @customer.id} , :html => { :multipart => true } do |f| -%>
-          Photo:
-          <%= f.file_field :customer_photo, :size=>"6%" %> <br/><br/>
-          <%=image_submit_tag ("upload_btn.jpg")%><%=link_to image_tag("cancel.jpg", :border=>0),"#", :onclick=>'avatar_cancel()',:style=>"padding-left:5px;"%>
-          <% end -%>
-        </div>
-      </td>   
-    </tr>
-
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Name :</td>
-      <td width="10%" id="cname_change">
-        <%= render :partial => "customer_name" %>
-      </td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;"></td>
-      <td width="10%">
-      </td>
-    </tr>
-    
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Email :</td>
-      <td width="10%" id="cemail_change">  <%= render :partial => "customer_email" %> </td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;"></td>
-      <td width="10%"></td>
-    </tr>
-    <tr>
-      <td width="5%"> </td>
-      <td width="5%" style="color:#000000;">Password :</td>
-      <td width="10%" id="cpassword_change"><%= render :partial => "customer_password" %></td>
-    </tr>
-
-
-    <tr><td></td><td></td></tr> 
-  </table>
-
-
-</div> 
+<div class="myacc_nav">
+    <ul>
+        <li>
+        	<%= link_to "MY PROFILE", {:controller => "customers", :action => "my_profile"} %>
+        </li>
+        <li>
+        	<%= link_to_remote "MY ACCOUNT", :url => {:controller => "customers", :action => "my_account"}, :update => "actionChanger", :html => {:class => "visited"} %>
+        </li>
+        <li>
+        	<%= link_to_remote "MY INVITEES", :url => {:controller => "customers", :action => "my_invitees"}, :update => "actionChanger" %>
+        </li>
+    </ul>
+</div>
+<div class="myacc_boxmain">
+    <div class="myacc_mainb1" id="customer_pic" style="height:80px;">
+       	<%= render :partial => "customer_avatar"%>
+	</div>
+    <div class="myacc_mainb1" id="customer_name">
+        <%= render :partial => "customer_name"%>
+    </div>
+    <div class="myacc_mainb1" id="customer_email">
+        <%= render :partial => "customer_email" %>
+	</div>
+    <div class="myacc_mainb1" id="customer_password">
+		<%= render :partial => "customer_password" %>
+    </div>
+</div>

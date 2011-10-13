@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,27 +8,6 @@
                 margin: auto;
                 font-family: Helvetica, Arial, sans-serif;
                 font-size: 12px;
-            }
-            
-            .mailer_invitebg {
-                background: url(<%=$server_name%>/images/mailer_invitefriendbg.png);
-                width: 544px;
-                height: 125px;
-                margin: 0 auto 0px;
-            }
-            
-            .invite_txt1 {
-                font-size: 12px;
-                font-weight: bold;
-                color: #FFFFFF;
-                text-align: center;
-                padding: 10px 0 0 0;
-            }
-            
-            .invite_txt2 {
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 10px;
-                text-align: left;
             }
             
             .mailer_wrapper {
@@ -147,51 +126,31 @@
             </div>
             <div class="mailer_body">
                 <div class="mailer_toptxt1">
-                    <span><%= @customer_profile.first_name %> <%= @customer_profile.last_name %> has invited you to join Keupons</span>
+                    <span><%= @customer_profile.first_name %> <%= @customer_profile.last_name %> recommends that you get this Keupon</span>
                     <br/>
                     <br/>
                     <br/>
-                    <span style="font-weight:normal; font-size:12px;">Hi, I joined Keupons to get great deals in Singapore and I think you should too. </span>
+                    <span style="font-weight:normal; font-size:12px;">Hi, I think you will like this deal.</span>
                 </div>
-                <div>
-                    <a href="<%=$server_name%>" target="_blank"><img src="<%=$server_name%>/images/signupnow.png" hspace="40" border="0" vspace="40" /></a>
-                </div>
-                <div class="mailer_invitebg">
-                    <div class="invite_txt1">
-                        <span>At Keupons, "the more people buy, the higher the discount gets!"</span>
+                <div class="mailer_box1">
+                    <div class="mailer_left">
+                    	<img src="<%=@deal.deal_photo.url(:deal_mailer)%>" alt="Deal Image not available!" />
                     </div>
-                    <div style="height:auto; float:left;">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td colspan="6">
-                                    &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="<%=$server_name%>/images/bestdeal_small.png" hspace="10" />
-                                </td>
-                                <td class="invite_txt2" width="20%">
-                                    Get the lowest price with our BEST DEAL GUARANTEE!
-                                </td>
-                                <td>
-                                    <img src="<%=$server_name%>/images/100money_small.png" hspace="11" />
-                                </td>
-                                <td class="invite_txt2">
-                                    Satisfaction guaranteed!
-                                </td>
-                                <td>
-                                    <img src="<%=$server_name%>/images/paypal_small.png" hspace="6" align="right" />
-                                </td>
-                                <td class="invite_txt2" width="15%">
-                                    Secure payment via PAYPAL
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="mailer_right">
+                        <div class="mailer_up">
+                            <span style="font-size:14px; font-weight:bold;"><%= truncate(@deal.name, 100, "...") %></span>
+                            <br/>
+                            <br/>
+                            <span style="font-size:11px;"><%= truncate(@deal.description, 200, "...") %></span>
+                        </div>
+                        <div class="mailer_down">
+                            <div class="mailer_round">
+                            </div>
+                            <div style="margin:35px 0 0 0px; float:right;">
+                                <a href="<%=$server_name%>/deal_details?id=<%=@deal.id%>" target="_blank"><img src="<%=$server_name%>/images/mailer_readmore.png" border="0" /></a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    &nbsp;
                 </div>
             </div>
             <div class="mailer_footer">

@@ -1,0 +1,15 @@
+<% form_for :customer, @customer, :url => {:controller => 'customers', :action => 'update_customer_avatar', :id => @customer.id}, :html => { :multipart => true } do |f| %>
+<div class="myAccDropBox1">
+	<%= f.error_messages %>
+	<div class="myacc_left" style="margin-top:40px;">
+        <span>AVATAR</span>
+    </div>
+	<div style="float:left;">
+        <%= @customer_profile.nil? ? image_tag("/images/profile_pic.jpg", :alt => "no profile image") : (image_tag @customer.customer_photo.url(:small)) %>
+		<%= f.file_field :customer_photo, :size => "15", :style=> "float:left;margin-top:30px;" %>
+    </div>
+    <div style="float:right; margin-top:35px;">
+        <%= submit_tag "Update Pic" %>
+	</div>
+</div>
+<% end %>

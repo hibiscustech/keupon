@@ -1,3 +1,9 @@
-<%=@customer.email%>&nbsp;&nbsp;&nbsp;
-
-<a style="color:#19A2FF;" href="#" onclick="customer_email(<%=@customer.id%>)">Change</a>
+<div class="myacc_left">
+    EMAIL
+</div>
+<div class="myacc_right">
+    <input name="tb1a" type="text" class="myacc_tb2" value="<%= @customer.email %>" />
+</div>
+<div style="float:right; ">
+    <%= link_to_remote image_tag('/images/change.jpg'), :update => "customer_email", :url => {:controller => "customers", :action => "edit_customer_email", :id => @customer.id} %>
+</div>

@@ -4,13 +4,13 @@
 	<div class="myacc_nav">
 	    <ul>
 	        <li>
-	            <a href="javascript:void(0);" class="visited">MY PROFILE</a>
+	        	<%= link_to "MY PROFILE", {:controller => "customers", :action => "my_profile"}, {:class => "visited"} %>
 	        </li>
 	        <li>
-	            <a href="javascript:void(0);">MY ACCOUNT</a>
+	        	<%= link_to_remote "MY ACCOUNT", :url => {:controller => "customers", :action => "my_account"}, :update => "actionChanger" %>
 	        </li>
 	        <li>
-	            <a href="javascript:void(0);">MY INVITEES</a>
+	        	<%= link_to_remote "MY INVITEES", :url => {:controller => "customers", :action => "my_invitees"}, :update => "actionChanger" %>
 	        </li>
 	    </ul>
 	</div>
@@ -29,8 +29,8 @@
 	            I WAS BORN ON:*
 	        </div>
 	        <div class="myacc_right">
-	        	<input class="myacc_tb4" id="customer_profile_dob" name="customer_profile[dob]" size="15%" type="text" value='<%=@customer_profile.dob%>'/>
-				<img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="cursor: pointer;"/>
+	        	<input class="myacc_tb4" id="customer_profile_dob" name="customer_profile[dob]" size="15%" type="text" value='<%=@customer_profile.dob.to_date.strftime("%d/%m/%Y") %>'/>
+				<img alt="Calendar" class="calendar_date_select_popup_icon" onclick="new CalendarDateSelect( $(this).previous(), {year_range:100} );" src="/images/calendar_date_select/calendar.gif" style="padding:0 0 0 5px;cursor: pointer;"/>
 	        </div>
 	    </div>
 	    <div class="myacc_mainb">
@@ -46,7 +46,7 @@
 	            MARITAL STATUS:*
 	        </div>
 	        <div class="myacc_right">
-	            <input name="tb1a" type="text" class="myacc_tb1" />
+	        	<%= f.select 'relationship', CustomerProfile::RELATIONSHIP,{:prompt => 'Select a Marital status'}, :class=> "myacc_tb1" %>
 	        </div>
 	    </div>
 	    <div class="myacc_mainb">
@@ -54,7 +54,7 @@
 	            AVERAGE MONTHLY SALARY:*
 	        </div>
 	        <div class="myacc_right">
-	            <input name="tb1a" type="text" class="myacc_tb1" />
+	        	<%=f.text_field 'income', :size=> '15', :class=>"myacc_tb4" %>				
 	        </div>
 	    </div>
 	    <div class="myacc_mainb">
@@ -62,7 +62,7 @@
 	            NRIC/FIN#:*
 	        </div>
 	        <div class="myacc_right">
-	            <input name="tb1a" type="text" class="myacc_tb1" />
+	            <%=f.text_field 'customer_pin', :size=> '15', :class=>"myacc_tb4" %>
 	        </div>
 	    </div>
 	    <div class="myacc_mainb">
@@ -70,7 +70,7 @@
 	            WORK SECTOR:*
 	        </div>
 	        <div class="myacc_right">
-	            <input name="tb1a" type="text" class="myacc_tb1" />
+	            <%= f.select 'industry_sector_id', IndustrySector.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select a Work Sector'}, :class=>"myacc_tb1" %>
 	        </div>
 	    </div>
 	</div>
@@ -79,49 +79,21 @@
 	</div>
 	<div class="myacc_cate" style="margin-left:15px;">
 	    <ol>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />RESTAURANTS
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />TRAVEL
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />WELLNESS/SPAS/YOGA/MASSAGE
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />KIDS AND FAMILY
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />BARS/NIGHTLIFE
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />FITNESS
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />FASHION
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />ELECTRONICS
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />ACTIVITIES
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />BEAUTY & GROOMING
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />HOME DECOR AND SERVICES
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />EDUCATION
-	        </li>
-	        <li>
-	            <input name="ch1" type="checkbox" value="" />SOCIAL SERVICE/CHARITY
-	        </li>
+	    	<%for category in category_all %>
+                <%if category.id==get_selected_category(category.id) %>
+			        <li>
+			        	<%= check_box_tag "customer_favourite_deal[]",category.id,true %><%=category.name %>
+			        </li>
+				<% else %>
+			        <li>
+			            <%= check_box_tag "customer_favourite_deal[]",category.id %><%=category.name %>
+			        </li>
+				<% end %>
+			<% end %>
 	    </ol>
 	</div>
 	<div class="myacc_buttons">
-	    <a href="javascript:void(0);"><img src="/images/update.jpg" border="0" hspace="20" /></a>
-		<a href="javascript:void(0);"><img src="/images/cancel.jpg" border="0" /></a>
+		<%=image_submit_tag ("/images/update.jpg"), :onclick => "return Validate();" %>
+	    <%=link_to image_tag("/images/cancel.jpg", :border=>0),"/", {:style=>"padding-left:30px;"} %>
 	</div>
 <% end %>

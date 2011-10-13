@@ -1,5 +1,11 @@
 <div class="mid_body">
     <div class="myacc_bg" id="actionChanger">
-        <%= render :partial => "profile" %>
+    	<% if @disp_page == "account" %>
+        	<%= render :partial => "my_account" %>
+		<% elsif @disp_page == "invitees" %>
+			<%= render :partial => "my_invitees" %>
+		<% else %>
+			<%= render :partial => "profile" %>
+		<% end %>
     </div>
 </div>

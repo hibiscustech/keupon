@@ -1,44 +1,76 @@
 <br/>
 <link href="/invite_friend/css/css.css" rel="stylesheet" type="text/css" />
-      <tr>
-        <td height="48" background="/images/earn_money.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="17%" align="left">&nbsp;</td>
-            <td width="83%" align="center" class="header_text">
-              Earn S$<%= earn_value %> when <%= invitees_value %> of your friends make their first purchase</td>
-          </tr>
-        </table></td>
-      </tr>
-  <tr>
+<tr>
+    <td height="48" background="/images/earn_money.jpg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="17%" align="left">
+                    &nbsp;
+                </td>
+                <td width="83%" align="center" class="header_text">
+                    Earn S$<%= earn_value %> when <%= invitees_value %>of your friends make their first purchase
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
     <td height="336" background="/invite_friend/images/invite_friend_img.jpg">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <form action='/customers/invite_friends' method='post' id='form'>
-      <tr>
-        <td>&nbsp;</td>
-        <td colspan="2" align="left" class="invite_text1">Invite Your Friends:</td>
-        </tr>
-      <tr>
-        <td width="530">&nbsp;</td>
-        <td width="174">&nbsp;</td>
-        <td width="296">&nbsp;</td>
-      </tr>
-      <tr>
-        <td >&nbsp;</td>
-        <td class="invite_field_text" >Your friend's email:</td>
-        <td><input name="email" type="text" id="email" size="25" onblur="if (document.getElementById('email').value==''){alert('Please enter a valid email id');}"/></td>
-      </tr>
-      <tr>
-        <td >&nbsp;</td>
-        <td >&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td >&nbsp;</td>
-        <td>&nbsp;</td>
-        <td><input type="image" src="/invite_friend/images/invite_btn1.png" alt="Submit button" onclick="if (document.getElementById('email').value==''){alert('Please enter a valid email id');return false;}"></td>
-      </tr>
-      </form>
-    </table></td>
-  </tr>
-
-
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <form action='/customers/invite_friends' method='post' id='form'>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td colspan="2" align="left" class="invite_text1">
+                        Invite Your Friends:
+                    </td>
+                </tr>
+                <tr>
+                    <td width="530">
+                        &nbsp;
+                    </td>
+                    <td width="174">
+                        &nbsp;
+                    </td>
+                    <td width="296">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td class="invite_field_text">
+                        Your friend's email:
+                    </td>
+                    <td>
+                        <input name="email" type="text" id="email" size="25" onblur="if (document.getElementById('email').value==''){alert('Please enter a valid email id');}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <input type="image" src="/invite_friend/images/invite_btn1.png" alt="Submit button" onclick="if (document.getElementById('email').value==''){alert('Please enter a valid email id');return false;}">
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </td>
+</tr>

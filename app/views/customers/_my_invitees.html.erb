@@ -1,38 +1,55 @@
-
-
-    <br/><br/><br/><br/><br/><br/><br/>
-    <div style="width:618px;text-align:left;">
-        <table  style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
-          <tr>
-            <td width="5%"> </td>
-            <td colspan="2" align="left" width="55%" class="header_text" height="55" background="/images/header_red_bg.jpg">
-              <% if @invitees.to_s == invitees_value.to_s %>
-              Congratulations! <%= invitees_value %> invitees have signed-up as Customers and you have earned S$<%= earn_value %>
-              <% else %>
-              Earn S$<%= earn_value %> when <%= invitees_value %> customers sign-up
-              <% end %>
-            </td>
-          </tr>
-          <tr><td colspan="3">&nbsp;</td></tr>
-          <% for cf in @friends
-            if cf.used.to_s == '0'
-          %>
-          <tr>
-            <td width="5%"> </td>
-            <td width="20%" style="color:#000000;"><%= cf.friend_email  %></td>
-            <td width="30%">
-              <% if cf.signed_up.to_s == "0" %>
-                <image src="/images/check_red.jpg"/>
-              <% else %>
-                <image src="/images/check_green.jpg"/>
-              <% end %>
-            </td>
-          </tr>
-          <%
-          end
-        end %>
-
-      </table>
-
-
+<div class="myacc_nav">
+    <ul>
+        <li>
+        	<%= link_to "MY PROFILE", {:controller => "customers", :action => "my_profile"} %>
+        </li>
+        <li>
+        	<%= link_to_remote "MY ACCOUNT", :url => {:controller => "customers", :action => "my_account"}, :update => "actionChanger" %>
+        </li>
+        <li>
+        	<%= link_to_remote "MY INVITEES", :url => {:controller => "customers", :action => "my_invitees"}, :update => "actionChanger", :html => {:class => "visited"} %>
+        </li>
+    </ul>
+</div>
+<div class="myacc_boxmain">
+    <div class="myacc_mainb">
+        <span style="font-size:22px;">Earn S$20 at your invited friend's first purchase</span>
     </div>
+    <table style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
+        <tr>
+            <td colspan="3">
+                &nbsp;
+            </td>
+        </tr>
+        <% for cf in @friends
+        if cf.used.to_s == '0' %>
+        <tr>
+            <td width="5%">
+            </td>
+            <td width="20%" style="color:#000000;">
+                <%= cf.friend_email %>
+            </td>
+            <td width="30%">
+                <% if cf.signed_up.to_s == "0" %>
+                	<image src="/images/check_red.jpg"/>
+				<% else %>
+                	<image src="/images/check_green.jpg"/>
+				<% end %>
+            </td>
+        </tr><%
+        end
+        end %>
+    </table>
+    <!--<div class="myacc_mainb1">
+        <input name="txtb2" type="text" class="my_invittb1"/>
+    </div>
+    <div class="myacc_mainb" style="height:15px;">
+        <span style="font-size:14px;">brickk79@googlemail.com</span>
+    </div>
+    <div class="myacc_mainb1">
+        <input name="txtb1" type="text" class="my_invittb1"/>
+    </div>
+    <div class="myacc_mainb" style="height:15px;">
+        <span style="font-size:14px;">brickk79@googlemail.com</span>
+    </div>-->
+</div>
