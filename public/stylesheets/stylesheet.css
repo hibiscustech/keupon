@@ -147,16 +147,16 @@ a{outline:none;}
 .red_dot_txt {
     background: url("/images/big_round.png") no-repeat scroll right bottom transparent;
     color: #FFFFFF;
+    font-weight: bold;
     height: 89px;
-    margin: -56px 0 0 21px;
+    margin: -130px 0 0 21px;
     padding: 15px 0 0;
     position: absolute;
     text-align: center;
-    width: 104px;
-	font-weight:bold;
-}
+    width: 104px;}
+
 .red_dot_txt h2{padding:0;margin:0;font-size:28px;}
-.greybar_txt{color:#FFF;margin-left:135px;margin-top:20px;font-weight:bold;}
+.greybar_txt{color:#FFF;margin:-46px 0 20px 135px;font-weight:bold;}
 .price{padding-top:5px;font-size:12px;float:left;}
 .price_val{font-size:30px;padding:0;margin:0;}
 .dealpage_right{
@@ -238,7 +238,7 @@ a{outline:none;}
 
 /*aboutus_start*/
 .aboutwhite_bg{
-	height:547px; width:236px; color:#333333; background:#FFF; -moz-border-radius:23px; -webkit-border-radius:23px;margin:0px 0px 0px 23px;    padding:30px 20px 0px 20px; text-align:justify;font-weight:bold;
+	height:547px; width:236px; color:#333333; background:#FFF; -moz-border-radius:23px; -webkit-border-radius:23px;padding:30px 20px 0px 20px; text-align:justify;font-weight:bold;
 	}
 .aboutus_1stboxcon{
 	position:absolute; width:204px;margin-left:330px; margin-top:50px; 
@@ -488,7 +488,7 @@ a{outline:none;}
 .signup_mainbox2 {width:650px;float:left;padding:15px 0 0 0;
 }
 
-.signup_mainbox_right{width: 300px;float: left;padding:0 0 0 20px;}
+.signup_mainbox_right{width: 300px;float: left;padding:0 0 0 10px;}
 
 .signup_footer1{position:absolute;width:550px;margin-top:285px;margin-left:70px;}
 
@@ -736,9 +736,8 @@ div#menu ul a:hover span, div#menu ul .visited span {
 .myAccDropBox{background:#F3F3F3;border:1px solid #DEDEDE;float:left;margin:2px0;padding:0;width:680px;height:auto;}
 
 /*Invite friend*/
-.invite_friend_img{
-	height:38px; width:216px; position:absolute; margin:465px 0px 0px 170px; 
-	}
+.invite_friend_img{height:38px; width:216px; position:absolute; margin:465px 0px 0px 170px;}
+.invite_friend_text{position:absolute;margin:465px 0px 0px 45px;font-size:12px;font-weight:bold;color:#231F20;}
 .invite_friend_bg{
 	width:684px;height:690px;background:url(/images/invitefr.png);margin:20px auto 0 auto;
 	}
@@ -755,3 +754,21 @@ div#menu ul a:hover span, div#menu ul .visited span {
 	width:640px; height:2px; background:#bdbfc1; margin:8px 0px 12px 0px; float:left;
 	}
 .invite_link a{padding:0 5px 0 0;}
+.aboutus_main2{
+    float:left; height:auto; margin:30px 0 0 0px; width:1021px; 
+    }
+.abtus_left{
+    float:left; height:auto; width:276px; margin:0px 0px 0px 23px;  
+    }
+.abtus_right{
+    float:left; height:auto; width:675px; margin:0 0 0 28px; 
+    }
+.abtus_1st{
+    float:left;width:204px;margin-top:50px; 
+    }
+.abtus_2nd{
+    width:204px; float:left; margin:50px 0 0 21px; 
+    }
+.abtus_3rd{
+    width:204px;margin:49px 0 0 21px; float:left;
+    }
