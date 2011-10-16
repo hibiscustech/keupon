@@ -18,9 +18,9 @@ class Customer < ActiveRecord::Base
       :small  => "60x60#",
       :smallest => "35x35#"}
   
-  validates_attachment_presence :customer_photo, :on => :update
-  validates_attachment_size :customer_photo, :less_than=>1.megabyte, :on => :update
-  validates_attachment_content_type :customer_photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :on => :update
+#  validates_attachment_presence :customer_photo, :on => :update
+#  validates_attachment_size :customer_photo, :less_than=>1.megabyte, :on => :update
+#  validates_attachment_content_type :customer_photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :on => :update
 
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 #r@a.wk

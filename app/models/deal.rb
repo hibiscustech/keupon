@@ -113,7 +113,7 @@ class Deal < ActiveRecord::Base
                 join deal_schedules ds on ds.deal_id = d.id
                 join deal_location_details dld on dld.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
-                where d.status = 'open'
+                where d.status = 'open' and preferred != '1' and admin_preferred != '1'
                 group by d.id
                 order by ds.start_time 
                 limit 4}

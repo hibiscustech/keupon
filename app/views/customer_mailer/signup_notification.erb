@@ -1,19 +1,183 @@
-﻿<%=render :partial=>'top'%>
-      <tr>
-        <td>&nbsp;</td>
-        <td><table width="100%" border="0" cellpadding="0" cellspacing="6">
-          <tbody> 
-          <tr>
-            <td colspan="2" bgcolor="#eceded"><span style='font-family:Georgia,"Times New Roman",Times,serif;font-size:12px;color:#000000;text-decoration:none;'>Dear <strong>customer</strong><br>
-You are now our customer and your login credentials are as follows.<br/>
-                   Your Email: <%=@customer.login%><br/>
-                   Password: <%=@customer.password%><br/><br/>
-                   Kindly click on the following link to activate your account:<br/><%=link_to"#{$server_name}#{@url}","#{$server_name}#{@url}"%>
- <br><br>Thank You,<br>Keupons.com</span></td>
-          </tr>
-        </tbody></table></td>
-        <td>&nbsp;</td>
-      </tr>
-      
-<%=render :partial=>'bottom'%>
-
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>:::homepage:::</title>
+        <style type="text/css">
+            .mailer_invitebg1 {
+                background: url(<%=$server_name%>/images/invitefr_bg.png);
+                width: 519px;
+                height: 117px;
+                margin: 36px auto 40px;
+            }
+            
+            .mailer_wrapper {
+                margin: auto;
+                width: 601px;
+                height: auto;
+            }
+            
+            .mailer_wrapper_header {
+                background: url(<%=$server_name%>/images/mailer_header.png);
+                height: 177px;
+            }
+            
+            .mailer_body {
+                width: 601px;
+                height: auto;
+                background: #414042;
+            }
+            
+            .mailer_toptxt1 {
+                padding: 30px 0 0 40px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #FFF;
+            }
+            
+            .mailer_box1 {
+                height: 236px;
+                width: 552px;
+                background: url(<%=$server_name%>/images/std_mainbox.png) no-repeat;
+                margin: 60px auto 0px;
+                padding-bottom: 53px;
+            }
+            
+            .mailer_left {
+                width: 249px;
+                height: 210px;
+                float: left;
+                margin: 15px 0 0 15px;
+            }
+            
+            .mailer_right {
+                width: 249px;
+                height: 210px;
+                float: right;
+                margin: 15px 15px 0 0;
+            }
+            
+            .mailer_up {
+                width: 247px;
+                height: 111px;
+                color: #FFF;
+            }
+            
+            .mailer_down {
+                height: auto;
+                padding: 5px 0 0 0;
+                float: left;
+            }
+            
+            .mailer_round {
+                height: 90px;
+                width: 91px;
+                background: url(<%=$server_name%>/images/mailer_round.png);
+                float: left;
+            }
+            
+            .mailer_footer {
+                background: url(<%=$server_name%>/images/mailer_footer.png);
+                height: 133px;
+            }
+            
+            .mailer_footerleft {
+                float: left;
+                color: #FFF;
+                margin: 14px 0 0 28px;
+            }
+            
+            .mailer_footerleft a {
+                color: #FFF;
+                text-decoration: underline;
+            }
+            
+            .mailer_footerleft a:hover {
+                color: #FFF;
+                text-decoration: underline;
+            }
+            
+            .mailer_footerright {
+                float: right;
+                color: #FFF; /*margin:14px 0 0 28px;*/
+            }
+            
+            .mailer_smallicons {
+                float: right;
+                height: 40px;
+                width: 100px;
+                position: absolute;
+                margin: 80px 0 0 0px;
+            }
+            
+            .mailer_invitebg {
+                background: url(<%=$server_name%>/images/mailer_invitefriendbg.png);
+                width: 544px;
+                height: 125px;
+                margin: 0 auto 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mailer_wrapper">
+            <div class="mailer_wrapper_header">
+                <div>
+                    <img src="<%=$server_name%>/images/ke_logo.png" hspace="56"/>
+                </div>
+            </div>
+            <div class="mailer_body">
+                <div class="mailer_toptxt1">
+                    <span>Dear <%= @profile.first_name %> <%= @profile.last_name %></span>
+                    <br/>
+                    <span style="font-weight:normal; font-size:12px;">You have signed up for Keupons with the following details:
+                        <br/>
+                        Email address: <%= @customer.login %>
+                        <br/>
+                        Password: *********
+                    </span>
+                    <br/>
+                    <br/>
+					<span style="font-weight:normal; font-size:12px;">Activate your account now for access to great deals in Singapore!
+                        <br/>
+                        URL: <%=$server_name%><%=@url%>
+                    </span>
+                    <br/>
+                    <br/>
+                    <span style="font-weight:normal; font-size:12px;">Thank you for joining Keupons!</span>
+                </div>
+                <div class="mailer_invitebg1">
+                    <div>
+                        <a href="<%=$server_name%>"><img src="<%=$server_name%>/images/if_small.png" align="right" border="0" vspace="45" hspace="105" /></a>
+                    </div>
+                </div>
+                <div>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="mailer_footer">
+                 <div class="mailer_footerleft">
+                    <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com">support@keupons.com</a></span>
+                    <br/>
+                    <br/>
+                    <span style="font-size:10px;"><a href="javascript:void(0);">Click Here</a> if you can't view the images above
+                        <br/>
+                        Add <a href="javascript:void(0);">support@keupons.com</a> to your address book
+                        <br/>
+                        <a href="javascript:void(0);">Unsubscribe</a> | <a href="javascript:void(0);">Refer a friend</a>
+                        <br/>
+                        Copyright © 2010 www.keupons.com. All Rights Reserved
+                    </span>
+                </div>
+                <div class="mailer_footerright">
+                    <div style="float:right; margin-right:18px;">
+                        <img src="<%=$server_name%>/images/mailer_keuponsmall.png" />
+                    </div>
+                    <div class="mailer_smallicons">
+                        <a href="http://twitter.com/keupons_sg" target="_blank"><img src="<%=$server_name%>/images/t_small.png" border="0" /></a>
+						<a href="http://www.facebook.com/keupons" target="_blank"><img src="<%=$server_name%>/images/f_small.png" border="0" hspace="5" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

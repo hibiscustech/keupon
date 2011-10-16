@@ -50,7 +50,7 @@
                 <a javascript:void(0);>How Keupons works</a>
             </li>
             <li>
-                <a javascript:void(0);>Invite friends</a>
+            	<%= link_to_remote_redbox "Invite friends", :url => {:controller => "customers", :action => "earn_money"} %>
             </li>
         </ul>
     </div>

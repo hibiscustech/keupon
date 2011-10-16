@@ -30,7 +30,10 @@
 <div class="head_right">
     <div class="head_rightin">
         <div>
-            <img src="/images/paypal_pur.jpg" /><img src="/images/paypal.png" align="top" vspace="15" hspace="5"/><img src="/images/bestdeal.png" hspace="3" /><img src="/images/moneyback.png" width="83" height="61" />
+        	<%= link_to_remote_redbox image_tag('/images/paypal_pur.jpg'), :url => {:controller => "customers", :action => "gaurantee_page"} %>
+			<%= link_to_remote_redbox image_tag('/images/paypal.png', :vspace => "15", :hspace => "5"), :url => {:controller => "customers", :action => "gaurantee_page"} %>
+			<%= link_to_remote_redbox image_tag('/images/bestdeal.png', :hspace => "3"), :url => {:controller => "customers", :action => "gaurantee_page"} %>
+			<%= link_to_remote_redbox image_tag('/images/moneyback.png', :width => "83", :height => "61"), :url => {:controller => "customers", :action => "gaurantee_page"} %>
         </div>
         <div style="float:right;">
             <img src="/images/safe1.png"/><img src="/images/100monyback.png" hspace="12" /><img src="/images/best_deal.png"/>

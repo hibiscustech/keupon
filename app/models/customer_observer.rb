@@ -1,7 +1,7 @@
 class CustomerObserver < ActiveRecord::Observer
-  def after_create(customer)
-    CustomerMailer.deliver_signup_notification(customer)
-  end
+#  def after_create(customer)
+#    CustomerMailer.deliver_signup_notification(customer)
+#  end
 
   def after_save(customer)
   

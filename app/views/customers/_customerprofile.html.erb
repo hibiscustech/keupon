@@ -26,32 +26,37 @@
 						<%= p.text_field :last_name, :class=> "login_tb1b" %>
 	                </div>
 	                <div style="height:30px; margin-top:10px;">
-	                    <span class="email" style="width:120px;float:left;">NRIC</span>
-						<%= p.text_field :customer_pin, :class=> "login_tb1b" %>
-	                    <span style="color:#663300;position:absolute;margin-top:25px;">NRIC No. needed for verification
-	                        <br/>
-	                        to redeem Keupons
-	                    </span>
+	                    <span class="email" style="width:80px;float:left;">NRIC</span>
+						<div style="float:left;padding:0 0 0 40px">
+							<%= p.text_field :customer_pin, :class=> "login_tb1b" %>
+		                    <span style="color:#663300;position:absolute;margin-top:25px;">
+								NRIC No. needed for verification
+		                        <br/>
+		                        to redeem Keupons
+		                    </span>
+						</div>
 	                </div>
 	                <div style="height:30px; margin-top:35px;">
-	                    <span class="email" style="width:120px;float:left;">MOBILE NUMBER</span>
-	                    <%= p.text_field :contact_number, :class=> "login_tb1b" %>
-						<span style="color:#663300;position:absolute; margin-top:25px;">
-							SMS Keupons may be sent to your<br/>mobile number
-	                    </span>
+	                    <span class="email" style="width:105px;float:left;">MOBILE NUMBER</span>
+	                    <div style="float:left;padding:0 0 0 15px">
+							<%= p.text_field :contact_number, :class=> "login_tb1b" %>
+							<span style="color:#663300;position:absolute; margin-top:25px;">
+								SMS Keupons may be sent to your<br/>mobile number
+		                    </span>
+						</div>	
 	                </div>
 				</div>
 				<div class="signup_mainbox_right">
                     <div style="height:73px;">
-                        <span style="width:100px;float:left;">ADDRESS</span>
+                        <span style="width:80px;float:left;">ADDRESS</span>
                         <%= p.text_area :address1, :class=> "login_ta1b" %>
 					</div>
                     <div style="height:30px; margin-top:10px;">
-                        <span class="email" style="width:100px;float:left;">COUNTRY</span>
+                        <span class="email" style="width:80px;float:left;">COUNTRY</span>
                         <%= p.text_field :country, :class=> "login_tb1b" %>
 					</div>
                     <div style="height:30px; margin-top:10px;">
-                        <span  style="width:100px;float:left;" class="email">POSTAL CODE</span>
+                        <span  style="width:90px;float:left;" class="email">POSTAL CODE</span>
 						<%= p.text_field :zipcode, :class=> "login_tb1b" %>
                     </div>
                     <div class="login_forget">

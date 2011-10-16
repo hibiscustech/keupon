@@ -33,4 +33,8 @@ class FooterController < ApplicationController
     
   end
   
+  def how_keupon_works
+    render :partial => "how_keupon_works"
+  end
+  
 end

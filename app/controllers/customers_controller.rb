@@ -92,7 +92,7 @@ class CustomersController < ApplicationController
     @page = "Hot Deals"
     @hot_deal_discounts, @hot_deals = Deal.all_hot_deals
     @open_deal_discounts, @open_deals = Deal.all_open_deals
-    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals    
+    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals
     @recent_deals = Deal.all_recent_deals
     #    @hot_deal = Deal.hot_deal_for_today
     if request.xml_http_request?
@@ -654,6 +654,7 @@ class CustomersController < ApplicationController
         KeuponSubscriber.create(:email => @customer.login)
       end
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      CustomerMailer.deliver_signup_notification(@customer,@profile)
       redirect_to '/'
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
@@ -691,6 +692,7 @@ class CustomersController < ApplicationController
   end 
   
   def activate
+    debugger
     logout_keeping_session!
     customer = Customer.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
@@ -1098,6 +1100,10 @@ class CustomersController < ApplicationController
       flash[:notice] = "Make sure you have choosen the profile picture."
       redirect_to :action => "my_profile", :disp_page => "account"
     end
+  end
+  
+  def gaurantee_page
+    render :partial => "gaurantee_page"
   end
   
 end
