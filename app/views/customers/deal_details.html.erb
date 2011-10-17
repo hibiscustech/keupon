@@ -20,6 +20,7 @@
         </div>
         <div class="greybox">
             <div class="greybox_top">
+              <%= render :partial => "deal_scale" %>
             </div>
             <div class="greybox_bottom">
                 <%= link_to_remote_redbox image_tag('/images/hiw.jpg'), :url => {:controller => "customers", :action => "how_it_works"}, :style => "float:right;" %>

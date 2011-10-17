@@ -392,17 +392,20 @@ class Deal < ActiveRecord::Base
     maximum = (deal_discounts[deal_discounts.length-1].max_customers.blank?)? (deal_discounts[deal_discounts.length-2].max_customers.to_i)+20 : deal_discounts[deal_discounts.length-1].max_customers
     maximum_text = (deal_discounts[deal_discounts.length-1].max_customers.blank?)? "Any" : deal_discounts[deal_discounts.length-1].max_customers
     customers_discount_ranges = "<colorRange>"
+    trendpoints = "<trendpoints>"
     prev_max_customers = nil
     for dd in deal_discounts
       min_customers = dd.customers
       max_customers = (dd.max_customers.blank?)? min_customers.to_i+20 : dd.max_customers
       discount = dd.discount
       current_min_customers = (prev_max_customers.blank?)? min_customers : prev_max_customers
-      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='c41111' borderColor='ffffff' label='#{discount}%'/>"
+      customers_discount_ranges += "<color minValue='#{current_min_customers}' maxValue='#{max_customers}' code='231f20' borderColor='ffffff' label='#{discount}%'/>"
+      trendpoints += "<point value='#{current_min_customers}' fontcolor='FF4400' useMarker='0' dashed='0' dashLen='0' dashGap='0' color='b3b3b3' alpha='50' thickness='2'/>"
       prev_max_customers = max_customers
     end
-    customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' bgColor='FFFFFF' radius='5' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
-    return "<chart showValue='1' bgSWF='/images/#{image}.jpg' borderColor='DCCEA1' chartTopMargin='0' chartBottomMargin='0' ticksBelowGauge='1' valuePadding='-2' majorTMColor='000000' minorTMHeight='4' majorTMHeight='8' showShadow='0' gaugeBorderThickness='3' baseFontColor='000000' gaugeFillMix='{color},{FFFFFF}' gaugeFillRatio='50,50' upperLimitDisplay='#{maximum_text}' upperLimit='#{maximum}' lowerLimit='#{minimum}' lowerLimitDisplay='#{minimum}' forceTickValueDecimals='0'>#{customers_discount_ranges}<styles><definition><style name='limitFont' type='Font' bold='1'/><style name='labelFont' type='Font' bold='1' size='10' color='FFFFFF'/><style name='TTipFont' type='Font' color='FFFFFF' bgColor='000000' borderColor='000000'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/><apply toObject='LIMITVALUES' styles='limitFont'/><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></chart>"
+    customers_discount_ranges += "</colorRange><pointers><pointer value='#{deals_bought}' color='000000' bgColor='FFFFFF' sides='4' toolText='Keupons Bought: #{deals_bought}'/></pointers>"
+    trendpoints += "<point value='#{maximum}' displayValue='#{maximum_text}' fontcolor='FF4400' useMarker='0' dashed='0' dashLen='0' dashGap='0' color='b3b3b3' alpha='50' thickness='2'/></trendpoints>"
+    return "<Chart editMode='0' bgColor='b3b3b3' bgAlpha='5' showBorder='0' upperLimit='#{maximum}' lowerLimit='#{minimum}' gaugeRoundRadius='15' chartBottomMargin='40' showTickMarks='0' showTickValues='0' ticksBelowGauge='0' showGaugeLabels='1' chartLeftMargin='10' chartRightMargin='20' majorTMColor='868F9B' majorTMHeight='10' majorTMThickness='2' pointerOnTop='1' pointerRadius='9' majorTMNumber='0' minorTMNumber='0' showToolTip='1' decimals='0'>#{customers_discount_ranges}#{trendpoints}<annotations><annotationGroup id='Grp1' showBelow='1'><annotation type='rectangle' x='2' y='2' toX='415' toY='90' radius='10' fillColor='b3b3b3' fillAngle='90' borderColor='b3b3b3' borderThickness='0'/></annotationGroup></annotations><styles><definition><style type='font' name='labelFont' Color='FFFFFF'/></definition><application><apply toObject='GAUGELABELS' styles='labelFont'/></application></styles></Chart>"
   end
 
   def self.find_recent_add(merchant_id)
