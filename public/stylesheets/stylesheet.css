@@ -185,13 +185,13 @@ a{outline:none;}
 .deal_ex_link{padding:6px 0 0;float:left;}
 .your_card{color:#FFF;width:280px;padding:10px 0 0;font-size:11px}
 .greybox{
-	height:124px; width:448px; background:#b3b3b3; -moz-border-radius:40px; margin-top:13px;
+	height:163px; width:448px; background:#b3b3b3; -moz-border-radius:40px; margin-top:13px;
 	}
 	.greybox_top{
 		height:67px; width:416px; margin:auto; margin-top:15px;
 	}
 	.greybox_bottom{
-		height:34px; width:380px; margin:auto; margin-top:15px;text-align:right;
+		height:34px; width:415px; margin-top:65px; text-align:right;
 	}
 .login{
 	background:url(/images/login_bg.png) center no-repeat; width:635px; height:258px; 
