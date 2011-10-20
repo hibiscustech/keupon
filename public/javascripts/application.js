@@ -2,6 +2,16 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+function openDeal(deal_id)
+{
+    new Ajax.Request('/admins/man_open_deal?deal='+deal_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+}
+
+function closeDeal(deal_id)
+{
+    new Ajax.Request('/admins/man_close_deal?deal='+deal_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});
+}
+
 function showViewDeal(elementID, deal_id)
 {
     new Ajax.Request('/deals/view_basic_info?deal='+deal_id, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('f7451406a5f3527c920b15eb7f63840280305729')});

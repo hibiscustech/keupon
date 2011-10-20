@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
 
   layout "admins"
   protect_from_forgery :only => [:destroy]
-  before_filter :admin_login_required, :except => [:open_the_deals, :email_subscribers, :save_commission, :close_deals ]
+  before_filter :admin_login_required, :except => [:open_the_deals, :email_subscribers, :save_commission, :close_deals, :man_open_deal, :man_close_deal ]
   include AuthenticatedSystemMerchant
 
   def close_deals
@@ -60,6 +60,61 @@ class AdminsController < ApplicationController
       end
     #end
     render(:text => 'Deals Closed')
+  end
+
+  def man_close_deal
+      discounts, deals = Deal.admin_deal_discount(params[:deal])
+      for dd in discounts
+        d = deals[dd[0]]
+        if Time.zone.now.to_i > d.end_time.to_i
+          deal = Deal.find(d.id)
+          discount = DealDiscount.current_deal_discount_for_deal(deal.id)
+          buy_value = deal.value.to_f - (discount.to_f*deal.value.to_f/100.to_f)
+          save_amount = deal.value.to_f - buy_value
+          deal.update_attributes(:status => "tipped", :buy => buy_value, :discount => discount, :save_amount => save_amount)
+          customer_deals = deal.customer_deals
+          successful_customers = Array.new
+
+          for cd in customer_deals
+            customer = cd.customer
+            my_keupon_credits = 0
+            my_invitees = CustomerFriend.signed_up_invitees(customer.id)
+
+            if my_invitees.to_i >= Constant.get_invitees.to_i
+              my_keupon_credits = Constant.get_earn_value.to_f
+              my_signed_up_invitees = CustomerFriend.my_signed_up_invitees(customer.id)
+              ms = 1
+              for msui in my_signed_up_invitees
+                if ms <= Constant.get_invitees.to_i
+                  msui.update_attributes(:used => '1')
+                  ms += 1
+                else
+                  break
+                end
+              end
+            end
+
+            customer_profile = customer.customer_profile
+            successful_customers << {"customer" => customer_profile, "current_credits" => my_keupon_credits, "balance_credits" => customer.balance_credit, "customer_deal" => cd}
+          end
+          merchant = deal.merchant
+          merchant_profile = merchant.merchant_profile
+          file_path = "public/admin_files/#{merchant_profile.first_name}.csv"
+          FasterCSV.open(file_path, "w") do |csv|
+            csv << ["ID","Email","Customer Deal ID", "Name", "Mobile Number", "NRIC", "Earned Kredits", "Balance Kredits", "Price per Quantity", "No. of Keupons Bought", "Total Price Paid"]
+            for sc_cust in successful_customers
+              cprofile = sc_cust["customer"]
+              cd = sc_cust["customer_deal"]
+              csv << ["#{cprofile.customer_id}","#{cd.customer.email}","#{cd.id}","#{cprofile.first_name} #{cprofile.last_name}", "#{cprofile.contact_number}", "#{cprofile.customer_pin}", sc_cust["current_credits"], sc_cust["balance_credits"], buy_value,"",""]
+            end
+          end
+          files_to_send = Array.new
+          files_to_send << File.open(file_path)
+          AdminMailer.deliver_merchant_deal_closed(merchant, merchant_profile, file_path, deal, successful_customers.size, files_to_send)
+          File.delete(file_path)
+        end
+      end
+    return nil
   end
 
   def email_subscribers
@@ -126,6 +181,15 @@ class AdminsController < ApplicationController
     sleep(60)
   #end
     render(:text => 'deals opened')
+  end
+
+  def man_open_deal
+    opened_deals = Array.new
+    d = Deal.find(params[:deal])
+    d.update_attributes(:status => "open")
+    opened_deals.push(d)
+    AdminMailer.deliver_opened_deals(opened_deals)
+    return nil
   end
 
   def deal_preferred
