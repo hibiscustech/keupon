@@ -67,16 +67,21 @@ class SessionsController < ApplicationController
     #        }
     #      end
     #    end
+    render :partial => "forgot_password_for"
   end
 
+#  def forgot_password
+#    if request.post?
+#      if params[:login_user] == 'merchant'
+#        password_merchant
+#      else
+#        password_customer
+#      end
+#    end
+#  end
+
   def forgot_password
-    if request.post?
-      if params[:login_user] == 'merchant'
-        password_merchant
-      else
-        password_customer
-      end
-    end
+    password_customer
   end
 
  def console_check_change_password
@@ -89,11 +94,6 @@ class SessionsController < ApplicationController
  end
 
  def change_password_update
-
-
-
-     
-
      @page = "Change Password"
      if request.xml_http_request?
      customer = Customer.find(params[:current_user])
@@ -132,7 +132,7 @@ protected
     if Customer.find(:first, :conditions => ['login = ?', email])
       customer
     elsif AdminUser.find(:first, :conditions => ['login = ?', email])
-      admin
+      admin    
     else
       merchant
     end
@@ -245,15 +245,15 @@ protected
       flag = customer.save!
       CustomerMailer.deliver_forgot_password(customer, new_pwd,customer.customer_profile)
       if flag
-        flash[:notice] = "Your password has been reset and send to your mail"
+        flash[:notice] = "Your password has been reset and sent to your mail"
         redirect_to "/"
       else
         flash[:notice] = "Your Password could not be changed."
-        redirect_to "/forgot_password"
+        redirect_to "/"
       end
     else
       flash[:notice] = "Email-id doesnt exists"
-      redirect_to "/forgot_password"
+      redirect_to "/"
     end
   end
 

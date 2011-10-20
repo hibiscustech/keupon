@@ -2,7 +2,7 @@
     NAME
 </div>
 <div class="myacc_right1">
-    <input name="tb1a" type="text" class="myacc_tb2" value="<%= @customer_profile.first_name %> <%= @customer_profile.last_name %>" />
+    <input name="tb1a" type="text" class="myacc_tb2" value="<%= @customer_profile.first_name %> <%= @customer_profile.last_name %>" readonly="readonly" />
 </div>
 <div style="float:right; ">
     <%= link_to_remote image_tag('/images/change.jpg'), :update => "customer_name", :url => {:controller => "customers", :action => "edit_customer_name", :id => @customer.id} %>

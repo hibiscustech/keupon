@@ -91,7 +91,7 @@ module CustomersHelper
   end
 
 def category_all
-    DealCategory.find :all
+    DealCategory.find :all, :order => "priority"
   end
 
   def sub_category_all(category)

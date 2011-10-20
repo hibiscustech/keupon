@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>:::homepage:::</title>
         <style type="text/css">
+        	a{outline:none;}
             .mailer_invitebg1 {
                 background: url(<%=$server_name%>/images/invitefr_bg.png);
                 width: 519px;
@@ -133,7 +134,7 @@
                         <br/>
                         Email address: <%= @customer.login %>
                         <br/>
-                        Password: *********
+                        Password: <%= @password %>
                     </span>
                     <br/>
                     <br/>

@@ -128,17 +128,16 @@
             </div>
             <div class="mailer_body">
                 <div class="mailer_toptxt1">
-                    <span>Hi <%= @customer_profile.first_name %> <%= @customer_profile.last_name %></span>
+                    <span>Hi <%= @profile.first_name %> <%= @profile.last_name %></span>
                     <br/>
                     <span style="font-weight:normal; font-size:12px;">
-                        Your password has been reset. <br/>
-                   		Username: <%=h @customer.login %><br/>
-                   		Password: <%=@password%><br/><br/>
+                        Your account is now fully activated.
+						<br/>
+						Kindly click on the following link to Sign In with your Login Credentials
+                        <br/>
+                        <a href="<%=h $server_name%>" style="color:#fff;text-decoration:none;outline:none;" target="_blank"><%=h $server_name %></a>
                     </span>
-                    <span style="font-weight:normal; font-size:12px;">
-                        Please try loging in with the new login and password pair.
-                    </span>
-					<br/>
+                    <br/>
                     <br/>
 					<span style="font-weight:normal; font-size:12px;">
 						Thank You,

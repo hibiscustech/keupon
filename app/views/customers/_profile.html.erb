@@ -82,11 +82,11 @@
 	    	<%for category in category_all %>
                 <%if category.id==get_selected_category(category.id) %>
 			        <li>
-			        	<%= check_box_tag "customer_favourite_deal[]",category.id,true %><%=category.name %>
+			        	<%= check_box_tag "customer_favourite_deal[]",category.id,true %><%=category.name.upcase %>
 			        </li>
 				<% else %>
 			        <li>
-			            <%= check_box_tag "customer_favourite_deal[]",category.id %><%=category.name %>
+			            <%= check_box_tag "customer_favourite_deal[]",category.id %><%=category.name.upcase %>
 			        </li>
 				<% end %>
 			<% end %>

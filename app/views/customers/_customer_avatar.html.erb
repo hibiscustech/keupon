@@ -2,10 +2,7 @@
     <span>AVATAR</span>
 </div>
 <div style="float:left;">
-    <% if current_customer.customer_photo.nil? %>
-    <img src="/images/profile_pic.jpg" border="0px" /><% else %>
-    <%=image_tag (@customer.customer_photo.url(:small)) %>
-    <% end %>
+	<%= current_customer.customer_photo_file_name.nil? ? image_tag("/images/default_avatar_small.jpg") : (image_tag current_customer.customer_photo.url(:small)) %>
 </div>
 <div style="float:right; margin-top:35px;">
     <%#=link_to image_tag('/images/change.jpg'),'javascript:void(0);',:onclick=>'avatar_down()',:style=>'color:#19A2FF;' %>

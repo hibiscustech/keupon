@@ -5,7 +5,7 @@
         <span>AVATAR</span>
     </div>
 	<div style="float:left;">
-        <%= @customer_profile.nil? ? image_tag("/images/profile_pic.jpg", :alt => "no profile image") : (image_tag @customer.customer_photo.url(:small)) %>
+        <%= current_customer.customer_photo_file_name.nil? ? image_tag("/images/default_avatar_small.jpg") : (image_tag current_customer.customer_photo.url(:small)) %>
 		<%= f.file_field :customer_photo, :size => "15", :style=> "float:left;margin-top:30px;" %>
     </div>
     <div style="float:right; margin-top:35px;">

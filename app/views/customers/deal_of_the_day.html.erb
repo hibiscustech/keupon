@@ -2,36 +2,58 @@
     <div class="img_hot_deals">
         <img src="/images/hot_deals.png" />
     </div>
-	<% htd = @hot_deal_discounts[0]
-        discount = htd[1]
-        hot_deal = @hot_deals[htd[0]]
-        htdeal = Deal.find(hot_deal.id) %>
-    <div class="img1">
-        <a href="/deal_details?id=<%= hot_deal.id %>">
-    		<img class="item" src="<%=htdeal.deal_photo.url(:hot_deal_main)%>" alt="clouds" border="0" />
-		</a>
-		<div class="img1_round_bg">
-			<span>Only<h2>$<%=htdeal.value.round %></h2>or less</span>
-		</div>
-    </div>
-    <div class="txt_box">
-        <div class="txt1">
-            <%= truncate(htdeal.name, 40, "...") %>
-        </div>
-        <div class="txt2">
-            <%= truncate(htdeal.description, 200, "...") %>
-        </div>
-        <div style="float:left; margin-top:15px;">
-            <a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/read_more.png" align="left" border="0" vspace="10" /></a>
-			<a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/buy_now1.png" hspace="15" align="right" border="0" /></a>
-        </div>
-    </div>
+	<% if !@hot_deal_discounts.blank? %>
+	<%= @hot_deal_discounts %>
+		<% htd = @hot_deal_discounts[0]
+	        discount = htd[1]
+	        hot_deal = @hot_deals[htd[0]]
+	        htdeal = Deal.find(hot_deal.id) %>
+	    <div class="img1">
+	        <a href="/deal_details?id=<%= hot_deal.id %>">
+	    		<img class="item" src="<%=htdeal.deal_photo.url(:hot_deal_main)%>" alt="clouds" border="0" />
+			</a>
+			<div class="img1_round_bg">
+				<span>Only<h2>$<%=htdeal.deal_discounts[0].buy_value.round %></h2>or less</span>
+			</div>
+	    </div>
+	    <div class="txt_box">
+	        <div class="txt1">
+	            <%= truncate(htdeal.name, 40, "...") %>
+	        </div>
+	        <div class="txt2">
+	            <%= truncate(htdeal.description, 200, "...") %>
+	        </div>
+	        <div style="float:left; margin-top:15px;">
+	            <a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/read_more.png" align="left" border="0" vspace="10" /></a>
+				<a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/buy_now1.png" hspace="15" align="right" border="0" /></a>
+	        </div>
+	    </div>
+	<% else %>
+		<div class="img1">
+	        <span>Currently no hot deals available</span>
+			<div class="img1_round_bg">
+				<span></span>
+			</div>
+	    </div>
+	    <div class="txt_box">
+	        <div class="txt1">
+	            
+	        </div>
+	        <div class="txt2">
+	            
+	        </div>
+	        <div style="float:left; margin-top:15px;">
+	            
+	        </div>
+	    </div>
+	<% end %>
 </div>
 <div class="midb_right">
     <div class="open_deal">
         <img src="/images/open_deals.png" />
     </div>
     <div class="up_box">
+    	<% if !@open_deal_recents.blank? %>
     	<%for opdd in @open_deal_recents
                         discount = opdd[1]
                         open_deal = @open_deals_recents[opdd[0]]
@@ -44,11 +66,12 @@
 			</div>
             <div class="txt3">
             	<div class="round_small">
-            		<span>Only<h2>$<%=opd.value.round %></h2>or less</span>
+            		<span>Only<h2>$<%=opd.deal_discounts[0].buy_value.round %></h2>or less</span>
 	            </div>
 				<%= truncate(htdeal.name, 80, "...") %>
             </div>
         </div>
+		<% end %>
 		<% end %>
     </div>
 </div>

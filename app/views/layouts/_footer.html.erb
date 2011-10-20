@@ -47,7 +47,8 @@
     <div class="footer_txtsmall">
         <ul>
             <li>
-                <a javascript:void(0);>How Keupons works</a>
+                <a href="javascript:void(0);" onclick="window.open('/customers/how_keupon_works','mywindow','width=400,height=200')">How Keupons works</a>
+				
             </li>
             <li>
             	<%= link_to_remote_redbox "Invite friends", :url => {:controller => "customers", :action => "earn_money"} %>

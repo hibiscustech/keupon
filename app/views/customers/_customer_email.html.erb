@@ -2,7 +2,7 @@
     EMAIL
 </div>
 <div class="myacc_right">
-    <input name="tb1a" type="text" class="myacc_tb2" value="<%= @customer.email %>" />
+    <input name="tb1a" type="text" class="myacc_tb2" value="<%= @customer.email %>" readonly="readonly" />
 </div>
 <div style="float:right; ">
     <%= link_to_remote image_tag('/images/change.jpg'), :update => "customer_email", :url => {:controller => "customers", :action => "edit_customer_email", :id => @customer.id} %>

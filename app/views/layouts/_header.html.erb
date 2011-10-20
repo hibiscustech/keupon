@@ -8,7 +8,7 @@
 	        	<div class="head_left_img">
 	        		<% @customer = Customer.find(current_customer.id)
     				@customer_profile = @customer.customer_profile %>
-					<%= @customer_profile.nil? ? image_tag("/images/user1.jpg", :alt => "no profile image") : (image_tag @customer.customer_photo.url(:smallest)) %>
+					<%= @customer.customer_photo_file_name.nil? ? image_tag("/images/default_avatar_smallest.jpg") : (image_tag @customer.customer_photo.url(:smallest)) %>
 				</div>
 	            <div class="head_left_nametxt"><%= @customer_profile.first_name %> <%= @customer_profile.last_name %></div>
 	            <div class="head_left_txt"><a href="/my_profile">My Profile</a> | <a href="/my_keupons">My Keupons</a> | <a href="/logout">Log out</a></div>

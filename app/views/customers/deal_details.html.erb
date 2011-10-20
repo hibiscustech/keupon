@@ -1,30 +1,31 @@
 <div class="dealpage_bg">
     <div style="width:453px; margin-left:25px; float:left;">
         <div style="margin-left:115px; position:absolute;">
-		<% if @deal.preferred != "1" and @deal.admin_preferred != "1" %>
-			<img src="/images/open_dealnew.png" border="0" />
-		<% else %>
-            <img src="/images/hotdeal_big.png" border="0" />
-		<% end %>
+            <% if @deal.preferred != "1" and @deal.admin_preferred != "1" %>
+            <img src="/images/open_dealnew.png" border="0" /><% else %>
+            <img src="/images/hotdeal_big.png" border="0" /><% end %>
         </div>
         <div class="deal_whitebg">
             <img class="item" src="<%=@deal.deal_photo.url(:deal_detail)%>" alt="clouds" border="0" />
         </div>
-		<div class="red_dot_txt">
-        	<h2><%=current_deal_discount_for_deal(@deal.id) %><%="%" %></h2>
-            <span>OFF<br/>SGD <%=@deal.value %></span>
+        <div class="red_dot_txt">
+            <h2><%=current_deal_discount_for_deal(@deal.id) %><%="%" %></h2>
+            <span>OFF
+                <br/>
+                SGD <%=@deal.value %>
+            </span>
         </div>
         <div class="greybar_txt">
             <span class="price">PRICE NOW &nbsp;&nbsp;</span>
-			<span class="price_val">SGD<%= Deal.find(@deal.id).deal_discounts[0].buy_value.round %></span>
+            <span class="price_val">SGD<%= Deal.find(@deal.id).deal_discounts[0].buy_value.round %></span>
         </div>
         <div class="greybox">
             <div class="greybox_top">
-              <%= render :partial => "deal_scale" %>
+                <%= render :partial => "deal_scale" %>
             </div>
-	    <div style="float: left; width: 248px; height: 20px; margin-top: 63px; font-weight: bold; color: rgb(64, 64, 65); margin-left: 28px;">
-"At Keupons.com, 'The More People Buy, the Higher the Discount Gets!"
-</div>
+            <div style="float: left; width: 248px; height: 20px; margin-top: 63px; font-weight: bold; color: rgb(64, 64, 65); margin-left: 28px;">
+                "At Keupons.com, 'The More People Buy, the Higher the Discount Gets!"
+            </div>
             <div class="greybox_bottom">
                 <%= link_to_remote_redbox image_tag('/images/hiw.jpg'), :url => {:controller => "customers", :action => "how_it_works"}, :style => "float:right;" %>
             </div>
@@ -35,7 +36,7 @@
     </div>
     <div class="dealpage_right">
         <div class="dealright_1st">
-        	<%= truncate(@deal.name, 190, "...") %>
+            <%= truncate(@deal.name, 190, "...") %>
         </div>
         <div class="dealright_2nd">
             <div style="width:300px; float:left;">
@@ -50,9 +51,9 @@
             <div style="float:left;;width:180px;">
                 <div class="deal_ex">
                     <h2>DEAL EXPIRES IN</h2>
-					<span id="deal_time_left"></span>
+                    <span id="deal_time_left"></span>
                 </div>
-				<%= link_to_remote_redbox image_tag('/images/sharedeal.png'), :url => {:controller => "customers", :action=> "share_this_deal_form", :deal_id => @deal.id}, :class => "deal_ex_link" %>
+                <%= link_to_remote_redbox image_tag('/images/sharedeal.png'), :url => {:controller => "customers", :action=> "share_this_deal_form", :deal_id => @deal.id}, :class => "deal_ex_link" %>
             </div>
         </div>
         <div class="dealright_3rd">
@@ -60,28 +61,28 @@
         </div>
         <div class="dealright_4th">
         </div>
-		<div class="dealright_5th">
-        <% display_highlights = @deal.highlights.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>") %>
-		    <div style="float:left; margin-top:0px;" class="listmenu">
+        <div class="dealright_5th">
+            <% display_highlights = @deal.highlights.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>") %>
+            <div style="float:left; margin-top:0px;" class="listmenu">
                 <ul>
-                	<% for highlight in display_highlights %>
+                    <% for highlight in display_highlights %>
                     <li>
                         <%= highlight %>
                     </li>
-					<% end %>
+                    <% end %>
                 </ul>
             </div>
-			<% display_rules = @deal.rules.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>") %>
+            <% display_rules = @deal.rules.gsub("<ul>","").gsub("</ul>","").gsub("\r","").gsub("\n","").gsub("\t","").gsub("<li>","").split("</li>") %>
             <div style="float:right; margin-top:0px; margin-left:25px;" class="listmenu">
                 <ul>
-                	<li>
-                		<b></>Deal Expire on <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y") %></b>
-					</li>
-                	<% for rule in display_rules %>
+                    <li>
+                        <b></>Deal Expire on <%= Time.at(@deal.expiry_date.to_i).strftime("%d-%m-%Y") %></b>
+                    </li>
+                    <% for rule in display_rules %>
                     <li>
                         <%= rule %>
                     </li>
-					<% end %>
+                    <% end %>
                 </ul>
             </div>
             <div style="float:right;">
@@ -90,7 +91,6 @@
     </div>
 </div>
 <div id="first_time_popup" style="display:none;">
-    
 </div>
 <div id="popup_create_deala" style="display:none;">
     <div id="popup_center" class="how_it_works">
@@ -100,48 +100,47 @@
         </div>
     </div>
 </div>
-
 <script language="JavaScript">
-      <% if !@deal.nil? %>
-      	StartCountDown("deal_time_left","<%= Time.zone.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
-      <% end %>
-    
-      function StartCountDown(myDiv,myTargetDate)
-      {
-        var dthen	= new Date(myTargetDate);
-        var dnow	= new Date();
-        ddiff		= new Date(dthen-dnow);
-        gsecs		= Math.floor(ddiff.valueOf()/1000);
-        CountBack(myDiv,gsecs);
-      }
-    
-      function Calcage(secs, num1, num2)
-      {
-        s = ((Math.floor(secs/num1))%num2).toString();
-        if (s.length < 2)
-        {
-          s = "0" + s;
-        }
-        return (s);
-      }
-    
-      function CountBack(myDiv, secs)
-      {
-        var DisplayStr;
-        var DisplayFormat = "%%D%% Days %%H%% Hours %%M%% Min %%S%% Sec";
-        DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
-        DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
-        DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
-        DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
-        if(secs > 0)
-        {
-          document.getElementById(myDiv).innerHTML = DisplayStr;
-          setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
-        }
-        else
-        {
-          document.getElementById(myDiv).innerHTML = "Deal Closed";
-        }
-      }
-    
+          <% if !@deal.nil? %>
+          	StartCountDown("deal_time_left","<%= Time.zone.at(@end_time.to_i).strftime('%m/%d/%Y %H:%M')%>" )
+          <% end %>
+        
+          function StartCountDown(myDiv,myTargetDate)
+          {
+            var dthen	= new Date(myTargetDate);
+            var dnow	= new Date();
+            ddiff		= new Date(dthen-dnow);
+            gsecs		= Math.floor(ddiff.valueOf()/1000);
+            CountBack(myDiv,gsecs);
+          }
+        
+          function Calcage(secs, num1, num2)
+          {
+            s = ((Math.floor(secs/num1))%num2).toString();
+            if (s.length < 2)
+            {
+              s = "0" + s;
+            }
+            return (s);
+          }
+        
+          function CountBack(myDiv, secs)
+          {
+            var DisplayStr;
+            var DisplayFormat = "%%D%% Days %%H%% Hours %%M%% Min %%S%% Sec";
+            DisplayStr = DisplayFormat.replace(/%%D%%/g,	Calcage(secs,86400,100000));
+            DisplayStr = DisplayStr.replace(/%%H%%/g,		Calcage(secs,3600,24));
+            DisplayStr = DisplayStr.replace(/%%M%%/g,		Calcage(secs,60,60));
+            DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs,1,60));
+            if(secs > 0)
+            {
+              document.getElementById(myDiv).innerHTML = DisplayStr;
+              setTimeout("CountBack('" + myDiv + "'," + (secs-1) + ");", 990);
+            }
+            else
+            {
+              document.getElementById(myDiv).innerHTML = "Deal Closed";
+            }
+          }
+        
 </script>

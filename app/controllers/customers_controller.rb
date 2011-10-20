@@ -629,7 +629,7 @@ class CustomersController < ApplicationController
       @customer.email=@email
       #     @customer_profile = CustomerProfile.new
     end
-    render :partial => 'new'
+    render :partial => 'new', :layout => "application"
   end
   
   def create
@@ -642,8 +642,8 @@ class CustomersController < ApplicationController
     @customer_profile = CustomerProfile.new(params[:customer_profile])
     if success && @customer.errors.empty?
       if !params[:friend_id].nil?
-        @friend=CustomerFriends.find(params[:friend_id])
-        #@friend.update_attribute(:signed_up,1)
+        @friend=CustomerFriend.find(params[:friend_id])
+        @friend.update_attribute(:signed_up,1)
       end
       @profile = CustomerProfile.new(params[:customer_profile])
       @profile.email_address = @customer.email
@@ -654,7 +654,8 @@ class CustomersController < ApplicationController
         KeuponSubscriber.create(:email => @customer.login)
       end
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
-      CustomerMailer.deliver_signup_notification(@customer,@profile)
+      @password = params[:customer][:password]
+      CustomerMailer.deliver_signup_notification(@customer,@profile,@password)
       redirect_to '/'
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
@@ -692,7 +693,6 @@ class CustomersController < ApplicationController
   end 
   
   def activate
-    debugger
     logout_keeping_session!
     customer = Customer.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
@@ -848,7 +848,9 @@ class CustomersController < ApplicationController
       if ((params[:password] == params[:password_confirmation]) && !params[:password_confirmation].blank?)
         current_customer.password_confirmation = params[:password_confirmation]
         current_customer.password = params[:password]
+        customer = Customer.find(current_customer.id)
         if current_customer.save!
+          CustomerMailer.deliver_change_password(customer, params[:password], customer.customer_profile)
           flash[:notice] = "Password successfully updated"
           redirect_to :action => "my_profile", :disp_page => "account"
         else
@@ -947,7 +949,6 @@ class CustomersController < ApplicationController
   
   def profile_update
 #    p params
-    debugger
     @customer_profile = CustomerProfile.find_by_customer_id(params[:customer_favourite][:customer_id])
     customer = Customer.find_by_id(params[:customer_favourite][:customer_id])
     if @customer_profile.update_attributes(:dob => params[:customer_profile][:dob].gsub('/','-').to_date.strftime("%Y-%m-%d"), :region => params[:customer_profile][:region],:relationship => params[:customer_profile][:relationship],:gender => params[:customer_profile][:gender],:income => params[:customer_profile][:income],:industry_sector_id => params[:customer_profile][:industry_sector_id])
@@ -970,6 +971,7 @@ class CustomersController < ApplicationController
     end
     if params[:my_profile].nil?
       customer.activate!
+      CustomerMailer.deliver_activation(customer,@customer_profile) if customer.recently_activated?
       flash[:notice] = "Thank you for your valuable information. Please Login to continue."
       redirect_to '/'
     else
@@ -1104,6 +1106,41 @@ class CustomersController < ApplicationController
   
   def gaurantee_page
     render :partial => "gaurantee_page"
+  end
+  
+  def how_keupon_works
+    
+  end
+  
+  def fb_user_activate
+    @customer = Customer.new(params[:customer])
+    @customer.kupoints = 0
+    @customer.time_created = Time.zone.now
+    @customer.login = @customer.email
+    success = @customer && @customer.save
+    @customer_profile = CustomerProfile.new(params[:customer_profile])
+    if success && @customer.errors.empty?
+#      if !params[:friend_id].nil?
+#        @friend=CustomerFriend.find(params[:friend_id])
+#        @friend.update_attribute(:signed_up,1)
+#      end
+      @profile = CustomerProfile.new(params[:customer_profile])
+      @profile.email_address = @customer.email
+      @profile.customer = @customer
+      @profile.save
+      @profile.update_attributes(:customer_pin => params["customer_profile"]["customer_pin"])
+      if !params[:esubscribe].blank? && params[:esubscribe] == "1"
+        KeuponSubscriber.create(:email => @customer.login)
+      end
+      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      @password = params[:customer][:password]
+      CustomerMailer.deliver_signup_notification(@customer,@profile,@password)
+      render :nothing => true
+    else
+      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      @signup_failed=true
+      render :nothing => true
+    end
   end
   
 end

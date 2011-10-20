@@ -1,9 +1,9 @@
 class CustomerMailer < ActionMailer::Base
-  def signup_notification(customer,profile)
-    debugger
+  def signup_notification(customer,profile,password)
     setup_email(customer)
     @subject    = 'Please activate your new account'
     @body[:profile] = profile
+    @body[:password] = password
     @body[:url]  = "/activate/#{customer.activation_code}"
     content_type "text/html"
   end
@@ -47,7 +47,7 @@ class CustomerMailer < ActionMailer::Base
     @body[:deal] = deal
   end
 
-  def  forgot_password(customer, password, customer_profile)
+  def forgot_password(customer, password, customer_profile)
     setup_email(customer)
     @subject    = 'You password has been reset'
     @body[:password] = password
@@ -65,10 +65,10 @@ class CustomerMailer < ActionMailer::Base
     content_type "text/html"
   end
   
-  def activation(customer)
+  def activation(customer,profile)
     setup_email(customer)
     @subject    = 'Your account has been activated!'
-    @body[:profile] = customer.customer_profile
+    @body[:profile] = profile
     content_type "text/html"
   end 
   
