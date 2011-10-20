@@ -10,7 +10,7 @@ a{outline:none;}
 	}
 .header{
 	margin:auto;
-	background:url(/images/header_bg.png) no-repeat;
+	background:url(/images/header_bg.jpg) no-repeat;
 	height:183px;
 	}
 .head_left{
@@ -62,7 +62,7 @@ a{outline:none;}
 .midb_left{
 	float:left; width:446px; background:#404041;float:left;
 	}
-.midb_right{float:left; width:575px;background:#A5A5A5;padding:0 0 45px;}
+.midb_right{float:left; width:575px;background:#A5A5A5;padding:0 0 45px;min-height:550px;}
 .img_hot_deals{
 	text-align:center; position:absolute; margin-left:120px;
 	}
@@ -193,6 +193,7 @@ a{outline:none;}
 	.greybox_bottom{
 		height:34px; width:415px; margin-top:65px; text-align:right;
 	}
+
 .login{
 	background:url(/images/login_bg.png) center no-repeat; width:635px; height:258px; 
 	}
@@ -200,9 +201,7 @@ a{outline:none;}
 	
 	}
 .login_mainbox{height:105px;width:333px;position:absolute;margin-top:-30px;margin-left:210px;}
-.login_tb1a{
-	width:254px; float:right; height:23px; background:#babcbe; border:none;
-	}
+.login_tb1a{width:254px; float:right; height:23px; background:#babcbe; border:none;color:#000}
 .login_tb1b{width:200px;float:right;height:23px;background:#babcbe;border:none;}
 .login_ta1b{width:200px;float:right;height:66px;background:#babcbe;border:none;resize:none;}
 .login_forget{text-align:right;margin-top:30px;}
@@ -772,3 +771,8 @@ div#menu ul a:hover span, div#menu ul .visited span {
 .abtus_3rd{
     width:204px;margin:49px 0 0 21px; float:left;
     }
+/**/
+.dealmailer_box1{
+	height:236px; width:552px; background:url(images/std_mainbox.png) no-repeat; margin:0px auto 0px;
+	}
+/**/
