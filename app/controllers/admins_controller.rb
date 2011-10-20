@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
 
   layout "admins"
   protect_from_forgery :only => [:destroy]
-  before_filter :admin_login_required, :except => [:open_the_deals, :email_subscribers, :save_commission, :close_deals, :man_open_deal, :man_close_deal ]
+  before_filter :admin_login_required, :except => [:open_the_deals, :email_subscribers, :save_commission, :close_deals]
   include AuthenticatedSystemMerchant
 
   def close_deals
@@ -114,7 +114,7 @@ class AdminsController < ApplicationController
           File.delete(file_path)
         end
       end
-    return nil
+    redirect_to "/admins/view_all_deals"
   end
 
   def email_subscribers
@@ -189,7 +189,7 @@ class AdminsController < ApplicationController
     d.update_attributes(:status => "open")
     opened_deals.push(d)
     AdminMailer.deliver_opened_deals(opened_deals)
-    return nil
+    redirect_to "/admins/view_all_deals"
   end
 
   def deal_preferred

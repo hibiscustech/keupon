@@ -48,12 +48,13 @@
                   <a href="#" onclick="showDealPaypal('popup_view_deal',<%= deal.id %>);">Paypal</a>
                     &nbsp;
                   <a href="#" onclick="showTransactionDeal('tranaction_deal_details',<%= deal.id %>);">Tranactions</a>
-                  &nbsp;
-                  <a href="#" onclick="closeDeal(<%= deal.id %>);">Close</a>
+                  <% if deal.status == "open" %>
+                  <a href="/admins/man_close_deal?deal=<%=deal.id%>">Close</a>
+                  <% end %>
                   <% if deal.status == "new" %>
                   <a href='/admins/edit_deal/<%=deal.id%>'>Edit</a>
                   &nbsp;
-                  <a href="#" onclick="openDeal(<%= deal.id %>);">Open</a>
+                  <a href="/admins/man_open_deal?deal=<%=deal.id%>">Open</a>
                   <% end %>
                 </td>
               </tr>
