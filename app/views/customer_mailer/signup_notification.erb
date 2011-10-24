@@ -5,15 +5,21 @@
         <title>:::homepage:::</title>
     </head>
     <body>
-        <table cellspacing="0" cellpadding="0" width="601px" align="center"">
+        <table cellspacing="0" cellpadding="0" width="601px" align="center">
             <tr>
                 <td>
                     <div style="margin: auto;width: 601px;height: auto;">
-                        <div style="height:177px;background-image:url(http://dev.keupons.com/images/mailer_header.png);">
-                            <div>
-                                <img src="http://dev.keupons.com/images/ke_logo.png" hspace="56"/>
-                            </div>
-                        </div>
+						<table cellspacing="0" cellpadding="0" width="601px" height="177px" align="center" background="http://dev.keupons.com/images/mailer_header.png">
+							<tr>
+                				<td>
+			                        <div style="height:177px;">
+			                            <div>
+			                                <img src="http://dev.keupons.com/images/ke_logo.png" hspace="56"/>
+			                            </div>
+			                        </div>
+								</td>
+							</tr>
+						</table>		
                         <div style=" width: 601px;height: auto;background: #414042;">
                             <div style="padding: 30px 0 0 40px;font-size: 14px;font-weight: bold;color: #FFF;">
                                 <span>Dear <%= @profile.first_name %><%= @profile.last_name %></span>
