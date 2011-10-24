@@ -3,18 +3,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>:::homepage:::</title>
-        
     </head>
     <body>
         <div style="margin: auto;width: 601px;height: auto;">
-            <div style="background: url(http://dev.keupons.com/images/mailer_header.png);height: 177px;">
+            <div style="background-image:url(http://dev.keupons.com/images/mailer_header.png);height: 177px;">
                 <div>
                     <img src="http://dev.keupons.com/images/ke_logo.png" hspace="56"/>
                 </div>
             </div>
             <div style=" width: 601px;height: auto;background: #414042;">
                 <div style="padding: 30px 0 0 40px;font-size: 14px;font-weight: bold;color: #FFF;">
-                    <span>Dear <%= @profile.first_name %> <%= @profile.last_name %></span>
+                    <span>Dear <%= @profile.first_name %><%= @profile.last_name %></span>
                     <br/>
                     <span style="font-weight:normal; font-size:12px;">You have signed up for Keupons with the following details:
                         <br/>
@@ -24,15 +23,15 @@
                     </span>
                     <br/>
                     <br/>
-					<span style="font-weight:normal; font-size:12px;">Activate your account now for access to great deals in Singapore!
+                    <span style="font-weight:normal; font-size:12px;">Activate your account now for access to great deals in Singapore!
                         <br/>
-                        URL: http://dev.keupons.com<%=@url%>
+                        URL: <a href="http://dev.keupons.com/activate/<%=@customer.activation_code%>" target="_blank" style="color:#fff;">http://dev.keupons.com/activate/<%=@customer.activation_code%></a>
                     </span>
                     <br/>
                     <br/>
                     <span style="font-weight:normal; font-size:12px;">Thank you for joining Keupons!</span>
                 </div>
-                <div style="background: url(http://dev.keupons.com/images/invitefr_bg.png);width: 519px;height: 117px;margin: 36px auto 40px;">
+                <div style="background: url('http://dev.keupons.com/images/invitefr_bg.png');width: 519px;height: 117px;margin: 36px auto 40px;">
                     <div>
                         <a href="http://dev.keupons.com"><img src="http://dev.keupons.com/images/if_small.png" align="right" border="0" vspace="45" hspace="105" /></a>
                     </div>
@@ -41,8 +40,8 @@
                     &nbsp;
                 </div>
             </div>
-            <div style="background: url(http://dev.keupons.com/images/mailer_footer.png);height: 133px;">
-                 <div style="float: left; color: #FFF; margin: 14px 0 0 28px;text-decoration: underline;">
+            <div style="background: url('http://dev.keupons.com/images/mailer_footer.png');height: 133px;">
+                <div style="float: left; color: #FFF; margin: 14px 0 0 28px;text-decoration: underline;">
                     <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com">support@keupons.com</a></span>
                     <br/>
                     <br/>
@@ -52,7 +51,7 @@
                         <br/>
                         <a href="javascript:void(0);">Unsubscribe</a> | <a href="javascript:void(0);">Refer a friend</a>
                         <br/>
-                        Copyright © 2010 www.keupons.com. All Rights Reserved
+                        Copyright � 2010 www.keupons.com. All Rights Reserved
                     </span>
                 </div>
                 <div style="float: right;color: #FFF;">
@@ -60,8 +59,7 @@
                         <img src="http://dev.keupons.com/images/mailer_keuponsmall.png" />
                     </div>
                     <div style="float: right;height: 40px;width: 100px;position: absolute;margin: 80px 0 0 0px;">
-                        <a href="http://twitter.com/keupons_sg" target="_blank"><img src="http://dev.keupons.com/images/t_small.png" border="0" /></a>
-						<a href="http://www.facebook.com/keupons" target="_blank"><img src="http://dev.keupons.com/images/f_small.png" border="0" hspace="5" /></a>
+                        <a href="http://twitter.com/keupons_sg" target="_blank"><img src="http://dev.keupons.com/images/t_small.png" border="0" /></a><a href="http://www.facebook.com/keupons" target="_blank"><img src="http://dev.keupons.com/images/f_small.png" border="0" hspace="5" /></a>
                     </div>
                 </div>
             </div>
