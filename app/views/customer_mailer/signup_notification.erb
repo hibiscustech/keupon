@@ -5,74 +5,99 @@
         <title>:::homepage:::</title>
     </head>
     <body>
-        <table cellspacing="0" cellpadding="0" width="601px" align="center">
+        <table cellspacing="0" cellpadding="0" width="601px" align="center" style="color:#fff;">
             <tr>
                 <td>
-                    <div style="margin: auto;width: 601px;height: auto;">
-						<table cellspacing="0" cellpadding="0" width="601px" height="177px" align="center" background="http://dev.keupons.com/images/mailer_header.png">
-							<tr>
-                				<td>
-			                        <div style="height:177px;">
-			                            <div>
-			                                <img src="http://dev.keupons.com/images/ke_logo.png" hspace="56"/>
-			                            </div>
-			                        </div>
-								</td>
-							</tr>
-						</table>		
-                        <div style=" width: 601px;height: auto;background: #414042;">
-                            <div style="padding: 30px 0 0 40px;font-size: 14px;font-weight: bold;color: #FFF;">
-                                <span>Dear <%= @profile.first_name %><%= @profile.last_name %></span>
+                    <table cellspacing="0" cellpadding="0" width="601px" height="177px" align="center" background="http://dev.keupons.com/images/mailer_header.png">
+                        <tr>
+                            <td style="vertical-align:top;">
+                                <img src="http://dev.keupons.com/images/ke_logo.png" hspace="56"/>
+                            </td>
+                        </tr>
+                    </table>
+				</td>
+            </tr>
+			<tr>
+                <td>
+					<table cellspacing="0" cellpadding="0" width="601px" height="auto" align="center" bgcolor="#414042">
+                        <tr>
+                            <td style="padding: 30px 0 0 40px;">
+                    			<span style="font-size: 14px;font-weight: bold;color: #FFF;">
+									Dear <%= @profile.first_name %> <%= @profile.last_name %>
+								</span>
+                            	<br/><br/>
+                           		<span style="font-weight:normal; font-size:12px;">
+									You have signed up for Keupons with the following details:
+	                                <br/>
+	                                Email address: <%= @customer.login %>
+	                                <br/>
+	                                Password: <%= @password %>
+                            	</span>
+	                            <br/>
+	                            <br/>
+	                            <span style="font-weight:normal; font-size:12px;">
+									Activate your account now for access to great deals in Singapore!
+	                                <br/>
+	                                URL: <a href="http://dev.keupons.com/activate/<%=@customer.activation_code%>" target="_blank" style="color:#fff;">http://dev.keupons.com/activate/<%=@customer.activation_code %></a>
+	                            </span>
+	                            <br/>
+	                            <br/>
+	                            <span style="font-weight:normal; font-size:12px;">Thank you for joining Keupons!</span>
+								<br/><br/><br/>
+							</td>
+            			</tr>
+						<tr>
+                            <td>
+		                        <table cellspacing="0" cellpadding="0" width="519px" height="117px" align="center" background="http://dev.keupons.com/images/invitefr_bg.png" background-repeat="no-repeat">
+		                            <tr>
+		                                <td>
+		                                    <a href="http://dev.keupons.com"><img src="http://dev.keupons.com/images/if_small.png" align="right" border="0" vspace="45" hspace="105" /></a>
+		                                </td>
+		                            </tr>
+		                        </table>
+								<br/><br/><br/>
+                        	</td>
+            			</tr>
+					</table>
+                </td>
+            </tr>
+			<tr>
+                <td>
+					<table cellspacing="0" cellpadding="0" width="601px" height="133px" align="center"  background="http://dev.keupons.com/images/mailer_footer.png">
+                        <tr>
+                            <td style="vertical-align:top;padding:15px 0 0 27px;">
+                                <span style="font-weight:bold; font-size:13px;">
+									Have a question? <a href="mailto:support@keupons.com" style="color:#fff;">support@keupons.com</a>
+								</span>
                                 <br/>
-                                <span style="font-weight:normal; font-size:12px;">You have signed up for Keupons with the following details:
+                                <br/>
+                                <span style="font-size:10px;">
+									<a href="javascript:void(0);" style="color:#fff;">Click Here</a> if you can't view the images above
+                                	<br/>
+                                    Add <a href="javascript:void(0);" style="color:#fff;">support@keupons.com</a> to your address book
                                     <br/>
-                                    Email address: <%= @customer.login %>
+                                    <a href="javascript:void(0);" style="color:#fff;">Unsubscribe</a> | <a href="javascript:void(0);" style="color:#fff;">Refer a friend</a>
                                     <br/>
-                                    Password: <%= @password %>
+                                    Copyright &copy; 2010 www.keupons.com. All Rights Reserved
                                 </span>
-                                <br/>
-                                <br/>
-                                <span style="font-weight:normal; font-size:12px;">Activate your account now for access to great deals in Singapore!
-                                    <br/>
-                                    URL: <a href="http://dev.keupons.com/activate/<%=@customer.activation_code%>" target="_blank" style="color:#fff;">http://dev.keupons.com/activate/<%=@customer.activation_code %></a>
-                                </span>
-                                <br/>
-                                <br/>
-                                <span style="font-weight:normal; font-size:12px;">Thank you for joining Keupons!</span>
-                            </div>
-                            <div style="background: url('http://dev.keupons.com/images/invitefr_bg.png');width: 519px;height: 117px;margin: 36px auto 40px;">
-                                <div>
-                                    <a href="http://dev.keupons.com"><img src="http://dev.keupons.com/images/if_small.png" align="right" border="0" vspace="45" hspace="105" /></a>
-                                </div>
-                            </div>
-                            <div>
-                                &nbsp;
-                            </div>
-                        </div>
-                        <div style="background: url('http://dev.keupons.com/images/mailer_footer.png');height: 133px;">
-                            <div style="float: left; color: #FFF; margin: 14px 0 0 28px;text-decoration: underline;">
-                                <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com">support@keupons.com</a></span>
-                                <br/>
-                                <br/>
-                                <span style="font-size:10px;"><a href="javascript:void(0);">Click Here</a> if you can't view the images above
-                                    <br/>
-                                    Add <a href="javascript:void(0);">support@keupons.com</a> to your address book
-                                    <br/>
-                                    <a href="javascript:void(0);">Unsubscribe</a> | <a href="javascript:void(0);">Refer a friend</a>
-                                    <br/>
-                                    Copyright � 2010 www.keupons.com. All Rights Reserved
-                                </span>
-                            </div>
-                            <div style="float: right;color: #FFF;">
-                                <div style="float:right; margin-right:18px;">
-                                    <img src="http://dev.keupons.com/images/mailer_keuponsmall.png" />
-                                </div>
-                                <div style="float: right;height: 40px;width: 100px;position: absolute;margin: 80px 0 0 0px;">
-                                    <a href="http://twitter.com/keupons_sg" target="_blank"><img src="http://dev.keupons.com/images/t_small.png" border="0" /></a><a href="http://www.facebook.com/keupons" target="_blank"><img src="http://dev.keupons.com/images/f_small.png" border="0" hspace="5" /></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+							</td>
+							<td style="vertical-align: top;padding:0 20px 0 0" align="right">
+								<table cellspacing="0" cellpadding="0">
+                        			<tr>
+                            			<td style="vertical-align:top;">
+                                			<img src="http://dev.keupons.com/images/mailer_keuponsmall.png" />
+										</td>
+									</tr>
+									<tr>
+                            			<td style="vertical-align:bottom;">
+			                                <a href="http://twitter.com/keupons_sg" target="_blank" style="color:#fff;"><img src="http://dev.keupons.com/images/t_small.png" border="0" /></a>
+											<a href="http://www.facebook.com/keupons" target="_blank"><img src="http://dev.keupons.com/images/f_small.png" border="0" hspace="5" /></a>
+										</td>
+									</tr>
+								</table>	
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>
