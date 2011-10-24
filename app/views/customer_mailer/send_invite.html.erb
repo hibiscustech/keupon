@@ -2,192 +2,125 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <style type="text/css">
-            body {
-                padding: 0;
-                margin: auto;
-                font-family: Helvetica, Arial, sans-serif;
-                font-size: 12px;
-            }
-            
-            .mailer_invitebg {
-                background: url(<%=$server_name%>/images/mailer_invitefriendbg.png); width: 544px; height: 125px; margin: 0 auto 0px;
-            }
-            
-            .invite_txt1 {
-                font-size: 12px;font-weight: bold; color: #FFFFFF; text-align: center;padding: 10px 0 0 0;
-            }
-            
-            .invite_txt2 {
-                font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;
-            }
-            
-            .mailer_wrapper {
-                margin: auto; width: 601px; height: auto;
-            }
-            
-            .mailer_wrapper_header {
-                background: url(<%=$server_name%>/images/mailer_header.png);height: 177px;
-            }
-            
-            .mailer_body {
-                width: 601px; height: auto; background: #414042;
-            }
-            
-            .mailer_toptxt1 {
-                padding: 30px 0 0 40px; font-size: 14px; font-weight: bold; color: #FFF;
-            }
-            
-            .mailer_box1 {
-                height: 236px;
-                width: 552px;
-                background: url(<%=$server_name%>/images/std_mainbox.png) no-repeat;
-                margin: 60px auto 0px;
-                padding-bottom: 53px;
-            }
-            
-            .mailer_left {
-                width: 249px;
-                height: 210px;
-                float: left;
-                margin: 15px 0 0 15px;
-            }
-            
-            .mailer_right {
-                width: 249px;
-                height: 210px;
-                float: right;
-                margin: 15px 15px 0 0;
-            }
-            
-            .mailer_up {
-                width: 247px;
-                height: 111px;
-                color: #FFF;
-            }
-            
-            .mailer_down {
-                height: auto;
-                padding: 5px 0 0 0;
-                float: left;
-            }
-            
-            .mailer_round {
-                height: 90px;
-                width: 91px;
-                background: url(<%=$server_name%>/images/mailer_round.png);
-                float: left;
-            }
-            
-            .mailer_footer {
-                background: url(<%=$server_name%>/images/mailer_footer.png);height: 133px;
-            }
-            
-            .mailer_footerleft {
-                float: left; color: #FFF;margin: 14px 0 0 28px;
-            }
-            
-            .mailer_footerleft a {
-                color: #FFF;
-                text-decoration: underline;
-            }
-            
-            .mailer_footerleft a:hover {
-                color: #FFF;
-                text-decoration: underline;
-            }
-            
-            .mailer_footerright {
-                float: right;color: #FFF; /*margin:14px 0 0 28px;*/
-            }
-            
-            .mailer_smallicons {
-                float: right; height: 40px; width: 100px; position: absolute;margin: 80px 0 0 0px;
-            }
-            
-           
-        </style>
+        <title>:::homepage:::</title>
     </head>
     <body>
-        <div style="margin: auto; width: 601px; height: auto;">
-            <div style="background: url(<%=$server_name%>/images/mailer_header.png);height: 177px;">
-                <div>
-                    <img src="<%=$server_name%>/images/ke_logo.png" hspace="56"/>
-                </div>
-            </div>
-            <div style=" width: 601px; height: auto; background: #414042;">
-                <div style="padding: 30px 0 0 40px; font-size: 14px; font-weight: bold; color: #FFF;">
-                    <span><%= @customer_profile.first_name %> <%= @customer_profile.last_name %> has invited you to join Keupons</span>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <span style="font-weight:normal; font-size:12px;">Hi, I joined Keupons to get great deals in Singapore and I think you should too. </span>
-                </div>
-                <div>
-                    <a href="<%=$server_name%>/signup/<%=@id%>" target="_blank"><img src="<%=$server_name%>/images/signupnow.png" hspace="40" border="0" vspace="40" /></a>
-                </div>
-                <div style="background: url(<%=$server_name%>/images/mailer_invitefriendbg.png); width: 544px; height: 125px; margin: 0 auto 0px;">
-                    <div style=" font-size: 12px;font-weight: bold; color: #FFFFFF; text-align: center;padding: 10px 0 0 0;">
-                        <span>At Keupons, "the more people buy, the higher the discount gets!"</span>
-                    </div>
-                    <div style="height:auto; float:left;">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td colspan="6">
-                                    &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="<%=$server_name%>/images/bestdeal_small.png" hspace="10" />
-                                </td>
-                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" width="20%">
-                                    Get the lowest price with our BEST DEAL GUARANTEE!
-                                </td>
-                                <td>
-                                    <img src="<%=$server_name%>/images/100money_small.png" hspace="11" />
-                                </td>
-                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" >
-                                    Satisfaction guaranteed!
-                                </td>
-                                <td>
-                                    <img src="<%=$server_name%>/images/paypal_small.png" hspace="6" align="right" />
-                                </td>
-                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" width="15%">
-                                    Secure payment via PAYPAL
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div>
-                    &nbsp;
-                </div>
-            </div>
-            <div style="background: url(<%=$server_name%>/images/mailer_footer.png);height: 133px;">
-                <div style="float: left; color: #FFF;margin: 14px 0 0 28px; text-decoration: underline;">
-                    <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com">support@keupons.com</a></span>
-                    <br/>
-                    <br/>
-                    <span style="font-size:10px;"><a href="javascript:void(0);">Click Here</a> if you can't view the images above
-                        <br/>
-                        Add <a href="javascript:void(0);">support@keupons.com</a> to your address book
-                        <br/>
-                        <a href="javascript:void(0);">Unsubscribe</a> | <a href="javascript:void(0);">Refer a friend</a>
-                        <br/>
-                        Copyright © 2010 www.keupons.com. All Rights Reserved
-                    </span>
-                </div>
-                <div style="float: right;color: #FFF; ">
-                    <div style="float:right; margin-right:18px;">
-                        <img src="<%=$server_name%>/images/mailer_keuponsmall.png" />
-                    </div>
-                    <div style="float: right; height: 40px; width: 100px; position: absolute;margin: 80px 0 0 0px;">
-                        <a href="http://twitter.com/keupons_sg" target="_blank"><img src="<%=$server_name%>/images/t_small.png" border="0" /></a>
-						<a href="http://www.facebook.com/keupons" target="_blank"><img src="<%=$server_name%>/images/f_small.png" border="0" hspace="5" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <table cellspacing="0" cellpadding="0" width="601px" align="center" style="color:#fff;">
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" width="601px" height="177px" align="center" background="http://dev.keupons.com/images/mailer_header.png">
+                        <tr>
+                            <td style="vertical-align:top;">
+                                <img src="http://dev.keupons.com/images/ke_logo.png" hspace="56"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" width="601px" height="auto" align="center" bgcolor="#414042">
+                        <tr>
+                            <td style="padding: 30px 0 0 40px;">
+                                <span style="font-size: 14px;font-weight: bold;color: #FFF;">
+									<%= @customer_profile.first_name %> <%= @customer_profile.last_name %> has invited you to join Keupons
+								</span>
+                                <br/>
+                                <br/>
+                                <span style="font-weight:normal; font-size:12px;">
+                                    <br/>
+                                    <br/>
+                                    Hi, I joined Keupons to get great deals in Singapore and I think you should too.
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table cellspacing="0" cellpadding="0" width="554px" height="125px" align="center" background="http://dev.keupons.com/images/mailer_invitefriendbg.png" background-repeat="no-repeat">
+                                    <tr>
+                                        <td style="padding:10px 0 0;font-size:11px;font-weight:bold;" align="center">
+                                            At Keupons, "the more people buy, the higher the discount gets!"
+                                        </td>
+									</tr>
+									<tr>	
+                                        <td>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+					                            <tr>
+					                                <td colspan="6">
+					                                    &nbsp;
+					                                </td>
+					                            </tr>
+					                            <tr>
+					                                <td>
+					                                    <img src="<%=$server_name%>/images/bestdeal_small.png" hspace="10" />
+					                                </td>
+					                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" width="20%">
+					                                    Get the lowest price with our BEST DEAL GUARANTEE!
+					                                </td>
+					                                <td>
+					                                    <img src="<%=$server_name%>/images/100money_small.png" hspace="11" />
+					                                </td>
+					                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" >
+					                                    Satisfaction guaranteed!
+					                                </td>
+					                                <td>
+					                                    <img src="<%=$server_name%>/images/paypal_small.png" hspace="6" align="right" />
+					                                </td>
+					                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" width="15%">
+					                                    Secure payment via PAYPAL
+					                                </td>
+					                            </tr>
+					                        </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" width="601px" height="133px" align="center" background="http://dev.keupons.com/images/mailer_footer.png">
+                        <tr>
+                            <td style="vertical-align:top;padding:15px 0 0 27px;">
+                                <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com" style="color:#fff;">support@keupons.com</a></span>
+                                <br/>
+                                <br/>
+                                <span style="font-size:10px;"><a href="#" style="color:#fff;">Click Here</a> if you can't view the images above
+                                    <br/>
+                                    Add <a href="#" style="color:#fff;">support@keupons.com</a> to your address book
+                                    <br/>
+                                    <a href="#" style="color:#fff;">Unsubscribe</a> | <a href="#" style="color:#fff;">Refer a friend</a>
+                                    <br/>
+                                    Copyright &copy; 2010 <a href="#" style="color:#fff;">www.keupons.com</a> All Rights Reserved
+                                </span>
+                            </td>
+                            <td style="vertical-align: top;padding:0 20px 0 0" align="right">
+                                <table cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td style="vertical-align:top;">
+                                            <img src="http://dev.keupons.com/images/mailer_keuponsmall.png" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:bottom;">
+                                            <a href="http://twitter.com/keupons_sg" target="_blank" style="color:#fff;"><img src="http://dev.keupons.com/images/t_small.png" border="0" /></a><a href="http://www.facebook.com/keupons" target="_blank" style="color:#fff;"><img src="http://dev.keupons.com/images/f_small.png" border="0" hspace="5" /></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>
