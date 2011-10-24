@@ -56,7 +56,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/merchants/contact_details/:id',:controller=>'merchant',:action=>'contact_details'
   map.connect '/merchants/merchant_profile_update' ,:controller => 'merchant', :action => 'merchant_profile_update'
   map.connect '/customers/tip_the_deal' ,:controller => 'customers', :action => 'tip_the_deal'
-  
+  map.connect '/customers/how_it_works' ,:controller => 'customers', :action => 'how_it_works'
+  map.connect '/customers/how_keupon_works' ,:controller => 'customers', :action => 'how_keupon_works'
   map.connect '/merchants/my_company',:controller=>'merchant',:action=>'my_company'  
   map.connect '/invite_friends',:controller=>'customers',:action=>'invite_friends'
   map.connect '/add_a_friend',:controller=>'customers',:action=>'add_a_friend'
@@ -79,7 +80,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/want_a_deal_api/:user_id',:controller=>'api',:action=>'want_a_deal_api'
   map.connect 'update_demand_deal_api/:user_id/:deal_id',:controller=>'api',:action=>'update_demand_deal_api'
   map.connect 'confirm_deal_api/:user_id/:deal_id',:controller=>'api',:action=>'confirm_deal_api'
-  map.resources :customers  
+  map.resources :customers, :collection => {:update_customer_avatar => :put, :my_account => :get} 
   map.resource :merchant
   map.resource :session
 
