@@ -2,6 +2,7 @@
     <div>
         <img src="/images/my_keuponsred.png" hspace="24" />
     </div>
+	<% if !@my_keupons.blank? %>
 	<% for my_keupon in @my_keupons %>
     <div class="mykeu_up">
         <div class="mykeu_left">
@@ -25,4 +26,7 @@
     </div>
     <div class="mykeu_line"></div>
     <% end %>
+	<% else %>
+		<div style="min-height:100px;">&nbsp;</div>
+	<% end %>
 </div>

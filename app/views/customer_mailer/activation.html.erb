@@ -6,34 +6,22 @@
         <style type="text/css">
         	a{outline:none;}
             .mailer_invitebg1 {
-                background: url(<%=$server_name%>/images/invitefr_bg.png);
-                width: 519px;
-                height: 117px;
-                margin: 36px auto 40px;
+                background: url(<%=$server_name%>/images/invitefr_bg.png);width: 519px;height: 117px;margin: 36px auto 40px;
             }
             
-            .mailer_wrapper {
-                margin: auto;
-                width: 601px;
-                height: auto;
+            .mailer_wrapper {margin: auto; width: 601px; height: auto;
             }
             
             .mailer_wrapper_header {
-                background: url(<%=$server_name%>/images/mailer_header.png);
-                height: 177px;
+                background: url(<%=$server_name%>/images/mailer_header.png);height: 177px;
             }
             
             .mailer_body {
-                width: 601px;
-                height: auto;
-                background: #414042;
+                width: 601px; height: auto; background:#414042;
             }
             
             .mailer_toptxt1 {
-                padding: 30px 0 0 40px;
-                font-size: 14px;
-                font-weight: bold;
-                color: #FFF;
+                padding: 30px 0 0 40px; font-size: 14px; font-weight: bold; color: #FFF;
             }
             
             .mailer_box1 {
@@ -78,15 +66,10 @@
             }
             
             .mailer_footer {
-                background: url(<%=$server_name%>/images/mailer_footer.png);
-                height: 133px;
+                background: url(<%=$server_name%>/images/mailer_footer.png);height: 133px;
             }
             
-            .mailer_footerleft {
-                float: left;
-                color: #FFF;
-                margin: 14px 0 0 28px;
-            }
+            .mailer_footerleft {float: left; color:#FFF; margin: 14px 0 0 28px;}
             
             .mailer_footerleft a {
                 color: #FFF;
@@ -99,16 +82,10 @@
             }
             
             .mailer_footerright {
-                float: right;
-                color: #FFF; /*margin:14px 0 0 28px;*/
+                float: right;color: #FFF; /*margin:14px 0 0 28px;*/
             }
             
-            .mailer_smallicons {
-                float: right;
-                height: 40px;
-                width: 100px;
-                position: absolute;
-                margin: 80px 0 0 0px;
+            .mailer_smallicons {float: right; height: 40px; width: 100px; position: absolute; margin: 80px 0 0 0px;
             }
             
             .mailer_invitebg {
@@ -120,14 +97,14 @@
         </style>
     </head>
     <body>
-        <div class="mailer_wrapper">
-            <div class="mailer_wrapper_header">
+        <div style="margin: auto; width: 601px; height: auto;">
+            <div style=" background: url(<%=$server_name%>/images/mailer_header.png);height: 177px;">
                 <div>
                     <img src="<%=$server_name%>/images/ke_logo.png" hspace="56"/>
                 </div>
             </div>
-            <div class="mailer_body">
-                <div class="mailer_toptxt1">
+            <div style=" width: 601px; height: auto; background:#414042;">
+                <div style="padding: 30px 0 0 40px; font-size: 14px; font-weight: bold; color: #FFF;">
                     <span>Hi <%= @profile.first_name %> <%= @profile.last_name %></span>
                     <br/>
                     <span style="font-weight:normal; font-size:12px;">
@@ -147,7 +124,7 @@
                 </div>
 				<br/>
                 <br/>
-                <div class="mailer_invitebg1">
+                <div style="background: url(<%=$server_name%>/images/invitefr_bg.png);width: 519px;height: 117px;margin: 36px auto 40px;">
                     <div>
                         <a href="<%=$server_name%>"><img src="<%=$server_name%>/images/if_small.png" align="right" border="0" vspace="45" hspace="105" /></a>
                     </div>
@@ -156,8 +133,8 @@
                     &nbsp;
                 </div>
             </div>
-            <div class="mailer_footer">
-                 <div class="mailer_footerleft">
+            <div style="background: url(<%=$server_name%>/images/mailer_footer.png);height: 133px; text-decoration: underline;">
+                 <div style="float: left; color:#FFF; margin: 14px 0 0 28px;">
                     <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com">support@keupons.com</a></span>
                     <br/>
                     <br/>
@@ -170,11 +147,11 @@
                         Copyright © 2010 www.keupons.com. All Rights Reserved
                     </span>
                 </div>
-                <div class="mailer_footerright">
+                <div style="float: right;color: #FFF;">
                     <div style="float:right; margin-right:18px;">
                         <img src="<%=$server_name%>/images/mailer_keuponsmall.png" />
                     </div>
-                    <div class="mailer_smallicons">
+                    <div style="float: right; height: 40px; width: 100px; position: absolute; margin: 80px 0 0 0px;">
                         <a href="http://twitter.com/keupons_sg" target="_blank"><img src="<%=$server_name%>/images/t_small.png" border="0" /></a>
 						<a href="http://www.facebook.com/keupons" target="_blank"><img src="<%=$server_name%>/images/f_small.png" border="0" hspace="5" /></a>
                     </div>

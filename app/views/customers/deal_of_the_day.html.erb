@@ -3,7 +3,7 @@
         <img src="/images/hot_deals.png" />
     </div>
 	<% if !@hot_deal_discounts.blank? %>
-	<%= @hot_deal_discounts %>
+	<% @hot_deal_discounts %>
 		<% htd = @hot_deal_discounts[0]
 	        discount = htd[1]
 	        hot_deal = @hot_deals[htd[0]]
@@ -72,6 +72,14 @@
             </div>
         </div>
 		<% end %>
+			<% if @open_deal_recents.length % 2 != 0%>
+			<% @banner = ["homepage_banner_1.png","homepage_banner_2.png","homepage_banner_3.png"][rand(3)] %>
+				<div class="open_deal_box1">
+		            <div class="open_deal_box1_inner">
+		            	<img src="/images/<%=@banner%>" />
+					</div>
+		        </div>
+			<% end %>
 		<% end %>
     </div>
 </div>

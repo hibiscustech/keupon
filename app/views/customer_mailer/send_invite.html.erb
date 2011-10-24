@@ -11,48 +11,31 @@
             }
             
             .mailer_invitebg {
-                background: url(<%=$server_name%>/images/mailer_invitefriendbg.png);
-                width: 544px;
-                height: 125px;
-                margin: 0 auto 0px;
+                background: url(<%=$server_name%>/images/mailer_invitefriendbg.png); width: 544px; height: 125px; margin: 0 auto 0px;
             }
             
             .invite_txt1 {
-                font-size: 12px;
-                font-weight: bold;
-                color: #FFFFFF;
-                text-align: center;
-                padding: 10px 0 0 0;
+                font-size: 12px;font-weight: bold; color: #FFFFFF; text-align: center;padding: 10px 0 0 0;
             }
             
             .invite_txt2 {
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 10px;
-                text-align: left;
+                font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;
             }
             
             .mailer_wrapper {
-                margin: auto;
-                width: 601px;
-                height: auto;
+                margin: auto; width: 601px; height: auto;
             }
             
             .mailer_wrapper_header {
-                background: url(<%=$server_name%>/images/mailer_header.png);
-                height: 177px;
+                background: url(<%=$server_name%>/images/mailer_header.png);height: 177px;
             }
             
             .mailer_body {
-                width: 601px;
-                height: auto;
-                background: #414042;
+                width: 601px; height: auto; background: #414042;
             }
             
             .mailer_toptxt1 {
-                padding: 30px 0 0 40px;
-                font-size: 14px;
-                font-weight: bold;
-                color: #FFF;
+                padding: 30px 0 0 40px; font-size: 14px; font-weight: bold; color: #FFF;
             }
             
             .mailer_box1 {
@@ -97,14 +80,11 @@
             }
             
             .mailer_footer {
-                background: url(<%=$server_name%>/images/mailer_footer.png);
-                height: 133px;
+                background: url(<%=$server_name%>/images/mailer_footer.png);height: 133px;
             }
             
             .mailer_footerleft {
-                float: left;
-                color: #FFF;
-                margin: 14px 0 0 28px;
+                float: left; color: #FFF;margin: 14px 0 0 28px;
             }
             
             .mailer_footerleft a {
@@ -118,35 +98,25 @@
             }
             
             .mailer_footerright {
-                float: right;
-                color: #FFF; /*margin:14px 0 0 28px;*/
+                float: right;color: #FFF; /*margin:14px 0 0 28px;*/
             }
             
             .mailer_smallicons {
-                float: right;
-                height: 40px;
-                width: 100px;
-                position: absolute;
-                margin: 80px 0 0 0px;
+                float: right; height: 40px; width: 100px; position: absolute;margin: 80px 0 0 0px;
             }
             
-            .mailer_invitebg {
-                background: url(<%=$server_name%>/images/mailer_invitefriendbg.png);
-                width: 544px;
-                height: 125px;
-                margin: 0 auto 0px;
-            }
+           
         </style>
     </head>
     <body>
-        <div class="mailer_wrapper">
-            <div class="mailer_wrapper_header">
+        <div style="margin: auto; width: 601px; height: auto;">
+            <div style="background: url(<%=$server_name%>/images/mailer_header.png);height: 177px;">
                 <div>
                     <img src="<%=$server_name%>/images/ke_logo.png" hspace="56"/>
                 </div>
             </div>
-            <div class="mailer_body">
-                <div class="mailer_toptxt1">
+            <div style=" width: 601px; height: auto; background: #414042;">
+                <div style="padding: 30px 0 0 40px; font-size: 14px; font-weight: bold; color: #FFF;">
                     <span><%= @customer_profile.first_name %> <%= @customer_profile.last_name %> has invited you to join Keupons</span>
                     <br/>
                     <br/>
@@ -156,8 +126,8 @@
                 <div>
                     <a href="<%=$server_name%>/signup/<%=@id%>" target="_blank"><img src="<%=$server_name%>/images/signupnow.png" hspace="40" border="0" vspace="40" /></a>
                 </div>
-                <div class="mailer_invitebg">
-                    <div class="invite_txt1">
+                <div style="background: url(<%=$server_name%>/images/mailer_invitefriendbg.png); width: 544px; height: 125px; margin: 0 auto 0px;">
+                    <div style=" font-size: 12px;font-weight: bold; color: #FFFFFF; text-align: center;padding: 10px 0 0 0;">
                         <span>At Keupons, "the more people buy, the higher the discount gets!"</span>
                     </div>
                     <div style="height:auto; float:left;">
@@ -171,19 +141,19 @@
                                 <td>
                                     <img src="<%=$server_name%>/images/bestdeal_small.png" hspace="10" />
                                 </td>
-                                <td class="invite_txt2" width="20%">
+                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" width="20%">
                                     Get the lowest price with our BEST DEAL GUARANTEE!
                                 </td>
                                 <td>
                                     <img src="<%=$server_name%>/images/100money_small.png" hspace="11" />
                                 </td>
-                                <td class="invite_txt2">
+                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" >
                                     Satisfaction guaranteed!
                                 </td>
                                 <td>
                                     <img src="<%=$server_name%>/images/paypal_small.png" hspace="6" align="right" />
                                 </td>
-                                <td class="invite_txt2" width="15%">
+                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;text-align: left;" width="15%">
                                     Secure payment via PAYPAL
                                 </td>
                             </tr>
@@ -194,8 +164,8 @@
                     &nbsp;
                 </div>
             </div>
-            <div class="mailer_footer">
-                <div class="mailer_footerleft">
+            <div style="background: url(<%=$server_name%>/images/mailer_footer.png);height: 133px;">
+                <div style="float: left; color: #FFF;margin: 14px 0 0 28px; text-decoration: underline;">
                     <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com">support@keupons.com</a></span>
                     <br/>
                     <br/>
@@ -208,11 +178,11 @@
                         Copyright © 2010 www.keupons.com. All Rights Reserved
                     </span>
                 </div>
-                <div class="mailer_footerright">
+                <div style="float: right;color: #FFF; ">
                     <div style="float:right; margin-right:18px;">
                         <img src="<%=$server_name%>/images/mailer_keuponsmall.png" />
                     </div>
-                    <div class="mailer_smallicons">
+                    <div style="float: right; height: 40px; width: 100px; position: absolute;margin: 80px 0 0 0px;">
                         <a href="http://twitter.com/keupons_sg" target="_blank"><img src="<%=$server_name%>/images/t_small.png" border="0" /></a>
 						<a href="http://www.facebook.com/keupons" target="_blank"><img src="<%=$server_name%>/images/f_small.png" border="0" hspace="5" /></a>
                     </div>

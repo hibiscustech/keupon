@@ -21,8 +21,9 @@
                 &nbsp;
             </td>
         </tr>
-        <% for cf in @friends
-        if cf.used.to_s == '0' %>
+        <% for cf in @friends %>
+        <% if cf.used.to_s == '0' %>
+		<% @found = true %>
         <tr>
             <td width="5%">
             </td>
@@ -36,9 +37,16 @@
                 	<image src="/images/check_green.jpg"/>
 				<% end %>
             </td>
-        </tr><%
-        end
-        end %>
+        </tr>
+		<% end %>
+        <% end %>
+		<% if !@found %>
+			<tr>
+	            <td width="50%">
+	            	You have not invited any friends yet. Invite your friends <%= link_to_remote_redbox "now", :url => {:controller => "customers", :action => "earn_money"} %> and earn $20!
+	            </td>
+	        </tr>
+		<% end %>
     </table>
     <!--<div class="myacc_mainb1">
         <input name="txtb2" type="text" class="my_invittb1"/>

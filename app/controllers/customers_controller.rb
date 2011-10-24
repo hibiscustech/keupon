@@ -628,8 +628,10 @@ class CustomersController < ApplicationController
       @email=@friend.friend_email
       @customer.email=@email
       #     @customer_profile = CustomerProfile.new
+      render :partial => 'new', :layout => "application"
+    else
+      render :partial => 'new'
     end
-    render :partial => 'new', :layout => "application"
   end
   
   def create
@@ -1109,7 +1111,7 @@ class CustomersController < ApplicationController
   end
   
   def how_keupon_works
-    
+    render :layout => false
   end
   
   def fb_user_activate
