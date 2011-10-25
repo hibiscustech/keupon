@@ -138,7 +138,7 @@ a{outline:none;}
 	
 /**/
 .dealpage_bg{background: url("/images/deal_bg.png") repeat-x scroll 0 0 transparent;
-    height: 891px;
+    height: auto;
     width: 1021px;}
 .deal_whitebg{
 	background:url(/images/deal_whitebg.png) no-repeat; height:402px; width:450px; margin-top:18px;
@@ -164,7 +164,7 @@ a{outline:none;}
 }
 .dealright_1st{color:#FFF;font-weight:bold;padding:20px 0 0 12px;height:90px;font-size:17px;}
 	
-.dealright_2nd{float:left;padding:25px 0 0 12px;width:480px;height:120px;}
+.dealright_2nd{background-color: #000000;float: left;height: 120px;margin-left: -23px;padding: 25px 0 0 37px;width: 509px;}
 .dealright_3rd{float:left;color:#FFF;width:493px;margin-top:30px;font-size:13px;font-weight:bold;}
 .dealright_4th{
 	height:3px; width:493px; background:#545455; margin-top:9px; margin-bottom:5px; float:left;
