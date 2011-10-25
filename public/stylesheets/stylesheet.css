@@ -237,6 +237,7 @@ a{outline:none;}
 
 /*aboutus_start*/
 .aboutwhite_bg{
+
 	height:547px; width:236px; color:#333333; background:#FFF; -moz-border-radius:23px; -webkit-border-radius:23px;padding:30px 20px 0px 20px; text-align:justify;font-weight:bold;
 	}
 .aboutus_1stboxcon{
@@ -602,13 +603,13 @@ a{outline:none;}
 
 ol
 {
-  width: 80em;  /* room for 4 columns */
+  width: 92em;  /* room for 4 columns */
   list-style:none;
 }
 ol li
 {
   float: left;
-  width: 20em;  /* accommodate the widest item */
+  width: 23em;  /* accommodate the widest item */
   font-size:12px;
   line-height:30px;
   font-weight:bold;
