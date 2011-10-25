@@ -15,7 +15,7 @@
     <div class="myacc_mainb">
         <span style="font-size:22px;">Earn S$20 at your invited friend's first purchase</span>
     </div>
-    <table style="font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
+    <table style="margin-left:52px;font-size:14px;min-height:150px;" CELLPADDING="3" CELLSPACING="6">
         <tr>
             <td colspan="3">
                 &nbsp;
@@ -43,11 +43,12 @@
 		<% if !@found %>
 			<tr>
 	            <td width="50%">
-	            	You have not invited any friends yet. Invite your friends <%= link_to_remote_redbox "now", :url => {:controller => "customers", :action => "earn_money"} %> and earn $20!
+	            	You have not invited any friends yet. Invite your friends <%= link_to_remote_redbox "now", :url => {:controller => "customers", :action => "earn_money"} %> and earn $20! <br><br>
 	            </td>
 	        </tr>
 		<% end %>
     </table>
+    
     <!--<div class="myacc_mainb1">
         <input name="txtb2" type="text" class="my_invittb1"/>
     </div>
