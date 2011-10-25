@@ -1,7 +1,7 @@
 class CustomerMailer < ActionMailer::Base
   def signup_notification(customer,profile,password)
     setup_email(customer)
-    @subject    = 'Please activate your new account'
+    @subject    = 'Please activate your new Keupons account'
     @body[:profile] = profile
     @body[:password] = password
     @body[:url]  = "/activate/#{customer.activation_code}"
@@ -49,7 +49,7 @@ class CustomerMailer < ActionMailer::Base
 
   def forgot_password(customer, password, customer_profile)
     setup_email(customer)
-    @subject    = 'You password has been reset'
+    @subject    = 'Your Keupons password has been reset'
     @body[:password] = password
     @body[:customer] = customer
     @body[:customer_profile] = customer_profile
@@ -58,7 +58,7 @@ class CustomerMailer < ActionMailer::Base
 
   def change_password(mail,password, customer_profile)
     setup_email(mail)
-    @subject    = 'You password has been changed'
+    @subject    = 'Your Keupons password has been changed'
     @body[:password] = password
     @body[:customer] = mail
     @body[:customer_profile] = customer_profile
@@ -67,14 +67,14 @@ class CustomerMailer < ActionMailer::Base
   
   def activation(customer,profile)
     setup_email(customer)
-    @subject    = 'Your account has been activated!'
+    @subject    = 'You Keupons account has been activated!'
     @body[:profile] = profile
     content_type "text/html"
   end 
   
   def send_invite(customer,customer_profile,email,friend_id)
     @recipients  = email
-    @subject    = 'I think you should get your Keupon!'
+    @subject    = "#{customer_profile.first_name} has invited you to join Keupons"
     @from        = "#{Constant.get_admin_email_id}"
     @sent_on     = Time.zone.now
     @body[:customer] = customer
@@ -85,7 +85,7 @@ class CustomerMailer < ActionMailer::Base
   
   def share_this_deal(customer,customer_profile,email,deal)
     @recipients  = email
-    @subject    = 'I think you should intrested in this deaal!'
+    @subject    = "#{customer_profile.first_name} thinks you will like this Keupons deal"
     @from        = "#{Constant.get_admin_email_id}"
     @sent_on     = Time.zone.now
     @body[:customer] = customer
