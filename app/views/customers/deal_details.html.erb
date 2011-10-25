@@ -41,7 +41,12 @@
         <div class="dealright_2nd">
             <div style="width:300px; float:left;">
                 <div>
-                    <a href="javascript:void(0);"><img src="/images/buy_now_red.png" border="0" /></a>
+                	<% if !logged_in? %>
+ 						<%#= link_to image_tag('/images/buy_now_red.png',:border=>'0',:width=>"179", :height=>"50"), :controller => 'customers', :action=>'transaction_details', :id => @deal.id%>
+						<%= link_to_remote_redbox image_tag('/images/buy_now_red.png',:width=>"179", :height=>"50"), :url => {:controller => "sessions", :action => "new"} %>
+                    <% else %>
+ 						<a href="<%=@deal.buy_url%>&email=<%=current_customer.email %>"><img height="50" border="0" width="179" src="/images/buy_now_red.png" alt="Buy_now_btn"/></a>
+                    <% end %>
                 </div>
                 <div class="your_card">
                     Your card will be charged only when the deal ends.

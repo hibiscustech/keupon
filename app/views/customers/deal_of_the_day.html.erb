@@ -72,14 +72,18 @@
             </div>
         </div>
 		<% end %>
-			<% if @open_deal_recents.length % 2 != 0%>
-			<% @banner = ["homepage_banner_1.png","homepage_banner_2.png","homepage_banner_3.png"][rand(3)] %>
+		<% @banner = ["homepage_banner_1.png","homepage_banner_2.png","homepage_banner_3.png","homepage_banner_1.png","homepage_banner_3.png"].shuffle %>
+		<% if @open_deal_recents.length <= 4 %>
+			<% @deal_count = 4 - @open_deal_recents.length %>
+			<% @banner.each_with_index do |banner, i| %>
+				<% break if i == @deal_count; %>
 				<div class="open_deal_box1">
 		            <div class="open_deal_box1_inner">
-		            	<img src="/images/<%=@banner%>" />
+		            	<img src="/images/<%=banner%>" />
 					</div>
 		        </div>
 			<% end %>
+		<% end %>
 		<% end %>
     </div>
 </div>

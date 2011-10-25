@@ -1,168 +1,127 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-<link href="css/emailer.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-<table width="720" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="<%=$server_name%>/images/top_red_bar.jpg" width="720" height="21" /></td>
-  </tr>
-  <tr>
-    <td background="<%=$server_name%>/images/middle_red_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td height="8"></td>
-        <td height="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="20%" align="left"><img src="<%=$server_name%>/images/email_logo.jpg" width="138" height="82" /></td>
-            <td width="54%"> <span style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:14px;color:#FF0000;text-decoration:none;font-weight:bold;">Hot Deals in Singapore</span><br />
-              <br />
-              <span style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#000000;text-decoration:none;">Today's Keupons for You</span></td>
-            <td width="26%" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#000000;text-decoration:none;"><%=Time.zone.now.strftime('%A %B %d,%Y')%></td>
-          </tr>
-        </table></td>
-        <td height="8"></td>
-      </tr>
-      <tr>
-        <td width="19" height="8"></td>
-        <td width="94%" background="<%=$server_name%>/images/top_black_bar.jpg" height="8"></td>
-        <td width="19" height="8"></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td height="159" background="<%=$server_name%>/images/banner.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="4%">&nbsp;</td>
-            <td width="53%" align="left" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:30px;color:#FFFFFF;text-decoration:none;">Welcome to Keupons, the only site where you are guaranteed a discount! </td>
-            <td width="43%">&nbsp;</td>
-          </tr>
-        </table></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td height="35" background="<%=$server_name%>/images/bottom_black_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="78%" align="left" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:18px;padding-left:5px;color:#FFFFFF;text-decoration:none;"><%=Time.zone.now.strftime('%A')%>'s Deal</td>
-            <td width="22%" align="center">&nbsp;</td>
-          </tr>
-        </table></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td> <table width="680" border="0" cellspacing="6" cellpadding="0">
-          <%i = 0
-                for opdd in @deal_discounts
-                discount = opdd[1]
-                open_deal = @deals[opdd[0]]
-                opd = Deal.find(open_deal.id)
-          %>
-          <% if i%2 == 0 %>
-          <tr>
-            <td width="340" bgcolor="#eceded">
-              <table width="100%" border="0" cellspacing="5" cellpadding="0">
-              <tr>
-                <td colspan="2" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#FF0000;text-decoration:none;"><%=open_deal.name%></td>
-                </tr>
-              <tr>
-                <td width="36%" valign="top" background="<%=$server_name%>/images/price_list.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="37" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=(!discount.nil?)? discount : ''%> %</td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=open_deal.no_of_customers%> bought</td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#ffffff;text-decoration:none;font-weight:bold;">buy thru <%=Time.at(open_deal.end_time.to_i).strftime("%d/%m") %></td>
-                  </tr>
-                  <tr>
-                    <td height="31">&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td align="center"><a href="<%=$server_name%>/deal_details?id=<%= open_deal.id %>"><img src="<%=$server_name%>/images/view_deal_btn.png" width="81" height="29" border="0" /></a></td>
-                  </tr>
-                </table></td>
-                <td width="64%"><img src="<%=$server_name%>/<%= opd.deal_photo.url%>" width="200" height="169" /></td>
-              </tr>
-            </table>
-            </td>
-            <% else %>
-            <td width="340" bgcolor="#eceded">
-              <table width="100%" border="0" cellspacing="5" cellpadding="0">
-              <tr>
-                <td colspan="2" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#FF0000;text-decoration:none;"><%=open_deal.name%></td>
-              </tr>
-              <tr>
-                <td width="36%" valign="top" background="<%=$server_name%>/images/price_list.jpg" style="background-repeat:no-repeat;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="37" align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=(!discount.nil?)? discount : ''%> %</td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:16px;color:#ffffff;text-decoration:none;font-weight:bold;"><%=open_deal.no_of_customers%> bought</td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;color:#ffffff;text-decoration:none;font-weight:bold;">buy thru <%=Time.at(open_deal.end_time.to_i).strftime("%d/%m") %></td>
-                  </tr>
-                  <tr>
-                    <td height="31">&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td align="center"><a href="<%=$server_name%>/deal_details?id=<%= open_deal.id %>"><img src="<%=$server_name%>/images/view_deal_btn.png" width="81" height="29" border="0" /></a></td>
-                  </tr>
-                </table></td>
-                <td width="64%"><img src="<%=$server_name%>/<%= opd.deal_photo.url%>" width="200" height="169" /></td>
-              </tr>
-            </table></td></tr>
-          <%
-          end
-          i+=1
-          end
-          %>
-          <% if @deals.size%2 != 0 %>
-          <td width="340">&nbsp;</td>
-          </tr>
-          <% end %>
-        </table></td>
-        <td>&nbsp;</td>
-      </tr>
-
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td height="49" background="<%=$server_name%>/images/bottom_black_bar.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="49%" align="right" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:20px;color:#FFFFFF;text-decoration:none;">Want to see all the deals?</td>
-            <td width="3%">&nbsp;</td>
-            <td width="48%" align="left"><a href="<%=$server_name%>"><img src="<%=$server_name%>/images/viewdeals_btn.jpg" width="114" height="29" border="0" /></a></td>
-          </tr>
-        </table></td>
-        <td>&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td><img src="<%=$server_name%>/images/bottom_red_bar.jpg" width="720" height="21" /></td>
-  </tr>
-</table>
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>:::homepage:::</title>
+    </head>
+    <body>
+        <table cellspacing="0" cellpadding="0" width="601px" align="center" style="color:#fff;">
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" width="601px" height="177px" align="center" background="http://dev.keupons.com/images/mailer_header.png">
+                        <tr>
+                            <td style="vertical-align:top;">
+                                <img src="http://dev.keupons.com/images/ke_logo.png" hspace="56"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" width="601px" height="auto" align="center" bgcolor="#414042">
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <%for opdd in @deal_discounts
+                        discount = opdd[1]
+                        open_deal = @deals[opdd[0]]
+                        opd = Deal.find(open_deal.id) %>
+                        <tr>
+                            <td>
+                                <table cellspacing="0" cellpadding="0" width="552px" height="236px" align="center" background="http://dev.keupons.com/images/std_mainbox.png" background-repeat="no-repeat">
+                                    <tr>
+                                        <td width="50%" style="padding:0 0 0 15px;">
+                                            <img src="http://dev.keupons.com<%=opd.deal_photo.url(:deal_mailer)%>" />
+                                        </td>
+                                        <td width="50%" style="padding:0;vertical-align:top;">
+                                            <table cellspacing="10" cellpadding="0">
+                                                <tr>
+                                                    <td>
+                                                        <span style="font-size:14px; font-weight:bold;"><%= truncate(opd.name, 80, "...") %></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span style="font-size:11px;"><%= truncate(opd.description, 160, "...") %></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td align="center" height="90px" width="91px" background="http://dev.keupons.com/images/mailer_round.png" background-repeat="no-repeat">
+                                                                    <span style="text-align:center;font-size:14px;font-weight:bold;">Only
+                                                                        <br/>
+                                                                        <span style="font-size:16px;">$<%=opd.deal_discounts[0].buy_value.round %></span>
+                                                                        <br/>
+                                                                        or less
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="http://dev.keupons.com/deal_details?id=<%=opd.id%>" target="_blank"><img src="http://dev.keupons.com/images/mailer_readmore.png" border="0" /></a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" width="601px" height="133px" align="center" background="http://dev.keupons.com/images/mailer_footer.png">
+                        <tr>
+                            <td style="vertical-align:top;padding:15px 0 0 27px;">
+                                <span style="font-weight:bold; font-size:13px;">Have a question? <a href="mailto:support@keupons.com" style="color:#fff;">support@keupons.com</a></span>
+                                <br/>
+                                <br/>
+                                <span style="font-size:10px;">
+									<!--<a href="javascript:void(0);" style="color:#fff;">Click Here</a> if you can't view the images above
+                                	<br/>
+                                    Add <a href="javascript:void(0);" style="color:#fff;">support@keupons.com</a> to your address book
+                                    <br/>
+                                    <a href="javascript:void(0);" style="color:#fff;">Unsubscribe</a> | <a href="javascript:void(0);" style="color:#fff;">Refer a friend</a>
+                                    <br/>-->
+									<br/><br/><br/>
+                                    Copyright &copy; 2010 <a href="#" style="color:#fff;">www.keupons.com</a> All Rights Reserved
+                                </span>
+                            </td>
+                            <td style="vertical-align: top;padding:0 20px 0 0" align="right">
+                                <table cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td style="vertical-align:top;">
+                                            <img src="http://dev.keupons.com/images/mailer_keuponsmall.png" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:bottom;">
+                                            <a href="http://twitter.com/keupons_sg" target="_blank" style="color:#fff;"><img src="http://dev.keupons.com/images/t_small.png" border="0" /></a><a href="http://www.facebook.com/keupons" target="_blank" style="color:#fff;"><img src="http://dev.keupons.com/images/f_small.png" border="0" hspace="5" /></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>

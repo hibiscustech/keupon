@@ -44,10 +44,13 @@
     <div class="deal_img">
         <img src="images/receivedeals.png" hspace="4" />
     </div>
+	<% @deal = KeuponSubscribers.new() %>
+	<% form_for @deal, :deal, :url => {:controller=>'deals',:action => "get_deals_by_email"} do |f| %>
     <div class="head_box">
-        <input name="tb1" type="text" class="head_box1" value="ENTER EMAIL ADDRESS" />
+    	<%= f.text_field :email, {:size=>"20%", :value => "ENTER EMAIL ADDRESS", :class => "head_box1", :onfocus => "clearText(this);", :onblur => "clearText(this);"} %>
     </div>
-    <div class="go_img">
-        <img src="/images/go.png" hspace="4" />
+	<div class="go_img">
+		<%= image_submit_tag ("/images/go.png", :hspace => "4", :onclick => "return sform_validator();") %>
     </div>
+	<% end %>
 </div>

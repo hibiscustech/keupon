@@ -322,3 +322,8 @@ function changeButton(id){
 		document.getElementById("visited_btn_all").className="visited"
     }
 }
+
+function clearText(field){
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
