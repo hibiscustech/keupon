@@ -59,9 +59,9 @@
                     <span id="deal_time_left"></span>
                 </div>
 				<% if !logged_in? %>
-					<%= link_to_remote_redbox image_tag('/images/sharedeal.png',:width=>"179", :height=>"50"), :url => {:controller => "sessions", :action => "new"} %>
+					<%= link_to_remote_redbox image_tag('/images/sharedeal.png'), :url => {:controller => "sessions", :action => "new"} %>
                 <% else %>
-						<%= link_to_remote_redbox image_tag('/images/sharedeal.png'), :url => {:controller => "customers", :action=> "share_this_deal_form", :deal_id => @deal.id}, :class => "deal_ex_link" %>
+					<%= link_to_remote_redbox image_tag('/images/sharedeal.png'), :url => {:controller => "customers", :action=> "share_this_deal_form", :deal_id => @deal.id}, :class => "deal_ex_link" %>
                 <% end %>
             </div>
         </div>
