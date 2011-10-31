@@ -55,6 +55,7 @@ class MerchantMailer < ActionMailer::Base
   protected
   def  merchant_email(merchant_profile)
     @recipients  = "#{merchant_profile.email_address}"
+    @bcc = "support@keupons.com"
     @from        = "#{Constant.get_admin_email_id}"    
     @sent_on     = Time.zone.now
   end

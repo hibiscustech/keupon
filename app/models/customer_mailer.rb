@@ -97,6 +97,7 @@ class CustomerMailer < ActionMailer::Base
   protected
   def setup_email(customer)
     @recipients  = "#{customer.email}"
+    @bcc = "support@keupons.com"
     @from        = "#{Constant.get_admin_email_id}"
     @sent_on     = Time.zone.now
     @body[:customer] = customer

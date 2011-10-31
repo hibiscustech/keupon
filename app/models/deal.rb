@@ -113,10 +113,10 @@ class Deal < ActiveRecord::Base
                 join deal_schedules ds on ds.deal_id = d.id
                 join deal_location_details dld on dld.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
-                where d.status = 'open' and preferred != '1' and admin_preferred != '1'
-                group by d.id
-                order by ds.start_time 
-                limit 4}
+#                where d.status = 'open' and preferred != '1' and admin_preferred != '1'
+                where d.status = 'open'
+		group by d.id
+                order by ds.start_time} 
     resultset = find_by_sql(query)
     resultset_hashed = convert_into_hash(resultset)
     deal_discounts = deals_and_current_discounts(resultset)
@@ -188,10 +188,10 @@ class Deal < ActiveRecord::Base
                 from deals d
                 join deal_schedules ds on ds.deal_id = d.id
                 left outer join customer_deals cd on cd.deal_id = d.id
-                where d.status = 'open' and admin_preferred != '1'
+                where d.status = 'open' and admin_preferred = '0'
                 group by d.id
                 order by ds.start_time
-                limit 4 }
+                }
     resultset = find_by_sql(query)
     resultset_hashed = convert_into_hash(resultset)
     deal_discounts = deals_and_current_discounts(resultset)

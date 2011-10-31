@@ -92,7 +92,7 @@ class CustomersController < ApplicationController
     @page = "Hot Deals"
     @hot_deal_discounts, @hot_deals = Deal.all_hot_deals
     @open_deal_discounts, @open_deals = Deal.all_open_deals
-    @open_deal_recents, @open_deals_recents = Deal.all_hot_and_open_deals
+    @open_deal_recents, @open_deals_recents = Deal.all_open_deals
     @recent_deals = Deal.all_recent_deals
     #    @hot_deal = Deal.hot_deal_for_today
     if request.xml_http_request?

@@ -83,6 +83,12 @@
 					</div>
 		        </div>
 			<% end %>
+		<% elsif @open_deal_recents.length > 4 && @open_deal_recents.length % 2 != 0 %>
+			<div class="open_deal_box1">
+	            <div class="open_deal_box1_inner">
+	            	<img src="/images/<%=@banner[0]%>" />
+				</div>
+	        </div>
 		<% end %>
 		<% end %>
     </div>
