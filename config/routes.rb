@@ -24,7 +24,8 @@ ActionController::Routing::Routes.draw do |map|
   #map.forgot_password '/forgot_password', :controller => 'customers', :action => 'forgot_password'
   map.forgot_password '/forgot_password', :controller => 'sessions', :action => 'forgot_password_for'
   map.change_password '/change_password', :controller => 'customers', :action => 'change_password'
-   
+  map.fb_user_activate '/customers/fb_user_activate', :controller => 'customers', :action => 'fb_user_activate'
+ 
   map.activate '/activate/:activation_code', :controller => 'customers', :action => 'activate', :activation_code => nil
   map.get_location_deal '/get_location_deal' , :controller => 'customers', :action => 'get_location_deal'
   map.update '/update', :controller => 'customers', :action => 'settings'
