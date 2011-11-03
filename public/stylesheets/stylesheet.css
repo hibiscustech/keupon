@@ -84,7 +84,7 @@ a{outline:none;}
 	}
 .txt1{font-weight:bold;color:#FFF;font-size:14px;padding-bottom:15px;}
 .txt2{color:#FFF;}
-.txt3{font-size:9px;color:#FFF;width:150px;margin:10px 0 0 15px;position:absolute;}
+.txt3{font-size:9px;color:#FFF;width:150px;margin:-15px 0 0 15px;position:absolute;}
 .open_deal{
 	position:absolute; margin-left:45px;
 	}
@@ -98,8 +98,8 @@ a{outline:none;}
 	float:left; height:auto; width:570px;margin:0 0 0 14px;
 	}
 	
-.open_deal_box1_inner{height:170px;text-align:center;}
-.open_deal_box1_inner a{float:left;margin: 25px 0 0 17px;}
+.open_deal_box1_inner{height:170px;text-align:center;margin:25px 0 0 17px;}
+.open_deal_box1_inner a{float:left;}
 .round_small{background: url("/images/round_small.png") no-repeat scroll 0 0 transparent;
     height: 63px;
     margin: -45px 0 0 150px;
@@ -138,7 +138,7 @@ a{outline:none;}
 	
 /**/
 .dealpage_bg{background: url("/images/deal_bg.png") repeat-x scroll 0 0 transparent;
-    height: auto;
+    height:auto;
     width: 1021px;}
 .deal_whitebg{
 	background:url(/images/deal_whitebg.png) no-repeat; height:402px; width:450px; margin-top:18px;
@@ -185,7 +185,8 @@ a{outline:none;}
 .deal_ex_link{padding:6px 0 0;float:left;}
 .your_card{color:#FFF;width:280px;padding:10px 0 0;font-size:11px}
 .greybox{
-	height:163px; width:448px; background:#b3b3b3; -moz-border-radius:40px; margin-top:13px;
+	height:146px; width:448px; /*background:#b3b3b3;-moz-border-radius:40px;-webkit-border-radius:40px;*/ margin-top:13px;
+	background:url(/images/hiw_bg.jpg) center no-repeat;
 	}
 	.greybox_top{
 		height:67px; width:416px; margin:auto; margin-top:15px;
@@ -237,7 +238,6 @@ a{outline:none;}
 
 /*aboutus_start*/
 .aboutwhite_bg{
-
 	height:547px; width:236px; color:#333333; background:#FFF; -moz-border-radius:23px; -webkit-border-radius:23px;padding:30px 20px 0px 20px; text-align:justify;font-weight:bold;
 	}
 .aboutus_1stboxcon{

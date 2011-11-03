@@ -21,7 +21,7 @@
 	            <%= truncate(htdeal.name, 40, "...") %>
 	        </div>
 	        <div class="txt2">
-	            <%= truncate(htdeal.description, 200, "...") %>
+	            <%= truncate(htdeal.description.strip, 200, "...") %>
 	        </div>
 	        <div style="float:left; margin-top:15px;">
 	            <a href="/deal_details?id=<%= hot_deal.id %>"><img src="images/read_more.png" align="left" border="0" vspace="10" /></a>
@@ -68,25 +68,37 @@
             	<div class="round_small">
             		<span>Only<h2>$<%=opd.deal_discounts[0].buy_value.round %></h2>or less</span>
 	            </div>
-				<%= truncate(htdeal.name, 80, "...") %>
+				<%= truncate(opd.name, 80, "...") %>
             </div>
         </div>
 		<% end %>
-		<% @banner = ["homepage_banner_1.png","homepage_banner_2.png","homepage_banner_3.png","homepage_banner_1.png","homepage_banner_3.png"].shuffle %>
+		<% @banner = ["homepage_banner_2.png","homepage_banner_3.png","homepage_banner_2.png","homepage_banner_3.png"].shuffle %>
 		<% if @open_deal_recents.length <= 4 %>
 			<% @deal_count = 4 - @open_deal_recents.length %>
 			<% @banner.each_with_index do |banner, i| %>
 				<% break if i == @deal_count; %>
 				<div class="open_deal_box1">
-		            <div class="open_deal_box1_inner">
-		            	<img src="/images/<%=banner%>" />
+		            <div class="open_deal_box1_inner" style="margin:0 !important;">
+		            	<% if banner=="homepage_banner_3.png" %>
+							<%= link_to_remote_redbox image_tag('/images/homepage_banner_3.png'), :url => {:controller => "customers", :action => "earn_money"} %>
+		            	<% else %>
+							<a href="http://www.facebook.com/keupons" target="_blank">
+			            		<img src="/images/homepage_banner_2.png" />
+							</a>
+						<% end %>
 					</div>
 		        </div>
 			<% end %>
 		<% elsif @open_deal_recents.length > 4 && @open_deal_recents.length % 2 != 0 %>
 			<div class="open_deal_box1">
-	            <div class="open_deal_box1_inner">
-	            	<img src="/images/<%=@banner[0]%>" />
+	            <div class="open_deal_box1_inner" style="margin:0 !important;">
+	            	<% if @banner[0]=="homepage_banner_3.png" %>
+						<%= link_to_remote_redbox image_tag('/images/homepage_banner_3.png'), :url => {:controller => "customers", :action => "earn_money"} %>
+	            	<% else %>
+						<a href="http://www.facebook.com/keupons" target="_blank">
+		            		<img src="/images/homepage_banner_2.png" />
+						</a>
+					<% end %>
 				</div>
 	        </div>
 		<% end %>

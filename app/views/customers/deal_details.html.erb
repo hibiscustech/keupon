@@ -1,9 +1,11 @@
 <div class="dealpage_bg">
     <div style="width:453px; margin-left:25px; float:left;">
         <div style="margin-left:115px; position:absolute;">
-            <% if @deal.preferred != "1" and @deal.admin_preferred != "1" %>
-            <img src="/images/open_dealnew.png" border="0" /><% else %>
-            <img src="/images/hotdeal_big.png" border="0" /><% end %>
+            <% if @deal.admin_preferred == "0" %>
+            	<img src="/images/open_dealnew.png" border="0" />
+			<% else %>
+            	<img src="/images/hotdeal_big.png" border="0" />
+			<% end %>
         </div>
         <div class="deal_whitebg">
             <img class="item" src="<%=@deal.deal_photo.url(:deal_detail)%>" alt="clouds" border="0" />
@@ -23,10 +25,10 @@
             <div class="greybox_top">
                 <%= render :partial => "deal_scale" %>
             </div>
-            <div style="float: left; width: 248px; height: 20px; margin-top: 63px; font-weight: bold; color: rgb(64, 64, 65); margin-left: 28px;">
+            <div style="float:left;width:248px;height:20px;margin-top:25px;font-weight:bold;color:rgb(64, 64, 65);margin-left:28px;position:absolute;">
                 "At Keupons.com, 'The More People Buy, the Higher the Discount Gets!"
             </div>
-            <div class="greybox_bottom">
+            <div class="greybox_bottom" style="position:absolute;margin-top:27px;">
                 <%= link_to_remote_redbox image_tag('/images/hiw.jpg'), :url => {:controller => "customers", :action => "how_it_works"}, :style => "float:right;" %>
             </div>
         </div>

@@ -2,49 +2,14 @@
     <a href="javascript:void(0);" onclick="Effect.Fade('RB_window', {duration: 0.4});Effect.Fade('RB_overlay', {duration: 0.4});">
     	<img src="/images/close_btn1.png" border="0" style="margin-top:15px; position:absolute; margin-left:684px;"/>
 	</a>
+	<% if !@deal.more_details.blank? %>
     <div class="more_txt">
         MORE DETAILS
     </div>
     <div class="more">
-        <ul>
-            <li>
-                Deal Expire on 28-08-2011
-            </li>
-            <li>
-                At Keupons.com "The More People Buy, the Higher the Discount Gets!" 
-            </li>
-            <li>
-                1 to 10 Buyers: Enjoy 56% Off; Buy at $69.90 
-            </li>
-            <li>
-                11 Buyers & above: Enjoy 59% Off; EVERYONE pays $65.90 instead of $160
-            </li>
-            <li>
-                Keupon is valid till 29 August 2011
-            </li>
-            <li>
-                1 bottle per Keupon, buy as many as you like! 
-            </li>
-            <li>
-                Please email to admin@perfumestore.sg with the followings; Full name (as in NRIC), NRIC/Passport number, Mobile number, Email, Delivery Address and attach Keupon. 
-            </li>
-            <li>
-                Keupon are non-refundable and non-exchangeable for cash, other services or promotions. 
-            </li>
-            <li>
-                Delivery of stock will be based on first come first serve basis
-            </li>
-            <li>
-                Free delivery of item will be provided. 
-            </li>
-            <li>
-                Good sold & delivered are strictly non-returnable/refundable/exchangeable unless defected 
-            </li>
-            <li>
-                The management of PerfumeStore.sg reserves the right to amend the terms & conditions without prior notice. 
-            </li>
-        </ul>
+        <%= @deal.more_details %>
     </div>
+	<% end %>
     <div class="more1_txt">
         ABOUT THE MERCHANT
     </div>
