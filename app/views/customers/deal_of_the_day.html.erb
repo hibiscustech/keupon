@@ -13,7 +13,7 @@
 	    		<img class="item" src="<%=htdeal.deal_photo.url(:hot_deal_main)%>" alt="clouds" border="0" />
 			</a>
 			<div class="img1_round_bg">
-				<span>Only<h2>$<%=htdeal.deal_discounts[0].buy_value.round %></h2>or less</span>
+				<span>Only<h2>$<%=htdeal.deal_discounts[0].buy_value %></h2>or less</span>
 			</div>
 	    </div>
 	    <div class="txt_box">
@@ -66,7 +66,7 @@
 			</div>
             <div class="txt3">
             	<div class="round_small">
-            		<span>Only<h2>$<%=opd.deal_discounts[0].buy_value.round %></h2>or less</span>
+            		<span>Only<h2>$<%=opd.deal_discounts[0].buy_value %></h2>or less</span>
 	            </div>
 				<%= truncate(opd.name, 80, "...") %>
             </div>
