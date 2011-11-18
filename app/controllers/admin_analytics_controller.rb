@@ -65,6 +65,7 @@ class AdminAnalyticsController < ApplicationController
   def customers_report
     sort = case params['sort']
       when "time_created"  then "time_created desc"
+      when "id"  then "c.id"
       when "name"  then "name"
       when "customer_pin"  then "customer_pin"
       when "dob"  then "dob"
@@ -77,6 +78,7 @@ class AdminAnalyticsController < ApplicationController
       when "introduced"  then "introduced"
       when "spendings" then "spendings"
       when "time_created_reverse"  then "time_created"
+      when "id_reverse" then "c.id desc"
       when "name_reverse"  then "name DESC"
       when "customer_pin_reverse"  then "customer_pin DESC"
       when "dob_reverse"  then "dob DESC"

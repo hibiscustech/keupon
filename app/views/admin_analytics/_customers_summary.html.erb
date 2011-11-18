@@ -30,11 +30,11 @@
                 <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
                   <%= sort_admin_table_header("Total Spending(S$)", "spendings", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "spendings" %>
                 </td>
-                <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
-                  <%= sort_admin_table_header("Keupoints", "kupoints", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "kupoints" %>
+                 <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
+                  <%= sort_admin_table_header("Friends Introduced", "introduced", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "introduced" %>
                 </td>
                 <td width="7%" align="center" background="/images/table_header_bg.jpg" bgcolor="#FFFFFF" class="table_header_text">
-                  <%= sort_admin_table_header("Friends Introduced", "introduced", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "introduced" %>
+                  <%= sort_admin_table_header("ID", "id", "customers_report", params[:page]) %> <%= sort_admin_td_class_helper "id" %>
                 </td>
               </tr>
               <% 
@@ -51,8 +51,8 @@
                 <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.location %></td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.total_bought %></td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.spendings %></td>
-                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.kupoints %></td>
                 <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.introduced %></td>
+                <td align="center" bgcolor="#FFFFFF" class="content_text"><%= customer.id %></td>
               </tr>
               <% end %>
             </table>
