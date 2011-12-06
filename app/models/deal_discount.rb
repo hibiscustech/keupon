@@ -33,12 +33,15 @@ class DealDiscount < ActiveRecord::Base
       max_cust = dd.max_customers
       if max_cust.blank? && (no_of_customers.to_i >= min_cust)
         discount = dd.discount
+        buy_value = dd.buy_value.round
         break
       elsif (no_of_customers.to_i >= min_cust) && (no_of_customers.to_i <= max_cust)
         discount = dd.discount
+        buy_value = dd.buy_value.round
         break
       end
     end
-    return discount
+    return discount, buy_value
   end
+  
 end

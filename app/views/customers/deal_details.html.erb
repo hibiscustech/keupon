@@ -11,7 +11,7 @@
             <img class="item" src="<%=@deal.deal_photo.url(:deal_detail)%>" alt="clouds" border="0" />
         </div>
         <div class="red_dot_txt">
-            <h2><%=current_deal_discount_for_deal(@deal.id) %><%="%" %></h2>
+            <h2><%=current_deal_discount_for_deal(@deal.id)[0] %><%="%" %></h2>
             <span>OFF
                 <br/>
                 SGD <%=@deal.value %>
@@ -19,7 +19,7 @@
         </div>
         <div class="greybar_txt">
             <span class="price">PRICE NOW &nbsp;&nbsp;</span>
-            <span class="price_val">SGD<%= Deal.find(@deal.id).deal_discounts[0].buy_value %></span>
+            <span class="price_val">SGD<%= current_deal_discount_for_deal(@deal.id)[1] %></span>
         </div>
         <div class="greybox">
             <div class="greybox_top">
