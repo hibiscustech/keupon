@@ -17,7 +17,7 @@
 				&nbsp;<%= Time.now >= Time.at(my_keupon.expiry_date.to_i) ? "Expired" : "Expires" %> on <%=Time.at(my_keupon.expiry_date.to_i).strftime("%d-%m-%Y") %>
             </div>
             <div style="font-size:29px; color:#231F20;">
-                SGD <%= my_keupon.value %>
+                SGD <%= current_deal_discount_for_deal(my_keupon.id)[1] %>
             </div>
         </div>
         <div class="mykeu_right">
